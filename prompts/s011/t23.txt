@@ -1,0 +1,34 @@
+You are an expert agent operating in the ALFRED embodied Environment.
+Your task is to: cool some pot and put it in diningtable..
+Prior to this step, you have already taken 22 step(s). Below are the most recent 2 observations and the corresponding actions you took:
+[Observation 21: 'On the countertop 1, you see a apple 2, a apple 1, a bread 1, a fork 1, a knife 1, a pen 2, a pen 1, a pencil 3, a potato 3, a spatula 1, a tomato 3, a winebottle 2, and a winebottle 1.', Action 21: 'examine countertop 1']
+[Observation 22: 'On the countertop 1, you see a apple 2, a apple 1, a bread 1, a fork 1, a knife 1, a pen 2, a pen 1, a pencil 3, a potato 3, a spatula 1, a tomato 3, a winebottle 2, and a winebottle 1.', Action 22: 'go to cabinet 1']
+You are now at step 23 and your current observation is: You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing..
+Your admissible actions of the current situation are: ['close cabinet 1'
+ 'examine cabinet 1'
+ 'go to cabinet 10'
+ 'go to cabinet 2'
+ 'go to cabinet 3'
+ 'go to cabinet 4'
+ 'go to cabinet 5'
+ 'go to cabinet 6'
+ 'go to cabinet 7'
+ 'go to cabinet 8'
+ 'go to cabinet 9'
+ 'go to coffeemachine 1'
+ 'go to countertop 1'
+ 'go to diningtable 1'
+ 'go to drawer 1'
+ 'go to drawer 2'
+ 'go to fridge 1'
+ 'go to garbagecan 1'
+ 'go to microwave 1'
+ 'go to sinkbasin 1'
+ 'go to stoveburner 1'
+ 'go to stoveburner 2'
+ 'go to stoveburner 3'
+ 'go to stoveburner 4'
+ 'go to toaster 1'
+ 'inventory'
+ 'look'].
+Now it's your turn to take an action. You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags. Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.

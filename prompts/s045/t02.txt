@@ -1,0 +1,35 @@
+You are an expert agent operating in the ALFRED embodied Environment.
+Your task is to: put two saltshaker in cabinet..
+Prior to this step, you have already taken 1 step(s). Below are the most recent 1 observations and the corresponding actions you took:
+[Observation 1: '-= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 1, a diningtable 3, a diningtable 2, a diningtable 1, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a sidetable 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+
+Your task is to: put two saltshaker in cabinet.', Action 1: 'go to diningtable 1']
+You are now at step 2 and your current observation is: You arrive at diningtable 1. On the diningtable 1, you see a egg 1, a potato 2, and a spoon 3..
+Your admissible actions of the current situation are: ['examine diningtable 1'
+ 'go to cabinet 1'
+ 'go to cabinet 2'
+ 'go to cabinet 3'
+ 'go to cabinet 4'
+ 'go to coffeemachine 1'
+ 'go to countertop 1'
+ 'go to diningtable 2'
+ 'go to diningtable 3'
+ 'go to drawer 1'
+ 'go to fridge 1'
+ 'go to garbagecan 1'
+ 'go to microwave 1'
+ 'go to sidetable 1'
+ 'go to sinkbasin 1'
+ 'go to stoveburner 1'
+ 'go to stoveburner 2'
+ 'go to stoveburner 3'
+ 'go to stoveburner 4'
+ 'go to toaster 1'
+ 'inventory'
+ 'look'
+ 'take egg 1 from diningtable 1'
+ 'take potato 2 from diningtable 1'
+ 'take spoon 3 from diningtable 1'].
+Now it's your turn to take an action. You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags. Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.

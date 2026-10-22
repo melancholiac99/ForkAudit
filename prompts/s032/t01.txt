@@ -1,0 +1,26 @@
+You are an expert agent operating in the ALFRED embodied Environment.
+Your task is to: put two dishsponge in cart..
+Prior to this step, you have already taken 0 step(s). Below are the most recent 0 observations and the corresponding actions you took:
+
+You are now at step 1 and your current observation is: -= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a bathtubbasin 1, a cart 1, a garbagecan 1, a handtowelholder 2, a handtowelholder 1, a shelf 4, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a toilet 1, a toiletpaperhanger 1, a towelholder 2, and a towelholder 1.
+
+Your task is to: put two dishsponge in cart..
+Your admissible actions of the current situation are: ['go to bathtubbasin 1'
+ 'go to cart 1'
+ 'go to garbagecan 1'
+ 'go to handtowelholder 1'
+ 'go to handtowelholder 2'
+ 'go to shelf 1'
+ 'go to shelf 2'
+ 'go to shelf 3'
+ 'go to shelf 4'
+ 'go to sinkbasin 1'
+ 'go to toilet 1'
+ 'go to toiletpaperhanger 1'
+ 'go to towelholder 1'
+ 'go to towelholder 2'
+ 'inventory'
+ 'look'].
+Now it's your turn to take an action. You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags. Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.

@@ -1,0 +1,22 @@
+You are an expert agent operating in the ALFRED embodied Environment.
+Your task is to: put some alarmclock on desk..
+Prior to this step, you have already taken 21 step(s). Below are the most recent 2 observations and the corresponding actions you took:
+[Observation 20: 'You arrive at cabinet 2. The cabinet 2 is open. In it, you see nothing.', Action 20: 'go to cabinet 3']
+[Observation 21: 'You arrive at cabinet 3. The cabinet 3 is closed.', Action 21: 'open cabinet 3']
+You are now at step 22 and your current observation is: You open the cabinet 3. The cabinet 3 is open. In it, you see nothing..
+Your admissible actions of the current situation are: ['close cabinet 3'
+ 'examine cabinet 3'
+ 'examine shelf 1'
+ 'go to bed 1'
+ 'go to cabinet 1'
+ 'go to cabinet 2'
+ 'go to cabinet 4'
+ 'go to desk 1'
+ 'go to drawer 1'
+ 'go to drawer 2'
+ 'go to garbagecan 1'
+ 'go to sidetable 1'
+ 'inventory'
+ 'look'
+ 'take creditcard 2 from shelf 1'].
+Now it's your turn to take an action. You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags. Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.

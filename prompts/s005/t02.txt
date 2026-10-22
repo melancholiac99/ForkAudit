@@ -1,0 +1,30 @@
+You are an expert agent operating in the ALFRED embodied Environment.
+Your task is to: put a pen in desk..
+Prior to this step, you have already taken 1 step(s). Below are the most recent 1 observations and the corresponding actions you took:
+[Observation 1: '-= Welcome to TextWorld, ALFRED! =-
+
+You are in the middle of a room. Looking quickly around you, you see a bed 1, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a desk 1, a drawer 2, a drawer 1, a garbagecan 1, a shelf 1, and a sidetable 1.
+
+Your task is to: put a pen in desk.', Action 1: 'go to desk 1']
+You are now at step 2 and your current observation is: You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, a laptop 1, and a pencil 2..
+Your admissible actions of the current situation are: ['examine desk 1'
+ 'go to bed 1'
+ 'go to cabinet 1'
+ 'go to cabinet 2'
+ 'go to cabinet 3'
+ 'go to cabinet 4'
+ 'go to drawer 1'
+ 'go to drawer 2'
+ 'go to garbagecan 1'
+ 'go to shelf 1'
+ 'go to sidetable 1'
+ 'inventory'
+ 'look'
+ 'take box 1 from desk 1'
+ 'take creditcard 2 from desk 1'
+ 'take keychain 2 from desk 1'
+ 'take laptop 1 from desk 1'
+ 'take laptop 2 from desk 1'
+ 'take laptop 3 from desk 1'
+ 'take pencil 2 from desk 1'].
+Now it's your turn to take an action. You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags. Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.

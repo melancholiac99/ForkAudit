@@ -1,0 +1,45 @@
+You are an expert agent operating in the ALFRED embodied Environment.
+Your task is to: put a remotecontrol in armchair..
+Prior to this step, you have already taken 9 step(s). Below are the most recent 2 observations and the corresponding actions you took:
+[Observation 8: 'On the armchair 1, you see a pillow 1.', Action 8: 'go to drawer 1']
+[Observation 9: 'You arrive at drawer 1. The drawer 1 is closed.', Action 9: 'open drawer 1']
+You are now at step 10 and your current observation is: You open the drawer 1. The drawer 1 is open. In it, you see nothing..
+Your admissible actions of the current situation are: ['close drawer 1'
+ 'examine drawer 1'
+ 'go to armchair 1'
+ 'go to armchair 2'
+ 'go to cabinet 1'
+ 'go to cabinet 2'
+ 'go to cabinet 3'
+ 'go to cabinet 4'
+ 'go to cabinet 5'
+ 'go to cabinet 6'
+ 'go to cabinet 7'
+ 'go to cabinet 8'
+ 'go to coffeetable 1'
+ 'go to coffeetable 2'
+ 'go to diningtable 1'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to drawer 6'
+ 'go to drawer 7'
+ 'go to garbagecan 1'
+ 'go to shelf 1'
+ 'go to shelf 10'
+ 'go to shelf 11'
+ 'go to shelf 12'
+ 'go to shelf 13'
+ 'go to shelf 2'
+ 'go to shelf 3'
+ 'go to shelf 4'
+ 'go to shelf 5'
+ 'go to shelf 6'
+ 'go to shelf 7'
+ 'go to shelf 8'
+ 'go to shelf 9'
+ 'go to sofa 1'
+ 'inventory'
+ 'look'].
+Now it's your turn to take an action. You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags. Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
