@@ -130,3 +130,38 @@ in draw order from these drafts; if fewer than 4 distinct admissible non-factual
 further batches up to the 300-draw cap (CWGT's rule unchanged). All drafts (raw text + parsed action + admissible flag)
 are stored. This also matches the 32-sample fallback specified for Branch A, so both branches use the same estimator.
 Cost: ≈0 marginal (the 32 drafts are the first draws the sampler makes anyway).
+
+## D-009 — Prompt construction details not fixed by the HCAPO appendix — DECIDED 2026-10-22
+
+Sources: HCAPO arXiv 2603.08754 TeX `tex/app.tex` §C.2.1 (template), §C.1 ("follow all configurations in GiGPO",
+50 env steps, max prompt 2048 / response 512 tokens, history length 2); verl-agent (GiGPO code, langfengQ/verl-agent master,
+fetched 2026-10-22 into `downloads/verl_agent/`) for everything the appendix leaves implicit.
+- **Template text:** the CWGT-bundled verbatim appendix text (`prompts/hcapo_alfworld_template.txt`, header comment lines
+  stripped) — this is what CWGT says it used. It matches HCAPO TeX except ’ vs ' (ASCII kept, as in CWGT's bundle).
+  It differs cosmetically from verl-agent's code string ("Embodied", missing periods); we follow the paper/CWGT text.
+- **Step 1:** HCAPO's appendix gives only the with-history template; verl-agent uses a separate NO_HIS template at step 1.
+  CWGT says it used the appendix template verbatim, so we use the *same* template at step 1 with step_count=0,
+  history_length=0, empty action_history. (Disclosed deviation from verl-agent; unknown whether CWGT did the same.)
+- **{task_description}:** text after "Your task is to: " in the initial observation, stripped (verl-agent `extract_task`).
+  Note the template appends "." after it; ALFWorld task strings already end in "." → "…countertop.." as in HCAPO.
+- **{current_observation}:** raw env text; at step 1 the full initial observation (verl-agent behaviour).
+- **{action_history}:** verl-agent `SimpleMemory.fetch`: last ≤2 records, each
+  `[Observation {k}: '{obs_k}', Action {k}: '{act_k}']` joined by "\n", where obs_k is the observation the action was taken
+  in and act_k the *parsed* action string sent to the env.
+- **{admissible_actions}:** `"\n ".join(f"'{s}'" for s in admissible if s != 'help')`, env order (verl-agent).
+- **Chat template:** single user message = filled template, Qwen2.5 tokenizer chat template with its default system prompt,
+  `add_generation_prompt=True` (verl-agent default; no custom system prompt).
+- **Action parsing:** verl-agent `alfworld_projection`: lowercase; text between first `<action>` and first `</action>`;
+  invalid if tags missing, `<think>` tags missing, or CJK chars. Invalid outputs are still sent to the env as in verl-agent
+  (env answers "Nothing happens."); they are counted. For the alternative sampler, a draft counts only if valid *and*
+  its parsed action ∈ admissible set.
+- **Step cap:** 50 env steps (GiGPO/HCAPO ALFWorld). Response cap 512 tokens.
+- **Reward/outcome:** binary success (env `won`), as in CWGT.
+
+## D-010 — Task list and seeds for Branch B — DECIDED 2026-10-22 (provisional until the archive search returns)
+
+CWGT's frozen task list is not published in the bundle. Choice: ALFWorld `train` split game files, task list frozen by
+`scripts/05_freeze_tasks.py` (numpy seed 0): 50 games stratified over the 6 task types (9/9/8/8/8/8, type order fixed
+alphabetically), seed i ↔ game i. Frozen list committed to `data/task_list.json` before any rollout.
+Rationale: no training is done in this phase, so a held-out split buys nothing; stratification guarantees all task types
+appear. If the CWGT archive turns up with its task list, it replaces this list.
