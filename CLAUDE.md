@@ -6,7 +6,7 @@
 
 ## 1. 研究问题（一段话，不要改写）
 
-当 LLM Agent 的前向决策被压缩为日志轨迹中的已选动作时，决策结构（候选动作集合、各候选的策略分数、它们的相对关系与跨时间关系）被丢弃。事后逐步信用估计器（LLM judge、logprob 比、标量置信度）只消费这条压缩后的轨迹。**本实验检验：在相同的执行 replay 参考信用下，决策结构特征（臂 B）和策略隐状态线性 probe（臂 C）是否比标量置信度（臂 A）更能识别 pivotal 步骤、更能预测 step contribution、更不受动作流畅度污染。**
+当 LLM Agent 的前向决策被压缩为日志轨迹中的已选动作时，决策结构（候选动作集合、各候选的策略分数、它们的相对关系与跨时间关系）被丢弃。事后逐步信用估计器（LLM judge、logprob 比、标量置信度）只消费这条压缩后的轨迹。**本实验检验：在相同的执行 replay 参考信用下，决策结构特征（臂 B）和策略隐状态线性 probe（臂 C）是否比标量置信度（臂 A）更能识别 pivotal 步骤、更能预测 step contribution、更不受动作流畅度污染。** 已知两端：CARL 显示采样估计的动作熵在分布层面区分关键状态；CWGT 显示 chosen-action 置信度在逐步路由上是 chance level，并指出二者不冲突。本实验要回答的是：**熵之外、置信度之外的决策结构，能否把分布层面的分离变成逐步可用的识别。**
 
 本阶段**不做策略训练**。本阶段不提出新算法。本阶段的产出是一组可复现、带对照、带置信区间的测量，以及一个按预注册规则得出的"继续/转向/停止"判定。
 
@@ -17,6 +17,7 @@
 | **Credit Without Ground Truth (CWGT)**, Haiyue Zhang | 2608.19760 v2 | ALFWorld, Qwen2.5-7B-Instruct / Llama-3.1-8B-Instruct, T=0.7, HCAPO 模板。每个决策点：factual 动作重放 ≥3 次，从策略采样 K=4 个不同合法替代动作各续跑 ≥3 次；A_replay(t)=mean(outcome\|factual)−mean(outcome\|alt)。2,034 → 1,768 个完整 Qwen 决策点。**69.5% 的点 A_replay=0**；13.1%(Qwen)/26.8%(Llama) 的点采不出 4 个替代 → 反事实未定义，排除不插补。标量置信度（chosen action 的 token 平均 logprob）：13.1% 路由率下 pivotal 召回 11.9% [9.4,14.9]，chance level；事后 logprob 信用与流畅度秩相关 +0.752；条件掉流畅度后与因果增量偏相关 −0.004。LLM judge 与 shuffle 对照区间重叠。训练 7 臂无一胜基线。**声明公开 replay 存档（29,402 文件）、per-turn 摘要、logprob dump、生成器**。 | **协议、指标、对照、基线数字全部沿用。它是本项目的起点，不是竞争者。** 它没测任何来自未选动作的信号，没测隐状态。 |
 | **BiPACE** | 2606.25556 | 用 actor 隐状态几何的 cosine 距离聚类步骤（bisimulation 代理），簇内动作条件基线估计 Q−V；ALFWorld/Qwen2.5-7B 97.1%。代码公开。 | 隐状态 → 步级信用已有训练级结果。臂 C 是对它的 replay 审计，不是复现。 |
 | **Doomed from the Start** | 2607.06503 | 隐状态线性 probe 从第一轮预测 episode 失败；行为特征在其上无增益。 | 臂 C 是臂 B 的信息上界。 |
+| **CARL** (Shen et al.) | 2512.04949 v3 | 搜索 QA + 数学，Qwen3-4B。关键性定义 = 把随机性隔离到该状态的动作采样时结果奖励的**标准差**（无符号）。发现 >50% 状态重采样后对结果几乎无影响；高关键性状态的**采样估计**动作熵更高（分布层面；CWGT 重分析为 Cliff's δ=0.42, n=294）。训练方法：熵作关键性代理，只更新高熵状态。 | "熵与关键性有分布层面关联"不是新结果。但 CARL 的熵是自由文本采样估计，不是合法集上的精确熵；关键性是无符号 SD，不是有符号对比；没有逐步识别指标、没有 shuffle 对照、没有流畅度检验、没有熵以外的结构、没有隐状态、不在 ALFWorld/7B。**CWGT 已明确指出 CARL 的分布层面分离与 CWGT 的逐步路由 chance level "不冲突"——这个张力正是本项目的切入点：什么结构能把分布层面的分离变成逐步可用的识别？** |
 | **EMPG** | ICML 2026, PMLR 306 | 步级熵调制策略梯度。 | 熵不是新信号。 |
 | **Prospective Hindsight** | 2610.02740 | 事前预测 vs 事后评价的 gap 用于训练。 | 事前预测 probe 不是本阶段主信号。 |
 
@@ -57,8 +58,10 @@
 13. `sem_dispersion` = 用冻结句子编码器（`BAAI/bge-small-en-v1.5`）嵌入每个候选，q 加权的平均成对余弦距离
 14. `sem_dist_chosen_runner` = cos_dist(emb(chosen), emb(a₂))
 15. 控制列：`turn_index`, `n_admissible`, `chosen_n_tokens`, `type(chosen)` one-hot
+16. `entropy_sampled` = CARL 式采样估计熵：用 replay 阶段从策略 T=0.7 拒绝采样得到的那些草稿（Branch B 最多 300 次；Branch A 若存档保留了草稿）里**合法且不重复**的动作频率算熵。零额外成本。与 `entropy_q` 并列，用于区分"精确合法集熵"与"采样估计熵"。若 Branch A 存档无草稿，则对每点额外采样 32 次，标注成本。
+17. `chosen_conf` = 臂 A 的标量置信度，作为臂 B 内部的对照列，确保 B 的增益是在 A 之上。
 
-**可得性标注（必须写入 audit_metadata 的 `availability` 列）：** 特征 1–10、12–14 只用当前及过去信息，标 `forward`；特征 11 `alt_revisit` 用到未来 5 步的实际执行，标 `hindsight`。论文中"rollout 时可记录"的主张只能基于 `forward` 特征；主表要分别报告"仅 forward"与"forward + hindsight"两个版本。
+**可得性标注（必须写入 audit_metadata 的 `availability` 列）：** 特征 1–10、12–14、16、17 只用当前及过去信息，标 `forward`；特征 11 `alt_revisit` 用到未来 5 步的实际执行，标 `hindsight`。论文中"rollout 时可记录"的主张只能基于 `forward` 特征；主表要分别报告"仅 forward"与"forward + hindsight"两个版本。
 
 臂 B 的预测器：GroupKFold(by trajectory, 5 折) 的 L2 logistic 回归（分类）/ 岭回归（连续），只调一个正则系数，内层 CV。同时报告**单特征**版本（每个特征单独作为 score）。
 
@@ -99,6 +102,8 @@ scorer:str ("hf"|"vllm"), model_hash:str
 ## 6. 指标精确定义（与 CWGT 可比）
 
 记 D = {cf_defined == True} 的决策点集合。pivotal: y_t = 1[A_replay(t) ≠ 0]。σ_floor(t) = factual 重放结果的标准差（CWGT 定义）。
+
+**第二目标（CARL 复现用，零成本）：** `crit_sd(t)` = 该点 factual 重放 ∪ 全部替代续跑的结果的标准差（CARL 的无符号关键性定义，在 ALFWorld 上的实现）。M1/M2/M3 对 pivotal 与 A_replay 为主；对 `crit_sd` 另报一列，用于与 CARL 的 δ=0.42 对比（算 Cliff's δ：高熵组 vs 低熵组的 crit_sd）。
 
 **M1 Recall@route（主指标）。** 对分数 s，按 s 降序取 D 的前 r% 为"路由集"。r 取两个值都报告：r=13.1（CWGT 的固定数字，用于直接对比）和 r=本数据集自己的 no-counterfactual 率（CWGT 的原始定义）。recall = |路由集 ∩ pivotal| / |pivotal|。Wilson 95% CI。额外报告 AUROC 与 precision@route。学习型臂（B 多特征、C）用 GroupKFold 的 out-of-fold 分数。
 
@@ -159,7 +164,9 @@ scorer:str ("hf"|"vllm"), model_hash:str
 
 | 读法 | 条件 | 判定 |
 |---|---|---|
-| **R1 主线成立** | 臂 B 多特征 M1 召回 ≥ 25%，Wilson 下界 > 14.9%；M3 shuffle 对照落回 chance；M4 中 `margin_detask` 的流畅度相关显著低于臂 A | 继续；进 Phase 4 WebShop |
+| **R1 主线成立** | 臂 B 多特征 M1 召回 ≥ 25%，Wilson 下界 > 14.9%；M3 shuffle 对照落回 chance；M4 中 `margin_detask` 的流畅度相关显著低于臂 A | 继续；进 Phase 4 WebShop。**必须再分 R1a/R1b** |
+| **R1a 熵即可** | R1 成立，且 `entropy_q` 单特征的 M1 召回与多特征的 CI 重叠（对轨迹 paired bootstrap 的差值 CI 含 0） | 主张收窄为："合法集上精确计算的熵 ≠ chosen-action 置信度；前者逐步可路由，后者不能"——这是对 CARL（分布层面）与 CWGT（逐步 chance）张力的解决，仍可发表，但不再是"结构超越熵" |
+| **R1b 结构超越熵** | R1 成立，且多特征 M1 召回显著高于 `entropy_q` 与 `entropy_sampled` 各自单特征（paired bootstrap 差值 CI 不含 0） | 完整主张成立 |
 | **R2 信息在隐状态不在结构** | 臂 C 最佳层 M1 召回 ≥ 25% 且下界 > 14.9%，但臂 B 不满足 R1；C→B 分解 R² < 0.3 | 转向：论文主线改为"信用信息在策略内部状态而非输出分布"，Phase 4 做分解 |
 | **R3 结构 ≈ 上界** | R1 成立，且臂 B 与臂 C 的 M1 召回 CI 重叠，C→B R² ≥ 0.5 | 最强结果：可解释特征等价于黑盒上界；继续 + 强调这一点 |
 | **R4 弱信号** | 臂 B 或 C 召回在 (14.9%, 25%)，shuffle 对照通过 | 部分成立；WebShop 复制后再定 |
@@ -210,7 +217,7 @@ project/
 1. 环境与版本表（模型 hash、库版本、模板来源、seed）。
 2. 数据表：总决策点、|D|、pivotal 数与比例、排除数与原因分布、σ_floor=0 比例、排除点 logprob 偏移。
 3. 臂 A 复现表：M1、M2、M4 与 CWGT 数字并排。
-4. 主表：A / B(多特征) / B(每个单特征) / C(每层) / B+C 的 M1（召回、AUROC、CI）、M2（中位数、CI）、M3（对照区间、是否超出）、M4（流畅度相关、偏相关）。
+4. 主表：A / B(多特征) / B(每个单特征，`entropy_q` 与 `entropy_sampled` 必须各占一行并标注"CARL 复现") / C(每层) / B+C 的 M1（召回、AUROC、CI）、M2（中位数、CI）、M3（对照区间、是否超出）、M4（流畅度相关、偏相关）。另一列：对 `crit_sd` 目标的 Cliff's δ（高熵 vs 低熵），与 CARL 的 0.42 并排。
 5. C→B 分解 R²。
 6. 成本表（来自 audit_metadata）。
 7. 判定：引用第 8 节哪一条，附触发它的具体数字。

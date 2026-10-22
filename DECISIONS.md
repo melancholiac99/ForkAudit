@@ -5,7 +5,20 @@ Status tags: **OPEN** (awaiting instruction), **DECIDED** (choice + reason), **I
 
 ---
 
-## D-001 — STOP: Appendix Q contains concurrent work closer to this project (CARL) — OPEN
+## D-001 — STOP: Appendix Q contains concurrent work closer to this project (CARL) — DECIDED 2026-10-22
+
+**Ruling (user, 2026-10-22):** CARL is not a stop reason, but it changes the entry point and the pre-registered rules.
+CLAUDE.md amended (commit recorded in git log, "CLAUDE.md: CARL amendments"):
+(1) §2 table gains a CARL row (search-QA + math, Qwen3-4B; criticality = unsigned outcome SD with randomness isolated to
+the state's action sampling; entropy is *sampled-estimated* over free-text actions; finding is distribution-level; CWGT
+states the two results "are not in conflict" — that tension is this project's entry point);
+(2) §1 gains the "已知两端" sentence; (3) §4 arm B gains feature 16 `entropy_sampled` and 17 `chosen_conf`, both `forward`;
+(4) §6 gains secondary target `crit_sd(t)` + Cliff's δ (high- vs low-entropy) next to CARL's 0.42;
+(5) §8 R1 split into R1a ("entropy suffices") / R1b ("structure beyond entropy"); §11 main table gives `entropy_q` and
+`entropy_sampled` their own rows labelled "CARL 复现".
+FEATURES_FROZEN.md had not been committed, so adding features 16–17 is permitted under §9.2.
+
+Original stop record follows.
 
 Per CLAUDE.md §2 ("若其中有与本项目更近的工作，立即写入 DECISIONS.md 并停下等指示"), work is paused here.
 
@@ -104,3 +117,16 @@ Proposal: primary = CLAUDE.md's ≥ 5; also report ≥ 4 for the arm-A-vs-CWGT c
 
 2026-10-22: the instance is in AutoDL no-GPU mode (1 CPU, no /dev/nvidia*, `nvidia-smi` is a 0-byte stub, torch.cuda False).
 Phase 0 (archive search, reading, env setup, random-policy ALFWorld run) is CPU-feasible. Phase 1 needs the GPU instance.
+
+## D-008 — Draft budget for `entropy_sampled` in Branch B replay — DECIDED 2026-10-22
+
+Problem: CWGT's rejection sampler stops as soon as 4 distinct admissible alternatives are found (often within a handful of
+draws), so "use the replay drafts" would give `entropy_sampled` a variable, state-dependent sample size (n=5 at a diffuse
+state, up to 300 at a peaked one) — the estimator's bias would itself correlate with entropy.
+Choice: at every decision point the sampler draws a **fixed first batch of 32** samples (one vLLM call, n=32, T=0.7,
+seeded); `entropy_sampled` is computed on the admissible, parsed actions of exactly those 32 (plug-in entropy over
+empirical frequencies; non-admissible / unparseable drafts counted and stored, not in the entropy). Alternatives are taken
+in draw order from these drafts; if fewer than 4 distinct admissible non-factual actions appear, sampling continues in
+further batches up to the 300-draw cap (CWGT's rule unchanged). All drafts (raw text + parsed action + admissible flag)
+are stored. This also matches the 32-sample fallback specified for Branch A, so both branches use the same estimator.
+Cost: ≈0 marginal (the 32 drafts are the first draws the sampler makes anyway).
