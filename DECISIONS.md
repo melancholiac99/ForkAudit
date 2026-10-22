@@ -280,3 +280,25 @@ log changes, or free disk below 5 GiB. Match PID plus process start time to avoi
 reuse. One successful queued review stops the monitor; failures retry. A lock
 prevents duplicate monitors. No automatic blind restart. Codex daemon, credentials,
 and network must remain available for the queued review to execute.
+
+## D-019 — Phase 1 completion review — INFO 2026-10-23
+
+Runner completed normally at 06:38:58 +0800 (22:38:58 UTC on Oct 22).
+Audit script scripts/12_audit_replay.py validates every rollout/replay key, source
+rollout hash, alternative support/uniqueness, draw cap, replica roles/outcomes,
+continuation length, prompt existence, and absence of extra/missing replay files.
+All 2,029 points across 50 trajectories passed; 25,491 continuations; zero re-feed
+divergences. Created data/decision_points.parquet and eval/phase1_audit.json plus
+a SHA256 input manifest. A_replay uses exact integer numerator (4*sum factual -
+sum alternative outcomes)/12; undefined contrasts remain null. No feature/credit
+associations computed; FEATURES_FROZEN.md has not yet been written.
+
+Defined: 1,617/2,029 (79.69%; CWGT 86.9%); excluded 412. Pivotal among defined:
+718/1,617 (44.40%; CWGT 30.5%). Factual sigma_floor=0: 77.18% among defined,
+77.13% overall (CWGT 86.0%). Minimum |D|>=1,200 passes, but these distribution
+differences require reporting/investigation, not protocol adjustment or an
+unqualified M5 pass. Chosen-action logprob exclusion shift and HF-vLLM action-only
+scoring alignment remain pending. Do not substitute full-response logprobs for
+action-only scores. D-003/D-004/D-005 scoring/replication ambiguities remain open.
+GPU is idle after normal cleanup; disk has ~44 GiB free. The one-shot monitor has
+successfully queued this review and exited; no experiment restart is needed.
