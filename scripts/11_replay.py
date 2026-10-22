@@ -109,9 +109,9 @@ def main():
             d = dps[j]
             adm = d["tr"]["steps"][d["i"]]["admissible"]
             for c in outs[k]:
-                a, valid = common.parse_action(c["text"])
+                a, valid, fmt = common.parse(c["text"])
                 ok = valid and a in adm
-                d["drafts"].append({"batch": batch_idx, "action": a, "valid": valid, "admissible": a in adm,
+                d["drafts"].append({"batch": batch_idx, "action": a, "valid": valid, "fmt": fmt, "admissible": a in adm,
                                     "text": c["text"]})
                 if ok and a != d["factual"] and a not in d["alts"] and len(d["alts"]) < K_ALT:
                     d["alts"].append(a)
@@ -179,7 +179,7 @@ def main():
             outs = pol.sample(prompts, seeds, logprobs=False)
             acts = {}
             for c, o in zip(act, outs):
-                a, valid = common.parse_action(o[0]["text"])
+                a, valid, _ = common.parse(o[0]["text"])
                 acts[c.key] = (a, valid)
             res = pool.step({k: v[0] for k, v in acts.items()})
             for k, (a, valid) in acts.items():
@@ -199,6 +199,7 @@ def main():
         print(f"live {len(live)} queued {len(queue)} gen_steps {n_gen_steps} div {total_div} "
               f"({time.time() - t0:.0f}s)", flush=True)
     pool.shutdown()
+    pol.close()
     print(f"DONE {len(dps)} points, {len(conts)} continuations, {n_gen_steps} generated steps, "
           f"refeed divergences {total_div}, {time.time() - t0:.0f}s")
 

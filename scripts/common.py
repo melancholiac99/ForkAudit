@@ -80,21 +80,41 @@ def chat_messages(prompt):
 
 
 _CJK = re.compile(r"[一-鿿]")
+# Tag-variant-tolerant action extraction (DECISIONS D-014). CWGT's harness parser handled the same
+# `<action>` / `[action]` / `[action>` drift (KS1_XFAM_PREREG §5, A3B_PREREG "Normalization").
+_OPEN = r"[<\[]\s*action\s*[>\]]"
+_CLOSE = r"[<\[]\s*/\s*action\s*[>\]]"
+_TAGGED = re.compile(_OPEN + r"(.*?)" + _CLOSE, re.S | re.I)
+_UNCLOSED = re.compile(_OPEN + r"([^\n<\[]*)", re.I)
 
 
 def parse_action(text):
-    """verl-agent alfworld_projection. Returns (action_str_sent_to_env, valid:bool)."""
-    low = text.lower()
-    s, e = low.find("<action>"), low.find("</action>")
-    if s == -1 or e == -1:
-        return low[-30:], False
-    act = low[s + len("<action>"):e].strip().lower()
-    valid = True
-    if text.find("<think>") == -1 or text.find("</think>") == -1:
-        valid = False
-    if _CJK.search(text):
-        valid = False
-    return act, valid
+    """Returns (action_str_sent_to_env, fmt). fmt in {"xml", "variant", "unclosed", "none"}.
+    Only the text after the last </think> is searched (so tags quoted inside the reasoning are ignored);
+    if there is no </think>, the whole text is searched. The LAST tagged span wins.
+    Unparseable output -> the last 30 chars, lowercased (verl-agent behaviour; env answers "Nothing happens.")."""
+    k = text.rfind("</think>")
+    tail = text[k + len("</think>"):] if k != -1 else text
+    m = list(_TAGGED.finditer(tail))
+    if m:
+        raw = m[-1].group(0)
+        fmt = "xml" if raw.lower().startswith("<action>") and raw.lower().endswith("</action>") else "variant"
+        return " ".join(m[-1].group(1).strip().lower().split()), fmt
+    m = list(_UNCLOSED.finditer(tail))
+    if m and m[-1].group(1).strip():
+        return " ".join(m[-1].group(1).strip().lower().split()), "unclosed"
+    return text.lower()[-30:], "none"
+
+
+def is_valid(fmt, text):
+    """Valid = an action was extracted, <think>...</think> present, no CJK (verl-agent criteria, tag-tolerant)."""
+    return fmt != "none" and "<think>" in text and "</think>" in text and not _CJK.search(text)
+
+
+def parse(text):
+    """-> (action, valid, fmt)"""
+    a, fmt = parse_action(text)
+    return a, is_valid(fmt, text), fmt
 
 
 ACTION_TYPES = ["goto", "take", "put", "open", "close", "toggle", "use", "examine/look", "inventory", "other"]

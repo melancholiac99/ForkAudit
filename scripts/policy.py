@@ -34,3 +34,13 @@ class Policy:
                            "finish_reason": c.finish_reason})
             res.append(cs)
         return res
+
+    def close(self):
+        """Shut the engine core down explicitly; otherwise the EngineCore child can linger holding GPU memory."""
+        try:
+            self.llm.llm_engine.engine_core.shutdown()
+        except Exception as e:  # noqa: BLE001
+            print("engine shutdown warning:", e)
+        del self.llm
+        import gc
+        gc.collect()

@@ -219,3 +219,26 @@ hashes (`env/qwen_sha256.txt`) match HF `Qwen/Qwen2.5-7B-Instruct` revision **a0
   stored action prefix, with every re-fed observation compared to the stored one; divergences are counted and reported
   (CWGT: 0 over 20,538). Smoke test: 0 divergences over 3 fresh envs × 50 steps (`logs/06_random_policy.log`).
 - **Turn indexing:** turn = 1-based step number as shown in the prompt ("You are now at step {turn}").
+
+## D-014 — Action parser: tag-variant-tolerant (supersedes the strict parser in D-009) — DECIDED 2026-10-22
+
+Finding (`scripts/explore/fmt_probe.py`, exploratory, step-1 prompts of task seeds 0–9, 32 samples each, T=0.7):
+under the HCAPO template Qwen2.5-7B-Instruct writes the action as `<action>…</action>` only 24% of the time (78/320);
+63% use `[action] … [/action]`, 12.5% an unclosed `[action] …` at the end. The strict verl-agent parser would turn ~76%
+of steps into invalid "Nothing happens." moves, i.e. measure the parser rather than the policy.
+CWGT hit the same drift and its harness parser handled the variants (KS1_XFAM_PREREG §5 "e17 tag-format drift";
+A3B_PREREG "Normalization … the `[action>` / `<action>` / `[action]` lesson … strip all tag variants").
+Choice (`common.parse_action`): search only the text after the last `</think>` (whole text if absent); take the last
+span opened by `<action>`/`[action]`/`[action>`/`<action]` and closed by any `/action` variant; else the last unclosed
+opening tag up to end of line; lowercase + whitespace-collapse. valid = an action was extracted ∧ `<think>…</think>`
+present ∧ no CJK. Unparseable → last 30 chars sent to env (verl-agent behaviour), counted. The tag format (`fmt` ∈
+xml/variant/unclosed/none) is stored for every sample so strict-xml rates can be reported.
+Result on the same probe: 320/320 parsed, 320/320 admissible. Template text unchanged (§9.1 respected).
+
+## D-015 — Seeded generation is not bitwise reproducible — DECIDED 2026-10-22
+
+vLLM 0.32 with prefix caching / batching: the same request with the same `seed` returned different samples on a second
+call (`logs/07_vllm_smoke.log`, seed_reproducible False). Batch-invariant kernels would cost throughput and are not
+required for validity. Choice: seeds are fixed and recorded per request (D-013), and **every generated text is stored**
+(rollout responses, all replay drafts, all continuation action sequences); every downstream number is recomputed from
+stored artifacts, never by regeneration. Disclosed as a reproducibility limitation.

@@ -63,13 +63,13 @@ def main():
         acts = {}
         for s, rs, o in zip(active, rseeds, outs):
             c = o[0]
-            a, valid = common.parse_action(c["text"])
+            a, valid, fmt = common.parse(c["text"])
             acts[s] = a
             x = st[s]
             x["steps"].append({"turn": turn, "prompt_path": x["_prompt_path"], "obs_before": x["obs"],
                                "admissible": x["adm"], "response": c["text"], "response_token_ids": c["token_ids"],
                                "response_logprobs": c["logprobs"], "finish_reason": c["finish_reason"],
-                               "sample_seed": rs, "action": a, "valid": valid,
+                               "sample_seed": rs, "action": a, "valid": valid, "fmt": fmt,
                                "admissible_hit": a in x["adm"]})
         res = pool.step(acts)
         for s in active:
@@ -93,6 +93,7 @@ def main():
         rec["provenance"] = prov
         common.write_json(os.path.join(outdir, f"{x['traj_id']}.json"), rec)
     pool.shutdown()
+    pol.close()
     print("success rate", sum(st[s]["won"] for s in seeds) / len(seeds),
           "mean turns", sum(len(st[s]["steps"]) for s in seeds) / len(seeds))
 
