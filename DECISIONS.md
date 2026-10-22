@@ -204,3 +204,18 @@ Weights copied from the user's existing copy at `/autodl-fs/data/Agent-R1/models
 download) to `/root/autodl-tmp/models/Qwen2.5-7B-Instruct`. All 4 safetensors sha256 and all 7 config/tokenizer git-blob
 hashes (`env/qwen_sha256.txt`) match HF `Qwen/Qwen2.5-7B-Instruct` revision **a09a35458c702b33eeacc393d103063234e8bc28**
 (lastModified 2025-01-12) exactly. `model_hash` in scores.parquet = this revision id.
+
+## D-013 — Sampling parameters and env execution — DECIDED 2026-10-22
+
+- **Sampling = pure temperature 0.7**: `top_p=1.0, top_k=-1, repetition_penalty=1.0, max_tokens=512`, explicitly set in
+  every vLLM `SamplingParams`. Qwen2.5's `generation_config.json` carries top_p=0.8/top_k=20/rep-penalty 1.05, which vLLM
+  can pick up as defaults; we override them so the sampled distribution is exactly softmax(logits/0.7) — the object
+  that teacher-forced scoring and the "policy-supported alternative" definition refer to. verl-agent/verl rollouts
+  likewise use top_p=1, top_k=-1. CWGT states only T=0.7.
+- **Per-request seeds** (vLLM `SamplingParams.seed`): rollout seed = 1_000_000·task_seed + turn; replay seeds derived
+  from (task_seed, turn, role, replica) by a fixed formula in `11_replay.py`, all recorded per request.
+- **Env:** measured 52 ms/step, 0.65 s reset, ~12 MB/game on this box → env steps run in a persistent pool of 20 worker
+  processes (`scripts/envpool.py`), each owning many `AlfGame` instances. State restore = fresh game + re-feed of the
+  stored action prefix, with every re-fed observation compared to the stored one; divergences are counted and reported
+  (CWGT: 0 over 20,538). Smoke test: 0 divergences over 3 fresh envs × 50 steps (`logs/06_random_policy.log`).
+- **Turn indexing:** turn = 1-based step number as shown in the prompt ("You are now at step {turn}").
