@@ -10,6 +10,7 @@ import traceback
 def _worker(conn):
     import alfenv
     games = {}
+    idle = []
     while True:
         cmd, payload = conn.recv()
         if cmd == "quit":
@@ -18,7 +19,11 @@ def _worker(conn):
         try:
             if cmd == "open":
                 for key, game_file, prefix, expected in payload:
-                    g = alfenv.AlfGame(game_file)
+                    if idle:
+                        g = idle.pop()
+                        g.load(game_file)
+                    else:
+                        g = alfenv.AlfGame(game_file)
                     obs, adm, won, div = g.refeed(prefix, expected)
                     games[key] = g
                     out[key] = (obs, adm, won, div)
@@ -29,7 +34,7 @@ def _worker(conn):
                 for key in payload:
                     g = games.pop(key, None)
                     if g is not None:
-                        g.close()
+                        idle.append(g)
             conn.send(("ok", out))
         except Exception:
             conn.send(("err", traceback.format_exc()))
@@ -65,9 +70,15 @@ class EnvPool:
 
     def open(self, jobs):
         """jobs: [(key, game_file, prefix_actions, expected_obs_or_None)] -> {key: (obs, admissible, won, n_div)}"""
+        counts = [0] * len(self.conns)
+        for worker in self.owner.values():
+            counts[worker] += 1
         for j in jobs:
-            self.owner[j[0]] = self._rr % len(self.conns)
-            self._rr += 1
+            if j[0] in self.owner:
+                raise ValueError(f"Environment key already open: {j[0]}")
+            worker = min(range(len(counts)), key=counts.__getitem__)
+            self.owner[j[0]] = worker
+            counts[worker] += 1
         return self._scatter("open", jobs, lambda j: j[0])
 
     def step(self, actions):

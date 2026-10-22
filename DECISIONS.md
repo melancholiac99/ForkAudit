@@ -242,3 +242,32 @@ call (`logs/07_vllm_smoke.log`, seed_reproducible False). Batch-invariant kernel
 required for validity. Choice: seeds are fixed and recorded per request (D-013), and **every generated text is stored**
 (rollout responses, all replay drafts, all continuation action sequences); every downstream number is recomputed from
 stored artifacts, never by regeneration. Disclosed as a reproducibility limitation.
+
+## D-016 — Replay disk exhaustion diagnosis — INFO 2026-10-22
+
+Replay pilot failed with ENOSPC while copying fast_downward/libdownward.so into /tmp.
+TextWorld 1.7.0 PddlEnv inherits Environment.close(), a no-op. Each environment loads
+a private ~33 MiB library, immediately unlinks the temporary file, but leaves the
+mapping (and its disk blocks) alive until dlclose or process exit. A six-environment
+create/reset/close probe retained six mappings and consumed ~198 MiB despite GC.
+An explicit fast_downward.close_lib workaround was tested but REJECTED and reverted:
+although retained mappings stopped growing, repeated create/reset/close eventually
+segfaulted. The library exports GNU UNIQUE symbols; do not assume dlclose is safe.
+No runtime code changes retained. Prefer bounded environment reuse and/or worker
+recycling to release native resources at process exit; validate before replay resumes.
+At 600 live environments the libraries alone require ~19.3 GiB; current free disk
+is ~44 GiB, so fix the leak before considering expansion. Reducing concurrency alone
+does not bound cumulative leakage. Unlinked mapped files explain why du misses the
+space and why disk capacity returned when the failed workers exited.
+
+## D-017 — Bounded reusable environment slots — DECIDED 2026-10-22
+
+EnvPool now retains idle AlfGame instances and reuses their native library slots.
+On reuse, load a different game through the existing TextWorld wrapper stack when
+needed, then reset and re-feed the exact stored prefix as before. Assign new jobs
+to the least-loaded worker so native slot count is bounded by peak concurrency
+plus worker rounding, rather than cumulative continuation count. Do not dlclose.
+Validate repeated cross-game reuse against stored observations and outcomes before
+resuming seeds 0–4; preserve completed replay JSONs. Write new JSONs atomically to
+avoid treating interrupted writes as completed points. Continue seeds 0–49 after
+the pilot completes and summarize pilot cost and M5 before advancing phases.

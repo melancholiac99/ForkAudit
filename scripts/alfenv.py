@@ -49,6 +49,12 @@ class AlfGame:
         gs = self.env.reset()
         return self._unpack(gs)
 
+    def load(self, game_file):
+        """Reuse this native-library slot for another game via the full wrapper stack."""
+        if game_file != self.game_file:
+            self.env.load(game_file)
+            self.game_file = game_file
+
     def step(self, action):
         gs, score, done = self.env.step(action)
         obs, adm, won = self._unpack(gs)
