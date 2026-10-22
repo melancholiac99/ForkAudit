@@ -117,6 +117,9 @@ Proposal: primary = CLAUDE.md's ≥ 5; also report ≥ 4 for the arm-A-vs-CWGT c
 
 2026-10-22: the instance is in AutoDL no-GPU mode (1 CPU, no /dev/nvidia*, `nvidia-smi` is a 0-byte stub, torch.cuda False).
 Phase 0 (archive search, reading, env setup, random-policy ALFWorld run) is CPU-feasible. Phase 1 needs the GPU instance.
+**Update 2026-10-22 (evening):** the no-GPU instance ran out of memory during the vLLM install; the user restarted with a GPU.
+Now: 1× NVIDIA RTX PRO 6000 Blackwell Server Edition, 97,887 MiB, driver 580.95.05. Container cgroup limits:
+**110 GiB RAM, 22 CPUs** (host shows 208 — ignore). Env-worker parallelism is therefore capped at ~20 processes.
 
 ## D-008 — Draft budget for `entropy_sampled` in Branch B replay — DECIDED 2026-10-22
 
@@ -194,3 +197,10 @@ Related work surfaced by the search (none triggers the §2 stop rule; none tests
   using replay as signal — not a forward decision-structure predictor. Cite as related.
 - **ACRE audit (HbNTIXwoeU / plrHvqYzhK, ARR 2026):** audits pipelines' credit observables vs walkthrough progress;
   fidelity −0.037…0.789 tracks held-out gain. Not decision structure. Cite as related.
+
+## D-012 — Model weights provenance — INFO 2026-10-22
+
+Weights copied from the user's existing copy at `/autodl-fs/data/Agent-R1/models/Qwen2.5-7B-Instruct` (ModelScope-style
+download) to `/root/autodl-tmp/models/Qwen2.5-7B-Instruct`. All 4 safetensors sha256 and all 7 config/tokenizer git-blob
+hashes (`env/qwen_sha256.txt`) match HF `Qwen/Qwen2.5-7B-Instruct` revision **a09a35458c702b33eeacc393d103063234e8bc28**
+(lastModified 2025-01-12) exactly. `model_hash` in scores.parquet = this revision id.
