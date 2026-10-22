@@ -271,3 +271,12 @@ Validate repeated cross-game reuse against stored observations and outcomes befo
 resuming seeds 0–4; preserve completed replay JSONs. Write new JSONs atomically to
 avoid treating interrupted writes as completed points. Continue seeds 0–49 after
 the pilot completes and summarize pilot cost and M5 before advancing phases.
+
+## D-018 — User-authorized Phase 1 review trigger — DECIDED 2026-10-23
+
+Monitor the existing runner once per minute without interrupting it. Queue a review
+in the originating Codex thread on exit (including completion), 30 minutes without
+log changes, or free disk below 5 GiB. Match PID plus process start time to avoid PID
+reuse. One successful queued review stops the monitor; failures retry. A lock
+prevents duplicate monitors. No automatic blind restart. Codex daemon, credentials,
+and network must remain available for the queued review to execute.
