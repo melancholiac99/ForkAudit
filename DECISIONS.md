@@ -165,3 +165,32 @@ CWGT's frozen task list is not published in the bundle. Choice: ALFWorld `train`
 alphabetically), seed i ↔ game i. Frozen list committed to `data/task_list.json` before any rollout.
 Rationale: no training is done in this phase, so a held-out split buys nothing; stratification guarantees all task types
 appear. If the CWGT archive turns up with its task list, it replaces this list.
+
+## D-011 — Archive status: not found → Branch B; new related work from the search — DECIDED 2026-10-22
+
+Full log: `scripts/00_find_archive.md`. No public archive found via arXiv, HF, alphaXiv, S2, OpenReview, GitHub, Zenodo,
+OSF, 4open. **Proceeding with Branch B** (§7 0.1(e): do not wait).
+
+Pending user actions (outward-facing / needs a browser, so not done by me):
+1. Email haiyuez@usc.edu requesting the KS1 `collect_v2` archive. Draft:
+   > Subject: Request for the KS1 replay archive of "Credit Without Ground Truth" (arXiv 2608.19760)
+   > Dear Dr. Zhang, we are running a replay-based audit that builds directly on your ALFWorld/Qwen2.5-7B protocol
+   > (K=4 policy-supported alternatives, ≥3 replicas, A_replay). The paper states the KS1 `collect_v2` replay archive,
+   > per-turn summaries, logprob dumps and the generator are released through an anonymized repository, but we could
+   > not find the link in the arXiv version. Would you be willing to share the link, or the archive (in particular per-turn
+   > prompts, admissible sets, rejection-sampler drafts and outcomes)? We will cite the paper and the archive. Thank you!
+2. Download the supplementary zip of OpenReview Me3WCeeMWW in a logged-in browser and drop it in `downloads/openreview_supp/`.
+   If it contains the archive/repo link → re-evaluate Branch A.
+
+Related work surfaced by the search (none triggers the §2 stop rule; none tests decision-structure signals):
+- **CWGT ICLR-2027 revision (Me3WCeeMWW):** same author; redesign with 16 continuations/arm/bank on 172 turns.
+  **Relevant caveat for us:** even at 16 continuations per arm, cross-bank replay-contrast pooled Spearman is only 0.330
+  (Pearson 0.736). Our A_replay uses 3 replicas/arm, so its reliability is lower still → M2 ceilings are low and a null on
+  M2 is weakly informative. M1 (pivotal = nonzero) is affected differently (lattice/divisibility structure, CWGT App. E).
+  Not acted upon now (protocol frozen); flagged for the RESULTS discussion. If the user wants, a reliability sub-study
+  (second independent replay bank on a subset) could be pre-registered before Phase 3.
+- **RMPO (ac6BotAkVF, ICLR 2027):** replay-measured credit operators (deletion / prefix progress / same-state
+  replacement) added to GRPO advantage; Qwen3-4B/8B; ALFWorld deletion credit vs planner progress ρ=0.842. Training method
+  using replay as signal — not a forward decision-structure predictor. Cite as related.
+- **ACRE audit (HbNTIXwoeU / plrHvqYzhK, ARR 2026):** audits pipelines' credit observables vs walkthrough progress;
+  fidelity −0.037…0.789 tracks held-out gain. Not decision structure. Cite as related.
