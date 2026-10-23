@@ -420,3 +420,27 @@ ruling's intent is kept.
 (Minor, pre-existing, harmless: rollout seeds 10⁶·s + turn can coincide with replay `seed_of` values for other
 prompts, e.g. rollout (s=1, turn=1) = 1,000,001 = seed_of(0, 1, 0, 1). The prompts differ, so this has no
 statistical consequence; recorded for completeness.)
+
+## D-026 — Replay GPU efficiency: measurements and plan — INFO / DECIDED 2026-10-23
+
+The researcher asked whether the Phase 1 replay ignored available speed-ups. Measurements
+(`scripts/bench/b01_vllm_ceiling.py`, logs `logs/bench_b01*.log`):
+- Workload per generated step: prompt 527 tokens mean (p90 708, max 987) and response 134 tokens mean (p90 180, max 489).
+  The stored-prompt sample is 400 prompts.
+- Phase 1 lockstep engine: 26.0 steps/s overall (860 iterations, median 20 s per iteration of ~573 requests).
+- vLLM ceiling with 1,500 cold real prompts submitted at once under continuous batching: ≈30–35 steps/s. The first run
+  was 30.2 steps/s seeded; 29.9 unseeded with max_num_batched_tokens=32768. The workload is prefill-compute-bound,
+  ≈26k prefill tok/s ≈ 0.37 PFLOP/s.
+- **Correction of an in-session claim:** an apparent 39% penalty for per-request seeds was a benchmark artifact. The
+  second run reused the same prompts and hit the prefix cache (49.6 steps/s). Seeds cost ≈ nothing; per-request seeds
+  stay.
+- Prefill dedup across the 3 replicas of an arm would save only 5.8% of generated-step prompts, because replicas
+  diverge quickly.
+- 79.9% of continuations are failures and run to the 50-step cap, since ALFWorld has no failure terminal. Early
+  stopping would change the estimand, so it is not done.
+- fp8 weights or KV, or shortening prompts, would change the policy or the template (§3, §9.1), so neither is done.
+Plan: an asynchronous continuous pipeline replaces the lockstep barrier and the serial env time. Expected gain
++15–25%, with protocol, seeds and output schema unchanged. Until it is validated, the Phase 1C chain runs on the
+lockstep engine. Both engines produce identical schemas, and points are resumable, so switching mid-bank is safe; the
+engine is recorded in provenance. The large lever is design-level: banks 7–10 (≈22–25 h), see D-023 (researcher's
+decision).
