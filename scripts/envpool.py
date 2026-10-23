@@ -30,6 +30,17 @@ def _worker(conn):
             elif cmd == "step":
                 for key, action in payload:
                     out[key] = games[key].step(action)
+            elif cmd == "open_step":
+                # async engine: open + re-feed prefix, then execute the continuation's first action
+                for key, game_file, prefix, expected, first_action in payload:
+                    if idle:
+                        g = idle.pop()
+                        g.load(game_file)
+                    else:
+                        g = alfenv.AlfGame(game_file)
+                    obs, adm, won, div = g.refeed(prefix, expected)
+                    games[key] = g
+                    out[key] = ((obs, adm, won, div), g.step(first_action))
             elif cmd == "close":
                 for key in payload:
                     g = games.pop(key, None)
@@ -89,6 +100,63 @@ class EnvPool:
         self._scatter("close", list(keys), lambda k: k)
         for k in keys:
             self.owner.pop(k, None)
+
+    # ------------------------------------------------------------ non-blocking API (async replay engine)
+    # One message in flight per worker; further requests are buffered per worker and sent as one batch when the
+    # worker becomes free. Do not mix with the blocking calls above while async requests are outstanding.
+
+    def submit(self, cmd, items, key_of):
+        if not hasattr(self, "_pend"):
+            self._pend = [dict() for _ in self.conns]
+            self._busy = [None] * len(self.conns)
+        for it in items:
+            k = key_of(it)
+            if cmd in ("open_step", "open"):
+                counts = [0] * len(self.conns)
+                for w in self.owner.values():
+                    counts[w] += 1
+                if k in self.owner:
+                    raise ValueError(f"Environment key already open: {k}")
+                self.owner[k] = min(range(len(counts)), key=counts.__getitem__)
+            self._pend[self.owner[k]].setdefault(cmd, []).append(it)
+        # close: owner entries are removed when the close is acknowledged (poll)
+
+    def _dispatch(self):
+        for i, c in enumerate(self.conns):
+            if self._busy[i] is None and self._pend[i]:
+                # priority: close (frees slots) > step (finishes work) > open_step (starts work)
+                for cmd in ("close", "step", "open_step", "open"):
+                    if cmd in self._pend[i]:
+                        items = self._pend[i].pop(cmd)
+                        c.send((cmd, items))
+                        self._busy[i] = (cmd, items)
+                        break
+
+    def poll(self, timeout=0.0):
+        """Dispatch buffered requests and collect finished ones. Returns list of (cmd, {key: result})."""
+        if not hasattr(self, "_pend"):
+            return []
+        self._dispatch()
+        import multiprocessing.connection as mpc
+        busy = [c for i, c in enumerate(self.conns) if self._busy[i] is not None]
+        ready = mpc.wait(busy, timeout=timeout) if busy else []
+        out = []
+        for c in ready:
+            i = self.conns.index(c)
+            status, res = c.recv()
+            cmd, items = self._busy[i]
+            self._busy[i] = None
+            if status != "ok":
+                raise RuntimeError(f"env worker {i} failed:\n{res}")
+            if cmd == "close":
+                for k in items:
+                    self.owner.pop(k, None)
+            out.append((cmd, res))
+        self._dispatch()
+        return out
+
+    def idle_async(self):
+        return not hasattr(self, "_pend") or (all(b is None for b in self._busy) and not any(self._pend))
 
     def shutdown(self):
         for c in self.conns:

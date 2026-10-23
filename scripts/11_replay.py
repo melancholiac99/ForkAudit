@@ -19,6 +19,8 @@ Additional banks (CLAUDE.md Phase 1C, RULING 2026-10-23 §7.5):
 For --bank N >= 1 the 4 alternatives are copied from bank 1 (data/replay/), no drafts are drawn, and every seed is
 seed_of(...) + N * 10**11 (D-024). "live" = pool of banks 1+2 (30 continuations) not constant.
 --dry replaces the model by a random admissible-action policy (CPU plumbing test; write with --out_root to a tmp dir).
+--engine async (D-026): continuations run as independent request loops (vLLM step API + non-blocking env pool) instead
+of lockstep batches. Same points, seeds (seed depends only on continuation and step), parsing and output schema.
 """
 import argparse
 import glob
@@ -66,6 +68,37 @@ class DryPolicy:
         pass
 
 
+class VllmStream:
+    """Request-level access to the vLLM engine for the async replay engine."""
+
+    def __init__(self, pol):
+        self.pol, self.eng = pol, pol.llm.llm_engine
+
+    def add(self, rid, prompt, seed):
+        self.eng.add_request(rid, self.pol.chat_text(prompt), self.pol.params(seed))
+
+    def step(self):
+        return [(o.request_id, o.outputs[0].text) for o in self.eng.step() if o.finished]
+
+    def busy(self):
+        return self.eng.has_unfinished_requests()
+
+
+class DryStream:
+    def __init__(self, dry):
+        self.dry, self.q = dry, []
+
+    def add(self, rid, prompt, seed):
+        self.q.append((rid, self.dry.sample([prompt], [seed])[0][0]["text"]))
+
+    def step(self):
+        out, self.q = self.q, []
+        return out
+
+    def busy(self):
+        return bool(self.q)
+
+
 def live_b12(traj_id, turn):
     """Pool of banks 1+2 (factual + 4 alternatives, 3 each per bank) is not constant."""
     outs = []
@@ -83,7 +116,7 @@ def parse_range(s):
 class Cont:
     """One continuation rollout from s_t."""
     __slots__ = ("key", "dp", "role", "rep", "first_action", "task", "mem", "obs", "adm", "steps_taken",
-                 "actions", "valids", "won", "done", "div", "n_invalid", "seeds")
+                 "actions", "valids", "won", "done", "div", "n_invalid", "seeds", "pending")
 
     def __init__(self, key, dp, role, rep, first_action):
         self.key, self.dp, self.role, self.rep, self.first_action = key, dp, role, rep, first_action
@@ -101,6 +134,7 @@ def main():
     ap.add_argument("--points", choices=["all", "D", "live"], default="all")
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--out_root", default=None)
+    ap.add_argument("--engine", choices=["lockstep", "async"], default="lockstep")
     args = ap.parse_args()
     assert (args.bank == 0) == (args.points == "all"), "bank 1 runs all points; banks >= 2 need --points D|live"
 
@@ -123,6 +157,7 @@ def main():
     prov["bank"] = args.bank
     prov["points"] = args.points
     prov["seed_offset"] = offset
+    prov["engine"] = args.engine
 
     # ---------------- decision points to do
     dps = []
@@ -200,6 +235,15 @@ def main():
                 d["n_open"] += 1
     print(f"{len(conts)} continuations", flush=True)
 
+    if args.engine == "async":
+        stream = DryStream(pol) if args.dry else VllmStream(pol)
+        n_gen_steps, total_div = run_async(dps, conts, pool, stream, args, offset, prov, alfenv, t0)
+        pool.shutdown()
+        pol.close()
+        print(f"DONE {len(dps)} points, {len(conts)} continuations, {n_gen_steps} generated steps, "
+              f"refeed divergences {total_div}, {time.time() - t0:.0f}s")
+        return
+
     queue = list(conts)
     live = {}
     finished = {j: [] for j in range(len(dps))}
@@ -269,6 +313,82 @@ def main():
     pol.close()
     print(f"DONE {len(dps)} points, {len(conts)} continuations, {n_gen_steps} generated steps, "
           f"refeed divergences {total_div}, {time.time() - t0:.0f}s")
+
+
+def run_async(dps, conts, pool, stream, args, offset, prov, alfenv, t0):
+    """Continuous pipeline: each continuation alternates env step (worker pool) and one generation request.
+    The GPU queue stays full while env work proceeds; no batch barrier."""
+    queue = list(conts)
+    live, finished = {}, {j: [] for j in range(len(dps))}
+    stats = {"gen": 0, "div": 0}
+    last_print = time.time()
+
+    def request_next(c):
+        d = dps[c.dp]
+        sd = seed_of(d["tr"]["seed"], d["turn"], c.role, c.rep * 100 + c.steps_taken) + offset
+        c.seeds.append(sd)
+        stream.add(f"{c.key}#{len(c.seeds)}", common.build_prompt(c.task, c.mem, c.obs, c.adm), sd)
+
+    def after_env(c):
+        if not c.done:
+            request_next(c)
+            return
+        live.pop(c.key)
+        pool.submit("close", [c.key], key_of=lambda k: k)
+        finished[c.dp].append(c)
+        d = dps[c.dp]
+        if len(finished[c.dp]) == d["n_open"]:
+            _write(d, finished[c.dp], prov)
+            finished[c.dp] = None
+
+    while queue or live:
+        room = args.max_concurrent - len(live)
+        if room > 0 and queue:
+            new, queue = queue[:room], queue[room:]
+            items = []
+            for c in new:
+                d = dps[c.dp]
+                c.task = d["tr"]["task"]
+                c.mem = [{"text_obs": s["obs_before"], "action": s["action"]} for s in d["tr"]["steps"][:d["i"]]]
+                c.steps_taken = d["i"]
+                live[c.key] = c
+                items.append((c.key, os.path.join(alfenv.ALFWORLD_DATA, d["tr"]["game_file"]), d["prefix"],
+                              d["expected"], c.first_action))
+            pool.submit("open_step", items, key_of=lambda it: it[0])
+        for cmd, res in pool.poll(timeout=0.0 if stream.busy() else 0.05):
+            if cmd == "open_step":
+                for k, ((obs, adm, won, div), r) in res.items():
+                    c = live[k]
+                    d = dps[c.dp]
+                    c.div = div
+                    stats["div"] += div
+                    c.obs, c.adm = obs, adm
+                    first_valid = d["tr"]["steps"][d["i"]]["valid"] if c.role == 1 else True
+                    _apply(c, c.first_action, first_valid, r)
+                    after_env(c)
+            elif cmd == "step":
+                for k, r in res.items():
+                    c = live[k]
+                    a, valid = c.pending
+                    _apply(c, a, valid, r)
+                    after_env(c)
+        if stream.busy():
+            acts = []
+            for rid, text in stream.step():
+                k = rid.rsplit("#", 1)[0]
+                a, valid, _ = common.parse(text)
+                live[k].pending = (a, valid)
+                acts.append((k, a))
+                stats["gen"] += 1
+            if acts:
+                pool.submit("step", acts, key_of=lambda kv: kv[0])
+        if time.time() - last_print > 30:
+            last_print = time.time()
+            print(f"live {len(live)} queued {len(queue)} gen_steps {stats['gen']} div {stats['div']} "
+                  f"({time.time() - t0:.0f}s)", flush=True)
+    while not pool.idle_async():  # flush outstanding closes
+        pool.poll(timeout=0.05)
+    return stats["gen"], stats["div"]
 
 
 def _apply(c, a, valid, res):

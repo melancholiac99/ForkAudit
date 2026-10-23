@@ -14,14 +14,18 @@ class Policy:
     def chat_text(self, prompt):
         return self.tok.apply_chat_template(common.chat_messages(prompt), tokenize=False, add_generation_prompt=True)
 
+    @staticmethod
+    def params(seed, n=1, logprobs=False):
+        """The one SamplingParams definition (D-013): pure temperature sampling."""
+        from vllm import SamplingParams
+        return SamplingParams(n=n, temperature=common.TEMPERATURE, top_p=1.0, top_k=-1, min_p=0.0,
+                              repetition_penalty=1.0, presence_penalty=0.0, frequency_penalty=0.0,
+                              max_tokens=common.MAX_RESPONSE_TOKENS, seed=seed, logprobs=0 if logprobs else None)
+
     def sample(self, prompts, seeds, n=1, logprobs=True):
         """prompts: list[str] (filled template), seeds: list[int]. Returns per prompt a list of n dicts
         {text, token_ids, logprobs(list[float]) }."""
-        from vllm import SamplingParams
-        sps = [SamplingParams(n=n, temperature=common.TEMPERATURE, top_p=1.0, top_k=-1, min_p=0.0,
-                              repetition_penalty=1.0, presence_penalty=0.0, frequency_penalty=0.0,
-                              max_tokens=common.MAX_RESPONSE_TOKENS, seed=s, logprobs=0 if logprobs else None)
-               for s in seeds]
+        sps = [self.params(s, n=n, logprobs=logprobs) for s in seeds]
         outs = self.llm.generate([self.chat_text(p) for p in prompts], sps, use_tqdm=False)
         res = []
         for o in outs:
