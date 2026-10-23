@@ -12,6 +12,13 @@ re-feed divergence counts). Resumable: finished decision points are skipped.
 
 Continuations of many decision points run concurrently in lockstep (one vLLM batch per env step).
 Usage: python 11_replay.py --seeds 0-4 [--max_concurrent 600]
+
+Additional banks (CLAUDE.md Phase 1C, RULING 2026-10-23 §7.5):
+  python 11_replay.py --bank 1 --points D --seeds 0-99      # bank 2 = data/replay_b1/, all cf-defined points
+  python 11_replay.py --bank 2 --points live --seeds 0-99   # banks 3+ = data/replay_b{2..}/, only the live set
+For --bank N >= 1 the 4 alternatives are copied from bank 1 (data/replay/), no drafts are drawn, and every seed is
+seed_of(...) + N * 10**11 (D-024). "live" = pool of banks 1+2 (30 continuations) not constant.
+--dry replaces the model by a random admissible-action policy (CPU plumbing test; write with --out_root to a tmp dir).
 """
 import argparse
 import glob
@@ -34,6 +41,40 @@ def seed_of(task_seed, turn, role, idx):
     return ((task_seed * 100 + turn) * 10 + role) * 100_000 + idx
 
 
+BANK_OFFSET = 10 ** 11  # > max seed_of (~1e10 for task seeds < 100): distinct across banks (D-024)
+
+
+class DryPolicy:
+    """CPU stand-in for Policy: picks a uniformly random admissible action listed in the prompt."""
+    vllm_version = "dry"
+
+    def __init__(self):
+        import random
+        self.random = random
+
+    def sample(self, prompts, seeds, n=1, logprobs=False):
+        out = []
+        for p, sd in zip(prompts, seeds):
+            seg = p.split("Your admissible actions of the current situation are: [", 1)[1].rsplit("].", 1)[0]
+            adm = [x.strip().strip("'") for x in seg.split("\n")]
+            rng = self.random.Random(sd)
+            out.append([{"text": f"<think>dry</think>\n<action>{rng.choice(adm)}</action>", "token_ids": [],
+                         "logprobs": None, "finish_reason": "stop"} for _ in range(n)])
+        return out
+
+    def close(self):
+        pass
+
+
+def live_b12(traj_id, turn):
+    """Pool of banks 1+2 (factual + 4 alternatives, 3 each per bank) is not constant."""
+    outs = []
+    for root in ("replay", "replay_b1"):
+        r = json.load(open(os.path.join(common.ROOT, "data", root, traj_id, f"t{turn:02d}.json")))
+        outs += r["factual_outcomes"] + [o for a in r["alt_outcomes"] for o in a]
+    return 0 < sum(outs) < len(outs)
+
+
 def parse_range(s):
     a, b = s.split("-")
     return list(range(int(a), int(b) + 1))
@@ -42,11 +83,11 @@ def parse_range(s):
 class Cont:
     """One continuation rollout from s_t."""
     __slots__ = ("key", "dp", "role", "rep", "first_action", "task", "mem", "obs", "adm", "steps_taken",
-                 "actions", "valids", "won", "done", "div", "n_invalid")
+                 "actions", "valids", "won", "done", "div", "n_invalid", "seeds")
 
     def __init__(self, key, dp, role, rep, first_action):
         self.key, self.dp, self.role, self.rep, self.first_action = key, dp, role, rep, first_action
-        self.actions, self.valids = [], []
+        self.actions, self.valids, self.seeds = [], [], []
         self.won = self.done = False
         self.n_invalid = 0
 
@@ -56,20 +97,32 @@ def main():
     ap.add_argument("--seeds", default="0-49")
     ap.add_argument("--workers", type=int, default=20)
     ap.add_argument("--max_concurrent", type=int, default=600, help="max live continuations")
+    ap.add_argument("--bank", type=int, default=0, help="0 = bank 1 (drafts + alternatives); N>=1 = bank N+1")
+    ap.add_argument("--points", choices=["all", "D", "live"], default="all")
+    ap.add_argument("--dry", action="store_true")
+    ap.add_argument("--out_root", default=None)
     args = ap.parse_args()
+    assert (args.bank == 0) == (args.points == "all"), "bank 1 runs all points; banks >= 2 need --points D|live"
 
     pool = EnvPool(args.workers)
     import alfenv
-    from policy import Policy
-    pol = Policy()
+    if args.dry:
+        pol = DryPolicy()
+    else:
+        from policy import Policy
+        pol = Policy()
+    offset = args.bank * BANK_OFFSET
 
-    out_root = os.path.join(common.ROOT, "data", "replay")
+    out_root = args.out_root or os.path.join(common.ROOT, "data", "replay" if args.bank == 0 else f"replay_b{args.bank}")
     trajs = []
     for s in parse_range(args.seeds):
         p = os.path.join(common.ROOT, "data", "rollout", f"s{s:03d}.json")
         trajs.append((p, json.load(open(p))))
     prov = common.provenance(__file__, [p for p, _ in trajs])
     prov["vllm"] = pol.vllm_version
+    prov["bank"] = args.bank
+    prov["points"] = args.points
+    prov["seed_offset"] = offset
 
     # ---------------- decision points to do
     dps = []
@@ -78,24 +131,36 @@ def main():
             path = os.path.join(out_root, tr["traj_id"], f"t{stp['turn']:02d}.json")
             if os.path.exists(path):
                 continue
-            dps.append({"tr": tr, "i": i, "turn": stp["turn"], "path": path,
-                        "prefix": [s["action"] for s in tr["steps"][:i]],
-                        "expected": [s["obs_after"] for s in tr["steps"][:i]],
-                        "factual": stp["action"]})
+            d = {"tr": tr, "i": i, "turn": stp["turn"], "path": path,
+                 "prefix": [s["action"] for s in tr["steps"][:i]],
+                 "expected": [s["obs_after"] for s in tr["steps"][:i]],
+                 "factual": stp["action"]}
+            if args.bank >= 1:
+                src = os.path.join(common.ROOT, "data", "replay", tr["traj_id"], f"t{stp['turn']:02d}.json")
+                b1 = json.load(open(src))
+                if not b1["cf_defined"]:
+                    continue
+                if args.points == "live" and not live_b12(tr["traj_id"], stp["turn"]):
+                    continue
+                assert b1["factual_action"] == stp["action"]
+                d.update(alts=list(b1["alternatives"]), drafts=[], draws=0,
+                         alt_source={"path": os.path.relpath(src, common.ROOT), "sha256": common.file_sha256(src)})
+            dps.append(d)
     print(f"{len(dps)} decision points to replay", flush=True)
 
     # ---------------- phase A: drafts (prompt at s_t is the stored prompt; no env needed)
     t0 = time.time()
-    pending = list(range(len(dps)))
+    pending = list(range(len(dps))) if args.bank == 0 else []
     for d in dps:
-        d["drafts"], d["alts"], d["draws"] = [], [], 0
+        if args.bank == 0:
+            d["drafts"], d["alts"], d["draws"] = [], [], 0
     batch_idx = 0
     while pending:
         prompts, seeds, n = [], [], []
         for j in pending:
             d = dps[j]
             prompts.append(open(os.path.join(common.ROOT, d["tr"]["steps"][d["i"]]["prompt_path"])).read())
-            seeds.append(seed_of(d["tr"]["seed"], d["turn"], 0, batch_idx))
+            seeds.append(seed_of(d["tr"]["seed"], d["turn"], 0, batch_idx) + offset)
             n.append(min(DRAFT_BATCH, MAX_DRAWS - d["draws"]))
         # vLLM n differs per request only via separate SamplingParams; group by n
         outs = {}
@@ -174,8 +239,10 @@ def main():
         act = [c for c in live.values() if not c.done]
         if act:
             prompts = [common.build_prompt(c.task, c.mem, c.obs, c.adm) for c in act]
-            seeds = [seed_of(dps[c.dp]["tr"]["seed"], dps[c.dp]["turn"], c.role, c.rep * 100 + c.steps_taken)
+            seeds = [seed_of(dps[c.dp]["tr"]["seed"], dps[c.dp]["turn"], c.role, c.rep * 100 + c.steps_taken) + offset
                      for c in act]
+            for c, sd in zip(act, seeds):
+                c.seeds.append(sd)
             outs = pol.sample(prompts, seeds, logprobs=False)
             acts = {}
             for c, o in zip(act, outs):
@@ -228,10 +295,13 @@ def _write(d, conts, prov):
         "factual_outcomes": [int(c.won) for c in fac],
         "alt_outcomes": [[int(c.won) for c in alt[k]] for k in range(len(d["alts"]))],
         "continuations": [{"role": c.role, "rep": c.rep, "first_action": c.first_action, "actions": c.actions,
-                           "valids": c.valids, "won": c.won, "len": c.steps_taken, "refeed_div": c.div}
+                           "valids": c.valids, "won": c.won, "len": c.steps_taken, "refeed_div": c.div,
+                           "seeds": c.seeds}
                           for c in conts],
         "provenance": prov,
     }
+    if "alt_source" in d:
+        rec["alternatives_source"] = d["alt_source"]
     common.write_json(d["path"], rec)
 
 
