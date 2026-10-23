@@ -302,3 +302,46 @@ scoring alignment remain pending. Do not substitute full-response logprobs for
 action-only scores. D-003/D-004/D-005 scoring/replication ambiguities remain open.
 GPU is idle after normal cleanup; disk has ~44 GiB free. The one-shot monitor has
 successfully queued this review and exited; no experiment restart is needed.
+
+## D-020 — Independent review of the Phase 1 replay — INFO 2026-10-23
+
+Scripts: `scripts/review/r01_phase1_review.py`, `r02_phase1_review.py` (target structure only; no feature-vs-A_replay
+association computed, §9.2). Raw replay JSONs are not in git (189 MB); every file's sha256 is in
+`eval/phase1_input_manifest.json`.
+
+1. **Table integrity:** A_replay, sigma_floor and crit_sd were recomputed from the raw replay JSONs: 0 mismatches in 2,029
+   points. Re-feed divergences 0 over 25,491 continuations. Every lost continuation runs to the 50-step cap, none won
+   beyond it, and len = (turn−1) + #actions holds for all of them.
+2. **M5 vs CWGT:** |D| 1,617/2,029 = 79.7% (CWGT 86.9%); pivotal 718/1,617 = 44.4% (30.5%); sigma_floor = 0 77.2%
+   (86.0%). Same order of magnitude, but the measurability map differs, and that is reported, not adjusted.
+   - Mechanism (CWGT App. E divisibility classes, computed for D): constant pool 859 (53.1%; CWGT 68.1%), forced
+     nonzero 718 (44.4%; 28.8%), stochastic zero 40 (2.5%; 3.1%). Pivotal therefore ≈ the fraction of non-constant
+     pools: our dynamics are less absorbing than CWGT's.
+   - Heterogeneity is trajectory-level and bimodal. Per-trajectory pivotal fraction has quartiles 0.05 / 0.63 / 0.78.
+     It is 74.8% in the 16 won trajectories (n = 254) vs 38.7% in the 33 lost (n = 1,363); 808 of the 859 constant pools
+     are all-fail. The pilot's 31.8% came from 5 trajectories and was not representative.
+   - Continuation success: factual 0.191 vs alternative 0.195; rollout success 0.34. Pivotal sign: 299 positive,
+     419 negative.
+3. **Exclusions (412):** alternatives found = 0: 19, 1: 69, 2: 120, 3: 204. Turn 1 is excluded in 37 of 50
+   trajectories: the step-1 policy collapses onto essentially one action. Among defined points, the median draws needed
+   is 32 and the 90th percentile is 160. Drafts: 91.3% valid and admissible; `help` never used.
+4. **Provisional M5 logprob shift — evidence for resolving D-003:** taking conf = mean logprob of the action-span tokens
+   *in the stored rollout response*, i.e. conditioned on the realized `<think>`, the value is degenerate. Median is
+   −0.000 and the 10th percentile is −0.03; included-minus-excluded = −0.002 [−0.008, +0.005] vs CWGT −0.70
+   [−0.81, −0.59]. Once the reasoning has been written, the action tokens are near-deterministic. CWGT's −0.70 is
+   therefore only possible if CWGT's confidence scores the action *without* the realized reasoning (teacher-forced
+   after the bare prompt). This favours the bare-prompt reading of `conf_t = logπ(a_t | s_t)`. To be confirmed by HF
+   action-only scoring before FEATURES_FROZEN.md is written.
+5. **Chosen action not admissible:** 205 points (195 in D, 12.1% of D). The parsed factual action is not in the
+   admissible set (e.g. "move ladle 1 to countertop 1", "examine countertop 1"). The env answers "Nothing happens.",
+   which is still a legitimate factual arm. Arm-B quantities defined over 𝒜_t (chosen_prob, chosen_rank,
+   runner_same_type, …) need a rule for these points → D-021 (OPEN).
+6. Parquet `admissible_actions` includes `help`; the prompt shows the set without `help` (verl-agent). Arm B's candidate
+   set must be the set shown to the policy, i.e. without `help` → to fix in Phase 2 scoring.
+
+## D-021 — Arm-B features at points whose chosen action is not admissible — OPEN
+
+195 points in D (12.1%) have chosen ∉ 𝒜_t. Options: (a) score candidate set 𝒜_t ∪ {chosen} for all points, so q_t,
+chosen_prob and chosen_rank are always defined, and add an indicator control column `chosen_admissible` (recommended;
+keeps all of D on the same target); (b) restrict arm B to chosen ∈ 𝒜_t and evaluate all arms on that subset.
+Must be decided before FEATURES_FROZEN.md.

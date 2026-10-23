@@ -1,0 +1,38 @@
+{
+  "provenance": {
+    "script": "scripts/12_audit_replay.py",
+    "commit": "a0a3402355fe89ca3395e3269769025519948266",
+    "scripts_dirty": false,
+    "argv": [
+      "scripts/12_audit_replay.py"
+    ],
+    "time": "2026-10-23T06:40:44+0800",
+    "inputs": {}
+  },
+  "input_manifest_sha256": "8411479a281666564f26f229b58eb5690553345f55e33715cc5c5d980c51bbc1",
+  "trajectories": 50,
+  "decision_points": 2029,
+  "defined": 1617,
+  "defined_fraction": 0.7969443075406605,
+  "pivotal": 718,
+  "pivotal_fraction": 0.4440321583178726,
+  "sigma_floor_zero_fraction_all": 0.7713159191720059,
+  "sigma_floor_zero_fraction_defined": 0.7717996289424861,
+  "excluded": 412,
+  "continuations": 25491,
+  "refeed_divergences": 0,
+  "replay_commits": {
+    "858452c887869ec4b72c49b86d9b23241a69d407": 53,
+    "7f0176113d4f4150123091121bc1a8e326ff2814": 166,
+    "488b23c5b7f10a2a78778245c7851b9b9d7ef060": 1810
+  },
+  "schema_notes": {
+    "n_alt": "number of complete alternative arms; each has 3 replicas",
+    "std_ddof": 0
+  },
+  "pending": [
+    "chosen-action logprob exclusion shift requires action-only teacher-forced scoring",
+    "HF-vLLM chosen-action scoring alignment not yet performed"
+  ],
+  "minimum_defined_1200_pass": true
+}
