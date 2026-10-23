@@ -1,6 +1,6 @@
 # 提案 P1：目标分层（L1/L2）与预注册修订
 
-- **状态：PROPOSED（待决，未生效）。** `CLAUDE.md` 尚未修改；本提案获批后才写入 `CLAUDE.md` §4/§6/§8 并单独提交。
+- **状态：ADOPTED WITH MODIFICATIONS（2026-10-23）。** 裁决见 `RULING_2026-10-23.md`，已写入 `CLAUDE.md`（commit ff7ce9d）。冲突之处以裁决与 `CLAUDE.md` 为准；本文件保留作记录。
 - **日期：** 2026-10-23
 - **前置：** Phase 1 完成并独立复核（`DECISIONS.md` D-019、D-020）。
 - **约束：** 截至本提案，**未计算任何特征与 A_replay 的关联**（§9.2），`FEATURES_FROZEN.md` 未写。本提案只依据目标变量自身的结构。

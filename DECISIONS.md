@@ -358,3 +358,65 @@ so `A_replay ≠ 0` measures state criticality, not action contribution. The pro
 - Revised verdict rules: R0 / R1 on L2 / R1a / R1b.
 - A cluster-bootstrap CI.
 Not adopted: CLAUDE.md is unchanged. Nothing proposed here touches feature-vs-A_replay associations (§9.2).
+
+## D-025 — RULING 2026-10-23 adopted — DECIDED 2026-10-23
+
+`RULING_2026-10-23.md` (researcher) adopted into CLAUDE.md, commit ff7ce9d ("CLAUDE.md: P1 ruling 2026-10-23").
+This closes D-003, D-004, D-005, D-006, D-021 and D-022 as ruled:
+- **D-003:** conf = bare prompt, teacher-force `<action>{a}</action>`, command tokens only. Confirmed by CWGT
+  supplementary `r18_scoring.tex` / `STAGE1_PLAN.md`; their `policy_confidence` values are non-degenerate.
+- **D-004:** arm A uses s = −conf; single features use declared prior signs.
+- **D-005:** arm H1 = ρ_t carries the M4 target.
+- **D-006:** threshold ≥5 primary, ≥4 also reported.
+- **D-021:** candidate set = 𝒜 ∪ {chosen} \ {help}, plus `chosen_admissible`.
+- **P1:** adopted with the ruling's modifications. 100 trajectories; banks 2 (all D) and 3–6 (𝓛 only); new feature
+  `chosen_freq`; H2 judge dropped.
+CWGT ICLR-2027 supplementary moved to `downloads/openreview_supp/supplementry/` (not committed: downloaded data,
+read-only, none of its scripts executed). It contains no replay archive, so Branch A remains infeasible.
+
+## D-023 — Phase 1C.0 calibration result: the expansion rule fires; evidence that expansion buys little — INFO / FLAG 2026-10-23
+
+Script `scripts/review/r03_cwgt_depth_calibration.py`; output `eval/phase1c0_depth_calibration.json`. 172 CWGT turns,
+2,000 hypergeometric resamples. Script check passes: d=16 reproduces the paper exactly (Spearman 0.3301, Pearson 0.7362).
+
+| d | live frac (A) | sign agree, both live & nonzero (ruling metric) | Pearson | pooled Spearman |
+|---|---|---|---|---|
+| 3 | 0.432 | 0.641 | 0.352 | 0.246 |
+| 6 | 0.496 | 0.628 | 0.516 | 0.277 |
+| 9 | 0.529 | 0.625 | 0.617 | 0.298 |
+| 12 | 0.551 | **0.626** | 0.679 | 0.316 |
+| 16 | 0.570 | 0.624 | 0.736 | 0.330 |
+
+**Rule (CLAUDE.md §7 1C.0):** d=12 sign agreement 0.626 < 0.65 → banks 3–6 are expanded to banks 3–10
+(24 per arm, about +22 h GPU). The rule fires and will be executed as pre-registered unless the researcher overrides it.
+
+**Flag for the researcher.** Exploratory diagnostics on the same file, run in-session:
+- Sign agreement does not rise with depth. It also fails to rise on a fixed turn set: on the 85 turns nonzero in both
+  banks at d=16, agreement is 0.649 at d=3, 0.639 at d=6, 0.631 at d=12 and 0.624 at d=16.
+- A proxy of our own design (𝓛 from an independent 6-per-arm subsample, then compare two disjoint subsamples) gives
+  ≈0.64 at every label depth.
+- Interpretation: the limit is not continuation noise. A large share of live turns has a true contrast ≈ 0, so their
+  signs are coin flips at any depth. Roughly, ~26% real-effect turns plus ~74% null turns gives 0.26 + 0.74 × 0.5 ≈ 0.63.
+- Consequences:
+  - Expanding to 24 per arm will very likely not push agreement above 0.65.
+  - The L2 sign-AUROC ceiling on CWGT's turn distribution is about 0.6, so R1's absolute floor (lower bound ≥ 0.55)
+    may be nearly unattainable.
+- Caveat: this is CWGT's turn distribution (four position-quartile midpoints per trajectory), not ours. Ours has a
+  different measurability map (D-020).
+- Options for the researcher:
+  1. Keep the rule as written.
+  2. Replace "sign agreement" with a depth-sensitive reliability metric, such as Pearson on a fixed set, before banks
+     3+ run.
+  3. Restrict L2 to turns with a resolvable contrast in banks 1+2, which changes the estimand.
+- No change made. The decision is the researcher's (the rule's threshold was ruled "定死").
+
+## D-024 — Bank seed offset: bank·10¹¹, not bank·10⁹ — DECIDED 2026-10-23 (deviation from RULING §7.5 wording)
+
+`seed_of(task_seed, turn, role, idx) = ((task_seed·100 + turn)·10 + role)·10⁵ + idx` advances by 10⁸ per task seed and
+reaches ≈ 9.95·10⁹ at task 99. An offset of bank·10⁹ therefore equals a +10 task-seed shift: bank 2 of task s would
+reuse bank 1's seeds for task s+10, violating the ruling's "seeds must be distinct". The offset is bank·10¹¹, which
+exceeds the maximum `seed_of` value, so seeds are distinct across banks, trajectories, turns, roles and replicas. The
+ruling's intent is kept.
+(Minor, pre-existing, harmless: rollout seeds 10⁶·s + turn can coincide with replay `seed_of` values for other
+prompts, e.g. rollout (s=1, turn=1) = 1,000,001 = seed_of(0, 1, 0, 1). The prompts differ, so this has no
+statistical consequence; recorded for completeness.)
