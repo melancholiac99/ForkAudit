@@ -444,3 +444,14 @@ Plan: an asynchronous continuous pipeline replaces the lockstep barrier and the 
 lockstep engine. Both engines produce identical schemas, and points are resumable, so switching mid-bank is safe; the
 engine is recorded in provenance. The large lever is design-level: banks 7–10 (≈22–25 h), see D-023 (researcher's
 decision).
+**D-026 update (measured):** the async engine on GPU (bank 2, s000–s049, 600 live continuations) runs at **28.0
+steps/s** steady state, against 26.0 for lockstep (+8%), at GPU utilization 100%. That is ≈93% of the ≈30 steps/s
+cold-prompt ceiling, so the run is now compute-bound on prefill. The chain was switched to the async engine at commit
+c3c71c9 with zero completed points lost.
+Projected chain time:
+- bank 2 (s000–049): ≈5 h
+- s050–099 rollout + bank 1: ≈6 h
+- bank 2 (s050–099): ≈5 h
+- banks 3–6 on 𝓛: ≈24 h
+- banks 7–10 (expansion, D-023): another ≈24 h
+Creating `logs/STOP_EXPANSION` before banks 7–10 start makes the chain skip them.
