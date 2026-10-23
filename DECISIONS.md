@@ -345,3 +345,16 @@ association computed, §9.2). Raw replay JSONs are not in git (189 MB); every fi
 chosen_prob and chosen_rank are always defined, and add an indicator control column `chosen_admissible` (recommended;
 keeps all of D on the same target); (b) restrict arm B to chosen ∈ 𝒜_t and evaluate all arms on that subset.
 Must be decided before FEATURES_FROZEN.md.
+
+## D-022 — Proposal P1: L1/L2 target split and pre-registration amendment — OPEN 2026-10-23
+
+Full text: `proposals/P1_L1L2_restructure.md`. Trigger: D-020. All 718 pivotal points lie inside the 758 non-constant pools,
+so `A_replay ≠ 0` measures state criticality, not action contribution. The proposal:
+- L1 = state criticality (descriptive); L2 = sign/size of A_replay inside the live set (primary).
+- A second independent replay bank with cross-fitting.
+- A state-value baseline.
+- HCAPO ρ_t as an audited hindsight arm.
+- Pre-registered feature families.
+- Revised verdict rules: R0 / R1 on L2 / R1a / R1b.
+- A cluster-bootstrap CI.
+Not adopted: CLAUDE.md is unchanged. Nothing proposed here touches feature-vs-A_replay associations (§9.2).

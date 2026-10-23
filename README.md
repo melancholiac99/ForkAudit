@@ -40,6 +40,8 @@ Independent recomputation of `A_replay`, `sigma_floor` and `crit_sd` from the ra
 
 The project is pre-registered. `FEATURES_FROZEN.md` must be committed **before** any feature is correlated with `A_replay`, and the verdict rules in `CLAUDE.md` §8 may not change before Phase 3. The commit history is the evidence for this. Please review the history, not just the final tree.
 
+**Open proposal:** [`proposals/P1_L1L2_restructure.md`](proposals/P1_L1L2_restructure.md) (PROPOSED, not adopted) splits the target into state criticality (L1) and action contribution (L2). The proposal was triggered by the Phase 1 finding that all 718 pivotal points fall inside the 758 points whose 15 continuation outcomes are not all identical. It also adds a second independent replay bank with cross-fitting, a state-value baseline, HCAPO ρ_t as an audited hindsight arm, feature families, and revised verdict rules. `CLAUDE.md` is unchanged until the proposal is approved.
+
 All deviations and open questions are logged in [`DECISIONS.md`](DECISIONS.md) (D-001 to D-021), including the ones that currently block Phase 2 (D-003, D-004, D-005, D-021).
 
 ## Layout
