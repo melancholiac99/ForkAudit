@@ -481,3 +481,27 @@ are DONE; bank 3 (live set, 1,478 points, 22,170 continuations) is ≈95% done; 
   flag and are shown only as a plumbing sanity check. They are consistent with D-023 (3-per-arm labels are noisy).
 - **Disk:** data 0.5 GB; free 22 GB; no growth risk.
 No code or process change needed.
+
+## D-029 — W1/W0 peek extraction as P2 groundwork (not yet a pre-registered arm) — DECIDED 2026-10-24
+
+The user asked for groundwork for the planned P2 extension ("Where vs Which": world-side one-step peeks of non-chosen
+actions as the source of credit *sign*; see the P2 proposal when written). This does not amend CLAUDE.md. W1/W0 are not
+arms until a ruling adopts P2, and no association with any replay outcome is computed before `FEATURES_FROZEN.md` is
+committed (§9.2). `scripts/22_peek_W1.py`:
+- **What:** for every rollout step with a bank-1 file (all 3,038 points, cf-undefined points included), reset + re-feed
+  the prefix (verified against stored observations), execute ONE action, and record obs, admissible set, won/done and
+  the TextWorld fact delta. No LLM is used and the policy never sees a peek. Bank-1 files are read only for their
+  alternative list (sha256 recorded); outcomes are not read.
+- **Sets:** `alts` = factual + the bank-1 alternatives (≤4), plus the full fact set at s_t (W0, privileged; diagnostic
+  ceiling only, never a method). `admissible` = every admissible action except `help`, plus chosen; facts as deltas.
+- **Determinism checks per point:** state obs = stored `obs_before`; factual peek obs = stored `obs_after`; re-feed
+  divergence 0; on points with sha256(traj|turn) % 20 == 0, every peek is run twice and compared.
+- **Cost:** TextWorld envs cannot be copied (ctypes pointers; deepcopy fails), so every peek is one reset (≈1 s) + re-feed
+  (≈0.08 s/step). `alts` ≈ 15k peeks ≈ 12 CPU-h; `admissible` ≈ 120k peeks ≈ 90 CPU-h. The container quota is 22 CPUs and
+  the Phase 1C chain uses ≈8. `alts` therefore runs now with 10 workers at nice 19. `admissible` waits until the chain
+  has exited, then uses 20 workers.
+- **Facts dependence:** requesting `facts` does not change dynamics (s000: 19 steps, 0 divergences; peeks match stored
+  observations).
+- **Provenance note:** `scripts/review/r04_live_integrity.py` is untracked (pre-existing), so `scripts_dirty` is True for
+  outputs produced now, including chain banks started after it appeared. The peek outputs therefore also record the
+  script's own sha256.
