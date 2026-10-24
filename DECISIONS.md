@@ -455,3 +455,29 @@ Projected chain time:
 - banks 3–6 on 𝓛: ≈24 h
 - banks 7–10 (expansion, D-023): another ≈24 h
 Creating `logs/STOP_EXPANSION` before banks 7–10 start makes the chain skip them.
+
+## D-027 — User cancels banks 7–10 — DECIDED 2026-10-24
+
+User explicitly instructed skipping banks 7–10 and creating logs/STOP_EXPANSION.
+Marker created at 10:16 +0800 while bank 3 is running. The existing chain checks
+this marker after bank 6 and exits without starting banks 7–10. Banks 3–6 remain
+scheduled; label depth is therefore 12 continuations per arm, rather than 24.
+This overrides the D-023 triggered expansion; disclose this design change in results.
+
+## D-028 — Mid-chain QC of Phase 1C (2026-10-24) — INFO
+
+`scripts/review/r04_phase1c_qc.py`, read-only, no features. Chain state: rollout s050–099, bank 1 (s050–099), bank 2 (all D)
+are DONE; bank 3 (live set, 1,478 points, 22,170 continuations) is ≈95% done; banks 4–6 follow. Banks 7–10 are skipped (D-027).
+- **Invariants:** 0 violations in banks 1–3. Checked: outcome counts, len = (turn−1)+#actions, no win past the 50-step cap,
+  every loss reached the cap, bank-2/3 alternatives and factual action identical to bank 1, first action correct, seeds
+  inside the bank's range, 0 duplicate seeds, re-feed divergence 0 over ≈1.5M generated steps.
+- **New rollouts s050–099:** success 0.42 (old 0.34), valid 0.9994, admissible-hit 0.897 (old 0.899), same format mix; all six
+  task types appear, `pick_two_obj_and_place` still 0/8 won. No-cf rate 20.6% vs 20.3% on the old 50, so the 100-trajectory
+  pool is homogeneous.
+- **Sizes:** |D| 3,038 (1,617 + 1,421); live set (banks 1+2, 30 continuations) 1,478 = 48.7% of D; 59 of the 79 trajectories
+  with a live point have ≥5 of them. This is more than the earlier 31 trajectories.
+- **Cross-bank (preview, NOT a result):** on the 1,355 points already in bank 3, bank 1 vs 2 A: Pearson 0.231, sign agreement
+  0.596 (n = 949 both-nonzero). The set is selected on pool non-constancy of banks 1+2, so these are biased upward for the live
+  flag and are shown only as a plumbing sanity check. They are consistent with D-023 (3-per-arm labels are noisy).
+- **Disk:** data 0.5 GB; free 22 GB; no growth risk.
+No code or process change needed.
