@@ -464,6 +464,22 @@ this marker after bank 6 and exits without starting banks 7–10. Banks 3–6 re
 scheduled; label depth is therefore 12 continuations per arm, rather than 24.
 This overrides the D-023 triggered expansion; disclose this design change in results.
 
+## D-028 — Save, verify and shut down after current queue — DECIDED 2026-10-24
+
+User explicitly requests /usr/bin/shutdown after tasks complete and files are
+saved to disk; also shut down after unrecoverable failure. Current GPU queue is
+banks 1–6; banks 7–10 remain canceled. Attach scripts/finish_phase1c.py to the
+existing chain PID/start time, without restarting it. On exit, run the integrity
+audit and require exact live-set coverage in banks 3–6. Archive project code,
+raw results, prompts, metadata and logs under artifacts/, read back and verify
+every archived file SHA256, fsync archive/manifest/status, and sync before shutdown.
+On audit/archive failure, persist errors and queue recovery review in this thread;
+reviewer must re-arm finalization after recovery or save errors and shut down if
+unrecoverable. If queue delivery itself fails, persist that failure, sync originals
+and shut down rather than leave GPU billing unattended. Shutdown was mocked in
+tests; it must not run while the queue is active. This stops after data collection,
+not a claim that Phase 2/3 analyses have been performed.
+
 ## D-028 — Mid-chain QC of Phase 1C (2026-10-24) — INFO
 
 `scripts/review/r04_phase1c_qc.py`, read-only, no features. Chain state: rollout s050–099, bank 1 (s050–099), bank 2 (all D)
@@ -505,6 +521,8 @@ committed (§9.2). `scripts/22_peek_W1.py`:
 - **Provenance note:** `scripts/review/r04_live_integrity.py` is untracked (pre-existing), so `scripts_dirty` is True for
   outputs produced now, including chain banks started after it appeared. The peek outputs therefore also record the
   script's own sha256.
+- **Status 2026-10-24 23:48:** `alts` is done: 3,818 points, 17,708 peeks, 0 check failures, 5,031 s (`data/peek_alts/`,
+  `logs/p2_peek_alts.log`). The user stopped the queued `admissible` pass before it started; it is not scheduled.
 
 ## D-030 — Proposal P2 (Where vs Which) registered — OPEN 2026-10-24
 
