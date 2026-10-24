@@ -488,7 +488,7 @@ The user asked for groundwork for the planned P2 extension ("Where vs Which": wo
 actions as the source of credit *sign*; see the P2 proposal when written). This does not amend CLAUDE.md. W1/W0 are not
 arms until a ruling adopts P2, and no association with any replay outcome is computed before `FEATURES_FROZEN.md` is
 committed (§9.2). `scripts/22_peek_W1.py`:
-- **What:** for every rollout step with a bank-1 file (all 3,038 points, cf-undefined points included), reset + re-feed
+- **What:** for every rollout step with a bank-1 file (all 3,818 rollout steps: the 3,038 points of D plus 780 cf-undefined points), reset + re-feed
   the prefix (verified against stored observations), execute ONE action, and record obs, admissible set, won/done and
   the TextWorld fact delta. No LLM is used and the policy never sees a peek. Bank-1 files are read only for their
   alternative list (sha256 recorded); outcomes are not read.
@@ -497,7 +497,7 @@ committed (§9.2). `scripts/22_peek_W1.py`:
 - **Determinism checks per point:** state obs = stored `obs_before`; factual peek obs = stored `obs_after`; re-feed
   divergence 0; on points with sha256(traj|turn) % 20 == 0, every peek is run twice and compared.
 - **Cost:** TextWorld envs cannot be copied (ctypes pointers; deepcopy fails), so every peek is one reset (≈1 s) + re-feed
-  (≈0.08 s/step). `alts` ≈ 15k peeks ≈ 12 CPU-h; `admissible` ≈ 120k peeks ≈ 90 CPU-h. The container quota is 22 CPUs and
+  (≈0.08 s/step). `alts` = 17,708 peeks (measured ≈0.66 points/s with 10 workers, ≈1.6 h); `admissible` ≈ 120k peeks ≈ 90 CPU-h. The container quota is 22 CPUs and
   the Phase 1C chain uses ≈8. `alts` therefore runs now with 10 workers at nice 19. `admissible` waits until the chain
   has exited, then uses 20 workers.
 - **Facts dependence:** requesting `facts` does not change dynamics (s000: 19 steps, 0 divergences; peeks match stored
@@ -505,3 +505,21 @@ committed (§9.2). `scripts/22_peek_W1.py`:
 - **Provenance note:** `scripts/review/r04_live_integrity.py` is untracked (pre-existing), so `scripts_dirty` is True for
   outputs produced now, including chain banks started after it appeared. The peek outputs therefore also record the
   script's own sha256.
+
+## D-030 — Proposal P2 (Where vs Which) registered — OPEN 2026-10-24
+
+`proposals/P2_where_which.md`: merges M0 with the collaborator's information-ladder plan (2026-10-22). Model-side
+structure (arms B/C, recomputable from logs + θ_old) is hypothesised to locate credit (L1, magnitude); world-side
+one-step peeks (W1) are hypothesised to give its sign (L2). New rungs: siblings G, W1, W0 (diagnostic), budget replay /
+REV, pair-level L2 target, a 300-point gold set at 32 runs/arm. M0 §4–§8 remain unchanged until a ruling. Five open
+questions for the user are listed in §7 of the proposal. The novelty check (CRR, Causal Agent Replay, GraphHCA, ECHO,
+…) is appended to the proposal when finished; a direct prior match is a stop condition (CLAUDE.md §2).
+**Novelty check result (subagent, abstracts + partial full text; quotes to be verified before writing):** no stop
+condition. Closest partial overlaps:
+- TreeHCA 2610.12828 executes every candidate turn in the environment, but for branch selection in search QA. It has no
+  replay ground truth and no ladder.
+- Critical-State RL 2609.24985 locates states by executed action variance (sign-agnostic) and leaves direction to RL. It
+  is also a near neighbour of M0's L1/L2 split, so M0 must cite it.
+- CRR 2609.33875 picks fork points by entropy, prices fork cost, and has an immediate-invalid diagnostic.
+P2 must be claimed as an empirical source decomposition (where vs which, priced in rollouts). It must not claim to be
+first to execute candidates or to pick fork points by entropy. Details are in the proposal's appendix.
