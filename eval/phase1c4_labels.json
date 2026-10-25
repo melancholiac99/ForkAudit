@@ -1,0 +1,41 @@
+{
+  "provenance": {
+    "script": "scripts/14_labels_L.py",
+    "commit": "69aec0090819458f8cd62780a80afa6e91ab8bab",
+    "scripts_dirty": true,
+    "argv": [
+      "14_labels_L.py"
+    ],
+    "time": "2026-10-25T10:46:19+0800",
+    "inputs": {}
+  },
+  "n_D": 3038,
+  "n_live_b12": 1478,
+  "n_live_b1": 1311,
+  "n_traj_live": 79,
+  "n_traj_live_ge5": 59,
+  "n_traj_live_ge4": 62,
+  "L1_live_b1_vs_b2_agreement": 0.9015799868334431,
+  "L1_live_rate_b1": 0.4315339038841343,
+  "L1_live_rate_b2": 0.44305464121132326,
+  "L2_sign_counts": {
+    "pos": 575,
+    "neg": 767,
+    "zero": 136
+  },
+  "L2_pool_constant_in_banks3_6": 69,
+  "L2_reliability": {
+    "n_both_nonzero": 1155,
+    "sign_agreement_both_nonzero": 0.6008658008658009,
+    "pearson": 0.32110777649921235,
+    "spearman": 0.24034890892947186,
+    "pearson_spearman_brown_12": 0.4861189710806366
+  },
+  "L2_vs_b12": {
+    "n": 1256,
+    "sign_agreement": 0.6265923566878981,
+    "pearson": 0.38354586908860366
+  },
+  "sens_L_b1_n_with_deep": 1311,
+  "sens_L_b1_without_deep": 0
+}

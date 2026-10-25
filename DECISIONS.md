@@ -541,3 +541,44 @@ condition. Closest partial overlaps:
 - CRR 2609.33875 picks fork points by entropy, prices fork cost, and has an immediate-invalid diagnostic.
 P2 must be claimed as an empirical source decomposition (where vs which, priced in rollouts). It must not claim to be
 first to execute candidates or to pick fork points by entropy. Details are in the proposal's appendix.
+
+## D-031 — Phase 1C complete; 1C.4 labels and the L2 reliability ceiling — INFO / FLAG 2026-10-25
+
+**Chain:** banks 1–6 complete and archived (`artifacts/phase1c_20261025_035544/`, finish audit passed on all 11,768
+files, re-feed divergence 0). Banks 7–10 were skipped (D-027).
+
+**Labels:** `scripts/14_labels_L.py` → `data/labels_L.parquet`, `eval/phase1c4_labels.json`. It reads labels only, no
+features (§9.2).
+- |D| 3,038. 𝓛 (banks 1+2 live) has 1,478 points over 79 trajectories; 59 have ≥5 𝓛 points and 62 have ≥4. Banks 3–6
+  cover exactly 𝓛 (asserted). The bank-1-only 𝓛 (1,311 points) is a strict subset.
+- L1 two-bank agreement of the live flag is 0.902 (live rate 43.2% vs 44.3%).
+- L2 sign counts (12 per arm): + 575 / − 767 / 0 136. 69 𝓛 points have a constant pool in banks 3–6.
+
+**L2 reliability ceiling (§6.0):** banks 3+4 vs 5+6 (6 per arm each), on 𝓛:
+- sign agreement **0.601** (n = 1,155 both nonzero);
+- Pearson 0.321; Spearman 0.240;
+- Spearman–Brown estimate for the 12-per-arm label: 0.49.
+
+The §8 flag threshold is 0.60, so L2 sits **on** the line and is not formally "标签信度不足". This matches the CWGT
+calibration (D-023: ≈0.63 at every depth).
+
+**Replay-oracle benchmark (label-only, exploratory):** the score is an independent replay of the same contrast; the
+label is sign_L2; values are AUROC with trajectory cluster bootstrap CI, n = 1,342 nonzero points, 75 trajectories.
+
+| Score | AUROC [95% CI] |
+|---|---|
+| Banks 1+2 (6 per arm) | 0.637 [0.615, 0.658] |
+| Bank 1 (3 per arm) | 0.619 [0.591, 0.647] |
+| Half-split, banks 3+4 → sign(banks 5+6) | 0.637 |
+| Replay-derived pool success rate of banks 1+2 (state-value proxy, not forward) | 0.553 [0.512, 0.589] |
+
+**Implications for the researcher (no rule changed):**
+1. R1 ① requires the arm-B lower bound ≥ 0.55, while a second independent replay reaches only 0.637 (lower bound
+   0.615). A forward feature would have to recover most of what an extra replay knows, so R1 ① is near-unreachable
+   at this label depth. R4 or R0 is the likely outcome even if real structure exists. One option is to express effect
+   size relative to the replay-oracle ceiling, e.g. (AUROC − 0.5) / (0.637 − 0.5), and keep R1 ①'s shuffle condition.
+   This would be a §8 amendment and is the researcher's decision before Phase 3.
+2. State value is a real competitor: the replay-derived state-value proxy alone gives 0.553. Beating V (R1 ②) is
+   necessary, not a formality.
+3. Most 𝓛 turns appear to have a near-zero true contrast (D-023), and more depth does not fix that. Restricting L2 to
+   turns with a resolvable contrast would change the estimand.
