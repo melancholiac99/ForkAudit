@@ -84,9 +84,9 @@ def validate():
     return report
 
 
-def shutdown(status):
+def shutdown(status, status_name='phase1c_shutdown_status.json'):
     status['shutdown_requested_at'] = time.strftime('%Y-%m-%dT%H:%M:%S%z')
-    p = ROOT / 'logs/phase1c_shutdown_status.json'
+    p = ROOT / 'logs' / status_name
     p.write_text(json.dumps(status, indent=2))
     with p.open('rb') as f:
         os.fsync(f.fileno())

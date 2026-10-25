@@ -761,3 +761,16 @@ label-only experiment and does not imply adopting the ruling.
 - **Dry run** (random policy, 100 points): 600 continuations, schema correct, re-feed divergence 0.
 
 GPU queue: shared chain (vLLM scoring → hidden states) → a′_u (≈20–40 min) → fp32 hfprefix pass.
+
+## D-038 — Auto-shutdown after a'_u and fp32 jobs — DECIDED 2026-10-25
+
+User explicitly requests automatic shutdown after these two queued jobs, error-triggered
+Codex review/recovery, and saved error logs if recovery fails (prior shutdown instruction
+still applies to unrecoverable failure). Attach finish_after_chain.py to the existing
+run_after_chain.sh PID/start time. Validate all selected a'_u points and six replicas,
+and fp32 score row coverage, finite values and provenance; archive and read-back hash
+check code/data/logs via the existing finalizer, fsync/sync, then /usr/bin/shutdown.
+On failure, persist logs and queue this conversation to repair/resume only these jobs;
+reviewer must re-arm finalization or save failure and shut down. If queue unavailable,
+save that error and sync before shutdown. Tests mocked queue and shutdown; neither
+was actually invoked. Banks 7–10 remain canceled; a'_u uses offset bank index 10 only.
