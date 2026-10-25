@@ -717,3 +717,29 @@ independent bank.
 - B2 is hard even for replay: 6 extra continuations per arm reach only 0.66. A cheap signal that passes B2 would be
   worth more than one replay; REV makes that measurable.
 - B3 inside Pivotal is well defined (0.84 at 6 per arm), unlike L2-sign on the whole of 𝓛 (0.64).
+
+## D-036 — Scoring throughput: shared-prefix KV cache (HF), fp32 second scoring pass — DECIDED 2026-10-25
+
+**Finding.** The vLLM run sits at 100% GPU but recomputes the ≈600-token prompt for every candidate:
+- ≈38 sequences/s ≈ 23k prefill tokens/s, which is the prefill ceiling (D-026);
+- requests that ask for `prompt_logprobs` do not reuse the prefix cache;
+- the ≈43 candidates of a point share the prompt and differ only in 5–10 command tokens, so ≈95% of the compute is repeated.
+
+**Change.** `20_score_candidates.py --backend hfprefix` (`HfPrefixScorer`):
+- one prefix forward per distinct context;
+- the KV cache is replicated over the candidates (`DynamicCache.batch_repeat_interleave`);
+- only the command tokens are fed.
+
+**Validation** (CPU, Qwen2.5-0.5B, fp32, 2 points, 184 sequences): max |Δ| = 3.2e-5 and mean 3.2e-6 vs full-sequence scoring,
+8.6× faster.
+
+**Plan.** The running vLLM bf16 job (≈1 h left at 400/3,818 points) is not interrupted. After the shared chain
+(scoring + hidden states) completes, `scripts/run_fp32_after_chain.sh` runs a second full scoring pass:
+- HF fp32 + prefix cache → `data/scores_fp32.parquet`;
+- estimated ≈30–40 min GPU.
+
+**Effect.** Removes the ≈0.3-nat bf16 noise floor of D-033. **Which pass is primary is an open choice for the researcher:**
+- fp32: clean numerics;
+- vLLM bf16: same numerics as the acting policy.
+
+Recommended: fp32 primary, vLLM bf16 as a numerical-robustness sensitivity row.

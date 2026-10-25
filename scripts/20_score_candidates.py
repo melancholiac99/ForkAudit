@@ -72,6 +72,59 @@ class VllmScorer:
             print("engine shutdown warning:", ex)
 
 
+class HfPrefixScorer:
+    """HF scoring with a shared-prefix KV cache (D-036): sequences with identical prefix ids[:start] (all candidates
+    of one context) run the prefix once; the cache is replicated over a chunk of candidates and only the command
+    tokens are fed. Mathematically identical to full-sequence scoring."""
+
+    def __init__(self, path, device=None, dtype=None):
+        import torch
+        from transformers import AutoModelForCausalLM
+        self.torch = torch
+        self.dev = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        dtype = dtype or {"bf16": torch.bfloat16, "fp32": torch.float32}[os.environ.get("M0_HF_DTYPE", "bf16")]
+        self.m = AutoModelForCausalLM.from_pretrained(path, dtype=dtype).to(self.dev).eval()
+
+    def score(self, seqs, cand_batch=64):
+        import copy
+        from collections import defaultdict
+        torch = self.torch
+        groups = defaultdict(list)
+        for i, (ids, s, e) in enumerate(seqs):
+            groups[tuple(ids[:s])].append(i)
+        res = [None] * len(seqs)
+        with torch.no_grad():
+            for pre, idxs in groups.items():
+                out = self.m.model(input_ids=torch.tensor([pre], device=self.dev), use_cache=True)
+                lp0 = torch.log_softmax(self.m.lm_head(out.last_hidden_state[0, -1]).float(), -1)
+                cache = out.past_key_values
+                for c0 in range(0, len(idxs), cand_batch):
+                    chunk = idxs[c0:c0 + cand_batch]
+                    cmds = [seqs[i][0][seqs[i][1]:seqs[i][2]] for i in chunk]
+                    L = max(len(c) for c in cmds) - 1
+                    hs = None
+                    if L > 0:
+                        feed = torch.zeros((len(chunk), L), dtype=torch.long)
+                        att = torch.ones((len(chunk), len(pre) + L), dtype=torch.long)
+                        for j, c in enumerate(cmds):
+                            feed[j, :len(c) - 1] = torch.tensor(c[:-1], dtype=torch.long)
+                            att[j, len(pre) + len(c) - 1:] = 0
+                        kv = copy.deepcopy(cache)
+                        kv.batch_repeat_interleave(len(chunk))
+                        hs = self.m.model(input_ids=feed.to(self.dev), attention_mask=att.to(self.dev),
+                                          past_key_values=kv, use_cache=True).last_hidden_state
+                    for j, (i, c) in enumerate(zip(chunk, cmds)):
+                        v = [lp0[c[0]].item()]
+                        if len(c) > 1:
+                            lp = torch.log_softmax(self.m.lm_head(hs[j, :len(c) - 1]).float(), -1)
+                            v += lp[torch.arange(len(c) - 1), torch.tensor(c[1:], device=lp.device)].tolist()
+                        res[i] = np.array(v, dtype=np.float64)
+        return res
+
+    def close(self):
+        pass
+
+
 class MockScorer:
     """Plumbing test only: deterministic pseudo log-probs of the right length; never used for results."""
 
@@ -122,7 +175,7 @@ class HfScorer:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--backend", choices=["vllm", "hf", "mock"], default="vllm")
+    ap.add_argument("--backend", choices=["vllm", "hf", "hfprefix", "mock"], default="vllm")
     ap.add_argument("--seeds", default="0-99")
     ap.add_argument("--limit", type=int, default=None, help="score only the first N points (tests)")
     ap.add_argument("--only", default=None, help="comma list traj_id:turn (alignment check)")
@@ -141,7 +194,8 @@ def main():
         pts = [p for p in pts if (p["traj_id"], p["turn"]) in want]
     if args.limit:
         pts = pts[:args.limit]
-    scorer = {"vllm": VllmScorer, "hf": HfScorer, "mock": lambda p: MockScorer()}[args.backend](common.MODEL_PATH)
+    scorer = {"vllm": VllmScorer, "hf": HfScorer, "hfprefix": HfPrefixScorer,
+              "mock": lambda p: MockScorer()}[args.backend](common.MODEL_PATH)
     mh = model_hash(common.MODEL_PATH)
     rows_c, rows_x = [], []
     t0 = time.time()
