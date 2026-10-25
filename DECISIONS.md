@@ -774,3 +774,27 @@ On failure, persist logs and queue this conversation to repair/resume only these
 reviewer must re-arm finalization or save failure and shut down. If queue unavailable,
 save that error and sync before shutdown. Tests mocked queue and shutdown; neither
 was actually invoked. Banks 7–10 remain canceled; a'_u uses offset bank index 10 only.
+
+## D-039 — a′_u sensitivity result: Indifferent is not an artefact of the policy's alternatives — INFO 2026-10-25
+
+Run: `logs/au_replay.log`. 100 points, 600 continuations, re-feed divergence 0. Analysis: `scripts/17_au_analysis.py` →
+`eval/au_sensitivity.json`; calibration: `scripts/review/r06_au_null.py`. Label-only.
+
+| Comparison (same 90% Newcombe rule, same 100 Indifferent points) | Flag rate |
+|---|---|
+| factual (6) vs factual (6): true difference 0, the rule's own false-positive rate | 0.020 |
+| factual (12) vs ONE policy alternative (6), 400 pairs | 0.098 |
+| **factual (12) vs a′_u, uniform admissible alternative (6)** | **0.110** [cluster 95% CI 0.055, 0.173] |
+
+- a′_u differs from the pooled policy alternatives (48 runs) at 16% of points.
+- At 3 points a′_u is worse than factual and at 8 it is better.
+- Mean success: factual 0.268, policy alternatives 0.285, a′_u 0.258.
+
+**Reading:** a uniform-random admissible alternative makes an Indifferent point "pivotal" no more often than one of the
+policy's own alternatives does (0.110 vs 0.098). So Indifferent is **not** explained by the policy sampling similar
+alternatives. RULING 2026-10-25 §7 row 3 does not fire; the ruling's 70% confidence item is supported.
+- **Nuance:** single alternatives flag at ≈10% vs the 2% exact null. Regimes are defined on the aggregate of 4
+  alternatives, and some individual alternatives within Indifferent points do differ from factual. Pair-level effects
+  exist but average out.
+- **Caveat:** 82/100 a′_u are `go to` actions, because the admissible set is dominated by navigation. This tests a random
+  admissible alternative, not a semantically extreme one. It is a sensitivity analysis and enters no verdict.

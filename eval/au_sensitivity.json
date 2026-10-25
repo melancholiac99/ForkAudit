@@ -1,0 +1,71 @@
+{
+  "provenance": {
+    "script": "scripts/17_au_analysis.py",
+    "commit": "128e0c6fbf300fb9d844b3f908310f12fcd7333a",
+    "scripts_dirty": false,
+    "argv": [
+      "17_au_analysis.py"
+    ],
+    "time": "2026-10-25T18:18:11+0800",
+    "inputs": {}
+  },
+  "n_points": 100,
+  "n_traj": 41,
+  "pivotal_vs_factual": {
+    "n": 11,
+    "frac": 0.11,
+    "ci95_cluster": [
+      0.05454545454545454,
+      0.1730867346938775
+    ]
+  },
+  "differs_from_alts": {
+    "n": 16,
+    "frac": 0.16,
+    "ci95_cluster": [
+      0.10112075814323004,
+      0.225
+    ]
+  },
+  "au_worse_than_factual": {
+    "n": 3,
+    "frac": 0.03,
+    "ci95_cluster": [
+      0.0,
+      0.06898050974512736
+    ]
+  },
+  "mean_success": {
+    "factual_b3_6": 0.2675,
+    "policy_alts_b3_6": 0.28458333333333335,
+    "a_u": 0.25833333333333336
+  },
+  "by_au_type": {
+    "examine/look": {
+      "n": 3,
+      "pivotal_frac": 0.0,
+      "a_u_success": 0.2777777777777778
+    },
+    "goto": {
+      "n": 82,
+      "pivotal_frac": 0.10975609756097561,
+      "a_u_success": 0.27235772357723576
+    },
+    "inventory": {
+      "n": 7,
+      "pivotal_frac": 0.0,
+      "a_u_success": 0.2857142857142857
+    },
+    "put": {
+      "n": 4,
+      "pivotal_frac": 0.25,
+      "a_u_success": 0.16666666666666666
+    },
+    "take": {
+      "n": 4,
+      "pivotal_frac": 0.25,
+      "a_u_success": 0.0
+    }
+  },
+  "reading": "Indifferent largely survives a uniform-random admissible alternative"
+}
