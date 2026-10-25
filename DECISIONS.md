@@ -582,3 +582,17 @@ label is sign_L2; values are AUROC with trajectory cluster bootstrap CI, n = 1,3
    necessary, not a formality.
 3. Most 𝓛 turns appear to have a near-zero true contrast (D-023), and more depth does not fix that. Restricting L2 to
    turns with a resolvable contrast would change the estimand.
+
+## D-032 — Claude's assessment appended to P2; pair-level label reliability — INFO 2026-10-25
+
+Appended "附二" to `proposals/P2_where_which.md` (an assessment, not a ruling).
+New label-only measurement (§9.2-safe): pair-level contrasts C_j, banks 3+4 vs 5+6 (6 per arm each), 5,912 pairs on 𝓛.
+- Both halves nonzero: 2,643 pairs (45%).
+- Sign agreement 0.614.
+- Pearson 0.413 (aggregate A: 0.601 / 0.321).
+Recommendation: adopt P2 with three modifications.
+1. H-Which is judged on reliability-corrected ΔR²; sign AUROC is secondary.
+2. All L2 verdicts are reported relative to the replay ceiling, together with REV. This is a §8 amendment.
+3. W1 is split into pure-world features (W1-N/T) and model-processed features (W1-V/P).
+Scope: ALFWorld + E1 + WebShop is the core; search QA, multiple models and E2 are conditional.
+Awaiting the researcher's ruling.
