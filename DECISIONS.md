@@ -596,3 +596,45 @@ Recommendation: adopt P2 with three modifications.
 3. W1 is split into pure-world features (W1-N/T) and model-processed features (W1-V/P).
 Scope: ALFWorld + E1 + WebShop is the core; search QA, multiple models and E2 are conditional.
 Awaiting the researcher's ruling.
+
+## D-033 — Phase 2 preconditions run (2.0 D-003 check, HF–vLLM alignment) — INFO / DECIDED 2026-10-25
+
+Scripts: `scripts/13_align_check.py` (points: numpy seed 0; 140 random from D + 60 random cf-undefined; the first 20
+D points are the alignment subset), `scripts/review/r05_backend_diff.py`. Outputs: `eval/phase2_prereq.json`, `eval/prereq/`.
+Only `cf_defined` was used; no A_replay or replay outcome was read (§9.2). No main-experiment scoring was run.
+
+**(a) D-003 pipeline check (HF bf16; chosen conf = mean command-token log-prob, trajectory cluster bootstrap):**
+
+| Construction | Included − excluded [95% CI] | Median conf |
+|---|---|---|
+| bare (primary) | −0.388 [−0.656, −0.102] | −0.72 |
+| emptythink | −0.335 [−0.620, −0.004] | −0.37 |
+| realized think | −0.031 [−0.076, −0.005] | −0.0000068 (degenerate, as predicted in D-020) |
+| CWGT | −0.70 [−0.81, −0.59] | — |
+
+Verdict: **pass.** The sign is negative and the CI excludes 0. The magnitude is about half of CWGT's, but the CIs overlap
+(n = 200, a different task list). Sharp contrast with the realized-think construction confirms that the bare construction
+is the right reading of CWGT's confidence.
+
+**(b) HF vs vLLM candidate scoring (20 points, 662 candidate pairs):**
+- Per-point Spearman: bare median 0.994 (min 0.958); notask median 0.998 (min 0.988). **Gate (median > 0.95) passes.**
+- Top-1 agreement 17/20. The three disagreements had HF top-1/top-2 gaps of 0.09, 0.67 and 0.96 nats.
+- Absolute deviations are larger than expected. |Δ logp_sum| has median 0.42 nats, p90 1.06, max 2.39; mean Δ (vLLM − HF) = −0.21.
+- fp32 reference (HF fp32, same token ids):
+
+  | Backend | Mean error | \|error\| p50 | \|error\| p90 | Spearman median |
+  |---|---|---|---|---|
+  | vLLM bf16 | −0.217 | 0.328 | 0.839 | 0.997 |
+  | HF bf16 | −0.002 | 0.308 | 0.931 | 0.996 |
+
+  Both bf16 backends carry the same-sized per-candidate noise (≈0.3 nats median), which is bf16 accumulation over ≈600-token
+  prompts. vLLM adds a ≈ −0.22 nat shift, near-uniform within a point; it cancels in q_t, margins and ranks, and shifts
+  absolute conf.
+
+**Decision:** primary scoring backend = **vLLM bf16** (CLAUDE.md §3; the same numerics the policy acted under during rollout
+and replay). Every arm-A/B/H1 quantity comes from this single backend; hidden states come from HF bf16 (arm C, V).
+- **Noise floor disclosed:** candidate log-prob differences below ≈0.3 nats are within numerical noise. This affects
+  `margin_raw`/`margin_mean` near 0 and `chosen_rank` near-ties, and goes into FEATURES_FROZEN as a stated limitation.
+- **Option not taken:** fp32 scoring (HF) for the main run, ≈3–4× the bf16 cost (≈10 h vs ≈2.7 h), only on the
+  researcher's request.
+- The M5 conf shift is recomputed from the full vLLM scores in Phase 3; the HF numbers above are the 2.0 precondition only.

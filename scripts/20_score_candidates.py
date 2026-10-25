@@ -92,7 +92,7 @@ class HfScorer:
         from transformers import AutoModelForCausalLM
         self.torch = torch
         self.dev = device or ("cuda" if torch.cuda.is_available() else "cpu")
-        dtype = dtype or torch.bfloat16
+        dtype = dtype or {"bf16": torch.bfloat16, "fp32": torch.float32}[os.environ.get("M0_HF_DTYPE", "bf16")]
         self.m = AutoModelForCausalLM.from_pretrained(path, dtype=dtype).to(self.dev).eval()
 
     def score(self, seqs, batch=16):

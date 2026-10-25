@@ -1,0 +1,25 @@
+{
+  "provenance": {
+    "script": "scripts/20_score_candidates.py",
+    "commit": "53d38cb4e1269d4e471ede6a6cfc9f30aaf4ce4f",
+    "scripts_dirty": true,
+    "argv": [
+      "20_score_candidates.py",
+      "--backend",
+      "hf",
+      "--only",
+      "s030:35,s018:14,s012:44,s028:10,s043:31,s011:40,s004:12,s030:26,s049:15,s001:32,s043:24,s023:40,s032:42,s020:49,s025:34,s029:13,s038:6,s000:18,s002:38,s046:15",
+      "--out_dir",
+      "/root/autodl-tmp/idea/eval/prereq",
+      "--tag",
+      "_hf32"
+    ],
+    "time": "2026-10-25T15:40:25+0800",
+    "inputs": {}
+  },
+  "backend": "hf",
+  "model_hash": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "n_points": 20,
+  "n_rows": 662,
+  "seconds": 204.0559356212616
+}
