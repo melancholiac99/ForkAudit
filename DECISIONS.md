@@ -638,3 +638,82 @@ and replay). Every arm-A/B/H1 quantity comes from this single backend; hidden st
 - **Option not taken:** fp32 scoring (HF) for the main run, ≈3–4× the bf16 cost (≈10 h vs ≈2.7 h), only on the
   researcher's request.
 - The M5 conf shift is recomputed from the full vLLM scores in Phase 3; the HF numbers above are the 2.0 precondition only.
+
+## D-034 — RULING 2026-10-25 received; adoption pending; shared Phase 2 work started — DECIDED 2026-10-25
+
+`RULING_2026-10-25.md` (three regimes, B1/B2/B3) has been pulled. The researcher is still deciding whether to adopt it,
+so CLAUDE.md is **unchanged**. Note: the ruling refers to its own 5.1/5.2 record as "D-033", but D-033 is already the
+Phase 2 precondition entry; the record is D-035.
+
+The researcher asked to run, now, only the work that is identical under both versions. Started
+`scripts/run_phase2_shared.sh` (GPU, detached):
+1. vLLM bf16 raw scoring of all 3,818 points: candidates × {bare, notask}; chosen × {emptythink, realized, hindsight}.
+   Output `data/scores.parquet` and `data/scores_chosen.parquet`.
+2. HF bf16 two-position hidden-state export (arm C and V inputs). Output `hidden/`.
+
+Both versions use identical arms A/B/C/V/H1 inputs. **Procedural deviation:** CLAUDE.md §7 orders 2.1 (commit
+FEATURES_FROZEN) before 2.2 (scoring). Raw log-probs and hidden states are produced before the freeze, but no
+feature is derived and nothing is joined with any label until FEATURES_FROZEN.md is committed. Feature definitions are
+already fixed in CLAUDE.md §4. §9.2 (no association before the freeze) is untouched.
+
+Not started, because these exist only in the new ruling:
+- CLAUDE.md §1/§6/§8 edits;
+- gold set (≈7 h);
+- siblings G;
+- a′_u sensitivity;
+- W1 peek-state hidden states (W1-V/P);
+- W1-D;
+- E1;
+- FEATURES_FROZEN content specific to B1/B2/B3.
+
+## D-035 — RULING 2026-10-25 §5.1–5.2 computed (label-only) — INFO 2026-10-25
+
+`scripts/15_regimes.py` → `eval/regimes.json`, `eval/pivotal_rule.json`, `eval/ceilings.json`. Labels only (§9.2-safe).
+Run as decision support; it does not imply adoption.
+
+**Three regimes (D, n = 3,038; trajectory cluster bootstrap 95% CI):**
+
+| Regime | n | Fraction [95% CI] |
+|---|---|---|
+| Dead | 1,560 | 51.3% [42.8, 60.0] |
+| Indifferent | 1,249 | 41.1% [33.8, 48.6] |
+| Pivotal (Newcombe 90%, banks 3–6) | 229 | 7.5% [5.7, 9.4] |
+
+- Dead pools: 1,508 all-fail, 52 all-success.
+- By trajectory outcome:
+  - won trajectories (n = 455): dead 10.3%, indifferent 74.1%, pivotal 15.6%;
+  - lost trajectories (n = 2,583): dead 58.6%, indifferent 35.3%, pivotal 6.1%.
+- By progress tercile (dead / pivotal): early 39.5% / 8.1%, middle 45.6% / 7.6%, late 68.3% / 7.0%.
+- Pivotal counts: sensitivity rule 193; overlap with the main rule 187. Signs + 107 / − 122. 54 trajectories contain a
+  pivotal point; 36 contain ≥3. Gate |Pivotal| ≥ 150 passes.
+- Split-half sign agreement (banks 3+4 vs 5+6): 0.978 inside Pivotal (partly circular, since Pivotal is selected on the
+  pooled banks 3–6) and 0.511 inside Indifferent (n = 932, coin-flip, as the regime definition predicts).
+
+**Depth invariance on our own data (𝓛, independent banks 3–6 only):**
+
+| Depth per arm | Sign agreement | Pearson |
+|---|---|---|
+| d = 3 (6 single-bank pairs) | 0.593 | 0.186 |
+| d = 6 (3 half-splits) | 0.600 | 0.314 |
+
+The sign gain is +0.007, below the ruling's 0.05 "change my mind" threshold. Sign invariance with Pearson rising
+replicates the CWGT pattern (D-023). Mixture fit p (fraction with a real effect) = 0.25 / 0.22 / 0.20 for
+q = 0.90 / 0.95 / 1.00.
+
+**Replay ceilings B_m (AUROC, mean of 200 subsamples, banks 1+2):**
+
+| Target | m=1 | m=2 | m=3 | m=6 |
+|---|---|---|---|---|
+| B2 pivotal on 𝓛 (score \|A\|) | 0.604 | 0.607 | 0.616 | 0.661 |
+| L2-sign on 𝓛 | 0.576 | 0.593 | 0.606 | 0.637 |
+| B3 sign within Pivotal | 0.706 | 0.755 | 0.790 | 0.836 |
+| B1 live (label bank 1, score bank-2 pool variance) | 0.829 | 0.902 | 0.930 | — |
+
+The B1 row deviates from RULING §2.4 because the Live label is built from banks 1+2, so the score must come from an
+independent bank.
+
+**Reading:**
+- B1 is easy, with a replay ceiling ≈ 0.93.
+- B2 is hard even for replay: 6 extra continuations per arm reach only 0.66. A cheap signal that passes B2 would be
+  worth more than one replay; REV makes that measurable.
+- B3 inside Pivotal is well defined (0.84 at 6 per arm), unlike L2-sign on the whole of 𝓛 (0.64).

@@ -1,0 +1,31 @@
+{
+  "n_live": 1478,
+  "n_pivotal_newcombe90": 229,
+  "n_pivotal_sensitivity": 193,
+  "overlap": 187,
+  "pivotal_sign": {
+    "pos": 107,
+    "neg": 122
+  },
+  "n_traj_with_pivotal": 54,
+  "n_traj_pivotal_ge3": 36,
+  "gate_n_pivotal_ge_150": true,
+  "within_pivotal_split_sign_agree_34_56": [
+    0.9775784753363229,
+    223
+  ],
+  "within_indifferent_split_sign_agree_34_56": [
+    0.5107296137339056,
+    932
+  ],
+  "provenance": {
+    "script": "scripts/15_regimes.py",
+    "commit": "e1a3fb5b273de6e8e203d758a6a4347f18fc3901",
+    "scripts_dirty": true,
+    "argv": [
+      "15_regimes.py"
+    ],
+    "time": "2026-10-25T15:44:28+0800",
+    "inputs": {}
+  }
+}
