@@ -743,3 +743,21 @@ independent bank.
 - vLLM bf16: same numerics as the acting policy.
 
 Recommended: fp32 primary, vLLM bf16 as a numerical-robustness sensitivity row.
+
+## D-037 — a′_u sensitivity scheduled before the fp32 pass (user instruction) — DECIDED 2026-10-25
+
+The researcher asked to run the a′_u check (RULING 2026-10-25 §7 row 3) ahead of the fp32 scoring pass. It is a
+label-only experiment and does not imply adopting the ruling.
+- **Points:** `scripts/16_select_au.py` → `eval/au_points.json`. 100 Indifferent points, drawn with numpy seed 0 from
+  the 1,249 Indifferent points (regime rule of D-035), covering 41 trajectories. None were skipped.
+- **Alternative a′_u:** uniform over admissible \ {help, chosen, the 4 bank-1 alternatives}, with
+  rng = default_rng(1,000,003·task_seed + turn). Median pool size is 27.
+- **Run:** `11_replay.py --engine async --bank 10 --points D --points_file eval/au_points.json --n_rep 6 --no_factual`
+  → `data/replay_au/`. The bank index is 10 (seed offset 10¹², D-024 format) and the factual arm is not re-run.
+- **Comparison:** factual from banks 3–6 (12 runs) vs a′_u (6 runs), using the same Newcombe 90% rule. "Pivotal under
+  a′_u" means the interval excludes 0. Report the fraction with a cluster CI, and also against the bank-1 alternatives'
+  mean on the same points. The ruling's reading applies: if most points turn pivotal, Indifferent is policy-relative.
+  This is a sensitivity analysis and enters no verdict.
+- **Dry run** (random policy, 100 points): 600 continuations, schema correct, re-feed divergence 0.
+
+GPU queue: shared chain (vLLM scoring → hidden states) → a′_u (≈20–40 min) → fp32 hfprefix pass.

@@ -135,6 +135,10 @@ def main():
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--out_root", default=None)
     ap.add_argument("--engine", choices=["lockstep", "async"], default="lockstep")
+    # a'_u sensitivity (RULING 2026-10-25 §7, D-037): one uniform-random admissible alternative per listed point
+    ap.add_argument("--points_file", default=None, help="json {'points': [[traj_id, turn, alt_action], ...]}")
+    ap.add_argument("--n_rep", type=int, default=N_REP)
+    ap.add_argument("--no_factual", action="store_true")
     args = ap.parse_args()
     assert (args.bank == 0) == (args.points == "all"), "bank 1 runs all points; banks >= 2 need --points D|live"
 
@@ -156,6 +160,13 @@ def main():
     prov["vllm"] = pol.vllm_version
     prov["bank"] = args.bank
     prov["points"] = args.points
+    prov["n_rep"] = args.n_rep
+    prov["no_factual"] = args.no_factual
+    pf = None
+    if args.points_file:
+        pf = {(t, int(u)): a for t, u, a in json.load(open(args.points_file))["points"]}
+        prov["points_file"] = {"path": os.path.relpath(args.points_file, common.ROOT),
+                               "sha256": common.file_sha256(args.points_file)}
     prov["seed_offset"] = offset
     prov["engine"] = args.engine
 
@@ -180,6 +191,13 @@ def main():
                 assert b1["factual_action"] == stp["action"]
                 d.update(alts=list(b1["alternatives"]), drafts=[], draws=0,
                          alt_source={"path": os.path.relpath(src, common.ROOT), "sha256": common.file_sha256(src)})
+                if pf is not None:
+                    key = (tr["traj_id"], stp["turn"])
+                    if key not in pf:
+                        continue
+                    assert pf[key] not in b1["alternatives"] and pf[key] != stp["action"]
+                    d["alts"] = [pf[key]]
+                    d["alt_source"]["mode"] = "uniform_admissible_points_file"
             dps.append(d)
     print(f"{len(dps)} decision points to replay", flush=True)
 
@@ -226,11 +244,12 @@ def main():
     # ---------------- phase B: continuations
     conts = []
     for j, d in enumerate(dps):
-        d["cf_defined"] = len(d["alts"]) == K_ALT
-        roles = [(1, d["factual"])] + ([(2 + k, a) for k, a in enumerate(d["alts"])] if d["cf_defined"] else [])
+        d["cf_defined"] = len(d["alts"]) == K_ALT or pf is not None
+        roles = [] if args.no_factual else [(1, d["factual"])]
+        roles += [(2 + k, a) for k, a in enumerate(d["alts"])] if d["cf_defined"] else []
         d["n_open"] = 0
         for role, a in roles:
-            for r in range(N_REP):
+            for r in range(args.n_rep):
                 conts.append(Cont(f"{j}:{role}:{r}", j, role, r, a))
                 d["n_open"] += 1
     print(f"{len(conts)} continuations", flush=True)

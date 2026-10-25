@@ -1,0 +1,618 @@
+{
+  "provenance": {
+    "script": "scripts/16_select_au.py",
+    "commit": "3979d056720b18b406e77376153297f1fb2ab270",
+    "scripts_dirty": true,
+    "argv": [
+      "16_select_au.py"
+    ],
+    "time": "2026-10-25T16:26:47+0800",
+    "inputs": {}
+  },
+  "n_indifferent": 1249,
+  "skipped_empty_pool": 0,
+  "points": [
+    [
+      "s078",
+      31,
+      "go to countertop 1"
+    ],
+    [
+      "s068",
+      4,
+      "go to fridge 1"
+    ],
+    [
+      "s097",
+      33,
+      "go to cabinet 4"
+    ],
+    [
+      "s046",
+      3,
+      "go to garbagecan 1"
+    ],
+    [
+      "s022",
+      26,
+      "go to drawer 4"
+    ],
+    [
+      "s066",
+      47,
+      "go to drawer 8"
+    ],
+    [
+      "s062",
+      18,
+      "go to sofa 1"
+    ],
+    [
+      "s097",
+      39,
+      "go to cabinet 9"
+    ],
+    [
+      "s050",
+      28,
+      "go to shelf 2"
+    ],
+    [
+      "s064",
+      16,
+      "go to drawer 1"
+    ],
+    [
+      "s010",
+      46,
+      "go to drawer 9"
+    ],
+    [
+      "s021",
+      3,
+      "go to drawer 7"
+    ],
+    [
+      "s078",
+      20,
+      "go to cabinet 1"
+    ],
+    [
+      "s064",
+      14,
+      "look"
+    ],
+    [
+      "s087",
+      5,
+      "go to cabinet 7"
+    ],
+    [
+      "s018",
+      33,
+      "go to drawer 3"
+    ],
+    [
+      "s040",
+      36,
+      "go to coffeemachine 1"
+    ],
+    [
+      "s048",
+      14,
+      "move pillow 1 to bed 1"
+    ],
+    [
+      "s037",
+      31,
+      "inventory"
+    ],
+    [
+      "s097",
+      27,
+      "go to cabinet 6"
+    ],
+    [
+      "s012",
+      6,
+      "go to drawer 6"
+    ],
+    [
+      "s040",
+      14,
+      "go to cabinet 6"
+    ],
+    [
+      "s031",
+      34,
+      "go to stoveburner 1"
+    ],
+    [
+      "s019",
+      3,
+      "take peppershaker 1 from countertop 1"
+    ],
+    [
+      "s087",
+      7,
+      "go to microwave 1"
+    ],
+    [
+      "s022",
+      23,
+      "go to drawer 1"
+    ],
+    [
+      "s029",
+      12,
+      "take pen 1 from desk 1"
+    ],
+    [
+      "s086",
+      42,
+      "go to drawer 2"
+    ],
+    [
+      "s002",
+      19,
+      "go to cabinet 2"
+    ],
+    [
+      "s078",
+      23,
+      "go to cabinet 13"
+    ],
+    [
+      "s024",
+      11,
+      "examine cabinet 2"
+    ],
+    [
+      "s025",
+      15,
+      "go to cabinet 16"
+    ],
+    [
+      "s048",
+      28,
+      "move pillow 1 to armchair 1"
+    ],
+    [
+      "s094",
+      20,
+      "go to drawer 9"
+    ],
+    [
+      "s010",
+      45,
+      "go to drawer 10"
+    ],
+    [
+      "s017",
+      24,
+      "go to dresser 2"
+    ],
+    [
+      "s019",
+      42,
+      "go to drawer 2"
+    ],
+    [
+      "s069",
+      4,
+      "go to cabinet 6"
+    ],
+    [
+      "s033",
+      38,
+      "go to cabinet 6"
+    ],
+    [
+      "s025",
+      4,
+      "go to stoveburner 1"
+    ],
+    [
+      "s024",
+      25,
+      "go to drawer 6"
+    ],
+    [
+      "s078",
+      9,
+      "go to cabinet 15"
+    ],
+    [
+      "s035",
+      27,
+      "inventory"
+    ],
+    [
+      "s010",
+      12,
+      "go to shelf 2"
+    ],
+    [
+      "s039",
+      11,
+      "take book 2 from desk 1"
+    ],
+    [
+      "s097",
+      44,
+      "go to cabinet 8"
+    ],
+    [
+      "s050",
+      19,
+      "go to cabinet 9"
+    ],
+    [
+      "s032",
+      22,
+      "go to towelholder 1"
+    ],
+    [
+      "s035",
+      29,
+      "go to drawer 1"
+    ],
+    [
+      "s056",
+      5,
+      "go to drawer 5"
+    ],
+    [
+      "s032",
+      17,
+      "inventory"
+    ],
+    [
+      "s021",
+      18,
+      "go to stoveburner 4"
+    ],
+    [
+      "s097",
+      8,
+      "go to cabinet 7"
+    ],
+    [
+      "s025",
+      23,
+      "move potato 1 to microwave 1"
+    ],
+    [
+      "s086",
+      12,
+      "go to cabinet 2"
+    ],
+    [
+      "s022",
+      38,
+      "go to cabinet 8"
+    ],
+    [
+      "s097",
+      4,
+      "go to garbagecan 1"
+    ],
+    [
+      "s029",
+      18,
+      "go to shelf 4"
+    ],
+    [
+      "s051",
+      22,
+      "look"
+    ],
+    [
+      "s041",
+      11,
+      "go to drawer 9"
+    ],
+    [
+      "s033",
+      23,
+      "go to cabinet 10"
+    ],
+    [
+      "s050",
+      11,
+      "go to sinkbasin 1"
+    ],
+    [
+      "s022",
+      13,
+      "go to cabinet 4"
+    ],
+    [
+      "s051",
+      11,
+      "go to cabinet 5"
+    ],
+    [
+      "s062",
+      16,
+      "go to garbagecan 1"
+    ],
+    [
+      "s035",
+      35,
+      "go to shelf 1"
+    ],
+    [
+      "s002",
+      39,
+      "go to cabinet 6"
+    ],
+    [
+      "s017",
+      1,
+      "inventory"
+    ],
+    [
+      "s025",
+      45,
+      "go to cabinet 5"
+    ],
+    [
+      "s002",
+      32,
+      "go to cabinet 10"
+    ],
+    [
+      "s094",
+      34,
+      "go to toaster 1"
+    ],
+    [
+      "s086",
+      29,
+      "go to microwave 1"
+    ],
+    [
+      "s063",
+      13,
+      "go to cabinet 7"
+    ],
+    [
+      "s094",
+      38,
+      "take potato 3 from fridge 1"
+    ],
+    [
+      "s050",
+      33,
+      "go to shelf 2"
+    ],
+    [
+      "s094",
+      35,
+      "go to stoveburner 2"
+    ],
+    [
+      "s017",
+      4,
+      "go to garbagecan 1"
+    ],
+    [
+      "s010",
+      35,
+      "go to drawer 8"
+    ],
+    [
+      "s022",
+      29,
+      "go to cabinet 8"
+    ],
+    [
+      "s056",
+      22,
+      "inventory"
+    ],
+    [
+      "s022",
+      17,
+      "go to cabinet 7"
+    ],
+    [
+      "s022",
+      16,
+      "go to diningtable 1"
+    ],
+    [
+      "s039",
+      17,
+      "go to shelf 1"
+    ],
+    [
+      "s000",
+      7,
+      "inventory"
+    ],
+    [
+      "s013",
+      7,
+      "go to diningtable 2"
+    ],
+    [
+      "s051",
+      38,
+      "move winebottle 1 to cabinet 1"
+    ],
+    [
+      "s040",
+      39,
+      "go to cabinet 6"
+    ],
+    [
+      "s031",
+      23,
+      "go to cabinet 6"
+    ],
+    [
+      "s059",
+      9,
+      "go to stoveburner 2"
+    ],
+    [
+      "s064",
+      20,
+      "go to laundryhamper 1"
+    ],
+    [
+      "s097",
+      12,
+      "go to drawer 1"
+    ],
+    [
+      "s035",
+      6,
+      "go to bed 1"
+    ],
+    [
+      "s005",
+      15,
+      "go to cabinet 4"
+    ],
+    [
+      "s001",
+      11,
+      "go to coffeemachine 1"
+    ],
+    [
+      "s040",
+      31,
+      "go to toaster 1"
+    ],
+    [
+      "s051",
+      35,
+      "go to cabinet 5"
+    ],
+    [
+      "s002",
+      36,
+      "go to cabinet 5"
+    ],
+    [
+      "s079",
+      21,
+      "inventory"
+    ],
+    [
+      "s040",
+      7,
+      "go to stoveburner 1"
+    ],
+    [
+      "s079",
+      2,
+      "go to shelf 2"
+    ]
+  ],
+  "pool_sizes": [
+    36,
+    25,
+    21,
+    13,
+    34,
+    20,
+    12,
+    21,
+    27,
+    15,
+    20,
+    50,
+    35,
+    15,
+    39,
+    27,
+    35,
+    7,
+    18,
+    21,
+    29,
+    19,
+    32,
+    31,
+    39,
+    34,
+    13,
+    30,
+    27,
+    35,
+    52,
+    38,
+    8,
+    50,
+    20,
+    15,
+    29,
+    32,
+    35,
+    37,
+    53,
+    35,
+    10,
+    20,
+    13,
+    19,
+    39,
+    14,
+    10,
+    10,
+    14,
+    51,
+    17,
+    40,
+    31,
+    33,
+    19,
+    13,
+    40,
+    17,
+    38,
+    27,
+    33,
+    39,
+    12,
+    15,
+    26,
+    13,
+    37,
+    27,
+    50,
+    24,
+    28,
+    55,
+    27,
+    51,
+    14,
+    20,
+    33,
+    10,
+    33,
+    33,
+    13,
+    40,
+    25,
+    39,
+    18,
+    31,
+    29,
+    15,
+    19,
+    10,
+    10,
+    38,
+    35,
+    39,
+    29,
+    13,
+    18,
+    20
+  ]
+}
