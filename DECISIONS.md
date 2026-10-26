@@ -834,3 +834,15 @@ Check script: `scripts/review/r07_fp32_check.py` → `eval/phase2_fp32_check.jso
    The sign replicates, the magnitude is ≈0.7× CWGT, and the intervals are adjacent without overlapping. Per the
    D-003 rule this is recorded and we continue. Possible reasons: a different task list, and a less absorbing
    measurability map (D-020).
+
+## D-041 — Primary scoring backend = HF fp32 (shared-prefix KV cache) — DECIDED 2026-10-26 (researcher)
+
+The researcher chose fp32. Every arm-A/B/H1 quantity (candidate log-probs, q_t, margins, ranks, conf, ρ_t) is computed
+from `data/scores_fp32.parquet` and `data/scores_chosen_fp32.parquet` (scorer "hfprefix", D-036, validated in D-040).
+The vLLM bf16 pass (`data/scores.parquet`, `data/scores_chosen.parquet`) is kept as a numerical-robustness
+sensitivity row and is not used for any primary number. File names are left unchanged (archive manifests reference
+them). CLAUDE.md §3 and the §5 `scorer` field are updated accordingly; this is an environment-lock change recorded
+here as §3 requires. Hidden states remain HF bf16 (`hidden/`).
+Reasons: fp32 removes the ≈0.3-nat per-candidate bf16 noise (D-033/D-040). Rank and margin features otherwise flip at
+the 9.3% of points with near-ties (cross-backend `chosen_rank` agreement 81%). Neither bf16 pass reproduces the
+acting policy's exact sampling-time numerics anyway (D-015).

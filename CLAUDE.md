@@ -31,7 +31,7 @@
 - 策略：`Qwen/Qwen2.5-7B-Instruct`，fp16/bf16，采样温度 0.7，与 CWGT 一致。**禁止用 3B。** 第二家族 `meta-llama/Llama-3.1-8B-Instruct` 为可选复制。
 - 环境：`alfworld==0.4.2`, `textworld==1.7.0`（CWGT 的 pin）。先 `alfworld-download` 拉游戏文件。
 - Agent 模板：HCAPO (arXiv 2603.08754) 附录公开的 ALFWorld 模板。**Phase 1 必须确认模板是否把合法动作列进 prompt**，记录在 `DECISIONS.md`。
-- 推理：vLLM 用于 rollout/replay，以及候选动作的 teacher-forced scoring（`prompt_logprobs` + prefix caching，合法集常达 40+ 动作）；HF transformers 用于隐状态导出（需要 `output_hidden_states`）与 scoring 核对。两者 logprob 允许数值差异但秩序必须一致（Phase 2 先在 20 点上检查，候选秩序 Spearman > 0.95）。
+- 推理：vLLM（bf16）用于 rollout/replay。**候选动作与 chosen 变体的 teacher-forced scoring 主口径 = HF transformers fp32 + 共享前缀 KV cache**（`20_score_candidates.py --backend hfprefix`，D-036/D-041；产出 `data/scores_fp32.parquet`、`data/scores_chosen_fp32.parquet`）；vLLM bf16 打分（`data/scores.parquet`、`data/scores_chosen.parquet`）只作数值稳健性敏感性行。HF bf16 用于隐状态导出（需要 `output_hidden_states`）。两套打分秩序一致性已核对（D-033、D-040）。
 - 硬件：单卡 RTX Pro 6000（按 96GB 计；若实为 48GB 版本亦足够 7B）。
 - 随机性：所有采样固定 seed 并记录；每个产出文件记录生成它的脚本路径 + git commit hash。
 - Python 3.10+，`numpy scipy scikit-learn pandas pyarrow torch transformers vllm`。
@@ -113,7 +113,7 @@ source:str               # "cwgt_archive" | "own_replay"
 traj_id, turn, action:str, is_chosen:bool, is_admissible:bool,
 logp_sum:float, logp_mean:float, n_tokens:int,
 logp_sum_notask:float, logp_mean_notask:float,
-scorer:str ("hf"|"vllm"), model_hash:str
+scorer:str ("hfprefix" 主口径 | "vllm" 敏感性 | "hf" 核对), model_hash:str
 ```
 
 `hidden/{position}_{layer}.npy`（position ∈ {prompt_end, pre_action}）+ `hidden/index.parquet` (traj_id, turn, row)
