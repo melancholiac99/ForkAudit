@@ -1,5 +1,11 @@
 # P3（保留）：FINAL RULING 之外的待议点
 
+- **处置（RULING_2026-10-26_FREEZE_ADDENDUM §4）：**
+  - 1 S4：保留，留给下一篇。
+  - 2 自适应回放：以 `exploratory_adaptive_replay` 进 E1，不进主表、不进判定；规则见 FEATURES_FROZEN §6。
+  - 3 策略强度：保留，写作 limitation，并留给下一篇。
+  - 4 W1-T 实体计数：不加，特征 26 已覆盖。
+  - 5 检测器：保留，留给下一篇；本文只在 Discussion 提一段。
 - **状态：RESERVED（2026-10-26）。** 研究者指示"你说的那几点先保留"。按 RULING_2026-10-26_FINAL §9.5，这些想法不改本文目标；记录在此，作为本文的可选追加（只能以 `exploratory_` 形式出现）或下一篇论文的材料。
 - **来源：** 2026-10-26 会话中 Claude 对研究者"高效定位 Pivotal"构想与合作者意见的回应。
 - **约束：** 以下任何一项若要进入本文主表，都需要新的裁决，并且必须在 `FEATURES_FROZEN.md` 提交之前定下；冻结之后只能作 `exploratory_`。

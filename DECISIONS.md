@@ -967,3 +967,69 @@ Pivotal_agg among live, by progress tercile: 13.3% [10.9, 15.7] → 14.0% [10.6,
 - `scripts/run_phase1d_gpu.sh`: gold → siblings k=1…7 → peek hidden → peek scoring → W1-J (only if approved).
 - It aborts without a GPU and has no auto-shutdown.
 - **Not started:** the instance is in no-GPU mode (0.5 CPU, 2 GB RAM).
+
+## D-044 — FREEZE ADDENDUM 2026-10-26 applied; B2-het and B3(∩) ceilings; regimes under the new names — DECIDED / INFO 2026-10-26
+
+`RULING_2026-10-26_FREEZE_ADDENDUM.md` was pulled (commit 63cf1c9).
+
+**CLAUDE.md (commit 702f89b):**
+- §1 gets an addendum note.
+- §4.2: P5 becomes known fact F1; P1–P4's "B2" means het.
+- §6.0 relabelled:
+  - Credit-pivotal = the old Pivotal_agg;
+  - Fork = Pivotal_het, the B2 main label;
+  - Indifferent := Live ∧ ¬het;
+  - B3 set = Credit-pivotal ∩ het.
+- §6.3 table updated.
+- §6.3a gold: independent-20 replication rate; the new switch (B3 → report-only if the ∩ replication < 0.50).
+- §6.6: uniform / 2k-prefilter definitions and `exploratory_adaptive_replay`.
+- §8: label gate updated; priority rule with R-EITHER.
+- Phase 1D gets the addendum's execution order.
+
+**Interpretation choices (recorded per §9.10):**
+1. The ruling writes Indifferent = 33.1%. The exact value is 1,003 / 3,038 = 33.0%, and CLAUDE.md uses 33.0%.
+2. The old "(het)" suffix in §8 no longer applies, because het is now the main B2 label. If a reading holds on het but
+   not on Credit-pivotal, the paper explains the difference; no suffix is added. The addendum did not address this.
+3. **Procedural note:** the GPU queue (`run_phase1d_gpu.sh`) was started at 12:49, before this addendum arrived and
+   before the freeze (addendum §5 places it at step 5). It produces raw data only (gold continuations, sibling
+   rollouts, peek-state hidden states and scores) and computes no features or associations. The addendum does not
+   change any of these jobs. Precedent: D-034.
+
+**Ceilings** (`scripts/26_addendum_labels.py` → `eval/ceilings.json` field `freeze_addendum`; commit f88680f, clean).
+Banks 1+2 subsample, m runs per arm, 200 repeats:
+
+| target | score | m=1 | m=2 | m=3 | m=6 |
+|---|---|---|---|---|---|
+| B2 = het on 𝓛 (475 / 1,478) | five-arm G of the subsample | 0.656 | 0.720 | 0.745 | **0.763** |
+| B2 = het on 𝓛 | \|A\| of the subsample (comparison) | 0.632 | 0.616 | 0.612 | 0.626 |
+| B3 = sign(A_3456) on Credit-pivotal ∩ het (170; 72 positive) | A of the subsample | 0.743 | 0.801 | 0.834 | **0.883** |
+
+The B2 normalised-effect denominators are therefore 0.763 (het, m=6) and 0.883 (B3, m=6), with B1 still 0.93 (m=3).
+At m=6 the subsample is all six runs, so its band has zero width.
+
+**Regimes** (`eval/regimes.json` field `fork_het`, cluster 95% CI):
+
+| regime | n | fraction |
+|---|---|---|
+| Dead | 1,560 | 51.3% [42.7, 60.0] |
+| Indifferent | 1,003 | 33.0% [27.1, 39.0] |
+| Fork | 475 | 15.6% [11.8, 19.8] |
+| ↳ Fork: Credit-pivotal ∩ het | 170 | 5.6% [4.1, 7.3] |
+| ↳ Fork: Masked | 305 | 10.0% [7.5, 12.9] |
+
+- Null-expected counts: het 103.9, Credit-pivotal 118.3, ∩ 35.0, Masked 68.9. The null-expected Fork share of D is
+  3.4%.
+- Fork among live, by progress tercile: 29.1% → 30.2% → 40.9%.
+- Fork among live, by trajectory outcome: lost 32.1%, won 32.4%. Unlike Dead, it does not depend on the outcome.
+
+**Freeze record (FREEZE ADDENDUM §5 step 3):** `FEATURES_FROZEN.md` committed alone at **d6fe13f468a8086abc300d3a542c03dd17fb9f30**, built from `proposals/FEATURES_FROZEN_DRAFT.md` with the addendum's §3 confirmations and §1 label rewrite. From this commit on, targets, the feature list and the verdict rules are frozen.
+
+Implementation details added while finalising are deterministic choices that involve no outcome:
+- §3 "feature computation details" (exact formulas for 21–39);
+- §4 solver (liblinear) and the default GroupKFold split;
+- §5: "model-side multi-feature" for the R-MODEL / R-LADDER / R-EITHER comparison = the B+C joint model, a single
+  pre-specified score, so that the better of B and C is not picked after seeing results;
+- §6: the k-shortfall rule and the `exploratory_adaptive_replay` allocation rule.
+
+`logs/W1J_APPROVED` was written with template sha256 9804c516…e233b1 (addendum §3 item 10). The running GPU queue
+will run W1-J as its last step.
