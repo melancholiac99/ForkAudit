@@ -139,6 +139,8 @@ def main():
     ap.add_argument("--points_file", default=None, help="json {'points': [[traj_id, turn, alt_action], ...]}")
     ap.add_argument("--n_rep", type=int, default=N_REP)
     ap.add_argument("--no_factual", action="store_true")
+    ap.add_argument("--subset_file", default=None,
+                    help="json {'points': [[traj_id, turn], ...]}: run only these points, bank-1 alternatives kept (gold, D-043)")
     args = ap.parse_args()
     assert (args.bank == 0) == (args.points == "all"), "bank 1 runs all points; banks >= 2 need --points D|live"
 
@@ -167,6 +169,11 @@ def main():
         pf = {(t, int(u)): a for t, u, a in json.load(open(args.points_file))["points"]}
         prov["points_file"] = {"path": os.path.relpath(args.points_file, common.ROOT),
                                "sha256": common.file_sha256(args.points_file)}
+    sub = None
+    if args.subset_file:
+        sub = {(t, int(u)) for t, u in json.load(open(args.subset_file))["points"]}
+        prov["subset_file"] = {"path": os.path.relpath(args.subset_file, common.ROOT),
+                               "sha256": common.file_sha256(args.subset_file), "n": len(sub)}
     prov["seed_offset"] = offset
     prov["engine"] = args.engine
 
@@ -187,6 +194,8 @@ def main():
                 if not b1["cf_defined"]:
                     continue
                 if args.points == "live" and not live_b12(tr["traj_id"], stp["turn"]):
+                    continue
+                if sub is not None and (tr["traj_id"], stp["turn"]) not in sub:
                     continue
                 assert b1["factual_action"] == stp["action"]
                 d.update(alts=list(b1["alternatives"]), drafts=[], draws=0,

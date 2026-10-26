@@ -21,11 +21,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seeds", default="0-49")
     ap.add_argument("--workers", type=int, default=20)
+    ap.add_argument("--siblings", default=None,
+                    help="k range, e.g. 1-7: sibling rollouts of the same tasks (R3, D-043); traj_id s{seed}_k{k}, "
+                         "sample seeds + (20+k)*1e11, output data/siblings/")
     args = ap.parse_args()
 
     tl_path = os.path.join(common.ROOT, "data", "task_list.json")
     tasks = {t["seed"]: t for t in json.load(open(tl_path))["tasks"]}
-    seeds = parse_range(args.seeds)
+    ks = parse_range(args.siblings) if args.siblings else [0]
+    assert args.siblings is None or min(ks) >= 1
+    seeds = [(s, k) for s in parse_range(args.seeds) for k in ks]  # k = 0: the original single-rollout run
     pool = EnvPool(min(args.workers, len(seeds)))  # fork before CUDA init
 
     import alfenv
@@ -33,14 +38,17 @@ def main():
     pol = Policy()
     prov = common.provenance(__file__, [tl_path])
     prov["vllm"] = pol.vllm_version
+    prov["siblings"] = args.siblings
 
     st = {}
-    init = pool.open([(s, os.path.join(alfenv.ALFWORLD_DATA, tasks[s]["game_file"]), [], None) for s in seeds])
-    for s in seeds:
-        obs, adm, won, _ = init[s]
-        st[s] = {"traj_id": f"s{s:03d}", "seed": s, "task_id": tasks[s]["task_id"], "task_type": tasks[s]["task_type"],
-                 "game_file": tasks[s]["game_file"], "task": common.extract_task(obs), "initial_obs": obs,
-                 "obs": obs, "adm": adm, "mem": [], "steps": [], "won": False, "done": False}
+    init = pool.open([(sk, os.path.join(alfenv.ALFWORLD_DATA, tasks[sk[0]]["game_file"]), [], None) for sk in seeds])
+    for sk in seeds:
+        s, k = sk
+        obs, adm, won, _ = init[sk]
+        st[sk] = {"traj_id": f"s{s:03d}" + (f"_k{k}" if k else ""), "seed": s, "sibling": k,
+                  "task_id": tasks[s]["task_id"], "task_type": tasks[s]["task_type"],
+                  "game_file": tasks[s]["game_file"], "task": common.extract_task(obs), "initial_obs": obs,
+                  "obs": obs, "adm": adm, "mem": [], "steps": [], "won": False, "done": False}
 
     t0 = time.time()
     for turn in range(1, common.MAX_STEPS + 1):
@@ -51,14 +59,14 @@ def main():
         for s in active:
             x = st[s]
             p = common.build_prompt(x["task"], x["mem"], x["obs"], x["adm"])
-            d = os.path.join(common.ROOT, "prompts", x["traj_id"])
+            d = os.path.join(common.ROOT, "prompts", *(["siblings"] if s[1] else []), x["traj_id"])
             os.makedirs(d, exist_ok=True)
             pp = os.path.join(d, f"t{turn:02d}.txt")
             with open(pp, "w") as f:
                 f.write(p)
             x["_prompt_path"] = os.path.relpath(pp, common.ROOT)
             prompts.append(p)
-            rseeds.append(1_000_000 * s + turn)
+            rseeds.append(1_000_000 * s[0] + turn + ((20 + s[1]) * 10 ** 11 if s[1] else 0))
         outs = pol.sample(prompts, rseeds)
         acts = {}
         for s, rs, o in zip(active, rseeds, outs):
@@ -84,7 +92,7 @@ def main():
         print(f"turn {turn}: active {len(active)} done {n_done} won {sum(st[s]['won'] for s in seeds)} "
               f"elapsed {time.time() - t0:.0f}s", flush=True)
 
-    outdir = os.path.join(common.ROOT, "data", "rollout")
+    outdir = os.path.join(common.ROOT, "data", "siblings" if args.siblings else "rollout")
     for s in seeds:
         x = st[s]
         rec = {k: v for k, v in x.items() if k not in ("obs", "adm", "mem", "_prompt_path")}

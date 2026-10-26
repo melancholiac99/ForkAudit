@@ -1,0 +1,14 @@
+You are evaluating one step of an agent that is carrying out a text-based task.
+
+Task: {task}
+
+Observation before the step:
+{obs_before}
+
+Action taken: {action}
+
+Environment response:
+{peek_obs}
+
+Judge only this step. Compared with the situation before the action, does the environment response show that the agent got closer to completing the task (progress), stayed about as far from completing it as before (neutral), or got farther from completing it (regress)?
+Answer with exactly one word: progress, neutral, or regress.
