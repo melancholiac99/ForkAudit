@@ -1033,3 +1033,48 @@ Implementation details added while finalising are deterministic choices that inv
 
 `logs/W1J_APPROVED` was written with template sha256 9804c516…e233b1 (addendum §3 item 10). The running GPU queue
 will run W1-J as its last step.
+
+## D-046 — Phase 2 (6.6) part 1: arm-B / A / H1 features and W1-pure features; stop/go checks — INFO / DECIDED 2026-10-26
+
+These are computed after the freeze (d6fe13f). No label was read.
+
+**`data/features_B.parquet`** (`scripts/21_features_B.py`, fp32 primary; `--tag _vllm` gives the bf16 sensitivity
+version):
+- 3,818 rows. NaN: `js_prev` 100 (t = 1, by definition), `conf_realized` 2 (realized prefix not locatable, as in D-040).
+- Deterministic choices not spelled out in CLAUDE.md §4 or FEATURES_FROZEN:
+  - a1 / a2 = top-2 by logp_sum (ties: candidate order); `margin_mean` ranks by logp_mean (literal reading of
+    "同上用 logp_mean");
+  - JS divergence in nats over the union of candidate sets;
+  - `sem_dispersion` = Σ_{i≠j} q_i q_j d_ij / Σ_{i≠j} q_i q_j;
+  - `sem_dist_chosen_runner` uses a2 literally (0 when chosen = a2);
+  - `entropy_sampled` = plug-in entropy of the admissible first-batch drafts (D-008); never NaN here;
+  - `chosen_freq` counts all 32 first-batch drafts parsed as chosen;
+  - `rho_h1`: the trajectory mean uses every scored turn.
+- **Stop/go "chosen_rank == 1 should be the majority": NOT met, and not a pipeline error.**
+  - chosen_rank == 1 at 28.2% of points (vLLM bf16: 28.1%; ranking by logp_mean: 28.5%).
+  - The bare arm-A context (CWGT's definition, D-003) scores actions with no reasoning, while the chosen action was
+    sampled after reasoning. Evidence:
+    - the chosen action is 41% of the 32 first-batch drafts (mean);
+    - teacher-forced after the realized think, chosen conf has mean −0.02 (bare: −1.05);
+    - the bare q_t is peaked (median entropy 0.55 nats).
+  - This is the contrast CLAUDE.md §4 builds in (`chosen_conf` without reasoning vs `chosen_freq` with reasoning).
+    It is reported, not adjusted.
+- **Stop/go "arm-A conf agrees with the Phase-1 log-probs"** (`scripts/review/r08_conf_phase1.py` →
+  `eval/phase2_conf_phase1.json`, 2,438 xml-format points): passes for the comparable realized-think conf.
+  - conf_realized vs mean Phase-1 sampling log-prob of the action tokens: Spearman 0.994, Pearson 0.925, median
+    |Δ| 6e-7.
+  - The bare conf is not comparable by construction (Spearman 0.29, mean shift −1.05).
+
+**`data/features_W1.parquet`, pure part** (`scripts/27_features_W1.py --part pure`):
+- 3,038 D points, 5 peeks each; the peek checks (factual obs match, 0 re-feed divergence) are asserted per point.
+- Target word extracted for 100% of points; `target_revealed` = 1 at 55.0%.
+- Choices: SD with ddof = 0; "Nothing happens." compared after strip().
+- **Two frozen features are constant by construction:**
+  - 21 `w1_nothing_frac` ≡ 0: the alternatives are sampled from the admissible set, so no peek returns
+    "Nothing happens.";
+  - 28 `w1_div_n_distinct` ≡ 5: the five peek observations are always distinct strings.
+  - They carry no information. Their single-feature rows are reported as constant (no AUROC), and the multi-feature
+    models drop zero-variance columns automatically. This is not a change to the frozen list.
+
+GPU queue status at writing: gold running since 12:50 (30,000 continuations, ETA ≈ 19:00 at 0.75 s/continuation),
+then siblings, peek states and W1-J.
