@@ -117,17 +117,19 @@ def fit_oof_logistic(X, y, groups, fold, n_inner=5, n_jobs=1):
         for itr, iva in GroupKFold(n_splits=n_inner).split(np.zeros(len(tr)), groups=groups[tr]):
             tasks.append((k, tr[itr], tr[iva]))
     res = Parallel(n_jobs=n_jobs)(delayed(_inner_task)(X, y, a, b) for _, a, b in tasks)
-    chosen, nonconv = {}, sum(not c for _, cv in res for c in cv)
+    chosen, inner, nonconv = {}, {}, sum(not c for _, cv in res for c in cv)
     for k in ks:
         sc = np.array([r[0] for (kk, _, _), r in zip(tasks, res) if kk == k], float)
-        chosen[k] = C_GRID[int(np.nanargmax(np.nanmean(sc, 0)))]
+        inner[k] = np.nanmean(sc, 0)
+        chosen[k] = C_GRID[int(np.nanargmax(inner[k]))]
     ref = Parallel(n_jobs=n_jobs)(delayed(_refit_task)(X, y, np.where(fold != k)[0], np.where(fold == k)[0], chosen[k])
                                   for k in ks)
     oof = np.full(len(y), np.nan)
     for k, (d, c) in zip(ks, ref):
         oof[fold == k] = d
         nonconv += (not c)
-    return oof, {"C": [chosen[k] for k in ks], "nonconverged_fits": int(nonconv),
+    return oof, {"C": [chosen[k] for k in ks], "inner_auroc": [[float(x) for x in inner[k]] for k in ks],
+                 "nonconverged_fits": int(nonconv),
                  "n_fits": len(tasks) * len(C_GRID) + len(ks)}
 
 
