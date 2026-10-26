@@ -798,3 +798,39 @@ alternatives. RULING 2026-10-25 §7 row 3 does not fire; the ruling's 70% confid
   exist but average out.
 - **Caveat:** 82/100 a′_u are `go to` actions, because the admissible set is dominated by navigation. This tests a random
   admissible alternative, not a semantically extreme one. It is a sensitivity analysis and enters no verdict.
+
+## D-040 — fp32 scoring pass checked; correction to D-033 — INFO 2026-10-26
+
+The a′_u + fp32 queue completed on 2026-10-25 at 18:56. The finalization was recovered manually on 2026-10-26 at 10:29 and
+archived in `artifacts/phase1c_20261026_102929`, result `both_tasks_complete_and_verified`.
+Check script: `scripts/review/r07_fp32_check.py` → `eval/phase2_fp32_check.json`. It reads scores plus `cf_defined` only.
+
+1. **Integrity:** fp32 and vLLM have the same 116,960 candidate rows and 11,454 chosen-variant rows. No key is missing
+   on either side, there are 0 non-finite values, 0 n_tokens mismatches (identical tokenization) and 0 is_chosen
+   mismatches, and the model hash is a09a3545 in both. `realized` is available at 3,816 of 3,818 points.
+2. **Prefix-cache scorer validated on the real 7B on GPU:** against full-sequence HF fp32 (D-033 reference, 20 points,
+   662 pairs), max |Δ| = 1.1e-3 (bare) and 0.9e-3 (notask).
+3. **fp32 vs vLLM bf16, all 3,818 points:**
+
+   | Quantity | Value |
+   |---|---|
+   | Per-candidate \|Δ logp_sum\| | median 0.28, p90 0.86, max 6.7 |
+   | Mean Δ | −0.03 |
+   | Per-point mean shift (cancels in q_t / margins / ranks) | mean −0.04, SD 0.39; \|shift\| > 1 nat at 91 points (2.4%), > 2 at 5 |
+   | Within-point residual \|Δ\| | median 0.17 |
+   | Per-point Spearman | median 0.997 (p5 0.989, min 0.93); notask median 0.998 |
+   | Agreement | top-1 94.1%, ordered top-2 84.9%, `chosen_rank` 81.0% |
+
+   **Correction to D-033:** the "≈ −0.22 nat systematic vLLM shift" came from 20 points. At full scale the mean shift is
+   −0.03, with a point-to-point SD of 0.39, so the shift is point-specific and not systematic.
+4. **Noise floor:** at 9.3% of points the fp32 top-1/top-2 gap is < 0.3 nats (3.4% are < 0.1). Top-1 agreement across
+   backends is 62% at those points and 97% elsewhere. Rank and margin features near ties are backend-dependent,
+   which supports fp32 as the primary pass (recommendation of D-036; the decision is still the researcher's).
+5. **Conf shift, M5 sanity row, all 3,818 points:**
+   - included − excluded = −0.494 [−0.574, −0.414] (fp32) and −0.497 [−0.579, −0.412] (vLLM bf16);
+   - n = 3,038 / 780; median conf −0.75;
+   - CWGT reference: −0.70 [−0.81, −0.59].
+
+   The sign replicates, the magnitude is ≈0.7× CWGT, and the intervals are adjacent without overlapping. Per the
+   D-003 rule this is recorded and we continue. Possible reasons: a different task list, and a less absorbing
+   measurability map (D-020).
