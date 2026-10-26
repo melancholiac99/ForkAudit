@@ -1,0 +1,43 @@
+{
+  "time": "2026-10-25T03:55:40+0800",
+  "trajectories": 100,
+  "total_points": 3818,
+  "defined": 3038,
+  "live_target": 1478,
+  "banks": {
+    "data/replay": {
+      "files_snapshot": 3818,
+      "passed": 3818,
+      "refeed_divergences": 0
+    },
+    "data/replay_b1": {
+      "files_snapshot": 3038,
+      "passed": 3038,
+      "refeed_divergences": 0
+    },
+    "data/replay_b2": {
+      "files_snapshot": 1478,
+      "passed": 1478,
+      "refeed_divergences": 0
+    },
+    "data/replay_b3": {
+      "files_snapshot": 1478,
+      "passed": 1478,
+      "refeed_divergences": 0
+    },
+    "data/replay_b4": {
+      "files_snapshot": 1478,
+      "passed": 1478,
+      "refeed_divergences": 0
+    },
+    "data/replay_b5": {
+      "files_snapshot": 1478,
+      "passed": 1478,
+      "refeed_divergences": 0
+    }
+  },
+  "continuations_checked": 182160,
+  "request_seeds_checked": 3588263,
+  "errors": [],
+  "note": "Snapshot of complete JSON files; active bank still in progress. No feature/target associations computed."
+}

@@ -1,0 +1,26 @@
+{
+  "n": 2438,
+  "conf_realized": {
+    "pearson": 0.9249961238575474,
+    "spearman": 0.9938970645948806,
+    "median_abs_diff": 6.437116120139308e-07,
+    "mean_diff": -0.0012107023941489942
+  },
+  "conf_bare": {
+    "pearson": 0.13933679039688135,
+    "spearman": 0.2860473979159591,
+    "median_abs_diff": 0.7465233033411607,
+    "mean_diff": -1.050209455407346
+  },
+  "provenance": {
+    "script": "scripts/review/r08_conf_phase1.py",
+    "commit": "b9c1f422dcabf898749d53f99ac3b0a67267f285",
+    "scripts_dirty": false,
+    "argv": [
+      "review/r08_conf_phase1.py"
+    ],
+    "time": "2026-10-26T13:00:28+0800",
+    "inputs": {},
+    "script_sha256": "1b1bcfaa30d5c2eb9e3f5b216b0a94a7fa93af40370fbcede7e03bc084acd590"
+  }
+}

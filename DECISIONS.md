@@ -1155,3 +1155,34 @@ These are deterministic choices that FEATURES_FROZEN does not spell out. Scripts
 - Switch per CLAUDE.md §6.3a.
 
 **L3 (optional):** not run in this pass.
+
+## D-050 — Flag for review: B+C stacking underperforms its components on B2 — OPEN 2026-10-26
+
+Recorded by Claude while `finish_phase1d.py` was running, from `eval/main.json`.
+- On B2 (Fork / het), the B+C stacked score has AUROC 0.514. Its components are higher: B_multi 0.567, C_sel 0.594.
+- On B1, B+C = C_sel = 0.748. On B3, B+C (0.576) is slightly below both components.
+- A stacked model falling below both inputs suggests a defect in `bc_stack` (`40_eval.py`). Candidates: the scale or
+  distribution of inner-OOF vs outer-OOF C scores, or the choice of the stacker's C.
+- **It does not change the verdict:** B_multi and C_sel fail B2 on their own (C_sel CI low 0.552 < shuffle p97.5
+  0.581), so model_B2 is False with or without B+C, and the reading stays R-WORLD. The R-MODEL / R-LADDER paired
+  comparison was not triggered, because R-MODEL is not satisfied.
+- To check on the next session (CPU): rerun `bc_stack` on B2, inspect the stacker's coefficient on the C column and
+  the inner-OOF C AUROC on training rows. Any fix is a bug fix to the pre-specified B+C definition, not a new
+  feature. Record it here.
+
+## D-045 — Gold set: audit and independent-20 replication; B3 switch — INFO (auto, finish_phase1d.py) 2026-10-26
+
+`scripts/42_gold.py` → `eval/gold.json`. Audit: `{"missing": [], "bad_counts": 0, "alt_mismatch": 0, "seed_out_of_range": 0, "dup_seeds": 0, "refeed_div": 0, "outcome_won_mismatch": 0, "n_points": 300, "n_continuations": 30000}`.
+- cp: flagged by the 12-run rule 75; independent-20 replication 0.5333333333333333 (CI [0.4084507042253521, 0.6626506024096386]); null replication 0.09893199999999999; merged-32 (selection-biased) 0.7066666666666667.
+- het: flagged by the 12-run rule 79; independent-20 replication 0.7341772151898734 (CI [0.6144578313253012, 0.8421052631578947]); null replication 0.09458481012658229; merged-32 (selection-biased) 0.8734177215189873.
+- cap: flagged by the 12-run rule 62; independent-20 replication 0.5161290322580645 (CI [0.37681159420289856, 0.6461538461538462]); null replication 0.03435806451612903; merged-32 (selection-biased) 0.7419354838709677.
+- **B3 switch (cap replication < 0.50 → B3 report-only): False.** Applied mechanically per CLAUDE.md §6.3a.
+
+## D-049 — Phase 3 run and end-of-run shutdown — INFO (auto, finish_phase1d.py) 2026-10-26
+
+The user asked for saving code, results and logs, a verified sync, and then `/usr/bin/shutdown`, also on unrecoverable failure. The run was driven by the detached `scripts/finish_phase1d.py`.
+- Steps: `{"features_G": true, "features_W1_model": true, "features_B_vllm": true, "gold": true, "eval_main": true, "eval_main_vllm": true, "eval_extras": true, "results": true}`; errors: `[]`.
+- Verdict (eval/main.json): `{"issued": true, "reading": "R-WORLD", "flags": {"model_B1": false, "model_B2": false, "W1pure_B2": true, "W1model_B2": false, "any_B1": true, "any_B2": true, "B3_passing": [], "B3_condition_ok": true, "B3_report_only": false, "paired_model_minus_w1pure_B2": {"diff": -0.1566290601878575, "ci95": [-0.22821331024169922, -0.08247429877519608]}}}`.
+- Predictions: `{"P1": {"holds": false, "B1_passes": false, "B2_norm_effect": -0.05022634532007152, "B2_norm_ci": [-0.19121618568897247, 0.08808599412441254]}, "P2": {"holds": true, "lhs": 0.5823012305534305, "rhs": 0.6470567138485084}, "P3": {"holds": true, "lhs": 0.6470567138485084, "rhs": 0.335106637337414}, "P4": {"holds": false, "diff": -0.0010851655559637186, "ci95": [-0.006521346978843212, 0.004244827665388584]}, "F1": {"masked_share_of_forks": 0.642, "ci95": [0.592, 0.69], "source": "D-042"}}`.
+- Gates: `{"M1_contains_13.1": true, "T3_compatible_[0.647,0.793]": true}`.
+- RESULTS.md was rendered by `scripts/43_results.py`; this entry has not been reviewed by a person.
