@@ -4,11 +4,13 @@
 
 ---
 
-## 1. 研究问题（一段话，不要改写）
+## 1. 研究问题（FINAL RULING 2026-10-26；不要改写）
 
-当 LLM Agent 的前向决策被压缩为日志轨迹中的已选动作时，决策结构（候选动作集合、各候选的策略分数、它们的相对关系与跨时间关系）被丢弃。事后逐步信用估计器（LLM judge、logprob 比、标量置信度）只消费这条压缩后的轨迹。**本实验检验：在相同的执行 replay 参考信用下，决策结构特征（臂 B）和策略隐状态线性 probe（臂 C）是否比标量置信度（臂 A）更能识别 pivotal 步骤、更能预测 step contribution、更不受动作流畅度污染。** 已知两端：CARL 显示采样估计的动作熵在分布层面区分关键状态；CWGT 显示 chosen-action 置信度在逐步路由上是 chance level，并指出二者不冲突。本实验要回答的是：**熵之外、置信度之外的决策结构，能否把分布层面的分离变成逐步可用的识别。**
+当 LLM Agent 的前向决策被压缩为日志中的已选动作时，模型侧的决策结构（候选分布、隐状态）**可由日志与 θ_old 重算但未被事后估计器利用**，世界侧对未选动作的回应**不可恢复**。本研究以执行回放为参考，先回答信用本身的结构：决策点分为 Dead（结局已定，51%）、Indifferent（结局随机但与本步动作无关，41%）、Pivotal（本步真改变结局期望，7.5%）；Dead|Live 边界 3 次/臂即可测，Indifferent|Pivotal 边界需 ≥12 次/臂，Indifferent 内的信用符号在任何深度都不可识别。然后回答：**模型侧结构、兄弟轨迹、世界侧一步 peek 各能以多少 rollout 等价成本定位每一条边界**，并据此给出 fork 预算分配规则。
 
-本阶段**不做策略训练**。本阶段不提出新算法。本阶段的产出是一组可复现、带对照、带置信区间的测量，以及一个按预注册规则得出的"继续/转向/停止"判定。
+本阶段不训练策略，不提新算法。产出是带对照、带 CI、按成本计价的测量，与预注册判定。
+
+> **修订与冻结（RULING_2026-10-26_FINAL.md）：** 本节取代原三臂审计表述（RULING 10-23 §1–§2、RULING 10-25 §2–§5 中冲突的内容）。本修订提交且 `FEATURES_FROZEN.md` 提交之后，目标定义、特征清单、判定规则不再变动；唯二例外：(a) §6.3a 预先写明的 gold 机械切换；(b) `exploratory_` 前缀的追加，单独报告。研究者本人也受此约束。此后任何"要不要改目标"的想法写进 `proposals/`，作为下一篇论文的材料。相关工作定位句与"不能说的话"见 RULING_2026-10-26_FINAL.md §7。
 
 ## 2. 必须先知道的已有结果（不要重复发现）
 
@@ -38,7 +40,7 @@
 
 ## 4. 三臂设计
 
-所有臂在**同一批决策点**上评估，对**同一个** A_replay。
+所有臂在**同一批决策点**上评估，对**同一组**参考标签（FINAL RULING：§6.0 的 Live / Pivotal_agg / Pivotal_het / sign(A_3456)）。
 
 **臂 A — 标量置信度（CWGT 复现，对照臂）**
 `conf_t = mean token logπ(a_t | s_t)`。**口径（D-003，RULING 7.2）：** 原 prompt（chat template，`add_generation_prompt=True`）之后、assistant 轮起始处直接 teacher-force `<action>{a}</action>`，**只取 `{a}` 的命令 token**，标签 token 不计，不含实现的 `<think>`。敏感性行：`<think></think><action>{a}</action>`（空推理）；以实现 think 为条件的版本只报告一行（预期退化，D-020），不进判定。**主分数 s = −conf**（CWGT router 方向，D-004）；+conf 为预声明敏感性行。目标：与 CWGT 的 chance-level 路由结论相容（复现门槛见 §8）。臂 A 的 M4 报告但标注"近乎机械"，流畅度复现目标由臂 H1 承担（D-005）。`chosen_freq`（特征 18）不属于臂 A，但在 L2 的 paired 比较中作为独立基线列出。
@@ -77,8 +79,8 @@
 | F5 任务条件化 | `margin_detask` |
 | 控制列 | `turn_index`, `n_admissible`, `chosen_n_tokens`, `type(chosen)` one-hot, `chosen_conf`, `chosen_admissible` |
 
-**指认规则：** 某家族在 L2 上 (1) family-only 模型击败 F2 与状态价值基线 V（paired 差值 CI 不含 0），且 (2) 从全模型中 leave-one-family-out 后性能显著下降（paired 差值 CI 不含 0），才称为"那种结构"。
-**先验符号（D-004）：** `FEATURES_FROZEN.md` 为每个单特征在 L1、L2 上各声明一个先验符号或"无先验"；有先验的按先验方向报告 AUROC，无先验的报告原始 AUROC（可 < 0.5），不事后翻转。
+**指认规则：** 某家族在某条边界（B1/B2/B3，§6.3；FINAL RULING 前为 L2）上 (1) family-only 模型击败 F2 与状态价值基线 V（paired 差值 CI 不含 0），且 (2) 从全模型中 leave-one-family-out 后性能显著下降（paired 差值 CI 不含 0），才称为"那种结构"。
+**先验符号（D-004）：** `FEATURES_FROZEN.md` 为每个单特征在 B1、B2、B3 上各声明一个先验符号或"无先验"（FINAL RULING；原为 L1、L2）；有先验的按先验方向报告 AUROC，无先验的报告原始 AUROC（可 < 0.5），不事后翻转。
 
 **可得性标注（必须写入 audit_metadata 的 `availability` 列）：** 特征 1–10、12–14、16–19 只用当前及过去信息，标 `forward`；特征 11 `alt_revisit` 用到未来 5 步的实际执行，标 `hindsight`。论文中"rollout 时可记录"的主张只能基于 `forward` 特征；主表要分别报告"仅 forward"与"forward + hindsight"两个版本。
 
@@ -93,7 +95,58 @@
 **状态价值基线 V（L2 必须击败的对手）**
 输入只限前向可得量：`turn_index`、`n_admissible`、臂 C 位置 (i) 的隐状态。目标 = 该点续跑池的平均成功率（库 1 与库 2 各算一次，交叉拟合）。GroupKFold by trajectory。V 的 out-of-fold 预测在 L2 中既作独立对手，也作偏回归协变量。
 
-**联合与分解：** B+C 联合；把 C 最佳层 probe 的逐点输出对 B 特征做线性回归，报告 R²（"C 里有多少能被 B 解释"）。所有臂的主分析在 L2（§6）上进行。
+**联合与分解：** B+C 联合；把 C 最佳层 probe 的逐点输出对 B 特征做线性回归，报告 R²（"C 里有多少能被 B 解释"）。所有臂的主分析在 §6.3 的三条边界上进行（FINAL RULING；原为 L2）。
+
+### 4.1 增补臂与特征（FINAL RULING 2026-10-26 §3；原 1–19 项不动）
+
+所有臂在**同一批决策点**上、对 §6 定义的**同一组标签**（B1/B2/B3/L2-sign）评估。
+
+**信息阶梯：**
+
+| 级 | 臂 | 访问模型 |
+|---|---|---|
+| R1 日志 | A（−conf）、H1（ρ_t） | 仅日志 |
+| R2 +重算 | B（19 特征五家族）、C（两位置 × 3 层）、V | 日志 + θ_old |
+| R3 +兄弟 | G | GRPO 组内免费 |
+| R4 +世界一步 | W1-pure、W1-model | 执行时访问环境 |
+| R5 特权 | W0 事实集 | 特权；**只作诊断天花板，永不作为方法** |
+| R6 预算回放 | B_m（m ∈ {1,2,3,6}，库 1+2 子抽样） | 回放；计价轴 |
+
+**新增特征（编号接 1–19）：**
+
+- 控制与视界：20. `budget_left` = 50 − turn（控制列；交互基底）。
+- **W1-pure（纯世界文本，forward）**：
+  21. `w1_nothing_frac` = 替代 peek 中观察为 "Nothing happens." 的比例；
+  22. `w1_obs_len_sd` = 五个 peek 观察长度的标准差；
+  23. `w1_adm_delta_sd` = 五个 peek 后合法集大小变化的标准差；
+  24. `w1_task_sim_max` / 25. `w1_task_sim_mean` = peek 观察与任务描述的 bge-small 余弦相似度的最大/均值；
+  26. **`target_revealed`** = 1[任一 peek 观察含任务描述中的目标物体词（从 "put a X in Y" / "find X" 等模板按正则抽取 X；抽不出则 NaN，计数报告）]；
+  27. `w1_div_emb` = 五个 peek 观察嵌入的平均两两余弦距离；
+  28. `w1_div_n_distinct` = 五个 peek 观察中不同字符串的个数。
+- **W1-model（模型处理过的世界信息，forward）**：
+  29. `w1_V_sd` = V probe 在五个 peek 态隐状态上的预测的标准差；30. `w1_V_chosen_minus_mean`；
+  31. `w1_P_entropy_mean` = 策略在五个 peek 态的 entropy_q 均值；
+  32. `w1_J_progress_frac` / 33. `w1_J_regress_frac` = 冻结 7B 对每个 peek 观察判 {进展, 中性, 倒退} 的比例（固定 prompt，温度 0，prompt 原文写入冻结文件）。
+- **交互（forward）**：34. `w1_div_emb × budget_left`；35. `w1_task_sim_max × budget_left`；36. `target_revealed × budget_left`。
+- **G（兄弟，forward 对 GRPO 而言）**：
+  37. `g_cover` = 在同任务 7 条兄弟中观察文本精确匹配当前状态的次数；
+  38. `g_succ_state` = 匹配状态上兄弟的成功率（无匹配 NaN）；
+  39. `g_succ_alt_sd` = 匹配状态上各 a′ 兄弟成功率的标准差（≥2 个不同动作才定义）；
+  40. `g_singleton` = 1[g_cover == 0]。
+
+**家族：** F6 World-pure {21–28}；F7 World-model {29–33}；F8 Interaction {34–36}；F9 Siblings {37–40}。指认规则与上文相同。`audit_metadata` 的访问模型列：21–36 = `env_access`，37–40 = `siblings`，W0 = `privileged`。
+
+### 4.2 预注册预测（冻结文件中写明，Phase 3 逐条对账；预测错了照写，不改特征）
+
+- **P1**：`entropy_q` 在 B1 上过线，在 B2 上归一化效应 CI 含 0。（"熵找得到活状态找不到分叉"。）
+- **P2**：`target_revealed` 单特征在 B2 上的归一化效应 ≥ 全部 W1-pure 多特征的 50%。（ALFWorld 分叉主要是信息揭示。）
+- **P3**：W1-pure 多特征在 B2 上的归一化效应 ≥ W1-model 多特征的 50%。（世界的回应不需要模型解读就有一半的用。）
+- **P4**：`budget_left` 交互项 leave-out 使 W1 家族在 B2 上的 AUROC 下降，差值 CI 不含 0。（视界约束是真的。）
+- **P5**：被掩盖的分叉比例（het ∧ ¬agg）/ |Pivotal_het| ≥ 0.15。
+
+### 4.3 成本列
+
+每臂的成本向量 (环境步, 模型前向 token, LLM 调用数, 回放续跑数)，写入 `audit_metadata`，E1 用。
 
 ## 5. 数据 schema（所有脚本必须遵守，放在 `data/`）
 
@@ -124,51 +177,80 @@ scorer:str ("hfprefix" 主口径 | "vllm" 敏感性 | "hf" 核对), model_hash:s
 
 `features_B.parquet` — traj_id, turn, 第 4 节全部特征列
 
+FINAL RULING 新增：`data/replay_gold/`（gold 集续跑，§6.3a）；`data/siblings/`（兄弟轨迹，R3）；`data/peek_alts/`（W1/W0 peek，D-029）；`hidden_peek/`（peek 态隐状态，W1-V/P）；`data/w1_judge.parquet`（W1-J）；`eval/het_fork.json`、`eval/pairs.json`（§6.0 新增标签）；`features_W1.parquet`、`features_G.parquet`（§4.1 特征 20–40）。
+
 `eval/*.json` — 每个检验一个文件，含：指标值、CI、n、脚本路径、commit、生成时间
 
 `audit_metadata.parquet` — 每个特征：`availability` (forward|hindsight)、计算时点、是否需要策略快照、是否需要额外前向、每点平均耗时
 
-## 6. 指标精确定义（RULING 2026-10-23 修订；与 CWGT 可比的部分保留）
+## 6. 指标精确定义（FINAL RULING 2026-10-26 修订；与 CWGT 可比的部分保留）
 
-### 6.0 集合、库与标签
+### 6.0 集合、库与标签（FINAL RULING §2.1）
 
-- **库**：库 1 = Phase 1 的 replay（`data/replay/`，每点 factual×3 + 4 替代×3）。库 b ≥ 2 = 同一组 4 个替代动作、换种子、同样每臂 3 次（`data/replay_b{b-1}/`）。替代与草稿不重采。
-- D = {cf_defined}（库 1 定义）。σ_floor(t) = 库 1 factual 重放结果的标准差（CWGT 定义）。
-- **L1 标签（状态关键性）**：y_state = 1[库 1 的 15 次续跑池非常量]；连续版 `crit_sd`。CWGT 对比用的 pivotal = 1[A_replay ≠ 0]（库 1）同时报告（与 y_state 仅差整除性巧合点）。
-- **活跃集** 𝓛 = {t ∈ D : 库 1+2 合并 30 次续跑池非常量}（主）；敏感性 = 仅库 1 定义（15 次）。
-- **L2 标签（动作贡献）**：库 3–6 合并（每臂 12 次；若 §7 Phase 1C 扩展规则触发则库 3–10，每臂 24 次）的 A 及其符号。A = 0 的点不进符号 AUROC（不做三分类），计数报告。敏感性：全部库合并标签。
-- **L2 信度天花板**：在 𝓛 上，库 3+4 vs 库 5+6（扩展时按奇偶库分半）的 (i) 符号一致率（双方非零的点）、(ii) Spearman、(iii) Pearson；与主结果并列报告。
+- **库**：库 1 = Phase 1 的 replay（`data/replay/`，每点 factual×3 + 4 替代×3）。库 b ≥ 2 = 同一组 4 个替代动作、换种子、同样每臂 3 次（`data/replay_b{b-1}/`）。替代与草稿不重采。σ_floor(t) = 库 1 factual 重放结果的标准差（CWGT 定义）。
+- **D**：cf_defined（库 1），n = 3,038。
+- **Dead / Live(𝓛)**：库 1+2 合并 30 次续跑池常量 / 非常量。𝓛 n = 1,478。
+- **Pivotal_agg（主）**：𝓛 内，库 3–6 的 factual(12) vs 替代池(48) Newcombe 90% 区间不含 0。n = 229。敏感性规则：|A_3456| ≥ 0.25 且 A_34、A_56 同号非零（n = 193，重叠 187）。
+- **Pivotal_het（共同报告）**：𝓛 内，五臂（factual 12、替代 j 各 12）似然比 G 检验，p 值由 60 个结局在五臂间的 10,000 次置换给出（条件于边际），α = 0.10。报告：n、与 Pivotal_agg 的 2×2 重叠、**被掩盖的分叉** = het ∧ ¬agg 的比例及其 cluster CI。
+- **Indifferent**：𝓛 \ Pivotal_agg。
+- **Pair-level C_j**：每 (点, 替代 j)，factual 12 vs 替代 j 12 的 Newcombe 90%；sig_j = 区间不含 0。
+- **参考依赖 T-ref（报告项）**：𝓛 内 ≥2 个 sig_j 的点中，sig_j 符号不一致的比例，cluster CI；另报 Pivotal_agg 在 a′_u 替代下的翻转率（D-039 的 100 点，若 gold 覆盖更多则更新）。
+- **零质量（报告项，措辞受限）**：混合拟合 p ∈ [0.20, 0.25]（q ∈ [0.90, 1.00]）。论文只许写"在 12 次/臂下无可检出效应的 live 点比例 ≥ 75%；真实零效应比例不可点识别，由深度曲线给出区间"。**禁止**写"41% 的点是零效应"。
+- **CWGT 对比标签**：pivotal_cwgt = 1[库 1 A_replay ≠ 0]，只用于复现门与 §6.2 的 M1（与 Pivotal_agg 不是同一个量，写作时区分）。
 - **第二目标（CARL 复现，零成本）**：`crit_sd`（库 1 全部续跑结果的 SD）；高熵组 vs 低熵组 Cliff's δ，与 CARL 的 0.42 并排。
 
 ### 6.1 统计方法
 
 主 CI = **按轨迹 cluster bootstrap**（10,000 次）。所有配对比较（B vs A、B vs `chosen_freq`、B vs V、B vs ρ_t、家族之间、B vs C）用轨迹层面 paired bootstrap 差值 CI。Wilson CI 只保留在臂 A 对 CWGT 的直接对比行。学习型分数（B 多特征、C、V、B+C）一律用 GroupKFold(by trajectory, 5 折) 的 out-of-fold 预测。
 
-### 6.2 L1 指标（描述性 + CWGT 对比）
+### 6.2 L1 指标（描述性 + CWGT 对比；B1 的 CWGT 可比版本）
 
 **M1 Recall@route。** 对分数 s，按 s 降序取 D 的前 r% 为"路由集"。r ∈ {13.1（CWGT 固定数字）, 本数据集 no-counterfactual 率}。recall = |路由集 ∩ pivotal| / |pivotal|；额外报告 AUROC（对 y_state）与 precision@route。
 
 **M5 可测性结构（sanity）。** |D|/总数、pivotal 比例、σ_floor=0 比例、被排除点与保留点的 chosen conf 均值差（CWGT 86.9% / 30.5% / 86.0% / −0.70），整除性三类计数；另报"若按 strict-xml 解析，有多少步会变成 Nothing happens"（存储的 `fmt` 字段）。报告，不调整。
 
-### 6.3 L2 指标（主判据所在层）
+### 6.3 三条边界 + 一条报告行（主判据所在层，FINAL RULING §2.2）
 
-**M7 符号 AUROC（L2 主指标）。** 在 𝓛 内（剔除 A=0）以 sign(A) 为标签，分数 s 的 AUROC；cluster bootstrap CI。
+| 边界 | 集合 | 标签 | 回放天花板（已测） |
+|---|---|---|---|
+| **B1** Dead\|Live | D | Live | 0.93（库 2 池方差，3/臂，D-035） |
+| **B2** Indifferent\|Pivotal | 𝓛 | Pivotal_agg（主）；Pivotal_het（共同报告） | 0.66（库 1+2 \|A\|，6/臂） |
+| **B3** 符号 | Pivotal_agg | sign(A_3456) | 0.84（库 1+2 A，6/臂） |
+| L2-sign | 𝓛 \ {A=0} | sign(A_3456) | 0.64 — **只报告** |
 
-**M2 轨迹内 Spearman。** 在 𝓛 内，对每条有 ≥5 个 𝓛 点（同时报告 ≥4 的版本，D-006）且 A 非常数的轨迹算 Spearman(s, A)，取跨轨迹中位数，10,000 次轨迹 bootstrap。附信度校正值（除以 √(库 3+4 vs 5+6 的 Spearman)）。**报告项，不是判定条件。**
+每条边界、每个臂报告：AUROC + 按轨迹 cluster bootstrap 95% CI；分层 shuffle 对照（B2/B3 按轨迹内进度三分位分层，B1 不分层；1,000 次）；对 V、对臂 A 的 paired 差值 CI；**归一化效应** = (AUROC − 0.5)/(天花板 − 0.5)，天花板为同边界同集合的库 1+2 回放（m=6；B1 用 m=3）；**REV** = 使 B_m（库 1+2 子抽样 200 次均值）AUROC ≥ 该臂的最小 m ∈ {1,2,3,6}。
 
-**M3 分层 shuffle 对照（必做）。** 每条轨迹内，按轨迹内进度三分位分层，在 𝓛 点内置换 s，重算 M7 与 M2；1,000 次得对照分布。只有真实值落在对照 95% 区间之外才算有信号。报告置换实际改变的位置比例（CWGT 90.4%）。L1 上的 M1 也做（不分层版）。
+**过线** := 下界 > shuffle 97.5% 分位 ∧ paired-vs-V CI 不含 0 ∧ paired-vs-A CI 不含 0。
 
-**M4 流畅度污染。** 每条轨迹内 Δ_t = z(s_t) − z(A_t)；Spearman(Δ_t, conf_t)，跨轨迹中位数 + cluster bootstrap CI。**复现目标 = 臂 H1（ρ_t）的 T3 ≈ +0.752 [0.647, 0.793]**（D-005）；臂 A 的 M4 标注"近乎机械"。对 `margin_detask`、`margin_raw`、臂 C 分别报告，并报告 OLS 中条件掉流畅度后 s 与 A 的偏相关。M4 在 D（库 1 A_replay，与 CWGT 可比）与 𝓛（L2 标签）上各报告一次。
+**保留报告项（不进判定，与 CWGT 可比）：**
 
-**状态价值偏回归。** 在 𝓛 内，把 V 的 out-of-fold 预测作为协变量，报告各臂分数对 sign(A) 的剩余判别力（logistic 偏系数 + cluster bootstrap CI）。
+**M2 轨迹内 Spearman。** 在 𝓛 内，对每条有 ≥5 个 𝓛 点（同时报告 ≥4 的版本，D-006）且 A_3456 非常数的轨迹算 Spearman(s, A_3456)，取跨轨迹中位数，10,000 次轨迹 bootstrap。附信度校正值（除以 √(库 3+4 vs 5+6 的 Spearman)）。
 
-### 6.4 L3（可选，预注册，不进 R0–R5 判定）：recovery 位置选择（RULING 7.6）
+**M3 分层 shuffle 对照（必做）。** 每条轨迹内，按轨迹内进度三分位分层，在集合点内置换 s，重算 AUROC 与 M2；1,000 次得对照分布。报告置换实际改变的位置比例（CWGT 90.4%）。L1 上的 M1 也做（不分层版）。上面"过线"所用的 shuffle 即此。
+
+**M4 流畅度污染。** 每条轨迹内 Δ_t = z(s_t) − z(A_t)；Spearman(Δ_t, conf_t)，跨轨迹中位数 + cluster bootstrap CI。**复现目标 = 臂 H1（ρ_t）的 T3 ≈ +0.752 [0.647, 0.793]**（D-005）；臂 A 的 M4 标注"近乎机械"。对 `margin_detask`、`margin_raw`、臂 C 分别报告，并报告 OLS 中条件掉流畅度后 s 与 A 的偏相关。M4 在 D（库 1 A_replay，与 CWGT 可比）与 𝓛（A_3456）上各报告一次。
+
+**状态价值偏回归。** 在各边界集合内，把 V 的 out-of-fold 预测作为协变量，报告各臂分数对该边界标签的剩余判别力（logistic 偏系数 + cluster bootstrap CI）。
+
+### 6.3a Gold 集与机械切换（FINAL RULING §2.3）
+
+300 点，每臂补至 32 次（种子按 D-024 的 bank·10¹¹ 格式；具体 bank 编号见 DECISIONS）。分两层：
+- **G-unbiased（200 点）**：𝓛 内按 `n_draws` 三分位 × 进度三分位 × 任务类型分层随机抽（`n_draws` 为草稿采样器输出，forward-safe）。用途：三域比例的无偏重估；B3 高信度子集；pivotal 规则召回率。
+- **G-candidate（100 点）**：从 |A_3456| ≥ 0.2 的 𝓛 点中随机抽。用途：pivotal 规则精确率。**不用于任何比例估计。**
+
+**机械切换（预注册）**：若 G-candidate 上 Pivotal_agg 规则的精确率（32/臂下 90% 区间仍不含 0 的比例）< 0.70，则全文 Pivotal_agg 改用敏感性规则，写 DECISIONS，不另行裁决。≈ 7 h GPU。
+
+### 6.4 L3（可选，预注册，不进 §8 判定）：recovery 位置选择（RULING 7.6）
 
 失败轨迹上：选择器在每条轨迹选一个位置（臂 B 多特征 out-of-fold 预测 P(A<0) 最大；对照 = −conf、identifier-hash 随机）；替代 = 库 1+2 合并计数最大者（平局取最小索引；factual 不参与）；评估 = 库 3+ 该替代的分支成功率。两个差值：vs 同位置 factual 重跑；vs 随机位置同规则。轨迹层面 paired bootstrap，Bonferroni。与 CWGT 修订版 confidence 行并排（+8.54 pp / +3.33 pp）。
 
 ### 6.5 M6 机制分析（探索性，`exploratory_`，不进判定）
 
 (i) 𝓛 内，替代与 chosen 的类型/语义距离 vs 两者结果差——这是 replay 标签自身的性质，写作时不得作为"特征为什么预测信用"的机制证据；(ii) 失败轨迹中被指认家族的高值步是否先于不可挽回点（此后 L1 序列恒为全失败）出现。
+
+### 6.6 E1：fork 预算分配（零 GPU，FINAL RULING §5）
+
+每轨迹选 k ∈ {1,2,4,8} 个点。选择器（只用 forward 量）：uniform、random、entropy-top-k、B-top-k（P(Live) out-of-fold）、B→W1-pure（B 选 Live 再 W1-pure 排 Pivotal 候选）、oracle（gold/库 3–6 标签）。评估：选中集 Pivotal_agg 与 Pivotal_het 覆盖率；选中集上用库 1+2 m=3 估 A 与库 3–6 A 的 Pearson；每轨迹捕获的 |A| 总量 / k。轨迹 paired bootstrap。成本横轴用 §4.3 的向量。与 CRR 的 ≤4 fork 直接对话。
 
 ## 7. 分阶段任务与停/走检查
 
@@ -204,7 +286,24 @@ scorer:str ("hfprefix" 主口径 | "vllm" 敏感性 | "hf" 核对), model_hash:s
 **预算（0.84 s/续跑实测）：** 新 50 条 rollout + 库 1 ≈ 7 h；库 2 ≈ 11.4 h；库 3–6 ≈ 22 h（扩展再 +22 h）。
 **停/走：** 种子互异且逐请求记录；重放分歧 = 0；库 1 重算 0 不匹配。
 
+### Phase 1D（FINAL RULING 2026-10-26 §6）：执行序
+
+| 步 | 内容 | 资源 | 产出 |
+|---|---|---|---|
+| 6.1 | 改 CLAUDE.md §1/§4/§6/§8，提交 | — | 预注册修订 |
+| 6.2 | Pivotal_het 计数、2×2 重叠、被掩盖分叉比例；pair-level C_j；T-ref；三域按成败 × 进度交叉表 | CPU | `eval/het_fork.json`、`eval/pairs.json`，D-042 |
+| 6.3 | GPU 队列：gold（≈7 h）→ 兄弟 G（≈20 min）→ peek 态隐状态 for W1-V/P（≈1 h）→ W1-J 调用（≈3 h） | GPU ≈ 11 h | `data/replay_gold/`、`data/siblings/`、`hidden_peek/`、`data/w1_judge.parquet` |
+| 6.4 | gold 完成 → 机械切换判断 → DECISIONS | CPU | — |
+| 6.5 | 起草 `FEATURES_FROZEN.md`（§4 + §4.1 全部 + 先验符号 + P1–P5 + E1 定义 + 成本向量定义 + W1-J prompt 原文），**贴给研究者过目后提交** | — | 冻结 |
+| 6.6 | Phase 2：从 fp32 分数算 B 特征与 A/H1；C/V probe；W1 特征；G 特征 | CPU + 少量 GPU | `features_*.parquet` |
+| 6.7 | Phase 3：B1/B2(agg,het)/B3/L2-sign × 全部臂；归一化效应；REV；E1；P1–P5 对账；判定 | CPU | `RESULTS.md` |
+| 6.8 | **并行开始**：论文 §3（三域、深度曲线、T-ref、零质量界、a′_u）——数据已终版 | — | 草稿 |
+| 6.9 | WebShop：50–100 条、库 1–2 全 D、库 3–6 仅 𝓛、peek；复制目标 = **P2 的机制是否成立**，不只是 AUROC 表 | GPU 数天 | 第二环境 |
+
+W1-J 的 prompt 先写进 DECISIONS 草稿，研究者确认后才调用。
+
 ### Phase 2（第 2 周）：特征与隐状态
+> FINAL RULING：2.0 与 2.2（原始分数与隐状态，fp32 主口径）已完成（D-033、D-034、D-040、D-041）。2.1 的冻结 = Phase 1D 6.5（内容按 §4、§4.1–4.3），2.3/2.4 = 6.6。
 2.0 **D-003 pipeline 核对（HF，§9.2 安全）**：≥200 个随机点（含 ≥60 个被排除点）上按 §4 臂 A 口径算 chosen conf，比较"保留 − 排除"均值差（预期为负、量级接近 CWGT −0.70；若不是，写 DECISIONS 并继续）。
 2.1 **先写并 commit `FEATURES_FROZEN.md`**（第 4 节 B 列表 + 家族 + 每特征 L1/L2 先验符号 + 臂 A/H1 构造 + V 基线输入 + L3 设计），commit hash 记入 `DECISIONS.md`。此后不得增删特征；若实在要加，标为 `exploratory_` 前缀并单独报告。
 2.2 对 D 中每点：vLLM `prompt_logprobs` teacher-forced scoring 候选集（原 prompt 与去任务 prompt 各一次，先在 20 点上与 HF 核对秩序）；HF 一次前向导出两个位置的 hidden states（3 层）；臂 H1 的 hindsight pass。填 `scores.parquet`、`hidden/`。
@@ -214,33 +313,35 @@ scorer:str ("hfprefix" 主口径 | "vllm" 敏感性 | "hf" 核对), model_hash:s
 **停/走：** 无 NaN；`chosen_rank==1` 的比例报告（应为多数但非全部，T=0.7）；臂 A 的 conf 与 Phase 1 的 logprob 一致。
 
 ### Phase 3（第 3 周）：评估与判定
+> FINAL RULING：按 §6.3 三条边界与 §8 读法执行（Phase 1D 6.7）；下面 3.1 中的 L2/M7 由 §6.3 的 B2/B3/L2-sign 取代。
 3.1 L1：M1、M5、CARL δ。L2：M7、M2、M3、M4、V 偏回归；臂 A / `chosen_freq` / V / H1 / B（多特征、每个单特征、每个家族 family-only 与 leave-one-out）/ C（每层每位置）/ B+C / C→B 分解。L3（可选）。M6（探索性）。
 3.2 全部结果写 `eval/`，并生成一张汇总表 `RESULTS.md`，每个数字带 CI、n、commit。
 3.3 按第 8 节规则写判定，写入 `RESULTS.md` 末尾。
 **停/走：** 满足 §8 的复现门槛；否则回查 pipeline，不得进入判定。
 
 ### Phase 4（条件触发）：按判定执行
+> FINAL RULING：任一 §8 读法成立后均做 WebShop 复制（Phase 1D 6.9），复制目标 = P2 的机制是否成立。下面三条按旧读法保留作记录。
 - "继续" → WebShop 复制（AgentOPSD 或 verl-agent 的 WebShop 分支，同协议）。
 - "转向 C" → 分解 C：probe 方向投影到 B、残差分析、逐层对比。
 - "证伪" → WebShop 复制一次；仍证伪则写负结果报告，停。
 
-## 8. 预注册判定规则（RULING 2026-10-23 修订；Phase 3 之前不得再修改）
+## 8. 预注册判定规则（FINAL RULING 2026-10-26 §4；冻结后不得再修改）
 
-先看复现门槛（否则无判定）。L2 = §6.3 的层；"①②④"指 R1 的条件编号。
+**门**（不过则不判定）：
+- **复现门**：臂 A 在 pivotal_cwgt（库 1 A≠0）标签上 13.1% 路由召回的 cluster bootstrap CI 含 13.1%（若显著高于 13.1%，写入 RESULTS 解释并继续，不算 pipeline 失败）；ρ_t 的 T3 与 [0.647, 0.793] 相容；HF–vLLM 候选秩序一致（已过，D-040）；M5 三量与 CWGT 同量级。
+- **标签门**：B1 两库一致 ≥ 0.85（0.902，已过）；|Pivotal| ≥ 150（229，已过）；gold 上 pivotal 规则精确率 ≥ 0.7（不足则按 §6.3a 机械切换）。
 
-| 读法 | 条件 | 判定 |
+| 读法 | 条件 | 主张 |
 |---|---|---|
-| **复现门槛** | 臂 A（−conf）在 L1 上 13.1% 路由率下的召回，其 cluster bootstrap 95% CI 含 13.1%（与随机路由一致，与 CWGT chance-level 结论相容；若显著高于 13.1%，写入 RESULTS 解释并继续，不算 pipeline 失败）；ρ_t 的 T3 与 [0.647, 0.793] 相容；HF–vLLM 候选秩序一致；M5 三量与 CWGT 同量级 | 不过则回查，不判定 |
-| **R0 只识别状态** | L1 上臂 B 超过 shuffle，L2 上不满足 R1 ①② | 主张收窄为 CARL 类增强版 |
-| **R1 主线成立（L2）** | ① 臂 B 多特征 M7 符号 AUROC 的 cluster bootstrap 95% 下界 > 分层 shuffle 分布 97.5% 分位，且下界 ≥ 0.55；② 对臂 A、`chosen_freq`、V、ρ_t 的 paired 差值 CI 均不含 0；④ `margin_detask` 的 M4 流畅度相关显著低于臂 A | 继续；进 Phase 4 WebShop；必分 R1a/R1b |
-| **R1a 熵即可** | R1 成立，且 F2 family-only vs 全家族 paired 差值 CI 含 0 | 主张收窄为"合法集精确熵可逐步路由，置信度不能"——CARL（分布层面）与 CWGT（逐步 chance）张力的解决 |
-| **R1b 结构超越熵** | R1 成立，且 ≥1 个非 F2 家族满足 §4 指认规则两条 | 完整主张成立；该家族即"那种结构" |
-| **R2 信息在隐状态** | 臂 C 满足 R1 ①②，臂 B 不满足；C→B R² < 0.3 | 转向：主线改为"信用信息在策略内部状态而非输出分布"，Phase 4 做分解 |
-| **R3 结构 ≈ 上界** | R1 成立且 B、C 的 M7 CI 重叠，C→B R² ≥ 0.5 | 最强结果；继续 + 强调 |
-| **R4 弱信号** | R1 ① 显著但下界 < 0.55，或 R1 ①② 部分不成立但 M7 超出 shuffle | 部分成立；WebShop 复制后再定 |
-| **R5 证伪** | L1、L2 上 B、C 均不超过 shuffle 对照 95% 区间 | 决策时刻状态不含可用信用信息（ALFWorld）；Phase 4 WebShop 一次复制；仍 R5 则停 |
+| **R-LADDER** | 模型侧（B 或 C）过 B1；W1-pure 过 B2；B3 无廉价臂过或仅 W1 过 | 模型定位活状态，世界定位分叉，符号要回放 |
+| **R-MODEL** | 模型侧过 B1 且过 B2 | 决策结构能定位分叉；世界侧非必需 |
+| **R-WORLD** | 只有 W1（pure 或 model）过 B2 | 世界侧是分叉的唯一廉价来源；若只有 W1-model 过，标 "(model)" |
+| **R-REPLAY-ONLY** | 无廉价臂过 B2 | 分叉必须执行才能找到；E1 只按 B1 路由 |
+| **R-NULL** | 无臂在 B1 上过线 | 步级信用 = 状态价值 + 噪声 |
 
-L2 信度天花板（§6.0）与 R0–R5 并列报告。若库 3+4 vs 5+6 的符号一致率 < 0.60，L2 判定须注明"标签信度不足"，诚实结论可为"每臂 12–24 次续跑的 replay 对比在 ALFWorld 上不足以定义 turn 级动作贡献"。
+**后缀**：若某读法仅在 Pivotal_het 上成立而 Pivotal_agg 不成立，读法加 "(het)"，论文必须说明两个估计量的差别。
+
+每个读法附：三域表、深度曲线（自有 + CWGT）、T-ref、REV 表、E1 曲线、P1–P5 对账。全部可成文。
 
 ## 9. 禁止事项
 
@@ -250,7 +351,7 @@ L2 信度天花板（§6.0）与 R0–R5 并列报告。若库 3+4 vs 5+6 的符
 4. 反事实未定义的点：排除并计数，**不插补，不用 0 代替**。
 5. 不跳过 M3 shuffle 对照。没有对照的数字不写进 `RESULTS.md`。
 6. 本阶段不做任何策略训练、不改 advantage、不接 GRPO。
-7. 不把"更多日志字段"或"judge 解释更合理"当作结果。结果只有 M1–M5。
+7. 不把"更多日志字段"或"judge 解释更合理"当作结果。结果只有 §6 定义的指标。
 8. 看到结果之后新想的特征一律标 `exploratory_`，不进主表。
 9. 每个数字可追溯到脚本 + commit + 输入文件 hash。
 10. 遇到本文件没规定的选择，写 `DECISIONS.md` 再做，不静默。
@@ -288,6 +389,7 @@ project/
 2. 数据表：总决策点、|D|、pivotal 数与比例、排除数与原因分布、σ_floor=0 比例、排除点 logprob 偏移。
 3. 复现表：臂 A 的 M1（L1）、M4，臂 H1 的 T3，M5，与 CWGT 数字并排；两种 conf 构造行；strict-xml 解析敏感性行。
 4. 主表分两块。**L1 块**：各臂 M1（召回、AUROC、CI）与 shuffle 对照；`crit_sd` 的 Cliff's δ（高熵 vs 低熵）与 CARL 0.42 并排。**L2 块**：A / `chosen_freq` / V / H1 / B(多特征) / B(每个单特征，`entropy_q` 与 `entropy_sampled` 各占一行并标注"CARL 复现") / C(每层每位置) / B+C 的 M7（AUROC、CI）、M3 分层对照区间、M2（中位数、CI、信度校正值）、M4、V 偏回归；信度天花板行；`chosen_admissible=1` 子集敏感性行；𝓛 仅库 1 定义的敏感性行。另附家族 family-only / leave-one-out 两表。L3（若做）单列。
+4a. **FINAL RULING 主表**：B1/B2(agg, het)/B3/L2-sign × 全部臂（R1–R6），AUROC、CI、shuffle 区间、paired vs V/A、归一化效应、REV；三域表（按成败 × 进度）、深度曲线（自有 + CWGT）、T-ref、零质量界、E1 曲线、P1–P5 对账表。上面第 4 项的 L1/L2 块按此改读，M7 由 B2/B3/L2-sign 取代。
 5. C→B 分解 R²。
 6. 成本表（来自 audit_metadata）。
 7. 判定：引用第 8 节哪一条，附触发它的具体数字。
