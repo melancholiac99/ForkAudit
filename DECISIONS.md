@@ -1094,3 +1094,64 @@ batch.
   - The old queue's bash shell (PID 1770) was terminated; its gold replay child (PID 1814) keeps running.
   - The new script waits for that PID, checks `DONE 300 points` in `logs/1d_gold.log`, then continues.
 - **Expected saving:** ≈ 15–20 min.
+
+## D-048 — Phase 3 evaluation implementation choices (written before any feature–label association was viewed) — DECIDED 2026-10-26
+
+These are deterministic choices that FEATURES_FROZEN does not spell out. Scripts: `scripts/evalcore.py`,
+`31_probes.py`, `40_eval.py`, `41_eval_extras.py`, `42_gold.py`, `27_features_W1.py --part model`,
+`28_features_G.py`.
+
+**Probe fitting and V:**
+- **Logistic solver.** liblinear with sklearn defaults (max_iter = 100, tol = 1e-4), as FEATURES_FROZEN §4 states.
+  - When n < d, the fit runs on the thin SVD basis of [Z, 1]. liblinear penalises the intercept as an extra column,
+    so this is the same L2 problem and has the same optimum. Verified: max |Δ decision| ≈ 1e-4 against the full fit.
+  - The basis is computed once per training set and shared across the C grid.
+  - Non-converged fits are counted and reported. The dual solver was tried and was slower.
+- **V.** Kernel ridge, fitted separately on the bank-1 and bank-2 pool means; V = their mean (the "cross-fit" of
+  CLAUDE.md §4).
+  - Layer and λ are chosen per outer fold by inner MSE.
+  - λ = 10⁴, the upper edge of the frozen grid, was chosen in every fold (layer 26 in 9 of 10 fits). Reported as a
+    grid-edge hit; the grid is not changed.
+  - V predictions on the two banks correlate 0.986.
+- **C_sel and B+C.**
+  - C_sel: per outer fold, the prompt_end layer with the best mean inner AUROC, using that layer's out-of-fold score.
+  - B+C: logistic on the B features + C score. For training rows the C score is an inner out-of-fold prediction of
+    the same (layer, C), so test labels do not leak.
+
+**Reading the verdict table (CLAUDE.md §8):**
+- **Model-side** = B_multi, C_sel or B+C. The R-MODEL / R-LADDER paired comparison uses B+C (FEATURES_FROZEN §5).
+- **"Passes" requires the paired differences to favour the arm:** the CI lower bound vs V > 0 and vs A > 0. A CI
+  entirely below 0 does not pass.
+- **Readings** follow table order after the priority rule. R-REPLAY-ONLY = no score passes B2. R-NULL = no score
+  passes B1 (checked after R-REPLAY-ONLY, per table order). The B3 condition "no cheap arm passes, or only W1" is
+  checked over every score on B3.
+- **Direction conventions:**
+  - Single features use the frozen prior directions; "0" keeps the raw score.
+  - H1 (ρ_t) and V are evaluated raw, as no prior was declared for them.
+  - `chosen_rank` enters only the multi-feature models; it has no single-feature row in FEATURES_FROZEN.
+- **Identification of F6–F9:** family-only vs F2 and vs V; leave-one-out not computed (no "full" cheap model is
+  defined for them in the frozen file). F1–F5 use the B full model, as in CLAUDE.md §4.
+
+**Gates and report items:**
+- M1 routes the top 13.1% (and the 20.4% no-cf rate) of D by −conf; label pivotal_cwgt; cluster and Wilson CIs.
+- M4 / T3: trajectories with ≥ 5 D points and non-constant score and label. Δ = z(ρ_t) − z(A_b1);
+  Spearman(Δ, bare conf); median with a trajectory bootstrap. "Compatible" = CI overlaps [0.647, 0.793].
+- CARL δ: median split of `entropy_sampled` (and `entropy_q`) on D; Cliff's δ of `crit_sd`.
+
+**E1:**
+- "Coverage" is reported both as precision (forks among selected) and recall (selected forks / all forks).
+- Captured |A_3456| counts Dead points as 0. The Pearson uses selected live points.
+- The B→W1-pure score for all of D comes from a W1-pure model fitted on live training rows.
+- `exploratory_adaptive_replay` is not implemented in this pass. Its "1 run per arm at every point" first round
+  exceeds the k-fork budget (15k continuations per trajectory) for small k, so the budget equivalence needs a
+  definition first. It is an optional exploratory row.
+
+**W1-model peek-state controls** for V: turn + 1 and the size of the peek admissible set.
+
+**Gold (`42_gold.py`):**
+- Independent-20 rules on the 20 new runs per arm.
+- Null replication from one 10,000-permutation set per point (het p of a permuted data set = its rank).
+- Merged-32 reported as selection-biased.
+- Switch per CLAUDE.md §6.3a.
+
+**L3 (optional):** not run in this pass.
