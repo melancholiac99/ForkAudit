@@ -1078,3 +1078,19 @@ version):
 
 GPU queue status at writing: gold running since 12:50 (30,000 continuations, ETA ≈ 19:00 at 0.75 s/continuation),
 then siblings, peek states and W1-J.
+
+## D-047 — Phase 1D queue: siblings merged into one 700-trajectory run (speed-up) — DECIDED 2026-10-26
+
+Researcher-suggested speed-up. The original queue (`run_phase1d_gpu.sh`) ran the 7 sibling groups as 7 runs of 100
+lockstep trajectories, which leaves the GPU under-fed. `10_rollout.py --siblings 1-7` instead advances all 700 in one
+batch.
+- **Design unchanged:** per-request sample seeds = 10⁶·seed + turn + (20+k)·10¹¹ depend only on (task, turn, k).
+  Seeded generation is batch-dependent at the bit level anyway (D-015).
+- **Memory:** env workers hold ≈20 MB per game (measured 650 MB per worker at ≈30 games), so 700 games ≈ 14 GB, well
+  inside the 118 GB cgroup.
+- **Mechanics:**
+  - A running bash script must not be edited in place, so a new script `scripts/run_phase1d_gpu2.sh` holds the
+    post-gold steps (siblings 1–7 in one batch → peek hidden → peek scoring → W1-J).
+  - The old queue's bash shell (PID 1770) was terminated; its gold replay child (PID 1814) keeps running.
+  - The new script waits for that PID, checks `DONE 300 points` in `logs/1d_gold.log`, then continues.
+- **Expected saving:** ≈ 15–20 min.
