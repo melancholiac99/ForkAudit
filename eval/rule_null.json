@@ -1,0 +1,30 @@
+{
+  "n_live": 1478,
+  "n_perm": 2000,
+  "observed": {
+    "main": 229,
+    "sensitivity": 193,
+    "both": 187
+  },
+  "expected_under_global_null": {
+    "main": 117.92150000000012,
+    "sensitivity": 85.84900000000005,
+    "both": 78.46650000000012
+  },
+  "naive_precision_floor": {
+    "main": 0.485058951965065,
+    "sensitivity": 0.5551865284974091
+  },
+  "note": "expected counts assume every live point is null, so they bound the false-positive count from above; 1 - E/observed is therefore a conservative (low) precision estimate",
+  "provenance": {
+    "script": "scripts/review/r07_rule_null.py",
+    "commit": "64d325dacb5663d92869cfae47232dd71c525ebc",
+    "scripts_dirty": false,
+    "argv": [
+      "review/r07_rule_null.py"
+    ],
+    "time": "2026-10-26T12:08:22+0800",
+    "inputs": {},
+    "script_sha256": "d712b3b228d9027c911ba81bbdbf9685b37cc55da3fd8b490c8879140615e05e"
+  }
+}

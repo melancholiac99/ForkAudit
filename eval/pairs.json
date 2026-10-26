@@ -1,0 +1,56 @@
+{
+  "n_pairs": 5912,
+  "n_points": 1478,
+  "sig": {
+    "k": 1016,
+    "n": 5912,
+    "frac": 0.17185385656292287,
+    "ci95_cluster": [
+      0.1509981303006939,
+      0.1924996467399449
+    ]
+  },
+  "null_expected_sig": 516.4375,
+  "n_sig_per_point_hist": {
+    "0": 808,
+    "1": 443,
+    "2": 140,
+    "3": 55,
+    "4": 32
+  },
+  "sig_by_regime": {
+    "agg_pivotal": {
+      "k": 470,
+      "n": 916,
+      "frac": 0.5131004366812227,
+      "ci95_cluster": [
+        0.47580645161290325,
+        0.553409090909091
+      ]
+    },
+    "indifferent": {
+      "k": 546,
+      "n": 4996,
+      "frac": 0.10928742994395517,
+      "ci95_cluster": [
+        0.09262412315858111,
+        0.12628871097172523
+      ]
+    }
+  },
+  "sig_sign": {
+    "pos (factual better)": 442,
+    "neg": 574
+  },
+  "provenance": {
+    "script": "scripts/18_het_fork.py",
+    "commit": "64d325dacb5663d92869cfae47232dd71c525ebc",
+    "scripts_dirty": false,
+    "argv": [
+      "18_het_fork.py"
+    ],
+    "time": "2026-10-26T12:06:57+0800",
+    "inputs": {},
+    "script_sha256": "7162e828f4a8372b6146f713590c1f1642872861429bd3192f1a009fdffced46"
+  }
+}

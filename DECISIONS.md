@@ -846,3 +846,124 @@ here as §3 requires. Hidden states remain HF bf16 (`hidden/`).
 Reasons: fp32 removes the ≈0.3-nat per-candidate bf16 noise (D-033/D-040). Rank and margin features otherwise flip at
 the 9.3% of points with near-ties (cross-backend `chosen_rank` agreement 81%). Neither bf16 pass reproduces the
 acting policy's exact sampling-time numerics anyway (D-015).
+
+## D-042 — FINAL RULING §6.2 computed (label-only): heterogeneity forks, pair-level contrasts, T-ref, cross-table — INFO / FLAG 2026-10-26
+
+`scripts/18_het_fork.py` produces `eval/het_fork.json`, `eval/pairs.json`, `eval/het_points.parquet` and
+`eval/pairs_points.parquet`. `scripts/review/r07_rule_null.py` produces `eval/rule_null.json`. Labels only (§9.2-safe);
+commit 64d325d, clean provenance. Pivotal_agg was recomputed as 229 (asserted equal to D-035).
+
+**Pivotal_het** (5-arm G test, 10,000 permutations, α = 0.10): 475 / 1,478 = 32.1% [27.3, 37.1].
+
+| 2×2 on 𝓛 | agg | ¬agg |
+|---|---|---|
+| het | 170 | **305** (masked) |
+| ¬het | 59 | 944 |
+
+- Masked forks (het ∧ ¬agg) = 20.6% of 𝓛 [17.2, 24.3].
+- **P5 statistic** = masked / |het| = 0.642 [0.592, 0.690].
+- **Null calibration** (same permutation null applied to every live point; an upper bound on false flags):
+  E[het] = 103.9, E[agg] = 118.3, E[masked] = 68.9, against observed 475 / 229 / 305.
+  - FP-adjusted masked share ≈ (305 − 69) / (475 − 104) ≈ 0.64 (rough).
+
+**Pair-level C_j** (factual 12 vs alternative j 12, Newcombe 90%), 5,912 pairs:
+- sig 1,016 = 17.2% [15.1, 19.2]; null expectation 516 (8.7%).
+- Inside Pivotal_agg: 51.3% sig (null 10.7%). Inside Indifferent: 10.9% sig (null 8.4%), an excess of ≈ 2.5 pp,
+  consistent with the D-039 nuance.
+- Signs of sig pairs: factual better 442, worse 574.
+- Number of sig pairs per point: 0 → 808, 1 → 443, 2 → 140, 3 → 55, 4 → 32.
+
+**T-ref:** 227 live points have ≥2 sig pairs. Of these, 14.1% [8.3, 20.9] have sig pairs of both signs (the
+contribution's sign depends on the reference alternative). a′_u flip rate = 0.110 (D-039, copied).
+
+**Three regimes, outcome × progress tercile** (fractions, cluster 95% CI):
+
+| cell | n | dead | indifferent | pivotal_agg | pivotal_het | pivotal_agg among live |
+|---|---|---|---|---|---|---|
+| lost, early | 783 | 0.460 | 0.470 | 0.070 [0.048, 0.093] | 0.153 | 0.130 |
+| lost, middle | 919 | 0.517 | 0.415 | 0.069 [0.042, 0.097] | 0.149 | 0.142 |
+| lost, late | 881 | 0.770 | 0.185 | 0.045 [0.023, 0.075] | 0.098 | 0.197 |
+| won, early | 148 | 0.054 | 0.811 | 0.135 [0.085, 0.189] | 0.297 | 0.143 |
+| won, middle | 169 | 0.124 | 0.757 | 0.118 [0.068, 0.174] | 0.249 | 0.135 |
+| won, late | 138 | 0.130 | 0.645 | 0.225 [0.165, 0.277] | 0.333 | 0.258 |
+
+Pivotal_agg among live, by progress tercile: 13.3% [10.9, 15.7] → 14.0% [10.6, 17.6] → 22.0% [16.3, 28.2].
+
+**Flags for the researcher (no design change made):**
+1. **The Pivotal rules have a high false-flag rate.** Under the conditional permutation null, the main rule
+   (12 vs 48, 90% Newcombe) flags ≈ 8% of null live points, so E[flags | all null] = 118 of the 229 observed. For
+   the sensitivity rule it is 86 of 193 (r07). The conservative precision floors are 0.49 and 0.56. If 75–80% of
+   live points are truly null (mixture fit, D-035), roughly 90 of the 229 main-rule points may be false, giving
+   precision ≈ 0.6. The §6.3a mechanical switch (precision < 0.70) is therefore likely to fire. The sensitivity
+   rule may also fall below 0.70, and the ruling has no further fallback. The headline "Pivotal 7.5%" includes these
+   false flags; gold will measure them directly.
+2. **Gold precision definition.** "Interval still excludes 0 at 32/arm" pools the 12 runs that selected the point
+   into the 32, which biases precision upward. Recommendation: also report precision on the 20 new independent runs
+   alone. The pre-registered switch stays as written unless the researcher rules otherwise.
+3. **P5 is already settled by this label-only step.** The P5 statistic is 0.642 ≥ 0.15, and this is known before
+   FEATURES_FROZEN.md is committed. P5 is therefore a reported fact, not a forward prediction. The frozen file
+   should say so.
+
+## D-043 — FINAL RULING execution choices (CLAUDE.md edit, gold, siblings, peek states, W1-J, GPU queue) — DECIDED 2026-10-26
+
+**CLAUDE.md edit (commit 602b23f):**
+- §1, §6.0, §6.3, §8 replaced by the ruling text; §4.1–4.3 added (features 20–40, F6–F9, P1–P5, cost vector);
+  §6.3a gold; §6.6 E1; Phase 1D execution order. Phase 2/3/4 got pointer notes.
+- §4's identification rule and prior-sign rule now refer to B1/B2/B3 instead of L1/L2.
+- Interpretation choices:
+  - M2 / M3 / M4 / V partial regression are kept as report items under §6.3. M3 is the stratified shuffle used in
+    "passes the bar"; M4 is needed for the ρ_t T3 gate. M7 is dropped (replaced by B2/B3/L2-sign).
+  - The CWGT label is named `pivotal_cwgt` (bank-1 A ≠ 0), to keep it apart from Pivotal_agg.
+- §9.7 now reads "results are only the metrics defined in §6".
+
+**Gold selection** (`scripts/19_select_gold.py` → `eval/gold_points.json`, seed 20261026):
+- G-unbiased: 200 points, proportional allocation over 51 strata (48 get ≥1 point), 58 trajectories.
+  - n_draws terciles are **value-based** (cut points = 1/3 and 2/3 quantiles: {32}, {64}, {≥96}; bin sizes
+    902 / 250 / 326). n_draws comes in multiples of the 32-draft batch and is heavily tied, so rank terciles would
+    only split identical values at random.
+- G-candidate: 100 points drawn from the 250 𝓛 points with |A_3456| ≥ 0.2 that are not in G-unbiased. All 300
+  points are distinct; 44 trajectories.
+
+**Gold replay seeds:**
+- One bank index, 6 (seed offset 6·10¹¹), with `--n_rep 20`, instead of bank indices 7–13.
+  - 20 extra runs per arm is not a multiple of 3.
+  - Bank index 10 is already used by a′_u (D-037).
+  - The replica index (0–19, in `seed_of`'s idx = replica·100 + step) keeps every request seed distinct.
+- New `11_replay.py --subset_file` option: runs the listed points, keeps the factual and the bank-1 alternatives.
+  Output `data/replay_gold/`.
+- Dry run with the random policy (2 points, 2 reps): 20 continuations, alternatives equal to bank 1, seed offset
+  correct, re-feed divergence 0.
+- The D-028-style finish audit is done at step 6.4.
+
+**Siblings:**
+- New `10_rollout.py --siblings k-k` option, run for k = 1…7 separately (100 envs per run, as in the original).
+- Sample seeds = 10⁶·seed + turn + (20+k)·10¹¹; traj_id `s###_k#`; output `data/siblings/`, `prompts/siblings/`.
+- The default path (k = 0) is unchanged. This could not be tested here: 10_rollout has no dry policy and the
+  instance has no GPU.
+
+**Peek states** (`scripts/24_peek_states.py`):
+- D only: 3,038 points × 5 = 15,190 states. Prompt = rollout memory + (obs_t, a), current obs = peek obs,
+  admissible = peek set.
+- Check: the factual-peek prompt equals the stored prompt of turn t+1 (2/2 in the CPU test; counted in the run).
+- `--part hidden`: bf16, the same pipeline as `hidden/`, so the V probe transfers. Output `hidden_peek/`.
+- `--part score`: fp32 hfprefix over the peek admissible set. Output `data/scores_peek_fp32.parquet`.
+  - W1-P needs the policy's candidate distribution at the peek state. The ruling's "≈1 h" did not include this
+    scoring; estimate +1–1.5 h.
+- CPU test with Qwen2.5-0.5B passed. The no-GPU instance has a 2 GB memory limit, so the test used
+  `--cand_batch 4`.
+
+**W1-J (DRAFT, awaiting researcher confirmation):**
+- Template `prompts/w1_judge_template.txt`, sha256 `9804c516…e233b1`. Chat template, temperature 0,
+  max_tokens 4. Label = first word if in {progress, neutral, regress}, else `unparsed`.
+- `scripts/25_w1_judge.py` refuses to run unless `logs/W1J_APPROVED` contains the template's sha256.
+- Prompt text:
+  > You are evaluating one step of an agent that is carrying out a text-based task. / Task: {task} / Observation
+  > before the step: {obs_before} / Action taken: {action} / Environment response: {peek_obs} / Judge only this
+  > step. Compared with the situation before the action, does the environment response show that the agent got
+  > closer to completing the task (progress), stayed about as far from completing it as before (neutral), or got
+  > farther from completing it (regress)? Answer with exactly one word: progress, neutral, or regress.
+
+**GPU queue:**
+- `scripts/run_phase1d_gpu.sh`: gold → siblings k=1…7 → peek hidden → peek scoring → W1-J (only if approved).
+- It aborts without a GPU and has no auto-shutdown.
+- **Not started:** the instance is in no-GPU mode (0.5 CPU, 2 GB RAM).
