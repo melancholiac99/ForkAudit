@@ -24,6 +24,7 @@ def ci(c):
 def main():
     main_, ex, gold, reg, ceil, het = j("main.json"), j("extras.json"), j("gold.json"), j("regimes.json"), j("ceilings.json"), j("het_fork.json")
     vl = j("main_vllm.json")
+    add = j("review_addenda.json")
     L = [f"# RESULTS — M0 (FINAL RULING 2026-10-26 + FREEZE ADDENDUM; FEATURES_FROZEN d6fe13f)",
          "", f"Generated {time.strftime('%Y-%m-%d %H:%M %z')} by `scripts/43_results.py` at commit `{common.git_commit()[:8]}`.",
          "Every number below is copied from `eval/*.json`; each JSON records its script, commit and inputs.", ""]
@@ -59,8 +60,9 @@ def main():
         L += [f"- M1 (arm A = −conf, route 13.1% of D, label pivotal_cwgt): recall {m1['recall']:.3f}, cluster CI {ci(m1['cluster95'])}, "
               f"Wilson {ci(m1['wilson95'])}; contains 13.1%: **{ex['gates']['M1_contains_13.1']}** (CWGT 11.9% [9.4, 14.9]).",
               f"- M4/T3 (H1 ρ_t): median {ex['M4_T3_gate_H1']['median']:.3f} {ci(ex['M4_T3_gate_H1']['ci95'])} over "
-              f"{ex['M4_T3_gate_H1']['n_traj']} trajectories; compatible with [0.647, 0.793]: **{ex['gates']['T3_compatible_[0.647,0.793]']}** "
-              f"(CWGT +0.752). Arm A (mechanical): {ex['M4_armA_mechanical']['median']:.3f}.",
+              f"{ex['M4_T3_gate_H1']['n_traj']} trajectories; CI overlaps [0.647, 0.793] (gate passes literally): **{ex['gates']['T3_compatible_[0.647,0.793]']}**; "
+              f"reported side by side with CWGT +0.752 [0.647, 0.793], not claimed as a replication (REVIEW 2026-10-27 §3.4). "
+              f"Arm A (mechanical): {ex['M4_armA_mechanical']['median']:.3f}.",
               f"- M5: |D|/total {ex['M5']['D_over_total']:.3f} (CWGT 0.869); pivotal_cwgt {ex['M5']['pivotal_cwgt_frac']:.3f} (0.305); "
               f"σ_floor = 0 {ex['M5']['sigma_floor_zero_frac']:.3f} (0.860); conf shift −0.494 [−0.574, −0.414] (−0.70, D-040).",
               "- HF–vLLM rank agreement: median Spearman 0.997 (D-040).", ""]
@@ -101,7 +103,14 @@ def main():
         for k, v in ex["CARL_delta"].items():
             L.append(f"- Cliff's δ of crit_sd, high vs low {k}: {v['cliffs_delta']:.3f} (CARL 0.42).")
         L.append("")
-    L += ["## 5. C→B decomposition", "", "Not computed in this pass (report item).", ""]
+    L += ["## 5. C→B decomposition (R² of the C_sel score regressed on the B features)", ""]
+    if add:
+        L += ["| boundary | n | R² in-sample OLS | R² out-of-fold ridge |", "|---|---|---|---|"]
+        for b, v in add["C_to_B_decomposition"].items():
+            L.append(f"| {b} | {v['n']} | {v['R2_in_sample_OLS']:.3f} | {v['R2_oof_ridge']:.3f} |")
+        L.append("")
+    else:
+        L += ["Not computed.", ""]
     L += ["## 6. E1 — fork budget allocation (cost per fork = 15 continuations at m = 3)", ""]
     if ex:
         L += ["| k | selector | Fork precision | Fork recall | Credit-pivotal recall | captured abs(A) per fork | recall − uniform [CI] |",
@@ -110,6 +119,14 @@ def main():
             for name, m in sel.items():
                 L.append(f"| {k} | {name} | {m['fork_precision']:.3f} | {m['fork_recall']:.3f} | {m['cp_recall']:.3f} | "
                          f"{m['captured_absA_per_fork']:.3f} | {ci(m.get('fork_recall_minus_uniform_ci95'))} |")
+        L.append("")
+    if add:
+        L += ["**exploratory_G_to_W1pure** (REVIEW 2026-10-27 §3.7; not in the main table, not in the verdict):", "",
+              "| k | selector | Fork precision | Fork recall | captured abs(A) per fork | recall − uniform [CI] |", "|---|---|---|---|---|---|"]
+        for k, sel in add["E1_exploratory_G_to_W1pure"].items():
+            for name, m in sel.items():
+                L.append(f"| {k} | {name} | {m['fork_precision']:.3f} | {m['fork_recall']:.3f} | {m['captured_absA_per_fork']:.3f} | "
+                         f"{ci(m.get('fork_recall_minus_uniform_ci95'))} |")
         L.append("")
     L += ["## 7. Verdict (CLAUDE.md §8)", ""]
     if main_:
@@ -121,9 +138,50 @@ def main():
             L.append(f"Gates: M1 contains 13.1% = {ex['gates']['M1_contains_13.1']}; T3 compatible = {ex['gates']['T3_compatible_[0.647,0.793]']}. "
                      "Per §8, a failed reproduction gate means the verdict is not read until the pipeline is re-checked.")
         L.append("")
-    L += ["## 8. Deviations", "", "See DECISIONS.md D-029 … D-049 (in particular D-042/D-044 label diagnostics, D-046 chosen_rank, "
+    if main_ and ex and gold:
+        sc = lambda b, n: main_["boundaries"][b]["scores"].get(n, {})  # noqa: E731
+        a = lambda b, n: sc(b, n).get("auroc", float("nan"))  # noqa: E731
+        p2 = main_["predictions"].get("P2", {})
+        share = p2["lhs"] / p2["rhs"] if p2.get("rhs") else float("nan")
+        capr = gold["replication_candidate_layer"]["cap"]["replication_indep20"]
+        dV = sc("B1", "C_sel").get("paired", {}).get("V", {})
+        L += ["## 7a. Reading the verdict (REVIEW 2026-10-27 §2–§4; wording only, the verdict is not changed)", "",
+              f"- **{main_['verdict'].get('reading')} holds by the rule.** Descriptively, the ladder is a double dissociation: "
+              f"siblings locate Dead (B1 {a('B1', 'G_multi'):.3f}) and are blind to forks (B2 {a('B2', 'G_multi'):.3f}); the "
+              f"one-step peek locates forks (B2 {a('B2', 'W1pure_multi'):.3f}, REV {sc('B2', 'W1pure_multi').get('REV')}; the "
+              f"single bit `target_revealed` carries {100 * share:.0f}% of its normalised effect); the sign is given only by "
+              "replay; entropy finds neither.",
+              f"- **`model_B1: false` is a property of the B1 bar.** V is itself a hidden-state probe (B1 {a('B1', 'V'):.3f}) "
+              f"and C_sel is {a('B1', 'C_sel'):.3f} (difference {dV.get('diff', float('nan')):+.3f} {ci(dV.get('ci95'))}); "
+              "requiring the model side to beat V on B1 asks a hidden-state probe to beat a hidden-state probe. The rule is "
+              "frozen and is not changed; the paper states this next to the verdict and does not relabel the reading.",
+              f"- **Original hypothesis (candidate-distribution structure):** B_multi vs arm A on B1 "
+              f"{sc('B1', 'B_multi').get('paired', {}).get('A(-conf)', {}).get('diff', float('nan')):+.3f} "
+              f"{ci(sc('B1', 'B_multi').get('paired', {}).get('A(-conf)', {}).get('ci95'))}; vs V "
+              f"{sc('B1', 'B_multi').get('paired', {}).get('V', {}).get('diff', float('nan')):+.3f} "
+              f"{ci(sc('B1', 'B_multi').get('paired', {}).get('V', {}).get('ci95'))}; it does not pass B2 and no family is "
+              "identified: better than scalar confidence, not better than the hidden-state probe, does not locate forks.",
+              f"- **B3 is undecidable at this sample size:** n = {main_['boundaries']['B3']['n']}; gold replication of the B3 "
+              f"set {capr['frac']:.3f} {ci(capr['ci95_cluster'])} (switch threshold 0.50). Not \"no cheap signal carries the sign\".",
+              f"- **P1 fails:** entropy_q on B1 {a('B1', 'single:entropy_q'):.3f} (prior +), on B2 {a('B2', 'single:entropy_q'):.3f}; "
+              f"CARL δ {ex['CARL_delta']['entropy_sampled']['cliffs_delta']:.3f} (sampled) / "
+              f"{ex['CARL_delta']['entropy_q']['cliffs_delta']:.3f} (exact) vs 0.42. **P4 fails** (budget interaction).",
+              ""]
+    if add:
+        cov = add["G_coverage_by_regime"]
+        L += ["### G coverage by regime (REVIEW §3.2)", "", "| regime | n | singleton rate | g_succ_state defined | median g_cover |",
+              "|---|---|---|---|---|"]
+        for r in ("dead", "indifferent", "fork"):
+            v = cov[r]
+            L.append(f"| {r} | {v['n']} | {v['singleton_rate']:.3f} | {v['g_succ_state_defined']:.3f} | {v['g_cover_median']:.0f} |")
+        L += ["", "G's blindness to forks is not a coverage hole when the singleton rates of Fork and Indifferent are close: "
+              "the exact-observation anchor merges histories and sees 'everyone failed from this observation' but not "
+              "'different actions here end differently'.", "",
+              f"W1-J labels (REVIEW §3.8): {add['W1J_labels']['counts']}; unparsed rate {add['W1J_labels']['unparsed_rate']:.4f}.", "",
+              "Constant features (D-046): 21 `w1_nothing_frac` ≡ 0 and 28 `w1_div_n_distinct` ≡ 5 by construction.", ""]
+    L += ["## 8. Deviations", "", "See DECISIONS.md D-029 … D-051 (in particular D-042/D-044 label diagnostics, D-046 chosen_rank, "
           "D-047 merged siblings, D-048 evaluation implementation choices).", "",
-          "## 9. Exploratory", "", "`exploratory_adaptive_replay` and L3 were not run in this pass (D-048).", ""]
+          "## 9. Exploratory", "", "`exploratory_adaptive_replay` and L3 were not run (D-048). `exploratory_G_to_W1pure`: §6.", ""]
     p = os.path.join(common.ROOT, "RESULTS.md")
     open(p, "w").write("\n".join(L))
     print("wrote", p, len(L), "lines")

@@ -187,20 +187,20 @@ class Boot:
         s = np.asarray(s, float)
         ok = np.isfinite(s)
         y, s, inv = y[ok], s[ok], self.inv[ok]
-        w = self.W[:, inv]                                   # (B, n)
         order = np.argsort(s, kind="mergesort")
-        s, y, w = s[order], y[order], w[:, order]
-        # tie groups
-        _, start, cnt = np.unique(s, return_index=True, return_counts=True)
-        wp = w * y
-        wn = w * (~y)
-        gp = np.add.reduceat(wp, start, axis=1)
-        gn = np.add.reduceat(wn, start, axis=1)
-        cneg = np.cumsum(gn, axis=1) - gn                     # negatives strictly below each tie group
-        num = (gp * (cneg + 0.5 * gn)).sum(1)
-        den = gp.sum(1) * gn.sum(1)
-        with np.errstate(invalid="ignore", divide="ignore"):
-            return num / den
+        s, y, inv = s[order], y[order], inv[order]
+        _, start = np.unique(s, return_index=True)            # tie groups
+        out = np.empty(self.W.shape[0])
+        for c0 in range(0, self.W.shape[0], 1000):           # chunked over replicates (memory; identical result)
+            w = self.W[c0:c0 + 1000][:, inv]                  # (chunk, n)
+            gp = np.add.reduceat(w * y, start, axis=1)
+            gn = np.add.reduceat(w * (~y), start, axis=1)
+            cneg = np.cumsum(gn, axis=1) - gn                 # negatives strictly below each tie group
+            num = (gp * (cneg + 0.5 * gn)).sum(1)
+            den = gp.sum(1) * gn.sum(1)
+            with np.errstate(invalid="ignore", divide="ignore"):
+                out[c0:c0 + 1000] = num / den
+        return out
 
     @staticmethod
     def ci(v):
