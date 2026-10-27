@@ -47,7 +47,8 @@ def main():
         sm["REV"] = next((int(m) for m, v in sorted(B["ceiling_curve"].items(), key=lambda x: int(x[0])) if v >= sm["auroc"]), ">6")
         sm["passes"] = bool(sm["ci95"][0] > sm["shuffle_p97.5"] and sm["paired"]["V"]["ci95"][0] > 0
                             and sm["paired"]["A(-conf)"]["ci95"][0] > 0)
-        B["scores"]["B+C (D-050 superseded)"] = B["scores"].pop("B+C")
+        if "B+C (D-050 superseded)" not in B["scores"]:
+            B["scores"]["B+C (D-050 superseded)"] = B["scores"].pop("B+C")
         B["scores"]["B+C"] = sm | meta | {"fixed_by": "D-051"}
         if "W1pure_multi" in sc:
             dw = boot.auroc_dist(y, sc["W1pure_multi"].values)
@@ -55,7 +56,8 @@ def main():
                 B["paired_model_minus_w1pure (D-050 superseded)"] = B.pop("paired_model_minus_w1pure")
             B["paired_model_minus_w1pure"] = {"diff": sm["auroc"] - E.auroc(y, sc["W1pure_multi"].values),
                                               "ci95": E.Boot.ci(d - dw), "fixed_by": "D-051"}
-        sc["B+C (D-050 superseded)"] = sc["B+C"]
+        if "B+C (D-050 superseded)" not in sc:  # idempotent if a previous run was interrupted after this write
+            sc["B+C (D-050 superseded)"] = sc["B+C"]
         sc["B+C"] = new
         sc.to_parquet(sp)
         print(bname, f"B+C {res['boundaries'][bname]['scores']['B+C (D-050 superseded)']['auroc']:.3f} -> {sm['auroc']:.3f}",
