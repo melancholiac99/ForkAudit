@@ -199,9 +199,10 @@ def main():
 
 
 def bc_stack(S, y, g, fold, Bf, cn, pinfo, n_jobs):
-    """B+C: logistic on B features + C score; for each outer fold the C score of training rows is an inner
-    out-of-fold prediction of the inner-CV-selected prompt_end probe (layer, C), the test rows use that layer's outer
-    out-of-fold score (D-048)."""
+    """B+C: logistic on B features + C score (D-048, fixed in D-051). Per outer fold, the prompt_end layer and probe C are
+    the inner-CV choices; the C score of a training row is the inner out-of-fold prediction of that probe and the C score
+    of a test row is the mean of the 5 inner probes' predictions (same model family, so train and test C scores are
+    exchangeable); the stacker's C is chosen by the same inner-CV rule as every other learned score."""
     from sklearn.model_selection import GroupKFold
     import importlib
     P = importlib.import_module("31_probes")
@@ -212,25 +213,24 @@ def bc_stack(S, y, g, fold, Bf, cn, pinfo, n_jobs):
         cand = [(max(pinfo["C"][cn][f"C_{cn}_prompt_end_{L}"]["inner_auroc"][k]), L,
                  pinfo["C"][cn][f"C_{cn}_prompt_end_{L}"]["C"][k]) for L in (14, 21, 26)]
         _, L, Cc = max(cand)
-        chosen.append((L, Cc))
         tr, te = np.where(fold != k)[0], np.where(fold == k)[0]
         H = P.hidden("prompt_end", L, keys)
         ctr = np.full(len(tr), np.nan)
+        cte = np.zeros(len(te))
         for a, b in GroupKFold(5).split(tr, groups=g[tr]):
             p = E.Prep().fit(H[tr[a]])
             bas = E._Basis(p.transform(H[tr[a]]))
-            ctr[b] = bas.fit(y[tr[a]], Cc).decision_function(bas.project(p.transform(H[tr[b]])))
-        cte = S[f"C_{cn}_prompt_end_{L}"].values[te]
+            m = bas.fit(y[tr[a]], Cc)
+            ctr[b] = m.decision_function(bas.project(p.transform(H[tr[b]])))
+            cte += m.decision_function(bas.project(p.transform(H[te]))) / 5
         Xtr = np.column_stack([S[Bf].values[tr].astype(float), ctr])
         Xte = np.column_stack([S[Bf].values[te].astype(float), cte])
-        sub_fold = E.outer_folds(g[tr])
-        # choose C for the stacked logistic by inner CV on the training rows
-        _, fi = E.fit_oof_logistic(Xtr, y[tr], g[tr], sub_fold, n_jobs=n_jobs)
-        Cst = max(set(fi["C"]), key=fi["C"].count)
+        Cst = E.select_C(Xtr, y[tr], g[tr])
+        chosen.append((L, Cc, Cst))
         p = E.Prep().fit(Xtr)
         bas = E._Basis(p.transform(Xtr))
         oof[te] = bas.fit(y[tr], Cst).decision_function(bas.project(p.transform(Xte)))
-    return oof, {"features": Bf + ["C_sel(prompt_end)"], "layer_C_per_fold": chosen}
+    return oof, {"features": Bf + ["C_sel(prompt_end)"], "layer_probeC_stackC_per_fold": chosen}
 
 
 def passes(res, b, name):

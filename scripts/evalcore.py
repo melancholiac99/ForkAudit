@@ -97,6 +97,14 @@ def _inner_task(X, y, a, b):
     return sc, cv
 
 
+def select_C(X, y, groups, n_inner=5):
+    """C by the same rule as fit_oof_logistic: best mean inner-GroupKFold AUROC over the grid."""
+    X = np.asarray(X, dtype=np.float64)
+    y = np.asarray(y).astype(int)
+    sc = [_inner_task(X, y, a, b)[0] for a, b in GroupKFold(n_splits=n_inner).split(np.zeros(len(y)), groups=groups)]
+    return C_GRID[int(np.nanargmax(np.nanmean(np.array(sc, float), 0)))]
+
+
 def _refit_task(X, y, tr, te, C):
     p = Prep().fit(X[tr])
     bas = _Basis(p.transform(X[tr]))
