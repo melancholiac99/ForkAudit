@@ -1,0 +1,3704 @@
+{
+  "traj_id": "s017",
+  "turn": 29,
+  "task_id": "json_2.1.1/train/pick_and_place_simple-Newspaper-None-Ottoman-210/trial_T20190907_144808_904739",
+  "task_type": "pick_and_place_simple",
+  "seed": 17,
+  "factual_action": "examine newspaper 1",
+  "alternatives": [
+    "go to coffeetable 1",
+    "examine ottoman 1",
+    "move newspaper 1 to ottoman 1",
+    "inventory"
+  ],
+  "cf_defined": true,
+  "exclude_reason": null,
+  "n_draws": 0,
+  "drafts": [],
+  "factual_outcomes": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "alt_outcomes": [
+    [
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "continuations": [
+    {
+      "role": 1,
+      "rep": 0,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729100029
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 11,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729101129
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 5,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729100529
+      ]
+    },
+    {
+      "role": 4,
+      "rep": 1,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 2,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 4,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 3,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 1,
+      "rep": 1,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729100129
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 9,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729100929
+      ]
+    },
+    {
+      "role": 4,
+      "rep": 9,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 1,
+      "rep": 4,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729100429
+      ]
+    },
+    {
+      "role": 4,
+      "rep": 12,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 14,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 11,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 15,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 1,
+      "rep": 17,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729101729
+      ]
+    },
+    {
+      "role": 4,
+      "rep": 13,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 10,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 19,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 0,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 5,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 6,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 7,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 1,
+      "rep": 18,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729101829
+      ]
+    },
+    {
+      "role": 4,
+      "rep": 16,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 17,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 1,
+      "rep": 13,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729101329
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 15,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729101529
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 2,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729100229
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 3,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729100329
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 16,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729101629
+      ]
+    },
+    {
+      "role": 4,
+      "rep": 18,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 4,
+      "rep": 8,
+      "first_action": "move newspaper 1 to ottoman 1",
+      "actions": [
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true
+      ],
+      "won": true,
+      "len": 29,
+      "refeed_div": 0,
+      "seeds": []
+    },
+    {
+      "role": 1,
+      "rep": 8,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729100829
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 14,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729101429
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 0,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729500029
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 12,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729501229
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 5,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729500529
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 19,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729501929
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 7,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729500729
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 2,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729500229
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 9,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729500929
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 6,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729500629
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 4,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729500429
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 10,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729501029
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 15,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729501529
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 14,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729501429
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 13,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729501329
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 16,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729501629
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 12,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "pick up newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 31,
+      "refeed_div": 0,
+      "seeds": [
+        601729101229,
+        601729101230
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 11,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729501129
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 18,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729501829
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 1,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true
+      ],
+      "won": true,
+      "len": 30,
+      "refeed_div": 0,
+      "seeds": [
+        601729500129
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 2,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 31,
+      "refeed_div": 0,
+      "seeds": [
+        601729300229,
+        601729300230
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 19,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 31,
+      "refeed_div": 0,
+      "seeds": [
+        601729101929,
+        601729101930
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 7,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 31,
+      "refeed_div": 0,
+      "seeds": [
+        601729300729,
+        601729300730
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 17,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 31,
+      "refeed_div": 0,
+      "seeds": [
+        601729501729,
+        601729501730
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 19,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine coffeetable 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 31,
+      "refeed_div": 0,
+      "seeds": [
+        601729301929,
+        601729301930
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 8,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "examine ottoman 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 31,
+      "refeed_div": 0,
+      "seeds": [
+        601729500829,
+        601729500830
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 18,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "inventory",
+        "examine ottoman 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 32,
+      "refeed_div": 0,
+      "seeds": [
+        601729301829,
+        601729301830,
+        601729301831
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 3,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 32,
+      "refeed_div": 0,
+      "seeds": [
+        601729300329,
+        601729300330,
+        601729300331
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 15,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "go to ottoman 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 32,
+      "refeed_div": 0,
+      "seeds": [
+        601729201529,
+        601729201530,
+        601729201531
+      ]
+    },
+    {
+      "role": 5,
+      "rep": 3,
+      "first_action": "inventory",
+      "actions": [
+        "inventory",
+        "examine ottoman 1",
+        "examine ottoman 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 32,
+      "refeed_div": 0,
+      "seeds": [
+        601729500329,
+        601729500330,
+        601729500331
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 14,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "look",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 32,
+      "refeed_div": 0,
+      "seeds": [
+        601729301429,
+        601729301430,
+        601729301431
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 13,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "examine coffeetable 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 32,
+      "refeed_div": 0,
+      "seeds": [
+        601729301329,
+        601729301330,
+        601729301331
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 0,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine coffeetable 1",
+        "look",
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 33,
+      "refeed_div": 0,
+      "seeds": [
+        601729300029,
+        601729300030,
+        601729300031,
+        601729300032
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 9,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine ottoman 1",
+        "examine drawer 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 33,
+      "refeed_div": 0,
+      "seeds": [
+        601729300929,
+        601729300930,
+        601729300931,
+        601729300932
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 17,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to coffeetable 1",
+        "examine newspaper 1",
+        "inventory",
+        "go to ottoman 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 35,
+      "refeed_div": 0,
+      "seeds": [
+        601729201729,
+        601729201730,
+        601729201731,
+        601729201732,
+        601729201733,
+        601729201734
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 11,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine drawer 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 36,
+      "refeed_div": 0,
+      "seeds": [
+        601729201129,
+        601729201130,
+        601729201131,
+        601729201132,
+        601729201133,
+        601729201134,
+        601729201135
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 8,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 36,
+      "refeed_div": 0,
+      "seeds": [
+        601729200829,
+        601729200830,
+        601729200831,
+        601729200832,
+        601729200833,
+        601729200834,
+        601729200835
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 6,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "examine ottoman 1",
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 36,
+      "refeed_div": 0,
+      "seeds": [
+        601729100629,
+        601729100630,
+        601729100631,
+        601729100632,
+        601729100633,
+        601729100634,
+        601729100635
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 14,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine coffeetable 1",
+        "examine ottoman 1",
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 37,
+      "refeed_div": 0,
+      "seeds": [
+        601729201429,
+        601729201430,
+        601729201431,
+        601729201432,
+        601729201433,
+        601729201434,
+        601729201435,
+        601729201436
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 9,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine ottoman 1",
+        "examine coffeetable 2",
+        "go to drawer 1",
+        "go to armchair 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 37,
+      "refeed_div": 0,
+      "seeds": [
+        601729200929,
+        601729200930,
+        601729200931,
+        601729200932,
+        601729200933,
+        601729200934,
+        601729200935,
+        601729200936
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 6,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "examine ottoman 1",
+        "look",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 37,
+      "refeed_div": 0,
+      "seeds": [
+        601729300629,
+        601729300630,
+        601729300631,
+        601729300632,
+        601729300633,
+        601729300634,
+        601729300635,
+        601729300636
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 16,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "close drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "examine newspaper 1",
+        "go to ottoman 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 39,
+      "refeed_div": 0,
+      "seeds": [
+        601729201629,
+        601729201630,
+        601729201631,
+        601729201632,
+        601729201633,
+        601729201634,
+        601729201635,
+        601729201636,
+        601729201637,
+        601729201638
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 5,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "move newspaper 1 to ottoman 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 42,
+      "refeed_div": 0,
+      "seeds": [
+        601729200529,
+        601729200530,
+        601729200531,
+        601729200532,
+        601729200533,
+        601729200534,
+        601729200535,
+        601729200536,
+        601729200537,
+        601729200538,
+        601729200539,
+        601729200540,
+        601729200541
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 0,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "inventory",
+        "go to ottoman 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 43,
+      "refeed_div": 0,
+      "seeds": [
+        601729200029,
+        601729200030,
+        601729200031,
+        601729200032,
+        601729200033,
+        601729200034,
+        601729200035,
+        601729200036,
+        601729200037,
+        601729200038,
+        601729200039,
+        601729200040,
+        601729200041,
+        601729200042
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 15,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to ottoman 1",
+        "go to drawer 1",
+        "examine ottoman 1",
+        "examine drawer 1",
+        "examine drawer 1",
+        "examine drawer 2",
+        "examine ottoman 1",
+        "examine drawer 2",
+        "examine newspaper 1",
+        "go to ottoman 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 42,
+      "refeed_div": 0,
+      "seeds": [
+        601729301529,
+        601729301530,
+        601729301531,
+        601729301532,
+        601729301533,
+        601729301534,
+        601729301535,
+        601729301536,
+        601729301537,
+        601729301538,
+        601729301539,
+        601729301540,
+        601729301541
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 12,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to drawer 2",
+        "examine drawer 2",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 44,
+      "refeed_div": 0,
+      "seeds": [
+        601729201229,
+        601729201230,
+        601729201231,
+        601729201232,
+        601729201233,
+        601729201234,
+        601729201235,
+        601729201236,
+        601729201237,
+        601729201238,
+        601729201239,
+        601729201240,
+        601729201241,
+        601729201242,
+        601729201243
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 10,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine ottoman 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "examine drawer 1",
+        "go to ottoman 1",
+        "examine newspaper 1",
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "examine newspaper 1",
+        "go to ottoman 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 44,
+      "refeed_div": 0,
+      "seeds": [
+        601729201029,
+        601729201030,
+        601729201031,
+        601729201032,
+        601729201033,
+        601729201034,
+        601729201035,
+        601729201036,
+        601729201037,
+        601729201038,
+        601729201039,
+        601729201040,
+        601729201041,
+        601729201042,
+        601729201043
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 8,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "examine newspaper 1",
+        "examine drawer 1",
+        "close drawer 1",
+        "examine newspaper 1",
+        "examine drawer 1",
+        "go to ottoman 1",
+        "look",
+        "examine ottoman 1",
+        "look",
+        "examine ottoman 1",
+        "look",
+        "go to coffeetable 1",
+        "inventory",
+        "go to ottoman 1",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 47,
+      "refeed_div": 0,
+      "seeds": [
+        601729300829,
+        601729300830,
+        601729300831,
+        601729300832,
+        601729300833,
+        601729300834,
+        601729300835,
+        601729300836,
+        601729300837,
+        601729300838,
+        601729300839,
+        601729300840,
+        601729300841,
+        601729300842,
+        601729300843,
+        601729300844,
+        601729300845,
+        601729300846
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 1,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to ottoman 1",
+        "go to drawer 2",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "go to drawer 2",
+        "go to drawer 1",
+        "examine drawer 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729200129,
+        601729200130,
+        601729200131,
+        601729200132,
+        601729200133,
+        601729200134,
+        601729200135,
+        601729200136,
+        601729200137,
+        601729200138,
+        601729200139,
+        601729200140,
+        601729200141,
+        601729200142,
+        601729200143,
+        601729200144,
+        601729200145,
+        601729200146,
+        601729200147,
+        601729200148,
+        601729200149
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 17,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to drawer 2",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "examine drawer 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729301729,
+        601729301730,
+        601729301731,
+        601729301732,
+        601729301733,
+        601729301734,
+        601729301735,
+        601729301736,
+        601729301737,
+        601729301738,
+        601729301739,
+        601729301740,
+        601729301741,
+        601729301742,
+        601729301743,
+        601729301744,
+        601729301745,
+        601729301746,
+        601729301747,
+        601729301748,
+        601729301749
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 13,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to ottoman 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to drawer 2",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729201329,
+        601729201330,
+        601729201331,
+        601729201332,
+        601729201333,
+        601729201334,
+        601729201335,
+        601729201336,
+        601729201337,
+        601729201338,
+        601729201339,
+        601729201340,
+        601729201341,
+        601729201342,
+        601729201343,
+        601729201344,
+        601729201345,
+        601729201346,
+        601729201347,
+        601729201348,
+        601729201349
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 6,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine newspaper 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to armchair 1",
+        "examine armchair 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to drawer 1",
+        "go to drawer 2"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729200629,
+        601729200630,
+        601729200631,
+        601729200632,
+        601729200633,
+        601729200634,
+        601729200635,
+        601729200636,
+        601729200637,
+        601729200638,
+        601729200639,
+        601729200640,
+        601729200641,
+        601729200642,
+        601729200643,
+        601729200644,
+        601729200645,
+        601729200646,
+        601729200647,
+        601729200648,
+        601729200649
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 3,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine coffeetable 1",
+        "examine drawer 1",
+        "examine ottoman 1",
+        "examine drawer 1",
+        "go to drawer 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "go to ottoman 1",
+        "inventory",
+        "move newspaper 1 to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true,
+      "len": 47,
+      "refeed_div": 0,
+      "seeds": [
+        601729200329,
+        601729200330,
+        601729200331,
+        601729200332,
+        601729200333,
+        601729200334,
+        601729200335,
+        601729200336,
+        601729200337,
+        601729200338,
+        601729200339,
+        601729200340,
+        601729200341,
+        601729200342,
+        601729200343,
+        601729200344,
+        601729200345,
+        601729200346
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 16,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 2",
+        "go to drawer 2",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to drawer 3",
+        "examine drawer 3",
+        "examine newspaper 1",
+        "examine drawer 3",
+        "examine drawer 3"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729301629,
+        601729301630,
+        601729301631,
+        601729301632,
+        601729301633,
+        601729301634,
+        601729301635,
+        601729301636,
+        601729301637,
+        601729301638,
+        601729301639,
+        601729301640,
+        601729301641,
+        601729301642,
+        601729301643,
+        601729301644,
+        601729301645,
+        601729301646,
+        601729301647,
+        601729301648,
+        601729301649
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 2,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "open drawer 3",
+        "examine newspaper 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729200229,
+        601729200230,
+        601729200231,
+        601729200232,
+        601729200233,
+        601729200234,
+        601729200235,
+        601729200236,
+        601729200237,
+        601729200238,
+        601729200239,
+        601729200240,
+        601729200241,
+        601729200242,
+        601729200243,
+        601729200244,
+        601729200245,
+        601729200246,
+        601729200247,
+        601729200248,
+        601729200249
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 11,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "go to coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine newspaper 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 2",
+        "examine coffeetable 2",
+        "go to drawer 1",
+        "examine drawer 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729301129,
+        601729301130,
+        601729301131,
+        601729301132,
+        601729301133,
+        601729301134,
+        601729301135,
+        601729301136,
+        601729301137,
+        601729301138,
+        601729301139,
+        601729301140,
+        601729301141,
+        601729301142,
+        601729301143,
+        601729301144,
+        601729301145,
+        601729301146,
+        601729301147,
+        601729301148,
+        601729301149
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 7,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "examine drawer 1",
+        "examine coffeetable 1",
+        "examine drawer 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 2"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729100729,
+        601729100730,
+        601729100731,
+        601729100732,
+        601729100733,
+        601729100734,
+        601729100735,
+        601729100736,
+        601729100737,
+        601729100738,
+        601729100739,
+        601729100740,
+        601729100741,
+        601729100742,
+        601729100743,
+        601729100744,
+        601729100745,
+        601729100746,
+        601729100747,
+        601729100748,
+        601729100749
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 7,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine ottoman 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "open drawer 3",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to drawer 2",
+        "go to drawer 1",
+        "go to ottoman 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to ottoman 1",
+        "go to drawer 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729200729,
+        601729200730,
+        601729200731,
+        601729200732,
+        601729200733,
+        601729200734,
+        601729200735,
+        601729200736,
+        601729200737,
+        601729200738,
+        601729200739,
+        601729200740,
+        601729200741,
+        601729200742,
+        601729200743,
+        601729200744,
+        601729200745,
+        601729200746,
+        601729200747,
+        601729200748,
+        601729200749
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 4,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine drawer 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "move newspaper 1 to ottoman 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729300429,
+        601729300430,
+        601729300431,
+        601729300432,
+        601729300433,
+        601729300434,
+        601729300435,
+        601729300436,
+        601729300437,
+        601729300438,
+        601729300439,
+        601729300440,
+        601729300441,
+        601729300442,
+        601729300443,
+        601729300444,
+        601729300445,
+        601729300446,
+        601729300447,
+        601729300448,
+        601729300449
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 1,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "move newspaper 1 to ottoman 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to armchair 1",
+        "examine armchair 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729300129,
+        601729300130,
+        601729300131,
+        601729300132,
+        601729300133,
+        601729300134,
+        601729300135,
+        601729300136,
+        601729300137,
+        601729300138,
+        601729300139,
+        601729300140,
+        601729300141,
+        601729300142,
+        601729300143,
+        601729300144,
+        601729300145,
+        601729300146,
+        601729300147,
+        601729300148,
+        601729300149
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 4,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "go to sofa 1",
+        "examine sofa 1",
+        "go to ottoman 1",
+        "go to sofa 1",
+        "go to sofa 1",
+        "move newspaper 2 to ottoman 1",
+        "examine sofa 1",
+        "go to ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729200429,
+        601729200430,
+        601729200431,
+        601729200432,
+        601729200433,
+        601729200434,
+        601729200435,
+        601729200436,
+        601729200437,
+        601729200438,
+        601729200439,
+        601729200440,
+        601729200441,
+        601729200442,
+        601729200443,
+        601729200444,
+        601729200445,
+        601729200446,
+        601729200447,
+        601729200448,
+        601729200449
+      ]
+    },
+    {
+      "role": 1,
+      "rep": 10,
+      "first_action": "examine newspaper 1",
+      "actions": [
+        "examine newspaper 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to drawer 2",
+        "examine drawer 2",
+        "n>go to coffeetable 1</action>",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine ottoman 1",
+        "examine coffee table 1",
+        "examine newspaper 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "examine newspaper 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729101029,
+        601729101030,
+        601729101031,
+        601729101032,
+        601729101033,
+        601729101034,
+        601729101035,
+        601729101036,
+        601729101037,
+        601729101038,
+        601729101039,
+        601729101040,
+        601729101041,
+        601729101042,
+        601729101043,
+        601729101044,
+        601729101045,
+        601729101046,
+        601729101047,
+        601729101048,
+        601729101049
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 5,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "open drawer 3",
+        "examine drawer 3",
+        "examine drawer 3",
+        "go to drawer 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729300529,
+        601729300530,
+        601729300531,
+        601729300532,
+        601729300533,
+        601729300534,
+        601729300535,
+        601729300536,
+        601729300537,
+        601729300538,
+        601729300539,
+        601729300540,
+        601729300541,
+        601729300542,
+        601729300543,
+        601729300544,
+        601729300545,
+        601729300546,
+        601729300547,
+        601729300548,
+        601729300549
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 19,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine newspaper 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 2",
+        "go to drawer 1",
+        "go to drawer 3",
+        "open drawer 3",
+        "go to drawer 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729201929,
+        601729201930,
+        601729201931,
+        601729201932,
+        601729201933,
+        601729201934,
+        601729201935,
+        601729201936,
+        601729201937,
+        601729201938,
+        601729201939,
+        601729201940,
+        601729201941,
+        601729201942,
+        601729201943,
+        601729201944,
+        601729201945,
+        601729201946,
+        601729201947,
+        601729201948,
+        601729201949
+      ]
+    },
+    {
+      "role": 2,
+      "rep": 18,
+      "first_action": "go to coffeetable 1",
+      "actions": [
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "go to drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "ion> go to drawer 1 </action>'"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729201829,
+        601729201830,
+        601729201831,
+        601729201832,
+        601729201833,
+        601729201834,
+        601729201835,
+        601729201836,
+        601729201837,
+        601729201838,
+        601729201839,
+        601729201840,
+        601729201841,
+        601729201842,
+        601729201843,
+        601729201844,
+        601729201845,
+        601729201846,
+        601729201847,
+        601729201848,
+        601729201849
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 12,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "go to drawer 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to drawer 1",
+        "examine drawer 2",
+        "go to ottoman 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "examine drawer 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to drawer 1",
+        "go to ottoman 1",
+        "go to drawer 1",
+        "examine drawer 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729301229,
+        601729301230,
+        601729301231,
+        601729301232,
+        601729301233,
+        601729301234,
+        601729301235,
+        601729301236,
+        601729301237,
+        601729301238,
+        601729301239,
+        601729301240,
+        601729301241,
+        601729301242,
+        601729301243,
+        601729301244,
+        601729301245,
+        601729301246,
+        601729301247,
+        601729301248,
+        601729301249
+      ]
+    },
+    {
+      "role": 3,
+      "rep": 10,
+      "first_action": "examine ottoman 1",
+      "actions": [
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "go to armchair 1",
+        "examine armchair 1",
+        "go to coffeetable 1",
+        "examine armchair 1",
+        "examine armchair 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "go to coffeetable 1",
+        "go to ottoman 1",
+        "examine ottoman 1",
+        "examine newspaper 1",
+        "go to coffeetable 1",
+        "examine coffeetable 1",
+        "examine newspaper 1",
+        "go to drawer 1",
+        "examine newspaper 1",
+        "go to ottoman 1",
+        "examine ottoman 1"
+      ],
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false,
+      "len": 50,
+      "refeed_div": 0,
+      "seeds": [
+        601729301029,
+        601729301030,
+        601729301031,
+        601729301032,
+        601729301033,
+        601729301034,
+        601729301035,
+        601729301036,
+        601729301037,
+        601729301038,
+        601729301039,
+        601729301040,
+        601729301041,
+        601729301042,
+        601729301043,
+        601729301044,
+        601729301045,
+        601729301046,
+        601729301047,
+        601729301048,
+        601729301049
+      ]
+    }
+  ],
+  "provenance": {
+    "script": "scripts/11_replay.py",
+    "commit": "63cf1c987f16c1183374e1a6cfaf4d468524dc24",
+    "scripts_dirty": false,
+    "argv": [
+      "11_replay.py",
+      "--engine",
+      "async",
+      "--bank",
+      "6",
+      "--points",
+      "live",
+      "--seeds",
+      "0-99",
+      "--subset_file",
+      "/root/autodl-tmp/idea/eval/gold_points.json",
+      "--n_rep",
+      "20",
+      "--out_root",
+      "/root/autodl-tmp/idea/data/replay_gold"
+    ],
+    "time": "2026-10-26T12:52:00+0800",
+    "inputs": {
+      "data/rollout/s000.json": "5b5e9b7e0e625071ac1445f2ae060a037247a642e1a751736d073b9f8af88803",
+      "data/rollout/s001.json": "78c959fe1c2b3a545d3cedf3688489c1de1264b820c2b969a2fe8291e727ca90",
+      "data/rollout/s002.json": "9ce2dda5be4b6a8377341497d7e186e8dc743ba0e1a03e025e1ff602b79cdd99",
+      "data/rollout/s003.json": "b1828e41d0917f59bea17afb0ff4ddad461d9f5085c5860d6ddcd64d3fad31d7",
+      "data/rollout/s004.json": "75b1d8c4b49415d0442458e86ec86997d15aaa9669ffca90a6e8d78c52447e97",
+      "data/rollout/s005.json": "6fdb321192aba0cc85da4ffa39f90377adee2419074e83e6db8a7ab314ca95dd",
+      "data/rollout/s006.json": "9d34f06f9e6dfe846b576d3635de343353703fb079a4fde6b4220c11e79d9286",
+      "data/rollout/s007.json": "41affea33bafff774d7c611eed96a883ac64e78313eb84b25da4b7217e78313b",
+      "data/rollout/s008.json": "c7cf393ff2f64043b566d4e1e3f1ec53d7cd5fbf6e7f749440ea4650f74c4481",
+      "data/rollout/s009.json": "830c6aa8f523542e2c1d97ebd937f8185960d9cc30fa86733e5a4db92f0eebd4",
+      "data/rollout/s010.json": "51ff25dec43a2ab39bc9d14ba33e43b22e8543e1390f1b97bffdae8b36888c30",
+      "data/rollout/s011.json": "297dfce12dc173937ec9043ca2427ad23e0164389cdbef71fb4891e12beb43db",
+      "data/rollout/s012.json": "faf8483ebd27261d0fa2cc076c0d6de743a01ed9d061a719abf73448291247ba",
+      "data/rollout/s013.json": "20636a7377a30d589f4182b200f3426c403a338df58c3559d75a50d4f1b60a61",
+      "data/rollout/s014.json": "79a6dd7de7af05500aa20b4f6a8db8d21f9207a91dbffa2d4f565948521f0a61",
+      "data/rollout/s015.json": "a4433176337899ac3de5ae18c7621e45c23488a7c60a6f4a6b380c6c0dde8ffd",
+      "data/rollout/s016.json": "3d69bda4399b2a01c69f58124f878b15d1c5801b9be3f22a1e681befde7b090d",
+      "data/rollout/s017.json": "fd8a9493f4d4e8385e3d9158a4def4c8892bbdf6dfa656df32aac27f5da36b8f",
+      "data/rollout/s018.json": "5fd34f15ca9f2f7e00207031f35025fa0279323697ca39cb29fec898979e6b45",
+      "data/rollout/s019.json": "c8a586a1a0eb9264434f31b53d2acdf72279784322d7610362f668a7570e2fb2",
+      "data/rollout/s020.json": "c6403d3b4b2a7379675d1cfba453fb2e7373c3fbc1fb4e4e4a76ecd83852cb6f",
+      "data/rollout/s021.json": "2be3fb130b00b5aa1ad6960dae09aab09cf48ef5a4597d2f7cb7a43d488998bf",
+      "data/rollout/s022.json": "3e490d12f594271cbe1ef19623dfee49294ca8c016221e94a2a0f8c1582fdcef",
+      "data/rollout/s023.json": "0bf12776fb10297da47f14b136fa31f56ed0c0e7f6d2fb670a55c59f2d9e508c",
+      "data/rollout/s024.json": "9a4703bdfcb43221b6d235e069f870b9831ebff692c7c0a42223ec18d7c5b509",
+      "data/rollout/s025.json": "83de3640ecbaa36f96f152e7e2abce6493578f625e941b0c5c2a7b8d661e8d0f",
+      "data/rollout/s026.json": "be4b7059534fa22b76cf3ade06d95b47d55f248a630ae8f82629166fafe90ac4",
+      "data/rollout/s027.json": "fb06757978d1cf3130932548c57d9738c942204affd72fcac98fc892b8ead86a",
+      "data/rollout/s028.json": "26408fb32e639dbcd38e596f3475bf52536a1f6e6ab4c137fe5e1c8816e2ed9c",
+      "data/rollout/s029.json": "a03a07547b71dae163b75d08171b88652605db94a6b1db98e0774c73e9a186ca",
+      "data/rollout/s030.json": "fe245117fde249c0760b77062c99bafbf2bb8bdfa087b6a48d2ad4d7e8dce2ab",
+      "data/rollout/s031.json": "287ccd41006c45f11184a494d89391aa3415423c73d3a9ed490be0a2ff1d7a56",
+      "data/rollout/s032.json": "b91ec5fe09249d3b0094cf4c944fdbe0d353261d9611144c7748e79d4ef3b0f2",
+      "data/rollout/s033.json": "60be3c255e773ce04aafa0863b6224002ea2f06943920fc6a2890b256daa6e9d",
+      "data/rollout/s034.json": "08ec6025aa01527be1375063f7866b77e51e6344dc2099163d3cde5afdc4149b",
+      "data/rollout/s035.json": "976117e60935303c85d9fe97730baec8ff4193cc4c1e249119ad7ddda380e5e8",
+      "data/rollout/s036.json": "433f5d5c260d009d5edc6a64b14e71a1d5f25ee4be88aae6f5437611b54fe560",
+      "data/rollout/s037.json": "90ef4054b529e43bd5906d9c8643c9fb110902e5614d3c142107475a043dbb54",
+      "data/rollout/s038.json": "3d07e4b1b17bae83e350f9b0b69a7eb2551f272fc0f69ae81d5894d8fd5c954c",
+      "data/rollout/s039.json": "e98a62824ac9f035367d2e6f57d9c18ebcde7141b2bca0657bd6fd064833159b",
+      "data/rollout/s040.json": "601b6d14f1245008b56c5cdb10cba7b817b3451a0d6a3eb1f702531006701c8b",
+      "data/rollout/s041.json": "10286180aed0ef0c17efb45dc990ad620a865df844efe4f8662aaa2dc45b3c1d",
+      "data/rollout/s042.json": "545f5bdcd526c8c92edc17b1310f09e765164e87978abd24a0483209990ac7c9",
+      "data/rollout/s043.json": "a8c101cc74476a3a32dc986f22ce8ab340ae791225cd679fad42e1702129f2dc",
+      "data/rollout/s044.json": "c9de6fe6c831c7225e3fcf6086b031938f787045c4d351ac59f2e58414c19aa1",
+      "data/rollout/s045.json": "c0030a66492759507af273d40428a586198827467d8ae6cdb225eca953b1d4a5",
+      "data/rollout/s046.json": "2f0447d879388dbcb598f64b6c55d7ed01b498344b62094fbbd912dfb0aed202",
+      "data/rollout/s047.json": "c689e848ea6fe34a7cbc20d7abe700a23ee57f165b3c2e5cf429fa17e0d166a6",
+      "data/rollout/s048.json": "765fccd8d463ac0bed470c8f1ff9e951bf5e038b206322a14a74e4de05535044",
+      "data/rollout/s049.json": "f0ff0e4d0f625e5acf065d8911b609f9e3ebda1faa29dff32b7d832249566df6",
+      "data/rollout/s050.json": "edd56f07ab6db80f87a00dc24bb96651a1d1f305ebcedc462191ade10a477b64",
+      "data/rollout/s051.json": "6b70dc8b1b1ca1138b07b906bb3bb43920f8a915f6f7d6e09975e015700fe281",
+      "data/rollout/s052.json": "8da48e2309335626dfcedbbf55ef5c1c688a427e2caaf5e75ab1e9a1927a4a6f",
+      "data/rollout/s053.json": "42e41ac503535c37359858496ce8f112e632898f602924c279c4967b5b5ff3c3",
+      "data/rollout/s054.json": "4abb2d3574e46c669a1517f2fb6078229b284f8357cd4cced65f735a98146a23",
+      "data/rollout/s055.json": "ee7583e826db8a1534bb4a4fc1790d5e2e847a64ccf13e18c9ecc5842b979463",
+      "data/rollout/s056.json": "54276a93a5cc9a02968c44a2bb1add65875213c0b21a9a6b253d3452a54c0645",
+      "data/rollout/s057.json": "74ed1dc70818fdd591771c9509824d611a01c9dbcab4f396eab173d13a1a4056",
+      "data/rollout/s058.json": "f18117b1f2f33ac610b102fbfc2af40dccb11132887fc4f32de823f0bc55f81e",
+      "data/rollout/s059.json": "40802ae0ed177445720ddff19898de5a4dee907b8c94aba04df67b4b8ba0cdb6",
+      "data/rollout/s060.json": "dc2b72ad36b8da485417ed7acb05b9498fbd4e7e1e420b314d9ae35a5ba5fadd",
+      "data/rollout/s061.json": "2e726a2fc1ed557d6f34fe387b6e90bee5a95edcd43c69412be5e2ddcdb9f1e7",
+      "data/rollout/s062.json": "db296a101fd5b78609f29dd3ba2bed0f282a13403fbd555cd3caa3e02d253e3b",
+      "data/rollout/s063.json": "d298e91bffb5524be10a867487c643f1f25be33ecc50240b5f5b151613949920",
+      "data/rollout/s064.json": "c605a2d7a1980dbccd243f6de3f8693e1c7c1a244167bce0bf8d4cad8055dea5",
+      "data/rollout/s065.json": "e3cce01e1b428b7426c0d05f6acb495c9390b17c82b103224a97329a337fb3cc",
+      "data/rollout/s066.json": "b00f89e9127e2241136d1cfcb5b4b3fcfea8a57ec7590f4db18bde08f2cf4b31",
+      "data/rollout/s067.json": "5194cd560585f6ec82027011d0e9e56b643dbf5eff5dae7dcf2c92114eb8b924",
+      "data/rollout/s068.json": "366b05b727440358acf4457190064144a6109661f905101f839763ffe511e0e8",
+      "data/rollout/s069.json": "802eca6e83574c1ff9914356e5c7853ed290ad4005393be67caab03b6cf903f0",
+      "data/rollout/s070.json": "86f13325f7dd4d360632945bffabb51eebc3fb8b0b8a54487df5e6969077d2a1",
+      "data/rollout/s071.json": "c5dddc6d14bb8619466702dc1b073c848139847d4a96458587784c9e5d95ee5d",
+      "data/rollout/s072.json": "ad78ff68405365626fd1147b2ea22a6bdb70e63614b03879b3171c1be437af23",
+      "data/rollout/s073.json": "a01a98cae9fe3c7a67892f2a5b83a0572bc3b64cb5e7fef9732717c135ea9cf3",
+      "data/rollout/s074.json": "4f175b88b2c6ec95c93fb93b076776561c87c03ec2b57c9f162ad395bcc0063c",
+      "data/rollout/s075.json": "9665369050917899ffbcdbb80c3a5fc448a48aca8310a6dc31398e940c81b5d0",
+      "data/rollout/s076.json": "7a52bd691e28645f8d2a56e123a26bb6fce10d845112cd6acd1ec0b00e895324",
+      "data/rollout/s077.json": "e05e9bbe14b6e37f2c4faaeae2a57c513f541205237a409a1288ef79d3dffff9",
+      "data/rollout/s078.json": "5923184b08daf59679ba4949c22b5e4b3ff57ca8d232d561a8e5769dfabde0d0",
+      "data/rollout/s079.json": "48f79cff98b0c206d5394dd1a440b7f22cd81461a42e60c582c4db937ccb8ec0",
+      "data/rollout/s080.json": "8ee6837850ec25c95af1cfc820effcc5f977af25ae51c0314fea95e00078a3b5",
+      "data/rollout/s081.json": "d9470bd8c7f055b484872e2c328a505b896ec13b7b0845be0287b5dfe82da77b",
+      "data/rollout/s082.json": "a28b8d51506b90a8dc954c2d52538caba42ed87ec5e87309fbbbd181b4733e05",
+      "data/rollout/s083.json": "364bbb69d304a025dd95d714ef375dfa92c906320373b72544369e20b69f1e3c",
+      "data/rollout/s084.json": "c0b8b3c8c4819e16e335cc844c78431ede035f71cd6747d2c5a40f915de72148",
+      "data/rollout/s085.json": "d19e6481dc8461165df66398fdd5e741e53beebe2873a7c7ddb666a75406249f",
+      "data/rollout/s086.json": "54193e555f830a6a1530e76d5b5d90039fd69a3630befa5d7a77d09b0b497dc8",
+      "data/rollout/s087.json": "f5ff6b3fddc4403ed43f63b58da2f9e9f40d9b709fdb391b80e63f58d15d131b",
+      "data/rollout/s088.json": "7204d6ec203650e4126595c0b9c6f987ace1c74ab165eb65d42b0bac7ddb0ee8",
+      "data/rollout/s089.json": "9685488de239bcb59cf7a7f3d46ef588a9b2a9e764dd0b86c476426feae10c72",
+      "data/rollout/s090.json": "c1983efca526d54f6d1d53efd412aa749b466bf4ce7b4e39fa260b1656883310",
+      "data/rollout/s091.json": "61071c21217200c6e5c1353a563180bd4de1d65ddf5e272a2ad6c568858023d2",
+      "data/rollout/s092.json": "bd4d062b24f5d3c3e0686746d1e950d78695b15b4b379902cdf4d7df632f31fb",
+      "data/rollout/s093.json": "bb12c47b47233e90d895ff5720e5f0486833f3e73768c3173c12ebf4f84b8f7e",
+      "data/rollout/s094.json": "eab0f4823351f3f0d274fe3e30a3d038d89cb0c30ae1bb8d973c28356d55f75a",
+      "data/rollout/s095.json": "6398bacef08952c2a0d386eb90c4506190dd69b5612b14b8e532ef76c2305443",
+      "data/rollout/s096.json": "0553afa9ca61998f7e3dbfe6cdd85256d219f081188fc966949429656d54e744",
+      "data/rollout/s097.json": "fec802054f02d8abd090a3ae985a94f9a0e0b12aee9125c3367d745ff4b3a5f6",
+      "data/rollout/s098.json": "f7235d2455551e6c5ec3b162b25b847d4866a466300aa64439e9ebf116e10605",
+      "data/rollout/s099.json": "5d4cf578803b67aaeb4e9f47cba4e78ba90eab23bf3fd25b968e0eddf464f564"
+    },
+    "vllm": "0.32.0",
+    "bank": 6,
+    "points": "live",
+    "n_rep": 20,
+    "no_factual": false,
+    "subset_file": {
+      "path": "eval/gold_points.json",
+      "sha256": "f37c4aa20f8e2586b846eeb9e424298382e3c050f175833f31c2d3045050f95b",
+      "n": 300
+    },
+    "seed_offset": 600000000000,
+    "engine": "async"
+  },
+  "alternatives_source": {
+    "path": "data/replay/s017/t29.json",
+    "sha256": "00c020b034258078608747dd5051e2e300729a2096b46af27fc9e4b895f6ded7"
+  }
+}

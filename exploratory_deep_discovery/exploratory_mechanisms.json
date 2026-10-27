@@ -1,0 +1,828 @@
+{
+  "matched_world": {
+    "all_mixed": {
+      "n_pairs": 4506,
+      "n_points": 937,
+      "12": {
+        "n": 937,
+        "n_traj": 75,
+        "mean": 0.1567650895292304,
+        "ci95": [
+          0.10337426982527802,
+          0.22203464863756728
+        ]
+      },
+      "3456": {
+        "n": 937,
+        "n_traj": 75,
+        "mean": 0.15597948535515238,
+        "ci95": [
+          0.10230065471738282,
+          0.22104922886437317
+        ]
+      },
+      "gold": {
+        "n": 204,
+        "n_traj": 54,
+        "mean": 0.1866625816993464,
+        "ci95": [
+          0.10999581655578898,
+          0.2851780122628066
+        ]
+      }
+    },
+    "same_facts": {
+      "n_pairs": 337,
+      "n_points": 257,
+      "12": {
+        "n": 257,
+        "n_traj": 30,
+        "mean": 0.05155642023346303,
+        "ci95": [
+          0.022843943871981257,
+          0.08018292682926832
+        ]
+      },
+      "3456": {
+        "n": 257,
+        "n_traj": 30,
+        "mean": 0.05371811500216169,
+        "ci95": [
+          0.0282148525600289,
+          0.07909346117414351
+        ]
+      },
+      "gold": {
+        "n": 55,
+        "n_traj": 21,
+        "mean": 0.04666666666666667,
+        "ci95": [
+          0.018128162955465585,
+          0.0735014423076923
+        ]
+      }
+    },
+    "neither_changes_facts": {
+      "n_pairs": 337,
+      "n_points": 257,
+      "12": {
+        "n": 257,
+        "n_traj": 30,
+        "mean": 0.05155642023346303,
+        "ci95": [
+          0.022843943871981257,
+          0.08018292682926832
+        ]
+      },
+      "3456": {
+        "n": 257,
+        "n_traj": 30,
+        "mean": 0.05371811500216169,
+        "ci95": [
+          0.0282148525600289,
+          0.07909346117414351
+        ]
+      },
+      "gold": {
+        "n": 55,
+        "n_traj": 21,
+        "mean": 0.04666666666666667,
+        "ci95": [
+          0.018128162955465585,
+          0.0735014423076923
+        ]
+      }
+    },
+    "same_facts_known_prompt": {
+      "n_pairs": 335,
+      "n_points": 255,
+      "12": {
+        "n": 255,
+        "n_traj": 30,
+        "mean": 0.05130718954248366,
+        "ci95": [
+          0.021887164189719647,
+          0.08016023017373032
+        ]
+      },
+      "3456": {
+        "n": 255,
+        "n_traj": 30,
+        "mean": 0.05250544662309368,
+        "ci95": [
+          0.025676983556832695,
+          0.07895669070097176
+        ]
+      },
+      "gold": {
+        "n": 54,
+        "n_traj": 21,
+        "mean": 0.047530864197530866,
+        "ci95": [
+          0.01846376050420168,
+          0.07399999999999998
+        ]
+      }
+    },
+    "same_facts_new_prompt": {
+      "n_pairs": 2,
+      "n_points": 2,
+      "12": {
+        "n": 2,
+        "n_traj": 1,
+        "mean": 0.08333333333333333,
+        "ci95": [
+          0.08333333333333333,
+          0.08333333333333333
+        ]
+      },
+      "3456": {
+        "n": 2,
+        "n_traj": 1,
+        "mean": 0.20833333333333334,
+        "ci95": [
+          0.20833333333333334,
+          0.20833333333333334
+        ]
+      },
+      "gold": {
+        "n": 1,
+        "n_traj": 1,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "same_facts_same_action_type": {
+      "n_pairs": 288,
+      "n_points": 232,
+      "12": {
+        "n": 232,
+        "n_traj": 25,
+        "mean": 0.0589080459770115,
+        "ci95": [
+          0.029475298508279436,
+          0.09131228226989366
+        ]
+      },
+      "3456": {
+        "n": 232,
+        "n_traj": 25,
+        "mean": 0.05657327586206897,
+        "ci95": [
+          0.027642276422764234,
+          0.08429888788244769
+        ]
+      },
+      "gold": {
+        "n": 52,
+        "n_traj": 18,
+        "mean": 0.05480769230769231,
+        "ci95": [
+          0.027154484592809974,
+          0.0848984375
+        ]
+      }
+    },
+    "non_manipulation": {
+      "n_pairs": 3521,
+      "n_points": 924,
+      "12": {
+        "n": 924,
+        "n_traj": 75,
+        "mean": 0.1471861471861472,
+        "ci95": [
+          0.09243664181245485,
+          0.21282978210944706
+        ]
+      },
+      "3456": {
+        "n": 924,
+        "n_traj": 75,
+        "mean": 0.1487193362193362,
+        "ci95": [
+          0.09501033252833985,
+          0.2134184931485516
+        ]
+      },
+      "gold": {
+        "n": 201,
+        "n_traj": 54,
+        "mean": 0.1761608623548922,
+        "ci95": [
+          0.09792336202773794,
+          0.2758605531482571
+        ]
+      }
+    },
+    "new_to_history": {
+      "n_pairs": 1324,
+      "n_points": 336,
+      "12": {
+        "n": 336,
+        "n_traj": 60,
+        "mean": 0.37607473544973546,
+        "ci95": [
+          0.281978325851797,
+          0.46973800035939434
+        ]
+      },
+      "3456": {
+        "n": 336,
+        "n_traj": 60,
+        "mean": 0.36786954365079366,
+        "ci95": [
+          0.27156343642979447,
+          0.4641156004739234
+        ]
+      },
+      "gold": {
+        "n": 85,
+        "n_traj": 42,
+        "mean": 0.43014705882352944,
+        "ci95": [
+          0.30820982142857145,
+          0.5358098458763733
+        ]
+      }
+    },
+    "known_to_history": {
+      "n_pairs": 3182,
+      "n_points": 635,
+      "12": {
+        "n": 635,
+        "n_traj": 49,
+        "mean": 0.03392388451443569,
+        "ci95": [
+          0.007246421417621198,
+          0.06219671391752578
+        ]
+      },
+      "3456": {
+        "n": 635,
+        "n_traj": 49,
+        "mean": 0.03710629921259843,
+        "ci95": [
+          0.011081106768322883,
+          0.06582340983489061
+        ]
+      },
+      "gold": {
+        "n": 125,
+        "n_traj": 33,
+        "mean": 0.010999999999999996,
+        "ci95": [
+          -0.02562776548672566,
+          0.05263822753272794
+        ]
+      }
+    }
+  },
+  "world_pair_cases": [
+    {
+      "traj_id": "s037",
+      "turn": 34,
+      "hi": 3,
+      "lo": 2,
+      "action_hi": "inventory",
+      "action_lo": "examine cabinet 5",
+      "obs_hi": "You are carrying: a knife 1.",
+      "obs_lo": "The cabinet 5 is open. In it, you see a mug 1, and a peppershaker 1.",
+      "same_facts": true,
+      "neither_changes_facts": true,
+      "neither_manipulates": true,
+      "same_action_type": false,
+      "hi_type": "inventory",
+      "lo_type": "examine",
+      "new_history": false,
+      "new_prompt": false,
+      "take_already_available": false,
+      "prompt_target": true,
+      "het": true,
+      "masked": true,
+      "diff_12": 0.16666666666666666,
+      "diff_34": 0.5,
+      "diff_56": 0.8333333333333334,
+      "diff_3456": 0.6666666666666666,
+      "diff_gold": NaN
+    },
+    {
+      "traj_id": "s019",
+      "turn": 29,
+      "hi": 1,
+      "lo": 2,
+      "action_hi": "examine plate 1",
+      "action_lo": "examine cabinet 1",
+      "obs_hi": "This is a normal plate 1. In it, you see nothing.",
+      "obs_lo": "The cabinet 1 is closed.",
+      "same_facts": true,
+      "neither_changes_facts": true,
+      "neither_manipulates": true,
+      "same_action_type": true,
+      "hi_type": "examine",
+      "lo_type": "examine",
+      "new_history": false,
+      "new_prompt": false,
+      "take_already_available": false,
+      "prompt_target": true,
+      "het": true,
+      "masked": true,
+      "diff_12": 0.6666666666666667,
+      "diff_34": 0.6666666666666667,
+      "diff_56": 0.5,
+      "diff_3456": 0.5833333333333334,
+      "diff_gold": NaN
+    },
+    {
+      "traj_id": "s097",
+      "turn": 38,
+      "hi": 2,
+      "lo": 0,
+      "action_hi": "examine toiletpaper 2",
+      "action_lo": "examine cabinet 1",
+      "obs_hi": "There's nothing special about toiletpaper 2.",
+      "obs_lo": "The cabinet 1 is open. In it, you see a spraybottle 1.",
+      "same_facts": true,
+      "neither_changes_facts": true,
+      "neither_manipulates": true,
+      "same_action_type": true,
+      "hi_type": "examine",
+      "lo_type": "examine",
+      "new_history": false,
+      "new_prompt": false,
+      "take_already_available": false,
+      "prompt_target": true,
+      "het": true,
+      "masked": false,
+      "diff_12": 0.16666666666666669,
+      "diff_34": 0.6666666666666666,
+      "diff_56": 0.5,
+      "diff_3456": 0.5833333333333333,
+      "diff_gold": 0.25
+    },
+    {
+      "traj_id": "s025",
+      "turn": 39,
+      "hi": 0,
+      "lo": 2,
+      "action_hi": "examine potato 1",
+      "action_lo": "examine countertop 1",
+      "obs_hi": "This is a cold potato 1.",
+      "obs_lo": "On the countertop 1, you see a butterknife 1, a fork 2, a pan 1, a peppershaker 2, a tomato 2, and a vase 2.",
+      "same_facts": true,
+      "neither_changes_facts": true,
+      "neither_manipulates": true,
+      "same_action_type": true,
+      "hi_type": "examine",
+      "lo_type": "examine",
+      "new_history": false,
+      "new_prompt": false,
+      "take_already_available": false,
+      "prompt_target": true,
+      "het": true,
+      "masked": false,
+      "diff_12": 0.33333333333333337,
+      "diff_34": 0.6666666666666666,
+      "diff_56": 0.3333333333333333,
+      "diff_3456": 0.5,
+      "diff_gold": NaN
+    },
+    {
+      "traj_id": "s064",
+      "turn": 21,
+      "hi": 1,
+      "lo": 0,
+      "action_hi": "examine book 3",
+      "action_lo": "examine sidetable 1",
+      "obs_hi": "There's nothing special about book 3.",
+      "obs_lo": "Nothing happens.",
+      "same_facts": true,
+      "neither_changes_facts": true,
+      "neither_manipulates": true,
+      "same_action_type": true,
+      "hi_type": "examine",
+      "lo_type": "examine",
+      "new_history": false,
+      "new_prompt": false,
+      "take_already_available": false,
+      "prompt_target": true,
+      "het": true,
+      "masked": true,
+      "diff_12": 0.16666666666666674,
+      "diff_34": 0.5,
+      "diff_56": 0.5,
+      "diff_3456": 0.5,
+      "diff_gold": NaN
+    },
+    {
+      "traj_id": "s014",
+      "turn": 10,
+      "hi": 1,
+      "lo": 3,
+      "action_hi": "examine book 2",
+      "action_lo": "examine desk 1",
+      "obs_hi": "There's nothing special about book 2.",
+      "obs_lo": "On the desk 1, you see a alarmclock 1, a bowl 2, a bowl 1, a creditcard 3, a keychain 1, a remotecontrol 2, and a remotecontrol 1.",
+      "same_facts": true,
+      "neither_changes_facts": true,
+      "neither_manipulates": true,
+      "same_action_type": true,
+      "hi_type": "examine",
+      "lo_type": "examine",
+      "new_history": false,
+      "new_prompt": false,
+      "take_already_available": false,
+      "prompt_target": true,
+      "het": true,
+      "masked": false,
+      "diff_12": 0.16666666666666666,
+      "diff_34": 0.16666666666666674,
+      "diff_56": 0.6666666666666667,
+      "diff_3456": 0.4166666666666667,
+      "diff_gold": NaN
+    },
+    {
+      "traj_id": "s062",
+      "turn": 36,
+      "hi": 4,
+      "lo": 0,
+      "action_hi": "examine box 1",
+      "action_lo": "examine shelf 1",
+      "obs_hi": "This is a normal box 1. In it, you see nothing.",
+      "obs_lo": "Nothing happens.",
+      "same_facts": true,
+      "neither_changes_facts": true,
+      "neither_manipulates": true,
+      "same_action_type": true,
+      "hi_type": "examine",
+      "lo_type": "examine",
+      "new_history": false,
+      "new_prompt": false,
+      "take_already_available": false,
+      "prompt_target": true,
+      "het": false,
+      "masked": false,
+      "diff_12": 0.0,
+      "diff_34": 0.5,
+      "diff_56": 0.16666666666666669,
+      "diff_3456": 0.33333333333333337,
+      "diff_gold": NaN
+    },
+    {
+      "traj_id": "s017",
+      "turn": 29,
+      "hi": 0,
+      "lo": 2,
+      "action_hi": "examine newspaper 1",
+      "action_lo": "examine ottoman 1",
+      "obs_hi": "There's nothing special about newspaper 1.",
+      "obs_lo": "On the ottoman 1, you see a box 1, a creditcard 3, a keychain 1, and a laptop 1.",
+      "same_facts": true,
+      "neither_changes_facts": true,
+      "neither_manipulates": true,
+      "same_action_type": true,
+      "hi_type": "examine",
+      "lo_type": "examine",
+      "new_history": false,
+      "new_prompt": false,
+      "take_already_available": false,
+      "prompt_target": true,
+      "het": true,
+      "masked": true,
+      "diff_12": 0.16666666666666674,
+      "diff_34": 0.33333333333333337,
+      "diff_56": 0.33333333333333337,
+      "diff_3456": 0.33333333333333337,
+      "diff_gold": 0.30000000000000004
+    }
+  ],
+  "samefacts_type_pairs": [
+    {
+      "hi_type": "clean",
+      "lo_type": "move",
+      "n": 3,
+      "discovery": 0.02777777777777779,
+      "bank12": -0.055555555555555546
+    },
+    {
+      "hi_type": "cool",
+      "lo_type": "examine",
+      "n": 4,
+      "discovery": 0.041666666666666644,
+      "bank12": 0.041666666666666664
+    },
+    {
+      "hi_type": "cool",
+      "lo_type": "goto",
+      "n": 1,
+      "discovery": -0.08333333333333333,
+      "bank12": 0.16666666666666666
+    },
+    {
+      "hi_type": "cool",
+      "lo_type": "move",
+      "n": 1,
+      "discovery": -0.08333333333333326,
+      "bank12": 0.0
+    },
+    {
+      "hi_type": "examine",
+      "lo_type": "examine",
+      "n": 288,
+      "discovery": 0.056134259259259266,
+      "bank12": 0.05555555555555555
+    },
+    {
+      "hi_type": "examine",
+      "lo_type": "goto",
+      "n": 6,
+      "discovery": -0.04166666666666668,
+      "bank12": 0.1111111111111111
+    },
+    {
+      "hi_type": "examine",
+      "lo_type": "inventory",
+      "n": 4,
+      "discovery": -0.02083333333333334,
+      "bank12": -0.16666666666666669
+    },
+    {
+      "hi_type": "examine",
+      "lo_type": "look",
+      "n": 6,
+      "discovery": 0.125,
+      "bank12": -0.027777777777777776
+    },
+    {
+      "hi_type": "examine",
+      "lo_type": "move",
+      "n": 7,
+      "discovery": -0.023809523809523826,
+      "bank12": -0.09523809523809525
+    },
+    {
+      "hi_type": "examine",
+      "lo_type": "put",
+      "n": 1,
+      "discovery": -0.08333333333333333,
+      "bank12": 0.16666666666666666
+    },
+    {
+      "hi_type": "examine",
+      "lo_type": "take",
+      "n": 2,
+      "discovery": 0.041666666666666664,
+      "bank12": 0.08333333333333333
+    },
+    {
+      "hi_type": "examine",
+      "lo_type": "use",
+      "n": 3,
+      "discovery": 0.16666666666666663,
+      "bank12": 0.22222222222222224
+    },
+    {
+      "hi_type": "heat",
+      "lo_type": "examine",
+      "n": 2,
+      "discovery": 0.08333333333333331,
+      "bank12": 0.16666666666666663
+    },
+    {
+      "hi_type": "inventory",
+      "lo_type": "examine",
+      "n": 9,
+      "discovery": 0.04629629629629631,
+      "bank12": 0.01851851851851852
+    }
+  ],
+  "masked_detailed": {
+    "sample_adv_exact_zero": {
+      "n": 305,
+      "n_traj": 53,
+      "mean": 0.04262295081967213,
+      "ci95": [
+        0.022011714700393946,
+        0.06569343065693431
+      ]
+    },
+    "small": {
+      "n": 305,
+      "n_traj": 53,
+      "mean": 0.36721311475409835,
+      "ci95": [
+        0.31612736085575793,
+        0.41463806760254096
+      ]
+    },
+    "sig_better": {
+      "n": 305,
+      "n_traj": 53,
+      "mean": 0.7475409836065574,
+      "ci95": [
+        0.6822098198188917,
+        0.8074080330330331
+      ]
+    },
+    "sig_worse": {
+      "n": 305,
+      "n_traj": 53,
+      "mean": 0.29180327868852457,
+      "ci95": [
+        0.2293850806451613,
+        0.3507719298245614
+      ]
+    },
+    "sig_both": {
+      "n": 305,
+      "n_traj": 53,
+      "mean": 0.10491803278688525,
+      "ci95": [
+        0.06319604774016827,
+        0.15054021918941274
+      ]
+    },
+    "gap_best": {
+      "n": 305,
+      "n_traj": 53,
+      "mean": 0.4292349726775957,
+      "ci95": [
+        0.3867781228870859,
+        0.47161867869256857
+      ]
+    },
+    "gap_worst": {
+      "n": 305,
+      "n_traj": 53,
+      "mean": 0.18633879781420765,
+      "ci95": [
+        0.16362009963907237,
+        0.20849443583347463
+      ]
+    },
+    "gain12": {
+      "n": 305,
+      "n_traj": 53,
+      "mean": 0.35792349726775957,
+      "ci95": [
+        0.2931333256775379,
+        0.4194350876995009
+      ]
+    },
+    "gainGold": {
+      "n": 53,
+      "n_traj": 28,
+      "mean": 0.35566037735849054,
+      "ci95": [
+        0.26153061224489793,
+        0.44286330049261086
+      ]
+    },
+    "gold_sig_better": {
+      "n": 53,
+      "n_traj": 28,
+      "mean": 0.6415094339622641,
+      "ci95": [
+        0.48769308943089434,
+        0.782626811594203
+      ]
+    },
+    "rank12": {
+      "n": 305,
+      "n_traj": 53,
+      "mean": 3.198360655737705,
+      "ci95": [
+        3.076084478657328,
+        3.320554216574155
+      ]
+    },
+    "rankGold": {
+      "n": 53,
+      "n_traj": 28,
+      "mean": 3.169811320754717,
+      "ci95": [
+        2.866054258241758,
+        3.467441215616682
+      ]
+    }
+  },
+  "masked_small": {
+    "false": {
+      "n": 38,
+      "n_traj": 27,
+      "mean": 0.34868421052631576,
+      "ci95": [
+        0.23855308880308881,
+        0.4583437500000001
+      ]
+    },
+    "true": {
+      "n": 15,
+      "n_traj": 10,
+      "mean": 0.37333333333333335,
+      "ci95": [
+        0.2791666666666667,
+        0.4730952380952382
+      ]
+    }
+  },
+  "logging_vs_peek": {
+    "logging": 0.5194930996484232,
+    "logging_plus_peek": 0.7065235871333369,
+    "logging_plus_take": 0.6518675552290497,
+    "factual_response": 0.515072676706722,
+    "factual_plus_counterfactual": 0.6887390460198353
+  },
+  "logging_vs_peek_ci": {
+    "logging": [
+      0.4813752919435501,
+      0.5566722467541695
+    ],
+    "logging_plus_peek": [
+      0.6431367412209511,
+      0.7578029096126556
+    ],
+    "logging_plus_take": [
+      0.5944544151425362,
+      0.7129095390439033
+    ],
+    "factual_response": [
+      0.4767632342875004,
+      0.5520586878061294
+    ],
+    "factual_plus_counterfactual": [
+      0.6291184574365616,
+      0.740171654522419
+    ]
+  },
+  "counterfactual_increment": {
+    "diff": 0.1736663693131133,
+    "ci95": [
+      0.1022985816001892,
+      0.24184325709939003
+    ]
+  },
+  "alignment_shuffle": {
+    "all_live_nonzero": 0.5989331670540219,
+    "null95": [
+      0.4876966158381044,
+      0.5444398560172328
+    ],
+    "B3": 0.6883503401360545,
+    "B3_null95": [
+      0.4272852891156462,
+      0.589717970521542
+    ]
+  },
+  "cwgt": {
+    "n": 172,
+    "n_traj": 43,
+    "C": {
+      "n": 172,
+      "n_traj": 43,
+      "mean": 0.007551780523255814,
+      "ci95": [
+        0.0043667787063953484,
+        0.011030386991279069
+      ]
+    },
+    "chosen_C": {
+      "n": 172,
+      "n_traj": 43,
+      "mean": 0.002236328125,
+      "ci95": [
+        0.0008677723019622093,
+        0.0038713208575581405
+      ]
+    },
+    "alt_share": {
+      "ratio": 0.7038674365451703,
+      "ci95": [
+        0.5319957023007631,
+        0.8490812604952676
+      ]
+    },
+    "gain_Aselect_Beval": {
+      "n": 172,
+      "n_traj": 43,
+      "mean": 0.037427325581395346,
+      "ci95": [
+        0.002180232558139535,
+        0.07377361918604655
+      ]
+    },
+    "small_A_gain": {
+      "n": 127,
+      "n_traj": 39,
+      "mean": 0.02608267716535433,
+      "ci95": [
+        0.007288287213740459,
+        0.05022525587979095
+      ]
+    },
+    "input_sha256": "735f642bcbb1dc26342c11194ff7fda369a9d59a3a1382d2ed4cb9bfb268b1fa",
+    "note": "All fixed turns; no M0 labels transferred; A selects and B evaluates."
+  }
+}
