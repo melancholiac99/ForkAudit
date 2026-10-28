@@ -1,0 +1,27 @@
+{
+  "status": "GPU smoke and all 2048 formal exploratory continuations completed; analysis generated",
+  "validation": {
+    "unit_tests_passed": 7,
+    "real_environment_arms_verified": 64,
+    "dry_continuations_completed": 4,
+    "resume_and_analysis_verified": true,
+    "gpu_smoke_continuations_completed": 16,
+    "gpu_main_continuations_completed": 2048,
+    "gpu_main_cells": 128,
+    "gpu_released": true,
+    "original_input_hashes_unchanged": true
+  },
+  "sha256": {
+    ".gitignore": "e5cefd046795d6750f9d32a85ef5e0313f17383ed182f771dcd892c15c66e3b6",
+    "README.md": "c7f611ce9bf8a8dec1137883b2600daf126dd0b641adc3f8e1bdfda9f2adfd86",
+    "analyze.py": "b6a88c61e8fd442026c9f4dd1cbf91a79d6f06a1a4bbaa71b490552e3a0fd96a",
+    "design.json": "0284a98a2ba7b0e5bddb67a15777c9b49cbafe5ef9c1d69abc474fbf4a2d29d9",
+    "design.md": "ce9e020d5873c701f1eec9bfad52482ff66ef5aba65baff0a330bc854284562b",
+    "design.preflight.json": "26d268e794cc941dfd59aea6c28484c612dafd2b9a56c96669330600af40ace0",
+    "prepare.py": "bf1d3bb035d94b1cc33b64b47ee51a8329a9e8d6e27d68069edfbccf850a4cc5",
+    "protocol.py": "1bd46d27713a0795dfb3062eefd64ee38f90cb3a3f4c5c49a81b5967b4640209",
+    "run.py": "b6884a53389bbfda5cfa84543adf6cfc8a13b39681bd0c15ece224548536db75",
+    "run.sh": "33f3bf11e6a123f25133bd4429e65323941c412d1c4ad45ee5b85a13b4b02f33",
+    "test_protocol.py": "818753db262b89d48b8fddcb01ad1ff86dca37a58854560934fe54e861a86eca"
+  }
+}

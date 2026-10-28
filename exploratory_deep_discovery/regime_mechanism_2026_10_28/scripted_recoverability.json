@@ -1,0 +1,88 @@
+{
+  "status": "post-hoc CPU existence witnesses",
+  "design_sha256": "441752ac72d136c715e0ca6f11efbc0c7ecab513bc8e055a081bef7ed157c433",
+  "selection": "Post-hoc CPU witness of recoverability, not an evaluated continuation policy.\n\nAmong the held-object affordance checks, inspect both pick_and_place_simple\ncases. Use task/clue metadata to construct a transparent short legal solution.\nThis establishes existence within budget only; it does not estimate how often\nan LLM would discover the repair or establish a population recovery rate.\n",
+  "records": [
+    {
+      "point_id": "s005_t31",
+      "old_regime": "Dead",
+      "task": "put a pen in desk.",
+      "arm": "a1",
+      "forced_action": "go to sidetable 1",
+      "scripted_transitions": [
+        {
+          "action": "move pencil 2 to sidetable 1",
+          "was_admissible": true,
+          "observation_after": "You move the pencil 2 to the sidetable 1.",
+          "won": false
+        },
+        {
+          "action": "take pen 1 from sidetable 1",
+          "was_admissible": true,
+          "observation_after": "You pick up the pen 1 from the sidetable 1.",
+          "won": false
+        },
+        {
+          "action": "go to desk 1",
+          "was_admissible": true,
+          "observation_after": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1.",
+          "won": false
+        },
+        {
+          "action": "move pen 1 to desk 1",
+          "was_admissible": true,
+          "observation_after": "You move the pen 1 to the desk 1.",
+          "won": true
+        }
+      ],
+      "repair_steps": 4,
+      "final_episode_step": 35,
+      "within_budget": true,
+      "won": true
+    },
+    {
+      "point_id": "s010_t29",
+      "old_regime": "Fork",
+      "task": "put a statue in dresser.",
+      "arm": "a3",
+      "forced_action": "take pencil 1 from dresser 1",
+      "scripted_transitions": [
+        {
+          "action": "go to shelf 1",
+          "was_admissible": true,
+          "observation_after": "You arrive at shelf 1. On the shelf 1, you see a statue 1.",
+          "won": false
+        },
+        {
+          "action": "move pencil 1 to shelf 1",
+          "was_admissible": true,
+          "observation_after": "You move the pencil 1 to the shelf 1.",
+          "won": false
+        },
+        {
+          "action": "take statue 1 from shelf 1",
+          "was_admissible": true,
+          "observation_after": "You pick up the statue 1 from the shelf 1.",
+          "won": false
+        },
+        {
+          "action": "go to dresser 1",
+          "was_admissible": true,
+          "observation_after": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3.",
+          "won": false
+        },
+        {
+          "action": "move statue 1 to dresser 1",
+          "was_admissible": true,
+          "observation_after": "You move the statue 1 to the dresser 1.",
+          "won": true
+        }
+      ],
+      "repair_steps": 5,
+      "final_episode_step": 34,
+      "within_budget": true,
+      "won": true
+    }
+  ],
+  "limitation": "Scripted plans use task/clue metadata. No repaired LLM rollout, no estimated repair success rate, no claim about other Dead states."
+}

@@ -1,0 +1,171 @@
+{
+  "status": "post-hoc explanatory analysis",
+  "selection": "Post-hoc mechanism diagnostics with two interpretable metadata contrasts.\n\nWritten after inspecting the first five complete points, including s010_t29.\nNo outcome-based exclusion. Report all 24 points. These are not additional\nrandomized interventions and do not identify mediation effects.\n",
+  "visible_definition": "The exact clue object instance appears in the native immediate feedback.",
+  "held_definition": "Post-action world facts contain a held object other than the clue object. This is a metadata grouping; seven representative local constraints were CPU-checked. It is not a task-blockage label: s025_t31 already holds another valid potato instance.",
+  "contrasts": {
+    "all": {
+      "visible_arm_lift": {
+        "n": 24,
+        "mean": -0.010416666666666666,
+        "ci95": [
+          -0.049479166666666664,
+          0.028645833333333332
+        ]
+      },
+      "hidden_arm_lift": {
+        "n": 24,
+        "mean": 0.18294270833333334,
+        "ci95": [
+          0.08723958333333333,
+          0.290380859375
+        ]
+      },
+      "hidden_minus_visible_lift": {
+        "n": 24,
+        "mean": 0.193359375,
+        "ci95": [
+          0.09114583333333333,
+          0.3020833333333333
+        ]
+      }
+    },
+    "Dead": {
+      "visible_arm_lift": {
+        "n": 8,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "hidden_arm_lift": {
+        "n": 8,
+        "mean": -0.001953125,
+        "ci95": [
+          -0.005859375,
+          0.0
+        ]
+      },
+      "hidden_minus_visible_lift": {
+        "n": 8,
+        "mean": -0.001953125,
+        "ci95": [
+          -0.005859375,
+          0.0
+        ]
+      }
+    },
+    "Indifferent": {
+      "visible_arm_lift": {
+        "n": 8,
+        "mean": -0.046875,
+        "ci95": [
+          -0.1484375,
+          0.0625
+        ]
+      },
+      "hidden_arm_lift": {
+        "n": 8,
+        "mean": 0.091796875,
+        "ci95": [
+          0.00390625,
+          0.1875
+        ]
+      },
+      "hidden_minus_visible_lift": {
+        "n": 8,
+        "mean": 0.138671875,
+        "ci95": [
+          -0.021484375,
+          0.2812988281250002
+        ]
+      }
+    },
+    "Fork": {
+      "visible_arm_lift": {
+        "n": 8,
+        "mean": 0.015625,
+        "ci95": [
+          -0.03125,
+          0.0625
+        ]
+      },
+      "hidden_arm_lift": {
+        "n": 8,
+        "mean": 0.458984375,
+        "ci95": [
+          0.294921875,
+          0.6250488281250002
+        ]
+      },
+      "hidden_minus_visible_lift": {
+        "n": 8,
+        "mean": 0.443359375,
+        "ci95": [
+          0.28125,
+          0.607421875
+        ]
+      }
+    }
+  },
+  "held_groups": {
+    "no-held-other": {
+      "n": 16,
+      "point_ids": [
+        "s029_t12",
+        "s044_t18",
+        "s020_t01",
+        "s051_t08",
+        "s003_t18",
+        "s095_t01",
+        "s076_t16",
+        "s087_t19",
+        "s097_t08",
+        "s094_t07",
+        "s034_t13",
+        "s069_t09",
+        "s077_t42",
+        "s015_t05",
+        "s023_t27",
+        "s019_t09"
+      ],
+      "native_C": 0.016520833333333332,
+      "completed_C": 0.0005208333333333326,
+      "C_change": -0.016000000000000004,
+      "mean_lift": 0.18828125
+    },
+    "shared-held-other": {
+      "n": 6,
+      "point_ids": [
+        "s005_t31",
+        "s007_t25",
+        "s006_t24",
+        "s025_t31",
+        "s021_t15",
+        "s078_t36"
+      ],
+      "native_C": 0.0009444444444444451,
+      "completed_C": 0.00011111111111111071,
+      "C_change": -0.0008333333333333344,
+      "mean_lift": -0.014583333333333332
+    },
+    "branch-held-other": {
+      "n": 2,
+      "point_ids": [
+        "s010_t29",
+        "s073_t10"
+      ],
+      "native_C": 0.09333333333333332,
+      "completed_C": 0.13316666666666668,
+      "C_change": 0.039833333333333346,
+      "mean_lift": 0.26875
+    }
+  },
+  "limitations": [
+    "Visible/hidden branches are not randomized arm types.",
+    "Held-object grouping was motivated by observed complete cases; tiny groups are descriptive.",
+    "Information salience and new semantic content are not separated by a placebo condition.",
+    "No mediated fraction is identified from a change in action variance."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "time_utc": "2026-10-28T03:59:45.489850+00:00",
+  "python": "3.11.17",
+  "packages": {
+    "vllm": "0.32.0",
+    "torch": "2.13.0",
+    "transformers": "5.19.0",
+    "alfworld": "0.4.2",
+    "textworld": "1.7.0"
+  },
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05, 97887 MiB",
+  "workers": 8,
+  "concurrency": 128,
+  "note": "PATH includes conda bin and CUDA bin; smoke passed; original sampling and task design unchanged."
+}

@@ -1,0 +1,291 @@
+{
+  "status": "exploratory",
+  "complete": true,
+  "run_fingerprint": "fb6498ca30f1b91b9c70ec6b00d23a8c2ae60adeb74e4199c6413d388a487453",
+  "cost": {
+    "complete": 2048,
+    "expected": 2048,
+    "generated_steps": 42759,
+    "generated_tokens": 5845637
+  },
+  "estimand": "Point-average signed arm gap reduction; revealing arm fixed by feedback, not outcomes.",
+  "primary_group": "original_fork",
+  "groups": {
+    "all": {
+      "q_revealing_native": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": 0.703125,
+        "ci95": [
+          0.605419921875,
+          0.798828125
+        ]
+      },
+      "q_other_native": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": 0.318359375,
+        "ci95": [
+          0.228515625,
+          0.4140625
+        ]
+      },
+      "q_revealing_completed": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": 0.701171875,
+        "ci95": [
+          0.601513671875,
+          0.798828125
+        ]
+      },
+      "q_other_completed": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": 0.62890625,
+        "ci95": [
+          0.51171875,
+          0.7441894531250002
+        ]
+      },
+      "native_gap": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": 0.384765625,
+        "ci95": [
+          0.2734375,
+          0.49609375
+        ]
+      },
+      "completed_gap": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": 0.072265625,
+        "ci95": [
+          -0.015625,
+          0.169921875
+        ]
+      },
+      "gap_reduction": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": 0.3125,
+        "ci95": [
+          0.20703125,
+          0.42578125
+        ]
+      },
+      "other_lift": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": 0.310546875,
+        "ci95": [
+          0.19916992187500002,
+          0.423828125
+        ]
+      },
+      "revealing_lift": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": -0.001953125,
+        "ci95": [
+          -0.044921875,
+          0.04296875
+        ]
+      },
+      "take3_other_lift": {
+        "n_points": 32,
+        "n_tasks": 32,
+        "mean": 0.5390625,
+        "ci95": [
+          0.416015625,
+          0.65625
+        ]
+      }
+    },
+    "original_fork": {
+      "q_revealing_native": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.7578125,
+        "ci95": [
+          0.6483723958333334,
+          0.8567708333333334
+        ]
+      },
+      "q_other_native": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.3151041666666667,
+        "ci95": [
+          0.21614583333333334,
+          0.421875
+        ]
+      },
+      "q_revealing_completed": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.7708333333333334,
+        "ci95": [
+          0.6613932291666668,
+          0.8723958333333334
+        ]
+      },
+      "q_other_completed": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.6979166666666666,
+        "ci95": [
+          0.5625,
+          0.8229166666666666
+        ]
+      },
+      "native_gap": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.4427083333333333,
+        "ci95": [
+          0.2994140625,
+          0.5703776041666669
+        ]
+      },
+      "completed_gap": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.07291666666666667,
+        "ci95": [
+          -0.033919270833333307,
+          0.20052083333333334
+        ]
+      },
+      "gap_reduction": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.3697916666666667,
+        "ci95": [
+          0.2421875,
+          0.4974609375000002
+        ]
+      },
+      "other_lift": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.3828125,
+        "ci95": [
+          0.25,
+          0.5156901041666669
+        ]
+      },
+      "revealing_lift": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.013020833333333334,
+        "ci95": [
+          -0.028645833333333332,
+          0.059895833333333336
+        ]
+      },
+      "take3_other_lift": {
+        "n_points": 24,
+        "n_tasks": 24,
+        "mean": 0.5807291666666666,
+        "ci95": [
+          0.4401041666666667,
+          0.7161458333333334
+        ]
+      }
+    },
+    "original_non_fork": {
+      "q_revealing_native": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": 0.5390625,
+        "ci95": [
+          0.3359375,
+          0.75
+        ]
+      },
+      "q_other_native": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": 0.328125,
+        "ci95": [
+          0.1484375,
+          0.546875
+        ]
+      },
+      "q_revealing_completed": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": 0.4921875,
+        "ci95": [
+          0.3203125,
+          0.6875
+        ]
+      },
+      "q_other_completed": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": 0.421875,
+        "ci95": [
+          0.2421875,
+          0.6171875
+        ]
+      },
+      "native_gap": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": 0.2109375,
+        "ci95": [
+          0.109375,
+          0.3203125
+        ]
+      },
+      "completed_gap": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": 0.0703125,
+        "ci95": [
+          -0.046875,
+          0.1875
+        ]
+      },
+      "gap_reduction": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": 0.140625,
+        "ci95": [
+          0.0,
+          0.2890625
+        ]
+      },
+      "other_lift": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": 0.09375,
+        "ci95": [
+          -0.015625,
+          0.1953125
+        ]
+      },
+      "revealing_lift": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": -0.046875,
+        "ci95": [
+          -0.1484375,
+          0.0625
+        ]
+      },
+      "take3_other_lift": {
+        "n_points": 8,
+        "n_tasks": 8,
+        "mean": 0.4140625,
+        "ci95": [
+          0.2109375,
+          0.625
+        ]
+      }
+    }
+  }
+}

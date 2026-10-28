@@ -1,8 +1,19 @@
-# Deep discovery exploratory artifacts — 2026-10-27
+# Agent credit discovery: analyses and mechanism experiments
 
-Start with [the Chinese research report](../reports/deep_discovery_2026-10-27.md).
+## Latest mechanism experiments — 2026-10-28
 
-Everything in this directory is post-freeze exploratory. No script writes to `data/`, `eval/`, the frozen documentation, or the downloaded CWGT archive. No script runs a model, starts training, or executes a new environment rollout. The only dependency added during this work was matplotlib in the existing `m0` conda environment.
+- [Five-arm regime mechanism report, with figures and conclusions](../reports/regime_mechanism_2026-10-28.md): 24 tasks, all original five actions, native/shared-information conditions, 16 continuations per cell. The 3,840 records include 1,024 explicitly reused records and 2,816 new continuations.
+- [Five-arm code and protocol](regime_mechanism_2026_10_28/README.md), [complete outcome tables and figures](regime_mechanism_2026_10_28/results/), and [seven illustrative raw traces](regime_mechanism_2026_10_28/results/cases/).
+- [Earlier two-arm intervention report](../reports/opportunity_completion_results_2026-10-28.md): 2,048 continuations across 32 tasks. Its sample overlaps the five-arm extension; the two reports are not independent replications.
+- [Next proposed information × execution-repair experiment](regime_mechanism_2026_10_28/next_decisive_experiment.md): a design only, **not run**.
+
+All experiments are post-freeze exploratory. The 2026-10-28 subdirectories contain actual model/environment continuation experiments and CPU diagnostics; they do not alter frozen Phase 3 inputs or labels. The GitHub bundle contains every continuation's terminal outcome in compact tables, summaries, plots, manifests, and the raw cases linked by the reports. Full trajectory archives remain on the research server.
+
+## Original data discovery — 2026-10-27
+
+Start with [the original Chinese research report](../reports/deep_discovery_2026-10-27.md).
+
+The original 2026-10-27 analysis scripts at this directory's top level do not write to `data/`, `eval/`, frozen documentation, or the downloaded CWGT archive, and do not run a model, train, or execute new environment rollouts. The original analysis added matplotlib to the existing `m0` environment. The reproduction instructions and definitions below describe that original analysis snapshot.
 
 ## GitHub package
 

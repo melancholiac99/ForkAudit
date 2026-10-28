@@ -1,0 +1,65 @@
+{
+  "status": "exploratory descriptive; not causal or population mechanism identification",
+  "input": "/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_point_mechanisms.parquet",
+  "input_sha256": "07d16ddf301d24f2d5a87d80af7525b4e364ef42e19a8171ea53df96aa08edc3",
+  "definitions": "target feedback: original per-arm response contains task target instance; new instance: absent from full factual history. Old frozen labels retained.",
+  "groups": {
+    "Dead": {
+      "n": 1560,
+      "target_feedback_any": 735,
+      "target_feedback_any_fraction": 0.47115384615384615,
+      "new_instance_feedback_any": 126,
+      "new_instance_feedback_any_fraction": 0.08076923076923077,
+      "same_task_sibling_success_mean": 0.07637362637362637
+    },
+    "Fork": {
+      "n": 475,
+      "target_feedback_any": 400,
+      "target_feedback_any_fraction": 0.8421052631578947,
+      "new_instance_feedback_any": 192,
+      "new_instance_feedback_any_fraction": 0.40421052631578946,
+      "same_task_sibling_success_mean": 0.39609022556390977
+    },
+    "Indifferent": {
+      "n": 1003,
+      "target_feedback_any": 537,
+      "target_feedback_any_fraction": 0.5353938185443669,
+      "new_instance_feedback_any": 144,
+      "new_instance_feedback_any_fraction": 0.14356929212362912,
+      "same_task_sibling_success_mean": 0.3621991169349096
+    }
+  },
+  "live_by_number_of_target_responses": [
+    {
+      "target_arms": 0,
+      "n": 541,
+      "detected_fork": 75,
+      "detected_fork_fraction": 0.13863216266173753
+    },
+    {
+      "target_arms": 1,
+      "n": 525,
+      "detected_fork": 255,
+      "detected_fork_fraction": 0.4857142857142857
+    },
+    {
+      "target_arms": 2,
+      "n": 251,
+      "detected_fork": 101,
+      "detected_fork_fraction": 0.40239043824701193
+    },
+    {
+      "target_arms": 3,
+      "n": 128,
+      "detected_fork": 41,
+      "detected_fork_fraction": 0.3203125
+    },
+    {
+      "target_arms": 4,
+      "n": 33,
+      "detected_fork": 3,
+      "detected_fork_fraction": 0.09090909090909091
+    }
+  ],
+  "caution": "Task/trajectory/progress confounding is uncontrolled. Do not infer a monotone law from arm-count slices; 4-target-arm slice has only 33 Live points."
+}

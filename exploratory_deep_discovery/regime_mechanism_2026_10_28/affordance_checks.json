@@ -1,0 +1,1033 @@
+{
+  "status": "exploratory CPU environment diagnostics",
+  "design_sha256": "441752ac72d136c715e0ca6f11efbc0c7ecab513bc8e055a081bef7ed157c433",
+  "selection": "CPU-only inspection of a specific reversible pickup constraint.\n\nSelect from metadata: held object differs from clue object, using source arm for\nold Dead and held-object arms for old Fork. This does not run an LLM or establish\nthat a repaired agent would finish the full task.\n",
+  "records": [
+    {
+      "point_id": "s005_t31",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "forced_action": "go to sidetable 1",
+      "held": "pencil 2",
+      "clue": "Additional location information: pen 1 is at sidetable 1.",
+      "navigation": null,
+      "observation_at_target": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1.",
+      "target_take": "take pen 1 from sidetable 1",
+      "target_take_admissible_before": false,
+      "drop_action": "move pencil 2 to sidetable 1",
+      "drop_admissible": true,
+      "drop_response": "You move the pencil 2 to the sidetable 1.",
+      "target_take_admissible_after": true,
+      "held_after": []
+    },
+    {
+      "point_id": "s007_t25",
+      "old_regime": "Dead",
+      "arm": "a3",
+      "forced_action": "go to sidetable 3",
+      "held": "pen 1",
+      "clue": "Additional location information: pen 2 is at sidetable 3.",
+      "navigation": null,
+      "observation_at_target": "You arrive at sidetable 3. On the sidetable 3, you see a pen 2.",
+      "target_take": "take pen 2 from sidetable 3",
+      "target_take_admissible_before": false,
+      "drop_action": "move pen 1 to sidetable 3",
+      "drop_admissible": true,
+      "drop_response": "You move the pen 1 to the sidetable 3.",
+      "target_take_admissible_after": true,
+      "held_after": []
+    },
+    {
+      "point_id": "s010_t29",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "forced_action": "take pencil 1 from dresser 1",
+      "held": "pencil 1",
+      "clue": "Additional location information: statue 1 is at shelf 1.",
+      "navigation": "go to shelf 1",
+      "observation_at_target": "You arrive at shelf 1. On the shelf 1, you see a statue 1.",
+      "target_take": "take statue 1 from shelf 1",
+      "target_take_admissible_before": false,
+      "drop_action": "move pencil 1 to shelf 1",
+      "drop_admissible": true,
+      "drop_response": "You move the pencil 1 to the shelf 1.",
+      "target_take_admissible_after": true,
+      "held_after": []
+    },
+    {
+      "point_id": "s006_t24",
+      "old_regime": "Dead",
+      "arm": "a4",
+      "forced_action": "go to shelf 1",
+      "held": "book 1",
+      "clue": "Additional location information: alarmclock 1 is at shelf 1.",
+      "navigation": null,
+      "observation_at_target": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1.",
+      "target_take": "take alarmclock 1 from shelf 1",
+      "target_take_admissible_before": false,
+      "drop_action": "move book 1 to shelf 1",
+      "drop_admissible": true,
+      "drop_response": "You move the book 1 to the shelf 1.",
+      "target_take_admissible_after": true,
+      "held_after": []
+    },
+    {
+      "point_id": "s021_t15",
+      "old_regime": "Dead",
+      "arm": "a0",
+      "forced_action": "go to countertop 1",
+      "held": "apple 2",
+      "clue": "Additional location information: winebottle 1 is at countertop 1.",
+      "navigation": null,
+      "observation_at_target": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1.",
+      "target_take": "take winebottle 1 from countertop 1",
+      "target_take_admissible_before": false,
+      "drop_action": "move apple 2 to countertop 1",
+      "drop_admissible": true,
+      "drop_response": "You move the apple 2 to the countertop 1.",
+      "target_take_admissible_after": true,
+      "held_after": []
+    },
+    {
+      "point_id": "s078_t36",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "forced_action": "go to countertop 3",
+      "held": "apple 2",
+      "clue": "Additional location information: potato 2 is at countertop 3.",
+      "navigation": null,
+      "observation_at_target": "You arrive at countertop 3. On the countertop 3, you see a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2.",
+      "target_take": "take potato 2 from countertop 3",
+      "target_take_admissible_before": false,
+      "drop_action": "move apple 2 to countertop 3",
+      "drop_admissible": true,
+      "drop_response": "You move the apple 2 to the countertop 3.",
+      "target_take_admissible_after": true,
+      "held_after": []
+    },
+    {
+      "point_id": "s073_t10",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "forced_action": "take soapbottle 1 from cabinet 3",
+      "held": "soapbottle 1",
+      "clue": "Additional location information: butterknife 1 is at countertop 1.",
+      "navigation": "go to countertop 1",
+      "observation_at_target": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1.",
+      "target_take": "take butterknife 1 from countertop 1",
+      "target_take_admissible_before": false,
+      "drop_action": "move soapbottle 1 to countertop 1",
+      "drop_admissible": true,
+      "drop_response": "You move the soapbottle 1 to the countertop 1.",
+      "target_take_admissible_after": true,
+      "held_after": []
+    }
+  ],
+  "all_arm_metadata": [
+    {
+      "point_id": "s029_t12",
+      "old_regime": "Fork",
+      "arm": "a0",
+      "action": "examine desk 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s029_t12",
+      "old_regime": "Fork",
+      "arm": "a1",
+      "action": "go to sidetable 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s029_t12",
+      "old_regime": "Fork",
+      "arm": "a2",
+      "action": "go to sidetable 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s029_t12",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "action": "go to bed 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s029_t12",
+      "old_regime": "Fork",
+      "arm": "a4",
+      "action": "look",
+      "held_objects": []
+    },
+    {
+      "point_id": "s005_t31",
+      "old_regime": "Dead",
+      "arm": "a0",
+      "action": "examine desk 1",
+      "held_objects": [
+        "pencil 2"
+      ]
+    },
+    {
+      "point_id": "s005_t31",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "action": "go to sidetable 1",
+      "held_objects": [
+        "pencil 2"
+      ]
+    },
+    {
+      "point_id": "s005_t31",
+      "old_regime": "Dead",
+      "arm": "a2",
+      "action": "go to drawer 1",
+      "held_objects": [
+        "pencil 2"
+      ]
+    },
+    {
+      "point_id": "s005_t31",
+      "old_regime": "Dead",
+      "arm": "a3",
+      "action": "go to cabinet 1",
+      "held_objects": [
+        "pencil 2"
+      ]
+    },
+    {
+      "point_id": "s005_t31",
+      "old_regime": "Dead",
+      "arm": "a4",
+      "action": "inventory",
+      "held_objects": [
+        "pencil 2"
+      ]
+    },
+    {
+      "point_id": "s044_t18",
+      "old_regime": "Fork",
+      "arm": "a0",
+      "action": "go to countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s044_t18",
+      "old_regime": "Fork",
+      "arm": "a1",
+      "action": "go to cabinet 4",
+      "held_objects": []
+    },
+    {
+      "point_id": "s044_t18",
+      "old_regime": "Fork",
+      "arm": "a2",
+      "action": "go to fridge 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s044_t18",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "action": "examine cabinet 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s044_t18",
+      "old_regime": "Fork",
+      "arm": "a4",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s007_t25",
+      "old_regime": "Dead",
+      "arm": "a0",
+      "action": "examine sidetable 1",
+      "held_objects": [
+        "pen 1"
+      ]
+    },
+    {
+      "point_id": "s007_t25",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "action": "go to drawer 1",
+      "held_objects": [
+        "pen 1"
+      ]
+    },
+    {
+      "point_id": "s007_t25",
+      "old_regime": "Dead",
+      "arm": "a2",
+      "action": "go to sidetable 2",
+      "held_objects": [
+        "pen 1"
+      ]
+    },
+    {
+      "point_id": "s007_t25",
+      "old_regime": "Dead",
+      "arm": "a3",
+      "action": "go to sidetable 3",
+      "held_objects": [
+        "pen 1"
+      ]
+    },
+    {
+      "point_id": "s007_t25",
+      "old_regime": "Dead",
+      "arm": "a4",
+      "action": "examine pen 1",
+      "held_objects": [
+        "pen 1"
+      ]
+    },
+    {
+      "point_id": "s010_t29",
+      "old_regime": "Fork",
+      "arm": "a0",
+      "action": "go to drawer 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s010_t29",
+      "old_regime": "Fork",
+      "arm": "a1",
+      "action": "examine dresser 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s010_t29",
+      "old_regime": "Fork",
+      "arm": "a2",
+      "action": "look",
+      "held_objects": []
+    },
+    {
+      "point_id": "s010_t29",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "action": "take pencil 1 from dresser 1",
+      "held_objects": [
+        "pencil 1"
+      ]
+    },
+    {
+      "point_id": "s010_t29",
+      "old_regime": "Fork",
+      "arm": "a4",
+      "action": "go to shelf 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s020_t01",
+      "old_regime": "Indifferent",
+      "arm": "a0",
+      "action": "go to coffeetable 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s020_t01",
+      "old_regime": "Indifferent",
+      "arm": "a1",
+      "action": "go to drawer 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s020_t01",
+      "old_regime": "Indifferent",
+      "arm": "a2",
+      "action": "go to sidetable 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s020_t01",
+      "old_regime": "Indifferent",
+      "arm": "a3",
+      "action": "go to armchair 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s020_t01",
+      "old_regime": "Indifferent",
+      "arm": "a4",
+      "action": "go to diningtable 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s051_t08",
+      "old_regime": "Indifferent",
+      "arm": "a0",
+      "action": "go to countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s051_t08",
+      "old_regime": "Indifferent",
+      "arm": "a1",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s051_t08",
+      "old_regime": "Indifferent",
+      "arm": "a2",
+      "action": "examine cabinet 4",
+      "held_objects": []
+    },
+    {
+      "point_id": "s051_t08",
+      "old_regime": "Indifferent",
+      "arm": "a3",
+      "action": "go to fridge 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s051_t08",
+      "old_regime": "Indifferent",
+      "arm": "a4",
+      "action": "go to cabinet 5",
+      "held_objects": []
+    },
+    {
+      "point_id": "s006_t24",
+      "old_regime": "Dead",
+      "arm": "a0",
+      "action": "examine desk 1",
+      "held_objects": [
+        "book 1"
+      ]
+    },
+    {
+      "point_id": "s006_t24",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "action": "look",
+      "held_objects": [
+        "book 1"
+      ]
+    },
+    {
+      "point_id": "s006_t24",
+      "old_regime": "Dead",
+      "arm": "a2",
+      "action": "inventory",
+      "held_objects": [
+        "book 1"
+      ]
+    },
+    {
+      "point_id": "s006_t24",
+      "old_regime": "Dead",
+      "arm": "a3",
+      "action": "go to drawer 1",
+      "held_objects": [
+        "book 1"
+      ]
+    },
+    {
+      "point_id": "s006_t24",
+      "old_regime": "Dead",
+      "arm": "a4",
+      "action": "go to shelf 1",
+      "held_objects": [
+        "book 1"
+      ]
+    },
+    {
+      "point_id": "s003_t18",
+      "old_regime": "Dead",
+      "arm": "a0",
+      "action": "go to countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s003_t18",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "action": "go to cabinet 4",
+      "held_objects": []
+    },
+    {
+      "point_id": "s003_t18",
+      "old_regime": "Dead",
+      "arm": "a2",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s003_t18",
+      "old_regime": "Dead",
+      "arm": "a3",
+      "action": "go to drawer 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s003_t18",
+      "old_regime": "Dead",
+      "arm": "a4",
+      "action": "go to stoveburner 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s095_t01",
+      "old_regime": "Dead",
+      "arm": "a0",
+      "action": "go to diningtable 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s095_t01",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "action": "go to countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s095_t01",
+      "old_regime": "Dead",
+      "arm": "a2",
+      "action": "go to diningtable 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s095_t01",
+      "old_regime": "Dead",
+      "arm": "a3",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s095_t01",
+      "old_regime": "Dead",
+      "arm": "a4",
+      "action": "look",
+      "held_objects": []
+    },
+    {
+      "point_id": "s076_t16",
+      "old_regime": "Fork",
+      "arm": "a0",
+      "action": "go to drawer 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s076_t16",
+      "old_regime": "Fork",
+      "arm": "a1",
+      "action": "go to armchair 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s076_t16",
+      "old_regime": "Fork",
+      "arm": "a2",
+      "action": "go to sidetable 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s076_t16",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "action": "go to shelf 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s076_t16",
+      "old_regime": "Fork",
+      "arm": "a4",
+      "action": "examine dresser 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s087_t19",
+      "old_regime": "Indifferent",
+      "arm": "a0",
+      "action": "go to cabinet 4",
+      "held_objects": []
+    },
+    {
+      "point_id": "s087_t19",
+      "old_regime": "Indifferent",
+      "arm": "a1",
+      "action": "examine cabinet 3",
+      "held_objects": []
+    },
+    {
+      "point_id": "s087_t19",
+      "old_regime": "Indifferent",
+      "arm": "a2",
+      "action": "go to drawer 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s087_t19",
+      "old_regime": "Indifferent",
+      "arm": "a3",
+      "action": "go to countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s087_t19",
+      "old_regime": "Indifferent",
+      "arm": "a4",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s025_t31",
+      "old_regime": "Indifferent",
+      "arm": "a0",
+      "action": "cool potato 1 with fridge 1",
+      "held_objects": [
+        "potato 1"
+      ]
+    },
+    {
+      "point_id": "s025_t31",
+      "old_regime": "Indifferent",
+      "arm": "a1",
+      "action": "examine fridge 1",
+      "held_objects": [
+        "potato 1"
+      ]
+    },
+    {
+      "point_id": "s025_t31",
+      "old_regime": "Indifferent",
+      "arm": "a2",
+      "action": "go to countertop 1",
+      "held_objects": [
+        "potato 1"
+      ]
+    },
+    {
+      "point_id": "s025_t31",
+      "old_regime": "Indifferent",
+      "arm": "a3",
+      "action": "go to countertop 2",
+      "held_objects": [
+        "potato 1"
+      ]
+    },
+    {
+      "point_id": "s025_t31",
+      "old_regime": "Indifferent",
+      "arm": "a4",
+      "action": "examine potato 1",
+      "held_objects": [
+        "potato 1"
+      ]
+    },
+    {
+      "point_id": "s097_t08",
+      "old_regime": "Indifferent",
+      "arm": "a0",
+      "action": "go to toilet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s097_t08",
+      "old_regime": "Indifferent",
+      "arm": "a1",
+      "action": "examine cabinet 3",
+      "held_objects": []
+    },
+    {
+      "point_id": "s097_t08",
+      "old_regime": "Indifferent",
+      "arm": "a2",
+      "action": "go to toiletpaperhanger 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s097_t08",
+      "old_regime": "Indifferent",
+      "arm": "a3",
+      "action": "open cabinet 3",
+      "held_objects": []
+    },
+    {
+      "point_id": "s097_t08",
+      "old_regime": "Indifferent",
+      "arm": "a4",
+      "action": "go to cabinet 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s094_t07",
+      "old_regime": "Indifferent",
+      "arm": "a0",
+      "action": "go to cabinet 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s094_t07",
+      "old_regime": "Indifferent",
+      "arm": "a1",
+      "action": "go to fridge 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s094_t07",
+      "old_regime": "Indifferent",
+      "arm": "a2",
+      "action": "examine cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s094_t07",
+      "old_regime": "Indifferent",
+      "arm": "a3",
+      "action": "open cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s094_t07",
+      "old_regime": "Indifferent",
+      "arm": "a4",
+      "action": "go to diningtable 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s034_t13",
+      "old_regime": "Indifferent",
+      "arm": "a0",
+      "action": "go to bed 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s034_t13",
+      "old_regime": "Indifferent",
+      "arm": "a1",
+      "action": "examine drawer 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s034_t13",
+      "old_regime": "Indifferent",
+      "arm": "a2",
+      "action": "go to desk 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s034_t13",
+      "old_regime": "Indifferent",
+      "arm": "a3",
+      "action": "go to drawer 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s034_t13",
+      "old_regime": "Indifferent",
+      "arm": "a4",
+      "action": "close drawer 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s069_t09",
+      "old_regime": "Indifferent",
+      "arm": "a0",
+      "action": "open cabinet 3",
+      "held_objects": []
+    },
+    {
+      "point_id": "s069_t09",
+      "old_regime": "Indifferent",
+      "arm": "a1",
+      "action": "examine cabinet 3",
+      "held_objects": []
+    },
+    {
+      "point_id": "s069_t09",
+      "old_regime": "Indifferent",
+      "arm": "a2",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s069_t09",
+      "old_regime": "Indifferent",
+      "arm": "a3",
+      "action": "go to cabinet 4",
+      "held_objects": []
+    },
+    {
+      "point_id": "s069_t09",
+      "old_regime": "Indifferent",
+      "arm": "a4",
+      "action": "go to diningtable 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s077_t42",
+      "old_regime": "Fork",
+      "arm": "a0",
+      "action": "examine countertop 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s077_t42",
+      "old_regime": "Fork",
+      "arm": "a1",
+      "action": "go to countertop 4",
+      "held_objects": []
+    },
+    {
+      "point_id": "s077_t42",
+      "old_regime": "Fork",
+      "arm": "a2",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s077_t42",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "action": "examine coffeemachine 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s077_t42",
+      "old_regime": "Fork",
+      "arm": "a4",
+      "action": "go to countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s021_t15",
+      "old_regime": "Dead",
+      "arm": "a0",
+      "action": "go to countertop 1",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s021_t15",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "action": "go to fridge 1",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s021_t15",
+      "old_regime": "Dead",
+      "arm": "a2",
+      "action": "examine drawer 3",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s021_t15",
+      "old_regime": "Dead",
+      "arm": "a3",
+      "action": "examine drawer 2",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s021_t15",
+      "old_regime": "Dead",
+      "arm": "a4",
+      "action": "open drawer 3",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s015_t05",
+      "old_regime": "Dead",
+      "arm": "a0",
+      "action": "go to countertop 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s015_t05",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "action": "go to countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s015_t05",
+      "old_regime": "Dead",
+      "arm": "a2",
+      "action": "examine cabinet 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s015_t05",
+      "old_regime": "Dead",
+      "arm": "a3",
+      "action": "go to cabinet 3",
+      "held_objects": []
+    },
+    {
+      "point_id": "s015_t05",
+      "old_regime": "Dead",
+      "arm": "a4",
+      "action": "examine cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s023_t27",
+      "old_regime": "Fork",
+      "arm": "a0",
+      "action": "examine countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s023_t27",
+      "old_regime": "Fork",
+      "arm": "a1",
+      "action": "go to cabinet 4",
+      "held_objects": []
+    },
+    {
+      "point_id": "s023_t27",
+      "old_regime": "Fork",
+      "arm": "a2",
+      "action": "go to countertop 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s023_t27",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s023_t27",
+      "old_regime": "Fork",
+      "arm": "a4",
+      "action": "go to cabinet 2",
+      "held_objects": []
+    },
+    {
+      "point_id": "s019_t09",
+      "old_regime": "Fork",
+      "arm": "a0",
+      "action": "examine cabinet 3",
+      "held_objects": []
+    },
+    {
+      "point_id": "s019_t09",
+      "old_regime": "Fork",
+      "arm": "a1",
+      "action": "open cabinet 3",
+      "held_objects": []
+    },
+    {
+      "point_id": "s019_t09",
+      "old_regime": "Fork",
+      "arm": "a2",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s019_t09",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "action": "go to countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s019_t09",
+      "old_regime": "Fork",
+      "arm": "a4",
+      "action": "go to cabinet 4",
+      "held_objects": []
+    },
+    {
+      "point_id": "s078_t36",
+      "old_regime": "Dead",
+      "arm": "a0",
+      "action": "examine countertop 2",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s078_t36",
+      "old_regime": "Dead",
+      "arm": "a1",
+      "action": "go to countertop 3",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s078_t36",
+      "old_regime": "Dead",
+      "arm": "a2",
+      "action": "go to countertop 1",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s078_t36",
+      "old_regime": "Dead",
+      "arm": "a3",
+      "action": "go to fridge 1",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s078_t36",
+      "old_regime": "Dead",
+      "arm": "a4",
+      "action": "go to cabinet 1",
+      "held_objects": [
+        "apple 2"
+      ]
+    },
+    {
+      "point_id": "s073_t10",
+      "old_regime": "Fork",
+      "arm": "a0",
+      "action": "go to countertop 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s073_t10",
+      "old_regime": "Fork",
+      "arm": "a1",
+      "action": "go to cabinet 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s073_t10",
+      "old_regime": "Fork",
+      "arm": "a2",
+      "action": "go to drawer 1",
+      "held_objects": []
+    },
+    {
+      "point_id": "s073_t10",
+      "old_regime": "Fork",
+      "arm": "a3",
+      "action": "take soapbottle 1 from cabinet 3",
+      "held_objects": [
+        "soapbottle 1"
+      ]
+    },
+    {
+      "point_id": "s073_t10",
+      "old_regime": "Fork",
+      "arm": "a4",
+      "action": "go to sinkbasin 1",
+      "held_objects": []
+    }
+  ],
+  "limitation": "A legal release restores the local pickup affordance, not proven full-task recoverability. No new LLM continuation or post-repair success measurement."
+}
