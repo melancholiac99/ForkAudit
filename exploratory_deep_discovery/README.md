@@ -1,5 +1,11 @@
 # Agent credit discovery: analyses and mechanism experiments
 
+## OPD / OPSD experiment design — 2026-10-29
+
+- [Chinese experimental design: from credit structure to feedback-grounded distillation](../reports/opd_opsd_experiment_design_2026-10-29.md).
+- Proposed sequence: information × execution mechanism experiment → teacher-target evaluation using existing replay → small on-policy distillation study with unhinted evaluation.
+- Includes teacher controls, data separation, training prototype, budgets, decision criteria, and literature boundaries. **Design only: the new teacher and training experiments have not been run.**
+
 ## Latest mechanism experiments — 2026-10-28
 
 - [Five-arm regime mechanism report, with figures and conclusions](../reports/regime_mechanism_2026-10-28.md): 24 tasks, all original five actions, native/shared-information conditions, 16 continuations per cell. The 3,840 records include 1,024 explicitly reused records and 2,816 new continuations.
