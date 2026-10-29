@@ -1,5 +1,12 @@
 # Agent credit discovery: analyses and mechanism experiments
 
+## Latest: information conditions and teaching preferences — 2026-10-29
+
+- [Chinese research memo: extra information can change the credit being taught](../reports/teaching_information_2026-10-29.md).
+- [Analysis protocol and reproduction](teaching_information_2026_10_29/README.md), [results](teaching_information_2026_10_29/summary.json), [per-task comparisons](teaching_information_2026_10_29/transfer_points.csv), and [figure](teaching_information_2026_10_29/preference_transfer.png).
+- New CPU reanalysis verifies all 3,840 existing five-arm intervention records and tests whether outcome-derived action preferences transfer between native and information-completed conditions. **No actual Teacher inference, new continuations, or training was run.** The memo separates the measured preference-transfer effect from the proposed Hindsight Teacher hypothesis.
+- Full raw continuation archives remain on the research server; the uploaded script requires those inputs. Source hashes, derived results, and figures are included for review.
+
 ## OPD / OPSD experiment design — 2026-10-29
 
 - [Chinese experimental design: from credit structure to feedback-grounded distillation](../reports/opd_opsd_experiment_design_2026-10-29.md).
