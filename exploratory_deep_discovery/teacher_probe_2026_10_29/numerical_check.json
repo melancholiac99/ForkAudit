@@ -1,0 +1,140 @@
+[
+  {
+    "request_id": "s003_t18__S",
+    "token_checks": [
+      {
+        "arm": 0,
+        "max_token_difference": 1.5496989362873137e-06,
+        "sum_difference": 7.152520993258804e-07
+      },
+      {
+        "arm": 1,
+        "max_token_difference": 0.1902027130126953,
+        "sum_difference": 0.20082391239520803
+      },
+      {
+        "arm": 2,
+        "max_token_difference": 0.36550068855285645,
+        "sum_difference": -0.24388748408728134
+      },
+      {
+        "arm": 3,
+        "max_token_difference": 0.14266014099121094,
+        "sum_difference": 0.14267004077601086
+      },
+      {
+        "arm": 4,
+        "max_token_difference": 0.07556915283203125,
+        "sum_difference": -0.07555687252443732
+      }
+    ],
+    "cached_probability": [
+      0.9999998063130793,
+      1.8920348218928024e-07,
+      1.6503604584866113e-09,
+      2.651030502429002e-09,
+      1.820477480750667e-10
+    ],
+    "direct_probability": [
+      0.9999998406196714,
+      1.5477924847922171e-07,
+      2.10619279980779e-09,
+      2.298551500234496e-09,
+      1.9633583303166828e-10
+    ],
+    "total_variation": 3.4776712630599494e-08,
+    "pass_readout_bound": true
+  },
+  {
+    "request_id": "s003_t18__H",
+    "token_checks": [
+      {
+        "arm": 0,
+        "max_token_difference": 2.3841721485950984e-07,
+        "sum_difference": -6.821210263296962e-13
+      },
+      {
+        "arm": 1,
+        "max_token_difference": 0.03331565856933594,
+        "sum_difference": -0.049755056097694705
+      },
+      {
+        "arm": 2,
+        "max_token_difference": 0.04298520088195801,
+        "sum_difference": -0.04348376626154504
+      },
+      {
+        "arm": 3,
+        "max_token_difference": 0.010860443115234375,
+        "sum_difference": 0.010461062309559566
+      },
+      {
+        "arm": 4,
+        "max_token_difference": 0.12291336059570312,
+        "sum_difference": 0.11730733140404936
+      }
+    ],
+    "cached_probability": [
+      0.9999998899803307,
+      2.37475622777164e-08,
+      5.810220785408195e-09,
+      6.462947367781158e-08,
+      1.583241259811699e-08
+    ],
+    "direct_probability": [
+      0.9999998909356872,
+      2.4959011549299353e-08,
+      6.06844465992948e-09,
+      6.395690481387917e-08,
+      1.4079951956368832e-08
+    ],
+    "total_variation": 2.4250295561963828e-09,
+    "pass_readout_bound": true
+  },
+  {
+    "request_id": "s021_t15__A",
+    "token_checks": [
+      {
+        "arm": 0,
+        "max_token_difference": 4.8624438932165504e-05,
+        "sum_difference": 4.957438000019465e-05
+      },
+      {
+        "arm": 1,
+        "max_token_difference": 0.06360244750976562,
+        "sum_difference": -0.06372508674530764
+      },
+      {
+        "arm": 2,
+        "max_token_difference": 0.15430164337158203,
+        "sum_difference": -0.14350407773986262
+      },
+      {
+        "arm": 3,
+        "max_token_difference": 0.15430164337158203,
+        "sum_difference": -0.1804357900684863
+      },
+      {
+        "arm": 4,
+        "max_token_difference": 0.001942068338394165,
+        "sum_difference": -0.000849150104841101
+      }
+    ],
+    "cached_probability": [
+      0.9999974059361126,
+      6.542512949043692e-08,
+      9.83541027248318e-07,
+      9.001816998139824e-07,
+      6.449160308767331e-07
+    ],
+    "direct_probability": [
+      0.9999970711661782,
+      6.973349444998444e-08,
+      1.135368639693213e-06,
+      1.0782360106374006e-06,
+      6.454956771403892e-07
+    ],
+    "total_variation": 3.3476993446588845e-07,
+    "pass_readout_bound": true
+  }
+]

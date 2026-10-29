@@ -1,0 +1,575 @@
+{
+  "status": "complete exploratory mechanism experiment",
+  "n_points": 6,
+  "n_control": 480,
+  "n_new": 480,
+  "point_condition_metrics": [
+    {
+      "point": "s005_t31",
+      "old_regime": "Dead",
+      "condition": "native",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s005_t31",
+      "old_regime": "Dead",
+      "condition": "completed",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s005_t31",
+      "old_regime": "Dead",
+      "condition": "repair",
+      "mean_success": 0.17500000000000002,
+      "action_variance": 0.11999999999999998,
+      "outcome_variance": 0.14500000000000002,
+      "residual_variance": 0.025000000000000036
+    },
+    {
+      "point": "s005_t31",
+      "old_regime": "Dead",
+      "condition": "repair_completed",
+      "mean_success": 0.975,
+      "action_variance": 7.930164461608261e-19,
+      "outcome_variance": 0.025000000000000022,
+      "residual_variance": 0.025000000000000022
+    },
+    {
+      "point": "s006_t24",
+      "old_regime": "Dead",
+      "condition": "native",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s006_t24",
+      "old_regime": "Dead",
+      "condition": "completed",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s006_t24",
+      "old_regime": "Dead",
+      "condition": "repair",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s006_t24",
+      "old_regime": "Dead",
+      "condition": "repair_completed",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s021_t15",
+      "old_regime": "Dead",
+      "condition": "native",
+      "mean_success": 0.025,
+      "action_variance": -3.9650822308041304e-19,
+      "outcome_variance": 0.025,
+      "residual_variance": 0.025
+    },
+    {
+      "point": "s021_t15",
+      "old_regime": "Dead",
+      "condition": "completed",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s021_t15",
+      "old_regime": "Dead",
+      "condition": "repair",
+      "mean_success": 0.7,
+      "action_variance": 0.0,
+      "outcome_variance": 0.2142857142857143,
+      "residual_variance": 0.2142857142857143
+    },
+    {
+      "point": "s021_t15",
+      "old_regime": "Dead",
+      "condition": "repair_completed",
+      "mean_success": 0.8,
+      "action_variance": -0.012857142857142859,
+      "outcome_variance": 0.1657142857142856,
+      "residual_variance": 0.17857142857142844
+    },
+    {
+      "point": "s078_t36",
+      "old_regime": "Dead",
+      "condition": "native",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s078_t36",
+      "old_regime": "Dead",
+      "condition": "completed",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s078_t36",
+      "old_regime": "Dead",
+      "condition": "repair",
+      "mean_success": 0.0,
+      "action_variance": 0.0,
+      "outcome_variance": 0.0,
+      "residual_variance": 0.0
+    },
+    {
+      "point": "s078_t36",
+      "old_regime": "Dead",
+      "condition": "repair_completed",
+      "mean_success": 0.05,
+      "action_variance": -0.0014285714285714299,
+      "outcome_variance": 0.04857142857142857,
+      "residual_variance": 0.05
+    },
+    {
+      "point": "s010_t29",
+      "old_regime": "Fork",
+      "condition": "native",
+      "mean_success": 0.32500000000000007,
+      "action_variance": 0.12428571428571428,
+      "outcome_variance": 0.22071428571428575,
+      "residual_variance": 0.09642857142857147
+    },
+    {
+      "point": "s010_t29",
+      "old_regime": "Fork",
+      "condition": "completed",
+      "mean_success": 0.8,
+      "action_variance": 0.15999999999999998,
+      "outcome_variance": 0.1599999999999998,
+      "residual_variance": -1.6653345369377348e-16
+    },
+    {
+      "point": "s010_t29",
+      "old_regime": "Fork",
+      "condition": "repair",
+      "mean_success": 0.32500000000000007,
+      "action_variance": 0.12571428571428572,
+      "outcome_variance": 0.22214285714285717,
+      "residual_variance": 0.09642857142857145
+    },
+    {
+      "point": "s010_t29",
+      "old_regime": "Fork",
+      "condition": "repair_completed",
+      "mean_success": 0.975,
+      "action_variance": 3.9650822308041304e-19,
+      "outcome_variance": 0.025000000000000022,
+      "residual_variance": 0.025000000000000022
+    },
+    {
+      "point": "s073_t10",
+      "old_regime": "Fork",
+      "condition": "native",
+      "mean_success": 0.55,
+      "action_variance": 0.06428571428571428,
+      "outcome_variance": 0.24999999999999994,
+      "residual_variance": 0.18571428571428567
+    },
+    {
+      "point": "s073_t10",
+      "old_regime": "Fork",
+      "condition": "completed",
+      "mean_success": 0.625,
+      "action_variance": 0.09428571428571428,
+      "outcome_variance": 0.24071428571428571,
+      "residual_variance": 0.14642857142857144
+    },
+    {
+      "point": "s073_t10",
+      "old_regime": "Fork",
+      "condition": "repair",
+      "mean_success": 0.6000000000000001,
+      "action_variance": 0.04,
+      "outcome_variance": 0.24714285714285716,
+      "residual_variance": 0.20714285714285716
+    },
+    {
+      "point": "s073_t10",
+      "old_regime": "Fork",
+      "condition": "repair_completed",
+      "mean_success": 0.775,
+      "action_variance": 0.011428571428571429,
+      "outcome_variance": 0.17928571428571416,
+      "residual_variance": 0.16785714285714273
+    }
+  ],
+  "point_contrasts": [
+    {
+      "point": "s005_t31",
+      "old_regime": "Dead",
+      "mean_success_info_without_repair": 0.0,
+      "mean_success_info_with_repair": 0.7999999999999999,
+      "mean_success_repair_without_info": 0.17500000000000002,
+      "mean_success_repair_with_info": 0.975,
+      "mean_success_interaction": 0.7999999999999999,
+      "action_variance_info_without_repair": 0.0,
+      "action_variance_info_with_repair": -0.11999999999999998,
+      "action_variance_repair_without_info": 0.11999999999999998,
+      "action_variance_repair_with_info": 7.930164461608261e-19,
+      "action_variance_interaction": -0.11999999999999998
+    },
+    {
+      "point": "s006_t24",
+      "old_regime": "Dead",
+      "mean_success_info_without_repair": 0.0,
+      "mean_success_info_with_repair": 0.0,
+      "mean_success_repair_without_info": 0.0,
+      "mean_success_repair_with_info": 0.0,
+      "mean_success_interaction": 0.0,
+      "action_variance_info_without_repair": 0.0,
+      "action_variance_info_with_repair": 0.0,
+      "action_variance_repair_without_info": 0.0,
+      "action_variance_repair_with_info": 0.0,
+      "action_variance_interaction": 0.0
+    },
+    {
+      "point": "s021_t15",
+      "old_regime": "Dead",
+      "mean_success_info_without_repair": -0.025,
+      "mean_success_info_with_repair": 0.10000000000000009,
+      "mean_success_repair_without_info": 0.6749999999999999,
+      "mean_success_repair_with_info": 0.8,
+      "mean_success_interaction": 0.12500000000000008,
+      "action_variance_info_without_repair": 3.9650822308041304e-19,
+      "action_variance_info_with_repair": -0.012857142857142859,
+      "action_variance_repair_without_info": 3.9650822308041304e-19,
+      "action_variance_repair_with_info": -0.012857142857142859,
+      "action_variance_interaction": -0.012857142857142859
+    },
+    {
+      "point": "s078_t36",
+      "old_regime": "Dead",
+      "mean_success_info_without_repair": 0.0,
+      "mean_success_info_with_repair": 0.05,
+      "mean_success_repair_without_info": 0.0,
+      "mean_success_repair_with_info": 0.05,
+      "mean_success_interaction": 0.05,
+      "action_variance_info_without_repair": 0.0,
+      "action_variance_info_with_repair": -0.0014285714285714299,
+      "action_variance_repair_without_info": 0.0,
+      "action_variance_repair_with_info": -0.0014285714285714299,
+      "action_variance_interaction": -0.0014285714285714299
+    },
+    {
+      "point": "s010_t29",
+      "old_regime": "Fork",
+      "mean_success_info_without_repair": 0.475,
+      "mean_success_info_with_repair": 0.6499999999999999,
+      "mean_success_repair_without_info": 0.0,
+      "mean_success_repair_with_info": 0.17499999999999993,
+      "mean_success_interaction": 0.17499999999999993,
+      "action_variance_info_without_repair": 0.0357142857142857,
+      "action_variance_info_with_repair": -0.12571428571428572,
+      "action_variance_repair_without_info": 0.0014285714285714457,
+      "action_variance_repair_with_info": -0.15999999999999998,
+      "action_variance_interaction": -0.16142857142857142
+    },
+    {
+      "point": "s073_t10",
+      "old_regime": "Fork",
+      "mean_success_info_without_repair": 0.07499999999999996,
+      "mean_success_info_with_repair": 0.17499999999999993,
+      "mean_success_repair_without_info": 0.050000000000000044,
+      "mean_success_repair_with_info": 0.15000000000000002,
+      "mean_success_interaction": 0.09999999999999998,
+      "action_variance_info_without_repair": 0.03,
+      "action_variance_info_with_repair": -0.028571428571428574,
+      "action_variance_repair_without_info": -0.02428571428571428,
+      "action_variance_repair_with_info": -0.08285714285714285,
+      "action_variance_interaction": -0.05857142857142858
+    }
+  ],
+  "group_contrasts": {
+    "all": {
+      "mean_success_info_without_repair": {
+        "n": 6,
+        "mean": 0.08749999999999998,
+        "ci95": [
+          -0.008333333333333333,
+          0.25
+        ]
+      },
+      "mean_success_info_with_repair": {
+        "n": 6,
+        "mean": 0.29583333333333334,
+        "ci95": [
+          0.06666666666666671,
+          0.550104166666667
+        ]
+      },
+      "mean_success_repair_without_info": {
+        "n": 6,
+        "mean": 0.15,
+        "ci95": [
+          0.00833333333333334,
+          0.36666666666666664
+        ]
+      },
+      "mean_success_repair_with_info": {
+        "n": 6,
+        "mean": 0.35833333333333334,
+        "ci95": [
+          0.07916666666666665,
+          0.6708333333333333
+        ]
+      },
+      "mean_success_interaction": {
+        "n": 6,
+        "mean": 0.20833333333333334,
+        "ci95": [
+          0.05416666666666666,
+          0.44999999999999996
+        ]
+      },
+      "action_variance_info_without_repair": {
+        "n": 6,
+        "mean": 0.01095238095238095,
+        "ci95": [
+          6.60847038467355e-20,
+          0.023809523809523798
+        ]
+      },
+      "action_variance_info_with_repair": {
+        "n": 6,
+        "mean": -0.0480952380952381,
+        "ci95": [
+          -0.09048214285714286,
+          -0.00761904761904762
+        ]
+      },
+      "action_variance_repair_without_info": {
+        "n": 6,
+        "mean": 0.01619047619047619,
+        "ci95": [
+          -0.011904761904761899,
+          0.05999999999999999
+        ]
+      },
+      "action_variance_repair_with_info": {
+        "n": 6,
+        "mean": -0.04285714285714285,
+        "ci95": [
+          -0.09595238095238094,
+          -0.0023809523809523816
+        ]
+      },
+      "action_variance_interaction": {
+        "n": 6,
+        "mean": -0.05904761904761905,
+        "ci95": [
+          -0.11261904761904762,
+          -0.012613095238095217
+        ]
+      }
+    },
+    "Dead": {
+      "mean_success_info_without_repair": {
+        "n": 4,
+        "mean": -0.00625,
+        "ci95": [
+          -0.018750000000000003,
+          0.0
+        ]
+      },
+      "mean_success_info_with_repair": {
+        "n": 4,
+        "mean": 0.23750000000000002,
+        "ci95": [
+          0.025,
+          0.6124999999999999
+        ]
+      },
+      "mean_success_repair_without_info": {
+        "n": 4,
+        "mean": 0.2125,
+        "ci95": [
+          0.0,
+          0.50625
+        ]
+      },
+      "mean_success_repair_with_info": {
+        "n": 4,
+        "mean": 0.45625,
+        "ci95": [
+          0.025,
+          0.8875000000000001
+        ]
+      },
+      "mean_success_interaction": {
+        "n": 4,
+        "mean": 0.24375000000000002,
+        "ci95": [
+          0.025,
+          0.6124999999999999
+        ]
+      },
+      "action_variance_info_without_repair": {
+        "n": 4,
+        "mean": 9.912705577010326e-20,
+        "ci95": [
+          0.0,
+          2.973811673103098e-19
+        ]
+      },
+      "action_variance_info_with_repair": {
+        "n": 4,
+        "mean": -0.033571428571428565,
+        "ci95": [
+          -0.09035714285714284,
+          -0.0007142857142857149
+        ]
+      },
+      "action_variance_repair_without_info": {
+        "n": 4,
+        "mean": 0.029999999999999995,
+        "ci95": [
+          0.0,
+          0.08999999999999998
+        ]
+      },
+      "action_variance_repair_with_info": {
+        "n": 4,
+        "mean": -0.003571428571428572,
+        "ci95": [
+          -0.009642857142857144,
+          3.9650822308041304e-19
+        ]
+      },
+      "action_variance_interaction": {
+        "n": 4,
+        "mean": -0.033571428571428565,
+        "ci95": [
+          -0.09035714285714284,
+          -0.0007142857142857149
+        ]
+      }
+    },
+    "Fork": {
+      "mean_success_info_without_repair": {
+        "n": 2,
+        "mean": 0.27499999999999997,
+        "ci95": [
+          0.07499999999999996,
+          0.475
+        ]
+      },
+      "mean_success_info_with_repair": {
+        "n": 2,
+        "mean": 0.4124999999999999,
+        "ci95": [
+          0.17499999999999993,
+          0.6499999999999999
+        ]
+      },
+      "mean_success_repair_without_info": {
+        "n": 2,
+        "mean": 0.025000000000000022,
+        "ci95": [
+          0.0,
+          0.050000000000000044
+        ]
+      },
+      "mean_success_repair_with_info": {
+        "n": 2,
+        "mean": 0.16249999999999998,
+        "ci95": [
+          0.15000000000000002,
+          0.17499999999999993
+        ]
+      },
+      "mean_success_interaction": {
+        "n": 2,
+        "mean": 0.13749999999999996,
+        "ci95": [
+          0.09999999999999998,
+          0.17499999999999993
+        ]
+      },
+      "action_variance_info_without_repair": {
+        "n": 2,
+        "mean": 0.03285714285714285,
+        "ci95": [
+          0.03,
+          0.0357142857142857
+        ]
+      },
+      "action_variance_info_with_repair": {
+        "n": 2,
+        "mean": -0.07714285714285715,
+        "ci95": [
+          -0.12571428571428572,
+          -0.028571428571428574
+        ]
+      },
+      "action_variance_repair_without_info": {
+        "n": 2,
+        "mean": -0.011428571428571416,
+        "ci95": [
+          -0.02428571428571428,
+          0.0014285714285714457
+        ]
+      },
+      "action_variance_repair_with_info": {
+        "n": 2,
+        "mean": -0.12142857142857141,
+        "ci95": [
+          -0.15999999999999998,
+          -0.08285714285714285
+        ]
+      },
+      "action_variance_interaction": {
+        "n": 2,
+        "mean": -0.11,
+        "ci95": [
+          -0.16142857142857142,
+          -0.05857142857142858
+        ]
+      }
+    }
+  },
+  "noop_branch_means": {
+    "native": 0.53125,
+    "completed": 0.890625,
+    "repair": 0.46875,
+    "repair_completed": 0.90625
+  },
+  "new_repair_activation": 350,
+  "cost": {
+    "complete": 480,
+    "total": 480,
+    "active": 0,
+    "queued": 0,
+    "generated_steps_this_launch": 8355,
+    "generated_tokens_this_launch": 1112433,
+    "elapsed_seconds_this_launch": 649.6
+  },
+  "caveat": "Six purposefully selected cases; old labels unchanged; no population inference. C is an unclipped unbiased cross-repeat estimate. New and control seeds differ. Repair includes real one-step/history costs; no learned-policy improvement claimed."
+}

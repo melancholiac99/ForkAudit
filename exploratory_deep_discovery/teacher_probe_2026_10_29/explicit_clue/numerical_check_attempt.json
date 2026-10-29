@@ -1,0 +1,94 @@
+[
+  {
+    "request_id": "s003_t18__C",
+    "token_checks": [
+      {
+        "arm": 0,
+        "max_token_difference": 3.3566844649612904e-05,
+        "sum_difference": -3.714302511070855e-05
+      },
+      {
+        "arm": 1,
+        "max_token_difference": 0.06274986267089844,
+        "sum_difference": 0.12268490996143555
+      },
+      {
+        "arm": 2,
+        "max_token_difference": 0.06274986267089844,
+        "sum_difference": 0.04099177476018667
+      },
+      {
+        "arm": 3,
+        "max_token_difference": 0.15906715393066406,
+        "sum_difference": 0.1472031315794311
+      },
+      {
+        "arm": 4,
+        "max_token_difference": 0.0759735107421875,
+        "sum_difference": 0.002911686896595711
+      }
+    ],
+    "cached_probability": [
+      0.9999998621473306,
+      5.4195307994077455e-08,
+      2.7020029761353347e-08,
+      4.8530002753637644e-08,
+      8.107328817869166e-09
+    ],
+    "direct_probability": [
+      0.9999998761608224,
+      4.7936264101990256e-08,
+      2.593386205973941e-08,
+      4.1885594434514566e-08,
+      8.083457011756867e-09
+    ],
+    "total_variation": 1.4013491765170418e-08,
+    "pass_readout_bound": true
+  },
+  {
+    "request_id": "s021_t15__C",
+    "token_checks": [
+      {
+        "arm": 0,
+        "max_token_difference": 1.452083233743906e-05,
+        "sum_difference": -2.560912980698049e-05
+      },
+      {
+        "arm": 1,
+        "max_token_difference": 0.10215950012207031,
+        "sum_difference": 0.11041773832300805
+      },
+      {
+        "arm": 2,
+        "max_token_difference": 0.01778268814086914,
+        "sum_difference": 0.02479216276162788
+      },
+      {
+        "arm": 3,
+        "max_token_difference": 0.0460352897644043,
+        "sum_difference": -0.045910677116467014
+      },
+      {
+        "arm": 4,
+        "max_token_difference": 0.058345794677734375,
+        "sum_difference": 0.09592573120607994
+      }
+    ],
+    "cached_probability": [
+      0.9999999995946096,
+      6.331308895647866e-11,
+      1.2177636921563818e-11,
+      2.0211959307491843e-11,
+      3.096876760467678e-10
+    ],
+    "direct_probability": [
+      0.9999999996289131,
+      5.669288608107382e-11,
+      1.1879134510080241e-11,
+      2.1160993171587076e-11,
+      2.8135380016641094e-10
+    ],
+    "total_variation": 3.5252532000801825e-11,
+    "pass_readout_bound": true
+  }
+]

@@ -1,0 +1,957 @@
+{
+  "checks": [
+    {
+      "point": "s005_t31",
+      "arm": "a0",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s005_t31",
+      "arm": "a1",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s005_t31",
+      "arm": "a2",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s005_t31",
+      "arm": "a3",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s005_t31",
+      "arm": "a4",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a0",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a1",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a2",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a3",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a4",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a0",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a1",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a2",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a3",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a4",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a0",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a1",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a2",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a3",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a4",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a0",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a1",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a2",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a3",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a4",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a0",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a1",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a2",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a3",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a4",
+      "clue_true": true,
+      "prefix_matches": true
+    },
+    {
+      "point": "s005_t31",
+      "arm": "a0",
+      "held": [
+        "pencil 2"
+      ],
+      "repair_object": "pencil 2",
+      "immediate_repair": "move pencil 2 to desk 1",
+      "repair_response": "You move the pencil 2 to the desk 1.",
+      "admissible_after_repair": [
+        "examine desk 1",
+        "go to bed 1",
+        "go to cabinet 1",
+        "go to cabinet 2",
+        "go to cabinet 3",
+        "go to cabinet 4",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to garbagecan 1",
+        "go to shelf 1",
+        "go to sidetable 1",
+        "help",
+        "inventory",
+        "look",
+        "take box 1 from desk 1",
+        "take creditcard 2 from desk 1",
+        "take keychain 2 from desk 1",
+        "take laptop 1 from desk 1",
+        "take laptop 2 from desk 1",
+        "take laptop 3 from desk 1",
+        "take pencil 2 from desk 1"
+      ]
+    },
+    {
+      "point": "s005_t31",
+      "arm": "a1",
+      "held": [
+        "pencil 2"
+      ],
+      "repair_object": "pencil 2",
+      "immediate_repair": "move pencil 2 to sidetable 1",
+      "repair_response": "You move the pencil 2 to the sidetable 1.",
+      "admissible_after_repair": [
+        "examine sidetable 1",
+        "go to bed 1",
+        "go to cabinet 1",
+        "go to cabinet 2",
+        "go to cabinet 3",
+        "go to cabinet 4",
+        "go to desk 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to garbagecan 1",
+        "go to shelf 1",
+        "help",
+        "inventory",
+        "look",
+        "take alarmclock 1 from sidetable 1",
+        "take cd 1 from sidetable 1",
+        "take keychain 1 from sidetable 1",
+        "take pen 1 from sidetable 1",
+        "take pencil 2 from sidetable 1"
+      ]
+    },
+    {
+      "point": "s005_t31",
+      "arm": "a2",
+      "held": [
+        "pencil 2"
+      ],
+      "repair_object": "pencil 2",
+      "immediate_repair": null
+    },
+    {
+      "point": "s005_t31",
+      "arm": "a3",
+      "held": [
+        "pencil 2"
+      ],
+      "repair_object": "pencil 2",
+      "immediate_repair": null
+    },
+    {
+      "point": "s005_t31",
+      "arm": "a4",
+      "held": [
+        "pencil 2"
+      ],
+      "repair_object": "pencil 2",
+      "immediate_repair": "move pencil 2 to desk 1",
+      "repair_response": "You move the pencil 2 to the desk 1.",
+      "admissible_after_repair": [
+        "examine desk 1",
+        "go to bed 1",
+        "go to cabinet 1",
+        "go to cabinet 2",
+        "go to cabinet 3",
+        "go to cabinet 4",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to garbagecan 1",
+        "go to shelf 1",
+        "go to sidetable 1",
+        "help",
+        "inventory",
+        "look",
+        "take box 1 from desk 1",
+        "take creditcard 2 from desk 1",
+        "take keychain 2 from desk 1",
+        "take laptop 1 from desk 1",
+        "take laptop 2 from desk 1",
+        "take laptop 3 from desk 1",
+        "take pencil 2 from desk 1"
+      ]
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a0",
+      "held": [
+        "book 1"
+      ],
+      "repair_object": "book 1",
+      "immediate_repair": "move book 1 to desk 1",
+      "repair_response": "You move the book 1 to the desk 1.",
+      "admissible_after_repair": [
+        "examine desk 1",
+        "go to bed 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to drawer 5",
+        "go to dresser 1",
+        "go to garbagecan 1",
+        "go to laundryhamper 1",
+        "go to shelf 1",
+        "help",
+        "inventory",
+        "look",
+        "take book 1 from desk 1",
+        "take bowl 1 from desk 1",
+        "take cd 2 from desk 1",
+        "take cellphone 2 from desk 1",
+        "take laptop 1 from desk 1",
+        "take mug 1 from desk 1",
+        "take pen 1 from desk 1"
+      ]
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a1",
+      "held": [
+        "book 1"
+      ],
+      "repair_object": "book 1",
+      "immediate_repair": "move book 1 to desk 1",
+      "repair_response": "You move the book 1 to the desk 1.",
+      "admissible_after_repair": [
+        "examine desk 1",
+        "go to bed 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to drawer 5",
+        "go to dresser 1",
+        "go to garbagecan 1",
+        "go to laundryhamper 1",
+        "go to shelf 1",
+        "help",
+        "inventory",
+        "look",
+        "take book 1 from desk 1",
+        "take bowl 1 from desk 1",
+        "take cd 2 from desk 1",
+        "take cellphone 2 from desk 1",
+        "take laptop 1 from desk 1",
+        "take mug 1 from desk 1",
+        "take pen 1 from desk 1"
+      ]
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a2",
+      "held": [
+        "book 1"
+      ],
+      "repair_object": "book 1",
+      "immediate_repair": "move book 1 to desk 1",
+      "repair_response": "You move the book 1 to the desk 1.",
+      "admissible_after_repair": [
+        "examine desk 1",
+        "go to bed 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to drawer 5",
+        "go to dresser 1",
+        "go to garbagecan 1",
+        "go to laundryhamper 1",
+        "go to shelf 1",
+        "help",
+        "inventory",
+        "look",
+        "take book 1 from desk 1",
+        "take bowl 1 from desk 1",
+        "take cd 2 from desk 1",
+        "take cellphone 2 from desk 1",
+        "take laptop 1 from desk 1",
+        "take mug 1 from desk 1",
+        "take pen 1 from desk 1"
+      ]
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a3",
+      "held": [
+        "book 1"
+      ],
+      "repair_object": "book 1",
+      "immediate_repair": null
+    },
+    {
+      "point": "s006_t24",
+      "arm": "a4",
+      "held": [
+        "book 1"
+      ],
+      "repair_object": "book 1",
+      "immediate_repair": "move book 1 to shelf 1",
+      "repair_response": "You move the book 1 to the shelf 1.",
+      "admissible_after_repair": [
+        "examine shelf 1",
+        "go to bed 1",
+        "go to desk 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to drawer 5",
+        "go to dresser 1",
+        "go to garbagecan 1",
+        "go to laundryhamper 1",
+        "help",
+        "inventory",
+        "look",
+        "take alarmclock 1 from shelf 1",
+        "take alarmclock 2 from shelf 1",
+        "take book 1 from shelf 1",
+        "take creditcard 1 from shelf 1",
+        "take creditcard 2 from shelf 1",
+        "take keychain 1 from shelf 1"
+      ]
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a0",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": "move apple 2 to countertop 1",
+      "repair_response": "You move the apple 2 to the countertop 1.",
+      "admissible_after_repair": [
+        "examine countertop 1",
+        "go to cabinet 1",
+        "go to cabinet 10",
+        "go to cabinet 11",
+        "go to cabinet 12",
+        "go to cabinet 13",
+        "go to cabinet 14",
+        "go to cabinet 15",
+        "go to cabinet 16",
+        "go to cabinet 17",
+        "go to cabinet 18",
+        "go to cabinet 19",
+        "go to cabinet 2",
+        "go to cabinet 20",
+        "go to cabinet 21",
+        "go to cabinet 22",
+        "go to cabinet 23",
+        "go to cabinet 24",
+        "go to cabinet 25",
+        "go to cabinet 26",
+        "go to cabinet 27",
+        "go to cabinet 3",
+        "go to cabinet 4",
+        "go to cabinet 5",
+        "go to cabinet 6",
+        "go to cabinet 7",
+        "go to cabinet 8",
+        "go to cabinet 9",
+        "go to coffeemachine 1",
+        "go to countertop 2",
+        "go to diningtable 1",
+        "go to drawer 1",
+        "go to drawer 10",
+        "go to drawer 11",
+        "go to drawer 12",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to drawer 5",
+        "go to drawer 6",
+        "go to drawer 7",
+        "go to drawer 8",
+        "go to drawer 9",
+        "go to fridge 1",
+        "go to garbagecan 1",
+        "go to microwave 1",
+        "go to sinkbasin 1",
+        "go to stoveburner 1",
+        "go to stoveburner 2",
+        "go to stoveburner 3",
+        "go to stoveburner 4",
+        "go to toaster 1",
+        "help",
+        "inventory",
+        "look",
+        "take apple 2 from countertop 1",
+        "take butterknife 1 from countertop 1",
+        "take butterknife 2 from countertop 1",
+        "take fork 1 from countertop 1",
+        "take pan 1 from countertop 1",
+        "take plate 1 from countertop 1",
+        "take spoon 1 from countertop 1",
+        "take tomato 2 from countertop 1",
+        "take winebottle 1 from countertop 1"
+      ]
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a1",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": "move apple 2 to fridge 1",
+      "repair_response": "You move the apple 2 to the fridge 1.",
+      "admissible_after_repair": [
+        "close fridge 1",
+        "examine fridge 1",
+        "go to cabinet 1",
+        "go to cabinet 10",
+        "go to cabinet 11",
+        "go to cabinet 12",
+        "go to cabinet 13",
+        "go to cabinet 14",
+        "go to cabinet 15",
+        "go to cabinet 16",
+        "go to cabinet 17",
+        "go to cabinet 18",
+        "go to cabinet 19",
+        "go to cabinet 2",
+        "go to cabinet 20",
+        "go to cabinet 21",
+        "go to cabinet 22",
+        "go to cabinet 23",
+        "go to cabinet 24",
+        "go to cabinet 25",
+        "go to cabinet 26",
+        "go to cabinet 27",
+        "go to cabinet 3",
+        "go to cabinet 4",
+        "go to cabinet 5",
+        "go to cabinet 6",
+        "go to cabinet 7",
+        "go to cabinet 8",
+        "go to cabinet 9",
+        "go to coffeemachine 1",
+        "go to countertop 1",
+        "go to countertop 2",
+        "go to diningtable 1",
+        "go to drawer 1",
+        "go to drawer 10",
+        "go to drawer 11",
+        "go to drawer 12",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to drawer 5",
+        "go to drawer 6",
+        "go to drawer 7",
+        "go to drawer 8",
+        "go to drawer 9",
+        "go to garbagecan 1",
+        "go to microwave 1",
+        "go to sinkbasin 1",
+        "go to stoveburner 1",
+        "go to stoveburner 2",
+        "go to stoveburner 3",
+        "go to stoveburner 4",
+        "go to toaster 1",
+        "help",
+        "inventory",
+        "look",
+        "take apple 2 from fridge 1",
+        "take cup 3 from fridge 1",
+        "take egg 1 from fridge 1",
+        "take lettuce 2 from fridge 1",
+        "take mug 1 from fridge 1",
+        "take tomato 3 from fridge 1"
+      ]
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a2",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": null
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a3",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": null
+    },
+    {
+      "point": "s021_t15",
+      "arm": "a4",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": null
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a0",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": "move apple 2 to countertop 2",
+      "repair_response": "You move the apple 2 to the countertop 2.",
+      "admissible_after_repair": [
+        "examine countertop 2",
+        "examine toaster 1",
+        "go to cabinet 1",
+        "go to cabinet 10",
+        "go to cabinet 11",
+        "go to cabinet 12",
+        "go to cabinet 13",
+        "go to cabinet 14",
+        "go to cabinet 15",
+        "go to cabinet 16",
+        "go to cabinet 17",
+        "go to cabinet 18",
+        "go to cabinet 19",
+        "go to cabinet 2",
+        "go to cabinet 3",
+        "go to cabinet 4",
+        "go to cabinet 5",
+        "go to cabinet 6",
+        "go to cabinet 7",
+        "go to cabinet 8",
+        "go to cabinet 9",
+        "go to coffeemachine 1",
+        "go to countertop 1",
+        "go to countertop 3",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to fridge 1",
+        "go to garbagecan 1",
+        "go to microwave 1",
+        "go to sinkbasin 1",
+        "go to stoveburner 1",
+        "go to stoveburner 2",
+        "go to stoveburner 3",
+        "go to stoveburner 4",
+        "help",
+        "inventory",
+        "look",
+        "take apple 2 from countertop 2",
+        "take bread 1 from countertop 2",
+        "take fork 1 from countertop 2",
+        "take peppershaker 3 from countertop 2",
+        "take tomato 1 from countertop 2"
+      ]
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a1",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": "move apple 2 to countertop 3",
+      "repair_response": "You move the apple 2 to the countertop 3.",
+      "admissible_after_repair": [
+        "examine countertop 3",
+        "go to cabinet 1",
+        "go to cabinet 10",
+        "go to cabinet 11",
+        "go to cabinet 12",
+        "go to cabinet 13",
+        "go to cabinet 14",
+        "go to cabinet 15",
+        "go to cabinet 16",
+        "go to cabinet 17",
+        "go to cabinet 18",
+        "go to cabinet 19",
+        "go to cabinet 2",
+        "go to cabinet 3",
+        "go to cabinet 4",
+        "go to cabinet 5",
+        "go to cabinet 6",
+        "go to cabinet 7",
+        "go to cabinet 8",
+        "go to cabinet 9",
+        "go to coffeemachine 1",
+        "go to countertop 1",
+        "go to countertop 2",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to fridge 1",
+        "go to garbagecan 1",
+        "go to microwave 1",
+        "go to sinkbasin 1",
+        "go to stoveburner 1",
+        "go to stoveburner 2",
+        "go to stoveburner 3",
+        "go to stoveburner 4",
+        "go to toaster 1",
+        "help",
+        "inventory",
+        "look",
+        "take apple 2 from countertop 3",
+        "take butterknife 3 from countertop 3",
+        "take mug 1 from countertop 3",
+        "take potato 2 from countertop 3",
+        "take saltshaker 2 from countertop 3",
+        "take soapbottle 2 from countertop 3",
+        "take spatula 3 from countertop 3",
+        "take tomato 2 from countertop 3"
+      ]
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a2",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": "move apple 2 to countertop 1",
+      "repair_response": "You move the apple 2 to the countertop 1.",
+      "admissible_after_repair": [
+        "examine countertop 1",
+        "go to cabinet 1",
+        "go to cabinet 10",
+        "go to cabinet 11",
+        "go to cabinet 12",
+        "go to cabinet 13",
+        "go to cabinet 14",
+        "go to cabinet 15",
+        "go to cabinet 16",
+        "go to cabinet 17",
+        "go to cabinet 18",
+        "go to cabinet 19",
+        "go to cabinet 2",
+        "go to cabinet 3",
+        "go to cabinet 4",
+        "go to cabinet 5",
+        "go to cabinet 6",
+        "go to cabinet 7",
+        "go to cabinet 8",
+        "go to cabinet 9",
+        "go to coffeemachine 1",
+        "go to countertop 2",
+        "go to countertop 3",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to fridge 1",
+        "go to garbagecan 1",
+        "go to microwave 1",
+        "go to sinkbasin 1",
+        "go to stoveburner 1",
+        "go to stoveburner 2",
+        "go to stoveburner 3",
+        "go to stoveburner 4",
+        "go to toaster 1",
+        "help",
+        "inventory",
+        "look",
+        "take apple 2 from countertop 1",
+        "take butterknife 1 from countertop 1",
+        "take dishsponge 1 from countertop 1",
+        "take lettuce 1 from countertop 1",
+        "take saltshaker 1 from countertop 1"
+      ]
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a3",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": null
+    },
+    {
+      "point": "s078_t36",
+      "arm": "a4",
+      "held": [
+        "apple 2"
+      ],
+      "repair_object": "apple 2",
+      "immediate_repair": null
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a0",
+      "held": [],
+      "repair_object": null,
+      "immediate_repair": null
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a1",
+      "held": [],
+      "repair_object": null,
+      "immediate_repair": null
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a2",
+      "held": [],
+      "repair_object": null,
+      "immediate_repair": null
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a3",
+      "held": [
+        "pencil 1"
+      ],
+      "repair_object": "pencil 1",
+      "immediate_repair": "move pencil 1 to dresser 1",
+      "repair_response": "You move the pencil 1 to the dresser 1.",
+      "admissible_after_repair": [
+        "examine dresser 1",
+        "go to bed 1",
+        "go to drawer 1",
+        "go to drawer 10",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to drawer 5",
+        "go to drawer 6",
+        "go to drawer 7",
+        "go to drawer 8",
+        "go to drawer 9",
+        "go to garbagecan 1",
+        "go to shelf 1",
+        "go to shelf 2",
+        "go to shelf 3",
+        "go to shelf 4",
+        "go to shelf 5",
+        "go to shelf 6",
+        "go to shelf 7",
+        "go to shelf 8",
+        "go to shelf 9",
+        "help",
+        "inventory",
+        "look",
+        "take alarmclock 1 from dresser 1",
+        "take book 1 from dresser 1",
+        "take cd 1 from dresser 1",
+        "take keychain 2 from dresser 1",
+        "take keychain 3 from dresser 1",
+        "take pencil 1 from dresser 1",
+        "take pencil 3 from dresser 1",
+        "use desklamp 1"
+      ]
+    },
+    {
+      "point": "s010_t29",
+      "arm": "a4",
+      "held": [],
+      "repair_object": null,
+      "immediate_repair": null
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a0",
+      "held": [],
+      "repair_object": null,
+      "immediate_repair": null
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a1",
+      "held": [],
+      "repair_object": null,
+      "immediate_repair": null
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a2",
+      "held": [],
+      "repair_object": null,
+      "immediate_repair": null
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a3",
+      "held": [
+        "soapbottle 1"
+      ],
+      "repair_object": "soapbottle 1",
+      "immediate_repair": "move soapbottle 1 to cabinet 3",
+      "repair_response": "You move the soapbottle 1 to the cabinet 3.",
+      "admissible_after_repair": [
+        "close cabinet 3",
+        "examine cabinet 3",
+        "go to cabinet 1",
+        "go to cabinet 10",
+        "go to cabinet 11",
+        "go to cabinet 12",
+        "go to cabinet 13",
+        "go to cabinet 2",
+        "go to cabinet 4",
+        "go to cabinet 5",
+        "go to cabinet 6",
+        "go to cabinet 7",
+        "go to cabinet 8",
+        "go to cabinet 9",
+        "go to coffeemachine 1",
+        "go to countertop 1",
+        "go to drawer 1",
+        "go to drawer 2",
+        "go to drawer 3",
+        "go to drawer 4",
+        "go to drawer 5",
+        "go to fridge 1",
+        "go to garbagecan 1",
+        "go to microwave 1",
+        "go to sinkbasin 1",
+        "go to stoveburner 1",
+        "go to stoveburner 2",
+        "go to stoveburner 3",
+        "go to stoveburner 4",
+        "go to toaster 1",
+        "help",
+        "inventory",
+        "look",
+        "take saltshaker 2 from cabinet 3",
+        "take soapbottle 1 from cabinet 3"
+      ]
+    },
+    {
+      "point": "s073_t10",
+      "arm": "a4",
+      "held": [],
+      "repair_object": null,
+      "immediate_repair": null
+    }
+  ],
+  "original_branches": 30,
+  "flagged_branches": 22,
+  "immediate_release_branches": 14,
+  "controls": 480
+}

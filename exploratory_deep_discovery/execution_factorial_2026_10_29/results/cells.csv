@@ -1,0 +1,121 @@
+point,old_regime,arm,action,condition,repair_object,q,successes,n,repair_rate,pickup_rate
+s005_t31,Dead,a0,examine desk 1,native,pencil 2,0.0,0,8,0.0,0.0
+s005_t31,Dead,a1,go to sidetable 1,native,pencil 2,0.0,0,8,0.0,0.125
+s005_t31,Dead,a2,go to drawer 1,native,pencil 2,0.0,0,8,0.0,0.0
+s005_t31,Dead,a3,go to cabinet 1,native,pencil 2,0.0,0,8,0.0,0.0
+s005_t31,Dead,a4,inventory,native,pencil 2,0.0,0,8,0.0,0.0
+s005_t31,Dead,a0,examine desk 1,completed,pencil 2,0.0,0,8,0.0,0.0
+s005_t31,Dead,a1,go to sidetable 1,completed,pencil 2,0.0,0,8,0.0,0.0
+s005_t31,Dead,a2,go to drawer 1,completed,pencil 2,0.0,0,8,0.0,0.0
+s005_t31,Dead,a3,go to cabinet 1,completed,pencil 2,0.0,0,8,0.0,0.0
+s005_t31,Dead,a4,inventory,completed,pencil 2,0.0,0,8,0.0,0.0
+s005_t31,Dead,a0,examine desk 1,repair,pencil 2,0.0,0,8,1.0,0.0
+s005_t31,Dead,a1,go to sidetable 1,repair,pencil 2,0.875,7,8,1.0,0.875
+s005_t31,Dead,a2,go to drawer 1,repair,pencil 2,0.0,0,8,1.0,0.0
+s005_t31,Dead,a3,go to cabinet 1,repair,pencil 2,0.0,0,8,1.0,0.0
+s005_t31,Dead,a4,inventory,repair,pencil 2,0.0,0,8,1.0,0.0
+s005_t31,Dead,a0,examine desk 1,repair_completed,pencil 2,0.875,7,8,1.0,1.0
+s005_t31,Dead,a1,go to sidetable 1,repair_completed,pencil 2,1.0,8,8,1.0,1.0
+s005_t31,Dead,a2,go to drawer 1,repair_completed,pencil 2,1.0,8,8,1.0,1.0
+s005_t31,Dead,a3,go to cabinet 1,repair_completed,pencil 2,1.0,8,8,1.0,1.0
+s005_t31,Dead,a4,inventory,repair_completed,pencil 2,1.0,8,8,1.0,1.0
+s006_t24,Dead,a0,examine desk 1,native,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a1,look,native,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a2,inventory,native,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a3,go to drawer 1,native,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a4,go to shelf 1,native,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a0,examine desk 1,completed,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a1,look,completed,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a2,inventory,completed,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a3,go to drawer 1,completed,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a4,go to shelf 1,completed,book 1,0.0,0,8,0.0,0.0
+s006_t24,Dead,a0,examine desk 1,repair,book 1,0.0,0,8,1.0,0.5
+s006_t24,Dead,a1,look,repair,book 1,0.0,0,8,1.0,0.125
+s006_t24,Dead,a2,inventory,repair,book 1,0.0,0,8,1.0,0.0
+s006_t24,Dead,a3,go to drawer 1,repair,book 1,0.0,0,8,1.0,0.0
+s006_t24,Dead,a4,go to shelf 1,repair,book 1,0.0,0,8,1.0,0.75
+s006_t24,Dead,a0,examine desk 1,repair_completed,book 1,0.0,0,8,1.0,0.875
+s006_t24,Dead,a1,look,repair_completed,book 1,0.0,0,8,1.0,0.875
+s006_t24,Dead,a2,inventory,repair_completed,book 1,0.0,0,8,1.0,1.0
+s006_t24,Dead,a3,go to drawer 1,repair_completed,book 1,0.0,0,8,1.0,0.625
+s006_t24,Dead,a4,go to shelf 1,repair_completed,book 1,0.0,0,8,1.0,0.875
+s021_t15,Dead,a0,go to countertop 1,native,apple 2,0.0,0,8,0.0,0.0
+s021_t15,Dead,a1,go to fridge 1,native,apple 2,0.0,0,8,0.0,0.0
+s021_t15,Dead,a2,examine drawer 3,native,apple 2,0.0,0,8,0.0,0.0
+s021_t15,Dead,a3,examine drawer 2,native,apple 2,0.125,1,8,0.0,0.125
+s021_t15,Dead,a4,open drawer 3,native,apple 2,0.0,0,8,0.0,0.0
+s021_t15,Dead,a0,go to countertop 1,completed,apple 2,0.0,0,8,0.0,0.0
+s021_t15,Dead,a1,go to fridge 1,completed,apple 2,0.0,0,8,0.0,0.0
+s021_t15,Dead,a2,examine drawer 3,completed,apple 2,0.0,0,8,0.0,0.0
+s021_t15,Dead,a3,examine drawer 2,completed,apple 2,0.0,0,8,0.0,0.0
+s021_t15,Dead,a4,open drawer 3,completed,apple 2,0.0,0,8,0.0,0.0
+s021_t15,Dead,a0,go to countertop 1,repair,apple 2,0.875,7,8,1.0,0.875
+s021_t15,Dead,a1,go to fridge 1,repair,apple 2,0.5,4,8,1.0,0.625
+s021_t15,Dead,a2,examine drawer 3,repair,apple 2,0.875,7,8,1.0,0.875
+s021_t15,Dead,a3,examine drawer 2,repair,apple 2,0.625,5,8,1.0,0.75
+s021_t15,Dead,a4,open drawer 3,repair,apple 2,0.625,5,8,1.0,0.625
+s021_t15,Dead,a0,go to countertop 1,repair_completed,apple 2,0.75,6,8,1.0,0.75
+s021_t15,Dead,a1,go to fridge 1,repair_completed,apple 2,0.875,7,8,1.0,0.875
+s021_t15,Dead,a2,examine drawer 3,repair_completed,apple 2,0.75,6,8,1.0,0.75
+s021_t15,Dead,a3,examine drawer 2,repair_completed,apple 2,0.875,7,8,1.0,1.0
+s021_t15,Dead,a4,open drawer 3,repair_completed,apple 2,0.75,6,8,1.0,0.75
+s078_t36,Dead,a0,examine countertop 2,native,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a1,go to countertop 3,native,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a2,go to countertop 1,native,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a3,go to fridge 1,native,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a4,go to cabinet 1,native,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a0,examine countertop 2,completed,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a1,go to countertop 3,completed,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a2,go to countertop 1,completed,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a3,go to fridge 1,completed,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a4,go to cabinet 1,completed,apple 2,0.0,0,8,0.0,0.0
+s078_t36,Dead,a0,examine countertop 2,repair,apple 2,0.0,0,8,1.0,0.125
+s078_t36,Dead,a1,go to countertop 3,repair,apple 2,0.0,0,8,1.0,0.875
+s078_t36,Dead,a2,go to countertop 1,repair,apple 2,0.0,0,8,1.0,0.25
+s078_t36,Dead,a3,go to fridge 1,repair,apple 2,0.0,0,8,0.875,0.0
+s078_t36,Dead,a4,go to cabinet 1,repair,apple 2,0.0,0,8,0.875,0.0
+s078_t36,Dead,a0,examine countertop 2,repair_completed,apple 2,0.0,0,8,1.0,1.0
+s078_t36,Dead,a1,go to countertop 3,repair_completed,apple 2,0.125,1,8,1.0,1.0
+s078_t36,Dead,a2,go to countertop 1,repair_completed,apple 2,0.0,0,8,1.0,0.75
+s078_t36,Dead,a3,go to fridge 1,repair_completed,apple 2,0.125,1,8,1.0,1.0
+s078_t36,Dead,a4,go to cabinet 1,repair_completed,apple 2,0.0,0,8,1.0,0.75
+s010_t29,Fork,a0,go to drawer 1,native,,0.375,3,8,0.0,0.375
+s010_t29,Fork,a1,examine dresser 1,native,,0.25,2,8,0.0,0.25
+s010_t29,Fork,a2,look,native,,0.0,0,8,0.0,0.0
+s010_t29,Fork,a3,take pencil 1 from dresser 1,native,pencil 1,0.0,0,8,0.0,0.0
+s010_t29,Fork,a4,go to shelf 1,native,,1.0,8,8,0.0,1.0
+s010_t29,Fork,a0,go to drawer 1,completed,,1.0,8,8,0.0,1.0
+s010_t29,Fork,a1,examine dresser 1,completed,,1.0,8,8,0.0,1.0
+s010_t29,Fork,a2,look,completed,,1.0,8,8,0.0,1.0
+s010_t29,Fork,a3,take pencil 1 from dresser 1,completed,pencil 1,0.0,0,8,0.0,0.0
+s010_t29,Fork,a4,go to shelf 1,completed,,1.0,8,8,0.0,1.0
+s010_t29,Fork,a0,go to drawer 1,repair,,0.25,2,8,0.0,0.25
+s010_t29,Fork,a1,examine dresser 1,repair,,0.0,0,8,0.0,0.125
+s010_t29,Fork,a2,look,repair,,0.0,0,8,0.0,0.0
+s010_t29,Fork,a3,take pencil 1 from dresser 1,repair,pencil 1,0.375,3,8,1.0,0.375
+s010_t29,Fork,a4,go to shelf 1,repair,,1.0,8,8,0.0,1.0
+s010_t29,Fork,a0,go to drawer 1,repair_completed,,1.0,8,8,0.0,1.0
+s010_t29,Fork,a1,examine dresser 1,repair_completed,,1.0,8,8,0.0,1.0
+s010_t29,Fork,a2,look,repair_completed,,0.875,7,8,0.0,1.0
+s010_t29,Fork,a3,take pencil 1 from dresser 1,repair_completed,pencil 1,1.0,8,8,1.0,1.0
+s010_t29,Fork,a4,go to shelf 1,repair_completed,,1.0,8,8,0.0,1.0
+s073_t10,Fork,a0,go to countertop 1,native,,0.875,7,8,0.0,1.0
+s073_t10,Fork,a1,go to cabinet 1,native,,0.875,7,8,0.0,1.0
+s073_t10,Fork,a2,go to drawer 1,native,,0.375,3,8,0.0,0.75
+s073_t10,Fork,a3,take soapbottle 1 from cabinet 3,native,soapbottle 1,0.125,1,8,0.0,0.125
+s073_t10,Fork,a4,go to sinkbasin 1,native,,0.5,4,8,0.0,0.875
+s073_t10,Fork,a0,go to countertop 1,completed,,0.875,7,8,0.0,0.875
+s073_t10,Fork,a1,go to cabinet 1,completed,,0.875,7,8,0.0,1.0
+s073_t10,Fork,a2,go to drawer 1,completed,,0.625,5,8,0.0,0.875
+s073_t10,Fork,a3,take soapbottle 1 from cabinet 3,completed,soapbottle 1,0.0,0,8,0.0,0.125
+s073_t10,Fork,a4,go to sinkbasin 1,completed,,0.75,6,8,0.0,1.0
+s073_t10,Fork,a0,go to countertop 1,repair,,1.0,8,8,0.0,1.0
+s073_t10,Fork,a1,go to cabinet 1,repair,,0.375,3,8,0.0,0.75
+s073_t10,Fork,a2,go to drawer 1,repair,,0.75,6,8,0.0,0.875
+s073_t10,Fork,a3,take soapbottle 1 from cabinet 3,repair,soapbottle 1,0.5,4,8,1.0,0.875
+s073_t10,Fork,a4,go to sinkbasin 1,repair,,0.375,3,8,0.0,0.625
+s073_t10,Fork,a0,go to countertop 1,repair_completed,,0.75,6,8,0.0,0.875
+s073_t10,Fork,a1,go to cabinet 1,repair_completed,,1.0,8,8,0.0,1.0
+s073_t10,Fork,a2,go to drawer 1,repair_completed,,0.875,7,8,0.0,0.875
+s073_t10,Fork,a3,take soapbottle 1 from cabinet 3,repair_completed,soapbottle 1,0.5,4,8,1.0,0.75
+s073_t10,Fork,a4,go to sinkbasin 1,repair_completed,,0.75,6,8,0.0,1.0

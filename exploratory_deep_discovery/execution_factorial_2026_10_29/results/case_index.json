@@ -1,0 +1,3632 @@
+[
+  {
+    "point": "s005_t31",
+    "arm": "a1",
+    "selection": "metadata-fixed diagnostic arm, repeat 0",
+    "conditions": {
+      "native": {
+        "won": false,
+        "path": "cases/s005_t31__a1__native__r000.json",
+        "steps": [
+          {
+            "step": 31,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 32,
+            "action": "examine sidetable 1",
+            "repair": false,
+            "observation": "On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 33,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 34,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 35,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 36,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 37,
+            "action": "take pen 1 from sidetable 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 38,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 39,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 40,
+            "action": "go to drawer 1",
+            "repair": false,
+            "observation": "You arrive at drawer 1. The drawer 1 is closed."
+          },
+          {
+            "step": 41,
+            "action": "open drawer 1",
+            "repair": false,
+            "observation": "You open the drawer 1. The drawer 1 is open. In it, you see a creditcard 1."
+          },
+          {
+            "step": 42,
+            "action": "inventory",
+            "repair": false,
+            "observation": "You are carrying: a pencil 2."
+          },
+          {
+            "step": 43,
+            "action": "examine pencil 2",
+            "repair": false,
+            "observation": "There's nothing special about pencil 2."
+          },
+          {
+            "step": 44,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 45,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 46,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 47,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 48,
+            "action": "examine cabinet 2",
+            "repair": false,
+            "observation": "The cabinet 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 49,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 50,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          }
+        ]
+      },
+      "completed": {
+        "won": false,
+        "path": "cases/s005_t31__a1__completed__r000.json",
+        "steps": [
+          {
+            "step": 31,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 32,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 33,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 34,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 35,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 36,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 37,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 38,
+            "action": "examine sidetable 1",
+            "repair": false,
+            "observation": "On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 39,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 40,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 41,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 42,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 43,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 44,
+            "action": "examine pencil 2",
+            "repair": false,
+            "observation": "There's nothing special about pencil 2."
+          },
+          {
+            "step": 45,
+            "action": "examine sidetable 1",
+            "repair": false,
+            "observation": "On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 46,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 47,
+            "action": "move pen 1 to desk 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 48,
+            "action": "examine sidetable 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 49,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 50,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          }
+        ]
+      },
+      "repair": {
+        "won": true,
+        "path": "cases/s005_t31__a1__repair__r000.json",
+        "steps": [
+          {
+            "step": 31,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 32,
+            "action": "move pencil 2 to sidetable 1",
+            "repair": true,
+            "observation": "You move the pencil 2 to the sidetable 1."
+          },
+          {
+            "step": 33,
+            "action": "take pen 1 from sidetable 1",
+            "repair": false,
+            "observation": "You pick up the pen 1 from the sidetable 1."
+          },
+          {
+            "step": 34,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 35,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 36,
+            "action": "move pen 1 to desk 1",
+            "repair": false,
+            "observation": "You move the pen 1 to the desk 1."
+          }
+        ]
+      },
+      "repair_completed": {
+        "won": true,
+        "path": "cases/s005_t31__a1__repair_completed__r000.json",
+        "steps": [
+          {
+            "step": 31,
+            "action": "go to sidetable 1",
+            "repair": false,
+            "observation": "You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 1, a cd 1, a keychain 1, and a pen 1."
+          },
+          {
+            "step": 32,
+            "action": "move pencil 2 to sidetable 1",
+            "repair": true,
+            "observation": "You move the pencil 2 to the sidetable 1."
+          },
+          {
+            "step": 33,
+            "action": "take pen 1 from sidetable 1",
+            "repair": false,
+            "observation": "You pick up the pen 1 from the sidetable 1."
+          },
+          {
+            "step": 34,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 35,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a box 1, a creditcard 2, a keychain 2, a laptop 3, a laptop 2, and a laptop 1."
+          },
+          {
+            "step": 36,
+            "action": "move pen 1 to desk 1",
+            "repair": false,
+            "observation": "You move the pen 1 to the desk 1."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "point": "s006_t24",
+    "arm": "a4",
+    "selection": "metadata-fixed diagnostic arm, repeat 0",
+    "conditions": {
+      "native": {
+        "won": false,
+        "path": "cases/s006_t24__a4__native__r000.json",
+        "steps": [
+          {
+            "step": 24,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 25,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 26,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 27,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 28,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 29,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 30,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 31,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 32,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 33,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 34,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 35,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 36,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 37,
+            "action": "look",
+            "repair": false,
+            "observation": "You are facing the desk 1. Next to it, you see nothing."
+          },
+          {
+            "step": 38,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 39,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 40,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 41,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 42,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 43,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 44,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 45,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 46,
+            "action": "look",
+            "repair": false,
+            "observation": "You are facing the desk 1. Next to it, you see nothing."
+          },
+          {
+            "step": 47,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 48,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 49,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 50,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          }
+        ]
+      },
+      "completed": {
+        "won": false,
+        "path": "cases/s006_t24__a4__completed__r000.json",
+        "steps": [
+          {
+            "step": 24,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 25,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 26,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 27,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 28,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 29,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 30,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 31,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 32,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 33,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 34,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 35,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 36,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 37,
+            "action": "look",
+            "repair": false,
+            "observation": "You are facing the desk 1. Next to it, you see nothing."
+          },
+          {
+            "step": 38,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 39,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 40,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 41,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 42,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 43,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 44,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 45,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 46,
+            "action": "look",
+            "repair": false,
+            "observation": "You are facing the desk 1. Next to it, you see nothing."
+          },
+          {
+            "step": 47,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 48,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 49,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 50,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          }
+        ]
+      },
+      "repair": {
+        "won": false,
+        "path": "cases/s006_t24__a4__repair__r000.json",
+        "steps": [
+          {
+            "step": 24,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 25,
+            "action": "move book 1 to shelf 1",
+            "repair": true,
+            "observation": "You move the book 1 to the shelf 1."
+          },
+          {
+            "step": 26,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a alarmclock 1, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 27,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a alarmclock 1, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 28,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a alarmclock 1, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 29,
+            "action": "take alarmclock 1 from shelf 1",
+            "repair": false,
+            "observation": "You pick up the alarmclock 1 from the shelf 1."
+          },
+          {
+            "step": 30,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 31,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 32,
+            "action": "examine alarmclock 2",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 33,
+            "action": "look",
+            "repair": false,
+            "observation": "You are facing the shelf 1. Next to it, you see nothing."
+          },
+          {
+            "step": 34,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 35,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 36,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 37,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 38,
+            "action": "examine alarmclock 2",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 39,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 40,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 41,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 42,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 43,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 44,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 45,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 46,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 47,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 48,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 49,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 50,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          }
+        ]
+      },
+      "repair_completed": {
+        "won": false,
+        "path": "cases/s006_t24__a4__repair_completed__r000.json",
+        "steps": [
+          {
+            "step": 24,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a alarmclock 2, a alarmclock 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 25,
+            "action": "move book 1 to shelf 1",
+            "repair": true,
+            "observation": "You move the book 1 to the shelf 1."
+          },
+          {
+            "step": 26,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a alarmclock 2, a alarmclock 1, a book 1, a creditcard 2, a creditcard 1, and a keychain 1."
+          },
+          {
+            "step": 27,
+            "action": "take alarmclock 1 from shelf 1",
+            "repair": false,
+            "observation": "You pick up the alarmclock 1 from the shelf 1."
+          },
+          {
+            "step": 28,
+            "action": "go to desk 1",
+            "repair": false,
+            "observation": "You arrive at desk 1. On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 29,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 30,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 31,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 32,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 33,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 34,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 35,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 36,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 37,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 38,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 39,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 40,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 41,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 42,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 43,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 44,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 45,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 46,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 47,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 48,
+            "action": "examine alarmclock 1",
+            "repair": false,
+            "observation": "There's nothing special about alarmclock 1."
+          },
+          {
+            "step": 49,
+            "action": "examine desk 1",
+            "repair": false,
+            "observation": "On the desk 1, you see a bowl 1, a cd 2, a cellphone 2, a laptop 1, a mug 1, and a pen 1."
+          },
+          {
+            "step": 50,
+            "action": "examine drawer 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "point": "s021_t15",
+    "arm": "a0",
+    "selection": "metadata-fixed diagnostic arm, repeat 0",
+    "conditions": {
+      "native": {
+        "won": false,
+        "path": "cases/s021_t15__a0__native__r000.json",
+        "steps": [
+          {
+            "step": 15,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 16,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 17,
+            "action": "cool winebottle 1 with fridge 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 18,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 19,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 20,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 21,
+            "action": "cool winebottle 1 with fridge 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 22,
+            "action": "examine winebottle 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 23,
+            "action": "examine winebottle 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 24,
+            "action": "examine fridge 1",
+            "repair": false,
+            "observation": "The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 25,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 26,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 27,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 28,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 29,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 30,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 31,
+            "action": "cool winebottle 1 with fridge 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 32,
+            "action": "examine fridge 1",
+            "repair": false,
+            "observation": "The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 33,
+            "action": "close fridge 1",
+            "repair": false,
+            "observation": "You close the fridge 1."
+          },
+          {
+            "step": 34,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 35,
+            "action": "examine cabinet 1",
+            "repair": false,
+            "observation": "The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 36,
+            "action": "go to cabinet 2",
+            "repair": false,
+            "observation": "You arrive at cabinet 2. The cabinet 2 is closed."
+          },
+          {
+            "step": 37,
+            "action": "open cabinet 2",
+            "repair": false,
+            "observation": "You open the cabinet 2. The cabinet 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 38,
+            "action": "examine cabinet 3",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 39,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is closed."
+          },
+          {
+            "step": 40,
+            "action": "open fridge 1",
+            "repair": false,
+            "observation": "You open the fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 41,
+            "action": "examine fridge 1",
+            "repair": false,
+            "observation": "The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 42,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 43,
+            "action": "go to cabinet 2",
+            "repair": false,
+            "observation": "You arrive at cabinet 2. The cabinet 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 44,
+            "action": "examine cabinet 2",
+            "repair": false,
+            "observation": "The cabinet 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 45,
+            "action": "go to cabinet 3",
+            "repair": false,
+            "observation": "You arrive at cabinet 3. The cabinet 3 is closed."
+          },
+          {
+            "step": 46,
+            "action": "open cabinet 3",
+            "repair": false,
+            "observation": "You open the cabinet 3. The cabinet 3 is open. In it, you see nothing."
+          },
+          {
+            "step": 47,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 48,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 49,
+            "action": "go to cabinet 2",
+            "repair": false,
+            "observation": "You arrive at cabinet 2. The cabinet 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 50,
+            "action": "go to cabinet 3",
+            "repair": false,
+            "observation": "You arrive at cabinet 3. The cabinet 3 is open. In it, you see nothing."
+          }
+        ]
+      },
+      "completed": {
+        "won": false,
+        "path": "cases/s021_t15__a0__completed__r000.json",
+        "steps": [
+          {
+            "step": 15,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 16,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 17,
+            "action": "close fridge 1",
+            "repair": false,
+            "observation": "You close the fridge 1."
+          },
+          {
+            "step": 18,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 19,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is closed."
+          },
+          {
+            "step": 20,
+            "action": "open fridge 1",
+            "repair": false,
+            "observation": "You open the fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 21,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 22,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 23,
+            "action": "cool winebottle 1 with fridge 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 24,
+            "action": "examine fridge 1",
+            "repair": false,
+            "observation": "The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 25,
+            "action": "close fridge 1",
+            "repair": false,
+            "observation": "You close the fridge 1."
+          },
+          {
+            "step": 26,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 27,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is closed."
+          },
+          {
+            "step": 28,
+            "action": "open fridge 1",
+            "repair": false,
+            "observation": "You open the fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 29,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 30,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 31,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 32,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 33,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 34,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 35,
+            "action": "take winebottle 1 from countertop 1 and go to fridge 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 36,
+            "action": "put winebottle 1 in fridge 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 37,
+            "action": "take winebottle 1 from fridge 1 and go to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 38,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 39,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 40,
+            "action": "take winebottle 1 from countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 41,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 42,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 43,
+            "action": "cool winebottle 1 with fridge 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 44,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 45,
+            "action": "inventory",
+            "repair": false,
+            "observation": "You are carrying: a apple 2."
+          },
+          {
+            "step": 46,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 47,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 48,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 49,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 50,
+            "action": "go to cabinet 2",
+            "repair": false,
+            "observation": "You arrive at cabinet 2. The cabinet 2 is closed."
+          }
+        ]
+      },
+      "repair": {
+        "won": true,
+        "path": "cases/s021_t15__a0__repair__r000.json",
+        "steps": [
+          {
+            "step": 15,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 16,
+            "action": "move apple 2 to countertop 1",
+            "repair": true,
+            "observation": "You move the apple 2 to the countertop 1."
+          },
+          {
+            "step": 17,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 18,
+            "action": "take winebottle 1 from countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 19,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a apple 2, a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 20,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 21,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a apple 2, a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 22,
+            "action": "take winebottle 1 from countertop 1",
+            "repair": false,
+            "observation": "You pick up the winebottle 1 from the countertop 1."
+          },
+          {
+            "step": 23,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 24,
+            "action": "cool winebottle 1 with fridge 1",
+            "repair": false,
+            "observation": "You cool the winebottle 1 using the fridge 1."
+          },
+          {
+            "step": 25,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a apple 2, a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, and a tomato 2."
+          },
+          {
+            "step": 26,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a apple 2, a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, and a tomato 2."
+          },
+          {
+            "step": 27,
+            "action": "move winebottle 1 to countertop 1",
+            "repair": false,
+            "observation": "You move the winebottle 1 to the countertop 1."
+          }
+        ]
+      },
+      "repair_completed": {
+        "won": false,
+        "path": "cases/s021_t15__a0__repair_completed__r000.json",
+        "steps": [
+          {
+            "step": 15,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 16,
+            "action": "move apple 2 to countertop 1",
+            "repair": true,
+            "observation": "You move the apple 2 to the countertop 1."
+          },
+          {
+            "step": 17,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 18,
+            "action": "take winebottle 1 from fridge 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 19,
+            "action": "close fridge 1",
+            "repair": false,
+            "observation": "You close the fridge 1."
+          },
+          {
+            "step": 20,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a apple 2, a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 21,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is closed."
+          },
+          {
+            "step": 22,
+            "action": "open fridge 1",
+            "repair": false,
+            "observation": "You open the fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 23,
+            "action": "take winebottle 1 from fridge 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 24,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a apple 2, a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 25,
+            "action": "put winebottle 1 on countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 26,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 27,
+            "action": "take winebottle 1 from countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 28,
+            "action": "go to countertop 2",
+            "repair": false,
+            "observation": "You arrive at countertop 2. On the countertop 2, you see a bowl 2, and a ladle 2."
+          },
+          {
+            "step": 29,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 30,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 31,
+            "action": "go to cabinet 2",
+            "repair": false,
+            "observation": "You arrive at cabinet 2. The cabinet 2 is closed."
+          },
+          {
+            "step": 32,
+            "action": "open cabinet 2",
+            "repair": false,
+            "observation": "You open the cabinet 2. The cabinet 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 33,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 34,
+            "action": "examine fridge 1",
+            "repair": false,
+            "observation": "The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 35,
+            "action": "go to cabinet 2",
+            "repair": false,
+            "observation": "You arrive at cabinet 2. The cabinet 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 36,
+            "action": "examine cabinet 2",
+            "repair": false,
+            "observation": "The cabinet 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 37,
+            "action": "go to cabinet 3",
+            "repair": false,
+            "observation": "You arrive at cabinet 3. The cabinet 3 is closed."
+          },
+          {
+            "step": 38,
+            "action": "open cabinet 3",
+            "repair": false,
+            "observation": "You open the cabinet 3. The cabinet 3 is open. In it, you see nothing."
+          },
+          {
+            "step": 39,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 40,
+            "action": "take cup 3 from fridge 1",
+            "repair": false,
+            "observation": "You pick up the cup 3 from the fridge 1."
+          },
+          {
+            "step": 41,
+            "action": "cool cup 3 with fridge 1",
+            "repair": false,
+            "observation": "You cool the cup 3 using the fridge 1."
+          },
+          {
+            "step": 42,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 43,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 44,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 45,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a apple 2, a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 46,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a apple 2, a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 47,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a egg 1, a lettuce 2, a mug 1, and a tomato 3."
+          },
+          {
+            "step": 48,
+            "action": "close fridge 1",
+            "repair": false,
+            "observation": "You close the fridge 1."
+          },
+          {
+            "step": 49,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a apple 2, a butterknife 2, a butterknife 1, a fork 1, a houseplant 2, a houseplant 1, a pan 1, a plate 1, a spoon 1, a tomato 2, and a winebottle 1."
+          },
+          {
+            "step": 50,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is closed."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "point": "s078_t36",
+    "arm": "a1",
+    "selection": "metadata-fixed diagnostic arm, repeat 0",
+    "conditions": {
+      "native": {
+        "won": false,
+        "path": "cases/s078_t36__a1__native__r000.json",
+        "steps": [
+          {
+            "step": 36,
+            "action": "go to countertop 3",
+            "repair": false,
+            "observation": "You arrive at countertop 3. On the countertop 3, you see a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2."
+          },
+          {
+            "step": 37,
+            "action": "examine potato 2",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 38,
+            "action": "go to microwave 1",
+            "repair": false,
+            "observation": "You arrive at microwave 1. The microwave 1 is open. In it, you see a apple 1."
+          },
+          {
+            "step": 39,
+            "action": "examine microwave 1",
+            "repair": false,
+            "observation": "The microwave 1 is open. In it, you see a apple 1."
+          },
+          {
+            "step": 40,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see a cup 1."
+          },
+          {
+            "step": 41,
+            "action": "examine apple 2",
+            "repair": false,
+            "observation": "There's nothing special about apple 2."
+          },
+          {
+            "step": 42,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 1, a dishsponge 1, a lettuce 1, and a saltshaker 1."
+          },
+          {
+            "step": 43,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see a cup 1."
+          },
+          {
+            "step": 44,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is closed."
+          },
+          {
+            "step": 45,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 1, a dishsponge 1, a lettuce 1, and a saltshaker 1."
+          },
+          {
+            "step": 46,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see a cup 1."
+          },
+          {
+            "step": 47,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is closed."
+          },
+          {
+            "step": 48,
+            "action": "go to countertop 2",
+            "repair": false,
+            "observation": "You arrive at countertop 2. On the countertop 2, you see a bread 1, a fork 1, a peppershaker 3, and a tomato 1."
+          },
+          {
+            "step": 49,
+            "action": "examine countertop 2",
+            "repair": false,
+            "observation": "On the countertop 2, you see a bread 1, a fork 1, a peppershaker 3, and a tomato 1."
+          },
+          {
+            "step": 50,
+            "action": "examine countertop 2",
+            "repair": false,
+            "observation": "On the countertop 2, you see a bread 1, a fork 1, a peppershaker 3, and a tomato 1."
+          }
+        ]
+      },
+      "completed": {
+        "won": false,
+        "path": "cases/s078_t36__a1__completed__r000.json",
+        "steps": [
+          {
+            "step": 36,
+            "action": "go to countertop 3",
+            "repair": false,
+            "observation": "You arrive at countertop 3. On the countertop 3, you see a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2."
+          },
+          {
+            "step": 37,
+            "action": "go to countertop 3",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 38,
+            "action": "go to countertop 3",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 39,
+            "action": "examine countertop 3",
+            "repair": false,
+            "observation": "On the countertop 3, you see a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2."
+          },
+          {
+            "step": 40,
+            "action": "go to microwave 1",
+            "repair": false,
+            "observation": "You arrive at microwave 1. The microwave 1 is open. In it, you see a apple 1."
+          },
+          {
+            "step": 41,
+            "action": "heat potato 2 with microwave 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 42,
+            "action": "examine microwave 1",
+            "repair": false,
+            "observation": "The microwave 1 is open. In it, you see a apple 1."
+          },
+          {
+            "step": 43,
+            "action": "examine microwave 1",
+            "repair": false,
+            "observation": "The microwave 1 is open. In it, you see a apple 1."
+          },
+          {
+            "step": 44,
+            "action": "examine apple 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 45,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a butterknife 1, a dishsponge 1, a lettuce 1, and a saltshaker 1."
+          },
+          {
+            "step": 46,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is closed."
+          },
+          {
+            "step": 47,
+            "action": "open fridge 1",
+            "repair": false,
+            "observation": "You open the fridge 1. The fridge 1 is open. In it, you see a apple 3, a bowl 3, a egg 1, a lettuce 2, and a tomato 3."
+          },
+          {
+            "step": 48,
+            "action": "go to countertop 2",
+            "repair": false,
+            "observation": "You arrive at countertop 2. On the countertop 2, you see a bread 1, a fork 1, a peppershaker 3, and a tomato 1."
+          },
+          {
+            "step": 49,
+            "action": "examine countertop 2",
+            "repair": false,
+            "observation": "On the countertop 2, you see a bread 1, a fork 1, a peppershaker 3, and a tomato 1."
+          },
+          {
+            "step": 50,
+            "action": "go to fridge 1",
+            "repair": false,
+            "observation": "You arrive at fridge 1. The fridge 1 is open. In it, you see a apple 3, a bowl 3, a egg 1, a lettuce 2, and a tomato 3."
+          }
+        ]
+      },
+      "repair": {
+        "won": false,
+        "path": "cases/s078_t36__a1__repair__r000.json",
+        "steps": [
+          {
+            "step": 36,
+            "action": "go to countertop 3",
+            "repair": false,
+            "observation": "You arrive at countertop 3. On the countertop 3, you see a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2."
+          },
+          {
+            "step": 37,
+            "action": "move apple 2 to countertop 3",
+            "repair": true,
+            "observation": "You move the apple 2 to the countertop 3."
+          },
+          {
+            "step": 38,
+            "action": "examine countertop 3",
+            "repair": false,
+            "observation": "On the countertop 3, you see a apple 2, a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2."
+          },
+          {
+            "step": 39,
+            "action": "examine potato 2 on countertop 3",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 40,
+            "action": "examine potato 2 on countertop 3",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 41,
+            "action": "go to microwave 1",
+            "repair": false,
+            "observation": "You arrive at microwave 1. The microwave 1 is open. In it, you see a apple 1."
+          },
+          {
+            "step": 42,
+            "action": "go to countertop 3",
+            "repair": false,
+            "observation": "You arrive at countertop 3. On the countertop 3, you see a apple 2, a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2."
+          },
+          {
+            "step": 43,
+            "action": "go to microwave 1",
+            "repair": false,
+            "observation": "You arrive at microwave 1. The microwave 1 is open. In it, you see a apple 1."
+          },
+          {
+            "step": 44,
+            "action": "n] go to countertop 3 [action]",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 45,
+            "action": "go to countertop 3",
+            "repair": false,
+            "observation": "You arrive at countertop 3. On the countertop 3, you see a apple 2, a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2."
+          },
+          {
+            "step": 46,
+            "action": "take potato 2 from countertop 3",
+            "repair": false,
+            "observation": "You pick up the potato 2 from the countertop 3."
+          },
+          {
+            "step": 47,
+            "action": "go to garbagecan 1",
+            "repair": false,
+            "observation": "You arrive at garbagecan 1. On the garbagecan 1, you see a potato 1."
+          },
+          {
+            "step": 48,
+            "action": "move potato 2 to garbagecan 1",
+            "repair": false,
+            "observation": "You move the potato 2 to the garbagecan 1."
+          },
+          {
+            "step": 49,
+            "action": "examine potato 2",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 50,
+            "action": "go to stoveburner 1",
+            "repair": false,
+            "observation": "You arrive at stoveburner 1. On the stoveburner 1, you see a pan 1."
+          }
+        ]
+      },
+      "repair_completed": {
+        "won": false,
+        "path": "cases/s078_t36__a1__repair_completed__r000.json",
+        "steps": [
+          {
+            "step": 36,
+            "action": "go to countertop 3",
+            "repair": false,
+            "observation": "You arrive at countertop 3. On the countertop 3, you see a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2."
+          },
+          {
+            "step": 37,
+            "action": "move apple 2 to countertop 3",
+            "repair": true,
+            "observation": "You move the apple 2 to the countertop 3."
+          },
+          {
+            "step": 38,
+            "action": "go to countertop 3",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 39,
+            "action": "examine countertop 3",
+            "repair": false,
+            "observation": "On the countertop 3, you see a apple 2, a butterknife 3, a mug 1, a potato 2, a saltshaker 2, a soapbottle 2, a spatula 3, and a tomato 2."
+          },
+          {
+            "step": 40,
+            "action": "take potato 2 from countertop 3",
+            "repair": false,
+            "observation": "You pick up the potato 2 from the countertop 3."
+          },
+          {
+            "step": 41,
+            "action": "go to garbagecan 1",
+            "repair": false,
+            "observation": "You arrive at garbagecan 1. On the garbagecan 1, you see a potato 1."
+          },
+          {
+            "step": 42,
+            "action": "examine potato 2",
+            "repair": false,
+            "observation": "There's nothing special about potato 2."
+          },
+          {
+            "step": 43,
+            "action": "examine potato 2",
+            "repair": false,
+            "observation": "There's nothing special about potato 2."
+          },
+          {
+            "step": 44,
+            "action": "move potato 2 to garbagecan 1",
+            "repair": false,
+            "observation": "You move the potato 2 to the garbagecan 1."
+          },
+          {
+            "step": 45,
+            "action": "examine garbagecan 1",
+            "repair": false,
+            "observation": "On the garbagecan 1, you see a potato 2, and a potato 1."
+          },
+          {
+            "step": 46,
+            "action": "examine garbagecan 1",
+            "repair": false,
+            "observation": "On the garbagecan 1, you see a potato 2, and a potato 1."
+          },
+          {
+            "step": 47,
+            "action": "take potato 1 from garbagecan 1",
+            "repair": false,
+            "observation": "You pick up the potato 1 from the garbagecan 1."
+          },
+          {
+            "step": 48,
+            "action": "examine potato 1",
+            "repair": false,
+            "observation": "There's nothing special about potato 1."
+          },
+          {
+            "step": 49,
+            "action": "go to microwave 1",
+            "repair": false,
+            "observation": "You arrive at microwave 1. The microwave 1 is open. In it, you see a apple 1."
+          },
+          {
+            "step": 50,
+            "action": "heat potato 1 with microwave 1",
+            "repair": false,
+            "observation": "You heat the potato 1 using the microwave 1."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "point": "s010_t29",
+    "arm": "a3",
+    "selection": "metadata-fixed diagnostic arm, repeat 0",
+    "conditions": {
+      "native": {
+        "won": false,
+        "path": "cases/s010_t29__a3__native__r000.json",
+        "steps": [
+          {
+            "step": 29,
+            "action": "take pencil 1 from dresser 1",
+            "repair": false,
+            "observation": "You pick up the pencil 1 from the dresser 1."
+          },
+          {
+            "step": 30,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 31,
+            "action": "go to drawer 1",
+            "repair": false,
+            "observation": "You arrive at drawer 1. The drawer 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 32,
+            "action": "examine drawer 1",
+            "repair": false,
+            "observation": "The drawer 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 33,
+            "action": "go to drawer 2",
+            "repair": false,
+            "observation": "You arrive at drawer 2. The drawer 2 is closed."
+          },
+          {
+            "step": 34,
+            "action": "examine drawer 2",
+            "repair": false,
+            "observation": "The drawer 2 is closed."
+          },
+          {
+            "step": 35,
+            "action": "go to drawer 1",
+            "repair": false,
+            "observation": "You arrive at drawer 1. The drawer 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 36,
+            "action": "inventory",
+            "repair": false,
+            "observation": "You are carrying: a pencil 1."
+          },
+          {
+            "step": 37,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 38,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 39,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 40,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 41,
+            "action": "go to drawer 1",
+            "repair": false,
+            "observation": "You arrive at drawer 1. The drawer 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 42,
+            "action": "go to drawer 2",
+            "repair": false,
+            "observation": "You arrive at drawer 2. The drawer 2 is closed."
+          },
+          {
+            "step": 43,
+            "action": "open drawer 2",
+            "repair": false,
+            "observation": "You open the drawer 2. The drawer 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 44,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 45,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 46,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 47,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 48,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 49,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 50,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          }
+        ]
+      },
+      "completed": {
+        "won": false,
+        "path": "cases/s010_t29__a3__completed__r000.json",
+        "steps": [
+          {
+            "step": 29,
+            "action": "take pencil 1 from dresser 1",
+            "repair": false,
+            "observation": "You pick up the pencil 1 from the dresser 1."
+          },
+          {
+            "step": 30,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 31,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 32,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 33,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 34,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 35,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 36,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 37,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 38,
+            "action": "move statue 1 to dresser 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 39,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 40,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 41,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 42,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 43,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 44,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 45,
+            "action": "examine shelf 1",
+            "repair": false,
+            "observation": "On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 46,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 47,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 48,
+            "action": "move statue 1 to dresser 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 49,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          },
+          {
+            "step": 50,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, and a pencil 3."
+          }
+        ]
+      },
+      "repair": {
+        "won": true,
+        "path": "cases/s010_t29__a3__repair__r000.json",
+        "steps": [
+          {
+            "step": 29,
+            "action": "take pencil 1 from dresser 1",
+            "repair": false,
+            "observation": "You pick up the pencil 1 from the dresser 1."
+          },
+          {
+            "step": 30,
+            "action": "move pencil 1 to dresser 1",
+            "repair": true,
+            "observation": "You move the pencil 1 to the dresser 1."
+          },
+          {
+            "step": 31,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, a pencil 3, and a pencil 1."
+          },
+          {
+            "step": 32,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, a pencil 3, and a pencil 1."
+          },
+          {
+            "step": 33,
+            "action": "go to drawer 1",
+            "repair": false,
+            "observation": "You arrive at drawer 1. The drawer 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 34,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, a pencil 3, and a pencil 1."
+          },
+          {
+            "step": 35,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, a pencil 3, and a pencil 1."
+          },
+          {
+            "step": 36,
+            "action": "go to drawer 1",
+            "repair": false,
+            "observation": "You arrive at drawer 1. The drawer 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 37,
+            "action": "go to drawer 2",
+            "repair": false,
+            "observation": "You arrive at drawer 2. The drawer 2 is closed."
+          },
+          {
+            "step": 38,
+            "action": "open drawer 2",
+            "repair": false,
+            "observation": "You open the drawer 2. The drawer 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 39,
+            "action": "go to drawer 1",
+            "repair": false,
+            "observation": "You arrive at drawer 1. The drawer 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 40,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, a pencil 3, and a pencil 1."
+          },
+          {
+            "step": 41,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, a pencil 3, and a pencil 1."
+          },
+          {
+            "step": 42,
+            "action": "go to drawer 1",
+            "repair": false,
+            "observation": "You arrive at drawer 1. The drawer 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 43,
+            "action": "examine dresser 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 44,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 45,
+            "action": "take statue 1 from shelf 1",
+            "repair": false,
+            "observation": "You pick up the statue 1 from the shelf 1."
+          },
+          {
+            "step": 46,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, a pencil 3, and a pencil 1."
+          },
+          {
+            "step": 47,
+            "action": "move statue 1 to dresser 1",
+            "repair": false,
+            "observation": "You move the statue 1 to the dresser 1."
+          }
+        ]
+      },
+      "repair_completed": {
+        "won": true,
+        "path": "cases/s010_t29__a3__repair_completed__r000.json",
+        "steps": [
+          {
+            "step": 29,
+            "action": "take pencil 1 from dresser 1",
+            "repair": false,
+            "observation": "You pick up the pencil 1 from the dresser 1."
+          },
+          {
+            "step": 30,
+            "action": "move pencil 1 to dresser 1",
+            "repair": true,
+            "observation": "You move the pencil 1 to the dresser 1."
+          },
+          {
+            "step": 31,
+            "action": "go to shelf 1",
+            "repair": false,
+            "observation": "You arrive at shelf 1. On the shelf 1, you see a statue 1."
+          },
+          {
+            "step": 32,
+            "action": "take statue 1 from shelf 1",
+            "repair": false,
+            "observation": "You pick up the statue 1 from the shelf 1."
+          },
+          {
+            "step": 33,
+            "action": "go to dresser 1",
+            "repair": false,
+            "observation": "You arrive at dresser 1. On the dresser 1, you see a alarmclock 1, a book 1, a cd 1, a desklamp 1, a keychain 3, a keychain 2, a pencil 3, and a pencil 1."
+          },
+          {
+            "step": 34,
+            "action": "move statue 1 to dresser 1",
+            "repair": false,
+            "observation": "You move the statue 1 to the dresser 1."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "point": "s073_t10",
+    "arm": "a3",
+    "selection": "metadata-fixed diagnostic arm, repeat 0",
+    "conditions": {
+      "native": {
+        "won": false,
+        "path": "cases/s073_t10__a3__native__r000.json",
+        "steps": [
+          {
+            "step": 10,
+            "action": "take soapbottle 1 from cabinet 3",
+            "repair": false,
+            "observation": "You pick up the soapbottle 1 from the cabinet 3."
+          },
+          {
+            "step": 11,
+            "action": "go to cabinet 2",
+            "repair": false,
+            "observation": "You arrive at cabinet 2. The cabinet 2 is open. In it, you see a saltshaker 1."
+          },
+          {
+            "step": 12,
+            "action": "go to cabinet 3",
+            "repair": false,
+            "observation": "You arrive at cabinet 3. The cabinet 3 is open. In it, you see a saltshaker 2."
+          },
+          {
+            "step": 13,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 14,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 15,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 16,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 17,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 18,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 19,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 20,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 21,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 22,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 23,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 24,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 25,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 26,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 27,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 28,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 29,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 30,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 31,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 32,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 33,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 34,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 35,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 36,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 37,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 38,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 39,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 40,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 41,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 42,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 43,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 44,
+            "action": "go to countertop 1 and pick up butterknife 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 45,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 46,
+            "action": "examine sinkbasin 1",
+            "repair": false,
+            "observation": "On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 47,
+            "action": "examine drawer 2",
+            "repair": false,
+            "observation": "The drawer 2 is closed."
+          },
+          {
+            "step": 48,
+            "action": "open drawer 2",
+            "repair": false,
+            "observation": "You open the drawer 2. The drawer 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 49,
+            "action": "examine sinkbasin 1",
+            "repair": false,
+            "observation": "On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 50,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          }
+        ]
+      },
+      "completed": {
+        "won": false,
+        "path": "cases/s073_t10__a3__completed__r000.json",
+        "steps": [
+          {
+            "step": 10,
+            "action": "take soapbottle 1 from cabinet 3",
+            "repair": false,
+            "observation": "You pick up the soapbottle 1 from the cabinet 3."
+          },
+          {
+            "step": 11,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 12,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 13,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 14,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 15,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 16,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 17,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 18,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 19,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 20,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 21,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 22,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 23,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 24,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 25,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 26,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 27,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 28,
+            "action": "take butterknife 1 from countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 29,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 30,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 31,
+            "action": "take butterknife 1 from countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 32,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 33,
+            "action": "examine sinkbasin 1",
+            "repair": false,
+            "observation": "On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 34,
+            "action": "examine drawer 2",
+            "repair": false,
+            "observation": "The drawer 2 is closed."
+          },
+          {
+            "step": 35,
+            "action": "open drawer 2",
+            "repair": false,
+            "observation": "You open the drawer 2. The drawer 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 36,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 37,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 38,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 39,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 40,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 41,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 42,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 43,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 44,
+            "action": "go to countertop 1 and pick up butterknife 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 45,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 46,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 47,
+            "action": "take butterknife 1 from countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 48,
+            "action": "examine butterknife 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 49,
+            "action": "examine butterknife 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 50,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          }
+        ]
+      },
+      "repair": {
+        "won": false,
+        "path": "cases/s073_t10__a3__repair__r000.json",
+        "steps": [
+          {
+            "step": 10,
+            "action": "take soapbottle 1 from cabinet 3",
+            "repair": false,
+            "observation": "You pick up the soapbottle 1 from the cabinet 3."
+          },
+          {
+            "step": 11,
+            "action": "move soapbottle 1 to cabinet 3",
+            "repair": true,
+            "observation": "You move the soapbottle 1 to the cabinet 3."
+          },
+          {
+            "step": 12,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 13,
+            "action": "examine drawer 2",
+            "repair": false,
+            "observation": "The drawer 2 is closed."
+          },
+          {
+            "step": 14,
+            "action": "open drawer 2",
+            "repair": false,
+            "observation": "You open the drawer 2. The drawer 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 15,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 16,
+            "action": "examine drawer 2",
+            "repair": false,
+            "observation": "The drawer 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 17,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 18,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 19,
+            "action": "examine cabinet 10",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 20,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 21,
+            "action": "take butterknife 1 from countertop 1",
+            "repair": false,
+            "observation": "You pick up the butterknife 1 from the countertop 1."
+          },
+          {
+            "step": 22,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "You move the butterknife 1 to the countertop 1."
+          },
+          {
+            "step": 23,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 24,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 25,
+            "action": "take butterknife 1 from countertop 1",
+            "repair": false,
+            "observation": "You pick up the butterknife 1 from the countertop 1."
+          },
+          {
+            "step": 26,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 27,
+            "action": "clean butterknife 1 with sinkbasin 1",
+            "repair": false,
+            "observation": "You clean the butterknife 1 using the sinkbasin 1."
+          },
+          {
+            "step": 28,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 29,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 30,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 31,
+            "action": "examine butterknife 1",
+            "repair": false,
+            "observation": "This is a clean butterknife 1."
+          },
+          {
+            "step": 32,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 33,
+            "action": "examine butterknife 1",
+            "repair": false,
+            "observation": "This is a clean butterknife 1."
+          },
+          {
+            "step": 34,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 35,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 36,
+            "action": "examine butterknife 1",
+            "repair": false,
+            "observation": "This is a clean butterknife 1."
+          },
+          {
+            "step": 37,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 38,
+            "action": "move butterknife 1 to (0.8, 0.6, 0.1)",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 39,
+            "action": "clean butterknife 1 with sinkbasin 1",
+            "repair": false,
+            "observation": "You clean the butterknife 1 using the sinkbasin 1."
+          },
+          {
+            "step": 40,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 41,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 42,
+            "action": "examine butterknife 1",
+            "repair": false,
+            "observation": "This is a clean butterknife 1."
+          },
+          {
+            "step": 43,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 44,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 45,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 46,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 47,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 48,
+            "action": "clean butterknife 1 with sinkbasin 1",
+            "repair": false,
+            "observation": "You clean the butterknife 1 using the sinkbasin 1."
+          },
+          {
+            "step": 49,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 50,
+            "action": "move butterknife 1 to countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          }
+        ]
+      },
+      "repair_completed": {
+        "won": false,
+        "path": "cases/s073_t10__a3__repair_completed__r000.json",
+        "steps": [
+          {
+            "step": 10,
+            "action": "take soapbottle 1 from cabinet 3",
+            "repair": false,
+            "observation": "You pick up the soapbottle 1 from the cabinet 3."
+          },
+          {
+            "step": 11,
+            "action": "move soapbottle 1 to cabinet 3",
+            "repair": true,
+            "observation": "You move the soapbottle 1 to the cabinet 3."
+          },
+          {
+            "step": 12,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 13,
+            "action": "examine sinkbasin 1",
+            "repair": false,
+            "observation": "On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 14,
+            "action": "examine drawer 2",
+            "repair": false,
+            "observation": "The drawer 2 is closed."
+          },
+          {
+            "step": 15,
+            "action": "examine drawer 2",
+            "repair": false,
+            "observation": "The drawer 2 is closed."
+          },
+          {
+            "step": 16,
+            "action": "examine drawer 2",
+            "repair": false,
+            "observation": "The drawer 2 is closed."
+          },
+          {
+            "step": 17,
+            "action": "open drawer 2",
+            "repair": false,
+            "observation": "You open the drawer 2. The drawer 2 is open. In it, you see nothing."
+          },
+          {
+            "step": 18,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 19,
+            "action": "go to cabinet 1",
+            "repair": false,
+            "observation": "You arrive at cabinet 1. The cabinet 1 is open. In it, you see nothing."
+          },
+          {
+            "step": 20,
+            "action": "go to cabinet 2",
+            "repair": false,
+            "observation": "You arrive at cabinet 2. The cabinet 2 is open. In it, you see a saltshaker 1."
+          },
+          {
+            "step": 21,
+            "action": "examine cabinet 2",
+            "repair": false,
+            "observation": "The cabinet 2 is open. In it, you see a saltshaker 1."
+          },
+          {
+            "step": 22,
+            "action": "go to cabinet 3",
+            "repair": false,
+            "observation": "You arrive at cabinet 3. The cabinet 3 is open. In it, you see a saltshaker 2, and a soapbottle 1."
+          },
+          {
+            "step": 23,
+            "action": "take soapbottle 1 from cabinet 3",
+            "repair": false,
+            "observation": "You pick up the soapbottle 1 from the cabinet 3."
+          },
+          {
+            "step": 24,
+            "action": "go to cabinet 2",
+            "repair": false,
+            "observation": "You arrive at cabinet 2. The cabinet 2 is open. In it, you see a saltshaker 1."
+          },
+          {
+            "step": 25,
+            "action": "examine cabinet 2",
+            "repair": false,
+            "observation": "The cabinet 2 is open. In it, you see a saltshaker 1."
+          },
+          {
+            "step": 26,
+            "action": "go to cabinet 3",
+            "repair": false,
+            "observation": "You arrive at cabinet 3. The cabinet 3 is open. In it, you see a saltshaker 2."
+          },
+          {
+            "step": 27,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 28,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 29,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 30,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 31,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 32,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 33,
+            "action": "examine soapbottle 1",
+            "repair": false,
+            "observation": "There's nothing special about soapbottle 1."
+          },
+          {
+            "step": 34,
+            "action": "move butterknife 1 to sinkbasin 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 35,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 36,
+            "action": "clean butterknife 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 37,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 38,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 39,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 40,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 41,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 42,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 43,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 44,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 45,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 46,
+            "action": "examine countertop 1",
+            "repair": false,
+            "observation": "On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 47,
+            "action": "pick up butterknife 1 from countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          },
+          {
+            "step": 48,
+            "action": "go to sinkbasin 1",
+            "repair": false,
+            "observation": "You arrive at sinkbasin 1. On the sinkbasin 1, you see a lettuce 2, and a potato 1."
+          },
+          {
+            "step": 49,
+            "action": "go to countertop 1",
+            "repair": false,
+            "observation": "You arrive at countertop 1. On the countertop 1, you see a bowl 1, a bread 1, a butterknife 1, a cup 2, a fork 1, a knife 3, a knife 2, a knife 1, a pan 2, a peppershaker 1, a soapbottle 3, a soapbottle 2, and a spoon 1."
+          },
+          {
+            "step": 50,
+            "action": "take butterknife 1 from countertop 1",
+            "repair": false,
+            "observation": "Nothing happens."
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,10 @@
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:  25%|██▍       | 84/339 [00:00<00:00, 817.41it/s]Loading weights:  51%|█████     | 172/339 [00:00<00:00, 839.27it/s]Loading weights:  83%|████████▎ | 280/339 [00:00<00:00, 927.63it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 938.12it/s]
+{"event": "model_loaded", "seconds": 56.56894516944885, "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition"}
+Traceback (most recent call last):
+  File "/root/autodl-tmp/idea/exploratory_deep_discovery/teacher_probe_2026_10_29/score.py", line 125, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/autodl-tmp/idea/exploratory_deep_discovery/teacher_probe_2026_10_29/score.py", line 88, in main
+    assert max(c['max_token_difference'] for c in checks)<.15,checks
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [{'request_id': 's003_t18__S', 'arm': 0, 'max_token_difference': 5.00668647873681e-06, 'sum_difference': -5.602730880127638e-06}, {'request_id': 's003_t18__S', 'arm': 1, 'max_token_difference': 0.25, 'sum_difference': 0.26042535342674}, {'request_id': 's003_t18__S', 'arm': 4, 'max_token_difference': 2.8484020731411874e-05, 'sum_difference': 2.7057679737652052e-05}, {'request_id': 's003_t18__H', 'arm': 0, 'max_token_difference': 2.384149411227554e-07, 'sum_difference': -1.1920610631932504e-07}, {'request_id': 's003_t18__H', 'arm': 1, 'max_token_difference': 0.0006592273712158203, 'sum_difference': -0.00025133730304105484}, {'request_id': 's003_t18__H', 'arm': 4, 'max_token_difference': 0.1875, 'sum_difference': 0.17668279707157808}]

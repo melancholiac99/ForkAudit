@@ -1,0 +1,21 @@
+{
+  "complete": true,
+  "contexts": 576,
+  "candidate_sequences": 2880,
+  "elapsed_seconds": 232.0955195426941,
+  "model_load_seconds": 6.889286756515503,
+  "peak_allocated_gb": 21.580777472,
+  "peak_reserved_gb": 23.794286592,
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "model": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+  "dtype": "bfloat16",
+  "lm_head_dtype": "float32",
+  "log_softmax_dtype": "float32",
+  "versions": {
+    "torch": "2.13.0",
+    "transformers": "5.19.0",
+    "numpy": "2.3.5"
+  },
+  "request_file_sha256": "ef29f79f4bbeb25afb0447d5c7f0aa83c136317c3ab5604f2ba8666eebe3c8d7",
+  "score_code_sha256": "d3902ef234a3915fb48d3482512330ec09369811b26c936fe38b2dc02ac38853"
+}

@@ -1,5 +1,13 @@
 # Agent credit discovery: analyses and mechanism experiments
 
+## Completed: information × execution repair — 2026-10-29
+
+- [Chinese experiment report and research judgment](../reports/execution_factorial_results_2026-10-29.md): 480 new continuations plus 480 explicitly reused controls across six predetermined cases. Runtime 10.8 minutes; no training.
+- [Protocol and reproduction](execution_factorial_2026_10_29/README.md), [all six action profiles](execution_factorial_2026_10_29/results/action_profiles.png), [complete numerical results](execution_factorial_2026_10_29/results/summary.json), and [all 960 raw traces](execution_factorial_2026_10_29/results/all_960_continuations.tar.gz).
+- A shared execution obstacle can hide information-driven action differences; releasing it exposed a strong fork in one complete case. Repairing a branch-specific obstacle filled the remaining gap in another. Other cases retain substantial downstream failures; this establishes a mechanism in selected cases, not its population prevalence.
+- [Actual Hindsight Teacher probe](../reports/teacher_probe_results_2026-10-29.md) and [reproduction](teacher_probe_2026_10_29/README.md): the separate real-model probe did **not** support systematic harm from hindsight. Its aligned-feedback gains were modest and concentrated. Both positive and negative results are preserved.
+- After briefly cancelling shutdown, the user reauthorized it: shut down after upload, with a three-minute fallback.
+
 ## Latest: information conditions and teaching preferences — 2026-10-29
 
 - [Chinese research memo: extra information can change the credit being taught](../reports/teaching_information_2026-10-29.md).
@@ -11,14 +19,14 @@
 
 - [Chinese experimental design: from credit structure to feedback-grounded distillation](../reports/opd_opsd_experiment_design_2026-10-29.md).
 - Proposed sequence: information × execution mechanism experiment → teacher-target evaluation using existing replay → small on-policy distillation study with unhinted evaluation.
-- Includes teacher controls, data separation, training prototype, budgets, decision criteria, and literature boundaries. **Design only: the new teacher and training experiments have not been run.**
+- Includes teacher controls, data separation, training prototype, budgets, decision criteria, and literature boundaries. **The end-to-end training design remains unrun; the separate actual Teacher probe is now complete (above).**
 
 ## Latest mechanism experiments — 2026-10-28
 
 - [Five-arm regime mechanism report, with figures and conclusions](../reports/regime_mechanism_2026-10-28.md): 24 tasks, all original five actions, native/shared-information conditions, 16 continuations per cell. The 3,840 records include 1,024 explicitly reused records and 2,816 new continuations.
 - [Five-arm code and protocol](regime_mechanism_2026_10_28/README.md), [complete outcome tables and figures](regime_mechanism_2026_10_28/results/), and [seven illustrative raw traces](regime_mechanism_2026_10_28/results/cases/).
 - [Earlier two-arm intervention report](../reports/opportunity_completion_results_2026-10-28.md): 2,048 continuations across 32 tasks. Its sample overlaps the five-arm extension; the two reports are not independent replications.
-- [Next proposed information × execution-repair experiment](regime_mechanism_2026_10_28/next_decisive_experiment.md): a design only, **not run**.
+- [Next proposed information × execution-repair experiment](regime_mechanism_2026_10_28/next_decisive_experiment.md): the original design draft; the completed 2026-10-29 execution is linked above.
 
 All experiments are post-freeze exploratory. The 2026-10-28 subdirectories contain actual model/environment continuation experiments and CPU diagnostics; they do not alter frozen Phase 3 inputs or labels. The GitHub bundle contains every continuation's terminal outcome in compact tables, summaries, plots, manifests, and the raw cases linked by the reports. Full trajectory archives remain on the research server.
 
