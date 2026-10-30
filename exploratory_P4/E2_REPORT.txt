@@ -1,0 +1,235 @@
+P4 E2 完成报告
+
+P4最终读法（沿用已登记的正对照失败条款）：R-MIXED。E3_allowed=False。
+E1正对照失败，不把内省未过线当作盲区证明；E2逐项结果如下，不能用E2替代失败的状态级正对照。
+P4-X独立探索性读法：R-X-MISDIRECT；不改P4原预测。
+
+设计：873个I/U层Live点，每模型3492上下文/17460候选序列；主分析386个Fork（I=184,U=202）。
+模型：Qwen2.5-7B-Instruct与Qwen2.5-32B-Instruct，固定版本；BF16 transformer、FP32词表投影；固定<action>回答前缀，无实现的思考文本。
+S=决策时上下文；L=加完整factual日志与终局奖励；F=加带动作对应的一步反馈；Fx=固定置换替代动作反馈。
+主读出库1+2（6次/臂），Gold为独立20次/臂第二读出。10,000次轨迹bootstrap，同一Live轨迹集与seed 30102026。
+这些是固定候选集上的离线重加权成功率，不是新策略的在线评估或训练增益。
+
+预测对账：
+  E1 P4-1: True
+  E1 P4-2: False
+  E1 P4-3: False
+  E1 P4-4_direction: True
+  E1 positive_control: False
+  E2 P4-5: true
+  E2 P4-6: {"7b": true, "32b": true}
+  E2 P4-7: {"7b": true, "32b": true}
+  P4-8/9/10: 未运行，E3启动条件不满足。
+  P4-4_direction是点估计方向；chosen份额层间差CI含0，不能写作两项均显著。
+
+E2条件收益表（百分点，95%CI）：
+
+Outcome source: 12
+  7b/S/soft/G_u/I: -10.17 [-12.84, -6.74] pp; n=184, trajectories=39
+  7b/S/soft/G_c/I: -2.35 [-5.35, +0.28] pp; n=184, trajectories=39
+  7b/S/argmax/G_u/I: -10.36 [-13.30, -6.70] pp; n=184, trajectories=39
+  7b/S/argmax/G_c/I: -2.54 [-5.72, +0.23] pp; n=184, trajectories=39
+  7b/L/soft/G_u/I: -7.02 [-9.90, -3.35] pp; n=184, trajectories=39
+  7b/L/soft/G_c/I: +0.81 [-2.01, +3.79] pp; n=184, trajectories=39
+  7b/L/argmax/G_u/I: -7.46 [-11.28, -2.54] pp; n=184, trajectories=39
+  7b/L/argmax/G_c/I: +0.36 [-2.90, +3.96] pp; n=184, trajectories=39
+  7b/F/soft/G_u/I: +17.27 [+9.04, +26.64] pp; n=184, trajectories=39
+  7b/F/soft/G_c/I: +25.10 [+15.87, +35.10] pp; n=184, trajectories=39
+  7b/F/argmax/G_u/I: +18.17 [+9.76, +27.76] pp; n=184, trajectories=39
+  7b/F/argmax/G_c/I: +26.00 [+16.67, +36.11] pp; n=184, trajectories=39
+  7b/Fx/soft/G_u/I: -6.42 [-9.25, -2.95] pp; n=184, trajectories=39
+  7b/Fx/soft/G_c/I: +1.41 [-2.37, +4.72] pp; n=184, trajectories=39
+  7b/Fx/argmax/G_u/I: -7.19 [-10.25, -3.29] pp; n=184, trajectories=39
+  7b/Fx/argmax/G_c/I: +0.63 [-3.15, +4.02] pp; n=184, trajectories=39
+  32b/S/soft/G_u/I: -8.09 [-10.80, -4.70] pp; n=184, trajectories=39
+  32b/S/soft/G_c/I: -0.26 [-4.08, +3.19] pp; n=184, trajectories=39
+  32b/S/argmax/G_u/I: -8.19 [-11.13, -4.53] pp; n=184, trajectories=39
+  32b/S/argmax/G_c/I: -0.36 [-4.33, +3.12] pp; n=184, trajectories=39
+  32b/L/soft/G_u/I: -4.01 [-7.93, +0.66] pp; n=184, trajectories=39
+  32b/L/soft/G_c/I: +3.82 [+0.13, +7.72] pp; n=184, trajectories=39
+  32b/L/argmax/G_u/I: -3.57 [-8.14, +1.80] pp; n=184, trajectories=39
+  32b/L/argmax/G_c/I: +4.26 [+0.12, +8.79] pp; n=184, trajectories=39
+  32b/F/soft/G_u/I: +42.70 [+33.12, +49.49] pp; n=184, trajectories=39
+  32b/F/soft/G_c/I: +50.53 [+38.77, +58.95] pp; n=184, trajectories=39
+  32b/F/argmax/G_u/I: +42.17 [+32.01, +49.37] pp; n=184, trajectories=39
+  32b/F/argmax/G_c/I: +50.00 [+37.88, +58.75] pp; n=184, trajectories=39
+  32b/Fx/soft/G_u/I: +5.03 [-1.99, +11.36] pp; n=184, trajectories=39
+  32b/Fx/soft/G_c/I: +12.86 [+4.50, +20.27] pp; n=184, trajectories=39
+  32b/Fx/argmax/G_u/I: +4.22 [-3.52, +11.34] pp; n=184, trajectories=39
+  32b/Fx/argmax/G_c/I: +12.05 [+3.15, +20.15] pp; n=184, trajectories=39
+  7b/S/soft/G_u/U: +0.22 [-3.97, +5.07] pp; n=202, trajectories=35
+  7b/S/soft/G_c/U: +1.32 [-3.47, +6.29] pp; n=202, trajectories=35
+  7b/S/argmax/G_u/U: +0.30 [-3.98, +5.28] pp; n=202, trajectories=35
+  7b/S/argmax/G_c/U: +1.40 [-3.37, +6.43] pp; n=202, trajectories=35
+  7b/L/soft/G_u/U: -1.28 [-4.81, +3.07] pp; n=202, trajectories=35
+  7b/L/soft/G_c/U: -0.18 [-4.46, +4.35] pp; n=202, trajectories=35
+  7b/L/argmax/G_u/U: -0.69 [-4.61, +4.27] pp; n=202, trajectories=35
+  7b/L/argmax/G_c/U: +0.41 [-4.30, +5.59] pp; n=202, trajectories=35
+  7b/F/soft/G_u/U: +4.17 [-0.19, +8.67] pp; n=202, trajectories=35
+  7b/F/soft/G_c/U: +5.27 [-1.21, +11.59] pp; n=202, trajectories=35
+  7b/F/argmax/G_u/U: +4.34 [-0.03, +8.97] pp; n=202, trajectories=35
+  7b/F/argmax/G_c/U: +5.45 [-0.99, +11.86] pp; n=202, trajectories=35
+  7b/Fx/soft/G_u/U: +1.52 [-2.33, +6.08] pp; n=202, trajectories=35
+  7b/Fx/soft/G_c/U: +2.63 [-2.16, +7.44] pp; n=202, trajectories=35
+  7b/Fx/argmax/G_u/U: +1.70 [-2.39, +6.49] pp; n=202, trajectories=35
+  7b/Fx/argmax/G_c/U: +2.81 [-2.28, +7.83] pp; n=202, trajectories=35
+  32b/S/soft/G_u/U: +12.06 [+6.67, +17.68] pp; n=202, trajectories=35
+  32b/S/soft/G_c/U: +13.16 [+8.14, +18.66] pp; n=202, trajectories=35
+  32b/S/argmax/G_u/U: +12.18 [+6.67, +18.14] pp; n=202, trajectories=35
+  32b/S/argmax/G_c/U: +13.28 [+8.10, +19.25] pp; n=202, trajectories=35
+  32b/L/soft/G_u/U: +8.61 [+3.64, +14.00] pp; n=202, trajectories=35
+  32b/L/soft/G_c/U: +9.72 [+5.68, +14.03] pp; n=202, trajectories=35
+  32b/L/argmax/G_u/U: +8.96 [+3.61, +14.64] pp; n=202, trajectories=35
+  32b/L/argmax/G_c/U: +10.07 [+5.68, +14.79] pp; n=202, trajectories=35
+  32b/F/soft/G_u/U: +16.08 [+10.14, +22.91] pp; n=202, trajectories=35
+  32b/F/soft/G_c/U: +17.19 [+9.75, +25.87] pp; n=202, trajectories=35
+  32b/F/argmax/G_u/U: +16.22 [+10.00, +23.15] pp; n=202, trajectories=35
+  32b/F/argmax/G_c/U: +17.33 [+9.50, +26.10] pp; n=202, trajectories=35
+  32b/Fx/soft/G_u/U: +9.95 [+6.04, +14.07] pp; n=202, trajectories=35
+  32b/Fx/soft/G_c/U: +11.05 [+6.76, +15.12] pp; n=202, trajectories=35
+  32b/Fx/argmax/G_u/U: +10.28 [+6.14, +14.51] pp; n=202, trajectories=35
+  32b/Fx/argmax/G_c/U: +11.39 [+6.68, +15.93] pp; n=202, trajectories=35
+Paired contrasts:
+  32b-7b_S_I: +2.09 [-1.45, +5.36] pp; n=184, trajectories=39
+  7b_F-S_I: +27.45 [+18.37, +37.49] pp; n=184, trajectories=39
+  7b_F-Fx_I: +23.69 [+15.32, +32.80] pp; n=184, trajectories=39
+  7b_L-S_I: +3.15 [+0.88, +5.86] pp; n=184, trajectories=39
+  7b_L-S_I_future0: +2.06 [-0.27, +4.51] pp; n=113, trajectories=18
+  7b_L-S_I_future1: +4.90 [+0.06, +10.79] pp; n=71, trajectories=22
+  32b_F-S_I: +50.79 [+40.78, +58.01] pp; n=184, trajectories=39
+  32b_F-Fx_I: +37.67 [+29.27, +45.37] pp; n=184, trajectories=39
+  32b_L-S_I: +4.08 [+1.32, +7.26] pp; n=184, trajectories=39
+  32b_L-S_I_future0: +1.92 [-1.17, +4.68] pp; n=113, trajectories=18
+  32b_L-S_I_future1: +7.51 [+2.16, +13.47] pp; n=71, trajectories=22
+  32b-7b_S_U: +11.84 [+6.75, +17.71] pp; n=202, trajectories=35
+  7b_F-S_U: +3.95 [+0.44, +9.27] pp; n=202, trajectories=35
+  7b_F-Fx_U: +2.65 [-0.78, +7.45] pp; n=202, trajectories=35
+  7b_L-S_U: -1.50 [-3.51, +0.29] pp; n=202, trajectories=35
+  32b_F-S_U: +4.03 [-2.93, +13.95] pp; n=202, trajectories=35
+  32b_F-Fx_U: +6.13 [+1.14, +13.62] pp; n=202, trajectories=35
+  32b_L-S_U: -3.44 [-7.91, +0.14] pp; n=202, trajectories=35
+  P4-5_interaction: +9.75 [+3.48, +16.64] pp
+
+Outcome source: gold
+  7b/S/soft/G_u/I: -10.12 [-14.02, -5.45] pp; n=57, trajectories=27
+  7b/S/soft/G_c/I: -4.47 [-11.00, +1.35] pp; n=57, trajectories=27
+  7b/S/argmax/G_u/I: -10.12 [-14.47, -4.92] pp; n=57, trajectories=27
+  7b/S/argmax/G_c/I: -4.47 [-11.20, +1.48] pp; n=57, trajectories=27
+  7b/L/soft/G_u/I: -3.87 [-8.74, +2.51] pp; n=57, trajectories=27
+  7b/L/soft/G_c/I: +1.78 [-2.34, +6.37] pp; n=57, trajectories=27
+  7b/L/argmax/G_u/I: -3.81 [-9.87, +4.14] pp; n=57, trajectories=27
+  7b/L/argmax/G_c/I: +1.84 [-2.97, +7.13] pp; n=57, trajectories=27
+  7b/F/soft/G_u/I: +14.43 [+6.49, +24.68] pp; n=57, trajectories=27
+  7b/F/soft/G_c/I: +20.08 [+11.24, +30.69] pp; n=57, trajectories=27
+  7b/F/argmax/G_u/I: +15.75 [+7.44, +26.20] pp; n=57, trajectories=27
+  7b/F/argmax/G_c/I: +21.40 [+12.67, +31.77] pp; n=57, trajectories=27
+  7b/Fx/soft/G_u/I: -4.15 [-9.33, +2.85] pp; n=57, trajectories=27
+  7b/Fx/soft/G_c/I: +1.50 [-2.73, +6.62] pp; n=57, trajectories=27
+  7b/Fx/argmax/G_u/I: -4.51 [-9.88, +2.98] pp; n=57, trajectories=27
+  7b/Fx/argmax/G_c/I: +1.14 [-3.33, +6.60] pp; n=57, trajectories=27
+  32b/S/soft/G_u/I: -6.30 [-10.59, -1.48] pp; n=57, trajectories=27
+  32b/S/soft/G_c/I: -0.65 [-6.86, +4.79] pp; n=57, trajectories=27
+  32b/S/argmax/G_u/I: -6.26 [-11.21, -0.57] pp; n=57, trajectories=27
+  32b/S/argmax/G_c/I: -0.61 [-7.08, +5.19] pp; n=57, trajectories=27
+  32b/L/soft/G_u/I: -1.90 [-8.06, +5.83] pp; n=57, trajectories=27
+  32b/L/soft/G_c/I: +3.75 [-0.83, +9.08] pp; n=57, trajectories=27
+  32b/L/argmax/G_u/I: -1.70 [-8.18, +6.21] pp; n=57, trajectories=27
+  32b/L/argmax/G_c/I: +3.95 [-0.88, +9.40] pp; n=57, trajectories=27
+  32b/F/soft/G_u/I: +43.17 [+31.37, +51.80] pp; n=57, trajectories=27
+  32b/F/soft/G_c/I: +48.82 [+34.31, +59.93] pp; n=57, trajectories=27
+  32b/F/argmax/G_u/I: +42.95 [+30.70, +51.94] pp; n=57, trajectories=27
+  32b/F/argmax/G_c/I: +48.60 [+33.54, +60.00] pp; n=57, trajectories=27
+  32b/Fx/soft/G_u/I: +12.53 [+3.18, +24.18] pp; n=57, trajectories=27
+  32b/Fx/soft/G_c/I: +18.18 [+9.91, +27.66] pp; n=57, trajectories=27
+  32b/Fx/argmax/G_u/I: +13.04 [+2.24, +26.36] pp; n=57, trajectories=27
+  32b/Fx/argmax/G_c/I: +18.68 [+8.93, +29.53] pp; n=57, trajectories=27
+  7b/S/soft/G_u/U: -3.64 [-8.14, +2.50] pp; n=62, trajectories=21
+  7b/S/soft/G_c/U: +0.91 [-4.54, +6.01] pp; n=62, trajectories=21
+  7b/S/argmax/G_u/U: -3.74 [-8.34, +2.56] pp; n=62, trajectories=21
+  7b/S/argmax/G_c/U: +0.81 [-4.88, +5.87] pp; n=62, trajectories=21
+  7b/L/soft/G_u/U: -4.21 [-8.17, +1.44] pp; n=62, trajectories=21
+  7b/L/soft/G_c/U: +0.34 [-3.71, +3.89] pp; n=62, trajectories=21
+  7b/L/argmax/G_u/U: -3.98 [-8.56, +2.30] pp; n=62, trajectories=21
+  7b/L/argmax/G_c/U: +0.56 [-4.36, +5.24] pp; n=62, trajectories=21
+  7b/F/soft/G_u/U: +2.37 [-5.66, +12.05] pp; n=62, trajectories=21
+  7b/F/soft/G_c/U: +6.92 [-5.46, +21.01] pp; n=62, trajectories=21
+  7b/F/argmax/G_u/U: +3.27 [-5.99, +14.70] pp; n=62, trajectories=21
+  7b/F/argmax/G_c/U: +7.82 [-4.81, +23.21] pp; n=62, trajectories=21
+  7b/Fx/soft/G_u/U: -2.00 [-5.68, +3.10] pp; n=62, trajectories=21
+  7b/Fx/soft/G_c/U: +2.55 [-3.65, +7.77] pp; n=62, trajectories=21
+  7b/Fx/argmax/G_u/U: -1.65 [-5.54, +3.26] pp; n=62, trajectories=21
+  7b/Fx/argmax/G_c/U: +2.90 [-3.72, +8.58] pp; n=62, trajectories=21
+  32b/S/soft/G_u/U: +9.43 [+3.00, +17.71] pp; n=62, trajectories=21
+  32b/S/soft/G_c/U: +13.98 [+8.14, +20.92] pp; n=62, trajectories=21
+  32b/S/argmax/G_u/U: +10.13 [+3.59, +18.78] pp; n=62, trajectories=21
+  32b/S/argmax/G_c/U: +14.68 [+8.61, +21.98] pp; n=62, trajectories=21
+  32b/L/soft/G_u/U: +3.16 [-2.53, +10.20] pp; n=62, trajectories=21
+  32b/L/soft/G_c/U: +7.70 [+3.52, +12.54] pp; n=62, trajectories=21
+  32b/L/argmax/G_u/U: +2.79 [-3.70, +10.51] pp; n=62, trajectories=21
+  32b/L/argmax/G_c/U: +7.34 [+3.12, +12.50] pp; n=62, trajectories=21
+  32b/F/soft/G_u/U: +18.54 [+8.73, +29.51] pp; n=62, trajectories=21
+  32b/F/soft/G_c/U: +23.09 [+10.31, +37.78] pp; n=62, trajectories=21
+  32b/F/argmax/G_u/U: +19.00 [+8.62, +30.21] pp; n=62, trajectories=21
+  32b/F/argmax/G_c/U: +23.55 [+10.37, +38.38] pp; n=62, trajectories=21
+  32b/Fx/soft/G_u/U: +7.04 [+2.39, +13.75] pp; n=62, trajectories=21
+  32b/Fx/soft/G_c/U: +11.59 [+5.62, +17.45] pp; n=62, trajectories=21
+  32b/Fx/argmax/G_u/U: +7.23 [+2.51, +14.02] pp; n=62, trajectories=21
+  32b/Fx/argmax/G_c/U: +11.77 [+4.88, +18.28] pp; n=62, trajectories=21
+Paired contrasts:
+  32b-7b_S_I: +3.82 [-0.32, +8.32] pp; n=57, trajectories=27
+  7b_F-S_I: +24.55 [+15.12, +36.20] pp; n=57, trajectories=27
+  7b_F-Fx_I: +18.58 [+9.58, +28.61] pp; n=57, trajectories=27
+  7b_L-S_I: +6.25 [+1.06, +12.74] pp; n=57, trajectories=27
+  7b_L-S_I_future0: +2.94 [-0.72, +7.29] pp; n=30, trajectories=12
+  7b_L-S_I_future1: +9.94 [-0.65, +21.12] pp; n=27, trajectories=15
+  32b_F-S_I: +49.46 [+36.10, +59.69] pp; n=57, trajectories=27
+  32b_F-Fx_I: +30.64 [+17.13, +41.76] pp; n=57, trajectories=27
+  32b_L-S_I: +4.40 [-0.50, +10.26] pp; n=57, trajectories=27
+  32b_L-S_I_future0: -0.25 [-6.18, +5.63] pp; n=30, trajectories=12
+  32b_L-S_I_future1: +9.56 [+1.78, +19.51] pp; n=27, trajectories=15
+  32b-7b_S_U: +13.07 [+6.46, +21.01] pp; n=62, trajectories=21
+  7b_F-S_U: +6.01 [-3.84, +18.78] pp; n=62, trajectories=21
+  7b_F-Fx_U: +4.37 [-4.06, +14.98] pp; n=62, trajectories=21
+  7b_L-S_U: -0.57 [-3.55, +1.98] pp; n=62, trajectories=21
+  32b_F-S_U: +9.11 [-2.59, +23.98] pp; n=62, trajectories=21
+  32b_F-Fx_U: +11.50 [+0.67, +24.54] pp; n=62, trajectories=21
+  32b_L-S_U: -6.27 [-11.51, -2.13] pp; n=62, trajectories=21
+  P4-5_interaction: +9.25 [+0.99, +18.65] pp
+
+数值校验及完整性：
+{
+  "passed": true,
+  "input_hashes_checked": 14,
+  "E1_input_hashes_unchanged": 10656,
+  "preparation_inputs_unchanged": 1826,
+  "raw_replay_files_checked": 1940,
+  "point_estimate_max_error": 5.551115123125783e-17,
+  "paired_bootstrap_interaction_ci_max_error": 2.7755575615628914e-17,
+  "models": {
+    "7b": {
+      "max_numerical_tv": 0.001482794010846476,
+      "contexts": 3492,
+      "peak_gb": 18.869945344,
+      "revision": "a09a35458c702b33eeacc393d103063234e8bc28"
+    },
+    "32b": {
+      "max_numerical_tv": 6.060005778354057e-07,
+      "contexts": 3492,
+      "peak_gb": 73.833866752,
+      "revision": "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd"
+    }
+  }
+}
+
+判定解释：当前分析器在E1世界正对照失败时优先返回R-MIXED（P4 §3 E1明确条款）。§4表序中的R-NULL/R-PRIOR条件另列供审阅，未用其更改登记的正对照失败处理。
+  表序单项条件：R-NULL=False; R-PRIOR=False。
+
+限制：I/U是目标实例文本代理；P_E或层内非显著不意味着等效；F/Fx检验动作反馈对应关系，不是纯粹因果中介检验；单对7B/32B不能外推普遍规模律。
+数值TV检查只覆盖固定样例，不是对全部上下文的统一误差保证。
+
+复现入口：
+  p4_e2_judge_score.py --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --name 7b --revision a09a35458c702b33eeacc393d103063234e8bc28
+  p4_e2_judge_score.py --model /root/autodl-tmp/models/Qwen2.5-32B-Instruct --name 32b --revision 5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd
+  p4_e2_analyze.py; verify_e2.py; render_e2.py
+所有命令使用 /root/miniconda3/envs/m0/bin/python，在仓库根目录运行。
+权重文件不上传GitHub；精确版本、文件哈希和下载来源随结果记录。

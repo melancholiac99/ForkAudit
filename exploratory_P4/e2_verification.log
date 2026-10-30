@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "input_hashes_checked": 14,
+  "E1_input_hashes_unchanged": 10656,
+  "preparation_inputs_unchanged": 1826,
+  "raw_replay_files_checked": 1940,
+  "point_estimate_max_error": 5.551115123125783e-17,
+  "paired_bootstrap_interaction_ci_max_error": 2.7755575615628914e-17,
+  "models": {
+    "7b": {
+      "max_numerical_tv": 0.001482794010846476,
+      "contexts": 3492,
+      "peak_gb": 18.869945344,
+      "revision": "a09a35458c702b33eeacc393d103063234e8bc28"
+    },
+    "32b": {
+      "max_numerical_tv": 6.060005778354057e-07,
+      "contexts": 3492,
+      "peak_gb": 73.833866752,
+      "revision": "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd"
+    }
+  }
+}

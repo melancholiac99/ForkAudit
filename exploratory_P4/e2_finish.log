@@ -1,0 +1,6 @@
+{"event": "start", "command": ["exploratory_P4/p4_e2_judge_score.py", "--model", "/root/autodl-tmp/models/Qwen2.5-32B-Instruct", "--name", "32b", "--revision", "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd"]}
+{"event": "finished", "command": ["exploratory_P4/p4_e2_judge_score.py", "--model", "/root/autodl-tmp/models/Qwen2.5-32B-Instruct", "--name", "32b", "--revision", "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd"]}
+{"event": "start", "command": ["exploratory_P4/p4_e2_analyze.py"]}
+{"event": "finished", "command": ["exploratory_P4/p4_e2_analyze.py"]}
+{"event": "start", "command": ["exploratory_P4/verify_e2.py"]}
+{"event": "finished", "command": ["exploratory_P4/verify_e2.py"]}
