@@ -1243,3 +1243,27 @@ checked. E2 inputs prepared: 873 points / 3,492 contexts / 17,460 candidate sequ
 and complete-run analysis scripts provided; real GPU numerical validation has NOT run, no E2 scores exist.
 After disclosure of missing GPU the researcher said “先做能做的”. E2 is deferred on this allocation;
 P4-5/6/7 remain untested. E1+E2 table-order verdict is not claimed complete. No paper mainline change.
+
+## D-054 — P4-X robustness pre-registration and proposal P5 (closed loop) registered — 2026-10-30
+
+Written by Claude after reviewing E1 (D-053). Nothing in M0 or in P4's pre-registered predictions, readings or
+E1 results changes; E2 runs as pre-registered; E3 stays off.
+- **P4-X (`exploratory_P4/PREREG_X.md`, `exploratory_P4/p4_x_robust.py`).** E1's I-layer policy G_u = −11.13 pp was
+  not predicted. Before interpreting it, X1–X7 check the scoring convention (logp_mean), the actual sampling
+  marginal (bank-1 drafts with reasoning), the chosen action alone, dilution versus under-exploration (exploratory
+  class E = `go to` an unvisited receptacle or `open` an unopened one, from factual actions before t), loops,
+  over-representation of long searches (first I point per trajectory), and leave-one-trajectory-out / task type.
+  Readings R-X-ARTIFACT / MISDIRECT / UNDEREXPLORE / DILUTION / OTHER. The script recomputes E1's policy G_u from
+  `logp_sum` and stops unless it matches `e1.json` to 1e-9. Its `--selftest` (synthetic) shows that probability
+  dilution among many unvisited options alone yields a significantly negative G_u with zero within-class gain,
+  which is why the class decomposition is required. The main path was smoke-tested end to end on a synthetic
+  repository with the same file layout (parquet reads mocked); it has not run on real data.
+  To be committed alone as `P4-X: pre-registration` before the main run; record that hash here.
+  P4-X pre-registration commit: `dd8b07973ca0d48607c8322b0c65f785352d4a8f` (`P4-X: pre-registration`); no real-data run has been performed.
+- **P5 (`proposals/P5_closed_loop.md`, PROPOSED).** Paper plan toward a top venue: thesis that step-level credit is
+  first an information problem; evidence inventory; E2 and P4-X as above; new E4 closed-loop learning experiment
+  (feedback-grounded step preferences vs budget-matched replay credit, entropy-selected replay, an exploration
+  heuristic, outcome-only RFT, base; LoRA-DPO on ALFWorld train games excluding M0's 100 tasks; valid_seen/unseen);
+  E5 WebShop confirmatory replication with definitions frozen before any outcome; gates G1–G3; paper skeleton.
+  Awaiting the researcher's ruling (P5 §9: venue/deadline, adoption, E4 framework, compute).
+- D-050 remains OPEN: the fix code is in `c2b7ba1` but the recomputed B+C results are not in the repository.
