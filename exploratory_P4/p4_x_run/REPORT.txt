@@ -1,0 +1,149 @@
+P4-X CPU 正式运行报告
+
+仓库：melancholiac99/ForkAudit；保持运行前分支 main，未执行 checkout/switch。
+git fetch 初次因TLS失败；指定现有HTTPS代理后成功。git merge --no-edit origin/main 快进合并，无冲突。
+运行提交：85f0864c440b53f1aa00794dc2cfacc2d8f1f391
+包含 P4-X dd8b07973ca0d48607c8322b0c65f785352d4a8f 与 P5 85f0864c440b53f1aa00794dc2cfacc2d8f1f391。
+本轮未运行E2、未调用GPU、未采集轨迹或训练模型、未推送远端。原始数据、分析脚本、预注册和P4/E1结果保持原样。
+
+正式读法：R-X-MISDIRECT
+按预注册表序：PX-1/PX-2成立，且探索类内收益95%CI上界<0，命中R-X-MISDIRECT。
+允许的表述：在本设置的信息受限候选层Fork上，探索选项内部的采样偏好也系统性偏向较差选项。
+该读法是E1结果触发后的探索性稳健性检查，不修改P4原判定R-MIXED，不证明更强模型的结果，也不启动E3。
+
+参数：seed=30102026；10,000次轨迹cluster bootstrap；原1478个Live点的同一轨迹集；q=库1+2，Gold第二读出。
+依赖与路径检查：preflight.json；必需文件10735个齐全，Gold保留300点；自检selftest passed。
+一致性校验：logp_sum复算I层G_u = -0.11128211844951125，E1 = -0.11128211844951125，绝对差为0。
+
+I层主人群 X1–X7；数值为百分点，方括号为95%CI。
+X1 长度归一化logp_mean
+  12 G_u: -6.71 [-8.31, -4.70] pp; n=184, trajectories=39
+  12 G_c: +1.12 [-1.99, +3.95] pp; n=184, trajectories=39
+  gold G_u: -6.50 [-9.27, -3.74] pp; n=57, trajectories=27
+  gold G_c: -0.85 [-7.07, +3.93] pp; n=57, trajectories=27
+X2 首批草稿边际
+  12 G_u: -6.82 [-8.39, -4.90] pp; n=184, trajectories=39
+  12 G_c: +1.00 [-2.05, +3.57] pp; n=184, trajectories=39
+  gold G_u: -6.59 [-9.01, -3.86] pp; n=57, trajectories=27
+  gold G_c: -0.94 [-6.66, +4.00] pp; n=57, trajectories=27
+X2 全批次敏感性
+  12 G_u: -6.90 [-8.48, -4.97] pp; n=184, trajectories=39
+  12 G_c: +0.92 [-2.12, +3.49] pp; n=184, trajectories=39
+  gold G_u: -6.86 [-9.21, -4.12] pp; n=57, trajectories=27
+  gold G_c: -1.22 [-6.87, +3.74] pp; n=57, trajectories=27
+X3 实际chosen动作
+  12 G_u: -7.83 [-10.97, -3.80] pp; n=184, trajectories=39
+  12 G_c: +0.00 [+0.00, +0.00] pp; n=184, trajectories=39
+  gold G_u: -5.65 [-10.95, +0.95] pp; n=57, trajectories=27
+  gold G_c: +0.00 [+0.00, +0.00] pp; n=57, trajectories=27
+X4 探索分解（脚本只输出库1+2）：
+  d_EX: +39.26 [+29.61, +46.26] pp; n=181, trajectories=38
+  regret: +35.12 [+25.67, +41.93] pp; n=181, trajectories=38
+  v_E: +66.12 [+58.81, +71.49] pp; n=181, trajectories=38
+  v_N: +26.86 [+22.39, +32.21] pp; n=181, trajectories=38
+  P_E: +23.64 [+17.58, +31.95] pp; n=184, trajectories=39
+  within_E_gain: -4.84 [-7.92, -2.15] pp; n=112, trajectories=36
+  revealing_arms_E_share: +100.00 [+100.00, +100.00] pp; n=184, trajectories=39
+  P_E是首批32份草稿中有效且合法的动作内E类的比例；并非以固定32作为分母。其余选臂概率限制在五臂内并加0.5平滑。
+X5 循环（库1+2）：
+  loop_rate: +42.93 [+33.33, +51.96] pp; n=184, trajectories=39
+  X3_loop: -9.32 [-13.09, -4.35] pp; n=79, trajectories=27
+  X3_no_loop: -6.70 [-10.99, -2.08] pp; n=105, trajectories=36
+X6 首个Live I点：55条轨迹各一个点，其中27个Fork。
+  X2_drafts_batch0: -6.98 [-9.57, -4.29] pp; n=27, trajectories=27
+  X3_chosen: -10.86 [-18.89, -1.72] pp; n=27, trajectories=27
+X7 留一轨迹（估计范围，非CI）：
+  loto_X2: [-7.11, -6.44] pp; 39 trajectories
+  loto_X3: [-8.57, -7.19] pp; 39 trajectories
+X7 任务类型：n / X2 / X3（点估计，非显著性判定）
+  look_at_obj_in_light: 44 / -6.86 / -6.67 pp
+  pick_and_place_simple: 64 / -9.39 / -8.80 pp
+  pick_clean_then_place_in_recep: 56 / -4.64 / -7.56 pp
+  pick_cool_then_place_in_recep: 16 / -3.29 / -5.42 pp
+  pick_heat_then_place_in_recep: 4 / -10.07 / -18.33 pp
+
+预测：
+  PX-1: True
+  PX-2: True
+  PX-3: True
+  PX-4: False
+  PX-5_direction: True
+
+重要限定：
+X1、X2在I层Gold上仍显著为负；X3 Gold为−5.65 pp [−10.95,+0.95]，CI含0，不能称其在Gold上显著复现。
+X6方向未翻转，X7留一轨迹范围未跨0；五个已出现任务类型点估计均负，但热处理任务仅4点，不能声称各类型都显著。
+原脚本仅为X1–X3及E1对照提供Gold读出；X4/X5为库1+2，X6/X7仅输出I层库1+2。未修改脚本扩展这些读出，也不声称X4–X7有Gold复现。
+X4 d_EX需同时具有E/N类（181点）；类内收益需至少两个E臂（112点）。样本减少由预注册条件造成，不是文件缺失。N层无目标揭示臂，revealing_arms_E_share为undefined。
+
+U、N对照层（同原脚本全部输出）：
+U
+  12/X1_logp_mean/G_u: -0.50 [-2.85, +2.01] pp; n=202, trajectories=35
+  12/X1_logp_mean/G_c: +0.61 [-3.42, +3.79] pp; n=202, trajectories=35
+  12/X2_drafts_batch0/G_u: -0.37 [-2.34, +1.87] pp; n=202, trajectories=35
+  12/X2_drafts_batch0/G_c: +0.74 [-3.22, +3.67] pp; n=202, trajectories=35
+  12/X2b_drafts_all/G_u: -0.30 [-2.29, +1.99] pp; n=202, trajectories=35
+  12/X2b_drafts_all/G_c: +0.81 [-3.14, +3.75] pp; n=202, trajectories=35
+  12/E1_logp_sum/G_u: +0.48 [-3.15, +4.34] pp; n=202, trajectories=35
+  12/E1_logp_sum/G_c: +1.58 [-2.60, +5.10] pp; n=202, trajectories=35
+  12/X3_chosen/G_u: -1.11 [-4.63, +3.40] pp; n=202, trajectories=35
+  12/X3_chosen/G_c: +0.00 [+0.00, +0.00] pp; n=202, trajectories=35
+  gold/X1_logp_mean/G_u: -3.56 [-6.21, -0.40] pp; n=62, trajectories=21
+  gold/X1_logp_mean/G_c: +0.99 [-4.78, +5.51] pp; n=62, trajectories=21
+  gold/X2_drafts_batch0/G_u: -2.86 [-5.65, +0.45] pp; n=62, trajectories=21
+  gold/X2_drafts_batch0/G_c: +1.69 [-3.87, +5.50] pp; n=62, trajectories=21
+  gold/X2b_drafts_all/G_u: -2.94 [-5.70, +0.36] pp; n=62, trajectories=21
+  gold/X2b_drafts_all/G_c: +1.61 [-3.78, +5.37] pp; n=62, trajectories=21
+  gold/E1_logp_sum/G_u: -4.83 [-8.60, -0.31] pp; n=62, trajectories=21
+  gold/E1_logp_sum/G_c: -0.28 [-6.26, +4.48] pp; n=62, trajectories=21
+  gold/X3_chosen/G_u: -4.55 [-9.84, +2.17] pp; n=62, trajectories=21
+  gold/X3_chosen/G_c: +0.00 [+0.00, +0.00] pp; n=62, trajectories=21
+  X4/d_EX: +14.12 [+0.20, +29.02] pp; n=130, trajectories=28
+  X4/regret: +20.92 [+12.72, +31.44] pp; n=130, trajectories=28
+  X4/v_E: +54.66 [+43.03, +67.83] pp; n=130, trajectories=28
+  X4/v_N: +40.53 [+31.40, +50.18] pp; n=130, trajectories=28
+  X4/P_E: +9.27 [+6.89, +11.98] pp; n=202, trajectories=35
+  X4/within_E_gain: +2.43 [-0.18, +5.71] pp; n=30, trajectories=14
+  X4/revealing_arms_E_share: +0.00 [+0.00, +0.00] pp; n=202, trajectories=35
+  X5/loop_rate: +35.15 [+24.43, +45.27] pp; n=202, trajectories=35
+  X5/X3_loop: -6.43 [-9.65, -2.25] pp; n=71, trajectories=20
+  X5/X3_no_loop: +1.78 [-2.83, +6.97] pp; n=131, trajectories=34
+N
+  12/X1_logp_mean/G_u: -1.96 [-3.21, -0.35] pp; n=65, trajectories=22
+  12/X1_logp_mean/G_c: -1.09 [-8.21, +5.10] pp; n=65, trajectories=22
+  12/X2_drafts_batch0/G_u: +0.67 [-3.34, +4.55] pp; n=65, trajectories=22
+  12/X2_drafts_batch0/G_c: +1.54 [-2.89, +6.67] pp; n=65, trajectories=22
+  12/X2b_drafts_all/G_u: +0.83 [-3.20, +4.79] pp; n=65, trajectories=22
+  12/X2b_drafts_all/G_c: +1.70 [-2.72, +6.79] pp; n=65, trajectories=22
+  12/E1_logp_sum/G_u: -4.82 [-7.93, -0.62] pp; n=65, trajectories=22
+  12/E1_logp_sum/G_c: -3.95 [-10.64, +2.66] pp; n=65, trajectories=22
+  12/X3_chosen/G_u: -0.87 [-6.55, +6.05] pp; n=65, trajectories=22
+  12/X3_chosen/G_c: +0.00 [+0.00, +0.00] pp; n=65, trajectories=22
+  gold/X1_logp_mean/G_u: -0.98 [-2.60, +0.52] pp; n=16, trajectories=11
+  gold/X1_logp_mean/G_c: +2.89 [-1.46, +6.66] pp; n=16, trajectories=11
+  gold/X2_drafts_batch0/G_u: -2.75 [-5.86, +0.12] pp; n=16, trajectories=11
+  gold/X2_drafts_batch0/G_c: +1.12 [-2.15, +3.28] pp; n=16, trajectories=11
+  gold/X2b_drafts_all/G_u: -2.77 [-5.87, +0.09] pp; n=16, trajectories=11
+  gold/X2b_drafts_all/G_c: +1.11 [-2.17, +3.28] pp; n=16, trajectories=11
+  gold/E1_logp_sum/G_u: -0.74 [-4.43, +2.35] pp; n=16, trajectories=11
+  gold/E1_logp_sum/G_c: +3.13 [-1.73, +6.63] pp; n=16, trajectories=11
+  gold/X3_chosen/G_u: -3.88 [-7.67, -0.06] pp; n=16, trajectories=11
+  gold/X3_chosen/G_c: +0.00 [+0.00, +0.00] pp; n=16, trajectories=11
+  X4/d_EX: +10.91 [-3.67, +23.39] pp; n=49, trajectories=22
+  X4/regret: +15.95 [+7.02, +24.67] pp; n=49, trajectories=22
+  X4/v_E: +37.78 [+26.29, +45.24] pp; n=49, trajectories=22
+  X4/v_N: +26.87 [+19.57, +36.92] pp; n=49, trajectories=22
+  X4/P_E: +19.84 [+14.80, +27.84] pp; n=65, trajectories=22
+  X4/within_E_gain: -2.71 [-5.00, +0.91] pp; n=30, trajectories=17
+  X4/revealing_arms_E_share: undefined (n=0)
+  X5/loop_rate: +35.38 [+22.67, +50.00] pp; n=65, trajectories=22
+  X5/X3_loop: +2.75 [-6.00, +9.89] pp; n=23, trajectories=11
+  X5/X3_no_loop: -2.86 [-8.65, +5.78] pp; n=42, trajectories=17
+
+执行命令（仓库根目录）：
+git -c http.proxy="$HTTPS_PROXY" -c http.version=HTTP/1.1 fetch origin
+git merge --no-edit origin/main
+CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 /root/miniconda3/envs/m0/bin/python exploratory_P4/p4_x_robust.py --selftest > exploratory_P4/p4_x_run/selftest.log 2>&1
+CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 /root/miniconda3/envs/m0/bin/python exploratory_P4/p4_x_robust.py > exploratory_P4/p4_x_run/run.log 2>&1
+
+文件：exploratory_P4/x.json；exploratory_P4/p4_x_run/{selftest.log,run.log,preflight.json,verification.json,REPORT.txt}。
+原脚本记录的正式分析耗时：10.607649326324463秒。
