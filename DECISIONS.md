@@ -1217,3 +1217,7 @@ trajectory bootstrap, existing progress terciles, fixed judge response prefix wi
 and deterministic feedback derangement. These conventions are frozen before association analysis.
 Hardware check: no GPU detected (`nvidia-smi`: No devices were found); container limits are 2 GiB
 RAM and 0.5 CPU, despite host-level free output. E2 cannot run on this allocation; CPU work proceeds.
+
+P4 E0 pre-registration commit: `20f0976606ca01929bce67d3b850df1045fe8c4e` (`P4: pre-registration`).
+Targeted novelty review found no exact stopping-criterion match; source-level scope and incomplete
+retrievals are disclosed in `exploratory_P4/novelty_check.json`. E1 starts only after this commit.
