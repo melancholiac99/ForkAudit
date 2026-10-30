@@ -1186,3 +1186,20 @@ The user asked for saving code, results and logs, a verified sync, and then `/us
 - Predictions: `{"P1": {"holds": false, "B1_passes": false, "B2_norm_effect": -0.05022634532007152, "B2_norm_ci": [-0.19121618568897247, 0.08808599412441254]}, "P2": {"holds": true, "lhs": 0.5823012305534305, "rhs": 0.6470567138485084}, "P3": {"holds": true, "lhs": 0.6470567138485084, "rhs": 0.335106637337414}, "P4": {"holds": false, "diff": -0.0010851655559637186, "ci95": [-0.006521346978843212, 0.004244827665388584]}, "F1": {"masked_share_of_forks": 0.642, "ci95": [0.592, 0.69], "source": "D-042"}}`.
 - Gates: `{"M1_contains_13.1": true, "T3_compatible_[0.647,0.793]": true}`.
 - RESULTS.md was rendered by `scripts/43_results.py`; this entry has not been reviewed by a person.
+
+## D-051 — Proposal P4 (Agents cannot see their own forks) registered — OPEN 2026-10-30
+
+`proposals/P4_self_blind_forks.md`. Written by Claude after reviewing `main` and `research/deep-discovery-2026-10-27`
+(`c6d03ee`). Nothing in M0 changes: `CLAUDE.md`, `FEATURES_FROZEN.md`, labels, verdict rules and `RESULTS.md` are
+untouched, and no new feature–outcome association was computed.
+- Thesis: introspective signals (−conf, entropy, decision structure, hidden states, V) locate outcomes (Dead/Live) but
+  not forks, because forks sit where the deciding world fact is absent from the policy's context. Prediction: a stronger
+  policy removes utilization-limited forks, so introspective credit gets worse, not better.
+- Plan: E0 novelty check, strata script and pre-registration commit; E1 (CPU) introspective signals split by stratum
+  (information-limited I / utilization-limited U / no-target N, from deep's forward-only target flags); E2 (GPU, scoring
+  only) 7B vs Qwen2.5-32B judges under context / full log / aligned feedback / permuted feedback; E3 (conditional,
+  ≈ 3–4 GPU days) 32B policy replication on s000–s049 in a separate data root.
+- Predictions P4-1…P4-10 and readings R-NULL / R-PRIOR / R-BLIND / R-BLIND-7B / R-MIXED are in §3–§4 of the proposal
+  and are to be frozen in a separate `P4: pre-registration` commit before E1 runs. Data already seen is listed in §5.
+- Status: awaiting the researcher's ruling (proposal §8: adoption as paper mainline, judge/policy model size, E3 budget,
+  whether to fix D-050 first).
