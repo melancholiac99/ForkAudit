@@ -1302,3 +1302,19 @@ with pinned-HF fallback. Existing contiguous prefixes are preserved in `e2_32b_c
 before sparse writes. Resume ONLY with the chunked downloader; the old downloader now refuses to run
 when that state exists. Every completed weight must still match the pinned full-file HF SHA256 before
 any model loading. The small-file preparation and scientific scoring/analysis rules are unchanged.
+
+## D-056 — Authorized E2 completion, GitHub publication and shutdown hook — 2026-10-30
+
+The researcher explicitly requested a hook to analyze completed runs and upload to GitHub,
+then explicitly requested shutdown last. `publish_e2_when_done.py` waits for the existing
+`finish_e2.py` process to finish scoring, analysis and independent verification. It requires
+both complete 3,492-context runs, a passing verification report and the driver's successful
+verification event, then renders the report and creates a separate E2 artifact manifest.
+It commits only explicit E2 artifacts on the existing `main` branch, pushes to the confirmed
+`melancholiac99/ForkAudit` origin without force, verifies the remote branch SHA matches the
+local commit, syncs files, and finally invokes the server's `/usr/bin/shutdown` script.
+Unrelated untracked data, frozen preregistration and E1/P4-X conclusions are preserved.
+No model weights are uploaded. Any failed gate, unexpected E3 requirement, branch change,
+staged unrelated changes, or failed publication stops the hook without shutdown and records
+`exploratory_P4/e2_publish_status.json`. This explicit shutdown authorization supersedes the
+earlier D-055 note that shutdown had not yet been authorized.
