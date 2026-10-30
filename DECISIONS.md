@@ -1286,3 +1286,9 @@ D-055 download transport note: the HF large-file route is slow. Weight bytes may
 ModelScope Qwen/Qwen2.5-32B-Instruct mirror; acceptance still requires each exact SHA256 from the pinned
 HF revision above. Non-weight configuration/tokenizer files remain pinned HF downloads. This does not
 change the model revision. Download concurrency is 8, with resumable partial files.
+
+D-055 transport/resource follow-up: final download concurrency is 17 (one worker per weight shard), using
+HF for the 9 system-disk shards and the hash-verified ModelScope mirror for the 8 data-disk shards.
+The system/data disks have projected post-download free space about 2.02/1.16 GiB respectively;
+partial files are resumed in place and renamed after verification, with no duplicate weight cache.
+7B completed all 3,492 contexts successfully; 32B remains queued behind the complete verified download.
