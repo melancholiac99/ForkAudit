@@ -28,7 +28,7 @@ def main():
         assert len(pre)-start<=3 and max(map(len,full))<=32768
         assert all(ids[:start]==full[0][:start] and ids[-1]==tok.eos_token_id for ids in full)
         return dict(**job,prefix_ids=full[0][:start],candidates=[dict(suffix_ids=ids[start:]) for ids in full])
-    source=ROOT/'exploratory_deep_discovery/teacher_probe_2026_10_29/score.py'
+    source=OUT/'p4_e2_backend.py'
     spec=importlib.util.spec_from_file_location('p4_existing_scorer',source);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     module.MODEL=str(args.model)
     modelhash={}
@@ -50,6 +50,7 @@ def main():
         for k in ['revision','model_sha256','requests_sha256','scorer_sha256','script_sha256']:assert old[k]==run[k],k
     manifest.write_text(json.dumps(run,indent=2)+'\n')
     start=time.time();scorer=module.Scorer()
+    print(json.dumps(dict(event='model_loaded',model=args.name,seconds=time.time()-start)),flush=True)
     # Fixed first context per condition plus longest text, independent of model output.
     checks=[];fixed=[next(j for j in rawjobs if j['condition']==c) for c in ['S','L','F','Fx']]+[max(rawjobs,key=lambda j:len(j['text']))]
     for rawjob in fixed:
@@ -58,6 +59,7 @@ def main():
             x=np.array([sum(y) for y in lp]);x=np.exp(x-x.max());return x/x.sum()
         tv=float(abs(prob(a)-prob(b)).sum()/2)
         checks.append(dict(request_id=j['request_id'],tv=tv,passed=tv<.005))
+        print(json.dumps(dict(event='numerical_check',model=args.name,check=checks[-1])),flush=True)
     (target/'numerical_check.json').write_text(json.dumps(checks,indent=2)+'\n')
     assert all(c['passed'] for c in checks),'Shared-prefix/direct score mismatch; do not proceed'
     done={};output=target/'scores.jsonl'

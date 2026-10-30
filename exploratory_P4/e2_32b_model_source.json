@@ -1,0 +1,412 @@
+{
+  "_id": "66e902f34eeaced24a2787f8",
+  "id": "Qwen/Qwen2.5-32B-Instruct",
+  "private": false,
+  "pipeline_tag": "text-generation",
+  "library_name": "transformers",
+  "tags": [
+    "transformers",
+    "safetensors",
+    "qwen2",
+    "text-generation",
+    "chat",
+    "conversational",
+    "en",
+    "arxiv:2309.00071",
+    "arxiv:2407.10671",
+    "base_model:Qwen/Qwen2.5-32B",
+    "base_model:finetune:Qwen/Qwen2.5-32B",
+    "license:apache-2.0",
+    "text-generation-inference",
+    "endpoints_compatible",
+    "deploy:sagemaker",
+    "deploy:azure",
+    "region:us"
+  ],
+  "downloads": 1084657,
+  "likes": 374,
+  "modelId": "Qwen/Qwen2.5-32B-Instruct",
+  "author": "Qwen",
+  "sha": "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd",
+  "lastModified": "2024-09-25T12:33:09.000Z",
+  "gated": false,
+  "disabled": false,
+  "widgetData": [
+    {
+      "text": "Hi, what can you help me with?"
+    },
+    {
+      "text": "What is 84 * 3 / 2?"
+    },
+    {
+      "text": "Tell me an interesting fact about the universe!"
+    },
+    {
+      "text": "Explain quantum computing in simple terms."
+    }
+  ],
+  "model-index": null,
+  "config": {
+    "architectures": [
+      "Qwen2ForCausalLM"
+    ],
+    "model_type": "qwen2",
+    "tokenizer_config": {
+      "bos_token": null,
+      "chat_template": "{%- if tools %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if messages[0]['role'] == 'system' %}\n        {{- messages[0]['content'] }}\n    {%- else %}\n        {{- 'You are Qwen, created by Alibaba Cloud. You are a helpful assistant.' }}\n    {%- endif %}\n    {{- \"\\n\\n# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0]['role'] == 'system' %}\n        {{- '<|im_start|>system\\n' + messages[0]['content'] + '<|im_end|>\\n' }}\n    {%- else %}\n        {{- '<|im_start|>system\\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- for message in messages %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) or (message.role == \"assistant\" and not message.tool_calls) %}\n        {{- '<|im_start|>' + message.role + '\\n' + message.content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {{- '<|im_start|>' + message.role }}\n        {%- if message.content %}\n            {{- '\\n' + message.content }}\n        {%- endif %}\n        {%- for tool_call in message.tool_calls %}\n            {%- if tool_call.function is defined %}\n                {%- set tool_call = tool_call.function %}\n            {%- endif %}\n            {{- '\\n<tool_call>\\n{\"name\": \"' }}\n            {{- tool_call.name }}\n            {{- '\", \"arguments\": ' }}\n            {{- tool_call.arguments | tojson }}\n            {{- '}\\n</tool_call>' }}\n        {%- endfor %}\n        {{- '<|im_end|>\\n' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if (loop.index0 == 0) or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- message.content }}\n        {{- '\\n</tool_response>' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n{%- endif %}\n",
+      "eos_token": "<|im_end|>",
+      "pad_token": "<|endoftext|>",
+      "unk_token": null
+    }
+  },
+  "cardData": {
+    "license": "apache-2.0",
+    "license_link": "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct/blob/main/LICENSE",
+    "language": [
+      "en"
+    ],
+    "pipeline_tag": "text-generation",
+    "base_model": "Qwen/Qwen2.5-32B",
+    "tags": [
+      "chat"
+    ],
+    "library_name": "transformers"
+  },
+  "transformersInfo": {
+    "auto_model": "AutoModelForCausalLM",
+    "pipeline_tag": "text-generation",
+    "processor": "AutoTokenizer"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+      "size": 1519
+    },
+    {
+      "rfilename": "LICENSE",
+      "blobId": "6634c8cc3133b3848ec74b9f275acaaa1ea618ab",
+      "size": 11343
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "761da35f2465ff5ecaae7902edf5549ea97bd7fa",
+      "size": 6010
+    },
+    {
+      "rfilename": "config.json",
+      "blobId": "989289c4009026e35063c943c2a228e2c0873d31",
+      "size": 663
+    },
+    {
+      "rfilename": "generation_config.json",
+      "blobId": "bf077f03dc569cfb8a90b3ec1ad20365a620bad6",
+      "size": 242
+    },
+    {
+      "rfilename": "merges.txt",
+      "blobId": "20024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0",
+      "size": 1671839
+    },
+    {
+      "rfilename": "model-00001-of-00017.safetensors",
+      "blobId": "95fa9f3636b14f86c0b7504cb47ef5f7adc4aa0a",
+      "size": 3916539832,
+      "lfs": {
+        "sha256": "fa006a0382517a4e9a8781d8e7d3405cd6bdd1b9100fb344d73f925b7da9341c",
+        "size": 3916539832,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00002-of-00017.safetensors",
+      "blobId": "fcccfc51e4a41c3548db18c486afd5d52177f5d9",
+      "size": 3900847496,
+      "lfs": {
+        "sha256": "0d7f28a4ba7135c2c8365016170cfa25723f65ec41e32ec9a3c81746e4395615",
+        "size": 3900847496,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00003-of-00017.safetensors",
+      "blobId": "4e211419870f28c72e3b3d4f87bc39c91d2b5ab6",
+      "size": 3900847480,
+      "lfs": {
+        "sha256": "8f4b7b811a7ecf117c179ac9413b7a746f2fc0707a41ae4b2efd0282e73bed85",
+        "size": 3900847480,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00004-of-00017.safetensors",
+      "blobId": "542a8b039806b379dadada0b5dbb84bc4fa67e3f",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "de8ab9cb81e6798031d2cf9ef6d15a0034b77fceeba3d4e011647943c8b99afb",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00005-of-00017.safetensors",
+      "blobId": "f55c3a21a449bc7e45d8d0d3cf93ffb66d7d97f0",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "fa86494f0074cc36c610aa54e7bde03edefc57a9be7636216277bd5ed8b8bfda",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00006-of-00017.safetensors",
+      "blobId": "d89ac73c065b604e5781e3baf000e7523fc7da01",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "c8fa152bd8a23bab2c0cfca43ff9f586bccd82b1cb67f2f84231f31d0f3cab47",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00007-of-00017.safetensors",
+      "blobId": "fae744d7fb44b5c2271fa38305437df8df9094c1",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "5e33e16319d18d1e180187d9f858deddbbaf06d950abc88941bf027d1439c7bc",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00008-of-00017.safetensors",
+      "blobId": "23251e626cedeb42f3f99e7a89b43aecb4023933",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "8561b86737884397772bb990b38c0efe896f66ed27815ca207ddc8ec7965ffe4",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00009-of-00017.safetensors",
+      "blobId": "bdee31acaae91035ce55d5508cf8a12a78ba22d1",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "47f562bf77d986b53c5390b01a30a77576c3eed69191b484cf88b53bb64bce19",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00010-of-00017.safetensors",
+      "blobId": "63b05acdcfb8417afe5089478a65e8652263ff7c",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "359450e2c9e261751b5803fcdd1d0a040029a6119a271dd8592d7bb37fa722b5",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00011-of-00017.safetensors",
+      "blobId": "a5414bfcfe2f0410136d08e5e7f7608dd174b91d",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "836f0570f5694ce1d55f505064190e2688926dad4f033384ae519d96faaad670",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00012-of-00017.safetensors",
+      "blobId": "2e3464631c0db1a7bf32ae9186bb3a651b9a1336",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "5307431e385a177375a5aa887eb1c546f3413dd2e2269c291672f11f752842b4",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00013-of-00017.safetensors",
+      "blobId": "bdbdecef8d241942b1ac1f5eda28a3132e903472",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "9b2657db02572dd4370186b35c0e0fa70218d7e2ec1190e4dc4a755c5cbd430e",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00014-of-00017.safetensors",
+      "blobId": "caf73ee30e00ac3bae2abc3d974b732b352704d9",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "b5f1f8af3b6bbf734790985590752fb815dd69566cf05ee578d70af74ace1d4c",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00015-of-00017.safetensors",
+      "blobId": "023b6e79348f7d07c6efe4966331473c7805ea84",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "8cdfcbf8913e10056c981db2db817f92c8601998deb9eabcae14fade98d76c14",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00016-of-00017.safetensors",
+      "blobId": "c67e284bc0d8a34424bb7e86214b552ec78397d1",
+      "size": 3900847544,
+      "lfs": {
+        "sha256": "977b3d2ca7f97dc3b518ed5087ddc43ccf7afb371190828f2334d7e4c81224ee",
+        "size": 3900847544,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00017-of-00017.safetensors",
+      "blobId": "6eb8c54ac39341769c15d9a8117928c07e534170",
+      "size": 3098588976,
+      "lfs": {
+        "sha256": "2853695483f9c61a8bd8b109025b3c591214a0362992fa844537f09acc81bd03",
+        "size": 3098588976,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model.safetensors.index.json",
+      "blobId": "4a7971b5e79db2f3ffd239ad57052a1bf607f874",
+      "size": 63248
+    },
+    {
+      "rfilename": "tokenizer.json",
+      "blobId": "443909a61d429dff23010e5bddd28ff530edda00",
+      "size": 7031645
+    },
+    {
+      "rfilename": "tokenizer_config.json",
+      "blobId": "07bfe0640cb5a0037f9322287fbfc682806cf672",
+      "size": 7305
+    },
+    {
+      "rfilename": "vocab.json",
+      "blobId": "4783fe10ac3adce15ac8f358ef5462739852c569",
+      "size": 2776833
+    }
+  ],
+  "spaces": [
+    "embedl/hfviewer",
+    "HuggingFaceH4/on-policy-distillation",
+    "fffiloni/SkyReels-V2",
+    "flowers-team/StickToYourRoleLeaderboard",
+    "logikon/open_cot_leaderboard",
+    "Agents-MCP-Hackathon/PMCP-AgenticProjectManager",
+    "qimma/leaderboard",
+    "build-small-hackathon/feeled-lite",
+    "14eee109giet/SkyReels-V2",
+    "MERaLiON/SeaEval_Leaderboard",
+    "cot-leaderboard/open-cot-dashboard",
+    "Dudu0043/SkyReels-V2",
+    "filbench/filbench-leaderboard",
+    "svjack/SkyReels-V2",
+    "build-small-hackathon/agentic-humanitarian-data-analyst",
+    "UltraRonin/LR2Bench_old",
+    "zhwang4ai/GenerativeReasoningBenchmark",
+    "Speedofmastery/orynxml-backend",
+    "jesusvilela/FastingApp",
+    "Bossmarc747/SkyReels-V2",
+    "abrezey/mcp-census",
+    "halishrichard17/SkyReels-V2",
+    "asifHuggingFace/webui",
+    "stoneyard/SkyReels-V2",
+    "fagun18/fagun-browser-testing",
+    "supreme-lab/AgentSkillBench",
+    "UchihaAbdul/SkyReels-V2",
+    "lablab-ai-amd-developer-hackathon/paperhawk",
+    "Vincsipe/paperhawk",
+    "TheShellMaster/cypher-coder",
+    "eternalBlissard/Qwen-Qwen2.5-32B-Instruct",
+    "all3n1k/Qwen-Qwen2.5-32B-Instruct",
+    "pain565/Qwen-Qwen2.5-32B-Instruct",
+    "affandes/try-deploy-qwen",
+    "Janusz13/Qwen-Qwen2.5-32B-Instruct",
+    "mimifuel2018/Qwen2.5-72B",
+    "dharmendrapatel/Qwen-Qwen2.5-32B-Instruct",
+    "99i/si",
+    "Koshyndra/Qwen-Qwen2.5-32B-Instruct",
+    "georgeek/hf-llm-bill-chat",
+    "cicero-im/synthetic-data-generator-new",
+    "lkjjj26/MisConceptTutor_MS",
+    "Crazy0Creations/Qwen-Qwen2.5-32B-Instruct",
+    "Socialmediaprophet/synthetic-data-generator",
+    "albaarcos/synthetic-data-generator_3",
+    "Aiyion/First_agent_template",
+    "tingao/synthetic-data-generator",
+    "heboya8/demo",
+    "ClarenceYCLI/Final_Assignment",
+    "chriswu25/PDFMathTranslate-Docker",
+    "huynhtrungkiet09032005/pdf-translate-api",
+    "kanekirwan/kanekirwan",
+    "juanmackie/YourBench",
+    "baggy2797/ShortFormReelGen",
+    "909ahmed/synthetic-data-generator",
+    "Sanjeev23oct/browser-use-sg",
+    "Nobi04/Qwen-Qwen2.5-32B-Instruct",
+    "FilipeR/SkyReels-V2-OK",
+    "kennylim/agents_course_final_assignment",
+    "Unknown504/web-ui",
+    "audioer/LLM_demo_docker",
+    "emravoan/skyreels-v2",
+    "bingzhiyihan/LinguaHaru-gradio",
+    "Siriusxhx/Qwen",
+    "Kingrane/SkyReels-V2",
+    "abhishekudeniyan/Agents-MCP-Hackathon",
+    "binhboong/Final_Assignment_Template",
+    "Treyrem/RobotPai",
+    "rumanmoulik/materials-project-chat",
+    "pablozamit/SkyReels-V2",
+    "bchander/agents_course",
+    "Leeson1118/pdf-math-translate",
+    "xuan2401/Xu_AN_Space",
+    "wyy000111/PDFMathTranslate-Docker",
+    "bekimoon/SkyReels-V2",
+    "cjb97/Agent_Course_Final_Assignment",
+    "DakshChaudhary/Agent_GAIA_Benchmark",
+    "lwant/Agent_Course_Final_Assignment",
+    "Speedofmastery/or",
+    "irke-ai-dev/irke-web-openai-1",
+    "simonnsanita/browseruseapiv2",
+    "pgonzzz/skyreels-v2",
+    "abhijee/SkyReels-V2",
+    "JPEGPrints/Skys",
+    "beatsbyzibit/SkyReels-V2",
+    "mkhatcha/CUA",
+    "talhaazfar01/web-ui-interface",
+    "talhaazfar01/web-interface",
+    "binary1ne/web-ui",
+    "asifHuggingFace/Browser_Web_UI_Automation",
+    "bavanshz/SkyReels-V2",
+    "1inkusFace/SkyReelsV2",
+    "david167/question-generation-api",
+    "natabrizy/myscreencoder",
+    "Alejandro78dy/SkyReels-V2",
+    "issammekkaoui461/SkyReels-V2",
+    "MasterOfHugs/Agent_Course_Final_Assignment",
+    "omi98/test",
+    "giangpt-212/Browser_Automation",
+    "DreamAngelAI/SkyReels-V2"
+  ],
+  "createdAt": "2024-09-17T04:17:55.000Z",
+  "safetensors": {
+    "parameters": {
+      "BF16": 32763876352
+    },
+    "total": 32763876352
+  },
+  "usedStorage": 65527841856
+}

@@ -1267,3 +1267,17 @@ E1 results changes; E2 runs as pre-registered; E3 stays off.
   E5 WebShop confirmatory replication with definitions frozen before any outcome; gates G1–G3; paper skeleton.
   Awaiting the researcher's ruling (P5 §9: venue/deadline, adoption, E4 framework, compute).
 - D-050 remains OPEN: the fix code is in `c2b7ba1` but the recomputed B+C results are not in the repository.
+
+## D-055 — Resume P4 E2 on RTX 6000D; pinned model and memory implementation — 2026-10-30
+
+The researcher enabled an RTX 6000D and asked to finish P4. E2 is authorized; E3 remains gated.
+GPU reports 85,651 MiB, container RAM 92 GiB. Retain all frozen prompts, requests, predictions, and E1/X results.
+- 7B remains Qwen/Qwen2.5-7B-Instruct revision `a09a35458c702b33eeacc393d103063234e8bc28`, verified against env/qwen_sha256.txt.
+- 32B is Qwen/Qwen2.5-32B-Instruct revision `5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd`, pinned via official Hugging Face API before any E2 score.
+  Source metadata stored in exploratory_P4/e2_32b_model_source.json. Weights total 65,527,841,856 bytes;
+  split between /root/autodl-tmp/models and /autodl-fs/data/forkaudit_models, with local symlinks and upstream LFS SHA256 checks.
+- To bound memory on this GPU, p4_e2_backend.py processes the five candidate suffixes sequentially with a shared
+  cached prefix, rather than expanding the prefix cache to five batch entries. Both models use this implementation.
+  BF16 transformer, FP32 vocabulary projection and normalization are unchanged. The predeclared direct-scoring
+  checks and total-variation <0.005 gate remain unchanged; no scores are accepted if the gate fails.
+- No new trajectories, policy training, or altered analysis definitions. No shutdown is authorized in this request.
