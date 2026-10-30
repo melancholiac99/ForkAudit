@@ -1,0 +1,86 @@
+[
+  {
+    "source": "ModelScope-resolve",
+    "proxy": false,
+    "status": 206,
+    "host": "cdn-lfs-cn-1.modelscope.cn",
+    "content_range": "bytes 2800000000-2808388607/3098588976",
+    "bytes": 8388608,
+    "seconds": 4.04,
+    "MiB_s": 1.98,
+    "sha256": "2b77bb79e0534d2f424a62edfff460d346b6c9ef4f68e7286b92a8ac149b4883"
+  },
+  {
+    "source": "HF",
+    "proxy": false,
+    "error": "ConnectionError",
+    "seconds": 8.08,
+    "bytes": 0
+  },
+  {
+    "source": "HF-mirror",
+    "proxy": true,
+    "status": 206,
+    "host": "us.aws.cdn.hf.co",
+    "content_range": "bytes 2800000000-2808388607/3098588976",
+    "bytes": 8388608,
+    "seconds": 13.99,
+    "MiB_s": 0.57,
+    "sha256": "2b77bb79e0534d2f424a62edfff460d346b6c9ef4f68e7286b92a8ac149b4883"
+  },
+  {
+    "source": "ModelScope-API",
+    "proxy": false,
+    "status": 206,
+    "host": "cdn-lfs-cn-1.modelscope.cn",
+    "content_range": "bytes 2800000000-2808388607/3098588976",
+    "bytes": 8388608,
+    "seconds": 17.09,
+    "MiB_s": 0.47,
+    "sha256": "2b77bb79e0534d2f424a62edfff460d346b6c9ef4f68e7286b92a8ac149b4883"
+  },
+  {
+    "source": "HF-mirror",
+    "proxy": false,
+    "status": 206,
+    "host": "cas-bridge.xethub.hf.co",
+    "content_range": "bytes 2800000000-2808388607/3098588976",
+    "bytes": 8388608,
+    "seconds": 18.87,
+    "MiB_s": 0.42,
+    "sha256": "2b77bb79e0534d2f424a62edfff460d346b6c9ef4f68e7286b92a8ac149b4883"
+  },
+  {
+    "source": "ModelScope-API",
+    "proxy": true,
+    "status": 206,
+    "host": "cdn-lfs-cn-1.modelscope.cn",
+    "content_range": "bytes 2800000000-2808388607/3098588976",
+    "bytes": 8388608,
+    "seconds": 22.44,
+    "MiB_s": 0.36,
+    "sha256": "2b77bb79e0534d2f424a62edfff460d346b6c9ef4f68e7286b92a8ac149b4883"
+  },
+  {
+    "source": "ModelScope-resolve",
+    "proxy": true,
+    "status": 206,
+    "host": "cdn-lfs-cn-1.modelscope.cn",
+    "content_range": "bytes 2800000000-2808388607/3098588976",
+    "bytes": 8388608,
+    "seconds": 22.75,
+    "MiB_s": 0.35,
+    "sha256": "2b77bb79e0534d2f424a62edfff460d346b6c9ef4f68e7286b92a8ac149b4883"
+  },
+  {
+    "source": "HF",
+    "proxy": true,
+    "status": 206,
+    "host": "us.aws.cdn.hf.co",
+    "content_range": "bytes 2800000000-2808388607/3098588976",
+    "bytes": 8388608,
+    "seconds": 23.31,
+    "MiB_s": 0.34,
+    "sha256": "2b77bb79e0534d2f424a62edfff460d346b6c9ef4f68e7286b92a8ac149b4883"
+  }
+]

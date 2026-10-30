@@ -15,6 +15,7 @@ def digest(p):
  return h.hexdigest()
 
 def main():
+ if (OUT/'e2_32b_chunks_state.json').exists():raise SystemExit('Resume with download_e2_32b_chunks.py: partial files now contain sparse ranges.')
  meta=json.loads((OUT/'e2_32b_model_source.json').read_text());assert meta['sha']==REV
  LOCAL.mkdir(parents=True,exist_ok=True);SECOND.mkdir(parents=True,exist_ok=True)
  shards=[s for s in meta['siblings'] if s['rfilename'].endswith('.safetensors')]

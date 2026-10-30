@@ -10,6 +10,9 @@ for i,s in enumerate(shards):
  p=base/s['rfilename']
  if p.exists():received+=p.stat().st_size;verified+=1
  elif p.with_suffix(p.suffix+'.part').exists():received+=p.with_suffix(p.suffix+'.part').stat().st_size
+state=out/'e2_32b_chunks_state.json'
+if state.exists():
+    data=json.loads(state.read_text());received=sum(row['prefix']+sum(min(data['chunk'],row['size']-start) for start in row['done']) for row in data['files'].values())
 models={}
 for name in ['7b','32b']:
  p=out/f'e2_{name}/run.json'

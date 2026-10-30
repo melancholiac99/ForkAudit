@@ -1292,3 +1292,13 @@ HF for the 9 system-disk shards and the hash-verified ModelScope mirror for the 
 The system/data disks have projected post-download free space about 2.02/1.16 GiB respectively;
 partial files are resumed in place and renamed after verification, with no duplicate weight cache.
 7B completed all 3,492 contexts successfully; 32B remains queued behind the complete verified download.
+
+D-055 download diagnosis/update (at the researcher's request): sustained full-file download was about
+9.5 MiB/s in aggregate with reconnects. A common 8 MiB byte range was tested across HF, hf-mirror,
+ModelScope resolve/API, proxy/direct paths; completed range bytes matched across sources (see
+`e2_download_benchmark.json`). ModelScope direct was fastest in that test; hf-mirror was slower.
+Remaining data now uses `download_e2_32b_chunks.py`: 32 workers, 16 MiB bounded ranges, ModelScope direct
+with pinned-HF fallback. Existing contiguous prefixes are preserved in `e2_32b_chunks_state.json`
+before sparse writes. Resume ONLY with the chunked downloader; the old downloader now refuses to run
+when that state exists. Every completed weight must still match the pinned full-file HF SHA256 before
+any model loading. The small-file preparation and scientific scoring/analysis rules are unchanged.
