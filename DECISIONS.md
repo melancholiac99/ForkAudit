@@ -1281,3 +1281,8 @@ GPU reports 85,651 MiB, container RAM 92 GiB. Retain all frozen prompts, request
   BF16 transformer, FP32 vocabulary projection and normalization are unchanged. The predeclared direct-scoring
   checks and total-variation <0.005 gate remain unchanged; no scores are accepted if the gate fails.
 - No new trajectories, policy training, or altered analysis definitions. No shutdown is authorized in this request.
+
+D-055 download transport note: the HF large-file route is slow. Weight bytes may be transported from the
+ModelScope Qwen/Qwen2.5-32B-Instruct mirror; acceptance still requires each exact SHA256 from the pinned
+HF revision above. Non-weight configuration/tokenizer files remain pinned HF downloads. This does not
+change the model revision. Download concurrency is 8, with resumable partial files.

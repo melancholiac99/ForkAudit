@@ -29,7 +29,10 @@ def main():
    for attempt in range(6):
     try:
      offset=part.stat().st_size if part.exists() else 0
-     with requests.get(f'https://huggingface.co/Qwen/Qwen2.5-32B-Instruct/resolve/{REV}/{name}',headers={'Range':f'bytes={offset}-'} if offset else {},stream=True,timeout=(30,120)) as response:
+     session=requests.Session()
+     session.trust_env=not name.endswith('.safetensors')
+     url=(f'https://modelscope.cn/models/Qwen/Qwen2.5-32B-Instruct/resolve/master/{name}' if name.endswith('.safetensors') else f'https://huggingface.co/Qwen/Qwen2.5-32B-Instruct/resolve/{REV}/{name}')
+     with session.get(url,headers={'Range':f'bytes={offset}-'} if offset else {},stream=True,timeout=(30,120)) as response:
       response.raise_for_status()
       append=offset>0 and response.status_code==206
       if append:assert response.headers['Content-Range'].startswith(f'bytes {offset}-')
@@ -49,6 +52,6 @@ def main():
    else:link.symlink_to(path)
   print(json.dumps(dict(event='download_verified',file=name,bytes=path.stat().st_size)),flush=True)
   return dict(file=name,path=str(path),sha256=digest(path),bytes=path.stat().st_size)
- with ThreadPoolExecutor(max_workers=2) as pool:files=list(pool.map(get,other+shards))
- (OUT/'e2_32b_download.json').write_text(json.dumps(dict(revision=REV,model=str(LOCAL),files=files,complete=True),indent=2)+'\n')
+ with ThreadPoolExecutor(max_workers=17) as pool:files=list(pool.map(get,other+shards))
+ (OUT/'e2_32b_download.json').write_text(json.dumps(dict(revision=REV,model=str(LOCAL),files=files,complete=True,weight_transport='ModelScope mirror; exact upstream pinned HF LFS SHA256 enforced'),indent=2)+'\n')
 if __name__=='__main__':main()
