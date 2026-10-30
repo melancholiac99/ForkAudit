@@ -1,0 +1,31 @@
+{
+  "seed": 30102026,
+  "bootstrap": 10000,
+  "shuffle": 1000,
+  "introspective": [
+    "A(-conf)",
+    "single:entropy_q",
+    "single:entropy_sampled",
+    "B_multi",
+    "C_sel",
+    "V"
+  ],
+  "controls": [
+    "W1pure_multi",
+    "single:target_revealed",
+    "G_multi"
+  ],
+  "notes": [
+    "P4-1 uses all six explicitly listed signals; five in prose is a counting typo.",
+    "Use existing prog3 progress terciles within trajectory and stratum for shuffle.",
+    "Trajectory bootstrap samples all Live trajectories jointly; subset statistics use identical draws.",
+    "Chosen variance share is ratio of summed cross products on each Live stratum; report Fork sensitivity separately.",
+    "Credit-pivotal sign proportion uses all Credit-pivotal Live points in stratum.",
+    "future_reveals includes obs_after at the marked action and all later factual observations.",
+    "Judge has fixed assistant prefix <action>, suffix </action> plus EOS; no realized thought.",
+    "All four conditions use same base instruction and candidate order. F/Fx do not contain factual full log.",
+    "Deterministic per-point seed SHA256(P4-v1:30102026:point_id), first 16 hex digits. Order rng permutation(5); alternative cyclic shift 1+seed%3.",
+    "CIs percentile two-sided 95%; degenerate replicates omitted and counted. No sign flips or refits.",
+    "E2 unavailable until GPU present; E3 strictly conditional on proposal verdict. No paper-mainline replacement before verdict."
+  ]
+}

@@ -1,0 +1,106 @@
+## 第二部分：定义（E0 时冻结）
+
+### 2.1 分层
+
+在 M0 的 Live 集 𝓛（n = 1,478）上，用 deep 分支 `exploratory_extract.py` 的逐点标记定义三层。标记只读 prompt、factual 历史、合法动作与 peek 文本，不读结局。目标实例 = 从任务描述抽取的目标物体在文本中出现的实例 ID（如 `knife 1`）。
+
+| 层 | 条件 | 说明 |
+|---|---|---|
+| **I（信息受限候选）** | `prompt_target = False` ∧ `any_new_to_history = True` | 当前 prompt 中无目标实例，且至少一臂的一步响应引入了 factual 全历史（含合法动作）未出现过的目标实例 |
+| **U（利用受限候选）** | `prompt_target = True` ∧ `any_target_mention = True` ∧ `any_new_to_history = False` | 当前 prompt（观察或合法动作列表）中已有目标实例，至少一臂的响应提及它，且没有任何臂引入新实例 |
+| **N（无目标线索）** | `prompt_target = False` ∧ `any_target_mention = False` | prompt 中没有目标实例，任何臂的响应也不提 |
+| 其余 | 不满足以上任一 | 只报告计数，不进检验 |
+
+层是代理：只以目标物体为决定性事实。属性（冷/热/干净）与目标容器不在定义中，U 层因此会混入部分信息受限与执行受限的分叉；这使 E1 的检验偏保守（混入会缩小 U 与 I 的差）。
+
+**一致性检查（E0）：** 在 main 上用新脚本重算标记后，层计数必须与 deep `exploratory_results.json` 的 `w1_subsets` 一致：I 层 Live 299 / Fork 184，U 层 Live 574 / Fork 202，N 层 Live 502 / Fork 65，其余 Live 103（27 + 39 + 37）。四者之和 1,478。不一致则停下写 DECISIONS。
+
+### 2.2 信号
+
+- **内省信号（状态级）：** 直接使用 M0 冻结的 out-of-fold 分数 `eval/scores_B2.parquet` 中的 `A(-conf)`、`single:entropy_q`、`single:entropy_sampled`、`B_multi`、`C_sel`、`V`。**不重新拟合**，不在层内调参。B+C 因 D-050 未修复，不使用。
+- **内省信号（动作级）：** 策略在五臂上的候选分布 p_π(a) = softmax over 五臂 of `logp_sum`（`data/scores_fp32.parquet`，HF fp32 主口径，D-041）。
+- **世界对照：** `W1pure_multi`、`single:target_revealed`；动作级为 deep 的"在响应提及目标的臂中均匀选，无则保留 chosen"规则（final_ruling_deepening §3）。
+- **兄弟对照：** `G_multi`。
+
+### 2.3 评估量
+
+- **层内 B2：** 每层内 Fork(het) vs Indifferent 的 AUROC，按轨迹 cluster bootstrap 10,000 次；分层 shuffle 对照（层内、按轨迹内进度三分位，1,000 次）。层间差 AUROC_U − AUROC_I 在同一次轨迹 bootstrap 中同时重算两层得到 CI。
+- **动作选择收益：** 对选择分布 p，J(p, q) = Σ_a p(a) q_a。G_u = J − mean_a q_a（相对均匀），G_c = J − q_chosen（相对 chosen）。**q 取库 1+2（6 次/臂）**：Fork 标签来自库 3–6，评估池与选点池不重叠；Gold（20 次/臂）覆盖的点作第二读出。
+- **标签量（零模型，报告）：** 各层内 Credit-pivotal 点的 sign(A_3456) 正比例；各层内 chosen 对比占动作方差的份额（库 3–4 × 5–6 交叉乘积估计，同 deep §2.2）。
+
+---
+
+## 第三部分：实验
+
+### E0 前置（CPU，≈ 半天）
+
+1. **查新**（`CLAUDE.md` §2 的停止条件）。候选重叠（凭记忆，需核对原文）：Doomed from the Start（2607.06503，隐状态预测失败）；CARL（2512.04949，熵与关键性）；EMPG；以熵选分叉点的 ARPO、TreeRL、FR3E；Critical-State RL（2609.24985）；TreeHCA（2610.12828）；LLM 自知校准（Kadavath et al. 2022 一类）；Hindsight OPSD 类方法。**停止条件：** 已有工作按"决定性信息是否在上下文中"分层，检验了内省信号或评判者对动作分叉的判别力。
+2. 写 `exploratory_P4/p4_strata.py`，在 main 上重算 2.1 的标记与层，做一致性检查。
+3. 冻结三个评判 prompt 模板（E2 用）到 `exploratory_P4/prompts/`，固定置换（derangement）的种子。
+4. 单独提交本文件 §2–§4 + 模板 + 分层脚本，提交信息 `P4: pre-registration`，hash 写 DECISIONS。此后定义、预测、判定不改；新想法一律 `exploratory_P4_extra_` 前缀单列。
+
+### E1 内省信号按层拆分（CPU，≈ 1 天，零新续跑）
+
+- **做法：** 按 2.3 计算 2.2 全部信号在 I、U、N 三层的层内 B2，以及动作级 G_u、G_c（在各层 Fork 点上）；报告 2.3 的标签量。
+- **脚本 / 产出：** `exploratory_P4/p4_e1_introspection.py` → `exploratory_P4/e1.json`（含脚本路径、commit、全部输入文件 SHA256，`CLAUDE.md` §9.9）。
+- **预测：**
+  - **P4-1：** 在 I 层，五个状态级内省信号的 AUROC 均不高于层内 shuffle 97.5% 分位。
+  - **P4-2：** C_sel 或 B_multi 的 AUROC_U − AUROC_I 的 CI 不含 0 且为正。
+  - **P4-3：** 策略候选分布的 G_u 在 I 层 Fork 上 CI 含 0，在 U 层 Fork 上 CI 不含 0 且为正。
+  - **P4-4（标签量）：** U 层 Credit-pivotal 的 sign(A) 正比例高于 I 层；U 层 chosen 对比份额高于 I 层。
+  - **正对照：** W1pure_multi 在 I 层的 AUROC 高于层内 shuffle 97.5% 分位。若正对照失败，E1 的负结果不可解释，判定为 R-MIXED。
+
+### E2 评判者实验（GPU，只打分，≈ 4–6 GPU 小时，零新续跑）
+
+- **样本：** I 层与 U 层的全部 Live 点（873 点；主分析为其中 386 个 Fork 点），预先固定，不再筛选。
+- **评判者：** Qwen2.5-7B-Instruct（与策略同一 checkpoint，`env/qwen_sha256.txt`）；Qwen2.5-32B-Instruct（bf16，单卡 96 GB 可放下；revision hash 运行前写 DECISIONS）。同一家族避免分词与模板差异；32B 同时是 E3 的策略。
+- **条件：**
+
+| 条件 | 评判者可见内容 |
+|---|---|
+| S | 决策时策略看到的原 prompt |
+| L | S + 完整 factual 日志（每步回复、动作、观察）与终局奖励 |
+| F | S + 五臂带动作对应的一步反馈（`data/peek_alts/`） |
+| Fx | F 的相同内容，四个替代的反馈按固定 derangement 置换，factual 不变 |
+
+  四种条件共用同一评判指令（"为该 Agent 选出最能提高任务完成概率的动作"）与同一五个候选命令。输入中不出现任何回放成功率、三域标签、Gold 或隐藏环境事实。
+- **打分：** 在固定的回答前缀之后，对五个完整候选命令做 teacher-forced 打分（序列 logprob 之和，含结束标记），在五个候选上归一化得 p_judge；同时报告 argmax。沿用 teacher probe 的共享前缀打分与 fp32 词表投影，先在固定样例上与整序列直接打分核对（deep `teacher_probe_2026_10_29/NUMERICAL_NOTE.md`）。不使用 7B 实现的思考文本，两种评判者口径一致。
+- **派生分层：** I 层内按 `future_reveals` = 1[任一臂所揭示的目标实例在 t 之后的 factual 观察中出现] 再分两组，用于 P4-7。
+- **脚本 / 产出：** `exploratory_P4/p4_e2_judge_prepare.py`、`p4_e2_judge_score.py`、`p4_e2_analyze.py` → `exploratory_P4/e2.json`。
+- **预测（均在 Fork 点上，读出 G_u，库 1+2；Gold 为第二读出）：**
+  - **P4-5：** S 条件下，32B − 7B 的 G_u 差值在 U 层 CI 不含 0 且为正，在 I 层 CI 含 0；交互（U 层差值 − I 层差值）CI 不含 0 且为正。
+  - **P4-6：** I 层上，两个评判者的 F − S 与 F − Fx 均 CI 不含 0 且为正。
+  - **P4-7：** I 层上，L − S 仅在 `future_reveals = 1` 组 CI 不含 0 且为正；在 `future_reveals = 0` 组 CI 含 0。
+- **注意：** 常识先验（"刀常在抽屉里"）会让评判者在 I 层也有一部分收益。P4-5 比较的是 32B 相对 7B 的增量，不是相对均匀的绝对水平；7B 自身的 S 条件即先验基线。
+
+### E3 策略规模复制（GPU，≈ 3–4 GPU 天；仅在 §4 判定为 R-BLIND 或 R-BLIND-7B 时执行）
+
+即 P3 §3"策略强度复制"，带上 P4 的具体预测。
+
+- **设计：** 策略换为 Qwen2.5-32B-Instruct，模板、温度 0.7、50 步上限、两轮历史、候选构造与种子格式（D-024）与 M0 相同。任务 = `data/task_list.json` 的 s000–s049。库 1–2 覆盖全部 D，库 3–6 只覆盖 𝓛，peek 全部 D；候选打分（−conf、熵）与隐状态导出（C 探针）同 M0 口径。数据写入独立根目录 `data_p4_32b/`，不触碰 M0 的 `data/`。
+- **对照：** 7B 在同一 50 个任务上的已有数据。
+- **预测：**
+  - **P4-8：** U 层的 Fork / Live 比例，32B 低于 7B（差值 CI 不含 0）；I 层的同一比例下降幅度小于 U 层（交互）。
+  - **P4-9：** 32B 的 C_sel 与 entropy_q 在 B2 上的 AUROC 不显著高于 7B 的对应值（若显著更高，推论 4 被证伪）。
+  - **P4-10：** 32B 在 U 层的 chosen 对比份额高于 7B。
+- **成本估算：** 7B 在 50 条轨迹上的 rollout + 库 1 ≈ 7 h、库 2 ≈ 5.7 h、库 3–6 ≈ 11 h（按 Phase 1C 实测折算）；32B 按 3–4 倍计。运行前用 5 条轨迹试跑实测，写 DECISIONS。
+- **约束说明：** `CLAUDE.md` §3、§9.1 禁止为 M0 更换模型；E3 是 P4 的独立研究，不进入 M0 的任何表格。
+
+---
+
+## 第四部分：判定（E0 冻结后不改）
+
+按表序取第一个满足者。
+
+| 读法 | 条件 | 含义与后续 |
+|---|---|---|
+| **R-NULL** | P4-6 在两个评判者上都不成立 | 一步反馈对评判者无用，世界信息通道本身不成立；停止 P4，论文回到 M0 的 R-WORLD 叙事 |
+| **R-PRIOR** | P4-5 的交互 CI 含 0，且 32B 在 I 层 S 条件下 G_u 显著为正 | 常识先验即可消解信息受限分叉；核心论点不成立；论文改用"两次压缩"框架（10-30 会话第一版骨架），不做 E3 |
+| **R-BLIND** | P4-1、P4-2、P4-5、P4-6 均成立，正对照成立 | 论点成立；执行 E3；论文主线采用 P4 |
+| **R-BLIND-7B** | P4-1 成立、P4-2 不成立（内省信号在 I、U 两层都无判别力），P4-5、P4-6 成立 | 7B 连可见信息都未反映在内省信号里，但更强的模型能利用；论点改述为"内省信号的可见范围随能力扩大，但不覆盖信息受限分叉"；E3 成为关键证据，执行 |
+| **R-MIXED** | 其余情形，或 E1 正对照失败 | 全部照报，不执行 E3，交研究者裁决 |
+
+P4-3、P4-4、P4-7 为报告项，不进判定，但必须在论文中逐条对账。
+
+---
+

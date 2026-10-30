@@ -1203,3 +1203,17 @@ untouched, and no new feature–outcome association was computed.
   and are to be frozen in a separate `P4: pre-registration` commit before E1 runs. Data already seen is listed in §5.
 - Status: awaiting the researcher's ruling (proposal §8: adoption as paper mainline, judge/policy model size, E3 budget,
   whether to fix D-050 first).
+
+## D-052 — P4 execution authorized; E0 implementation choices — 2026-10-30
+
+The researcher requested completing the latest proposal experiments and then said to continue.
+This authorizes P4 E0/E1/E2 under the proposed default Qwen2.5-7B/32B design, with E3 conditional
+on §4; it does not preemptively adopt a paper mainline. D-050 is independent and excluded as proposed.
+M0 frozen definitions, results and data remain unchanged. New artifacts are in `exploratory_P4/`.
+E0 text-only strata reconstruction passed all registered counts and all pointwise comparisons.
+Before E1: P4-1's "five" is interpreted as all SIX explicit signals in §2.2 (both entropy variants).
+Full implementation conventions are recorded in `exploratory_P4/protocol.json`, including shared
+trajectory bootstrap, existing progress terciles, fixed judge response prefix without realized thought,
+and deterministic feedback derangement. These conventions are frozen before association analysis.
+Hardware check: no GPU detected (`nvidia-smi`: No devices were found); container limits are 2 GiB
+RAM and 0.5 CPU, despite host-level free output. E2 cannot run on this allocation; CPU work proceeds.

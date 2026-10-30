@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-30",
+  "stop_criterion": "Prior work stratifies by whether deciding information is in context and tests introspective signals or judges for action-fork discrimination.",
+  "stop_trigger_found": false,
+  "scope": "Targeted primary-source search and inspection of methods/experimental organization; absence of a match is not proof of global novelty.",
+  "papers": [
+    {"url":"https://arxiv.org/html/2607.06503v1","assessment":"Episode failure probes and calibrated abort, not replay fork discrimination split by information availability."},
+    {"url":"https://arxiv.org/html/2512.04949v3","assessment":"Action criticality and entropy-guided rollout/selective updates; no identified P4 availability-stratified introspection test. TreeRL discussed in related work and appendix C.5; direct TreeRL source retrieval incomplete."},
+    {"url":"https://arxiv.org/html/2609.24985","assessment":"Closest candidate: availability of functions/arguments selects candidate phases; nested action/continuation variance. Does not establish P4's availability-stratified introspective/judge discrimination result. Must cite and distinguish; information-dependent trainability is not novel."},
+    {"url":"https://arxiv.org/html/2610.12828","assessment":"Executed alternative feedback and hindsight tree selection. Benefits of environment access are not themselves novel; no identified P4 stratified test."},
+    {"url":"https://arxiv.org/html/2507.19849","assessment":"ARPO entropy-based adaptive rollout after tool use; no identified context-availability-stratified fork audit."},
+    {"url":"https://arxiv.org/html/2507.07017","assessment":"FR3E high-uncertainty reasoning rollout positions; no identified P4 test."},
+    {"url":"https://arxiv.org/html/2509.09265","assessment":"EMPG entropy modulation and future clarity, not availability-stratified replay discrimination."},
+    {"url":"https://arxiv.org/html/2207.05221","assessment":"Calibration, self-knowledge, source/hint effects; correct-answer self-knowledge rather than action-fork discrimination."},
+    {"url":"https://arxiv.org/html/2606.15576","assessment":"HSD successful peer trajectory conditioned teacher and divergence localization; no identified P4 availability stratification."},
+    {"url":"https://arxiv.org/html/2605.17873","assessment":"HinT-SD full-trajectory failure localization and feedback placement; no identified P4 replay test."},
+    {"url":"https://arxiv.org/abs/2609.32694","assessment":"IGSD is close on verifying teacher proposals with environment feedback. Abstract checked; HTML unavailable. Avoid claiming first evidence that internal teacher scores can fail to reflect executed utility."}
+  ]
+}
