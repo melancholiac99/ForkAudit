@@ -1221,3 +1221,25 @@ RAM and 0.5 CPU, despite host-level free output. E2 cannot run on this allocatio
 P4 E0 pre-registration commit: `20f0976606ca01929bce67d3b850df1045fe8c4e` (`P4: pre-registration`).
 Targeted novelty review found no exact stopping-criterion match; source-level scope and incomplete
 retrievals are disclosed in `exploratory_P4/novelty_check.json`. E1 starts only after this commit.
+
+## D-053 — P4 E1 complete; positive control fails; GPU stage deferred — 2026-10-30
+
+E1 executed from commit `102d051da0389823d5fd79dddba5384e9aa72f4c`; full input SHA256,
+10,000 trajectory-cluster bootstrap / 1,000 stratified shuffles and results in `exploratory_P4/e1.json`.
+- P4-1 meets its literal threshold for all six signals in I, but the positive control fails:
+  W1pure_multi AUROC 0.5962, shuffle p97.5 0.6120. The proposal explicitly prohibits interpreting
+  E1's negative introspection result when this control fails. E1 reading: R-MIXED; no E3.
+- P4-2 false: U−I AUROC C_sel −0.1026 [−0.2298, 0.0393], B_multi −0.1344 [−0.2732, 0.0136].
+- P4-3 false: policy G_u on I Fork −11.13 pp [−13.85, −7.66], on U +0.48 pp [−3.15, 4.34].
+  I Gold confirms negative direction: −12.01 pp [−16.89, −7.11].
+- World target-mention arm rule on I Fork: G_u +46.88 pp [39.94, 51.99], Gold +47.20 pp
+  [37.90, 54.44]. This is action selection, not a replacement for the state-level positive control.
+- P4-4 point directions hold; positive-sign proportion U−I CI positive, chosen share on Live CI includes 0.
+- Post-result interpretation (not a changed rule): target_revealed is constant within each registered stratum;
+  strata condition away its between-stratum predictive power. B_multi/C_sel AUROC in I is around 0.68,
+  not chance, but does not exceed the within-trajectory/progress shuffle baseline.
+Independent verification passed against sklearn and pre-existing deep extraction; all 10,656 E1 input hashes
+checked. E2 inputs prepared: 873 points / 3,492 contexts / 17,460 candidate sequences per model. GPU scoring
+and complete-run analysis scripts provided; real GPU numerical validation has NOT run, no E2 scores exist.
+After disclosure of missing GPU the researcher said “先做能做的”. E2 is deferred on this allocation;
+P4-5/6/7 remain untested. E1+E2 table-order verdict is not claimed complete. No paper mainline change.

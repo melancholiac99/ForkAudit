@@ -1,0 +1,121 @@
+P4 E0/E1 实验报告（2026-10-30）
+
+结论：E1 未支持预期的完整分层模式，且世界信号正对照失败。依预注册条款，不能将内省未过线解释为已证实“看不见分叉”；当前 E1 读法为 R-MIXED，不启动 E3。E2 尚未运行，P4-5/6/7 未判定，完整 E1+E2 表序裁决待补。
+
+完成：E0 分层重算及逐点核对；预注册提交 20f0976606ca01929bce67d3b850df1045fe8c4e；E1 全部信号、三层、10,000 次轨迹 bootstrap、1,000 次层内×轨迹×进度三分位 shuffle；独立库1+2动作收益与Gold第二读出；标签量。
+查新：目标式原文核对暂未发现精确停止条件匹配；检索范围、近邻工作与未完整获取的原文记录于 novelty_check.json，不声称穷尽文献。
+资源：无可见GPU，容器2 GiB内存、0.5 CPU。用户指示“先做能做的”。E2输入已准备873点×4条件=3492个上下文，每个模型17460个候选序列；7B/32B均未打分。
+
+预测对账：
+P4-1：按字面判据成立（全部六项均未超过I层shuffle上分位），但正对照失败使该负结果不可作盲区证据。
+P4-2：不成立，C_sel与B_multi的U−I点估计均为负，CI含0。
+P4-3：不成立，I层策略G_u显著为负，U层不显著为正。
+P4-4：两个点估计方向成立；符号正比例的层间差显著，Live上chosen份额的差CI含0。
+正对照：失败，I层W1pure_multi AUROC 0.5962，未超过shuffle上分位0.6120。
+
+状态级：AUROC [95% CI]；shuffle 97.5%分位；按预注册方向，不翻转。
+
+I
+  A(-conf): 0.5563 [0.4835, 0.6383]; shuffle=0.5612; exceeds=False
+  single:entropy_q: 0.3870 [0.2960, 0.4890]; shuffle=0.4248; exceeds=False
+  single:entropy_sampled: 0.5492 [0.4754, 0.6295]; shuffle=0.5699; exceeds=False
+  B_multi: 0.6837 [0.5794, 0.7732]; shuffle=0.6986; exceeds=False
+  C_sel: 0.6873 [0.5745, 0.7770]; shuffle=0.7038; exceeds=False
+  V: 0.4553 [0.3400, 0.5643]; shuffle=0.4710; exceeds=False
+  W1pure_multi: 0.5962 [0.4789, 0.7105]; shuffle=0.6120; exceeds=False
+  single:target_revealed: 0.5000 [0.5000, 0.5000]; shuffle=0.5000; exceeds=False
+  G_multi: 0.6639 [0.5235, 0.7890]; shuffle=0.6729; exceeds=False
+
+U
+  A(-conf): 0.5259 [0.4801, 0.5724]; shuffle=0.5541; exceeds=False
+  single:entropy_q: 0.4874 [0.4315, 0.5424]; shuffle=0.5372; exceeds=False
+  single:entropy_sampled: 0.5050 [0.4465, 0.5696]; shuffle=0.5238; exceeds=False
+  B_multi: 0.5493 [0.4579, 0.6419]; shuffle=0.5803; exceeds=False
+  C_sel: 0.5848 [0.5107, 0.6580]; shuffle=0.6130; exceeds=False
+  V: 0.4791 [0.4012, 0.5586]; shuffle=0.4654; exceeds=True
+  W1pure_multi: 0.4983 [0.4286, 0.5775]; shuffle=0.5289; exceeds=False
+  single:target_revealed: 0.5000 [0.5000, 0.5000]; shuffle=0.5000; exceeds=False
+  G_multi: 0.3941 [0.3316, 0.4653]; shuffle=0.4229; exceeds=False
+
+N
+  A(-conf): 0.5198 [0.4468, 0.6033]; shuffle=0.5623; exceeds=False
+  single:entropy_q: 0.5698 [0.4659, 0.6663]; shuffle=0.6068; exceeds=False
+  single:entropy_sampled: 0.5069 [0.4431, 0.5716]; shuffle=0.5763; exceeds=False
+  B_multi: 0.4576 [0.3790, 0.5500]; shuffle=0.5178; exceeds=False
+  C_sel: 0.4391 [0.3627, 0.5208]; shuffle=0.4980; exceeds=False
+  V: 0.5093 [0.4144, 0.5867]; shuffle=0.5750; exceeds=False
+  W1pure_multi: 0.4146 [0.3230, 0.5002]; shuffle=0.4455; exceeds=False
+  single:target_revealed: 0.5000 [0.5000, 0.5000]; shuffle=0.5000; exceeds=False
+  G_multi: 0.5155 [0.4104, 0.6265]; shuffle=0.5198; exceeds=False
+
+层间 U−I AUROC：
+  A(-conf): -0.0304 [-0.1203, 0.0532]
+  single:entropy_q: 0.1004 [-0.0118, 0.2065]
+  single:entropy_sampled: -0.0442 [-0.1423, 0.0560]
+  B_multi: -0.1344 [-0.2732, 0.0136]
+  C_sel: -0.1026 [-0.2298, 0.0393]
+  V: 0.0238 [-0.1236, 0.1811]
+  W1pure_multi: -0.0979 [-0.2335, 0.0412]
+  single:target_revealed: 0.0000 [0.0000, 0.0000]
+  G_multi: -0.2698 [-0.4046, -0.1099]
+
+动作选择：只在各层Fork上；百分点；J(p,q)是固定五候选上的离线重加权收益，并非新策略在线成功率。
+  I/12/policy/G_u: -11.13 [-13.85, -7.66], n=184, trajectories=39
+  I/12/policy/G_c: -3.30 [-6.41, -0.61], n=184, trajectories=39
+  I/12/world/G_u: +46.88 [+39.94, +51.99], n=184, trajectories=39
+  I/12/world/G_c: +54.71 [+45.23, +61.82], n=184, trajectories=39
+  I/gold/policy/G_u: -12.01 [-16.89, -7.11], n=57, trajectories=27
+  I/gold/policy/G_c: -6.36 [-13.87, -0.40], n=57, trajectories=27
+  I/gold/world/G_u: +47.20 [+37.90, +54.44], n=57, trajectories=27
+  I/gold/world/G_c: +52.85 [+40.00, +63.00], n=57, trajectories=27
+  U/12/policy/G_u: +0.48 [-3.15, +4.34], n=202, trajectories=35
+  U/12/policy/G_c: +1.58 [-2.60, +5.10], n=202, trajectories=35
+  U/12/world/G_u: +2.74 [-0.83, +6.35], n=202, trajectories=35
+  U/12/world/G_c: +3.85 [-0.57, +7.56], n=202, trajectories=35
+  U/gold/policy/G_u: -4.83 [-8.60, -0.31], n=62, trajectories=21
+  U/gold/policy/G_c: -0.28 [-6.26, +4.48], n=62, trajectories=21
+  U/gold/world/G_u: -0.72 [-4.48, +4.23], n=62, trajectories=21
+  U/gold/world/G_c: +3.83 [-2.30, +9.25], n=62, trajectories=21
+  N/12/policy/G_u: -4.82 [-7.93, -0.62], n=65, trajectories=22
+  N/12/policy/G_c: -3.95 [-10.64, +2.66], n=65, trajectories=22
+  N/12/world/G_u: -0.87 [-6.55, +6.05], n=65, trajectories=22
+  N/12/world/G_c: +0.00 [+0.00, +0.00], n=65, trajectories=22
+  N/gold/policy/G_u: -0.74 [-4.43, +2.35], n=16, trajectories=11
+  N/gold/policy/G_c: +3.13 [-1.73, +6.63], n=16, trajectories=11
+  N/gold/world/G_u: -3.88 [-7.67, -0.06], n=16, trajectories=11
+  N/gold/world/G_c: +0.00 [+0.00, +0.00], n=16, trajectories=11
+
+标签量：比例，95%CI；chosen share为库3–4×5–6的交叉乘积总量比。
+  I/positive_sign: 0.2667 [0.1739, 0.3889], n=75
+  I/chosen_share_live: 0.1082 [0.0737, 0.1628], n=299
+  I/chosen_share_fork: 0.1090 [0.0746, 0.1626], n=184
+  U/positive_sign: 0.5049 [0.3611, 0.6542], n=103
+  U/chosen_share_live: 0.1645 [0.1187, 0.2190], n=574
+  U/chosen_share_fork: 0.1828 [0.1408, 0.2439], n=202
+  N/positive_sign: 0.7632 [0.5690, 0.9412], n=38
+  N/chosen_share_live: 0.0964 [-0.0490, 0.2487], n=502
+  N/chosen_share_fork: 0.1254 [0.0807, 0.2232], n=65
+  U−I/positive_sign: 0.2382 [0.0821, 0.4063]
+  U−I/chosen_share_live: 0.0563 [-0.0141, 0.1210]
+  U−I/chosen_share_fork: 0.0738 [0.0040, 0.1452]
+
+解释边界：
+1. I层B_multi/C_sel AUROC约0.68，但其层内轨迹进度shuffle基线也很高；不能把“未超过该基线”写成“AUROC只有随机水平”。
+2. target_revealed在I、U层恒为1，在N层恒为0，层内AUROC必为0.5。分层条件固定了该强世界特征；多特征正对照失败可能反映条件化后剩余变化减少，不能单凭此说世界信息无用。该解释是结果后的诊断，不更改判据。
+3. 目标反馈选臂在I层效果很强，Gold读出同向；这是动作选择量。它不替代状态级W1正对照，也不证明32B评判者能利用该反馈。
+4. I层策略分布负收益在Gold上仍为负；U层主读出CI含0，Gold上为负，未支持“利用受限层能选好动作”。裸命令打分不是含思考的自由生成边际分布。
+5. 模型变强后内省信用更差尚无实验依据；E2/E3未运行。非显著也不是等效性证明。
+
+复现：
+  /root/miniconda3/envs/m0/bin/python exploratory_P4/p4_strata.py
+  OPENBLAS_NUM_THREADS=1 /root/miniconda3/envs/m0/bin/python exploratory_P4/p4_e1_introspection.py
+  OPENBLAS_NUM_THREADS=1 /root/miniconda3/envs/m0/bin/python exploratory_P4/verify_cpu.py
+  /root/miniconda3/envs/m0/bin/python exploratory_P4/render_results.py
+
+GPU后续入口（尚未经过真实GPU验证）：
+  p4_e2_judge_score.py --model PATH --name 7b --revision PINNED_REVISION
+  p4_e2_judge_score.py --model PATH --name 32b --revision PINNED_REVISION
+  p4_e2_analyze.py （仅两个模型全量完成且数值校验通过后产出e2.json）
+32B revision必须在运行前写DECISIONS，模型须完整本地下载；共享前缀/直接打分TV阈值0.005，每模型先核验。
+
+独立核验：见cpu_verification.json。逐点AUROC对照sklearn，40次加权bootstrap逐项对照，动作收益与既有deep独立提取核对，10,656个输入SHA256及3,492个E2请求核验通过。
