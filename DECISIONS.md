@@ -1428,3 +1428,24 @@ paired bootstrap contrasts/PL-1..5/reading, verifies protected inputs, and hashe
 Mechanism script retains per-point gains only; final audit verifies its aggregation and explicitly
 notes that raw draft counts cannot be independently reconstructed from that artifact. Final status
 is completed_verified only after this audit passes; no inferred publication/shutdown action.
+## E4 exploratory scoring-speed benchmark — 2026-10-31
+
+Researcher requested trying the proposed candidate batching optimization. Isolate it under
+exploratory_E4_extra_scoring_speed; do not replace the frozen P4/E4 scoring backend or alter
+formal scores, thresholds, cost accounting or analysis. Formal F continues unchanged. A separate
+hook holds only its waiting orchestration parent, then benchmarks after F exits and before L
+starts. Original L resumes automatically after completion or failure. A separate guardian kills
+an orphan benchmark and resumes the formal queue if the hook dies. Disposable-process recovery
+tests and CPU tiny-Qwen2 numerical tests passed before launch.
+
+Compare original sequential suffix scoring with batch sizes 2 and 5, keeping the shared prefix,
+BF16 transformer and FP32 vocabulary projection. Select text-length quantiles 0, .5, .9 and 1
+per F/L condition without inspecting scores or outcomes; alternate timing order over two repeats.
+Record TV against original (< .005), argmax equality, token log-probability error, memory and
+timings; check original against direct scoring at selected shortest/longest requests. Memory
+guard reduces actual batch size when required. Tiny CPU checks are not a 32B equivalence claim.
+
+Benchmark has a 30-minute timeout. It automatically writes an engineering report and restores
+the original queue; it never deploys the new backend. Formal F score/run/check files are hashed
+before and after, and benchmark time never enters F scoring_seconds or replay cost. Any speedup
+is limited to this small length-selected benchmark until a full-workload audit is done.
