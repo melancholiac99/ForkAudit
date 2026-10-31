@@ -1370,3 +1370,12 @@ pre-registration requirement. Smoke results are plumbing checks only, not used i
 Data will be written to exploratory_E4/data on the system disk (about 52 GiB free); the shared disk
 has only about 1.2 GiB free and will not hold new E4 artifacts. peft is missing and must be installed
 and verified before training. No new shutdown or publication hook is assumed for this experiment.
+
+D-059 start gates passed: games.json independently committed at 9ddd1e5 (400/40/140/134).
+S2 wrote 4 dry episodes; S3 wrote 72 candidate points with factual observations identical and
+zero prefix replay divergence; S4 ran 2 points / 30 continuations with zero divergence.
+Smoke outputs remain under /tmp/e4s2, /tmp/e4s3, /tmp/e4s4 and are excluded from formal data.
+Installed peft 0.21.2 and accelerate 1.15.0 with --no-deps after reviewing pip's dry-run plan;
+existing core package versions retained and imports pass. All 7B weight SHA256 values match
+original E2. Launch formal training-data rollout with the preregistered 400 games, 1 repetition,
+full prompts/responses, original M0 Policy, and default sampling parameters.
