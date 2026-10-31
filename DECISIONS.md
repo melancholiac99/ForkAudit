@@ -1356,3 +1356,24 @@ hashes, revisions, backend hash, tokenizer and configuration hashes. This closes
 missing 32B checkpoint equality guard without changing scoring or numerical gates. Original E2,
 E1, P4-X, preregistration and P5 documents remain unchanged. This new task has no shutdown step;
 the preceding authorized E2 shutdown was already completed.
+
+## D-059 — E4 and E5 pre-registered; paper story v3 — 2026-10-31
+
+Written by Claude at the researcher's request ("把E4 E5做完，论文故事怎么讲"). This session has no GPU, ALFWorld, WebShop
+or torch, so nothing was run; both experiments are prepared to run on the server. No frozen M0/P4 item changes.
+- **E4** (`exploratory_E4/PREREG_E4.md`, commit `37f1873` on origin/main, applied from patch babafdd): closed loop on ALFWorld. 400 train games (M0 tasks excluded), 40 tune,
+  valid_seen/unseen eval. Arms A (32B judge, F), A′ (rule), H (32B judge, L), Rnd (same points as A), D (exploration
+  heuristic), Bfull / Bmatch (cost-matched by measured GPU seconds) / Cmatch (top sampled entropy), Esft, base; cap 1,000
+  examples per arm; LoRA-DPO (r 16, β 0.1, 2 epochs), lr chosen once on tune with A′; 3 training seeds; 3 rollouts per game.
+  Predictions PL-1..PL-5, readings R-L-NULL / HEURISTIC / COSTLY / WIN. `test_e4.py` passes on CPU, including a byte-identical
+  rebuild of real P4 E2 F and L requests. Judge scoring asserts the same revision, checkpoint SHA256 and backend as P4 E2.
+  Smoke gates S1–S7 precede any outcome. games.json is frozen and committed separately by `e4_00_freeze.py`.
+- **E5** (`exploratory_E5/PREREG_E5.md`, commit `2d341bd` on origin/main, applied from patch bebe6d3): WebShop, 150 sessions from the training
+  goal range, M0 protocol (banks 1–6, five-arm G test), strata from the goal ASIN, judges 7B/32B × S/L/F/Fx. Predictions
+  W-1..W-5 with a power gate (≥ 40 Fork points in each of I and U). The WebShop adapter (`ws_env.py`) speaks the envpool
+  protocol so `scripts/11_replay.run_async` runs unchanged; API details marked VERIFY and the verl-agent template are fixed
+  at gates S0–S2 before any rollout. `test_e5.py` passes offline. A WebShop learning arm is deferred to a separate
+  pre-registration, conditional on R-E5-REPLICATE and E4 R-L-WIN.
+- **Paper story v3** (`papers/STORY_v3.md`) replaces the deep-branch draft v0.1 mainline: step-level credit at
+  information-limited forks is an information problem; evidence chain M0 → P4 E2/E2-M (pre-registered) → post-hoc
+  diagnostics → E4 → E5; versions of the paper under each E4/E5 reading.
