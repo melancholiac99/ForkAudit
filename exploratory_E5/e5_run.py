@@ -70,9 +70,12 @@ def point_labels(f_banks, a_banks, rng_seed, n_perm=10_000, alpha=0.10):
     pool12 = list(f_banks[1]) + list(f_banks[2]) + [o for b in (1, 2) for arm in a_banks[b] for o in arm]
     live = 0 < sum(pool12) < len(pool12)
     q12 = [float(np.mean(f_banks[1] + f_banks[2]))] + [float(np.mean(a_banks[1][j] + a_banks[2][j])) for j in range(4)]
-    out = dict(live=bool(live), q12=q12, het=False, credit_pivotal=False, masked=False, p_het=None, q3456=None, E_het=None)
+    out = dict(live=bool(live), q12=q12, het=False, credit_pivotal=False, masked=False, p_het=None, q3456=None, E_het=None,
+               E_agg=None, E_masked=None, q34=None, q56=None)
     if not live or not all(b in f_banks and b in a_banks for b in (3, 4, 5, 6)):
         return out
+    pair = lambda b1, b2: [float(np.mean(f_banks[b1] + f_banks[b2]))] + [float(np.mean(a_banks[b1][j] + a_banks[b2][j])) for j in range(4)]
+    out.update(q34=pair(3, 4), q56=pair(5, 6))
     f = np.concatenate([f_banks[b] for b in (3, 4, 5, 6)])
     a = np.stack([np.concatenate([a_banks[b][j] for b in (3, 4, 5, 6)]) for j in range(4)])
     c = np.concatenate([[f.sum()], a.sum(1)])[None, :]
@@ -84,9 +87,62 @@ def point_labels(f_banks, a_banks, rng_seed, n_perm=10_000, alpha=0.10):
     srt = np.sort(Gp)
     p_perm = (1 + (n_perm - np.searchsorted(srt, Gp - 1e-9, side="left"))) / (n_perm + 1)
     het, agg = bool(p <= alpha), bool(H.agg_flag(c)[0])
-    out.update(het=het, credit_pivotal=agg, masked=het and not agg, p_het=float(p), E_het=float((p_perm <= alpha).mean()),
+    het_k = p_perm <= alpha
+    agg_k = H.agg_flag(perm.reshape(n_perm, 5, 12).sum(2))
+    out.update(het=het, credit_pivotal=agg, masked=het and not agg, p_het=float(p), E_het=float(het_k.mean()),
+               E_agg=float(agg_k.mean()), E_masked=float((het_k & ~agg_k).mean()),
                q3456=[float(f.mean())] + [float(x.mean()) for x in a])
     return out
+
+
+# ----------------------------------------------------------------------------- amendment 1 (PREREG_E5 §12): pure functions
+
+MASKED_SHARE_MIN = 0.30
+C_LAYER, LAYERS = 21, (14, 21, 26)
+
+
+def ratio_bootstrap(num, den, clusters, B=10000, seed=31102026):
+    """sum(num)/sum(den) with a task-cluster percentile CI (as a fraction, not pp)."""
+    num, den = np.asarray(num, float), np.asarray(den, float)
+    cl, inv = np.unique(np.asarray(clusters), return_inverse=True)
+    Wt = np.random.default_rng(seed).multinomial(len(cl), np.full(len(cl), 1 / len(cl)), size=B).astype(float)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        d = (Wt @ np.bincount(inv, num, len(cl))) / (Wt @ np.bincount(inv, den, len(cl)))
+    d = d[np.isfinite(d)]
+    return dict(estimate=float(num.sum() / den.sum()), ci95=[float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))],
+                n=int(den.sum()))
+
+
+def split_gain(q34, q56):
+    """Best alternative chosen on banks 3-4 (ties -> lowest index), evaluated against the factual arm on banks 5-6."""
+    j = 1 + int(np.argmax(np.asarray(q34[1:], float)))
+    return float(q56[j] - q56[0])
+
+
+def policy_marginal(draft_actions, arm_actions, alpha=0.5):
+    """Five-arm selection distribution from the policy's own first-batch drafts (P4-X X2): counts + 0.5, normalised."""
+    c = np.array([sum(d == a for d in draft_actions) for a in arm_actions], float) + alpha
+    return c / c.sum()
+
+
+def rule_dist(goal_mention):
+    """Uniform over arms whose one-step response names the goal ASIN; none -> keep the factual arm (P4 E1 world rule)."""
+    m = np.asarray(goal_mention, float)
+    return m / m.sum() if m.sum() else np.eye(5)[0]
+
+
+def gu(p, q):
+    q = np.asarray(q, float)
+    return float(np.asarray(p, float) @ q - q.mean())
+
+
+def structure_reading(w1, w0b, w0c, w2a, w2b, w2c):
+    """Structural reading, first match (PREREG_E5 §12.4)."""
+    if not w2b:
+        return "R-E5-STRUCT-CONTROL-FAILED"
+    if w1 and w0b and w0c and w2a and w2c:
+        return "R-E5-STRUCT-REPLICATE"
+    return "R-E5-STRUCT-PARTIAL"
 
 
 def task_bootstrap(values, clusters, B=10000, seed=31102026):
@@ -325,7 +381,9 @@ def stage_labels(P, args):
     live = [r for r in rows if r["live"]]
     summ = dict(n_cf_defined=len(rows), n_live=len(live), n_het=sum(r["het"] for r in live),
                 E_het=float(sum(r["E_het"] or 0 for r in live)), n_credit_pivotal=sum(r["credit_pivotal"] for r in live),
-                n_masked=sum(r["masked"] for r in live), dead=len(rows) - len(live))
+                n_masked=sum(r["masked"] for r in live), dead=len(rows) - len(live),
+                E_agg=float(sum(r["E_agg"] or 0 for r in live)), E_masked=float(sum(r["E_masked"] or 0 for r in live)),
+                n_live_without_banks3to6=sum(r["p_het"] is None for r in live))
     json.dump(dict(summary=summ, points=rows), open(P.labels, "w"), indent=1)
     print(summ)
 
@@ -353,16 +411,77 @@ def stage_strata(P, args):
     print(Counter((r["stratum"], r["live"], r["het"]) for r in out))
 
 
+def stage_introspect(P, args):
+    """GPU (amendment 1): for every cf-defined point, the policy's own signals at the decision prompt —
+    conf = mean log-probability of the factual command tokens teacher-forced after chat(prompt) + '<action>' (M0 arm A
+    convention: command tokens only, no closing tag, no reasoning), and residual-stream hidden states at the last prompt
+    token (generation prompt included) for layers 14 / 21 / 26 (hidden_states[L], index 0 = embeddings; M0 convention).
+    BF16 transformer, FP32 vocabulary projection. -> data/introspect/{points.json, hidden_L{L}.npy}"""
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    path = args.model or os.environ.get("M0_MODEL", "/root/autodl-tmp/models/Qwen2.5-7B-Instruct")
+    tok = AutoTokenizer.from_pretrained(path, local_files_only=True)
+    model = AutoModelForCausalLM.from_pretrained(path, local_files_only=True, dtype=torch.bfloat16).to("cuda").eval()
+    model.lm_head.to(torch.float32)
+    rows, H = [], {L: [] for L in LAYERS}
+    for tr in load_trajs(P, args.limit):
+        for s in tr["steps"]:
+            b1p = os.path.join(P.bank(1), tr["traj_id"], f"t{s['turn']:02d}.json")
+            if not os.path.exists(b1p) or not json.load(open(b1p))["cf_defined"]:
+                continue
+            chat = tok.apply_chat_template([dict(role="user", content=s["prompt"])], tokenize=False, add_generation_prompt=True)
+            pre = tok.encode(chat, add_special_tokens=False)
+            pre_a = tok.encode(chat + "<action>", add_special_tokens=False)
+            full = tok.encode(chat + "<action>" + s["action"], add_special_tokens=False)
+            assert full[:len(pre)] == pre, "chat prompt is not a token prefix"
+            start = 0
+            while start < min(len(pre_a), len(full)) and pre_a[start] == full[start]:
+                start += 1
+            assert len(pre_a) - start <= 3 and start < len(full)
+            with torch.no_grad():
+                out = model.model(input_ids=torch.tensor([full], device="cuda"), output_hidden_states=True)
+                lp = torch.log_softmax(model.lm_head(out.last_hidden_state[0, start - 1:-1].float()), -1)
+                tgt = torch.tensor(full[start:], device="cuda")
+                conf = float(lp.gather(1, tgt[:, None]).mean())
+                for L in LAYERS:
+                    H[L].append(out.hidden_states[L][0, len(pre) - 1].float().cpu().numpy().astype(np.float16))
+            rows.append(dict(traj_id=tr["traj_id"], turn=s["turn"], conf=conf, n_tokens=len(full) - start, row=len(rows)))
+    d = os.path.join(P.root, "introspect")
+    os.makedirs(d, exist_ok=True)
+    for L in LAYERS:
+        np.save(os.path.join(d, f"hidden_L{L}.npy"), np.stack(H[L]))
+    common.write_json(os.path.join(d, "points.json"), dict(points=rows, layers=list(LAYERS), model=path, commit=common.git_commit()))
+    print(len(rows), "points")
+
+
+def auc_entry(ev, y, s, groups, strata, seed):
+    """AUROC (as given, no sign flip), trajectory-cluster bootstrap CI, within-trajectory(x stratum) shuffle 97.5%."""
+    y, s, groups, strata = np.asarray(y).astype(bool), np.asarray(s, float), np.asarray(groups), np.asarray(strata)
+    ok = np.isfinite(s)
+    y, s, groups, strata = y[ok], s[ok], groups[ok], strata[ok]
+    sh, _ = ev.shuffle_null(y, s, groups, strata, n=1000, seed=seed)
+    a = float(ev.auroc(y, s))
+    p975 = float(np.nanpercentile(sh, 97.5))
+    ci = ev.Boot.ci(ev.Boot(groups, B=10000, seed=seed).auroc_dist(y, s))
+    return dict(auroc=a, ci95=ci, shuffle_p975=p975, above_shuffle=bool(a > p975), n=int(ok.sum()), n_traj=int(len(set(groups))))
+
+
 def stage_signals(P, args):
+    """W-2 (amended). B1: Live vs Dead over cf-defined points, within-trajectory shuffle. B2: Fork vs Indifferent over Live,
+    within-trajectory x progress-tercile shuffle. Signals: -conf, entropy_sampled, hidden-state probe on layer 21 (OOF,
+    evalcore.fit_oof_logistic, M0 machinery), W1 goal-mention bit (B2 only); layers 14 / 26 descriptive."""
     ev = importlib.import_module("evalcore")
-    lab = {(r["traj_id"], r["turn"]): r for r in json.load(open(P.labels))["points"] if r["live"]}
+    lab = {(r["traj_id"], r["turn"]): r for r in json.load(open(P.labels))["points"]}
     st = {(r["traj_id"], r["turn"]): r for r in json.load(open(P.strata))}
+    ip = json.load(open(os.path.join(P.root, "introspect", "points.json")))
+    irow = {(r["traj_id"], r["turn"]): r for r in ip["points"]}
+    Hs = {L: np.load(os.path.join(P.root, "introspect", f"hidden_L{L}.npy")) for L in LAYERS}
     rows = []
     for tr in load_trajs(P):
         n = len(tr["steps"])
         for s in tr["steps"]:
             k = (tr["traj_id"], s["turn"])
-            if k not in lab or k not in st:
+            if k not in lab or k not in irow:
                 continue
             b1 = json.load(open(os.path.join(P.bank(1), tr["traj_id"], f"t{s['turn']:02d}.json")))
             first = [d["action"] for d in b1["drafts"] if d["batch"] == 0 and d["valid"] and d["admissible"]]
@@ -370,17 +489,29 @@ def stage_signals(P, args):
             if first:
                 _, c = np.unique(first, return_counts=True)
                 ent = float(-(c / c.sum() * np.log(c / c.sum())).sum())
-            rows.append(dict(traj=tr["traj_id"], y=lab[k]["het"], ent=ent, w1=float(any(st[k]["goal_mention"][1:])),
+            rows.append(dict(traj=tr["traj_id"], live=lab[k]["live"], het=lab[k]["het"], ent=ent, neg_conf=-irow[k]["conf"],
+                             w1=float(any(st[k]["goal_mention"][1:])) if k in st else float("nan"), row=irow[k]["row"],
                              prog3=min(int(3 * (s["turn"] - 1) / n), 2)))
-    y = np.array([r["y"] for r in rows]); g = [r["traj"] for r in rows]; p3 = [r["prog3"] for r in rows]
-    out = {}
-    for name in ["ent", "w1"]:
-        s_ = np.array([r[name] for r in rows])
-        ok = np.isfinite(s_)
-        sh, _ = ev.shuffle_null(y[ok], s_[ok], np.array(g)[ok], np.array(p3)[ok], n=1000, seed=7)
-        out[name] = dict(auroc=float(ev.auroc(y[ok], s_[ok])), shuffle_p975=float(np.nanpercentile(sh, 97.5)), n=int(ok.sum()))
+    g = np.array([r["traj"] for r in rows])
+    live = np.array([r["live"] for r in rows])
+    out = {"B1": {}, "B2": {}}
+    sets = {"B1": (np.ones(len(rows), bool), live, np.zeros(len(rows), int)),
+            "B2": (live, np.array([r["het"] for r in rows]), np.array([r["prog3"] for r in rows]))}
+    for bname, (mask, y, strata) in sets.items():
+        idx = np.where(mask)[0]
+        yy, gg, ss = y[idx].astype(int), g[idx], strata[idx]
+        scores = {"neg_conf": np.array([rows[i]["neg_conf"] for i in idx]), "entropy_sampled": np.array([rows[i]["ent"] for i in idx])}
+        if bname == "B2":
+            scores["w1_goal_mention"] = np.array([rows[i]["w1"] for i in idx])
+        fold = ev.outer_folds(gg)
+        for L in LAYERS:
+            X = Hs[L][[rows[i]["row"] for i in idx]].astype(np.float64)
+            scores[f"C_L{L}"], info = ev.fit_oof_logistic(X, yy, gg, fold)
+        for name, sc in scores.items():
+            out[bname][name] = auc_entry(ev, yy, sc, gg, ss, seed=7)
+            out[bname][name]["role"] = "registered" if (name != "C_L14" and name != "C_L26") else "descriptive"
     json.dump(out, open(P.signals, "w"), indent=1)
-    print(out)
+    print(json.dumps({b: {k: round(v["auroc"], 3) for k, v in d.items()} for b, d in out.items()}))
 
 
 def display_order(pid):
@@ -443,20 +574,20 @@ def stage_analyze(P, args):
                 probs[m, c, r["point_id"]] = np.array(r["candidate_prob"])
     pts = {z: sorted(p for p, r in st.items() if r["live"] and r["het"] and r["stratum"] == z and (("7b", "S", p) in probs))
            for z in ("I", "U")}
-    gu = lambda m, c, p: float(probs[m, c, p] @ np.array(lab[p]["q12"]) - np.mean(lab[p]["q12"]))
+    gj = lambda m, c, p: gu(probs[m, c, p], lab[p]["q12"])
     tr = lambda ps: [p.split("_t")[0] for p in ps]
     table, con = {}, {}
     for z, ps in pts.items():
         for m in ["7b", "32b"]:
             for c in ["S", "L", "F", "Fx"]:
-                table[f"{m}/{c}/{z}"] = task_bootstrap([gu(m, c, p) for p in ps], tr(ps))
+                table[f"{m}/{c}/{z}"] = task_bootstrap([gj(m, c, p) for p in ps], tr(ps))
             for l, r in [("F", "S"), ("F", "Fx"), ("F", "L"), ("L", "S")]:
-                con[f"{m}/{l}-{r}/{z}"] = task_bootstrap([gu(m, l, p) - gu(m, r, p) for p in ps], tr(ps))
-        con[f"32b-7b/S/{z}"] = task_bootstrap([gu("32b", "S", p) - gu("7b", "S", p) for p in ps], tr(ps))
+                con[f"{m}/{l}-{r}/{z}"] = task_bootstrap([gj(m, l, p) - gj(m, r, p) for p in ps], tr(ps))
+        con[f"32b-7b/S/{z}"] = task_bootstrap([gj("32b", "S", p) - gj("7b", "S", p) for p in ps], tr(ps))
     allp = pts["I"] + pts["U"]
     sign = np.array([1.0 if p in set(pts["U"]) else -1.0 for p in allp])
     # interaction (U minus I) of the 32B-7B difference: bootstrap over tasks jointly
-    d = np.array([gu("32b", "S", p) - gu("7b", "S", p) for p in allp])
+    d = np.array([gj("32b", "S", p) - gj("7b", "S", p) for p in allp])
     cl, inv = np.unique(tr(allp), return_inverse=True)
     Wt = np.random.default_rng(31102026).multinomial(len(cl), np.full(len(cl), 1 / len(cl)), size=10000).astype(float)
     isU = sign > 0
@@ -471,20 +602,72 @@ def stage_analyze(P, args):
     sig = json.load(open(P.signals))
     preds, rd = predictions(con, {z: len(v) for z, v in pts.items()})
     preds["W-1"] = bool(labsum["n_het"] > labsum["E_het"] + 2 * np.sqrt(max(labsum["E_het"], 1)))
-    preds["W-2"] = bool(sig["ent"]["auroc"] <= sig["ent"]["shuffle_p975"] and sig["w1"]["auroc"] > sig["w1"]["shuffle_p975"])
-    out = dict(labels=labsum, signals=sig, n_fork={z: len(v) for z, v in pts.items()}, table=table, contrasts=con,
-               predictions=preds, reading=rd)
+
+    # ---------------- amendment 1: structure (W-0), introspection (W-2a/b/c), policy and rule at I Forks (W-6)
+    allpts = json.load(open(P.labels))["points"]
+    live = [r for r in allpts if r["live"]]
+    assert all(r["p_het"] is not None for r in live), "Live points without banks 3-6: complete the banks first"
+    trs = [r["traj_id"] for r in allpts]
+    ind = lambda f: [float(f(r)) for r in allpts]
+    structure = dict(proportions_pct={
+        "dead": task_bootstrap(ind(lambda r: not r["live"]), trs),
+        "indifferent": task_bootstrap(ind(lambda r: r["live"] and not r["het"]), trs),
+        "fork": task_bootstrap(ind(lambda r: r["het"]), trs),
+        "credit_pivotal_and_fork": task_bootstrap(ind(lambda r: r["het"] and r["credit_pivotal"]), trs),
+        "masked": task_bootstrap(ind(lambda r: r["masked"]), trs)},
+        null_expected=dict(het=labsum["E_het"], credit_pivotal=labsum["E_agg"], masked=labsum["E_masked"]))
+    structure["masked_share_of_forks"] = ratio_bootstrap([r["masked"] for r in live], [r["het"] for r in live],
+                                                         [r["traj_id"] for r in live])
+    structure["null_masked_share"] = labsum["E_masked"] / labsum["E_het"] if labsum["E_het"] else None
+    M = [r for r in live if r["masked"]]
+    structure["split_gain_masked_pp"] = task_bootstrap([split_gain(r["q34"], r["q56"]) for r in M], [r["traj_id"] for r in M]) if M else None
+    structure["split_gain_live_pp"] = task_bootstrap([split_gain(r["q34"], r["q56"]) for r in live], [r["traj_id"] for r in live])
+    preds["W-0b"] = bool(structure["masked_share_of_forks"]["ci95"][0] > MASKED_SHARE_MIN)
+    preds["W-0c"] = bool(M and structure["split_gain_masked_pp"]["ci95"][0] > 0)
+    B1, B2 = sig["B1"], sig["B2"]
+    preds["W-2a"] = bool(all(not B2[n]["above_shuffle"] for n in ["neg_conf", "entropy_sampled", f"C_L{C_LAYER}"]))
+    preds["W-2b"] = bool(B2["w1_goal_mention"]["above_shuffle"])
+    preds["W-2c"] = bool(B1[f"C_L{C_LAYER}"]["above_shuffle"])
+    I6 = sorted(p for p, r in st.items() if r["live"] and r["het"] and r["stratum"] == "I")
+    pol, rul = [], []
+    for p in I6:
+        tid, turn = p.split("_t")
+        b1 = json.load(open(os.path.join(P.bank(1), tid, f"t{int(turn):02d}.json")))
+        arms = [b1["factual_action"]] + b1["alternatives"]
+        first = [d["action"] for d in b1["drafts"] if d["batch"] == 0 and d["valid"] and d["admissible"]]
+        pol.append(gu(policy_marginal(first, arms), lab[p]["q12"]))
+        rul.append(gu(rule_dist(st[p]["goal_mention"]), lab[p]["q12"]))
+    w6 = dict(n=len(I6), policy=task_bootstrap(pol, tr(I6)), rule=task_bootstrap(rul, tr(I6)),
+              rule_minus_policy=task_bootstrap(np.array(rul) - np.array(pol), tr(I6))) if I6 else None
+    preds["W-6a"] = bool(w6 and w6["policy"]["ci95"][1] < 0)
+    preds["W-6b"] = bool(w6 and w6["rule"]["ci95"][0] > 0)
+    preds["W-6c"] = bool(w6 and w6["rule_minus_policy"]["ci95"][0] > 0)
+    srd = structure_reading(preds["W-1"], preds["W-0b"], preds["W-0c"], preds["W-2a"], preds["W-2b"], preds["W-2c"])
+    out = dict(labels=labsum, structure=structure, signals=sig, w6=w6, n_fork={z: len(v) for z, v in pts.items()},
+               table=table, contrasts=con, predictions=preds, reading=rd, structure_reading=srd)
     json.dump(out, open(os.path.join(HERE, "e5.json"), "w"), indent=1)
-    lines = [f"E5 reading: {rd}", f"predictions: {preds}", f"labels: {labsum}", f"signals: {sig}", ""]
-    lines += [f"{k:14s} {v['estimate']:+7.2f} [{v['ci95'][0]:+.2f}, {v['ci95'][1]:+.2f}]" for k, v in {**table, **con}.items()]
+    fmt = lambda v: f"{v['estimate']:+7.2f} [{v['ci95'][0]:+.2f}, {v['ci95'][1]:+.2f}]"
+    lines = [f"E5 core reading: {rd}", f"E5 structure reading: {srd}", f"predictions: {preds}", f"labels: {labsum}", "",
+             "structure (proportions in % of cf-defined points):"]
+    lines += [f"  {k:24s} {fmt(v)}" for k, v in structure["proportions_pct"].items()]
+    ms = structure["masked_share_of_forks"]
+    lines += [f"  masked share of forks    {ms['estimate']:.3f} [{ms['ci95'][0]:.3f}, {ms['ci95'][1]:.3f}] (null {structure['null_masked_share']})",
+              f"  split gain, masked (pp)  {fmt(structure['split_gain_masked_pp']) if M else 'n/a'}",
+              f"  split gain, live (pp)    {fmt(structure['split_gain_live_pp'])}", "", "signals (AUROC; shuffle 97.5%):"]
+    for b, dct in sig.items():
+        lines += [f"  {b} {k:18s} {v['auroc']:.3f} [{v['ci95'][0]:.3f}, {v['ci95'][1]:.3f}] shuffle {v['shuffle_p975']:.3f} ({v['role']})"
+                  for k, v in dct.items()]
+    if w6:
+        lines += ["", f"W-6 on I-layer Forks (n={w6['n']}, pp):"] + [f"  {k:18s} {fmt(w6[k])}" for k in ("policy", "rule", "rule_minus_policy")]
+    lines += ["", "judges (G_u, pp):"] + [f"  {k:14s} {fmt(v)}" for k, v in {**table, **con}.items()]
     open(os.path.join(HERE, "E5_REPORT.txt"), "w").write("\n".join(lines) + "\n")
     print("\n".join(lines))
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("stage", choices=["freeze", "rollout", "bank", "peek", "labels", "strata", "signals", "judge-prepare",
-                                      "judge-score", "analyze"])
+    ap.add_argument("stage", choices=["freeze", "rollout", "bank", "peek", "labels", "strata", "introspect", "signals",
+                                      "judge-prepare", "judge-score", "analyze"])
     ap.add_argument("--b", type=int, default=1)
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
@@ -498,7 +681,7 @@ def main():
     args = ap.parse_args()
     P = paths(args.out_root)
     {"freeze": stage_freeze, "rollout": stage_rollout, "bank": stage_bank, "peek": stage_peek, "labels": stage_labels,
-     "strata": stage_strata, "signals": stage_signals, "judge-prepare": stage_judge_prepare, "judge-score": stage_judge_score,
+     "strata": stage_strata, "introspect": stage_introspect, "signals": stage_signals, "judge-prepare": stage_judge_prepare, "judge-score": stage_judge_score,
      "analyze": stage_analyze}[args.stage](P, args)
 
 

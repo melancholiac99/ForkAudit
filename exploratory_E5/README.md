@@ -20,7 +20,8 @@ for b in 1 2 3 4 5 6; do python e5_run.py bank --b $b; done
 python e5_run.py peek
 python e5_run.py labels
 python e5_run.py strata
-python e5_run.py signals
+python e5_run.py introspect --model $M7          # 修订 1：置信度与隐状态（GPU）
+python e5_run.py signals                            # 修订 1：死活与分叉两条边界
 python e5_run.py judge-prepare
 for c in S L F Fx; do
   python e5_run.py judge-score --cond $c --model $M7  --name 7b  --revision a09a35458c702b33eeacc393d103063234e8bc28

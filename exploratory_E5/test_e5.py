@@ -46,6 +46,8 @@ def test_point_labels():
     a = {b: [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]] for b in range(1, 7)}
     r = X.point_labels(f, a, 2, n_perm=2000)
     assert r["live"] and r["het"] and r["credit_pivotal"] and not r["masked"] and r["q12"][0] == 1.0
+    assert r["q34"] == [1.0, 0, 0, 0, 0] and r["q56"] == [1.0, 0, 0, 0, 0]
+    assert 0 <= r["E_masked"] <= r["E_het"] <= 1 and 0 <= r["E_agg"] <= 1
     a2 = {b: [[1, 1, 1], [0, 0, 0], [1, 1, 1], [0, 0, 0]] for b in range(1, 7)}
     f2 = {b: [1, 0, 1] for b in range(1, 7)}
     r = X.point_labels(f2, a2, 3, n_perm=2000)
@@ -132,50 +134,121 @@ def test_pipeline_offline():
         shutil.rmtree(root)
 
 
-if __name__ == "__main__":
-    for name, f in sorted(globals().items()):
-        if name.startswith("test_"):
-            f()
-            print("ok", name)
-    print("all E5 tests passed")
+def test_amendment_pure():
+    r = X.ratio_bootstrap([1, 0, 1, 1], [1, 1, 1, 1], ["a", "a", "b", "b"])
+    assert r["estimate"] == 0.75 and 0.5 <= r["ci95"][0] <= r["ci95"][1] <= 1.0
+    assert X.split_gain([.5, .2, .9, .9, 0], [.4, .1, .7, .2, .3]) == .7 - .4          # tie on banks 3-4 -> lowest index
+    p = X.policy_marginal(["a", "a", "b", "z"], ["a", "b", "c", "d", "e"])
+    assert np.allclose(p, np.array([2.5, 1.5, .5, .5, .5]) / 5.5)
+    assert np.allclose(X.rule_dist([0, 1, 0, 1, 0]), [0, .5, 0, .5, 0]) and np.allclose(X.rule_dist([0] * 5), [1, 0, 0, 0, 0])
+    assert abs(X.gu(np.eye(5)[1], [0, 1, 0, 0, 0]) - .8) < 1e-12
+    assert X.structure_reading(True, True, True, True, False, True) == "R-E5-STRUCT-CONTROL-FAILED"
+    assert X.structure_reading(True, True, True, True, True, True) == "R-E5-STRUCT-REPLICATE"
+    assert X.structure_reading(True, False, True, True, True, True) == "R-E5-STRUCT-PARTIAL"
+
+
+def _write_bank1(root, tid, turn, arms, drafts):
+    d = os.path.join(root, "replay_b1", tid)
+    os.makedirs(d, exist_ok=True)
+    json.dump(dict(factual_action=arms[0], alternatives=arms[1:], cf_defined=True, factual_outcomes=[0, 0, 0],
+                   alt_outcomes=[[0, 0, 0]] * 4, drafts=[dict(batch=0, action=a, valid=True, admissible=True) for a in drafts]),
+              open(os.path.join(d, f"t{turn:02d}.json"), "w"))
+
+
+def test_signals_offline():
+    """Planted signal: hidden feature 0 tracks Live (B1) but not Fork within Live (B2); W1 bit tracks Fork."""
+    root = tempfile.mkdtemp()
+    try:
+        P = X.paths(root)
+        rng = np.random.default_rng(11)
+        labels, strata, ip = [], [], []
+        H = {L: [] for L in X.LAYERS}
+        os.makedirs(P.rollout, exist_ok=True)
+        for k in range(40):
+            tid = f"w{5000 + k}"
+            steps = []
+            for t in range(1, 9):
+                live = bool(rng.random() < .5)
+                het = bool(live and rng.random() < .5)
+                arms = [f"click[a{t}{j}]" for j in range(5)]
+                steps.append(dict(turn=t, prompt="p", action=arms[0]))
+                _write_bank1(root, tid, t, arms, list(rng.choice(arms, 32)))
+                labels.append(dict(traj_id=tid, turn=t, live=live, het=het))
+                strata.append(dict(traj_id=tid, turn=t, stratum="N", live=live, het=het,
+                                   goal_mention=[False] + [bool(het and j == 1) or bool(rng.random() < .1) for j in range(1, 5)]))
+                ip.append(dict(traj_id=tid, turn=t, conf=float(rng.normal()), n_tokens=3, row=len(ip)))
+                for L in X.LAYERS:
+                    h = rng.normal(size=16)
+                    h[0] += 2.5 * live
+                    H[L].append(h.astype(np.float16))
+            json.dump(dict(traj_id=tid, steps=steps), open(os.path.join(P.rollout, f"{tid}.json"), "w"))
+        json.dump(dict(points=labels), open(P.labels, "w"))
+        json.dump(strata, open(P.strata, "w"))
+        os.makedirs(os.path.join(root, "introspect"))
+        json.dump(dict(points=ip), open(os.path.join(root, "introspect", "points.json"), "w"))
+        for L in X.LAYERS:
+            np.save(os.path.join(root, "introspect", f"hidden_L{L}.npy"), np.stack(H[L]))
+        X.stage_signals(P, None)
+        sig = json.load(open(P.signals))
+        assert sig["B1"]["C_L21"]["above_shuffle"] and sig["B1"]["C_L21"]["auroc"] > .8
+        assert not sig["B2"]["C_L21"]["above_shuffle"] and not sig["B2"]["neg_conf"]["above_shuffle"]
+        assert sig["B2"]["w1_goal_mention"]["above_shuffle"] and "w1_goal_mention" not in sig["B1"]
+        assert sig["B2"]["C_L14"]["role"] == "descriptive" and sig["B2"]["C_L21"]["role"] == "registered"
+    finally:
+        shutil.rmtree(root)
 
 
 def test_analyze_offline():
     root = tempfile.mkdtemp()
     here_json = os.path.join(X.HERE, "e5.json")
-    keep = [p for p in (here_json, os.path.join(X.HERE, "E5_REPORT.txt")) if os.path.exists(p)]
-    assert not keep, "refuse to overwrite real E5 outputs"
+    assert not [p for p in (here_json, os.path.join(X.HERE, "E5_REPORT.txt")) if os.path.exists(p)], "refuse to overwrite real E5 outputs"
     try:
         P = X.paths(root)
         rng = np.random.default_rng(5)
         labels, strata = [], []
-        os.makedirs(P.judge, exist_ok=True)
-        files = {(m, c): open(os.path.join(P.judge, f"{m}_{c}", "scores.jsonl"), "w") if os.makedirs(os.path.join(P.judge, f"{m}_{c}"), exist_ok=True) is None else None
-                 for m in ("7b", "32b") for c in ("S", "L", "F", "Fx")}
-        for k in range(100):
+        for m in ("7b", "32b"):
+            for c in ("S", "L", "F", "Fx"):
+                os.makedirs(os.path.join(P.judge, f"{m}_{c}"), exist_ok=True)
+        files = {(m, c): open(os.path.join(P.judge, f"{m}_{c}", "scores.jsonl"), "w") for m in ("7b", "32b") for c in ("S", "L", "F", "Fx")}
+        for k in range(120):
             tid, turn = f"w{5000 + k // 4}", 1 + k % 4
             z = "I" if k % 2 == 0 else "U"
-            best = int(rng.integers(0, 5))
+            best = int(rng.integers(1, 5))
             q = [0.2] * 5
             q[best] = 0.9
-            labels.append(dict(traj_id=tid, turn=turn, live=True, het=True, q12=q, E_het=0.1, credit_pivotal=False, masked=True))
-            strata.append(dict(traj_id=tid, turn=turn, stratum=z, live=True, het=True, goal_mention=[False] * 5))
-            onehot = np.eye(5)[best].tolist()
-            unif = [0.2] * 5
+            masked = k % 3 != 0
+            labels.append(dict(traj_id=tid, turn=turn, live=True, het=True, q12=q, q34=q, q56=q, p_het=0.01, E_het=0.1,
+                               E_agg=0.1, E_masked=0.05, credit_pivotal=not masked, masked=masked))
+            gm = [j == best for j in range(5)]
+            strata.append(dict(traj_id=tid, turn=turn, stratum=z, live=True, het=True, goal_mention=gm))
+            arms = [f"click[a{k}{j}]" for j in range(5)]
+            _write_bank1(root, tid, turn, arms, [arms[0]] * 30 + [arms[best]] * 2)
+            onehot, unif = np.eye(5)[best].tolist(), [0.2] * 5
             for (m, c), f in files.items():
-                p = onehot if (c == "F" and (m == "32b" or z == "I")) or (m == "32b" and c == "S" and z == "U") else unif
-                f.write(json.dumps(dict(point_id=f"{tid}_t{turn:02d}", condition=c, candidate_prob=p)) + "\n")
+                pr = onehot if (c == "F" and (m == "32b" or z == "I")) or (m == "32b" and c == "S" and z == "U") else unif
+                f.write(json.dumps(dict(point_id=f"{tid}_t{turn:02d}", condition=c, candidate_prob=pr)) + "\n")
         for (m, c), f in files.items():
             f.close()
             json.dump(dict(complete=True), open(os.path.join(P.judge, f"{m}_{c}", "run.json"), "w"))
-        json.dump(dict(summary=dict(n_het=100, E_het=10.0), points=labels), open(P.labels, "w"))
+        for k in range(30):                                  # dead points
+            labels.append(dict(traj_id=f"w{5000 + k}", turn=9, live=False, het=False, q12=[0] * 5, q34=None, q56=None, p_het=None,
+                               E_het=None, E_agg=None, E_masked=None, credit_pivotal=False, masked=False))
+        summ = dict(n_het=120, E_het=12.0, E_agg=12.0, E_masked=6.0)
+        json.dump(dict(summary=summ, points=labels), open(P.labels, "w"))
         json.dump(strata, open(P.strata, "w"))
-        json.dump(dict(ent=dict(auroc=.5, shuffle_p975=.6), w1=dict(auroc=.7, shuffle_p975=.6)), open(P.signals, "w"))
+        e = lambda a, p, above: dict(auroc=a, ci95=[a - .05, a + .05], shuffle_p975=p, above_shuffle=above, n=100, n_traj=30, role="registered")
+        json.dump(dict(B1=dict(neg_conf=e(.55, .6, False), entropy_sampled=e(.5, .6, False), C_L21=e(.75, .6, True)),
+                       B2=dict(neg_conf=e(.52, .6, False), entropy_sampled=e(.5, .6, False), C_L21=e(.55, .6, False),
+                               w1_goal_mention=e(.7, .6, True))), open(P.signals, "w"))
         X.stage_analyze(P, None)
         out = json.load(open(here_json))
         assert out["reading"] == "R-E5-REPLICATE", out["predictions"]
-        assert out["predictions"]["W-1"] and out["predictions"]["W-2"]
+        assert out["structure_reading"] == "R-E5-STRUCT-REPLICATE", out["predictions"]
+        pr = out["predictions"]
+        assert pr["W-6a"] and pr["W-6b"] and pr["W-6c"] and pr["W-0b"] and pr["W-0c"]
         assert abs(out["contrasts"]["32b/F-S/I"]["estimate"] - 56.0) < 1e-6
+        assert abs(out["structure"]["masked_share_of_forks"]["estimate"] - 80 / 120) < 1e-9
+        assert abs(out["structure"]["proportions_pct"]["dead"]["estimate"] - 100 * 30 / 150) < 1e-9
     finally:
         shutil.rmtree(root)
         for p in (here_json, os.path.join(X.HERE, "E5_REPORT.txt")):
@@ -184,5 +257,8 @@ def test_analyze_offline():
 
 
 if __name__ == "__main__":
-    test_analyze_offline()
-    print("ok test_analyze_offline")
+    for name, f in sorted(globals().items()):
+        if name.startswith("test_"):
+            f()
+            print("ok", name)
+    print("all E5 tests passed")
