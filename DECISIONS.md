@@ -1396,3 +1396,17 @@ prompt, seed, token cap, temperature, game, selection, loss or judgment threshol
 Add separate generation/environment timings for later bottleneck measurement. Draft collection and
 LoRA evaluation already disable logprobs. This edit does not hot-patch the running process and no
 speedup is claimed before measurement. Original M0 scripts/policy.py is unchanged.
+
+## D-061 — Resume E4 on H800 and compare throughput — 2026-10-31
+
+User explicitly requested measuring speed versus 6000D then continuing E4. Prior stop is revoked.
+H800 PCIe 80GB environment checks passed (BF16 arithmetic and E4 LoRA-enabled vLLM base generation),
+without restarting experiments during the stop. Prior batch stopped after turn 7 with no episodes
+saved; resume the same frozen 400 training games and seeds from the beginning, retaining old logs.
+For the first seven formal H800 turns retain token logprobs=True, matching the former 6000D run;
+then turn off unused logprob outputs per D-060. Add --benchmark-logprobs-turns for this execution-only
+comparison. Temperature, model, prompts, seeds and token limits remain fixed. This is an end-to-end
+platform comparison (new host has 20 CPU quota vs 25, and GPU-dependent kernels), not an isolated
+GPU microbenchmark. Compilation/loading are excluded from rollout turn timers; warmup and trajectory
+length differences must be disclosed. E4 F-judge and replay annotation costs will both be measured on
+this H800 without competing GPU jobs; old-card timings will not be used for cost-matched arms.
