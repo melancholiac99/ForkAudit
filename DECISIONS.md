@@ -1377,3 +1377,25 @@ or torch, so nothing was run; both experiments are prepared to run on the server
 - **Paper story v3** (`papers/STORY_v3.md`) replaces the deep-branch draft v0.1 mainline: step-level credit at
   information-limited forks is an information problem; evidence chain M0 → P4 E2/E2-M (pre-registered) → post-hoc
   diagnostics → E4 → E5; versions of the paper under each E4/E5 reading.
+
+## D-060 — E5 pre-registration amendment 1 (structural targets restored) — 2026-10-31
+
+Raised by the researcher: P5 §3.4 listed regime proportions, the Masked share and the policy/rule comparison as WebShop
+replication targets, but the original E5 (`2d341bd`) registered only W-1 and a narrowed W-2. Claude's assessment: the
+narrowing toward W-3..W-5 followed the thesis shift, but which earlier targets to drop was not argued — it was an
+omission, and most of the dropped targets need no extra data. Amendment 1 (`exploratory_E5/PREREG_E5.md` §12, commit
+message `E5: pre-registration amendment 1`) is committed before any WebShop rollout; W-3..W-5, their thresholds and the
+core reading are unchanged.
+- Added: W-0a regime proportions with task-cluster CIs and null expectations (report only — proportions are
+  environment- and policy-specific); W-0b Masked share of Forks, CI lower bound > 0.30 (declared descriptive threshold);
+  W-0c split-sample gain on Masked Forks (choose on banks 3–4, evaluate on 5–6), CI lower bound > 0.
+- Extended W-2: −conf (M0 arm-A convention), sampled entropy and a layer-21 hidden-state probe
+  (`evalcore.fit_oof_logistic`, the M0 machinery) on B1 (Live/Dead) and B2 (Fork/Indifferent), with the W1 goal bit as
+  the B2 positive control; layers 14/26 descriptive. New GPU stage `introspect` (≈ 1–2 GPU h).
+- Added W-6: at I-layer Live Forks, the policy's own first-batch draft marginal vs the one-step rule (P4-X / P4 E1 world
+  rule), now confirmatory.
+- Separate structural reading R-E5-STRUCT-REPLICATE / PARTIAL / CONTROL-FAILED; §12.5 states which paper claims each
+  outcome allows. Excluded with reasons: B family (candidate set undefined with free-text search), V (redundant with the
+  hidden-state probe in M0), siblings G, B3, E2-M memory, E5-L.
+- `test_e5.py` passes offline, including the probe on planted synthetic data and the full analysis path.
+- Also corrected in D-059: the applied pre-registration hashes are `37f1873` (E4) and `2d341bd` (E5).
