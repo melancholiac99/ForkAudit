@@ -1420,3 +1420,11 @@ are sequential on the same H800. Smoke adapters/rollouts are removed only after 
 LR is recorded in DECISIONS before full training. Completion requires manual result review; this queue
 does not push or shut down. Old pause record remains historical; this queue is explicitly authorized
 by the researcher's subsequent resume instruction.
+
+D-061 full-run confirmation: researcher explicitly requested completing the entire E4 experiment.
+The existing queue covers all registered stages. A separate final hook waits for queue completion,
+reconstructs all evaluation successes from episode files, checks every training run, recomputes
+paired bootstrap contrasts/PL-1..5/reading, verifies protected inputs, and hashes data artifacts.
+Mechanism script retains per-point gains only; final audit verifies its aggregation and explicitly
+notes that raw draft counts cannot be independently reconstructed from that artifact. Final status
+is completed_verified only after this audit passes; no inferred publication/shutdown action.
