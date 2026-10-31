@@ -1,0 +1,15 @@
+{
+  "predictions": {
+    "M-1": false,
+    "M-2": {
+      "7b": false,
+      "32b": true
+    },
+    "M-3": {
+      "7b": true,
+      "32b": true
+    },
+    "M-4": true
+  },
+  "reading": "R-M-PARTIAL"
+}

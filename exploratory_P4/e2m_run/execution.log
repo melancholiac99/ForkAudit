@@ -1,0 +1,7 @@
+{"stage": "waiting_7b", "utc": "2026-10-31T02:50:40Z", "pid": 2878}
+{"stage": "scoring_32b", "utc": "2026-10-31T03:00:50Z"}
+{"command": ["/root/miniconda3/envs/m0/bin/python", "-u", "/root/autodl-tmp/idea/exploratory_P4/p4_e2m_score.py", "--model", "/root/autodl-tmp/models/Qwen2.5-32B-Instruct", "--name", "32b", "--revision", "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd"]}
+{"stage": "analysis", "utc": "2026-10-31T03:50:11Z"}
+{"command": ["/root/miniconda3/envs/m0/bin/python", "-u", "/root/autodl-tmp/idea/exploratory_P4/p4_e2m_analyze.py"]}
+{"stage": "verification_and_report", "utc": "2026-10-31T03:50:13Z"}
+{"command": ["/root/miniconda3/envs/m0/bin/python", "-u", "/root/autodl-tmp/idea/exploratory_P4/verify_render_e2m.py"]}

@@ -1,0 +1,170 @@
+P4-E2M server report
+
+Reading: R-M-PARTIAL
+Predictions: {"M-1": false, "M-2": {"7b": false, "32b": true}, "M-3": {"7b": true, "32b": true}, "M-4": true}
+Post_e2: selftest passed; all scientific outputs exactly reproduced, E2 G_u max error 2.7755575615628914e-17.
+Post_e2 mechanism analysis is post-hoc; E2M M-1..M-4 follow PREREG_E2M.md (cefd377).
+873 existing I/U Live points; 1746 contexts per model. Primary Fork population: I=184, U=202.
+M=self-history before t; MF=M plus aligned one-step feedback. S/F reused from original E2.
+No new trajectories, training, threshold changes or altered E1/E2/P4-X readings.
+All effects below in percentage points with 95% trajectory-bootstrap confidence intervals.
+P4 remains R-MIXED; P4-X remains R-X-MISDIRECT. E2M is a separate exploratory extension.
+Non-significance is not equivalence or proof that history has zero effect.
+
+Primary I-layer contrasts:
+12/7b/M-S/G_u/I: -0.501 [-1.804, +0.745], n=184
+12/7b/F-M/G_u/I: +27.947 [+19.343, +37.597], n=184
+12/7b/MF-F/G_u/I: -1.327 [-4.746, +3.112], n=184
+12/7b/MF-M/G_u/I: +26.620 [+16.291, +38.020], n=184
+7b/M-S/mass_E_new/I: -0.604 [-2.781, +1.423], n=184
+7b/M-S/mass_R_seen/I: +1.445 [-2.065, +4.133], n=184
+12/32b/M-S/G_u/I: +1.734 [+0.133, +3.450], n=184
+12/32b/F-M/G_u/I: +49.052 [+39.451, +56.014], n=184
+12/32b/MF-F/G_u/I: +1.650 [-0.219, +4.190], n=184
+12/32b/MF-M/G_u/I: +50.702 [+41.924, +57.142], n=184
+32b/M-S/mass_E_new/I: +4.824 [+2.612, +7.375], n=184
+32b/M-S/mass_R_seen/I: -3.557 [-6.247, -0.358], n=184
+12/interaction_(32b-7b)_M_minus_S/G_u/I: +2.235 [+0.237, +4.343], n=184
+12/32b-7b/M/G_u/I: +4.324 [+0.193, +8.509], n=184
+
+table (all, including Gold/U reporting items):
+12/7b/S/G_u/I: -10.174 [-12.844, -6.739], n=184
+7b/S/mass_E_new/I: +24.196 [+14.312, +37.923], n=184
+7b/S/mass_R_seen/I: +23.182 [+15.944, +30.764], n=184
+12/7b/F/G_u/I: +17.272 [+9.038, +26.644], n=184
+7b/F/mass_E_new/I: +57.112 [+45.170, +71.783], n=184
+7b/F/mass_R_seen/I: +9.116 [+3.625, +14.299], n=184
+12/7b/M/G_u/I: -10.675 [-13.219, -7.752], n=184
+7b/M/mass_E_new/I: +23.592 [+14.567, +36.049], n=184
+7b/M/mass_R_seen/I: +24.627 [+16.454, +32.482], n=184
+12/7b/MF/G_u/I: +15.945 [+6.062, +26.737], n=184
+7b/MF/mass_E_new/I: +55.671 [+41.145, +72.492], n=184
+7b/MF/mass_R_seen/I: +7.356 [+2.142, +12.572], n=184
+12/32b/S/G_u/I: -8.086 [-10.796, -4.702], n=184
+32b/S/mass_E_new/I: +24.575 [+15.872, +35.841], n=184
+32b/S/mass_R_seen/I: +42.845 [+28.155, +54.448], n=184
+12/32b/F/G_u/I: +42.701 [+33.125, +49.487], n=184
+32b/F/mass_E_new/I: +91.543 [+83.162, +97.360], n=184
+32b/F/mass_R_seen/I: +0.886 [+0.047, +2.466], n=184
+12/32b/M/G_u/I: -6.351 [-9.554, -2.732], n=184
+32b/M/mass_E_new/I: +29.399 [+20.419, +40.574], n=184
+32b/M/mass_R_seen/I: +39.288 [+26.112, +50.301], n=184
+12/32b/MF/G_u/I: +44.351 [+35.640, +50.500], n=184
+32b/MF/mass_E_new/I: +95.740 [+89.846, +99.030], n=184
+32b/MF/mass_R_seen/I: +0.355 [+0.021, +0.958], n=184
+12/7b/S/G_u/U: +0.215 [-3.974, +5.065], n=202
+7b/S/mass_E_new/U: +5.193 [+2.101, +8.738], n=202
+7b/S/mass_R_seen/U: +13.663 [+5.966, +21.106], n=202
+12/7b/F/G_u/U: +4.165 [-0.193, +8.674], n=202
+7b/F/mass_E_new/U: +7.258 [+3.467, +11.143], n=202
+7b/F/mass_R_seen/U: +20.123 [+10.295, +28.923], n=202
+12/7b/M/G_u/U: +1.540 [-2.934, +6.610], n=202
+7b/M/mass_E_new/U: +5.733 [+2.595, +9.184], n=202
+7b/M/mass_R_seen/U: +15.934 [+7.401, +25.211], n=202
+12/7b/MF/G_u/U: +2.176 [-2.407, +7.378], n=202
+7b/MF/mass_E_new/U: +8.148 [+3.608, +13.047], n=202
+7b/MF/mass_R_seen/U: +17.610 [+8.318, +26.948], n=202
+12/32b/S/G_u/U: +12.055 [+6.669, +17.682], n=202
+32b/S/mass_E_new/U: +21.158 [+13.181, +30.533], n=202
+32b/S/mass_R_seen/U: +16.248 [+8.470, +24.582], n=202
+12/32b/F/G_u/U: +16.080 [+10.143, +22.914], n=202
+32b/F/mass_E_new/U: +18.812 [+12.039, +25.875], n=202
+32b/F/mass_R_seen/U: +22.737 [+9.514, +37.271], n=202
+12/32b/M/G_u/U: +12.665 [+6.639, +18.686], n=202
+32b/M/mass_E_new/U: +21.850 [+13.310, +31.761], n=202
+32b/M/mass_R_seen/U: +15.237 [+7.453, +24.529], n=202
+12/32b/MF/G_u/U: +12.766 [+7.804, +17.746], n=202
+32b/MF/mass_E_new/U: +22.230 [+14.214, +31.186], n=202
+32b/MF/mass_R_seen/U: +16.786 [+8.060, +25.784], n=202
+gold/7b/S/G_u/I: -10.119 [-14.020, -5.446], n=57
+gold/7b/F/G_u/I: +14.428 [+6.492, +24.675], n=57
+gold/7b/M/G_u/I: -10.145 [-14.042, -5.431], n=57
+gold/7b/MF/G_u/I: +13.131 [+3.075, +25.257], n=57
+gold/32b/S/G_u/I: -6.296 [-10.589, -1.479], n=57
+gold/32b/F/G_u/I: +43.168 [+31.368, +51.798], n=57
+gold/32b/M/G_u/I: -4.051 [-8.897, +1.488], n=57
+gold/32b/MF/G_u/I: +44.222 [+32.939, +52.764], n=57
+gold/7b/S/G_u/U: -3.638 [-8.142, +2.504], n=62
+gold/7b/F/G_u/U: +2.369 [-5.660, +12.047], n=62
+gold/7b/M/G_u/U: -3.063 [-7.348, +2.568], n=62
+gold/7b/MF/G_u/U: -3.248 [-7.694, +2.818], n=62
+gold/32b/S/G_u/U: +9.430 [+3.003, +17.713], n=62
+gold/32b/F/G_u/U: +18.543 [+8.733, +29.513], n=62
+gold/32b/M/G_u/U: +11.010 [+2.831, +21.029], n=62
+gold/32b/MF/G_u/U: +12.306 [+8.162, +16.928], n=62
+
+contrasts (all, including Gold/U reporting items):
+12/7b/M-S/G_u/I: -0.501 [-1.804, +0.745], n=184
+12/7b/F-M/G_u/I: +27.947 [+19.343, +37.597], n=184
+12/7b/MF-F/G_u/I: -1.327 [-4.746, +3.112], n=184
+12/7b/MF-M/G_u/I: +26.620 [+16.291, +38.020], n=184
+7b/M-S/mass_E_new/I: -0.604 [-2.781, +1.423], n=184
+7b/M-S/mass_R_seen/I: +1.445 [-2.065, +4.133], n=184
+12/32b/M-S/G_u/I: +1.734 [+0.133, +3.450], n=184
+12/32b/F-M/G_u/I: +49.052 [+39.451, +56.014], n=184
+12/32b/MF-F/G_u/I: +1.650 [-0.219, +4.190], n=184
+12/32b/MF-M/G_u/I: +50.702 [+41.924, +57.142], n=184
+32b/M-S/mass_E_new/I: +4.824 [+2.612, +7.375], n=184
+32b/M-S/mass_R_seen/I: -3.557 [-6.247, -0.358], n=184
+12/interaction_(32b-7b)_M_minus_S/G_u/I: +2.235 [+0.237, +4.343], n=184
+12/32b-7b/M/G_u/I: +4.324 [+0.193, +8.509], n=184
+12/7b/M-S/G_u/U: +1.325 [+0.212, +2.421], n=202
+12/7b/F-M/G_u/U: +2.626 [-1.006, +8.152], n=202
+12/7b/MF-F/G_u/U: -1.989 [-7.493, +1.728], n=202
+12/7b/MF-M/G_u/U: +0.637 [-0.656, +1.765], n=202
+7b/M-S/mass_E_new/U: +0.541 [-0.098, +1.216], n=202
+7b/M-S/mass_R_seen/U: +2.271 [-0.727, +5.627], n=202
+12/32b/M-S/G_u/U: +0.610 [-1.093, +2.380], n=202
+12/32b/F-M/G_u/U: +3.415 [-3.882, +13.973], n=202
+12/32b/MF-F/G_u/U: -3.314 [-11.399, +2.837], n=202
+12/32b/MF-M/G_u/U: +0.101 [-5.966, +5.074], n=202
+32b/M-S/mass_E_new/U: +0.692 [-2.034, +3.636], n=202
+32b/M-S/mass_R_seen/U: -1.011 [-4.170, +1.651], n=202
+12/interaction_(32b-7b)_M_minus_S/G_u/U: -0.714 [-2.439, +1.219], n=202
+12/32b-7b/M/G_u/U: +11.126 [+6.124, +17.102], n=202
+gold/7b/M-S/G_u/I: -0.026 [-2.681, +3.308], n=57
+gold/7b/F-M/G_u/I: +24.573 [+15.244, +35.854], n=57
+gold/7b/MF-F/G_u/I: -1.298 [-7.641, +5.787], n=57
+gold/7b/MF-M/G_u/I: +23.275 [+11.681, +36.599], n=57
+gold/32b/M-S/G_u/I: +2.245 [-0.050, +5.120], n=57
+gold/32b/F-M/G_u/I: +47.218 [+34.201, +57.266], n=57
+gold/32b/MF-F/G_u/I: +1.054 [-0.982, +3.876], n=57
+gold/32b/MF-M/G_u/I: +48.273 [+35.437, +58.379], n=57
+gold/interaction_(32b-7b)_M_minus_S/G_u/I: +2.271 [-1.812, +6.101], n=57
+gold/32b-7b/M/G_u/I: +6.094 [+0.360, +11.819], n=57
+gold/7b/M-S/G_u/U: +0.575 [-0.851, +1.873], n=62
+gold/7b/F-M/G_u/U: +5.432 [-4.174, +18.446], n=62
+gold/7b/MF-F/G_u/U: -5.616 [-18.228, +4.102], n=62
+gold/7b/MF-M/G_u/U: -0.185 [-1.990, +1.337], n=62
+gold/32b/M-S/G_u/U: +1.580 [-1.269, +5.485], n=62
+gold/32b/F-M/G_u/U: +7.534 [-6.550, +24.589], n=62
+gold/32b/MF-F/G_u/U: -6.237 [-17.265, +2.669], n=62
+gold/32b/MF-M/G_u/U: +1.296 [-6.990, +8.498], n=62
+gold/interaction_(32b-7b)_M_minus_S/G_u/U: +1.005 [-1.666, +4.367], n=62
+gold/32b-7b/M/G_u/U: +14.072 [+6.733, +23.149], n=62
+
+Verification:
+{
+  "passed": true,
+  "models": {
+    "7b": {
+      "contexts": 1746,
+      "max_tv": 1.8188699542670225e-07,
+      "revision": "a09a35458c702b33eeacc393d103063234e8bc28"
+    },
+    "32b": {
+      "contexts": 1746,
+      "max_tv": 5.5689017772426535e-09,
+      "revision": "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd"
+    }
+  },
+  "protected_files_unchanged": 26,
+  "max_probability_error": 0.0,
+  "max_point_error": 0.0,
+  "max_ci_error": 3.3306690738754696e-16,
+  "statistics_checked": 112,
+  "predictions_match": true,
+  "reading_match": true
+}
+
+Execution: see e2m_run/driver.log; commands use /root/miniconda3/envs/m0/bin/python.

@@ -1,0 +1,32 @@
+{
+  "model": "/root/autodl-tmp/models/Qwen2.5-32B-Instruct",
+  "revision": "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd",
+  "model_sha256": {
+    "model-00001-of-00017.safetensors": "fa006a0382517a4e9a8781d8e7d3405cd6bdd1b9100fb344d73f925b7da9341c",
+    "model-00002-of-00017.safetensors": "0d7f28a4ba7135c2c8365016170cfa25723f65ec41e32ec9a3c81746e4395615",
+    "model-00003-of-00017.safetensors": "8f4b7b811a7ecf117c179ac9413b7a746f2fc0707a41ae4b2efd0282e73bed85",
+    "model-00004-of-00017.safetensors": "de8ab9cb81e6798031d2cf9ef6d15a0034b77fceeba3d4e011647943c8b99afb",
+    "model-00005-of-00017.safetensors": "fa86494f0074cc36c610aa54e7bde03edefc57a9be7636216277bd5ed8b8bfda",
+    "model-00006-of-00017.safetensors": "c8fa152bd8a23bab2c0cfca43ff9f586bccd82b1cb67f2f84231f31d0f3cab47",
+    "model-00007-of-00017.safetensors": "5e33e16319d18d1e180187d9f858deddbbaf06d950abc88941bf027d1439c7bc",
+    "model-00008-of-00017.safetensors": "8561b86737884397772bb990b38c0efe896f66ed27815ca207ddc8ec7965ffe4",
+    "model-00009-of-00017.safetensors": "47f562bf77d986b53c5390b01a30a77576c3eed69191b484cf88b53bb64bce19",
+    "model-00010-of-00017.safetensors": "359450e2c9e261751b5803fcdd1d0a040029a6119a271dd8592d7bb37fa722b5",
+    "model-00011-of-00017.safetensors": "836f0570f5694ce1d55f505064190e2688926dad4f033384ae519d96faaad670",
+    "model-00012-of-00017.safetensors": "5307431e385a177375a5aa887eb1c546f3413dd2e2269c291672f11f752842b4",
+    "model-00013-of-00017.safetensors": "9b2657db02572dd4370186b35c0e0fa70218d7e2ec1190e4dc4a755c5cbd430e",
+    "model-00014-of-00017.safetensors": "b5f1f8af3b6bbf734790985590752fb815dd69566cf05ee578d70af74ace1d4c",
+    "model-00015-of-00017.safetensors": "8cdfcbf8913e10056c981db2db817f92c8601998deb9eabcae14fade98d76c14",
+    "model-00016-of-00017.safetensors": "977b3d2ca7f97dc3b518ed5087ddc43ccf7afb371190828f2334d7e4c81224ee",
+    "model-00017-of-00017.safetensors": "2853695483f9c61a8bd8b109025b3c591214a0362992fa844537f09acc81bd03"
+  },
+  "requests_sha256": "0ba65ceef71545de8940e08df10fe6d956cfdeff7683fb4b6301ab1df082f35c",
+  "scorer_sha256": "541ada89179979bfc2e65a9c521008899f7a31c9fddeb5346adec691c94bbdc5",
+  "script_sha256": "cb1fe138f51aa8b3ae370d649abca6ec34d512cd8230f33c6ff310c88879ba3e",
+  "commit": "59ddfb4a1699493f4a65cb92ba8c7dd400b94be1",
+  "complete": true,
+  "contexts": 1746,
+  "seconds": 2502.5721414089203,
+  "gpu": "NVIDIA RTX 6000D",
+  "peak_gb": 70.082536448
+}

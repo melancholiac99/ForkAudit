@@ -1,0 +1,37 @@
+{
+  "reading": "R-M-PARTIAL",
+  "predictions": {
+    "M-1": false,
+    "M-2": {
+      "7b": false,
+      "32b": true
+    },
+    "M-3": {
+      "7b": true,
+      "32b": true
+    },
+    "M-4": true
+  },
+  "verification": {
+    "passed": true,
+    "models": {
+      "7b": {
+        "contexts": 1746,
+        "max_tv": 1.8188699542670225e-07,
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28"
+      },
+      "32b": {
+        "contexts": 1746,
+        "max_tv": 5.5689017772426535e-09,
+        "revision": "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd"
+      }
+    },
+    "protected_files_unchanged": 26,
+    "max_probability_error": 0.0,
+    "max_point_error": 0.0,
+    "max_ci_error": 3.3306690738754696e-16,
+    "statistics_checked": 112,
+    "predictions_match": true,
+    "reading_match": true
+  }
+}

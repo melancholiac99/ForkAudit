@@ -1,0 +1,19 @@
+{
+  "model": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+  "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "model_sha256": {
+    "model-00001-of-00004.safetensors": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+    "model-00002-of-00004.safetensors": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+    "model-00003-of-00004.safetensors": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5",
+    "model-00004-of-00004.safetensors": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd"
+  },
+  "requests_sha256": "0ba65ceef71545de8940e08df10fe6d956cfdeff7683fb4b6301ab1df082f35c",
+  "scorer_sha256": "541ada89179979bfc2e65a9c521008899f7a31c9fddeb5346adec691c94bbdc5",
+  "script_sha256": "cb1fe138f51aa8b3ae370d649abca6ec34d512cd8230f33c6ff310c88879ba3e",
+  "commit": "59ddfb4a1699493f4a65cb92ba8c7dd400b94be1",
+  "complete": true,
+  "contexts": 1746,
+  "seconds": 610.84956407547,
+  "gpu": "NVIDIA RTX 6000D",
+  "peak_gb": 17.487190016
+}
