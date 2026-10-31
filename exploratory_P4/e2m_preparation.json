@@ -1,0 +1,21 @@
+{
+  "points": 873,
+  "contexts": 1746,
+  "conditions": [
+    "M",
+    "MF"
+  ],
+  "requests_sha256": "0ba65ceef71545de8940e08df10fe6d956cfdeff7683fb4b6301ab1df082f35c",
+  "history_turns": {
+    "min": 0,
+    "max": 49,
+    "mean": 19.77548682703322
+  },
+  "commit": "8e2b6922882043ce41db2956b55be137f73dff3a",
+  "inputs": {
+    "exploratory_P4/e2_preparation.json": "caf574353cd7f5d60dd99f265918c34f901a0c1d5f80bba13078d2d49e67309c",
+    "exploratory_P4/e2_requests.jsonl.gz": "b3ebf5e0a39a6e796ef745abc07c987f2162caaad2d09a15a8933cff193b83cc",
+    "exploratory_P4/prompts/memory.txt": "72e41a2d917b83a9eb598236280bbe4bd14e684b3f33ebaae250d4d36ec8cd2f",
+    "exploratory_P4/p4_e2m_prepare.py": "3e774b8a205f66db8a7087c28803092265c4ca16e2814cfa47161095a1871308"
+  }
+}
