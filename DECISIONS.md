@@ -1356,3 +1356,17 @@ hashes, revisions, backend hash, tokenizer and configuration hashes. This closes
 missing 32B checkpoint equality guard without changing scoring or numerical gates. Original E2,
 E1, P4-X, preregistration and P5 documents remain unchanged. This new task has no shutdown step;
 the preceding authorized E2 shutdown was already completed.
+
+## D-059 — Start preregistered E4 closed-loop experiment — 2026-10-31
+
+The researcher explicitly asked to read the latest GitHub E4 proposal/code and start E4 experiments.
+This authorizes E4 data collection and training, superseding the earlier instruction to defer P5
+training for the separate E2M task. Existing main fast-forwarded to E4 preregistration 37f1873
+without conflicts or overwriting local files. S1 CPU tests all pass. E4's frozen rules and thresholds
+remain unchanged; original M0/P4 data and conclusions remain unchanged.
+The README lists smoke commands before game freezing, but all rollout commands require games.json;
+freeze and separately commit games.json first, before even dry rollouts, satisfying the stronger
+pre-registration requirement. Smoke results are plumbing checks only, not used in scientific analysis.
+Data will be written to exploratory_E4/data on the system disk (about 52 GiB free); the shared disk
+has only about 1.2 GiB free and will not hold new E4 artifacts. peft is missing and must be installed
+and verified before training. No new shutdown or publication hook is assumed for this experiment.
