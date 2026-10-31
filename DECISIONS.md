@@ -1318,3 +1318,24 @@ No model weights are uploaded. Any failed gate, unexpected E3 requirement, branc
 staged unrelated changes, or failed publication stops the hook without shutdown and records
 `exploratory_P4/e2_publish_status.json`. This explicit shutdown authorization supersedes the
 earlier D-055 note that shutdown had not yet been authorized.
+
+## D-057 — P4 E2/P4-X verified; post-hoc mechanism analysis; E2-M pre-registered — 2026-10-31
+
+Written by Claude. No frozen M0/P4 item, E1/E2/P4-X result or reading changes.
+- **Verification.** `exploratory_P4/post_e2/post_e2_mechanism.py` recomputes every E2 judge-condition G_u from the
+  same arms file (SHA256 equal to `e2.json`'s input) with an independent implementation; max diff 2.8e-17.
+  P4-X and E2 reports agree with `x.json` / `e2.json`. Two wording constraints recorded in `post_e2/FINDINGS.md`:
+  uniform-relative G_u depends on candidate construction; Fx is leaky for strong judges (observations name places).
+- **Post-hoc (not pre-registered), `post_e2/FINDINGS.md`.** On I-layer Forks: without world feedback the policy and both
+  judges put ~24–25% mass on unvisited places (value 65.6% vs 23–27%); the 32B judge over-weights returning to
+  already-searched places outside the 2-turn window by +19.5 pp [9.4, 27.8]; 33% of executed actions at these points are
+  such returns (14% at I non-Fork). Capability helps only with information present (pre-registered P4-5 confirms the
+  interaction). Full hindsight logs raise judge mass on the executed action by +12 to +31 pp regardless of outcome.
+  Parquet is read with a pure-Python fallback (`post_e2/minipq.py`) where pyarrow is unavailable.
+- **E2-M pre-registration** (`exploratory_P4/PREREG_E2M.md`, commit `6eaf07d`, message `P4-E2M: pre-registration`):
+  memory (M) and memory+feedback (MF) conditions, 1,746 contexts prepared deterministically from committed E2 requests;
+  predictions M-1..M-4; readings R-M-NULL / R-M-TWO-GAPS / R-M-PARTIAL. Scoring: `p4_e2m_score.py --model PATH --name
+  {7b,32b} --revision <same pinned revisions as D-055>`; analysis: `p4_e2m_analyze.py`. The analysis was tested on
+  synthetic score fixtures (null and positive); no model scores exist yet. ≈ 1–1.5 GPU hours.
+- **P5 §10** appended: thesis revision (credit at information-limited forks is set by information, not judge
+  capability), E4 arm changes (32B+F judge; hindsight-log judge arm H; conditional memory arm R), E5 additions.
