@@ -1,17 +1,24 @@
-"""E5 (PREREG_E5.md): the M0 measurement and the P4 E2 judge experiment, replicated on WebShop.
+"""E5 (PREREG_E5.md, amendments 1-2): the M0 measurement and the P4 E2 judge experiment in further environments.
 
-Stages (run in order; each is resumable or idempotent):
-  freeze            150 measurement sessions from the WebShop training goal range -> tasks.json (commit before rollout)
-  rollout           one trajectory per session (base 7B, T=0.7, 15 steps, history 2)
-  bank --b 1..6     executed replay: b=1 draws drafts and the 4 alternatives; b>=3 only on Live (banks 1+2 pool not constant)
-  peek              one-step responses of the five arms
-  labels            Live / Fork (five-arm G test, 12 runs per arm from banks 3-6) / Credit-pivotal / Masked, null expectations
-  strata            I / U / N from the goal ASIN (decisive fact) in prompt, history and arm responses
-  signals           within-Live B2 AUROC of entropy_sampled and of the W1 goal-mention bit, with progress-tercile shuffle
+Environments (--env; adapters.py): search (multi-hop retrieval, open; effect predicted), search_ctx (same questions,
+supporting paragraphs given; effect predicted absent), sokoban (fully observable; effect predicted absent),
+webshop (deferred, amendment 2).
+
+Stages (in order; each resumable or idempotent). Data root: data/{env}[_pilot]/ unless --out_root.
+  freeze            freeze the task list (search: HOTPOT_DEV, WIKI18; sokoban: --level, --pilot; webshop: sessions)
+  rollout           one trajectory per task (base 7B, T=0.7)
+  bank --b 1..6     executed replay; b=1 also draws drafts (alternatives, entropy, policy marginal); b>=3 only on Live
+  peek              one-step responses of all arms
+  labels            Live / Fork (G test, 12 runs per arm from banks 3-6) / Credit-pivotal / Masked, null expectations
+  strata            I / U / N from the environment's decisive facts; per-arm reveal bits
+  pilot             feasibility gate on a pilot run (PREREG_E5 §13.4); reads no Fork label and no judge output
+  introspect        -conf and hidden states (GPU)
+  signals           B1 / B2 AUROCs with shuffle controls
   judge-prepare     S / L / F / Fx contexts for Live I and U points
-  judge-score       --cond C --model PATH --name {7b,32b} --revision REV   (P4 backend and numerical gate)
-  analyze           predictions W-1..W-5 and the reading -> e5.json, E5_REPORT.txt
-Add --dry (random policy; --out_root /tmp/x) for plumbing tests; WebShop itself is required for every stage but analyze.
+  judge-score       --cond C --model PATH --name {7b,32b} --revision REV
+  analyze           predictions and readings -> e5_{env}.json, E5_{env}_REPORT.txt
+  cross             cross-environment contrasts A-3 / K-3 -> e5_cross.json
+--dry: random policy for plumbing tests.
 """
 import argparse
 import glob
@@ -28,28 +35,40 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 sys.path.insert(0, os.path.join(ROOT, "exploratory_E4"))
 import common  # noqa: E402
-import ws_common as W  # noqa: E402
 
-N_TASKS, TASK_SEED, FIRST_TRAIN_GOAL = 150, 20261031, 1500
-K_ALT, DRAFT_BATCH, MAX_DRAWS, N_REP = 4, 32, 300, 3
+N_TASKS, TASK_SEED, FIRST_TRAIN_GOAL = 150, 20261031, 1500       # webshop
+DRAFT_BATCH, MAX_DRAWS, N_REP = 32, 300, 3
 SEED_BASE, OFFSET = 5000, 9 * 10 ** 12
+MASKED_SHARE_MIN = 0.30
+C_LAYER, LAYERS = 21, (14, 21, 26)
+ABSENCE_MAX_PP = 10.0                                             # A-1 / K-1 threshold (amendment 2)
 sha = lambda b: hashlib.sha256(b).hexdigest()
+ENV = None
 
 
-def paths(root):
-    return types.SimpleNamespace(root=root, tasks=os.path.join(HERE, "tasks.json"), rollout=os.path.join(root, "rollout"),
+def set_env(name):
+    global ENV
+    import adapters
+    ENV = adapters.get(name)
+    return ENV
+
+
+def paths(root, tasks=None):
+    return types.SimpleNamespace(root=root, tasks=tasks or os.path.join(HERE, "tasks.json"), rollout=os.path.join(root, "rollout"),
                                  bank=lambda b: os.path.join(root, f"replay_b{b}"), peek=os.path.join(root, "peek"),
                                  labels=os.path.join(root, "labels.json"), strata=os.path.join(root, "strata.json"),
-                                 signals=os.path.join(root, "signals.json"), judge=os.path.join(root, "judge"))
+                                 signals=os.path.join(root, "signals.json"), judge=os.path.join(root, "judge"),
+                                 pilot=os.path.join(root, "pilot.json"))
 
 
 # ----------------------------------------------------------------------------- pure functions (test_e5.py)
 
 def stratum(prompt, history_text, arm_obs, asin):
-    """P4 definitions with the goal ASIN as the decisive fact (case-insensitive substring)."""
+    """WebShop: P4 definitions with the goal ASIN as the decisive fact (case-insensitive substring)."""
     a = asin.lower()
     pt = a in prompt.lower()
     mention = [a in o.lower() for o in arm_obs]
@@ -63,42 +82,44 @@ def stratum(prompt, history_text, arm_obs, asin):
     return "other"
 
 
+def agg_flag(c, n=12):
+    """c (..., K): factual (arm 0, n runs) vs pooled alternatives (n*(K-1) runs), Newcombe 90% excludes 0."""
+    R = importlib.import_module("15_regimes")
+    c = np.asarray(c)
+    lo, hi = R.newcombe(c[..., 0], n, c[..., 1:].sum(-1), n * (c.shape[-1] - 1))
+    return (lo > 0) | (hi < 0)
+
+
 def point_labels(f_banks, a_banks, rng_seed, n_perm=10_000, alpha=0.10):
-    """f_banks: {b: [3 outcomes]}, a_banks: {b: [[3 outcomes] x 4]} for b in 1..6 (3-6 may be missing if not Live).
-    -> dict(live, het, credit_pivotal, masked, p_het, q12, q3456, E_het)."""
+    """f_banks: {b: [3 outcomes]}, a_banks: {b: [[3 outcomes] x (K-1)]} for b in 1..6 (3-6 may be missing if not Live)."""
     H = importlib.import_module("18_het_fork")
+    k_alt = len(a_banks[1])
+    K = k_alt + 1
     pool12 = list(f_banks[1]) + list(f_banks[2]) + [o for b in (1, 2) for arm in a_banks[b] for o in arm]
     live = 0 < sum(pool12) < len(pool12)
-    q12 = [float(np.mean(f_banks[1] + f_banks[2]))] + [float(np.mean(a_banks[1][j] + a_banks[2][j])) for j in range(4)]
-    out = dict(live=bool(live), q12=q12, het=False, credit_pivotal=False, masked=False, p_het=None, q3456=None, E_het=None,
-               E_agg=None, E_masked=None, q34=None, q56=None)
+    pair = lambda b1, b2: [float(np.mean(f_banks[b1] + f_banks[b2]))] + [float(np.mean(a_banks[b1][j] + a_banks[b2][j])) for j in range(k_alt)]
+    out = dict(live=bool(live), q12=pair(1, 2), het=False, credit_pivotal=False, masked=False, p_het=None, q3456=None, E_het=None,
+               E_agg=None, E_masked=None, q34=None, q56=None, n_arms=K)
     if not live or not all(b in f_banks and b in a_banks for b in (3, 4, 5, 6)):
         return out
-    pair = lambda b1, b2: [float(np.mean(f_banks[b1] + f_banks[b2]))] + [float(np.mean(a_banks[b1][j] + a_banks[b2][j])) for j in range(4)]
     out.update(q34=pair(3, 4), q56=pair(5, 6))
     f = np.concatenate([f_banks[b] for b in (3, 4, 5, 6)])
-    a = np.stack([np.concatenate([a_banks[b][j] for b in (3, 4, 5, 6)]) for j in range(4)])
+    a = np.stack([np.concatenate([a_banks[b][j] for b in (3, 4, 5, 6)]) for j in range(k_alt)])
     c = np.concatenate([[f.sum()], a.sum(1)])[None, :]
     G = H.g_stat(c)[0]
     o = np.concatenate([f, a.ravel()])
     perm = np.random.default_rng(rng_seed).permuted(np.tile(o, (n_perm, 1)), axis=1)
-    Gp = H.g_stat(perm.reshape(n_perm, 5, 12).sum(2))
+    cp = perm.reshape(n_perm, K, 12).sum(2)
+    Gp = H.g_stat(cp)
     p = (1 + np.sum(Gp >= G - 1e-9)) / (n_perm + 1)
     srt = np.sort(Gp)
     p_perm = (1 + (n_perm - np.searchsorted(srt, Gp - 1e-9, side="left"))) / (n_perm + 1)
-    het, agg = bool(p <= alpha), bool(H.agg_flag(c)[0])
-    het_k = p_perm <= alpha
-    agg_k = H.agg_flag(perm.reshape(n_perm, 5, 12).sum(2))
+    het, agg = bool(p <= alpha), bool(agg_flag(c)[0])
+    het_k, agg_k = p_perm <= alpha, agg_flag(cp)
     out.update(het=het, credit_pivotal=agg, masked=het and not agg, p_het=float(p), E_het=float(het_k.mean()),
                E_agg=float(agg_k.mean()), E_masked=float((het_k & ~agg_k).mean()),
                q3456=[float(f.mean())] + [float(x.mean()) for x in a])
     return out
-
-
-# ----------------------------------------------------------------------------- amendment 1 (PREREG_E5 §12): pure functions
-
-MASKED_SHARE_MIN = 0.30
-C_LAYER, LAYERS = 21, (14, 21, 26)
 
 
 def ratio_bootstrap(num, den, clusters, B=10000, seed=31102026):
@@ -120,15 +141,15 @@ def split_gain(q34, q56):
 
 
 def policy_marginal(draft_actions, arm_actions, alpha=0.5):
-    """Five-arm selection distribution from the policy's own first-batch drafts (P4-X X2): counts + 0.5, normalised."""
+    """Arm selection distribution from the policy's own first-batch drafts (P4-X X2): counts + 0.5, normalised."""
     c = np.array([sum(d == a for d in draft_actions) for a in arm_actions], float) + alpha
     return c / c.sum()
 
 
-def rule_dist(goal_mention):
-    """Uniform over arms whose one-step response names the goal ASIN; none -> keep the factual arm (P4 E1 world rule)."""
-    m = np.asarray(goal_mention, float)
-    return m / m.sum() if m.sum() else np.eye(5)[0]
+def rule_dist(reveal):
+    """Uniform over arms whose one-step response reveals a missing decisive fact; none -> keep the factual arm."""
+    m = np.asarray(reveal, float)
+    return m / m.sum() if m.sum() else np.eye(len(m))[0]
 
 
 def gu(p, q):
@@ -157,7 +178,7 @@ def task_bootstrap(values, clusters, B=10000, seed=31102026):
 
 
 def predictions(c, n_fork):
-    """c: contrast dict (pp, CI) keyed as in analyze(); n_fork: {'I': n, 'U': n}. -> (preds, reading)."""
+    """Presence environments (webshop, search). c: contrast dict (pp, CI); n_fork: {'I': n, 'U': n}."""
     lo = lambda k: c[k]["ci95"][0]
     hi = lambda k: c[k]["ci95"][1]
     powered = n_fork["I"] >= 40 and n_fork["U"] >= 40
@@ -170,23 +191,81 @@ def predictions(c, n_fork):
     return preds, ("R-E5-REPLICATE" if (w3 and w4 and w5) else "R-E5-PARTIAL")
 
 
+def absence_predictions(c, n_fork):
+    """Absence environments (search_ctx, sokoban), on all Live Forks (layer U). PREREG_E5 §13.3."""
+    powered = n_fork >= 40
+    a1 = c["32b/F-S/U"]["ci95"][1] < ABSENCE_MAX_PP
+    a2 = c["32b-7b/S/U"]["ci95"][0] > 0
+    preds = {"A-1": bool(a1), "A-2": bool(a2), "powered": powered}
+    if not powered:
+        return preds, "R-ABS-UNDERPOWERED"
+    return preds, ("R-ABS-CONFIRMED" if a1 and a2 else "R-ABS-PARTIAL")
+
+
+def diff_bootstrap(xa, ca, xb, cb, B=10000, seed=31102026, paired_clusters=False):
+    """mean(xa) - mean(xb) in pp. paired_clusters: both samples share cluster ids (same questions) and are resampled
+    jointly; otherwise the two samples are resampled independently."""
+    xa, xb = np.asarray(xa, float), np.asarray(xb, float)
+    rng = np.random.default_rng(seed)
+    if paired_clusters:
+        cl = np.unique(np.concatenate([np.asarray(ca), np.asarray(cb)]))
+        ia, ib = np.searchsorted(cl, ca), np.searchsorted(cl, cb)
+        Wt = rng.multinomial(len(cl), np.full(len(cl), 1 / len(cl)), size=B).astype(float)
+        with np.errstate(invalid="ignore", divide="ignore"):
+            d = (Wt @ np.bincount(ia, xa, len(cl))) / (Wt @ np.bincount(ia, None, len(cl))) \
+                - (Wt @ np.bincount(ib, xb, len(cl))) / (Wt @ np.bincount(ib, None, len(cl)))
+    else:
+        cla, inva = np.unique(np.asarray(ca), return_inverse=True)
+        clb, invb = np.unique(np.asarray(cb), return_inverse=True)
+        Wa = rng.multinomial(len(cla), np.full(len(cla), 1 / len(cla)), size=B).astype(float)
+        Wb = rng.multinomial(len(clb), np.full(len(clb), 1 / len(clb)), size=B).astype(float)
+        with np.errstate(invalid="ignore", divide="ignore"):
+            d = (Wa @ np.bincount(inva, xa, len(cla))) / (Wa @ np.bincount(inva, None, len(cla))) \
+                - (Wb @ np.bincount(invb, xb, len(clb))) / (Wb @ np.bincount(invb, None, len(clb)))
+    d = 100 * d[np.isfinite(d)]
+    return dict(estimate=float(100 * (xa.mean() - xb.mean())), ci95=[float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))],
+                n_a=int(len(xa)), n_b=int(len(xb)))
+
+
+PILOT_RULES = dict(success=(0.15, 0.85), live_frac_min=0.25, projected_layer_min=150, projected_live_min=300)
+
+
+def pilot_gate(summary, presence, n_main, n_pilot):
+    """summary: success, live_frac, n_live_I, n_live_U, n_live, refeed_div, factual_match_frac. -> (checks, passed)."""
+    proj = lambda n: n * n_main / n_pilot
+    checks = dict(success=PILOT_RULES["success"][0] <= summary["success"] <= PILOT_RULES["success"][1],
+                  live_frac=summary["live_frac"] >= PILOT_RULES["live_frac_min"],
+                  determinism=summary["refeed_div"] == 0 and summary["factual_match_frac"] == 1.0)
+    if presence:
+        checks["projected_I"] = proj(summary["n_live_I"]) >= PILOT_RULES["projected_layer_min"]
+        checks["projected_U"] = proj(summary["n_live_U"]) >= PILOT_RULES["projected_layer_min"]
+    else:
+        checks["projected_live"] = proj(summary["n_live"]) >= PILOT_RULES["projected_live_min"]
+    return checks, all(checks.values())
+
+
 # ----------------------------------------------------------------------------- environment stages
-
-def get_pool(n):
-    import ws_env
-    return ws_env.WSPool(n)
-
 
 def get_policy(dry):
     if dry:
-        return W.DryPolicy()
+        return ENV.dry_policy()
     from policy import Policy
     return Policy()
 
 
-def stage_freeze(P, args):
+def load_tasks(P):
+    return json.load(open(P.tasks))["tasks"]
+
+
+def load_trajs(P, limit=0):
+    fs = sorted(glob.glob(os.path.join(P.rollout, "*.json")))
+    return [json.load(open(f)) for f in fs[:limit or None]]
+
+
+def stage_freeze_webshop(args):
     import ws_env
-    assert not os.path.exists(P.tasks), "tasks.json already frozen"
+    path = os.path.join(HERE, "tasks.json")
+    assert not os.path.exists(path), "tasks.json already frozen"
     s = ws_env.Session()
     n_goals = len(s.env.server.goals)
     rng = np.random.default_rng(TASK_SEED)
@@ -196,35 +275,36 @@ def stage_freeze(P, args):
         s._reset(x)
         s.current = None
         tasks.append(dict(seed=SEED_BASE + k, session=int(x), goal_asin=s.goal_asin()))
-    json.dump(dict(n_goals=n_goals, first_train_goal=FIRST_TRAIN_GOAL, task_seed=TASK_SEED, tasks=tasks), open(P.tasks, "w"), indent=1)
+    json.dump(dict(n_goals=n_goals, first_train_goal=FIRST_TRAIN_GOAL, task_seed=TASK_SEED, tasks=tasks), open(path, "w"), indent=1)
     print(len(tasks), "tasks frozen; goals in env:", n_goals)
 
 
 def stage_rollout(P, args):
-    tasks = json.load(open(P.tasks))["tasks"][:args.limit or None]
-    todo = [t for t in tasks if not os.path.exists(os.path.join(P.rollout, f"w{t['seed']}.json"))]
+    tasks = load_tasks(P)[:args.limit or None]
+    todo = [t for t in tasks if not os.path.exists(os.path.join(P.rollout, f"{ENV.name[0]}{t['seed']}.json"))]
     if not todo:
         return
-    pool = get_pool(args.workers)
+    ENV.prepare_workers(P.tasks)
+    pool = ENV.pool(args.workers)
     pol = get_policy(args.dry)
     keys = [str(t["seed"]) for t in todo]
-    init = pool.open([(k, str(t["session"]), [], None) for k, t in zip(keys, todo)])
+    init = pool.open([(k, ENV.game_id(t), [], None) for k, t in zip(keys, todo)])
     st = {}
     for k, t in zip(keys, todo):
         obs, adm, _, _ = init[k]
-        st[k] = dict(traj_id=f"w{t['seed']}", seed=t["seed"], session=t["session"], game_file=str(t["session"]),
-                     goal_asin=t["goal_asin"], task=W.extract_task(obs), initial_obs=obs, obs=obs, adm=adm, mem=[], steps=[],
-                     won=False, done=False)
-    for turn in range(1, W.MAX_STEPS + 1):
+        st[k] = dict(traj_id=f"{ENV.name[0]}{t['seed']}", seed=t["seed"], game_file=ENV.game_id(t), env=ENV.name,
+                     meta={kk: v for kk, v in t.items() if kk != "context"},
+                     task=ENV.task_text(t, obs), initial_obs=obs, obs=obs, adm=adm, mem=[], steps=[], won=False, done=False)
+    for turn in range(1, ENV.MAX_STEPS + 1):
         act = [k for k in keys if not st[k]["done"]]
         if not act:
             break
-        prompts = [W.build_prompt(st[k]["task"], st[k]["mem"], st[k]["obs"], st[k]["adm"]) for k in act]
+        prompts = [ENV.build_prompt(st[k]["task"], st[k]["mem"], st[k]["obs"], st[k]["adm"]) for k in act]
         seeds = [1_000_000 * st[k]["seed"] + turn + OFFSET for k in act]
         outs = pol.sample(prompts, seeds)
         acts = {}
         for k, p, sd, o in zip(act, prompts, seeds, outs):
-            a, valid, fmt = common.parse(o[0]["text"])
+            a, valid, fmt = ENV.parse(o[0]["text"])
             acts[k] = a
             st[k]["steps"].append(dict(turn=turn, prompt=p, obs_before=st[k]["obs"], admissible=st[k]["adm"], response=o[0]["text"],
                                        action=a, valid=valid, fmt=fmt, sample_seed=sd))
@@ -246,22 +326,17 @@ def stage_rollout(P, args):
     pool.shutdown()
 
 
-def load_trajs(P, limit=0):
-    fs = sorted(glob.glob(os.path.join(P.rollout, "w*.json")))
-    return [json.load(open(f)) for f in fs[:limit or None]]
-
-
 def stage_bank(P, args):
-    import ws_env
     R = importlib.import_module("11_replay")
-    W.patch_common()
+    ENV.prepare_workers(P.tasks)
+    ENV.patch_common()
     b = args.b
     trajs = load_trajs(P, args.limit)
-    pool = get_pool(args.workers)
+    pool = ENV.pool(args.workers)
     pol = get_policy(args.dry)
     dps = []
     for tr in trajs:
-        trd = dict(traj_id=tr["traj_id"], task_id=tr["game_file"], task_type="webshop", seed=tr["seed"], game_file=tr["game_file"],
+        trd = dict(traj_id=tr["traj_id"], task_id=tr["game_file"], task_type=ENV.name, seed=tr["seed"], game_file=tr["game_file"],
                    task=tr["task"], steps=[dict(obs_before=s["obs_before"], action=s["action"], valid=s["valid"]) for s in tr["steps"]])
         for i, s in enumerate(tr["steps"]):
             path = os.path.join(P.bank(b), tr["traj_id"], f"t{s['turn']:02d}.json")
@@ -282,8 +357,10 @@ def stage_bank(P, args):
                     if not 0 < sum(pool12) < len(pool12):
                         continue
                 d["alts"] = list(b1["alternatives"])
+            elif not ENV.draft_alternatives:
+                d["alts"] = ENV.fixed_alternatives(s["action"]) or []
             dps.append(d)
-    if b == 1:  # drafts -> alternatives (M0 phase A with WebShop admissibility)
+    if b == 1:  # drafts: alternatives (when drawn), sampled entropy and the policy's own marginal
         pending, batch = list(range(len(dps))), 0
         while pending:
             outs = pol.sample([dps[j]["prompt"] for j in pending],
@@ -292,18 +369,18 @@ def stage_bank(P, args):
             for j, o in zip(pending, outs):
                 d = dps[j]
                 for c in o:
-                    a, valid, fmt = common.parse(c["text"])
-                    ok = ws_env.is_admissible(a, d["adm"])
+                    a, valid, fmt = ENV.parse(c["text"])
+                    ok = ENV.is_admissible(a, d["adm"])
                     d["drafts"].append(dict(batch=batch, action=a, valid=valid, admissible=ok, text=c["text"]))
-                    if valid and ok and a != d["factual"] and a not in d["alts"] and len(d["alts"]) < K_ALT:
+                    if ENV.draft_alternatives and valid and ok and a != d["factual"] and a not in d["alts"] and len(d["alts"]) < ENV.K_ALT:
                         d["alts"].append(a)
                 d["draws"] += len(o)
-                if len(d["alts"]) < K_ALT and d["draws"] < MAX_DRAWS:
+                if ENV.draft_alternatives and len(d["alts"]) < ENV.K_ALT and d["draws"] < MAX_DRAWS:
                     still.append(j)
             pending, batch = still, batch + 1
     conts = []
     for j, d in enumerate(dps):
-        d["cf_defined"] = len(d["alts"]) == K_ALT
+        d["cf_defined"] = len(d["alts"]) == ENV.K_ALT
         d["n_open"] = 0
         roles = [(1, d["factual"])] + ([(2 + k, a) for k, a in enumerate(d["alts"])] if d["cf_defined"] else [])
         for role, a in roles:
@@ -313,17 +390,23 @@ def stage_bank(P, args):
     print(f"bank {b}: {len(dps)} points, {len(conts)} continuations", flush=True)
     stream = R.DryStream(pol) if args.dry else R.VllmStream(pol)
     fake_alf = types.SimpleNamespace(ALFWORLD_DATA="")
-    prov = dict(script="exploratory_E5/e5_run.py bank", b=b, commit=common.git_commit(), argv=sys.argv, seed_offset=OFFSET + (b - 1) * 10 ** 11)
+    off = OFFSET + (b - 1) * 10 ** 11
+    prov = dict(script="exploratory_E5/e5_run.py bank", env=ENV.name, b=b, commit=common.git_commit(), argv=sys.argv, seed_offset=off)
     t0 = time.time()
     a_ = types.SimpleNamespace(max_concurrent=args.max_concurrent)
-    n_gen, div = R.run_async(dps, conts, pool, stream, a_, OFFSET + (b - 1) * 10 ** 11, prov, fake_alf, t0) if dps else (0, 0)
+    n_gen, div = R.run_async(dps, conts, pool, stream, a_, off, prov, fake_alf, t0) if dps else (0, 0)
     pool.shutdown()
+    man = os.path.join(P.root, "bank_runs.jsonl")
+    with open(man, "a") as f:
+        f.write(json.dumps(dict(b=b, points=len(dps), continuations=len(conts), gen_steps=n_gen, refeed_div=div,
+                                seconds=time.time() - t0)) + "\n")
     print(f"bank {b} done: {n_gen} generated steps, refeed divergences {div}, {time.time() - t0:.0f}s")
 
 
 def stage_peek(P, args):
+    ENV.prepare_workers(P.tasks)
     trajs = load_trajs(P, args.limit)
-    pool = get_pool(args.workers)
+    pool = ENV.pool(args.workers)
     jobs, meta = [], {}
     for tr in trajs:
         for i, s in enumerate(tr["steps"]):
@@ -350,7 +433,7 @@ def stage_peek(P, args):
         while not pool.idle_async():
             pool.poll(timeout=0.05)
         for (tid, turn), (out, acts, fac_obs) in list(meta.items()):
-            keys = [f"{tid}:{turn}:{j}" for j in range(5)]
+            keys = [f"{tid}:{turn}:{j}" for j in range(len(acts))]
             if all(k in res for k in keys):
                 peeks = [dict(action=a, obs=res[k][1][0], won=bool(res[k][1][2]), done=bool(res[k][1][3]), refeed_div=res[k][0][3])
                          for a, k in zip(acts, keys)]
@@ -362,7 +445,7 @@ def stage_peek(P, args):
 # ----------------------------------------------------------------------------- label and analysis stages (no environment)
 
 def stage_labels(P, args):
-    rows, tasks = [], {t["seed"]: t for t in json.load(open(P.tasks))["tasks"]}
+    rows = []
     for tr in load_trajs(P):
         for s in tr["steps"]:
             f, a = {}, {}
@@ -373,9 +456,9 @@ def stage_labels(P, args):
                     f[b], a[b] = r["factual_outcomes"], r["alt_outcomes"]
                     if b == 1 and not r["cf_defined"]:
                         break
-            if 1 not in f or len(a[1]) != 4 or 2 not in f:
+            if 1 not in f or not a[1] or 2 not in f:
                 continue
-            lab = point_labels(f, a, 1_000_000 + 1000 * (tr["seed"] - SEED_BASE) + s["turn"])
+            lab = point_labels(f, a, 1_000_000 + 1000 * (tr["seed"] % 1000) + s["turn"])
             lab.update(traj_id=tr["traj_id"], turn=s["turn"], won=bool(tr["won"]))
             rows.append(lab)
     live = [r for r in rows if r["live"]]
@@ -388,11 +471,6 @@ def stage_labels(P, args):
     print(summ)
 
 
-def history_text(tr, i):
-    s = tr["steps"]
-    return "\n".join([tr["initial_obs"]] + [x["obs_before"] + "\n" + "\n".join(x["admissible"]) for x in s[:i + 1]])
-
-
 def stage_strata(P, args):
     lab = {(r["traj_id"], r["turn"]): r for r in json.load(open(P.labels))["points"]}
     out = []
@@ -403,20 +481,42 @@ def stage_strata(P, args):
             if k not in lab or not os.path.exists(pk):
                 continue
             peeks = json.load(open(pk))["peeks"]
-            z = stratum(s["prompt"], history_text(tr, i), [p["obs"] for p in peeks], tr["goal_asin"])
-            out.append(dict(traj_id=k[0], turn=k[1], stratum=z, live=lab[k]["live"], het=lab[k]["het"],
-                            goal_mention=[tr["goal_asin"].lower() in p["obs"].lower() for p in peeks]))
+            z, reveal, rule = ENV.decisive(tr, i, peeks)
+            out.append(dict(traj_id=k[0], turn=k[1], stratum=z, live=lab[k]["live"], het=lab[k]["het"], reveal=reveal,
+                            goal_mention=reveal, rule=rule))
     json.dump(out, open(P.strata, "w"), indent=1)
     from collections import Counter
     print(Counter((r["stratum"], r["live"], r["het"]) for r in out))
 
 
+def stage_pilot(P, args):
+    """Feasibility gate (PREREG_E5 §13.4). Uses rollout success, Live (banks 1+2 pool), strata counts and determinism
+    checks only; Fork labels and judge outputs are never read."""
+    trajs = load_trajs(P)
+    lab = json.load(open(P.labels))["points"]
+    st = {(r["traj_id"], r["turn"]): r for r in json.load(open(P.strata))}
+    divs = [json.loads(l)["refeed_div"] for l in open(os.path.join(P.root, "bank_runs.jsonl"))]
+    peeks = [json.load(open(f)) for f in glob.glob(os.path.join(P.peek, "*", "*.json"))]
+    live = [r for r in lab if r["live"]]
+    summary = dict(n_tasks=len(trajs), success=float(np.mean([t["won"] for t in trajs])), n_cf_defined=len(lab),
+                   live_frac=len(live) / max(1, len(lab)), n_live=len(live),
+                   n_live_I=sum(st.get((r["traj_id"], r["turn"]), {}).get("stratum") == "I" for r in live),
+                   n_live_U=sum(st.get((r["traj_id"], r["turn"]), {}).get("stratum") == "U" for r in live),
+                   refeed_div=int(sum(divs)) + int(sum(p["refeed_div"] for pk in peeks for p in pk["peeks"])),
+                   factual_match_frac=float(np.mean([pk["factual_obs_match"] for pk in peeks])) if peeks else 0.0,
+                   seconds_per_continuation=float(np.mean([json.loads(l)["seconds"] / max(1, json.loads(l)["continuations"])
+                                                           for l in open(os.path.join(P.root, "bank_runs.jsonl"))])))
+    n_main = args.n_main or ENV.N_MAIN
+    checks, ok = pilot_gate(summary, ENV.presence, n_main, len(trajs))
+    out = dict(env=ENV.name, level=args.level, summary=summary, checks=checks, passed=ok, rules=PILOT_RULES, n_main=n_main)
+    json.dump(out, open(P.pilot, "w"), indent=1)
+    print(json.dumps(out, indent=1))
+
+
 def stage_introspect(P, args):
-    """GPU (amendment 1): for every cf-defined point, the policy's own signals at the decision prompt —
-    conf = mean log-probability of the factual command tokens teacher-forced after chat(prompt) + '<action>' (M0 arm A
-    convention: command tokens only, no closing tag, no reasoning), and residual-stream hidden states at the last prompt
-    token (generation prompt included) for layers 14 / 21 / 26 (hidden_states[L], index 0 = embeddings; M0 convention).
-    BF16 transformer, FP32 vocabulary projection. -> data/introspect/{points.json, hidden_L{L}.npy}"""
+    """GPU (amendment 1): -conf of the factual command (after chat(prompt) + its opening tag, command tokens only; the tag is
+    '<action>' except for search, '<search>' / '<answer>', amendment 2) and residual
+    stream at the last prompt token for layers 14 / 21 / 26. BF16 transformer, FP32 vocabulary projection."""
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     path = args.model or os.environ.get("M0_MODEL", "/root/autodl-tmp/models/Qwen2.5-7B-Instruct")
@@ -431,18 +531,22 @@ def stage_introspect(P, args):
                 continue
             chat = tok.apply_chat_template([dict(role="user", content=s["prompt"])], tokenize=False, add_generation_prompt=True)
             pre = tok.encode(chat, add_special_tokens=False)
-            pre_a = tok.encode(chat + "<action>", add_special_tokens=False)
-            full = tok.encode(chat + "<action>" + s["action"], add_special_tokens=False)
+            split = ENV.conf_split(s["action"])           # (opening tag, command); None: no action block (conf undefined)
+            tag, cmd = split if split else ("", "")
+            pre_a = tok.encode(chat + tag, add_special_tokens=False)
+            full = tok.encode(chat + tag + cmd, add_special_tokens=False) if split else pre
             assert full[:len(pre)] == pre, "chat prompt is not a token prefix"
             start = 0
             while start < min(len(pre_a), len(full)) and pre_a[start] == full[start]:
                 start += 1
-            assert len(pre_a) - start <= 3 and start < len(full)
+            assert not split or (len(pre_a) - start <= 3 and start < len(full))
             with torch.no_grad():
                 out = model.model(input_ids=torch.tensor([full], device="cuda"), output_hidden_states=True)
-                lp = torch.log_softmax(model.lm_head(out.last_hidden_state[0, start - 1:-1].float()), -1)
-                tgt = torch.tensor(full[start:], device="cuda")
-                conf = float(lp.gather(1, tgt[:, None]).mean())
+                conf = float("nan")
+                if split:
+                    lp = torch.log_softmax(model.lm_head(out.last_hidden_state[0, start - 1:-1].float()), -1)
+                    tgt = torch.tensor(full[start:], device="cuda")
+                    conf = float(lp.gather(1, tgt[:, None]).mean())
                 for L in LAYERS:
                     H[L].append(out.hidden_states[L][0, len(pre) - 1].float().cpu().numpy().astype(np.float16))
             rows.append(dict(traj_id=tr["traj_id"], turn=s["turn"], conf=conf, n_tokens=len(full) - start, row=len(rows)))
@@ -467,9 +571,9 @@ def auc_entry(ev, y, s, groups, strata, seed):
 
 
 def stage_signals(P, args):
-    """W-2 (amended). B1: Live vs Dead over cf-defined points, within-trajectory shuffle. B2: Fork vs Indifferent over Live,
-    within-trajectory x progress-tercile shuffle. Signals: -conf, entropy_sampled, hidden-state probe on layer 21 (OOF,
-    evalcore.fit_oof_logistic, M0 machinery), W1 goal-mention bit (B2 only); layers 14 / 26 descriptive."""
+    """W-2 (amendment 1). B1: Live vs Dead over cf-defined points, within-trajectory shuffle. B2: Fork vs Indifferent over
+    Live, within-trajectory x progress-tercile shuffle. Signals: -conf, entropy_sampled, layer-21 probe (OOF,
+    evalcore.fit_oof_logistic), reveal bit (B2 only, environments with hidden decisive facts); layers 14/26 descriptive."""
     ev = importlib.import_module("evalcore")
     lab = {(r["traj_id"], r["turn"]): r for r in json.load(open(P.labels))["points"]}
     st = {(r["traj_id"], r["turn"]): r for r in json.load(open(P.strata))}
@@ -489,8 +593,9 @@ def stage_signals(P, args):
             if first:
                 _, c = np.unique(first, return_counts=True)
                 ent = float(-(c / c.sum() * np.log(c / c.sum())).sum())
+            rv = st[k].get("reveal", st[k].get("goal_mention")) if k in st else None
             rows.append(dict(traj=tr["traj_id"], live=lab[k]["live"], het=lab[k]["het"], ent=ent, neg_conf=-irow[k]["conf"],
-                             w1=float(any(st[k]["goal_mention"][1:])) if k in st else float("nan"), row=irow[k]["row"],
+                             w1=float(any(rv[1:])) if rv is not None else float("nan"), row=irow[k]["row"],
                              prog3=min(int(3 * (s["turn"] - 1) / n), 2)))
     g = np.array([r["traj"] for r in rows])
     live = np.array([r["live"] for r in rows])
@@ -501,26 +606,39 @@ def stage_signals(P, args):
         idx = np.where(mask)[0]
         yy, gg, ss = y[idx].astype(int), g[idx], strata[idx]
         scores = {"neg_conf": np.array([rows[i]["neg_conf"] for i in idx]), "entropy_sampled": np.array([rows[i]["ent"] for i in idx])}
-        if bname == "B2":
-            scores["w1_goal_mention"] = np.array([rows[i]["w1"] for i in idx])
+        w1 = np.array([rows[i]["w1"] for i in idx])
+        if bname == "B2" and np.isfinite(w1).any() and len(np.unique(w1[np.isfinite(w1)])) > 1:
+            scores["w1_goal_mention"] = w1
         fold = ev.outer_folds(gg)
         for L in LAYERS:
             X = Hs[L][[rows[i]["row"] for i in idx]].astype(np.float64)
             scores[f"C_L{L}"], info = ev.fit_oof_logistic(X, yy, gg, fold)
         for name, sc in scores.items():
             out[bname][name] = auc_entry(ev, yy, sc, gg, ss, seed=7)
-            out[bname][name]["role"] = "registered" if (name != "C_L14" and name != "C_L26") else "descriptive"
+            out[bname][name]["role"] = "registered" if name not in ("C_L14", "C_L26") else "descriptive"
     json.dump(out, open(P.signals, "w"), indent=1)
     print(json.dumps({b: {k: round(v["auroc"], 3) for k, v in d.items()} for b, d in out.items()}))
 
 
-def display_order(pid):
+def display_order(pid, K=5):
     seed = int(sha(f"E5-v1:31102026:{pid}".encode())[:16], 16)
-    return np.random.default_rng(seed).permutation(5).tolist()
+    return np.random.default_rng(seed).permutation(K).tolist()
+
+
+def derangement(pid, K):
+    """Fixed cyclic shift of the K-1 alternatives' responses; factual response stays in place (as P4 E2)."""
+    k = int(sha(f"E5-v1:{pid}".encode())[:16], 16)
+    m = K - 1
+    shift = 1 + k % (m - 1)
+    return [0] + [1 + (i - 1 + shift) % m for i in range(1, K)]
 
 
 def stage_judge_prepare(P, args):
-    tmpl = {k: open(os.path.join(HERE, "prompts", f"judge_{k}.txt")).read() for k in ["base", "log", "feedback"]}
+    """Candidates and executed actions are shown in the environment's judge-facing form (ENV.display; identity except
+    search: search[q] / answer[a]); an empty one-step response is shown as '(empty observation)' (amendment 2)."""
+    ENV.prepare_workers(P.tasks)
+    tmpl = {k: ENV.judge_template(k) for k in ["base", "log", "feedback"]}
+    shown = lambda o: o if o != "" else "(empty observation)"
     st = {(r["traj_id"], r["turn"]): r for r in json.load(open(P.strata))}
     rows = []
     for tr in load_trajs(P):
@@ -530,19 +648,17 @@ def stage_judge_prepare(P, args):
                 continue
             pid = f"{tr['traj_id']}_t{s['turn']:02d}"
             peeks = json.load(open(os.path.join(P.peek, tr["traj_id"], f"t{s['turn']:02d}.json")))["peeks"]
-            actions = [p["action"] for p in peeks]
-            order = display_order(pid)
-            k = int(sha(f"E5-v1:{pid}".encode())[:16], 16)
-            shift = 1 + k % 3
-            mapping = [0] + [1 + (i - 1 + shift) % 4 for i in range(1, 5)]
+            actions = [ENV.display(p["action"]) for p in peeks]
+            K = len(actions)
+            order, mapping = display_order(pid, K), derangement(pid, K)
             base = (tmpl["base"] + f"\nMarked decision: turn {s['turn']}.\n<decision_time_prompt>\n" + s["prompt"]
                     + "\n</decision_time_prompt>\nCandidates:\n" + json.dumps([actions[j] for j in order]))
-            fb = lambda m: [dict(action=actions[i], response=peeks[m[i]]["obs"]) for i in order]
+            fb = lambda m: [dict(action=actions[i], response=shown(peeks[m[i]]["obs"])) for i in order]
             episode = dict(task=tr["task"], initial_observation=tr["initial_obs"],
-                           steps=[dict(turn=x["turn"], response=x["response"], executed_action=x["action"], observation_after=x["obs_after"])
-                                  for x in tr["steps"]], final_reward=int(tr["won"]))
+                           steps=[dict(turn=x["turn"], response=x["response"], executed_action=ENV.display(x["action"]),
+                                       observation_after=shown(x["obs_after"])) for x in tr["steps"]], final_reward=int(tr["won"]))
             texts = {"S": base, "L": base + "\n" + tmpl["log"] + json.dumps(episode, ensure_ascii=False),
-                     "F": base + "\n" + tmpl["feedback"] + json.dumps(fb(list(range(5))), ensure_ascii=False),
+                     "F": base + "\n" + tmpl["feedback"] + json.dumps(fb(list(range(K))), ensure_ascii=False),
                      "Fx": base + "\n" + tmpl["feedback"] + json.dumps(fb(mapping), ensure_ascii=False)}
             for cond, text in texts.items():
                 row = dict(request_id=f"{pid}__{cond}", point_id=pid, turn=s["turn"], condition=cond, text=text, actions=actions)
@@ -561,9 +677,7 @@ def stage_judge_score(P, args):
     J.score(args)
 
 
-def stage_analyze(P, args):
-    lab = {f"{r['traj_id']}_t{r['turn']:02d}": r for r in json.load(open(P.labels))["points"]}
-    st = {f"{r['traj_id']}_t{r['turn']:02d}": r for r in json.load(open(P.strata))}
+def load_judges(P):
     probs = {}
     for m in ["7b", "32b"]:
         for c in ["S", "L", "F", "Fx"]:
@@ -572,38 +686,88 @@ def stage_analyze(P, args):
             for line in open(os.path.join(P.judge, f"{m}_{c}", "scores.jsonl")):
                 r = json.loads(line)
                 probs[m, c, r["point_id"]] = np.array(r["candidate_prob"])
+    return probs
+
+
+def interaction(gj, pts, tr):
+    """(32B - 7B, S) on U minus the same on I, task-cluster bootstrap (pp)."""
+    allp = pts["I"] + pts["U"]
+    isU = np.array([p in set(pts["U"]) for p in allp])
+    d = np.array([gj("32b", "S", p) - gj("7b", "S", p) for p in allp])
+    cl, inv = np.unique(tr(allp), return_inverse=True)
+    Wt = np.random.default_rng(31102026).multinomial(len(cl), np.full(len(cl), 1 / len(cl)), size=10000).astype(float)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        mu = (Wt @ np.bincount(inv, d * isU, len(cl))) / (Wt @ np.bincount(inv, isU.astype(float), len(cl)))
+        mi = (Wt @ np.bincount(inv, d * ~isU, len(cl))) / (Wt @ np.bincount(inv, (~isU).astype(float), len(cl)))
+    dist = 100 * (mu - mi)
+    dist = dist[np.isfinite(dist)]
+    return dict(estimate=float(100 * (d[isU].mean() - d[~isU].mean())), ci95=[float(np.percentile(dist, 2.5)), float(np.percentile(dist, 97.5))])
+
+
+def rule_policy(P, lab, st, ps, tr):
+    """W-6 (presence) / K-0 (Sokoban): G_u of the policy's own first-batch marginal and of the environment rule
+    (ENV.decisive's third output) on the given Fork points."""
+    pol, rul = [], []
+    for p in ps:
+        tid, turn = p.split("_t")
+        b1 = json.load(open(os.path.join(P.bank(1), tid, f"t{int(turn):02d}.json")))
+        arms = [b1["factual_action"]] + b1["alternatives"]
+        first = [d["action"] for d in b1["drafts"] if d["batch"] == 0 and d["valid"] and d["admissible"]]
+        pol.append(gu(policy_marginal(first, arms), lab[p]["q12"]))
+        rul.append(gu(rule_dist(st[p]["rule"]), lab[p]["q12"]))
+    return dict(n=len(ps), policy=task_bootstrap(pol, tr(ps)), rule=task_bootstrap(rul, tr(ps)),
+                rule_minus_policy=task_bootstrap(np.array(rul) - np.array(pol), tr(ps))) if ps else None
+
+
+def stage_analyze(P, args):
+    """Presence environments (search; webshop if run): core W-3..W-5 (§11 / §12), structure W-0 / W-1 / W-2, W-6.
+    Absence environments (search_ctx, sokoban): A-1 / A-2 with the manipulation checks C-0 / K-0 (§13.3); structure
+    and signals reported descriptively."""
+    ENV.prepare_workers(P.tasks)
+    lab = {f"{r['traj_id']}_t{r['turn']:02d}": r for r in json.load(open(P.labels))["points"]}
+    st = {f"{r['traj_id']}_t{r['turn']:02d}": r for r in json.load(open(P.strata))}
+    probs = load_judges(P)
     pts = {z: sorted(p for p, r in st.items() if r["live"] and r["het"] and r["stratum"] == z and (("7b", "S", p) in probs))
            for z in ("I", "U")}
     gj = lambda m, c, p: gu(probs[m, c, p], lab[p]["q12"])
     tr = lambda ps: [p.split("_t")[0] for p in ps]
     table, con = {}, {}
     for z, ps in pts.items():
+        if len(ps) < 2:
+            continue
         for m in ["7b", "32b"]:
             for c in ["S", "L", "F", "Fx"]:
                 table[f"{m}/{c}/{z}"] = task_bootstrap([gj(m, c, p) for p in ps], tr(ps))
             for l, r in [("F", "S"), ("F", "Fx"), ("F", "L"), ("L", "S")]:
                 con[f"{m}/{l}-{r}/{z}"] = task_bootstrap([gj(m, l, p) - gj(m, r, p) for p in ps], tr(ps))
         con[f"32b-7b/S/{z}"] = task_bootstrap([gj("32b", "S", p) - gj("7b", "S", p) for p in ps], tr(ps))
-    allp = pts["I"] + pts["U"]
-    sign = np.array([1.0 if p in set(pts["U"]) else -1.0 for p in allp])
-    # interaction (U minus I) of the 32B-7B difference: bootstrap over tasks jointly
-    d = np.array([gj("32b", "S", p) - gj("7b", "S", p) for p in allp])
-    cl, inv = np.unique(tr(allp), return_inverse=True)
-    Wt = np.random.default_rng(31102026).multinomial(len(cl), np.full(len(cl), 1 / len(cl)), size=10000).astype(float)
-    isU = sign > 0
-    with np.errstate(invalid="ignore", divide="ignore"):
-        mu = (Wt @ np.bincount(inv, d * isU, len(cl))) / (Wt @ np.bincount(inv, isU.astype(float), len(cl)))
-        mi = (Wt @ np.bincount(inv, d * ~isU, len(cl))) / (Wt @ np.bincount(inv, (~isU).astype(float), len(cl)))
-    dist = 100 * (mu - mi)
-    dist = dist[np.isfinite(dist)]
-    con["interaction/S"] = dict(estimate=float(100 * (d[isU].mean() - d[~isU].mean())),
-                                ci95=[float(np.percentile(dist, 2.5)), float(np.percentile(dist, 97.5))])
     labsum = json.load(open(P.labels))["summary"]
     sig = json.load(open(P.signals))
-    preds, rd = predictions(con, {z: len(v) for z, v in pts.items()})
+    n_fork = {z: len(v) for z, v in pts.items()}
+    checks, w6 = {}, None
+    if ENV.presence:
+        if min(n_fork.values()) >= 2:
+            con["interaction/S"] = interaction(gj, pts, tr)
+            preds, rd = predictions(con, n_fork)
+        else:
+            preds, rd = {"powered": False}, "R-E5-UNDERPOWERED"
+    else:
+        live_pts = [p for p, r in st.items() if r["live"]]
+        if ENV.name == "search_ctx":
+            share_u = float(np.mean([st[p]["stratum"] == "U" for p in live_pts])) if live_pts else 0.0
+            checks["C-0"] = dict(share_live_U=share_u, holds=bool(share_u >= 0.95))
+        if ENV.name == "sokoban":
+            w6 = rule_policy(P, lab, st, pts["U"], tr)
+            checks["K-0"] = dict(planner=w6["rule"] if w6 else None, holds=bool(w6 and w6["rule"]["ci95"][0] > 0))
+        if not all(c["holds"] for c in checks.values()):
+            preds, rd = {"powered": n_fork["U"] >= 40}, "R-ABS-CONTROL-FAILED"
+        elif n_fork["U"] >= 2:
+            preds, rd = absence_predictions(con, n_fork["U"])
+        else:
+            preds, rd = {"powered": False}, "R-ABS-UNDERPOWERED"
     preds["W-1"] = bool(labsum["n_het"] > labsum["E_het"] + 2 * np.sqrt(max(labsum["E_het"], 1)))
 
-    # ---------------- amendment 1: structure (W-0), introspection (W-2a/b/c), policy and rule at I Forks (W-6)
+    # ---------------- structure (W-0), introspection (W-2), policy and rule at I Forks (W-6)
     allpts = json.load(open(P.labels))["points"]
     live = [r for r in allpts if r["live"]]
     assert all(r["p_het"] is not None for r in live), "Live points without banks 3-6: complete the banks first"
@@ -622,32 +786,39 @@ def stage_analyze(P, args):
     M = [r for r in live if r["masked"]]
     structure["split_gain_masked_pp"] = task_bootstrap([split_gain(r["q34"], r["q56"]) for r in M], [r["traj_id"] for r in M]) if M else None
     structure["split_gain_live_pp"] = task_bootstrap([split_gain(r["q34"], r["q56"]) for r in live], [r["traj_id"] for r in live])
-    preds["W-0b"] = bool(structure["masked_share_of_forks"]["ci95"][0] > MASKED_SHARE_MIN)
-    preds["W-0c"] = bool(M and structure["split_gain_masked_pp"]["ci95"][0] > 0)
     B1, B2 = sig["B1"], sig["B2"]
-    preds["W-2a"] = bool(all(not B2[n]["above_shuffle"] for n in ["neg_conf", "entropy_sampled", f"C_L{C_LAYER}"]))
-    preds["W-2b"] = bool(B2["w1_goal_mention"]["above_shuffle"])
-    preds["W-2c"] = bool(B1[f"C_L{C_LAYER}"]["above_shuffle"])
-    I6 = sorted(p for p, r in st.items() if r["live"] and r["het"] and r["stratum"] == "I")
-    pol, rul = [], []
-    for p in I6:
-        tid, turn = p.split("_t")
-        b1 = json.load(open(os.path.join(P.bank(1), tid, f"t{int(turn):02d}.json")))
-        arms = [b1["factual_action"]] + b1["alternatives"]
-        first = [d["action"] for d in b1["drafts"] if d["batch"] == 0 and d["valid"] and d["admissible"]]
-        pol.append(gu(policy_marginal(first, arms), lab[p]["q12"]))
-        rul.append(gu(rule_dist(st[p]["goal_mention"]), lab[p]["q12"]))
-    w6 = dict(n=len(I6), policy=task_bootstrap(pol, tr(I6)), rule=task_bootstrap(rul, tr(I6)),
-              rule_minus_policy=task_bootstrap(np.array(rul) - np.array(pol), tr(I6))) if I6 else None
-    preds["W-6a"] = bool(w6 and w6["policy"]["ci95"][1] < 0)
-    preds["W-6b"] = bool(w6 and w6["rule"]["ci95"][0] > 0)
-    preds["W-6c"] = bool(w6 and w6["rule_minus_policy"]["ci95"][0] > 0)
-    srd = structure_reading(preds["W-1"], preds["W-0b"], preds["W-0c"], preds["W-2a"], preds["W-2b"], preds["W-2c"])
-    out = dict(labels=labsum, structure=structure, signals=sig, w6=w6, n_fork={z: len(v) for z, v in pts.items()},
-               table=table, contrasts=con, predictions=preds, reading=rd, structure_reading=srd)
-    json.dump(out, open(os.path.join(HERE, "e5.json"), "w"), indent=1)
+    struct = {"W-0b": bool(structure["masked_share_of_forks"]["ci95"][0] > MASKED_SHARE_MIN),
+              "W-0c": bool(M and structure["split_gain_masked_pp"]["ci95"][0] > 0),
+              "W-2a": bool(all(not B2[n]["above_shuffle"] for n in ["neg_conf", "entropy_sampled", f"C_L{C_LAYER}"])),
+              "W-2b": bool("w1_goal_mention" in B2 and B2["w1_goal_mention"]["above_shuffle"]),
+              "W-2c": bool(B1[f"C_L{C_LAYER}"]["above_shuffle"])}
+    srd = None
+    if ENV.presence:
+        preds.update(struct)
+        I6 = sorted(p for p, r in st.items() if r["live"] and r["het"] and r["stratum"] == "I")
+        w6 = rule_policy(P, lab, st, I6, tr)
+        preds["W-6a"] = bool(w6 and w6["policy"]["ci95"][1] < 0)
+        preds["W-6b"] = bool(w6 and w6["rule"]["ci95"][0] > 0)
+        preds["W-6c"] = bool(w6 and w6["rule_minus_policy"]["ci95"][0] > 0)
+        srd = structure_reading(preds["W-1"], preds["W-0b"], preds["W-0c"], preds["W-2a"], preds["W-2b"], preds["W-2c"])
+    desc = {}
+    if ENV.name.startswith("search"):        # §13.3: arm composition and duplicate one-step responses at Forks (report only)
+        for z, ps in pts.items():
+            ans, dup = [], []
+            for p in ps:
+                tid, turn = p.split("_t")
+                pk = json.load(open(os.path.join(P.peek, tid, f"t{int(turn):02d}.json")))["peeks"]
+                ans.append(np.mean([x["action"].startswith("<answer>") for x in pk]))
+                dup.append(len({x["obs"] for x in pk}) == 1)
+            if ps:
+                desc[z] = dict(n=len(ps), answer_arm_share=float(np.mean(ans)), all_responses_identical=float(np.mean(dup)))
+    out = dict(env=ENV.name, labels=labsum, structure=structure, structure_descriptive=None if ENV.presence else struct,
+               signals=sig, w6=w6, checks=checks, n_fork=n_fork, table=table, contrasts=con, predictions=preds, reading=rd,
+               structure_reading=srd, arms_at_forks=desc)
+    json.dump(out, open(os.path.join(HERE, f"e5_{ENV.name}.json"), "w"), indent=1)
     fmt = lambda v: f"{v['estimate']:+7.2f} [{v['ci95'][0]:+.2f}, {v['ci95'][1]:+.2f}]"
-    lines = [f"E5 core reading: {rd}", f"E5 structure reading: {srd}", f"predictions: {preds}", f"labels: {labsum}", "",
+    lines = [f"E5 [{ENV.name}] reading: {rd}", f"structure reading: {srd}", f"predictions: {preds}", f"checks: {checks}",
+             f"Forks with judge scores: {n_fork}", f"arms at Forks: {desc}", f"labels: {labsum}", "",
              "structure (proportions in % of cf-defined points):"]
     lines += [f"  {k:24s} {fmt(v)}" for k, v in structure["proportions_pct"].items()]
     ms = structure["masked_share_of_forks"]
@@ -658,31 +829,71 @@ def stage_analyze(P, args):
         lines += [f"  {b} {k:18s} {v['auroc']:.3f} [{v['ci95'][0]:.3f}, {v['ci95'][1]:.3f}] shuffle {v['shuffle_p975']:.3f} ({v['role']})"
                   for k, v in dct.items()]
     if w6:
-        lines += ["", f"W-6 on I-layer Forks (n={w6['n']}, pp):"] + [f"  {k:18s} {fmt(w6[k])}" for k in ("policy", "rule", "rule_minus_policy")]
+        lines += ["", f"policy and rule on {'I-layer' if ENV.presence else 'all'} Forks (n={w6['n']}, pp):"]
+        lines += [f"  {k:18s} {fmt(w6[k])}" for k in ("policy", "rule", "rule_minus_policy")]
     lines += ["", "judges (G_u, pp):"] + [f"  {k:14s} {fmt(v)}" for k, v in {**table, **con}.items()]
-    open(os.path.join(HERE, "E5_REPORT.txt"), "w").write("\n".join(lines) + "\n")
+    open(os.path.join(HERE, f"E5_{ENV.name}_REPORT.txt"), "w").write("\n".join(lines) + "\n")
     print("\n".join(lines))
+
+
+def stage_cross(args):
+    """A-3: (F - S, 32B) on search I-layer Forks minus the same on search_ctx Forks (same question pool; questions are
+    resampled jointly). K-3: the same minus Sokoban Forks (independent samples). PREREG_E5 §13.3."""
+    def fs(env, layer):
+        set_env(env)
+        P = paths(os.path.join(HERE, "data", env), ENV.tasks_path())
+        lab = {f"{r['traj_id']}_t{r['turn']:02d}": r for r in json.load(open(P.labels))["points"]}
+        st = {f"{r['traj_id']}_t{r['turn']:02d}": r for r in json.load(open(P.strata))}
+        probs = load_judges(P)
+        ps = sorted(p for p, r in st.items() if r["live"] and r["het"] and r["stratum"] == layer and ("32b", "S", p) in probs)
+        x = [gu(probs["32b", "F", p], lab[p]["q12"]) - gu(probs["32b", "S", p], lab[p]["q12"]) for p in ps]
+        q = [json.load(open(os.path.join(P.rollout, p.split("_t")[0] + ".json")))["game_file"] for p in ps]
+        return np.array(x), q
+    xs, qs = fs("search", "I")
+    out = {}
+    if os.path.exists(os.path.join(HERE, "data", "search_ctx", "labels.json")):
+        xc, qc = fs("search_ctx", "U")
+        out["A-3"] = diff_bootstrap(xs, qs, xc, qc, paired_clusters=True)
+        out["A-3"]["holds"] = bool(out["A-3"]["ci95"][0] > 0)
+    if os.path.exists(os.path.join(HERE, "data", "sokoban", "labels.json")):
+        xk, qk = fs("sokoban", "U")
+        out["K-3"] = diff_bootstrap(xs, qs, xk, qk, paired_clusters=False)
+        out["K-3"]["holds"] = bool(out["K-3"]["ci95"][0] > 0)
+    json.dump(out, open(os.path.join(HERE, "e5_cross.json"), "w"), indent=1)
+    print(json.dumps(out, indent=1))
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("stage", choices=["freeze", "rollout", "bank", "peek", "labels", "strata", "introspect", "signals",
-                                      "judge-prepare", "judge-score", "analyze"])
+    ap.add_argument("stage", choices=["freeze", "rollout", "bank", "peek", "labels", "strata", "pilot", "introspect", "signals",
+                                      "judge-prepare", "judge-score", "analyze", "cross"])
+    ap.add_argument("--env", default="search", choices=["search", "search_ctx", "sokoban", "webshop"])
+    ap.add_argument("--pilot", action="store_true", help="use the pilot task list and data root")
+    ap.add_argument("--level", default=None, help="Sokoban ladder level (L1 / L2 / L3)")
+    ap.add_argument("--n_main", type=int, default=0, help="pilot stage: size of the main task set (default: the adapter's)")
     ap.add_argument("--b", type=int, default=1)
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--max_concurrent", type=int, default=400)
-    ap.add_argument("--out_root", default=os.path.join(HERE, "data"))
+    ap.add_argument("--out_root", default=None)
+    ap.add_argument("--tasks", default=None)
     ap.add_argument("--cond", choices=["S", "L", "F", "Fx"])
     ap.add_argument("--model")
     ap.add_argument("--name", default="32b")
     ap.add_argument("--revision")
     args = ap.parse_args()
-    P = paths(args.out_root)
-    {"freeze": stage_freeze, "rollout": stage_rollout, "bank": stage_bank, "peek": stage_peek, "labels": stage_labels,
-     "strata": stage_strata, "introspect": stage_introspect, "signals": stage_signals, "judge-prepare": stage_judge_prepare, "judge-score": stage_judge_score,
-     "analyze": stage_analyze}[args.stage](P, args)
+    if args.stage == "cross":
+        return stage_cross(args)
+    set_env(args.env)
+    if args.stage == "freeze":
+        return ENV.freeze(args)
+    tasks = args.tasks or ENV.tasks_path(pilot=args.pilot, level=args.level)
+    root = args.out_root or os.path.join(HERE, "data", args.env + (f"_pilot{'_' + args.level if args.level else ''}" if args.pilot else ""))
+    P = paths(root, tasks)
+    {"rollout": stage_rollout, "bank": stage_bank, "peek": stage_peek, "labels": stage_labels, "strata": stage_strata,
+     "pilot": stage_pilot, "introspect": stage_introspect, "signals": stage_signals, "judge-prepare": stage_judge_prepare,
+     "judge-score": stage_judge_score, "analyze": stage_analyze}[args.stage](P, args)
 
 
 if __name__ == "__main__":
