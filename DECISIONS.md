@@ -1410,3 +1410,13 @@ platform comparison (new host has 20 CPU quota vs 25, and GPU-dependent kernels)
 GPU microbenchmark. Compilation/loading are excluded from rollout turn timers; warmup and trajectory
 length differences must be disclosed. E4 F-judge and replay annotation costs will both be measured on
 this H800 without competing GPU jobs; old-card timings will not be used for cost-matched arms.
+
+D-061 continuation queue: e4_pipeline.py follows the registered README sequentially after the active
+rollout, including draft/peek, F/L judge, replay, pair construction, S6/S7 smoke, tune-only LR selection,
+nine arms x three seeds, both evaluation splits, mechanism and analysis. Added orchestration gates
+for complete episode sets, zero replay divergence, numerical checks, nonempty pairs and preregistered
+Esft/A sample-count equality; failure stops for inspection rather than adjusting any rule. GPU stages
+are sequential on the same H800. Smoke adapters/rollouts are removed only after S7 as README directs.
+LR is recorded in DECISIONS before full training. Completion requires manual result review; this queue
+does not push or shut down. Old pause record remains historical; this queue is explicitly authorized
+by the researcher's subsequent resume instruction.
