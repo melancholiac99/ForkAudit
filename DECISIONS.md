@@ -1339,3 +1339,20 @@ Written by Claude. No frozen M0/P4 item, E1/E2/P4-X result or reading changes.
   synthetic score fixtures (null and positive); no model scores exist yet. ≈ 1–1.5 GPU hours.
 - **P5 §10** appended: thesis revision (credit at information-limited forks is set by information, not judge
   capability), E4 arm changes (32B+F judge; hindsight-log judge arm H; conditional memory arm R), E5 additions.
+
+## D-058 — Execute merged post_e2 and preregistered E2M on server — 2026-10-31
+
+User authorized merging latest origin/main on the existing server branch, preserving local work,
+then post_e2 verification and E2M M/MF scoring/analysis, and pushing completed results. P5 training
+and new trajectories are excluded. Merge was a conflict-free fast-forward from 8e2b692 to 27fcbe6;
+server branch stays main. The three received commits are d7fd0b4, cefd377 and 27fcbe6.
+D-057's abbreviated preregistration hash 6eaf07d is stale: actual received preregistration commit
+is cefd377. Frozen document, requests, predictions and thresholds are unchanged.
+Post_e2 selftest passes; server reproduction matches every scientific output in the patch exactly
+(max E2 G_u difference 2.7755575615628914e-17). Original post_e2 JSON is preserved; reproduction is
+in e2m_run/post_e2_server.json. Rebuilding M/MF in memory matches all 1,746 frozen requests byte-for-byte.
+Before scoring, add explicit equality checks against original E2 run manifests for BOTH checkpoint
+hashes, revisions, backend hash, tokenizer and configuration hashes. This closes the supplied scorer's
+missing 32B checkpoint equality guard without changing scoring or numerical gates. Original E2,
+E1, P4-X, preregistration and P5 documents remain unchanged. This new task has no shutdown step;
+the preceding authorized E2 shutdown was already completed.

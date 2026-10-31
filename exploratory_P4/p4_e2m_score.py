@@ -39,6 +39,15 @@ def main():
             for b in iter(lambda:f.read(8*1024*1024),b''):h.update(b)
         modelhash[p.name]=h.hexdigest()
     assert modelhash
+    # Enforce reuse of the original E2 checkpoint/backend for BOTH model sizes.
+    original=json.loads((OUT/f'e2_{args.name}/run.json').read_text())
+    assert original['complete']
+    assert args.revision==original['revision'],'Revision differs from original E2'
+    assert modelhash==original['model_sha256'],'Checkpoint differs from original E2'
+    assert sha(source.read_bytes())==original['scorer_sha256'],'Backend differs from original E2'
+    metadata=json.loads((OUT/'e2_environment.json').read_text())['model_metadata_hashes'][args.name.upper()]
+    for name,digest in metadata.items():
+        assert sha((args.model/name).read_bytes())==digest,('Model metadata differs from original E2',name)
     if args.name=='7b':
         expected={line.split()[1]:line.split()[0] for line in (ROOT/'env/qwen_sha256.txt').read_text().splitlines() if len(line.split())==2 and line.split()[1].endswith('.safetensors')}
         assert modelhash==expected,'7B checkpoint differs from frozen checkpoint'
