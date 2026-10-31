@@ -1379,3 +1379,8 @@ Installed peft 0.21.2 and accelerate 1.15.0 with --no-deps after reviewing pip's
 existing core package versions retained and imports pass. All 7B weight SHA256 values match
 original E2. Launch formal training-data rollout with the preregistered 400 games, 1 repetition,
 full prompts/responses, original M0 Policy, and default sampling parameters.
+
+D-059 launch repair: the first vLLM initialization stopped before collecting any formal episode
+because the parent PATH omitted m0/bin and the JIT subprocess could not locate already-installed
+ninja 1.13.2. Relaunched with m0/bin prepended to PATH; model, seeds, sampling and vLLM configuration
+unchanged. JIT and CUDA graph initialization now pass. Both attempts remain in run/rollout_train.log.
