@@ -1384,3 +1384,15 @@ D-059 launch repair: the first vLLM initialization stopped before collecting any
 because the parent PATH omitted m0/bin and the JIT subprocess could not locate already-installed
 ninja 1.13.2. Relaunched with m0/bin prepended to PATH; model, seeds, sampling and vLLM configuration
 unchanged. JIT and CUDA graph initialization now pass. Both attempts remain in run/rollout_train.log.
+
+## D-060 — E4 throughput inspection at researcher's request — 2026-10-31
+
+Current formal rollout already batches 400 episodes, with 24 environment workers and GPU utilization
+observed at 100%; first three turns took 24/30/31 seconds. Do not interrupt or discard this live batch.
+For subsequent process launches, e4_01_rollout.py explicitly requests logprobs=False: E4 stores and
+uses response text but never uses Policy.sample's default per-token logprobs. The installed vLLM
+sampler computes requested raw logprobs separately from the unchanged token-sampling path. No model,
+prompt, seed, token cap, temperature, game, selection, loss or judgment threshold changes.
+Add separate generation/environment timings for later bottleneck measurement. Draft collection and
+LoRA evaluation already disable logprobs. This edit does not hot-patch the running process and no
+speedup is claimed before measurement. Original M0 scripts/policy.py is unchanged.

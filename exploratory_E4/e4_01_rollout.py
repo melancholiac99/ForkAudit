@@ -44,7 +44,10 @@ def run(games, reps, pol, pool, out_dir, full, alfenv, prov):
             break
         prompts = [common.build_prompt(st[k]["task"], st[k]["mem"], st[k]["obs"], st[k]["adm"]) for k in active]
         seeds = [seed_for(st[k]["seed"], turn, st[k]["rep"]) for k in active]
-        outs = pol.sample(prompts, seeds)
+        # E4 consumes response text only; token log-probabilities are never stored.
+        gen_start = time.time()
+        outs = pol.sample(prompts, seeds, logprobs=False)
+        generation_seconds = time.time() - gen_start
         acts = {}
         for k, p, sd, o in zip(active, prompts, seeds, outs):
             a, valid, fmt = common.parse(o[0]["text"])
@@ -53,7 +56,9 @@ def run(games, reps, pol, pool, out_dir, full, alfenv, prov):
             if full:
                 step.update(prompt=p, obs_before=st[k]["obs"], admissible=st[k]["adm"], response=o[0]["text"])
             st[k]["steps"].append(step)
+        env_start = time.time()
         res = pool.step(acts)
+        environment_seconds = time.time() - env_start
         for k in active:
             obs, adm, won, done = res[k]
             x = st[k]
@@ -63,6 +68,9 @@ def run(games, reps, pol, pool, out_dir, full, alfenv, prov):
             if won or done:
                 x["won"], x["done"] = won, True
         print(f"turn {turn} active {len(active)} won {sum(st[k]['won'] for k in keys)} ({time.time() - t0:.0f}s)", flush=True)
+        print(json.dumps(dict(event="turn_timing", turn=turn, active=len(active),
+                              generation_seconds=generation_seconds,
+                              environment_seconds=environment_seconds)), flush=True)
     for k in keys:
         x = st[k]
         rec = {kk: v for kk, v in x.items() if kk not in ("obs", "adm", "mem")}
