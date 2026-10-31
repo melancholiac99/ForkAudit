@@ -1399,3 +1399,35 @@ core reading are unchanged.
   hidden-state probe in M0), siblings G, B3, E2-M memory, E5-L.
 - `test_e5.py` passes offline, including the probe on planted synthetic data and the full analysis path.
 - Also corrected in D-059: the applied pre-registration hashes are `37f1873` (E4) and `2d341bd` (E5).
+
+## D-061 — E5 pre-registration amendment 2 (presence + predicted-absence environments) — 2026-10-31
+
+Raised by the researcher: WebShop may not suit the mechanism (decisive fact only proxied by the goal ASIN, low 7B
+success, heavy setup), and a single further environment can at best replicate. Claude's proposal, accepted by the
+researcher ("按照你说的来吧"): pair one environment where the effect is predicted with two where it is predicted absent,
+so that E5 can show a dissociation rather than a repeat. Written up as `proposals/P7_env_selection.md`; registered as
+`exploratory_E5/PREREG_E5.md` §13, committed (message `E5: pre-registration amendment 2`; its hash on main changes when
+the patch is applied, so record it here after `git am`) before any E5 data in any environment.
+- Environments (verl-agent `20bd331bdbc9026a5668e11362178e10ab7400c8` semantics, templates copied verbatim):
+  E5-S HotpotQA multi-hop with open retrieval (wiki-18 + e5, top-3, 4 actions, history 4; 1,000 questions, pilot 50);
+  E5-C the same questions with the ten context paragraphs in the task description; E5-K Sokoban text (verl-agent
+  defaults 6x6 / 1 box / depth 30 / 15 steps; ladder L2 depth 15, L3 depth 6; 150 rooms). WebShop (§1–§12) is kept
+  but deferred; it runs only if E5-S fails its pilot.
+- Predictions: E5-S carries W-0..W-6 and both readings unchanged (decisive facts = the two supporting-article titles).
+  E5-C / E5-K: A-1 32B F − S CI upper < 10 pp, A-2 32B − 7B (S) CI lower > 0, with manipulation checks C-0 (≥ 95 % of
+  Live points in U) and K-0 (BFS planner on the prompt board, G_u CI lower > 0). Cross: A-3 (vs E5-C, questions resampled
+  jointly) and K-3 (vs E5-K, independent). Combined reading R-E5-DISSOCIATION / R-E5-PRESENCE-ONLY; §13.6 lists what
+  each outcome allows the paper to say.
+- Pilot gate (§13.4) on disjoint pilot tasks, reading no Fork label and no judge output: 7B success in [0.15, 0.85],
+  Live ≥ 25 % of defined points, zero refeed divergence and 100 % factual-peek match, projected Live I and U ≥ 150 each
+  (presence) or Live ≥ 300 (absence); failure rules written in advance.
+- Declared deviations from verl-agent: retrieval errors abort the run; a shared SQLite cache fixes each query's documents
+  at first retrieval (first writer wins) so that replay is exact; Sokoban generation retries use seed + 1,000,003 ×
+  attempt instead of the process-randomised `hash(str(seed))`. Sokoban room generator vendored verbatim
+  (`exploratory_E5/third_party/verl_agent_room_utils.py`, matplotlib-only functions omitted); cross-machine check:
+  sha256 of the first five L1 pilot rooms = `71c6148a8ef71c0bd95588376000b467417627b053c0a9bc78c075ebc12649b7`.
+- Code: `e5_run.py` made environment-agnostic (`adapters.py`, `search_env.py`, `sokoban_env.py`); labels for any number
+  of arms; new `pilot` and `cross` stages; judge candidates shown as `search[q]` / `answer[a]`; WebShop judge base renamed
+  `prompts/judge_base_webshop.txt`, text unchanged (tested). `exploratory_E4/e4_03_judge.py`: the numerical check now
+  loops over the actual number of candidates instead of a fixed 5 — no change for E4 (always 5; E4 tests pass).
+  `test_e5.py`: 15 tests pass on CPU, including dry end-to-end runs of E5-S / E5-C / E5-K with a fake retriever.
