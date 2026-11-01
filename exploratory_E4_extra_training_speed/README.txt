@@ -40,3 +40,15 @@ Commands (m0 Python):
 Artifacts: cpu_selftest.json, inputs.json, benchmark_progress.json,
 benchmark.json, REPORT.txt, hook_status.json, and execution logs.
 No automatic deployment, push or shutdown is performed.
+
+Follow-up after initial numerical checks failed:
+- numerical_control.py uses deterministic CUDA algorithms and FP64 diagnostic
+  reductions. It adds no_checkpoint (full vocabulary projection preserved) to
+  isolate checkpointing from response-only projection. It only compares values;
+  shared-GPU times are not used.
+- checkpoint_speed.py measures no_checkpoint alone in a bounded exclusive
+  interval, preserving the running formal trainer in memory. An independent
+  guardian resumes it on failure. Exact interruption accounting is saved in
+  training_pause.json. The measured pause was 33.299 seconds.
+- REPORT.txt is the final interpretation; REPORT_initial.txt and the hash-checked
+  benchmark_initial.py preserve the initial report and executable source.

@@ -3,6 +3,7 @@ from pathlib import Path
 import argparse
 import gc
 import hashlib
+import importlib.metadata
 import json
 import math
 import statistics
@@ -32,18 +33,21 @@ def logp(model, pair, variant):
     device = next(model.parameters()).device
     ids = torch.tensor([pi+ri], device=device)
     kwargs = {}
-    if variant != 'original':
+    response_only = variant.startswith('response_only')
+    if response_only:
         kwargs = dict(logits_to_keep=torch.arange(len(pi)-1, len(pi)+len(ri)-1, device=device), use_cache=False)
+    elif variant == 'no_checkpoint':
+        kwargs = dict(use_cache=False)
     with torch.autocast(device.type, dtype=torch.bfloat16):
         output = model(input_ids=ids, **kwargs)
-        logits = (output.logits[0, len(pi)-1:-1] if variant == 'original' else output.logits[0]).float()
+        logits = (output.logits[0] if response_only else output.logits[0, len(pi)-1:-1]).float()
     assert logits.shape[0] == len(ri)
     lp = torch.log_softmax(logits, -1).gather(1, torch.tensor(ri, device=device)[:, None])[:, 0]
     return lp.sum(), lp.mean()
 
 
 def configure(model, variant):
-    if variant == 'response_only_no_checkpoint':
+    if variant in ['no_checkpoint', 'response_only_no_checkpoint']:
         model.gradient_checkpointing_disable()
     else:
         model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={'use_reentrant': False})
@@ -61,15 +65,17 @@ def trial(model, job, variant, refs, seed, collect_grad=True):
     if job['kind'] == 'DPO':
         chosen = logp(model, job['c'], variant)[0]
         rejected = logp(model, job['r'], variant)[0]
-        loss = -torch.nn.functional.logsigmoid(.1*((chosen-refs[0])-(rejected-refs[1])))
+        margin = (chosen-refs[0])-(rejected-refs[1])
+        loss = -torch.nn.functional.logsigmoid(.1*margin)
+        _ = int(margin.item() > 0)  # Match the formal per-example metric synchronization.
     else:
         loss = -logp(model, job['s'], variant)[1]
     (loss/16).backward()
+    value = float(loss.detach())  # Match formal loss logging after backward.
     if device.type == 'cuda':
         torch.cuda.synchronize()
     seconds = time.perf_counter()-start
     peak = torch.cuda.max_memory_allocated() if device.type == 'cuda' else None
-    value = float(loss.detach())
     grad = None
     if collect_grad:
         grad = torch.cat([(p.grad.detach() if p.grad is not None else torch.zeros_like(p)).reshape(-1).float().cpu()
@@ -78,11 +84,13 @@ def trial(model, job, variant, refs, seed, collect_grad=True):
 
 
 def compare(actual, baseline, grad, reference):
-    diff = grad-reference
-    norm = float(torch.linalg.vector_norm(reference))
+    # Large FP32 CPU vectors can lose reduction accuracy; use FP64 for diagnostics.
+    grad64, reference64 = grad.double(), reference.double()
+    diff = grad64-reference64
+    norm = float(torch.linalg.vector_norm(reference64))
     relative = float(torch.linalg.vector_norm(diff))/max(norm, 1e-30)
-    other_norm = float(torch.linalg.vector_norm(grad))
-    cosine = float(torch.dot(grad, reference))/max(norm*other_norm, 1e-30)
+    other_norm = float(torch.linalg.vector_norm(grad64))
+    cosine = float(torch.dot(grad64, reference64))/max(norm*other_norm, 1e-30)
     delta = abs(actual['loss']-baseline['loss'])
     return dict(loss_absolute_difference=delta, gradient_relative_l2=relative,
                 gradient_cosine=cosine, max_gradient_absolute_difference=float(diff.abs().max()),
@@ -121,7 +129,7 @@ def selftest():
     for i, job in enumerate(jobs):
         refs = references(model, job)
         base, grad = trial(model, job, 'original', refs, 113+i)
-        for variant in VARIANTS[1:]:
+        for variant in VARIANTS[1:]+['no_checkpoint']:
             result, other = trial(model, job, variant, refs, 113+i)
             check = compare(result, base, other, grad)
             assert check['passed'] and check['finite'], check
@@ -212,6 +220,9 @@ def benchmark():
                                 max_gradient_relative_l2=max((t.get('gradient_relative_l2', 0) for t in checks), default=0))
     out = dict(complete=True, scope='Engineering benchmark; no formal weights, examples, hyperparameters or pipeline implementation changed',
                gpu=torch.cuda.get_device_name(), torch_threads=torch.get_num_threads(), tolerances=TOLERANCES,
+               versions={name:importlib.metadata.version(name) for name in ['torch', 'transformers', 'peft']},
+               benchmark_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+               formal_training_source_sha256=hashlib.sha256((ROOT/'exploratory_E4/e4_06_train.py').read_bytes()).hexdigest(),
                adapter=str(ADAPTER), adapter_sha256=hashlib.sha256((ADAPTER/'adapter_model.safetensors').read_bytes()).hexdigest(),
                selection=prepared['selection'], summary=summary, results=results)
     save('benchmark.json', out)

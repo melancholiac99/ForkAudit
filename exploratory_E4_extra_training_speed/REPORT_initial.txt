@@ -1,0 +1,5 @@
+E4 training speed study: five length-selected cases, two repetitions, fixed dropout RNG per case.
+Measures forward/backward for one micro-example, excludes optimizer and reference preprocessing; not full-run speed.
+response_only: geometric mean speedup 0.977083163227822; checks passed False; peak 15.61 GiB; max relative gradient error 0.0209822.
+response_only_no_checkpoint: geometric mean speedup 1.7026660935956757; checks passed False; peak 33.53 GiB; max relative gradient error 0.0209822.
+No optimization was installed in formal E4. Passing these sampled engineering gates does not imply bitwise-equivalent full training.

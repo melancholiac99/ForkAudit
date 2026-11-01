@@ -1474,3 +1474,21 @@ completion or failure. The tested independent guardian prevents an orphan benchm
 overlapping resumed training. Completed formal adapter hashes and protected inputs are checked.
 No automatic deployment is authorized by this engineering study; passing a few sampled checks
 does not establish full-run bitwise equivalence. Findings and timing scope are reported separately.
+
+Training-speed findings: the first real-model comparison failed the engineering gradient gate;
+original-to-original gradients also varied, and FP32 CPU reduction diagnostics produced inaccurate
+cosines. Preserve that raw run and its exact hash-verified source. A separate deterministic CUDA
+control uses FP64 reductions and the unchanged thresholds. Checkpoint disabling alone (full
+vocabulary projection retained, use_cache=False) matches losses and trainable gradients bitwise
+on all five selected real-model cases; response-only projection does not (max relative gradient
+difference 0.0187486). No threshold was relaxed and no failing optimization is deployed.
+
+For clean timing of checkpoint disabling alone, hold the current LR-2e-5 trainer resident with
+SIGSTOP for a bounded interval, preserving optimizer/RNG/model state, then SIGCONT. The already
+tested independent guardian covers supervisor failure. Actual pause: 33.299 s, recorded in
+exploratory_E4_extra_training_speed/training_pause.json; raw training elapsed time includes it.
+The earlier numerical-control pass briefly shared GPU capacity, so its times are not used.
+Neither interval affects finalized F/replay costs. Four alternated repetitions per case give
+1.427–1.934x forward/backward speedups (geometric mean 1.669x) at 34.00 GiB peak allocation.
+This excludes reference preprocessing, optimizer steps and evaluation. Protected files and the
+completed adapter remain unchanged; the formal trainer resumes the original implementation.

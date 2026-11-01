@@ -1,0 +1,61 @@
+E4 training acceleration study — 2026-11-01
+
+Recommendation: disable gradient checkpointing alone, retaining full-position
+vocabulary projection and explicitly setting use_cache=False during training.
+This candidate has been validated on selected real-model cases; it has NOT
+been installed in the formal pipeline. Formal training has resumed unchanged.
+
+Numerical evidence
+- Loaded the actual completed Aprime seed-0 LR-5e-6 adapter on the same 7B base.
+- Selected DPO token-length quantiles 0/.5/.9/1 across all existing DPO arms,
+  and the longest SFT example, before inspecting loss/gradient results.
+- With deterministic CUDA algorithms and fixed dropout RNG, original repeated
+  runs reproduced bitwise. Disabling checkpointing alone gave identical losses
+  and bitwise-identical trainable gradients on all five cases.
+- Reducing vocabulary projection to response positions was rejected: loss
+  matched, but relative gradient differences reached 0.0187486, exceeding the
+  predeclared 0.001 engineering tolerance. Do not adopt that candidate here.
+- Initial runs also exhibited original-to-original GPU gradient variation.
+  Initial FP32 CPU vector reductions gave inaccurate cosine diagnostics; these
+  were replaced by FP64 reductions in a separate deterministic control, without
+  changing tolerances. Original measurements and source are preserved in
+  benchmark.json, REPORT_initial.txt and benchmark_initial.py (hash verified).
+  Authoritative numerical evidence: numerical_control.json.
+
+Exclusive speed measurement for checkpoint disabling alone
+- Four repetitions per variant per case, alternating order, warmed kernels;
+  synchronized GPU timing; same default nondeterministic execution setting as
+  the formal trainer. No competing GPU compute during measured intervals.
+- Per-case speedups: 1.934x, 1.904x, 1.723x, 1.428x, 1.427x.
+- Unweighted geometric mean speedup: 1.669x (about 40% less forward/backward time).
+- Peak allocated GPU memory: 34.00 GiB in these tests; actual training also
+  needs optimizer state. The H800 has sufficient apparent headroom for this
+  candidate on the tested data, but this is not a full-run memory bound.
+- Timing covers forward/backward for individual examples, including the
+  original metric synchronization, but excludes optimizer steps, reference
+  probability preprocessing, loading and evaluation. Do not claim that the
+  complete E4 experiment becomes 1.669x faster.
+- Raw timings: checkpoint_speed.json.
+
+Operational accounting
+The first microbenchmark ran between completed LR trials. Numerical control
+then briefly shared spare GPU memory with the next trainer; those timings are
+not used. For exclusive timing, that trainer was kept resident and stopped for
+33.299 seconds, then resumed with the same PID, optimizer and RNG state. Its
+raw train_log wall time includes that pause (and preceding shared-GPU work);
+training_pause.json records the exact interval. F annotation and replay costs
+were already finalized and are unchanged. No training checkpoint was deleted,
+restarted, rewritten or updated by the benchmark. All 17 protected hashes and
+the completed adapter hashes still match (final_audit.json).
+
+Further opportunity, not implemented or benchmarked
+The planned DPO runs call the frozen reference model about 43,440 times for
+8,419 distinct prompt/response text pairs. A verified cache keyed by exact
+tokens, model hash and numerical configuration could avoid repeated reference
+calculations across seeds/LRs; no GPU time-saving claim has been measured.
+
+Limits
+Five real-model cases plus CPU checks do not prove bitwise equivalence for
+every optimizer update or an entire training trajectory. Full training retains
+the original implementation. No thresholds, examples, effective batch, epochs,
+seed choices, optimizer, LoRA parameters, preference rules or conclusions changed.
