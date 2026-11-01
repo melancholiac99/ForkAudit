@@ -1447,3 +1447,7 @@ roots exist in the E5 worktree. Earlier random-policy plumbing fixtures are not
 policy pilot or formal measurement data. E4 continues under its original rules.
 P8 section 8.5 calls for a separately frozen E5 amendment before any E5 pilot;
 the old E5 queue must not be resumed until this is resolved.
+
+## D-P8-001 — Freeze P8 v2 on explicit execution instruction — 2026-11-01
+
+User: “现在开始跑p8 啊”. Freeze exploratory_P8/PREREG_P8.md before computing any new scientific result. Source is proposal v2 at 38d2548. R1 budgets, H_full text definition, bootstrap, blind sample and reuse gates are specified there. R2/R3 are UNAVAILABLE for this run for the documented validation/input limitations. No old conclusion, label or threshold is modified. E4 continues; E5 remains paused.
