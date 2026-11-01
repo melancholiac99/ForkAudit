@@ -1527,3 +1527,37 @@ gets a clearly marked diagnostics upload, never a completed-result claim.
 Mocked tests verify staging scope, branch preservation, unrelated-change refusal,
 remote verification, upload-before-shutdown ordering and failure-log retention.
 Scientific code, data, thresholds and active E4/P8 queues are unchanged.
+
+## P8 repair attempt 1 — unrecoverable reproduction gate — 2026-11-02
+
+Incident: exploratory_P8/run/incidents/20261101T191318Z_attempt1. Inspected the
+archived and current score/queue logs, frozen P8 protocol and execution scripts,
+E4 final audit/status, and live processes. P8 7B failed before new scoring because
+original-score reproduction TV was 0.0649015356378125 for s000_t02__S and
+0.2134778505814558 for s000_t02__L, exceeding the frozen strict TV < 0.005 gate.
+All five shared-prefix/direct checks passed; M/F reproduction passed. The failure
+is not a truncated output, duplicate row, occupied GPU, or stale queue lock.
+
+Validation: the incident archive SHA256 matches; all 18,506 protected inputs match
+their unchanged manifest; both models' metadata hashes and the recorded Python
+and package versions match P4. Independently rehashed all four 7B weight shards
+and the original scorer: exact matches. Both score files contain exactly 572
+unique, complete reused rows, each identical to its original P4 row plus the
+registered reuse provenance; corresponding requests match exactly. No new P8
+score rows were written. Existing E4 audit, result and completed_verified status
+agree; CPU verification remains passed. GPU is idle; E5 PID 65988 remains stopped.
+
+Exact patch: no execution or scientific code patch, no manifest exception, and
+no status/error clearing. No scientifically equivalent operational fix was
+demonstrated. Original P4 used RTX 6000D and this run uses H800; hardware-dependent
+numerical behavior is only a hypothesis, not a demonstrated underlying cause.
+Do not tune numerics against these scores, relax the gate, replace original
+scores, or resume downstream analysis/audit with failed reproduction checks.
+
+Preserved original DECISIONS.md and diagnostic snapshots/hashes under the incident
+diagnosis/ directory; validate_evidence.py and validation.json record the read-only
+checks. This entry is a local diagnostic-only commit so the guardian's publisher
+does not encounter an unexpected tracked edit. No repair was validated, no stages
+were restarted, and no push/publication/shutdown or guardian intervention was
+performed by this agent. Return unrecoverable; the external guardian owns the
+authorized log-preserving shutdown decision.
