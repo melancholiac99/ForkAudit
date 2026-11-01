@@ -1561,3 +1561,36 @@ does not encounter an unexpected tracked edit. No repair was validated, no stage
 were restarted, and no push/publication/shutdown or guardian intervention was
 performed by this agent. Return unrecoverable; the external guardian owns the
 authorized log-preserving shutdown decision.
+
+## P8 repair attempt 2 — reproduction failure reconfirmed — 2026-11-02
+
+Incident: exploratory_P8/run/incidents/20261101T191600Z_attempt2. Archived score
+failure and status are byte-identical to the current files. The 7B original-score
+reproduction gate still fails for s000_t02__S (TV 0.0649015356378125) and
+s000_t02__L (TV 0.2134778505814558), against the frozen strict TV < 0.005 rule.
+No new stage ran between attempts. The five shared/direct checks pass, but they
+do not establish reproduction of the original scores.
+
+Read-only validation independently reconfirmed all 18,506 protected hashes,
+the incident archive hash, original 7B weight shards/backend, both models'
+metadata, recorded Python/package versions, and 572 complete unique unchanged
+reused score rows per model. Additionally compared parsed tokenization function
+bodies: P8 and both original P4 scorers are AST-identical. No request, candidate
+order, tokenizer implementation, truncated-row or duplicate-row defect was
+identified. E4's existing passed audit, result and verified status agree; P8's
+CPU verification remains passed. The GPU is idle, the P8 queue lock is unowned,
+there are no active P8/E4 workers, and E5 remains stopped. The original/current
+GPU difference remains a hypothesis, not a demonstrated repairable root cause.
+
+Exact patch: this decision entry only; no execution/scientific code change,
+manifest exception, gate relaxation, output repair or status/error clearing.
+No scientifically equivalent operational fix was demonstrated, so return
+unrecoverable and resume no stages. Preserve the guardian and leave its shutdown
+decision to it. No publication, push, GPU restart or E5 action was performed.
+
+Evidence: diagnosis/ beneath this incident contains DECISIONS.before.md,
+validate_evidence.py, validation.json/log, source and snapshot hashes,
+tokenization_equivalence.json, archived failure copies, and
+process_archive_validation.json. Keep this documentation-only change in a local
+commit so the publisher encounters no unexpected tracked edit; no repair is
+claimed by that commit.
