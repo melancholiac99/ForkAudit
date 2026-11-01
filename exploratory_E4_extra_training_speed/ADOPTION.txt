@@ -1,0 +1,28 @@
+Checkpoint-only optimization approved and installed — 2026-11-01
+
+Authorization: user "就这么改".
+First optimized scheduled run: A_s1; all subsequent runs use the same implementation.
+Preserved original runs: three Aprime LR trials and A_s0, without rerunning them.
+
+Execution changes:
+- model.gradient_checkpointing_disable()
+- forward(..., use_cache=False if model.training else None)
+Thus training avoids activation recomputation and unused KV caching; reference
+preprocessing keeps its original model-default cache behavior. Full vocabulary
+projection, data, objective, LoRA, optimizer, RNG seeds, effective batch and
+epochs are unchanged. No failed response-only projection optimization adopted.
+
+Original snapshot: exploratory_E4/run/frozen_training/e4_06_train_original.py.
+Original protected_inputs.json is unchanged. The approved change manifest is
+exploratory_E4/run/training_implementation_change.json. The final audit allows
+only this exact source transformation and validates per-run implementation
+metadata, evidence hashes, and preserved original-run artifacts.
+
+Validation: deployment_tests.json runs the actual original/new seq_logp bodies
+on CPU, with exact reference probabilities, DPO/SFT losses, gradients and one
+clipped AdamW update. It also exercises the source whitelist and rejects wrong
+runtime mode. Numerical_control.json and checkpoint_speed.json document the
+prior real-7B parity checks and 1.669x sampled forward/backward speedup.
+
+New run logs print TRAINING_IMPLEMENTATION at startup; finished train_log.json
+includes training_implementation. Main implementation: exploratory_E4/e4_06_train.py.

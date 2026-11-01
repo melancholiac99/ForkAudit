@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib,json,math
 import numpy as np
 import e4_common as E
+from e4_training_implementation import verify_protected_inputs, verify_training_log
 H=Path(E.HERE);D=Path(E.DATA);R=H/'run'
 def read(p):return json.loads(Path(p).read_text())
 def sha(p):
@@ -11,8 +12,7 @@ def sha(p):
   for b in iter(lambda:f.read(8*1024**2),b''):h.update(b)
  return h.hexdigest()
 def main():
- protected=read(R/'protected_inputs.json')
- for p,h in protected.items():assert sha(Path(E.ROOT)/p)==h,p
+ protection=verify_protected_inputs(E.ROOT)
  games=read(E.GAMES_PATH);result=read(H/'e4.json');pairs=read(D/'pairs/manifest.json');lr=read(R/'learning_rate.json')['selected']
  assert read(D/'points_manifest.json')['total_refeed_div']==0
  assert read(D/'replay_manifest.json')['refeed_div']==0
@@ -28,6 +28,7 @@ def main():
   assert len(file.read_text().splitlines())==pairs['counts'][arm]>0
   for seed in [0,1,2]:
    folder=D/'adapters'/f'{arm}_s{seed}';log=read(folder/'train_log.json');assert log['lr']==lr and log['epochs']==2 and not log['smoke']
+   verify_training_log(E.ROOT, f'{arm}_s{seed}', log)
    assert log['n_examples']==pairs['counts'][arm] and log['steps']==math.ceil(2*pairs['counts'][arm]/16)
    assert all(math.isfinite(v['loss']) for v in log['log']);assert (folder/'adapter_model.safetensors').is_file()
  assert pairs['counts']['Rnd']==pairs['counts']['A']==pairs['counts']['Esft']
@@ -68,7 +69,7 @@ def main():
  predictions['PL-5']=bool(ci[0]>0);assert predictions==result['predictions']
  reading='R-L-NULL' if not predictions['PL-1'] else 'R-L-HEURISTIC' if not predictions['PL-3'] else 'R-L-COSTLY' if not predictions['PL-2'] else 'R-L-WIN'
  assert reading==result['reading']
- report=dict(passed=True,episodes_reconstructed=episodes,max_numeric_error=err,protected_files_unchanged=len(protected),reading=reading,predictions=predictions,mechanism_limit='Mechanism source retains per-point gains, not raw generated drafts; audit checks aggregation, not regenerating draft counts.')
+ report=dict(passed=True,episodes_reconstructed=episodes,max_numeric_error=err,**protection,reading=reading,predictions=predictions,mechanism_limit='Mechanism source retains per-point gains, not raw generated drafts; audit checks aggregation, not regenerating draft counts.')
  E.write_json(str(R/'final_verification.json'),report)
  manifest={str(p.relative_to(H)):dict(bytes=p.stat().st_size,sha256=sha(p)) for p in D.rglob('*') if p.is_file()}
  E.write_json(str(R/'final_artifact_manifest.json'),manifest);print(json.dumps(report,indent=2))

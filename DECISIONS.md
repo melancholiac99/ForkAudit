@@ -1492,3 +1492,34 @@ Neither interval affects finalized F/replay costs. Four alternated repetitions p
 1.427–1.934x forward/backward speedups (geometric mean 1.669x) at 34.00 GiB peak allocation.
 This excludes reference preprocessing, optimizer steps and evaluation. Protected files and the
 completed adapter remain unchanged; the formal trainer resumes the original implementation.
+
+D-061 E4 automatic registered learning-rate selection (tune only): {"scores": {"5e-06": 0.4166666666666667, "2e-05": 0.11666666666666667, "5e-05": 0.008333333333333333}, "selected": 5e-06}. All arms use this LR; no validation outcomes used.
+
+## Authorized deployment of checkpoint-only acceleration — 2026-11-01
+
+Researcher explicitly approved the tested change: "就这么改". Apply only checkpoint disabling
+to subsequent training processes. Full vocabulary projection, all samples, micro-batch 1,
+effective batch 16, two epochs, dropout, seeds, learning rate selection, optimizer and all
+scientific thresholds remain unchanged. Set use_cache=False only in training mode; reference
+evaluation keeps the previous model-default cache behavior. Do not deploy response-only logits.
+
+All three learning-rate trials and formal A_s0 finished with the original implementation and
+are preserved, with their completed adapter/log hashes frozen. First optimized run is A_s1.
+The currently running A_s0 was allowed to finish; only the waiting scheduler was held during
+installation and checks. No completed run is repeated or overwritten. All later runs log the
+implementation name, actual checkpoint flag, cache policy, source hash and authorization
+manifest hash at startup and in train_log.json.
+
+Archive the original train source (SHA256 021f0b63b0928457fca38005ba7c046388139c4733602fd34f6efde0d4250ec4)
+under exploratory_E4/run/frozen_training/e4_06_train_original.py. Keep protected_inputs.json
+unchanged. training_implementation_change.json explicitly records original/optimized source,
+the validation evidence, legacy tags and preserved outputs. The final audit checks all other
+protected hashes unchanged, this exact narrowly defined source transformation, original source
+snapshot, authorization/evidence hashes, preserved legacy outputs, and the runtime implementation
+metadata for every later training run. It does not silently replace the original hash baseline.
+
+Deployment checks execute the actual archived/new seq_logp function bodies on a tiny CPU model
+(device literals alone adapted for CPU): reference log-probabilities, DPO/SFT losses, gradients
+and one clipped AdamW update match exactly. The audit rejects incorrect runtime checkpoint mode.
+Prior real-7B deterministic gradient checks and isolated timing remain the supporting evidence;
+sampled parity is not a claim of bitwise equality for every future training trajectory.
