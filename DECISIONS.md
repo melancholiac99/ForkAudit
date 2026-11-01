@@ -1449,3 +1449,28 @@ Benchmark has a 30-minute timeout. It automatically writes an engineering report
 the original queue; it never deploys the new backend. Formal F score/run/check files are hashed
 before and after, and benchmark time never enters F scoring_seconds or replay cost. Any speedup
 is limited to this small length-selected benchmark until a full-workload audit is done.
+
+## E4 exploratory training-speed study — 2026-11-01
+
+Researcher requested acceleration research during the first learning-rate trial. Keep formal
+training code, inputs, hyperparameters, effective batch 16, two epochs, dropout, seeds and
+evaluation unchanged. Isolate experiments under exploratory_E4_extra_training_speed. Compare
+the original implementation with response-only vocabulary projection, and that projection
+plus disabled gradient checkpointing (explicitly disabling unused KV cache). These remove
+unused computations/recomputation; numerical equivalence must still be tested.
+
+Before real GPU measurements, fix engineering tolerances: absolute loss difference <= 1e-4,
+relative trainable-gradient L2 difference <= 1e-3, cosine >= .99999, with finite and bitwise
+equality checks also recorded. CPU tiny-Qwen2 DPO/SFT tests with nonzero LoRA matrices and
+dropout passed with identical gradients. Select four DPO examples by total-token-length
+quantiles 0/.5/.9/1 across the existing pair files, plus the longest SFT example, without
+looking at losses or validation outcomes. Compare two alternated timed repetitions using
+the completed first learning-rate adapter, identical dropout RNG per case and immutable
+weights; no optimizer steps or saved training weights are produced.
+
+A hook holds only the waiting orchestration parent until that current training process exits,
+then runs the GPU study with a 15-minute timeout. The original next LR trial resumes on
+completion or failure. The tested independent guardian prevents an orphan benchmark from
+overlapping resumed training. Completed formal adapter hashes and protected inputs are checked.
+No automatic deployment is authorized by this engineering study; passing a few sampled checks
+does not establish full-run bitwise equivalence. Findings and timing scope are reported separately.

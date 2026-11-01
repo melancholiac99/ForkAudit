@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "scope": "Tiny random CPU model only, not real 7B evidence",
+  "tolerances": {
+    "loss_absolute": 0.0001,
+    "gradient_relative_l2": 0.001,
+    "gradient_cosine_min": 0.99999
+  },
+  "checks": [
+    {
+      "kind": "DPO",
+      "variant": "response_only",
+      "loss_absolute_difference": 0.0,
+      "gradient_relative_l2": 0.0,
+      "gradient_cosine": 1.0000001425167493,
+      "max_gradient_absolute_difference": 0.0,
+      "gradients_bitwise_equal": true,
+      "finite": true,
+      "passed": true
+    },
+    {
+      "kind": "DPO",
+      "variant": "response_only_no_checkpoint",
+      "loss_absolute_difference": 0.0,
+      "gradient_relative_l2": 0.0,
+      "gradient_cosine": 1.0000001425167493,
+      "max_gradient_absolute_difference": 0.0,
+      "gradients_bitwise_equal": true,
+      "finite": true,
+      "passed": true
+    },
+    {
+      "kind": "SFT",
+      "variant": "response_only",
+      "loss_absolute_difference": 0.0,
+      "gradient_relative_l2": 0.0,
+      "gradient_cosine": 1.0000004405269234,
+      "max_gradient_absolute_difference": 0.0,
+      "gradients_bitwise_equal": true,
+      "finite": true,
+      "passed": true
+    },
+    {
+      "kind": "SFT",
+      "variant": "response_only_no_checkpoint",
+      "loss_absolute_difference": 0.0,
+      "gradient_relative_l2": 0.0,
+      "gradient_cosine": 1.0000004405269234,
+      "max_gradient_absolute_difference": 0.0,
+      "gradients_bitwise_equal": true,
+      "finite": true,
+      "passed": true
+    }
+  ]
+}

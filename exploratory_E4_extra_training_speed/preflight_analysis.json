@@ -1,0 +1,35 @@
+{
+  "formal_reference_calls_without_cross_run_cache": 43440,
+  "unique_prompt_response_text_pairs_across_all_DPO_arms": 8419,
+  "deduplicated_call_fraction": 0.19380755064456723,
+  "caveat": "Text-key count only; production cache must include exact token IDs, frozen model hash and numerical configuration; GPU time saving not yet measured",
+  "reference_calls_per_arm_per_run": {
+    "A": 2000,
+    "Aprime": 2000,
+    "Bfull": 2000,
+    "Bmatch": 250,
+    "Cmatch": 230,
+    "D": 2000,
+    "H": 2000,
+    "Rnd": 2000
+  },
+  "formal_optimizer_steps_per_arm_all_seeds": {
+    "A": 375,
+    "Aprime": 375,
+    "H": 375,
+    "Rnd": 375,
+    "D": 375,
+    "Bfull": 375,
+    "Bmatch": 48,
+    "Cmatch": 45,
+    "Esft": 375
+  },
+  "observed_last10_step_seconds_mean": 7.517283201217651,
+  "current_lr_trial_total_steps": 125,
+  "current_lr_trial_latest_step": 76,
+  "variants": [
+    "response-only vocabulary projection",
+    "response-only projection plus disabled checkpointing"
+  ],
+  "formal_training_changed": false
+}
