@@ -1451,3 +1451,5 @@ the old E5 queue must not be resumed until this is resolved.
 ## D-P8-001 — Freeze P8 v2 on explicit execution instruction — 2026-11-01
 
 User: “现在开始跑p8 啊”. Freeze exploratory_P8/PREREG_P8.md before computing any new scientific result. Source is proposal v2 at 38d2548. R1 budgets, H_full text definition, bootstrap, blind sample and reuse gates are specified there. R2/R3 are UNAVAILABLE for this run for the documented validation/input limitations. No old conclusion, label or threshold is modified. E4 continues; E5 remains paused.
+
+P8 preregistration freeze commit: 6b41fa6b3fc6348b5dd893e9745f3a2535145c98. Before any new gain analysis, freeze the stage-C history-only sample: 505 of 1,697 H_prompt points, SHA256-ranked at most 8 per trajectory. Membership uses only history/prompt, candidate validity and bank-count completeness; no reward values, Live/Fork labels or judge gains select points. Input hashes and per-trajectory inclusion probabilities are archived with the sample.
