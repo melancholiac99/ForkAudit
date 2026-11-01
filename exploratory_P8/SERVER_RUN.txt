@@ -1,0 +1,44 @@
+P8 server execution (2026-11-01)
+
+Worktree: /root/autodl-tmp/forkaudit_p8
+Branch: server/p8-preflight-20261101
+Source data (read only): /root/autodl-tmp/idea
+Preregistration: 6b41fa6b3fc6348b5dd893e9745f3a2535145c98
+Blind sample freeze: 357ad1a
+Python: /root/miniconda3/envs/m0/bin/python
+
+Completed commands from this worktree:
+  python exploratory_P8/p8_preflight_selftest.py --selftest
+  python exploratory_P8/p8_preflight_selftest.py --preflight --repo-root /root/autodl-tmp/idea
+  python exploratory_P8/p8_audit.py freeze
+  python exploratory_P8/p8_audit.py analyze
+  python exploratory_P8/verify_cpu.py
+  python exploratory_P8/p8_judges.py prepare
+
+CPU report: exploratory_P8/P8_CPU_REPORT.txt
+Detailed CPU results: exploratory_P8/p8_cpu.json
+Independent verification: exploratory_P8/cpu_verification.json
+Old-result reproduction: exploratory_P8/consistency_gate.json
+Frozen sample: exploratory_P8/blind_sample.json (505 points)
+New judge requests and reused scores: exploratory_P8/data/judge/
+Costs/token lengths/reuse: phase_c_preparation.json, phase_c_token_preflight.json
+
+Background continuation command:
+  python -u exploratory_P8/p8_queue.py
+It waits for E4 completed_verified plus passed independent final_verification.json
+and no GPU compute process. Then:
+  python exploratory_P8/p8_judges.py score --name 7b
+  python exploratory_P8/p8_judges.py score --name 32b
+  python exploratory_P8/p8_judges.py analyze
+  python exploratory_P8/verify_complete.py
+
+Live status: exploratory_P8/run/status.json
+Process/launch receipt: exploratory_P8/run/launch.json
+Logs: exploratory_P8/run/queue.log, score_7b.log, score_32b.log, analyze.log, final_verify.log
+Final artifacts (only after GPU completion): P8_REPORT.txt, p8_phase_c.json,
+p8_complete.json, complete_verification.json, artifact_manifest.json.
+No original labels, data, P4 reports or E4 study parameters are modified.
+No repeated trajectory collection, policy training, push or shutdown.
+Missing inputs, hash changes, numerical failure, GPU conflict or disk <8 GiB
+stop the queue and preserve outputs for investigation.
+E5's waiting queue is suspended pending its separate pre-data amendment.

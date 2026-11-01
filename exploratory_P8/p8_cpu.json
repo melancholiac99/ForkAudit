@@ -1,0 +1,4567 @@
+{
+  "commit": "722cf68dab1509ca99315f3ef61ae8d6af1434f7",
+  "source": "/root/autodl-tmp/idea",
+  "prereg_sha256": "2cc04a1c5d499c747b23018b5a0bb670b7dad67314904e8573dd3ed0cf0a3454",
+  "units": "fraction; multiply by 100 for percentage points",
+  "seed": 20261101,
+  "bootstrap": 10000,
+  "counts": {
+    "points": 3038,
+    "trajectories": 98,
+    "H_prompt": 1697,
+    "H_full": 1545
+  },
+  "integrity": {
+    "bank_point_counts": {
+      "1": 3038,
+      "2": 3038,
+      "3": 1478,
+      "4": 1478,
+      "5": 1478,
+      "6": 1478,
+      "7": 300
+    },
+    "peek_points": 3038
+  },
+  "old_consistency": {
+    "n": 184,
+    "expected_n": 184,
+    "X2": -0.06824376075655576,
+    "expected_X2": -0.06824376075655576,
+    "E1": -0.11128211844951125,
+    "expected_E1": -0.11128211844951125,
+    "passed": true
+  },
+  "P1": "NEG",
+  "P2": false,
+  "S4": true,
+  "S5": "PENDING_PHASE_C",
+  "reading": "R-P8-MISDIRECT-HISTORY",
+  "selection_interpretation_permitted": false,
+  "table": {
+    "X2": {
+      "H_prompt": {
+        "G_u": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.005946779100746515,
+          "ci95": [
+            -0.010048523048825506,
+            -0.002153169251104606
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0006531030442151843,
+          "ci95": [
+            -0.0032242196346056362,
+            0.004366657050362679
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.007620672783718356,
+          "ci95": [
+            -0.014835929387370649,
+            -0.0012630801399802023
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 1697,
+          "missing": 1527,
+          "missing_rate": 0.8998232174425457,
+          "estimate": -0.023821182255571664,
+          "ci95": [
+            -0.03279243721497427,
+            -0.012703319886019323
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_full": {
+        "G_u": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.007115530870366241,
+          "ci95": [
+            -0.011433306683092621,
+            -0.0031311208770206734
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0009319340703025855,
+          "ci95": [
+            -0.00322514115492089,
+            0.004960978122240216
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.007960625979680289,
+          "ci95": [
+            -0.015410731143712816,
+            -0.0012056363473897172
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 167,
+          "n_traj": 47,
+          "eligible": 1545,
+          "missing": 1378,
+          "missing_rate": 0.8919093851132686,
+          "estimate": -0.023713337121177586,
+          "ci95": [
+            -0.03283691840546401,
+            -0.012391010639856329
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Live": {
+        "G_u": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.012188024316385066,
+          "ci95": [
+            -0.019497173190425827,
+            -0.004655187061305452
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.001338545731924117,
+          "ci95": [
+            -0.006652037183964536,
+            0.009154318542089396
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.01090990807088021,
+          "ci95": [
+            -0.020263218530108627,
+            -0.002346904938348386
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 828,
+          "missing": 658,
+          "missing_rate": 0.7946859903381642,
+          "estimate": -0.023821182255571664,
+          "ci95": [
+            -0.03279243721497427,
+            -0.012703319886019323
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Fork": {
+        "G_u": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.04655981265944634,
+          "ci95": [
+            -0.06284318966730319,
+            -0.029315762651757917
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.011610121981076539,
+          "ci95": [
+            -0.008351693676200282,
+            0.028406803785591943
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.038060393966932414,
+          "ci95": [
+            -0.05875459365508692,
+            -0.015612001528347774
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 74,
+          "n_traj": 31,
+          "eligible": 255,
+          "missing": 181,
+          "missing_rate": 0.7098039215686275,
+          "estimate": -0.05801892364539197,
+          "ci95": [
+            -0.07636076121408167,
+            -0.03795061032506576
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_nonFork_Live": {
+        "G_u": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0031083212813123595,
+          "ci95": [
+            -0.0035997372586183797,
+            0.00998397077954845
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.003232574588379319,
+          "ci95": [
+            -0.011202594989716251,
+            0.00508115877240668
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0019941869336810216,
+          "ci95": [
+            -0.006266058847109066,
+            0.010134559483141584
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 96,
+          "n_traj": 43,
+          "eligible": 573,
+          "missing": 477,
+          "missing_rate": 0.8324607329842932,
+          "estimate": 0.002539576732414828,
+          "ci95": [
+            -0.0033709051198862815,
+            0.009112037899422507
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Dead": {
+        "G_u": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -1.0220695278482454e-18,
+          "ci95": [
+            -2.3445946435314003e-18,
+            -2.1597056033383003e-19
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -1.0220695278482454e-18,
+          "ci95": [
+            -2.3445946435314003e-18,
+            -2.1597056033383003e-19
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -1.1950317278951337e-17,
+          "ci95": [
+            -2.5057116875220544e-17,
+            -2.3129646346357427e-18
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 0,
+          "n_traj": 0,
+          "eligible": 869,
+          "missing": 869,
+          "missing_rate": 1.0,
+          "estimate": null,
+          "ci95": null,
+          "invalid_bootstrap": 10000
+        }
+      },
+      "old_I_Fork": {
+        "G_u": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.06824376075655575,
+          "ci95": [
+            -0.08391649390688351,
+            -0.04924508456450029
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.010017108808661641,
+          "ci95": [
+            -0.02136660319163157,
+            0.035855870115000424
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.05004075837967531,
+          "ci95": [
+            -0.07378892912857594,
+            -0.024048238697290447
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 57,
+          "n_traj": 27,
+          "eligible": 184,
+          "missing": 127,
+          "missing_rate": 0.6902173913043478,
+          "estimate": -0.06590050658773938,
+          "ci95": [
+            -0.08986774295404466,
+            -0.038316258053357664
+          ],
+          "invalid_bootstrap": 0
+        }
+      }
+    },
+    "drafts_all": {
+      "H_prompt": {
+        "G_u": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.006070129725706989,
+          "ci95": [
+            -0.010275570645759072,
+            -0.002155230018967169
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0005297524192547104,
+          "ci95": [
+            -0.003380308961208383,
+            0.004228217751788122
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.0068516814670854164,
+          "ci95": [
+            -0.014196857910504368,
+            -0.00013673508037769644
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 1697,
+          "missing": 1527,
+          "missing_rate": 0.8998232174425457,
+          "estimate": -0.024567956711288343,
+          "ci95": [
+            -0.033779685008310856,
+            -0.013155270569554726
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_full": {
+        "G_u": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.007244219061933383,
+          "ci95": [
+            -0.011643254098831855,
+            -0.003141115178265684
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0008032458787354429,
+          "ci95": [
+            -0.00335862091664162,
+            0.004837079264896712
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.007219029183256049,
+          "ci95": [
+            -0.014867136705620593,
+            -8.167777854289844e-05
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 167,
+          "n_traj": 47,
+          "eligible": 1545,
+          "missing": 1378,
+          "missing_rate": 0.8919093851132686,
+          "estimate": -0.024473526686877203,
+          "ci95": [
+            -0.03378990259859493,
+            -0.012766905344531756
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Live": {
+        "G_u": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.012440833507880143,
+          "ci95": [
+            -0.01993359806947552,
+            -0.004729727945471915
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.001085736540429038,
+          "ci95": [
+            -0.006987201179257351,
+            0.008853858035798573
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.009989002840287767,
+          "ci95": [
+            -0.019539605580967245,
+            -0.0010786149149754685
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 828,
+          "missing": 658,
+          "missing_rate": 0.7946859903381642,
+          "estimate": -0.024567956711288343,
+          "ci95": [
+            -0.033779685008310856,
+            -0.013155270569554726
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Fork": {
+        "G_u": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.046690015614462704,
+          "ci95": [
+            -0.06303793920603859,
+            -0.029403171308330287
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.011479919026060173,
+          "ci95": [
+            -0.008576675681512727,
+            0.02830307568113914
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.038122898441982266,
+          "ci95": [
+            -0.05906503649364489,
+            -0.015404695689754177
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 74,
+          "n_traj": 31,
+          "eligible": 255,
+          "missing": 181,
+          "missing_rate": 0.7098039215686275,
+          "estimate": -0.060161260828578596,
+          "ci95": [
+            -0.07822083710870174,
+            -0.04003856042975074
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_nonFork_Live": {
+        "G_u": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0028009491049969114,
+          "ci95": [
+            -0.003989977169601002,
+            0.00977619503326756
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.003539946764694766,
+          "ci95": [
+            -0.011670159214434017,
+            0.004881837249076944
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.002818020752064132,
+          "ci95": [
+            -0.005903464063191097,
+            0.011455001385775392
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 96,
+          "n_traj": 43,
+          "eligible": 573,
+          "missing": 477,
+          "missing_rate": 0.8324607329842932,
+          "estimate": 0.0028685485457895575,
+          "ci95": [
+            -0.0031603829213923164,
+            0.009774175643583868
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Dead": {
+        "G_u": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -2.5551738196206134e-19,
+          "ci95": [
+            -7.4313983914058e-19,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -2.5551738196206134e-19,
+          "ci95": [
+            -7.4313983914058e-19,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -3.469446951953614e-18,
+          "ci95": [
+            -9.477513624848898e-18,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 0,
+          "n_traj": 0,
+          "eligible": 869,
+          "missing": 869,
+          "missing_rate": 1.0,
+          "estimate": null,
+          "ci95": null,
+          "invalid_bootstrap": 10000
+        }
+      },
+      "old_I_Fork": {
+        "G_u": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.0690449226696175,
+          "ci95": [
+            -0.08470972363259556,
+            -0.04996884080403365
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.009215946895599899,
+          "ci95": [
+            -0.02226267427384227,
+            0.035195659883209725
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.050773879722932805,
+          "ci95": [
+            -0.0746412032689646,
+            -0.024688717284653564
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 57,
+          "n_traj": 27,
+          "eligible": 184,
+          "missing": 127,
+          "missing_rate": 0.6902173913043478,
+          "estimate": -0.0686435486976211,
+          "ci95": [
+            -0.09197848202461674,
+            -0.04058203101397016
+          ],
+          "invalid_bootstrap": 0
+        }
+      }
+    },
+    "chosen": {
+      "H_prompt": {
+        "G_u": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.0065998821449616985,
+          "ci95": [
+            -0.011625432563904291,
+            -0.0018160136544544136
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.006093997930925811,
+          "ci95": [
+            -0.01110854289275786,
+            0.028562086517005474
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 1697,
+          "missing": 1527,
+          "missing_rate": 0.8998232174425457,
+          "estimate": -0.016117647058823525,
+          "ci95": [
+            -0.03729902179739145,
+            0.00797773017541023
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_full": {
+        "G_u": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.008047464940668825,
+          "ci95": [
+            -0.013354619240868944,
+            -0.0030047827258790866
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.005937790518856992,
+          "ci95": [
+            -0.012140661170528649,
+            0.028953531772458404
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 167,
+          "n_traj": 47,
+          "eligible": 1545,
+          "missing": 1378,
+          "missing_rate": 0.8919093851132686,
+          "estimate": -0.015508982035928143,
+          "ci95": [
+            -0.03691057974715873,
+            0.009127597402597398
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Live": {
+        "G_u": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.013526570048309183,
+          "ci95": [
+            -0.022927141773402496,
+            -0.003843249016938904
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.005199709753545073,
+          "ci95": [
+            -0.017149732198453106,
+            0.03340314549086712
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 828,
+          "missing": 658,
+          "missing_rate": 0.7946859903381642,
+          "estimate": -0.016117647058823525,
+          "ci95": [
+            -0.03729902179739145,
+            0.00797773017541023
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Fork": {
+        "G_u": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.058169934640522884,
+          "ci95": [
+            -0.0811883303714987,
+            -0.030824335267917398
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.04040974529346622,
+          "ci95": [
+            -0.09083572974644402,
+            0.013179533097961386
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 74,
+          "n_traj": 31,
+          "eligible": 255,
+          "missing": 181,
+          "missing_rate": 0.7098039215686275,
+          "estimate": -0.0554054054054054,
+          "ci95": [
+            -0.09825208333333335,
+            -0.002857142857142856
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_nonFork_Live": {
+        "G_u": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.006340895869691681,
+          "ci95": [
+            -0.0036247790763716667,
+            0.01626027572891684
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0080241391619884,
+          "ci95": [
+            -0.009847888211709767,
+            0.02887252870595992
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 96,
+          "n_traj": 43,
+          "eligible": 573,
+          "missing": 477,
+          "missing_rate": 0.8324607329842932,
+          "estimate": 0.014166666666666662,
+          "ci95": [
+            -0.0021925418569254205,
+            0.030787442167878366
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Dead": {
+        "G_u": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 0,
+          "n_traj": 0,
+          "eligible": 869,
+          "missing": 869,
+          "missing_rate": 1.0,
+          "estimate": null,
+          "ci95": null,
+          "invalid_bootstrap": 10000
+        }
+      },
+      "old_I_Fork": {
+        "G_u": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.0782608695652174,
+          "ci95": [
+            -0.11065655440722262,
+            -0.03809274059274063
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.05797946592818389,
+          "ci95": [
+            -0.11861493458476965,
+            0.0062570273561127045
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 57,
+          "n_traj": 27,
+          "eligible": 184,
+          "missing": 127,
+          "missing_rate": 0.6902173913043478,
+          "estimate": -0.05649122807017543,
+          "ci95": [
+            -0.10972321428571427,
+            0.01203160511363636
+          ],
+          "invalid_bootstrap": 0
+        }
+      }
+    },
+    "logp_mean": {
+      "H_prompt": {
+        "G_u": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.007821113489249855,
+          "ci95": [
+            -0.012426529861350292,
+            -0.0038740568532091733
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.0012212313442881574,
+          "ci95": [
+            -0.006449468269034637,
+            0.003731828822184167
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.006699399798178641,
+          "ci95": [
+            -0.011938598759123193,
+            -0.0017727525233241965
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 1697,
+          "missing": 1527,
+          "missing_rate": 0.8998232174425457,
+          "estimate": -0.019236645875467223,
+          "ci95": [
+            -0.031326171243546856,
+            -0.007358871651939966
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_full": {
+        "G_u": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.00857438354993829,
+          "ci95": [
+            -0.013549881905254742,
+            -0.004309662946303911
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.0005269186092694656,
+          "ci95": [
+            -0.0060239162164927,
+            0.004830968572857904
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.008203150018682605,
+          "ci95": [
+            -0.014266929943183272,
+            -0.002654220607832264
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 167,
+          "n_traj": 47,
+          "eligible": 1545,
+          "missing": 1378,
+          "missing_rate": 0.8919093851132686,
+          "estimate": -0.02005309068170338,
+          "ci95": [
+            -0.03238371198052447,
+            -0.008068089565870006
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Live": {
+        "G_u": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.016029504337266912,
+          "ci95": [
+            -0.023869903572211706,
+            -0.008709380077248778
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.002502934288957732,
+          "ci95": [
+            -0.012977415278711027,
+            0.007762598347403824
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.010560939592367327,
+          "ci95": [
+            -0.01715112195200518,
+            -0.004123938272118265
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 828,
+          "missing": 658,
+          "missing_rate": 0.7946859903381642,
+          "estimate": -0.019236645875467223,
+          "ci95": [
+            -0.031326171243546856,
+            -0.007358871651939966
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Fork": {
+        "G_u": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.05382187565301012,
+          "ci95": [
+            -0.06823871305866354,
+            -0.037370988612419824
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.004348058987512753,
+          "ci95": [
+            -0.021691468070156518,
+            0.028417864525410147
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.04699447244648742,
+          "ci95": [
+            -0.0650731476273283,
+            -0.02958310638599775
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 74,
+          "n_traj": 31,
+          "eligible": 255,
+          "missing": 181,
+          "missing_rate": 0.7098039215686275,
+          "estimate": -0.05136522054302397,
+          "ci95": [
+            -0.07523946069146545,
+            -0.028613243560224048
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_nonFork_Live": {
+        "G_u": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0007890902273308491,
+          "ci95": [
+            -0.004783947131933604,
+            0.006049893348403637
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.005551805642360829,
+          "ci95": [
+            -0.01624824557017672,
+            0.005172066796892399
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0021371497174691185,
+          "ci95": [
+            -0.005187697250761785,
+            0.008969128107758536
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 96,
+          "n_traj": 43,
+          "eligible": 573,
+          "missing": 477,
+          "missing_rate": 0.8324607329842932,
+          "estimate": 0.005529130430774428,
+          "ci95": [
+            -0.0004937727760905445,
+            0.011575940293662228
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Dead": {
+        "G_u": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -3.83276072943092e-19,
+          "ci95": [
+            -1.143094126905411e-18,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -3.83276072943092e-19,
+          "ci95": [
+            -1.143094126905411e-18,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -2.6984587404083662e-18,
+          "ci95": [
+            -7.031412489292657e-18,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 0,
+          "n_traj": 0,
+          "eligible": 869,
+          "missing": 869,
+          "missing_rate": 1.0,
+          "estimate": null,
+          "ci95": null,
+          "invalid_bootstrap": 10000
+        }
+      },
+      "old_I_Fork": {
+        "G_u": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.06708863283324713,
+          "ci95": [
+            -0.08291251890075313,
+            -0.047715949886024414
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.011172236731970252,
+          "ci95": [
+            -0.021076804888518135,
+            0.04088614546799299
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.06552194827335503,
+          "ci95": [
+            -0.08973619806013311,
+            -0.04352317950384186
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 57,
+          "n_traj": 27,
+          "eligible": 184,
+          "missing": 127,
+          "missing_rate": 0.6902173913043478,
+          "estimate": -0.06499208371951205,
+          "ci95": [
+            -0.09317574168019319,
+            -0.037696441767620784
+          ],
+          "invalid_bootstrap": 0
+        }
+      }
+    },
+    "R0": {
+      "H_prompt": {
+        "G_u": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 4.677722231037047e-18,
+          "ci95": [
+            2.8597486812160117e-18,
+            6.693237459966434e-18
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.006599882144961703,
+          "ci95": [
+            0.0018160136544544169,
+            0.011625432563904293
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 8.910002908996827e-18,
+          "ci95": [
+            3.964443657760758e-18,
+            1.445697823877631e-17
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 1697,
+          "missing": 1527,
+          "missing_rate": 0.8998232174425457,
+          "estimate": 1.9928911462251202e-17,
+          "ci95": [
+            1.3458140959487707e-17,
+            2.7552500159617973e-17
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_full": {
+        "G_u": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 4.742700299369601e-18,
+          "ci95": [
+            2.748728976104108e-18,
+            6.948504863401874e-18
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.008047464940668832,
+          "ci95": [
+            0.0030047827258790835,
+            0.013354619240868944
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 7.478519469816168e-18,
+          "ci95": [
+            1.336217253104263e-18,
+            1.3795713018656122e-17
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 167,
+          "n_traj": 47,
+          "eligible": 1545,
+          "missing": 1378,
+          "missing_rate": 0.8919093851132686,
+          "estimate": 1.8957307447051935e-17,
+          "ci95": [
+            1.2638619669514157e-17,
+            2.6084178160507378e-17
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Live": {
+        "G_u": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 9.587070804432209e-18,
+          "ci95": [
+            6.523370499799299e-18,
+            1.271335511954847e-17
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.01352657004830919,
+          "ci95": [
+            0.0038432490169389125,
+            0.022927141773402503
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 1.1467407008080385e-17,
+          "ci95": [
+            5.273523320735246e-18,
+            1.8329098986669204e-17
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 828,
+          "missing": 658,
+          "missing_rate": 0.7946859903381642,
+          "estimate": 1.9928911462251202e-17,
+          "ci95": [
+            1.3458140959487707e-17,
+            2.7552500159617973e-17
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Fork": {
+        "G_u": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 1.7088726947661724e-17,
+          "ci95": [
+            1.175596514245208e-17,
+            2.2615725198716907e-17
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0581699346405229,
+          "ci95": [
+            0.030824335267917415,
+            0.0811883303714987
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 1.2043553062673088e-17,
+          "ci95": [
+            -3.4622502275763646e-18,
+            2.5456737066707154e-17
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 74,
+          "n_traj": 31,
+          "eligible": 255,
+          "missing": 181,
+          "missing_rate": 0.7098039215686275,
+          "estimate": 2.78493444521682e-17,
+          "ci95": [
+            1.722991702220201e-17,
+            4.2528704572334625e-17
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_nonFork_Live": {
+        "G_u": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 6.248637442262006e-18,
+          "ci95": [
+            3.030494287028203e-18,
+            9.513849473757094e-18
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -0.006340895869691671,
+          "ci95": [
+            -0.016260275728916834,
+            0.0036247790763716684
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 9.36583766887542e-18,
+          "ci95": [
+            3.3975020655961035e-18,
+            1.6276432134295598e-17
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 96,
+          "n_traj": 43,
+          "eligible": 573,
+          "missing": 477,
+          "missing_rate": 0.8324607329842932,
+          "estimate": 1.3823577699190182e-17,
+          "ci95": [
+            6.756269485339377e-18,
+            2.1535102545207028e-17
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Dead": {
+        "G_u": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 0,
+          "n_traj": 0,
+          "eligible": 869,
+          "missing": 869,
+          "missing_rate": 1.0,
+          "estimate": null,
+          "ci95": null,
+          "invalid_bootstrap": 10000
+        }
+      },
+      "old_I_Fork": {
+        "G_u": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 1.7045543720467755e-17,
+          "ci95": [
+            1.0092534798624533e-17,
+            2.352455847613952e-17
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.07826086956521741,
+          "ci95": [
+            0.038092740592740613,
+            0.11065655440722263
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 1.056044706007971e-17,
+          "ci95": [
+            -7.70166306857105e-18,
+            2.662796231099643e-17
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 57,
+          "n_traj": 27,
+          "eligible": 184,
+          "missing": 127,
+          "missing_rate": 0.6902173913043478,
+          "estimate": 2.8851190442561634e-17,
+          "ci95": [
+            1.768285445531228e-17,
+            4.408238480129298e-17
+          ],
+          "invalid_bootstrap": 0
+        }
+      }
+    },
+    "R1_window": {
+      "H_prompt": {
+        "G_u": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.011684017547305702,
+          "ci95": [
+            0.00706935450176678,
+            0.01713476451039588
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.018283899692267402,
+          "ci95": [
+            0.010426741498687744,
+            0.02718845580310456
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.011979158449581098,
+          "ci95": [
+            0.007034101916826392,
+            0.017097016404633743
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 1697,
+          "missing": 1527,
+          "missing_rate": 0.8998232174425457,
+          "estimate": 0.031593137254901954,
+          "ci95": [
+            0.018228914650537626,
+            0.04682614772428307
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_full": {
+        "G_u": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.012988133764832792,
+          "ci95": [
+            0.008032233783241844,
+            0.01892015318035426
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.02103559870550162,
+          "ci95": [
+            0.012827891220888418,
+            0.030538751449178867
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.012874389185260316,
+          "ci95": [
+            0.007791418564551291,
+            0.018084464738488574
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 167,
+          "n_traj": 47,
+          "eligible": 1545,
+          "missing": 1378,
+          "missing_rate": 0.8919093851132686,
+          "estimate": 0.03126247504990019,
+          "ci95": [
+            0.017705913968559035,
+            0.046558503858343654
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Live": {
+        "G_u": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.023946591519055285,
+          "ci95": [
+            0.01600896996995521,
+            0.032773188328050686
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.03747316156736447,
+          "ci95": [
+            0.023586253877489298,
+            0.05203194569268875
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.018473841251767015,
+          "ci95": [
+            0.011902790691792798,
+            0.025094707783515826
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 828,
+          "missing": 658,
+          "missing_rate": 0.7946859903381642,
+          "estimate": 0.031593137254901954,
+          "ci95": [
+            0.018228914650537626,
+            0.04682614772428307
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Fork": {
+        "G_u": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.06372549019607841,
+          "ci95": [
+            0.04497008360972913,
+            0.0807469271076827
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.1218954248366013,
+          "ci95": [
+            0.08394433913172764,
+            0.1519234800838574
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.05687353882121323,
+          "ci95": [
+            0.04234788233177874,
+            0.07249240829012582
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 74,
+          "n_traj": 31,
+          "eligible": 255,
+          "missing": 181,
+          "missing_rate": 0.7098039215686275,
+          "estimate": 0.07084459459459459,
+          "ci95": [
+            0.044830000620039674,
+            0.09591553447114302
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_nonFork_Live": {
+        "G_u": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.006243940275353887,
+          "ci95": [
+            0.0009484680181076751,
+            0.011965383758586525
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": -9.695559433779043e-05,
+          "ci95": [
+            -0.011793198694553138,
+            0.012010997515306262
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.00614787719542117,
+          "ci95": [
+            -0.00028055737365028597,
+            0.012984004160389057
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 96,
+          "n_traj": 43,
+          "eligible": 573,
+          "missing": 477,
+          "missing_rate": 0.8324607329842932,
+          "estimate": 0.0013368055555555512,
+          "ci95": [
+            -0.006162130051551144,
+            0.009714106525784147
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Dead": {
+        "G_u": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 0,
+          "n_traj": 0,
+          "eligible": 869,
+          "missing": 869,
+          "missing_rate": 1.0,
+          "estimate": null,
+          "ci95": null,
+          "invalid_bootstrap": 10000
+        }
+      },
+      "old_I_Fork": {
+        "G_u": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0777324879227053,
+          "ci95": [
+            0.05623138984767315,
+            0.09549852907245035
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.1559933574879227,
+          "ci95": [
+            0.10085325591985428,
+            0.19853090496156534
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.06746993035454572,
+          "ci95": [
+            0.051115225092701826,
+            0.08526186838943826
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 57,
+          "n_traj": 27,
+          "eligible": 184,
+          "missing": 127,
+          "missing_rate": 0.6902173913043478,
+          "estimate": 0.08723684210526314,
+          "ci95": [
+            0.0589048202614379,
+            0.11120486111111107
+          ],
+          "invalid_bootstrap": 0
+        }
+      }
+    },
+    "R1_full": {
+      "H_prompt": {
+        "G_u": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.03642702808878413,
+          "ci95": [
+            0.02112275135085356,
+            0.05357146015473385
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.04302691023374582,
+          "ci95": [
+            0.025018147150835647,
+            0.06331992205573102
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.03004770721005073,
+          "ci95": [
+            0.01883391859317072,
+            0.041900682434921954
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 1697,
+          "missing": 1527,
+          "missing_rate": 0.8998232174425457,
+          "estimate": 0.10550980392156863,
+          "ci95": [
+            0.06496739099680278,
+            0.14991734406952964
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_full": {
+        "G_u": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.04102481121898598,
+          "ci95": [
+            0.02480632764763937,
+            0.059304050790938
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0490722761596548,
+          "ci95": [
+            0.02977319139101007,
+            0.07084464370733047
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0327786347933613,
+          "ci95": [
+            0.022099646683137197,
+            0.04437793516919966
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 167,
+          "n_traj": 47,
+          "eligible": 1545,
+          "missing": 1378,
+          "missing_rate": 0.8919093851132686,
+          "estimate": 0.10740518962075848,
+          "ci95": [
+            0.06633678133586979,
+            0.15232395976468563
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Live": {
+        "G_u": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.07465780998389694,
+          "ci95": [
+            0.0492489199078535,
+            0.10049866818873666
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.08818438003220612,
+          "ci95": [
+            0.05789917968772592,
+            0.11925398510941591
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.044883545478025616,
+          "ci95": [
+            0.030513060324204488,
+            0.06010558898847275
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 170,
+          "n_traj": 48,
+          "eligible": 828,
+          "missing": 658,
+          "missing_rate": 0.7946859903381642,
+          "estimate": 0.10550980392156863,
+          "ci95": [
+            0.06496739099680278,
+            0.14991734406952964
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Fork": {
+        "G_u": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.2104357298474946,
+          "ci95": [
+            0.14671734793108354,
+            0.2597545928424035
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.2686056644880174,
+          "ci95": [
+            0.18532835732192257,
+            0.33277305397293055
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.14521360126738034,
+          "ci95": [
+            0.10184800259539842,
+            0.18898390596697887
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 74,
+          "n_traj": 31,
+          "eligible": 255,
+          "missing": 181,
+          "missing_rate": 0.7098039215686275,
+          "estimate": 0.2321171171171171,
+          "ci95": [
+            0.14978879042288556,
+            0.30779774030854423
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_nonFork_Live": {
+        "G_u": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.014233081248788054,
+          "ci95": [
+            0.005508762004423471,
+            0.02471311792704451
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.007892185379096375,
+          "ci95": [
+            -0.004549869500029469,
+            0.02128242205848008
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.014761560717732743,
+          "ci95": [
+            0.0038666253293573472,
+            0.02784476244088847
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 96,
+          "n_traj": 43,
+          "eligible": 573,
+          "missing": 477,
+          "missing_rate": 0.8324607329842932,
+          "estimate": 0.007916666666666664,
+          "ci95": [
+            -0.007035131291880952,
+            0.029569429125816976
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "H_Dead": {
+        "G_u": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 0,
+          "n_traj": 0,
+          "eligible": 869,
+          "missing": 869,
+          "missing_rate": 1.0,
+          "estimate": null,
+          "ci95": null,
+          "invalid_bootstrap": 10000
+        }
+      },
+      "old_I_Fork": {
+        "G_u": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.2732638888888889,
+          "ci95": [
+            0.19436960924563496,
+            0.3325120492002676
+          ],
+          "invalid_bootstrap": 0
+        },
+        "G_c": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.3515247584541062,
+          "ci95": [
+            0.24122559422750428,
+            0.4348697377501725
+          ],
+          "invalid_bootstrap": 0
+        },
+        "trajectory_equal": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.18925625379685207,
+          "ci95": [
+            0.13706668885464457,
+            0.24264598505625967
+          ],
+          "invalid_bootstrap": 0
+        },
+        "gold": {
+          "n": 57,
+          "n_traj": 27,
+          "eligible": 184,
+          "missing": 127,
+          "missing_rate": 0.6902173913043478,
+          "estimate": 0.28678362573099414,
+          "ci95": [
+            0.19739608945088402,
+            0.3621659487259815
+          ],
+          "invalid_bootstrap": 0
+        }
+      }
+    }
+  },
+  "contrasts": {
+    "R1_window-policy": {
+      "H_prompt": {
+        "n": 1697,
+        "n_traj": 79,
+        "eligible": 1697,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.017630796648052213,
+        "ci95": [
+          0.010504398450474664,
+          0.025837119630991043
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_full": {
+        "n": 1545,
+        "n_traj": 78,
+        "eligible": 1545,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.020103664635199033,
+        "ci95": [
+          0.012572761603499735,
+          0.02886671082577006
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_Live": {
+        "n": 828,
+        "n_traj": 64,
+        "eligible": 828,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.03613461583544035,
+        "ci95": [
+          0.023965284148461007,
+          0.04951695742370386
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_Fork": {
+        "n": 255,
+        "n_traj": 43,
+        "eligible": 255,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.11028530285552476,
+        "ci95": [
+          0.08123378487028239,
+          0.13521216866577948
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_nonFork_Live": {
+        "n": 573,
+        "n_traj": 62,
+        "eligible": 573,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.0031356189940415285,
+        "ci95": [
+          -0.006518270940150096,
+          0.013200300575386252
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_Dead": {
+        "n": 869,
+        "n_traj": 48,
+        "eligible": 869,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 1.0220695278482454e-18,
+        "ci95": [
+          2.1597056033382967e-19,
+          2.3445946435314e-18
+        ],
+        "invalid_bootstrap": 0
+      },
+      "old_I_Fork": {
+        "n": 184,
+        "n_traj": 39,
+        "eligible": 184,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.14597624867926107,
+        "ci95": [
+          0.11102065201179624,
+          0.17335471158357407
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "R1_window-policy_information_budget": "same prompt",
+    "R1_full-policy": {
+      "H_prompt": {
+        "n": 1697,
+        "n_traj": 79,
+        "eligible": 1697,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.04237380718953064,
+        "ci95": [
+          0.024732701998205295,
+          0.06197680941347713
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_full": {
+        "n": 1545,
+        "n_traj": 78,
+        "eligible": 1545,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.04814034208935222,
+        "ci95": [
+          0.02955957208265836,
+          0.0688716454767162
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_Live": {
+        "n": 828,
+        "n_traj": 64,
+        "eligible": 828,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.086845834300282,
+        "ci95": [
+          0.057212151130507,
+          0.1167155191641236
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_Fork": {
+        "n": 255,
+        "n_traj": 43,
+        "eligible": 255,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.2569955425069409,
+        "ci95": [
+          0.18196388855899098,
+          0.3145736700025484
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_nonFork_Live": {
+        "n": 573,
+        "n_traj": 62,
+        "eligible": 573,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.011124759967475693,
+        "ci95": [
+          -1.8564719570417835e-05,
+          0.023573727964733403
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_Dead": {
+        "n": 869,
+        "n_traj": 48,
+        "eligible": 869,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 1.0220695278482454e-18,
+        "ci95": [
+          2.1597056033382967e-19,
+          2.3445946435314e-18
+        ],
+        "invalid_bootstrap": 0
+      },
+      "old_I_Fork": {
+        "n": 184,
+        "n_traj": 39,
+        "eligible": 184,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.34150764964544467,
+        "ci95": [
+          0.2506691308912839,
+          0.4087250208386271
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "R1_full-policy_information_budget": "extra full history; not same-information"
+  },
+  "decomposition": {
+    "Live": {
+      "total": {
+        "n": 828,
+        "n_traj": 64,
+        "eligible": 828,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.012188024316385066,
+        "ci95": [
+          -0.019497173190425827,
+          -0.004655187061305452
+        ],
+        "invalid_bootstrap": 0
+      },
+      "fork_weight": {
+        "n": 828,
+        "n_traj": 64,
+        "eligible": 828,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.3079710144927536,
+        "ci95": [
+          0.2447173733892718,
+          0.37706855791962174
+        ],
+        "invalid_bootstrap": 0
+      },
+      "no_compensation": {
+        "n": 828,
+        "n_traj": 64,
+        "eligible": 828,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.014339072739322242,
+        "ci95": [
+          -0.020324582122206405,
+          -0.008274395707827478
+        ],
+        "invalid_bootstrap": 0
+      },
+      "nonfork_compensation": {
+        "n": 828,
+        "n_traj": 64,
+        "eligible": 828,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.0021510484229371766,
+        "ci95": [
+          -0.0024821264953627975,
+          0.006795438409315901
+        ],
+        "invalid_bootstrap": 0
+      },
+      "bootstrap_sum_error": 1.3010426069826053e-17,
+      "bootstrap_reweighted_identity_error": 1.1275702593849246e-17
+    },
+    "H_prompt": {
+      "total": {
+        "n": 1697,
+        "n_traj": 79,
+        "eligible": 1697,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.005946779100746515,
+        "ci95": [
+          -0.010048523048825506,
+          -0.002153169251104606
+        ],
+        "invalid_bootstrap": 0
+      },
+      "fork_weight": {
+        "n": 1697,
+        "n_traj": 79,
+        "eligible": 1697,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.1502651738361815,
+        "ci95": [
+          0.10274197626829748,
+          0.20331909568245501
+        ],
+        "invalid_bootstrap": 0
+      },
+      "no_compensation": {
+        "n": 1697,
+        "n_traj": 79,
+        "eligible": 1697,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.006996318343051748,
+        "ci95": [
+          -0.010606940366584624,
+          -0.0036861106317962397
+        ],
+        "invalid_bootstrap": 0
+      },
+      "nonfork_compensation": {
+        "n": 1697,
+        "n_traj": 79,
+        "eligible": 1697,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.001049539242305234,
+        "ci95": [
+          -0.0011972589145036068,
+          0.0033900868166293475
+        ],
+        "invalid_bootstrap": 0
+      },
+      "bootstrap_sum_error": 6.288372600415926e-18,
+      "bootstrap_reweighted_identity_error": null
+    },
+    "Live_share_in_H": {
+      "n": 1697,
+      "n_traj": 79,
+      "eligible": 1697,
+      "missing": 0,
+      "missing_rate": 0.0,
+      "estimate": 0.48791985857395404,
+      "ci95": [
+        0.3825161363114408,
+        0.5960008435078489
+      ],
+      "invalid_bootstrap": 0
+    }
+  },
+  "subgroups": {
+    "range/0": {
+      "X2": {
+        "n": 870,
+        "n_traj": 49,
+        "eligible": 870,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -1.0208947352875003e-18,
+        "ci95": [
+          -2.3408524231241455e-18,
+          -2.1596536325416773e-19
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 870,
+        "n_traj": 49,
+        "eligible": 870,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 870,
+        "n_traj": 49,
+        "eligible": 870,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 870,
+        "n_traj": 49,
+        "eligible": 870,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "range/(0,1/3]": {
+      "X2": {
+        "n": 466,
+        "n_traj": 60,
+        "eligible": 466,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.0033296414023065643,
+        "ci95": [
+          -0.0027144027319225676,
+          0.009364897571554693
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 466,
+        "n_traj": 60,
+        "eligible": 466,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.00278969957081545,
+        "ci95": [
+          -0.005660711896159506,
+          0.01124040678333256
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 466,
+        "n_traj": 60,
+        "eligible": 466,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.003701716738197424,
+        "ci95": [
+          -0.0008399752683319606,
+          0.008667896031948901
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 466,
+        "n_traj": 60,
+        "eligible": 466,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.008470433953266571,
+        "ci95": [
+          0.0029114117634058247,
+          0.014526030210491096
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "range/(1/3,2/3]": {
+      "X2": {
+        "n": 219,
+        "n_traj": 41,
+        "eligible": 219,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.010039322194245172,
+        "ci95": [
+          -0.023937962403557955,
+          0.0044153766959979905
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 219,
+        "n_traj": 41,
+        "eligible": 219,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.006088280060882802,
+        "ci95": [
+          -0.027777777777777787,
+          0.01645852158634538
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 219,
+        "n_traj": 41,
+        "eligible": 219,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.02524099441907661,
+        "ci95": [
+          0.014223975891750368,
+          0.03605930902314548
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 219,
+        "n_traj": 41,
+        "eligible": 219,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.05933536276002029,
+        "ci95": [
+          0.03459048050121944,
+          0.08617788147494936
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "range/(2/3,1]": {
+      "X2": {
+        "n": 142,
+        "n_traj": 31,
+        "eligible": 142,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.06651186948522538,
+        "ci95": [
+          -0.0895010855690996,
+          -0.04054422091925077
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 142,
+        "n_traj": 31,
+        "eligible": 142,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.07863849765258217,
+        "ci95": [
+          -0.11570287128491122,
+          -0.03729603729603731
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 142,
+        "n_traj": 31,
+        "eligible": 142,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.08855633802816901,
+        "ci95": [
+          0.06166631355932202,
+          0.1139677514524328
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 142,
+        "n_traj": 31,
+        "eligible": 142,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.3160211267605634,
+        "ci95": [
+          0.23064532462073445,
+          0.37958272047557756
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "turn/Q1": {
+      "X2": {
+        "n": 447,
+        "n_traj": 79,
+        "eligible": 447,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.006927903822051026,
+        "ci95": [
+          -0.014981112705005246,
+          0.0004698305446769872
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 447,
+        "n_traj": 79,
+        "eligible": 447,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.013199105145413871,
+        "ci95": [
+          -0.02655252656168356,
+          0.00016031504065040086
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 447,
+        "n_traj": 79,
+        "eligible": 447,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.01366517524235645,
+        "ci95": [
+          0.008092921217504828,
+          0.019424942121226786
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 447,
+        "n_traj": 79,
+        "eligible": 447,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.024602286850608997,
+        "ci95": [
+          0.01664021521779365,
+          0.03288148145194448
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "turn/Q2": {
+      "X2": {
+        "n": 413,
+        "n_traj": 53,
+        "eligible": 413,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.0021995296090389863,
+        "ci95": [
+          -0.01102665823114706,
+          0.005613899530272821
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 413,
+        "n_traj": 53,
+        "eligible": 413,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.004761904761904762,
+        "ci95": [
+          -0.01921706090998888,
+          0.008543544951711656
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 413,
+        "n_traj": 53,
+        "eligible": 413,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.014030131826741994,
+        "ci95": [
+          0.005003998925108859,
+          0.0251014507761318
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 413,
+        "n_traj": 53,
+        "eligible": 413,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.02958703255313425,
+        "ci95": [
+          0.008362483624380428,
+          0.056207656590721106
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "turn/Q3": {
+      "X2": {
+        "n": 433,
+        "n_traj": 43,
+        "eligible": 433,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.009572066087859312,
+        "ci95": [
+          -0.016957591025663726,
+          -0.002684332076976071
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 433,
+        "n_traj": 43,
+        "eligible": 433,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.000846805234795996,
+        "ci95": [
+          -0.011703710078408876,
+          0.010240413340387281
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 433,
+        "n_traj": 43,
+        "eligible": 433,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.015338722093918396,
+        "ci95": [
+          0.007553315855213509,
+          0.02418305093776641
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 433,
+        "n_traj": 43,
+        "eligible": 433,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.06126507569925584,
+        "ci95": [
+          0.031227222947921202,
+          0.09401199733130229
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "turn/Q4": {
+      "X2": {
+        "n": 404,
+        "n_traj": 34,
+        "eligible": 404,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.004806437576568916,
+        "ci95": [
+          -0.008538613771962073,
+          -0.0016687549426194041
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 404,
+        "n_traj": 34,
+        "eligible": 404,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.007343234323432343,
+        "ci95": [
+          -0.014022161827743162,
+          -0.0017683298502264029
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 404,
+        "n_traj": 34,
+        "eligible": 404,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.003176567656765676,
+        "ci95": [
+          0.000946831019399011,
+          0.00582203939460015
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 404,
+        "n_traj": 34,
+        "eligible": 404,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.029881738173817382,
+        "ci95": [
+          0.013514993061311997,
+          0.048611283858485344
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "task/look_at_obj_in_light": {
+      "X2": {
+        "n": 260,
+        "n_traj": 11,
+        "eligible": 260,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.013451961403974502,
+        "ci95": [
+          -0.028563356240598622,
+          -0.002061140755234557
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 260,
+        "n_traj": 11,
+        "eligible": 260,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.0038461538461538455,
+        "ci95": [
+          -0.016158746371357915,
+          0.009639023383252635
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 260,
+        "n_traj": 11,
+        "eligible": 260,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.02128205128205128,
+        "ci95": [
+          0.008727878130587653,
+          0.03874279677295427
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 260,
+        "n_traj": 11,
+        "eligible": 260,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.05717948717948718,
+        "ci95": [
+          0.017549035221506137,
+          0.10248454358595288
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "task/pick_and_place_simple": {
+      "X2": {
+        "n": 361,
+        "n_traj": 16,
+        "eligible": 361,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.0109177690866833,
+        "ci95": [
+          -0.023008207043507305,
+          -0.003234281300120065
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 361,
+        "n_traj": 16,
+        "eligible": 361,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.010341643582640817,
+        "ci95": [
+          -0.022789216477104683,
+          0.0006064491064490955
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 361,
+        "n_traj": 16,
+        "eligible": 361,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.01825946445060018,
+        "ci95": [
+          0.00905952363738022,
+          0.030339371931507007
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 361,
+        "n_traj": 16,
+        "eligible": 361,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.06397353031702062,
+        "ci95": [
+          0.027723255969054283,
+          0.1055768656504655
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "task/pick_clean_then_place_in_recep": {
+      "X2": {
+        "n": 300,
+        "n_traj": 14,
+        "eligible": 300,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.013707327565835653,
+        "ci95": [
+          -0.0230298446974304,
+          -0.0030348644842751295
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 300,
+        "n_traj": 14,
+        "eligible": 300,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.016555555555555556,
+        "ci95": [
+          -0.03197112449041897,
+          0.0027473283042589946
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 300,
+        "n_traj": 14,
+        "eligible": 300,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.017046296296296292,
+        "ci95": [
+          0.004342723004694836,
+          0.04052211531492349
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 300,
+        "n_traj": 14,
+        "eligible": 300,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.0620462962962963,
+        "ci95": [
+          0.01183844062316285,
+          0.12699605743052347
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "task/pick_cool_then_place_in_recep": {
+      "X2": {
+        "n": 471,
+        "n_traj": 16,
+        "eligible": 471,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.0013823640155233787,
+        "ci95": [
+          -0.003323157394529127,
+          0.006800481420213408
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 471,
+        "n_traj": 16,
+        "eligible": 471,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.0046001415428167025,
+        "ci95": [
+          -0.01113234096692112,
+          0.0002963389519155456
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 471,
+        "n_traj": 16,
+        "eligible": 471,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.004151922623260202,
+        "ci95": [
+          0.00011096743295019249,
+          0.009242673184677693
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 471,
+        "n_traj": 16,
+        "eligible": 471,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.007071243217740031,
+        "ci95": [
+          -0.0021119684551110054,
+          0.016213620230700967
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "task/pick_heat_then_place_in_recep": {
+      "X2": {
+        "n": 162,
+        "n_traj": 13,
+        "eligible": 162,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.005223904597701194,
+        "ci95": [
+          -0.0039026283136740694,
+          0.02016050393761874
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 162,
+        "n_traj": 13,
+        "eligible": 162,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.004732510288065841,
+        "ci95": [
+          -0.007679218687072096,
+          0.022676476387656498
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 162,
+        "n_traj": 13,
+        "eligible": 162,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.003909465020576134,
+        "ci95": [
+          -0.0012914814147240237,
+          0.016698574919648313
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 162,
+        "n_traj": 13,
+        "eligible": 162,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.012002743484224965,
+        "ci95": [
+          0.0025867489432367164,
+          0.034811230408895895
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "task/pick_two_obj_and_place": {
+      "X2": {
+        "n": 143,
+        "n_traj": 9,
+        "eligible": 143,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.0002659248603440687,
+        "ci95": [
+          -0.0007042084264667003,
+          0.0
+        ],
+        "invalid_bootstrap": 2
+      },
+      "chosen": {
+        "n": 143,
+        "n_traj": 9,
+        "eligible": 143,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.0006993006993006993,
+        "ci95": [
+          -0.002914762992575671,
+          0.0
+        ],
+        "invalid_bootstrap": 2
+      },
+      "R1_window": {
+        "n": 143,
+        "n_traj": 9,
+        "eligible": 143,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "invalid_bootstrap": 2
+      },
+      "R1_full": {
+        "n": 143,
+        "n_traj": 9,
+        "eligible": 143,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.0002331002331002331,
+        "ci95": [
+          -0.0006060606060606061,
+          0.0
+        ],
+        "invalid_bootstrap": 2
+      }
+    },
+    "first_H_per_trajectory": {
+      "X2": {
+        "n": 79,
+        "n_traj": 79,
+        "eligible": 79,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.01009626291780616,
+        "ci95": [
+          -0.027458015431543942,
+          0.007453918825832687
+        ],
+        "invalid_bootstrap": 0
+      },
+      "chosen": {
+        "n": 79,
+        "n_traj": 79,
+        "eligible": 79,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.01350210970464136,
+        "ci95": [
+          -0.05064935064935065,
+          0.024445783132530093
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_window": {
+        "n": 79,
+        "n_traj": 79,
+        "eligible": 79,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.00984528832630098,
+        "ci95": [
+          0.00026097834967319836,
+          0.020953615290637856
+        ],
+        "invalid_bootstrap": 0
+      },
+      "R1_full": {
+        "n": 79,
+        "n_traj": 79,
+        "eligible": 79,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.011954992967651193,
+        "ci95": [
+          0.00021915766981556523,
+          0.02472589653145208
+        ],
+        "invalid_bootstrap": 0
+      }
+    }
+  },
+  "turn_quartile_edges": [
+    11.0,
+    21.0,
+    36.0
+  ],
+  "A2": {
+    "descriptive_only": true,
+    "unique_best": 544,
+    "tie_rate": {
+      "n": 828,
+      "n_traj": 64,
+      "eligible": 828,
+      "missing": 0,
+      "missing_rate": 0.0,
+      "estimate": 0.34299516908212563,
+      "ci95": [
+        0.30254942568639304,
+        0.38803738210786554
+      ],
+      "invalid_bootstrap": 0
+    },
+    "best_set_probability_excess": {
+      "H_prompt": {
+        "n": 1697,
+        "n_traj": 79,
+        "eligible": 1697,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.007551097296431572,
+        "ci95": [
+          -0.015853211846233166,
+          0.000395145168372856
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_full": {
+        "n": 1545,
+        "n_traj": 78,
+        "eligible": 1545,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.009479418736499233,
+        "ci95": [
+          -0.018479579000743193,
+          -0.0008747307277187731
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_Live": {
+        "n": 828,
+        "n_traj": 64,
+        "eligible": 828,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.015476101584594637,
+        "ci95": [
+          -0.0319377824573112,
+          0.0008344665740943743
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_Fork": {
+        "n": 255,
+        "n_traj": 43,
+        "eligible": 255,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.08003412467523059,
+        "ci95": [
+          -0.10127066327032329,
+          -0.054476067269213634
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_nonFork_Live": {
+        "n": 573,
+        "n_traj": 62,
+        "eligible": 573,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": 0.013253908691342832,
+        "ci95": [
+          -0.006352429876264238,
+          0.03253418472248947
+        ],
+        "invalid_bootstrap": 0
+      },
+      "H_Dead": {
+        "n": 869,
+        "n_traj": 48,
+        "eligible": 869,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -2.1207942702851093e-17,
+        "ci95": [
+          -2.7654449213727387e-17,
+          -1.5283560502436834e-17
+        ],
+        "invalid_bootstrap": 0
+      },
+      "old_I_Fork": {
+        "n": 184,
+        "n_traj": 39,
+        "eligible": 184,
+        "missing": 0,
+        "missing_rate": 0.0,
+        "estimate": -0.11670353970776368,
+        "ci95": [
+          -0.13572677766135408,
+          -0.09022849476321801
+        ],
+        "invalid_bootstrap": 0
+      }
+    },
+    "bins": {
+      "0": {
+        "interval": [
+          0.0,
+          0.2
+        ],
+        "fork_rate": {
+          "n": 391,
+          "n_traj": 54,
+          "eligible": 391,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.4578005115089514,
+          "ci95": [
+            0.35293582887700536,
+            0.5559533789279726
+          ],
+          "invalid_bootstrap": 0
+        },
+        "policy_best_mass": {
+          "n": 391,
+          "n_traj": 54,
+          "eligible": 391,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.06967776972438117,
+          "ci95": [
+            0.06441975502627384,
+            0.07521016449841836
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "1": {
+        "interval": [
+          0.2,
+          0.4
+        ],
+        "fork_rate": {
+          "n": 86,
+          "n_traj": 31,
+          "eligible": 86,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.19767441860465115,
+          "ci95": [
+            0.10098484848484851,
+            0.29411764705882354
+          ],
+          "invalid_bootstrap": 0
+        },
+        "policy_best_mass": {
+          "n": 86,
+          "n_traj": 31,
+          "eligible": 86,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.29293993634959886,
+          "ci95": [
+            0.2834314617998521,
+            0.3053967629239564
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "2": {
+        "interval": [
+          0.4,
+          0.6
+        ],
+        "fork_rate": {
+          "n": 41,
+          "n_traj": 27,
+          "eligible": 41,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.0975609756097561,
+          "ci95": [
+            0.0,
+            0.21052631578947367
+          ],
+          "invalid_bootstrap": 0
+        },
+        "policy_best_mass": {
+          "n": 41,
+          "n_traj": 27,
+          "eligible": 41,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.4815262779796068,
+          "ci95": [
+            0.4640287872320269,
+            0.5018894606184477
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "3": {
+        "interval": [
+          0.6,
+          0.8
+        ],
+        "fork_rate": {
+          "n": 22,
+          "n_traj": 16,
+          "eligible": 22,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.13636363636363635,
+          "ci95": [
+            0.0,
+            0.2727272727272727
+          ],
+          "invalid_bootstrap": 0
+        },
+        "policy_best_mass": {
+          "n": 22,
+          "n_traj": 16,
+          "eligible": 22,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.6834950259582417,
+          "ci95": [
+            0.6534983419511177,
+            0.7135333885966275
+          ],
+          "invalid_bootstrap": 0
+        }
+      },
+      "4": {
+        "interval": [
+          0.8,
+          1.0
+        ],
+        "fork_rate": {
+          "n": 4,
+          "n_traj": 4,
+          "eligible": 4,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.5,
+          "ci95": [
+            0.0,
+            1.0
+          ],
+          "invalid_bootstrap": 166
+        },
+        "policy_best_mass": {
+          "n": 4,
+          "n_traj": 4,
+          "eligible": 4,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.8507565691212673,
+          "ci95": [
+            0.8260869565217391,
+            0.8805970149253731
+          ],
+          "invalid_bootstrap": 166
+        }
+      }
+    }
+  },
+  "cross_tab": [
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": false,
+      "live": false,
+      "fork": false,
+      "gold": false,
+      "n": 662,
+      "n_traj": 39
+    },
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": false,
+      "live": true,
+      "fork": false,
+      "gold": false,
+      "n": 359,
+      "n_traj": 44
+    },
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": false,
+      "live": true,
+      "fork": false,
+      "gold": true,
+      "n": 73,
+      "n_traj": 31
+    },
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": false,
+      "live": true,
+      "fork": true,
+      "gold": false,
+      "n": 47,
+      "n_traj": 18
+    },
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": false,
+      "live": true,
+      "fork": true,
+      "gold": true,
+      "n": 16,
+      "n_traj": 11
+    },
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": true,
+      "live": false,
+      "fork": false,
+      "gold": false,
+      "n": 89,
+      "n_traj": 24
+    },
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": true,
+      "live": true,
+      "fork": false,
+      "gold": false,
+      "n": 94,
+      "n_traj": 30
+    },
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": true,
+      "live": true,
+      "fork": false,
+      "gold": true,
+      "n": 21,
+      "n_traj": 16
+    },
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": true,
+      "live": true,
+      "fork": true,
+      "gold": false,
+      "n": 127,
+      "n_traj": 32
+    },
+    {
+      "prompt_target": false,
+      "history_target": false,
+      "old_I": true,
+      "live": true,
+      "fork": true,
+      "gold": true,
+      "n": 57,
+      "n_traj": 27
+    },
+    {
+      "prompt_target": false,
+      "history_target": true,
+      "old_I": false,
+      "live": false,
+      "fork": false,
+      "gold": false,
+      "n": 112,
+      "n_traj": 9
+    },
+    {
+      "prompt_target": false,
+      "history_target": true,
+      "old_I": false,
+      "live": true,
+      "fork": false,
+      "gold": false,
+      "n": 24,
+      "n_traj": 5
+    },
+    {
+      "prompt_target": false,
+      "history_target": true,
+      "old_I": false,
+      "live": true,
+      "fork": false,
+      "gold": true,
+      "n": 2,
+      "n_traj": 2
+    },
+    {
+      "prompt_target": false,
+      "history_target": true,
+      "old_I": false,
+      "live": true,
+      "fork": true,
+      "gold": false,
+      "n": 7,
+      "n_traj": 3
+    },
+    {
+      "prompt_target": false,
+      "history_target": true,
+      "old_I": false,
+      "live": true,
+      "fork": true,
+      "gold": true,
+      "n": 1,
+      "n_traj": 1
+    },
+    {
+      "prompt_target": false,
+      "history_target": true,
+      "old_I": true,
+      "live": false,
+      "fork": false,
+      "gold": false,
+      "n": 6,
+      "n_traj": 1
+    },
+    {
+      "prompt_target": true,
+      "history_target": true,
+      "old_I": false,
+      "live": false,
+      "fork": false,
+      "gold": false,
+      "n": 691,
+      "n_traj": 45
+    },
+    {
+      "prompt_target": true,
+      "history_target": true,
+      "old_I": false,
+      "live": true,
+      "fork": false,
+      "gold": false,
+      "n": 366,
+      "n_traj": 45
+    },
+    {
+      "prompt_target": true,
+      "history_target": true,
+      "old_I": false,
+      "live": true,
+      "fork": false,
+      "gold": true,
+      "n": 64,
+      "n_traj": 28
+    },
+    {
+      "prompt_target": true,
+      "history_target": true,
+      "old_I": false,
+      "live": true,
+      "fork": true,
+      "gold": false,
+      "n": 154,
+      "n_traj": 33
+    },
+    {
+      "prompt_target": true,
+      "history_target": true,
+      "old_I": false,
+      "live": true,
+      "fork": true,
+      "gold": true,
+      "n": 66,
+      "n_traj": 21
+    }
+  ],
+  "coverage": {
+    "R1_window": {
+      "H_prompt": {
+        "coverage": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.9923394225103123,
+          "ci95": [
+            0.9833678872957986,
+            0.9986357667688697
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 13
+      },
+      "H_full": {
+        "coverage": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.9915857605177993,
+          "ci95": [
+            0.9818455509848238,
+            0.9984779878141871
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 13
+      },
+      "H_Live": {
+        "coverage": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.9975845410628019,
+          "ci95": [
+            0.9937106918238994,
+            1.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 2
+      },
+      "H_Fork": {
+        "coverage": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 0
+      },
+      "H_nonFork_Live": {
+        "coverage": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.9965095986038395,
+          "ci95": [
+            0.9908396946564886,
+            1.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 2
+      },
+      "H_Dead": {
+        "coverage": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.9873417721518988,
+          "ci95": [
+            0.9702864698715109,
+            0.998871427047917
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 11
+      },
+      "old_I_Fork": {
+        "coverage": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 0
+      }
+    },
+    "R1_full": {
+      "H_prompt": {
+        "coverage": {
+          "n": 1697,
+          "n_traj": 79,
+          "eligible": 1697,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.7837360047142016,
+          "ci95": [
+            0.7360081065626157,
+            0.8309365183909211
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 367
+      },
+      "H_full": {
+        "coverage": {
+          "n": 1545,
+          "n_traj": 78,
+          "eligible": 1545,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.7948220064724919,
+          "ci95": [
+            0.7439482914443105,
+            0.8467558871470031
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 317
+      },
+      "H_Live": {
+        "coverage": {
+          "n": 828,
+          "n_traj": 64,
+          "eligible": 828,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.8236714975845411,
+          "ci95": [
+            0.7827164245069334,
+            0.8683806695432692
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 146
+      },
+      "H_Fork": {
+        "coverage": {
+          "n": 255,
+          "n_traj": 43,
+          "eligible": 255,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.9176470588235294,
+          "ci95": [
+            0.8725079107438558,
+            0.9587167785869668
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 21
+      },
+      "H_nonFork_Live": {
+        "coverage": {
+          "n": 573,
+          "n_traj": 62,
+          "eligible": 573,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.7818499127399651,
+          "ci95": [
+            0.7284641911025852,
+            0.8407800088261252
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 125
+      },
+      "H_Dead": {
+        "coverage": {
+          "n": 869,
+          "n_traj": 48,
+          "eligible": 869,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 0.7456846950517837,
+          "ci95": [
+            0.6611957358576404,
+            0.8186890401008262
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 221
+      },
+      "old_I_Fork": {
+        "coverage": {
+          "n": 184,
+          "n_traj": 39,
+          "eligible": 184,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "estimate": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ],
+          "invalid_bootstrap": 0
+        },
+        "fallback": 0
+      }
+    }
+  },
+  "R2": "UNAVAILABLE: no validated strict negative-evidence/path parser",
+  "R3": "UNAVAILABLE: no audited independent training-prior table",
+  "first_batch_drafts": {
+    "total": 97216,
+    "valid_admissible": 86097,
+    "parse_rate": 0.8856258229098091
+  },
+  "phase_c_composition": {
+    "H_prompt": {
+      "population": 1697,
+      "sampled": 505
+    },
+    "H_full": {
+      "population": 1545,
+      "sampled": 453
+    },
+    "H_Live": {
+      "population": 828,
+      "sampled": 292
+    },
+    "H_Fork": {
+      "population": 255,
+      "sampled": 89
+    },
+    "H_nonFork_Live": {
+      "population": 573,
+      "sampled": 203
+    },
+    "H_Dead": {
+      "population": 869,
+      "sampled": 213
+    },
+    "old_I_Fork": {
+      "population": 184,
+      "sampled": 71
+    }
+  }
+}

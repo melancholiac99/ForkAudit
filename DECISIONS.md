@@ -1453,3 +1453,28 @@ the old E5 queue must not be resumed until this is resolved.
 User: “现在开始跑p8 啊”. Freeze exploratory_P8/PREREG_P8.md before computing any new scientific result. Source is proposal v2 at 38d2548. R1 budgets, H_full text definition, bootstrap, blind sample and reuse gates are specified there. R2/R3 are UNAVAILABLE for this run for the documented validation/input limitations. No old conclusion, label or threshold is modified. E4 continues; E5 remains paused.
 
 P8 preregistration freeze commit: 6b41fa6b3fc6348b5dd893e9745f3a2535145c98. Before any new gain analysis, freeze the stage-C history-only sample: 505 of 1,697 H_prompt points, SHA256-ranked at most 8 per trajectory. Membership uses only history/prompt, candidate validity and bank-count completeness; no reward values, Live/Fork labels or judge gains select points. Input hashes and per-trajectory inclusion probabilities are archived with the sample.
+
+## D-P8-002 — CPU audit completed and phase C prepared — 2026-11-01
+
+P8 prereg 6b41fa6; history-only blind sample freeze 357ad1a; CPU implementation
+722cf68. All 3,038 defined points have banks 1/2 and peeks; banks 3–6 cover the
+1,478 Live points and Gold covers 300. No refeed divergence or factual-peek
+inconsistency was found. Old I∩Fork n=184, X2 and E1 reproduce within 1e-9.
+P1 is NEG: H_prompt n=1,697, 79 trajectories, -0.59 pp [-1.00,-0.22].
+P2 is false (non-Fork Live CI crosses zero). S4 is true: R1-window minus policy
++1.76 pp [1.05,2.58]. Registered CPU reading R-P8-MISDIRECT-HISTORY concerns the
+fixed five-arm candidate set only; it does not imply global irrationality or
+identify hidden-world surprise. A separate raw-data and direct-loop bootstrap
+implementation verifies P1/P2/S4 and the blind sample. No scientific code or
+threshold was changed after observing these new results. The verifier's initial
+list-unpacking typo was corrected before the independent verification succeeded.
+
+Phase C freezes 505 points including 292 Live and 89 Fork, without selecting on
+those labels. All 505 have valid existing peeks. S/M/L/F requests match every
+shared old request byte-for-byte; each model reuses 572 contexts and needs 1,448
+new contexts. CPU tokenizer preflight passes at <=12,484 tokens. The original
+P4 scorer/checkpoints and TV<0.005 numerical/reproduction gates remain in force.
+The P8 GPU queue waits for independently verified E4 completion and an idle GPU,
+then scores 7B/32B, analyzes the same IPW sample and independently verifies S5.
+R2/R3 remain UNAVAILABLE as frozen. E5 remains suspended. No push or shutdown is
+configured. Exact paths and commands are recorded in exploratory_P8/SERVER_RUN.txt.

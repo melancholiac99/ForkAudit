@@ -1,0 +1,29 @@
+{
+  "points": 505,
+  "contexts_per_model": 2020,
+  "candidate_sequences_per_model": 10100,
+  "requests_sha256": "7a1fd980021340615ab3b163b50699c21c34c583a98533d31f2cf1e255c1d862",
+  "blind_sample_sha256": "e4a8cf3a795b032fe5ef2e8adece408f801236008a5cf267fa3d6ba33d47292a",
+  "reuse": {
+    "7b": {
+      "contexts": 572,
+      "remaining": 1448,
+      "per_condition": {
+        "S": 143,
+        "M": 143,
+        "L": 143,
+        "F": 143
+      }
+    },
+    "32b": {
+      "contexts": 572,
+      "remaining": 1448,
+      "per_condition": {
+        "S": 143,
+        "M": 143,
+        "L": 143,
+        "F": 143
+      }
+    }
+  }
+}

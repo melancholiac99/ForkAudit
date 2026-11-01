@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "identical_tokenizers_for_models": true,
+  "by_condition": {
+    "S": {
+      "contexts": 505,
+      "prefix_tokens": 353958,
+      "suffix_tokens": 23038,
+      "max_full_tokens": 1168
+    },
+    "M": {
+      "contexts": 505,
+      "prefix_tokens": 928990,
+      "suffix_tokens": 23038,
+      "max_full_tokens": 5144
+    },
+    "L": {
+      "contexts": 505,
+      "prefix_tokens": 4703026,
+      "suffix_tokens": 23038,
+      "max_full_tokens": 12484
+    },
+    "F": {
+      "contexts": 505,
+      "prefix_tokens": 480689,
+      "suffix_tokens": 23038,
+      "max_full_tokens": 1409
+    }
+  },
+  "gpu_initialized": false
+}

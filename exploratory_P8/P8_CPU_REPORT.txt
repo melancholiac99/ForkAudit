@@ -1,0 +1,35 @@
+P8 CPU audit (post-hoc ALFWorld audit; not independent confirmation)
+P1: NEG
+P2: False
+S4: True
+Reading: R-P8-MISDIRECT-HISTORY
+S5 and same-population model comparisons: pending phase C
+
+X2 policy population results:
+H_prompt: -0.59 [-1.00, -0.22] pp (n=1697, trajectories=79, missing=0)
+H_full: -0.71 [-1.14, -0.31] pp (n=1545, trajectories=78, missing=0)
+H_Live: -1.22 [-1.95, -0.47] pp (n=828, trajectories=64, missing=0)
+H_Fork: -4.66 [-6.28, -2.93] pp (n=255, trajectories=43, missing=0)
+H_nonFork_Live: +0.31 [-0.36, +1.00] pp (n=573, trajectories=62, missing=0)
+H_Dead: -0.00 [-0.00, -0.00] pp (n=869, trajectories=48, missing=0)
+old_I_Fork: -6.82 [-8.39, -4.92] pp (n=184, trajectories=39, missing=0)
+
+Live weighted decomposition:
+total: -1.22 [-1.95, -0.47] pp (n=828, trajectories=64, missing=0)
+fork_weight: +30.80 [+24.47, +37.71] pp (n=828, trajectories=64, missing=0)
+no_compensation: -1.43 [-2.03, -0.83] pp (n=828, trajectories=64, missing=0)
+nonfork_compensation: +0.22 [-0.25, +0.68] pp (n=828, trajectories=64, missing=0)
+
+H_prompt weighted decomposition:
+total: -0.59 [-1.00, -0.22] pp (n=1697, trajectories=79, missing=0)
+fork_weight: +15.03 [+10.27, +20.33] pp (n=1697, trajectories=79, missing=0)
+no_compensation: -0.70 [-1.06, -0.37] pp (n=1697, trajectories=79, missing=0)
+nonfork_compensation: +0.10 [-0.12, +0.34] pp (n=1697, trajectories=79, missing=0)
+
+R1-window minus policy: +1.76 [+1.05, +2.58] pp (n=1697, trajectories=79, missing=0)
+R1-full minus policy (additional history): +4.24 [+2.47, +6.20] pp (n=1697, trajectories=79, missing=0)
+R2: UNAVAILABLE: no validated strict negative-evidence/path parser
+R3: UNAVAILABLE: no audited independent training-prior table
+Old I/Fork n=184 and both X2/E1 gains reproduced within 1e-9.
+A2 is descriptive only and does not establish hidden-world surprise.
+All strata, coverage, Gold, task/turn/range and equal-trajectory sensitivity results: p8_cpu.json.
