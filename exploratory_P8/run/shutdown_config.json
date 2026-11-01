@@ -1,0 +1,20 @@
+{
+  "authorized_action": "shutdown_after_e4_and_p8_verified",
+  "user_instruction": "不是 p8 e4都结束 帮我关机",
+  "hook_sha256": "8c118e7aac9ee3075ea5f604ac68112998a720ff84dfadbfc1a4593c07c69c2e",
+  "platform_shutdown_sha256": "0358e83eeeaf542aa98f64ba9e339c91df46f1e025892d52dba159f4fb1cf027",
+  "p8_queue": {
+    "pid": 68155,
+    "identity": "3041809741"
+  },
+  "e4_processes": [
+    {
+      "pid": 2683,
+      "identity": "3030405857"
+    },
+    {
+      "pid": 2909,
+      "identity": "3030431311"
+    }
+  ]
+}

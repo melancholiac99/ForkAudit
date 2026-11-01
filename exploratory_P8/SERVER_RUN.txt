@@ -38,7 +38,16 @@ Logs: exploratory_P8/run/queue.log, score_7b.log, score_32b.log, analyze.log, fi
 Final artifacts (only after GPU completion): P8_REPORT.txt, p8_phase_c.json,
 p8_complete.json, complete_verification.json, artifact_manifest.json.
 No original labels, data, P4 reports or E4 study parameters are modified.
-No repeated trajectory collection, policy training, push or shutdown.
+No repeated trajectory collection, policy training or automatic push.
 Missing inputs, hash changes, numerical failure, GPU conflict or disk <8 GiB
 stop the queue and preserve outputs for investigation.
 E5's waiting queue is suspended pending its separate pre-data amendment.
+
+User-authorized shutdown added 2026-11-01:
+  python -u exploratory_P8/shutdown_after_e4_p8.py
+Both E4 and P8 must reach completed_verified, both independent audits must pass,
+final result files must agree with those audits and the GPU must be idle.
+Only then invoke the installed AutoDL /usr/bin/shutdown wrapper after sync.
+Any experiment, audit, process-liveness or result-integrity failure leaves the
+server running. E4 and P8 queues are not paused or modified by this hook.
+Shutdown status: run/shutdown_status.json; log: run/shutdown.log.

@@ -1478,3 +1478,15 @@ The P8 GPU queue waits for independently verified E4 completion and an idle GPU,
 then scores 7B/32B, analyzes the same IPW sample and independently verifies S5.
 R2/R3 remain UNAVAILABLE as frozen. E5 remains suspended. No push or shutdown is
 configured. Exact paths and commands are recorded in exploratory_P8/SERVER_RUN.txt.
+
+## E4 + P8 completion shutdown authorization — 2026-11-01
+
+Researcher clarified: “不是 p8 e4都结束 帮我关机”. Keep both running in their
+existing order (E4, then P8 phase C). No P8 pause was performed. Add an independent
+shutdown hook that requires both completed_verified statuses, both successful
+independent audits, matching final results/manifests and an idle GPU. Sync stored
+results and invoke the installed AutoDL shutdown wrapper only after those gates.
+Errors or a stopped/dead experiment queue leave the instance on for inspection.
+Six synthetic gate tests pass without invoking shutdown. Existing scientific
+scripts, preregistrations, analysis thresholds and queue protection manifests
+remain unchanged. E5 remains suspended.
