@@ -164,7 +164,12 @@ S4、S5 作为**独立的正交结果**在任何主联合读法下均报告；A2
 ## 8. 执行顺序、输出、不可变项
 
 1. **研究者/合作者审核本提案。** preflight 与不访问真实科学结果的合成数据自测现在即可进行；P1/P2/R1/A2 的实际收益或关联结果须等定义审核并冻结。确认后，另建 exploratory_P8/PREREG_P8.md 单独提交，在 DECISIONS.md 登记新决策 ID 与 commit SHA；R2/R3 可行性在任何相应规则收益被查看之前定下。
-2. **CPU selftest + preflight。** 建议脚本分别输出 JSON audit / SHA256 manifest / synthetic tests；失败即停。随后先 A1、A2，再 B；所有结果均写到 exploratory_P8/，不回写旧 JSON/MD/标签。
+2. **CPU selftest + preflight。** 已添加不读取真实科学输出的入口，尚待在完整仓库数据机器上执行：
+
+   python exploratory_P8/p8_preflight_selftest.py --selftest
+   python exploratory_P8/p8_preflight_selftest.py --preflight --repo-root . --output /tmp/p8_preflight_manifest.json
+
+   第一个仅使用合成数据检查历史理性选择者在 Fork 子集变负、历史层面真正为负、Dead=0、Live 加权分解与无选样反例；第二个只计算依赖文件的存在性、文件大小、SHA256、目录计数，**不读取奖励/标签内容，不产生 P1/P2/A2**。输入缺失返回 exit code 2。preflight 成功和全部科学定义冻结后再跑 A1、B、A2；科学结果均写到 exploratory_P8/，不回写旧报告。
 3. **若需要 C，先冻结盲抽名单再跑 7B/32B 打分。** 旧已有结果可复用；报告完整计算成本，不按好结果扩样。
 4. **一次性生成完整报告。** 最少包含：P1 主人群及 Live 归一化结果；P2 加权分解与无补偿参照；Fork 率 vs 策略最佳臂质量（A2 只描述）；R1-window / R1-full 与各自同信息预算模型的比较；S4/S5；全部失败项及任务/轨迹稳健性。
 5. **与已有工作关系：** E4 按既有预注册继续，不把它的 DPO 偏好当作无偏 Q 回归。E5-S 的 I 层仍按结果定义；若经服务器核实 **E5 尚未产生任何 pilot/正式数据**，应在 E5 试点前另写并冻结修订 3，登记不按 Fork 筛选的 H_prompt 式主评估及 Live 分解；若已有数据，该项只能是事后追加审计。**GitHub 中没有数据文件不证明服务器无数据。本 P8 不直接更改 E5 原预注册。**
