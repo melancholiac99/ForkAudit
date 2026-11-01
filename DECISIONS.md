@@ -1490,3 +1490,24 @@ Errors or a stopped/dead experiment queue leave the instance on for inspection.
 Six synthetic gate tests pass without invoking shutdown. Existing scientific
 scripts, preregistrations, analysis thresholds and queue protection manifests
 remain unchanged. E5 remains suspended.
+
+## Failure recovery and log-preserving shutdown — 2026-11-02 (user local date)
+
+User requests invoking an agent on failure, repairing if possible, otherwise
+preserving logs and shutting down. At setup E4 and P8 have no failure. Verified
+the installed Codex CLI can perform an authenticated background no-tools turn
+(REPAIR_AGENT_READY), using its existing default model and credentials. No new
+credentials are copied or printed. The new guardian replaces the old success-only
+shutdown watcher and retains the same dual-success independent-audit gate.
+On confirmed failure it archives experiment logs/status/diffs/data inventory,
+invokes an isolated Codex repair with the fixed handoff, and checks real queue
+health after the agent responds. At most two repair invocations total, at most
+20 minutes each, to bound failure-state billing. Repair is restricted to
+execution problems; no scientific thresholds, sampling, raw data or conclusions
+may be changed. Unrecoverable failure is labeled failure, archived and synced,
+then the installed AutoDL shutdown wrapper is called under the new authorization.
+The guardian honors repair_hold, paused statuses and stopped experiment queues.
+Five mocked integration scenarios pass (success, hold, recovery, unrecoverable,
+final-audit mismatch) without a real repair or shutdown. E4/P8 jobs and protected
+scientific inputs remain unchanged. Background repairs are separate CLI jobs,
+not automatic new messages in this chat.

@@ -51,3 +51,16 @@ Only then invoke the installed AutoDL /usr/bin/shutdown wrapper after sync.
 Any experiment, audit, process-liveness or result-integrity failure leaves the
 server running. E4 and P8 queues are not paused or modified by this hook.
 Shutdown status: run/shutdown_status.json; log: run/shutdown.log.
+
+Failure recovery update (explicit user authorization):
+  python -u exploratory_P8/repair_guardian.py
+This REPLACES shutdown_after_e4_p8.py as the active watcher. Both successful
+verified experiments still trigger normal shutdown. A confirmed failure instead
+archives logs and invokes the installed authenticated Codex CLI for operational
+repair (max two invocations total, 20 minutes each). A successful repair resumes
+monitoring. If recovery fails, archive diagnostics, sync files and shut down.
+No failed experiment is relabeled as passed. The standalone CLI receives
+failure_repair_prompt.txt and incident evidence; it does not wake this chat UI.
+Status: run/repair_status.json; watcher log: run/repair_guardian.log.
+Failure evidence/agent transcripts/patches: run/incidents/.
+Create run/repair_hold to hold monitoring actions; remove to resume.

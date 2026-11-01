@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "simulations": {
+    "success": {
+      "passed": true,
+      "calls": [
+        [
+          "shutdown",
+          "both_experiments_verified"
+        ]
+      ]
+    },
+    "held": {
+      "passed": true,
+      "calls": [
+        [
+          "shutdown",
+          "both_experiments_verified"
+        ]
+      ]
+    },
+    "recovered": {
+      "passed": true,
+      "calls": [
+        [
+          "repair",
+          1
+        ],
+        [
+          "shutdown",
+          "both_experiments_verified"
+        ]
+      ]
+    },
+    "unrecoverable": {
+      "passed": true,
+      "calls": [
+        [
+          "repair",
+          1
+        ],
+        [
+          "repair",
+          2
+        ],
+        [
+          "archive",
+          "unrecoverable_final"
+        ],
+        [
+          "shutdown",
+          "repair_unsuccessful_logs_saved"
+        ]
+      ]
+    },
+    "bad_final_audit": {
+      "passed": true,
+      "calls": [
+        [
+          "repair",
+          1
+        ],
+        [
+          "repair",
+          2
+        ],
+        [
+          "archive",
+          "unrecoverable_final"
+        ],
+        [
+          "shutdown",
+          "repair_unsuccessful_logs_saved"
+        ]
+      ]
+    }
+  },
+  "real_shutdown_called": false,
+  "real_agent_called": false
+}
