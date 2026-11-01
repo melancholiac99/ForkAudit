@@ -1406,8 +1406,9 @@ Raised by the researcher: WebShop may not suit the mechanism (decisive fact only
 success, heavy setup), and a single further environment can at best replicate. Claude's proposal, accepted by the
 researcher ("按照你说的来吧"): pair one environment where the effect is predicted with two where it is predicted absent,
 so that E5 can show a dissociation rather than a repeat. Written up as `proposals/P7_env_selection.md`; registered as
-`exploratory_E5/PREREG_E5.md` §13, committed (message `E5: pre-registration amendment 2`; its hash on main changes when
-the patch is applied, so record it here after `git am`) before any E5 data in any environment.
+`exploratory_E5/PREREG_E5.md` §13, committed as **`ec9ec42d03997331f66c16f3f706926a36dd6a14`**
+(message `E5: pre-registration amendment 2`; actual main commit independently verified on 2026-11-01).
+The original pre-data timing claim is preserved from D-061; this later bookkeeping correction does not itself verify the server-side E5 data state.
 - Environments (verl-agent `20bd331bdbc9026a5668e11362178e10ab7400c8` semantics, templates copied verbatim):
   E5-S HotpotQA multi-hop with open retrieval (wiki-18 + e5, top-3, 4 actions, history 4; 1,000 questions, pilot 50);
   E5-C the same questions with the ten context paragraphs in the task description; E5-K Sokoban text (verl-agent
