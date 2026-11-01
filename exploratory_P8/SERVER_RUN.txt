@@ -64,3 +64,15 @@ failure_repair_prompt.txt and incident evidence; it does not wake this chat UI.
 Status: run/repair_status.json; watcher log: run/repair_guardian.log.
 Failure evidence/agent transcripts/patches: run/incidents/.
 Create run/repair_hold to hold monitoring actions; remove to resume.
+
+Publication update (user: 做完了上传 git):
+The guardian now runs publish_completed.py after both final audits pass and
+before shutdown. E4's current main checkout is preserved; its verified compact
+results are committed locally and pushed to server/e4-results-20261101. P8's
+final report, IPW analysis, verification, derived inputs and judge scores are
+pushed to server/p8-preflight-20261101. Explicit file allowlists only; no force
+push or blanket staging. Remote SHA must equal local HEAD. Uploads retry three
+times; persistent failure retains the local commit and error logs before the
+previously authorized shutdown. Failed experiments upload bounded diagnostic
+excerpts if possible; complete logs remain under run/incidents/.
+Publication status: run/publication_status.json; failures: publication_failure.json.

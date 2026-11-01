@@ -55,3 +55,5 @@ restart may continue detached after you exit; verify it progressed first.
 Return the required JSON schema: recovered or unrecoverable, cause, changes,
 validation and resumed_stages. If blocked by missing data, irreproducibility,
 scientific gate failure, or unavailable access, preserve evidence and report it.
+
+Final results are now automatically published before shutdown by publish_completed.py. After a validated operational repair, locally commit only your explicitly changed repair files and DECISIONS entry; preserve unrelated user edits and never push yourself. The publisher refuses unexpected tracked/staged edits. Never modify its artifact whitelist or push destinations to include credentials or unrelated data.

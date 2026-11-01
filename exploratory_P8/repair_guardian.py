@@ -147,6 +147,20 @@ def repair(cfg, evidence, attempt):
 
 def shutdown(cfg, reason, **kw):
     assert COMPLETE.digest('/usr/bin/shutdown') == cfg['platform_shutdown_sha256']
+    # Latest user instruction: publish after completion, before shutdown.
+    import publish_completed
+    assert COMPLETE.digest(publish_completed.__file__) == cfg['publisher_sha256']
+    status('publishing_before_shutdown', reason=reason)
+    try:
+        publication = publish_completed.success() if reason == 'both_experiments_verified' else publish_completed.failure(kw['archive'])
+        kw['publication'] = publication
+    except Exception as exc:
+        # Respect the user's bounded-failure shutdown preference. Never claim a
+        # failed upload succeeded; preserve the local commit and diagnostic log.
+        save(R/'publication_failure.json', dict(reason=reason, error=str(exc), local_results_preserved=True))
+        status('publication_failed_local_results_saved', error=str(exc))
+        traceback.print_exc()
+        kw['publication'] = dict(verified=False, error=str(exc), local_results_preserved=True)
     status('shutdown_requested', reason=reason, **kw)
     os.sync()
     subprocess.run(['/bin/bash', '/usr/bin/shutdown'], check=True, timeout=120)

@@ -1511,3 +1511,19 @@ Five mocked integration scenarios pass (success, hold, recovery, unrecoverable,
 final-audit mismatch) without a real repair or shutdown. E4/P8 jobs and protected
 scientific inputs remain unchanged. Background repairs are separate CLI jobs,
 not automatic new messages in this chat.
+
+## Publish E4/P8 after completion, before shutdown — 2026-11-02 (user local date)
+
+User explicitly requests “做完了上传 git”. Neither experiment is fully complete
+at setup (E4 seen 18/28; P8 waiting). Add publication to the guardian's verified
+completion path, before invoking AutoDL shutdown. Publish E4 compact results
+and audit evidence to server/e4-results-20261101 without switching its current
+main branch; publish P8 final results and scores to server/p8-preflight-20261101.
+Only explicit artifact lists are staged; unrelated changes abort publication.
+No force push. Each destination SHA is checked against local HEAD. Three bounded
+network attempts, then retain local results/commit and failure logs and honor
+the user's earlier log-preserving shutdown instruction. Unsuccessful recovery
+gets a clearly marked diagnostics upload, never a completed-result claim.
+Mocked tests verify staging scope, branch preservation, unrelated-change refusal,
+remote verification, upload-before-shutdown ordering and failure-log retention.
+Scientific code, data, thresholds and active E4/P8 queues are unchanged.
