@@ -1431,3 +1431,19 @@ the patch is applied, so record it here after `git am`) before any E5 data in an
   `prompts/judge_base_webshop.txt`, text unchanged (tested). `exploratory_E4/e4_03_judge.py`: the numerical check now
   loops over the actual number of candidates instead of a fixed 5 — no change for E4 (always 5; E4 tests pass).
   `test_e5.py`: 15 tests pass on CPU, including dry end-to-end runs of E5-S / E5-C / E5-K with a fake retriever.
+
+## P8 server data-blind preflight — 2026-11-01
+
+Researcher clarified that the latest intended experiment is P8. Found the proposal
+on origin/research/fork-selection-audit-2026-11-01 at 38d2548, not origin/main.
+Created separate server/p8-preflight-20261101 worktree without changing active E4.
+Ran the unmodified P8 synthetic selftest (5 cases pass) and metadata-only preflight
+against /root/autodl-tmp/idea (all required paths present; manifest records SHA256).
+These checks do not establish scientific completeness, reproduce old gains, or
+compute P1/P2/A2. P8 v2 remains PROPOSED, without PREREG_P8.md or new analysis results.
+Suspended only the waiting E5 queue PID 65988 before any policy pilot collection;
+its former status was waiting_for_e4_verified. No search/sokoban experiment data
+roots exist in the E5 worktree. Earlier random-policy plumbing fixtures are not
+policy pilot or formal measurement data. E4 continues under its original rules.
+P8 section 8.5 calls for a separately frozen E5 amendment before any E5 pilot;
+the old E5 queue must not be resumed until this is resolved.
