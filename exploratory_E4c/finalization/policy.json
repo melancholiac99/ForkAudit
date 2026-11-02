@@ -1,0 +1,8 @@
+{
+  "utc": "2026-11-02T15:36:19Z",
+  "shutdown_authorized": true,
+  "success": "Complete E4C, verify all results, confirm upload to main, sync and shut down",
+  "failure": "Wake current thread and make best-effort repairs; continue on success. If genuinely unrepairable, preserve errors and existing results, sync and shut down",
+  "overrides": "Earlier shutdown cancellation and the frozen server_run.py failure message saying never shut down",
+  "wake_failure_fallback": "Preserve evidence; wait 15 minutes for a recovery claim, then shut down only when GPU idle and supervisor exited"
+}

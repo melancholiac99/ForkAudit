@@ -1,0 +1,8 @@
+E4C latest user authorization: best-effort repair, completion, verified main upload, then shutdown.
+
+The researcher renewed shutdown authorization after previously cancelling it, then explicitly authorized shutdown on genuinely unrecoverable failure after preserving results and logs. Do not stop repair after only one or two diagnoses.
+The separate completion_guard.py watches the existing supervisor without editing its frozen source or input hashes.
+Its finalization/policy.json supersedes the older SERVER_EXECUTION.txt and frozen supervisor failure message that prohibit shutdown. The existing Hindsight cancellation stays in force; only this E4C guard controls the new authorization.
+On completion the guard verifies 4110 episodes, audit flags, artifact and archive hashes, and exact published result blobs on origin/main. It syncs before invoking /bin/bash /usr/bin/shutdown.
+On failure it preserves and roundtrip-verifies a data/log archive, then queues the current thread with the latest instructions. Recovery claims finalization/recovery_claim.json, repairs and rearms the guard when continuing. If unrecoverable it saves evidence and shuts down. If no recovery claim arrives within 15 minutes, the guard saves that failure and shuts down when idle.
+It never shuts down while the supervisor lives or any GPU work is active. Cancellation can be made by setting shutdown_authorized=false in finalization/policy.json.
