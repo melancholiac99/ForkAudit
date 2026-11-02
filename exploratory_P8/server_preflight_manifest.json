@@ -1,0 +1,64 @@
+{
+  "analysis_performed": false,
+  "dirs": {
+    "data/replay": {
+      "exists": true,
+      "immediate_entries": 100
+    },
+    "data/replay_b1": {
+      "exists": true,
+      "immediate_entries": 98
+    },
+    "data/rollout": {
+      "exists": true,
+      "immediate_entries": 100
+    }
+  },
+  "files": {
+    "data/features_W1.parquet": {
+      "bytes": 230205,
+      "sha256": "9069101865c863f96dba00982dd059c7f30676543b57f441a373c29de29883b9"
+    },
+    "data/labels_final.parquet": {
+      "bytes": 24248,
+      "sha256": "d0cd61240be2f1dd5b139fc7d65545a9fe00109a5e34f047dafcdd074894652e"
+    },
+    "data/scores_fp32.parquet": {
+      "bytes": 4435861,
+      "sha256": "0f6b33995e04d75fada5345fc519b91e82645ecefe5ae50634417db8eb00bfa7"
+    },
+    "exploratory_P4/PREREG_X.md": {
+      "bytes": 5347,
+      "sha256": "423836d16f3fbf83930b48171253f09d5977ad2a9e8d194823376a049cdb0962"
+    },
+    "exploratory_P4/e1.json": {
+      "bytes": 1126642,
+      "sha256": "6b244c5f4726d4fe4a5bd04a8ae672a9dad1e20a7d28ec4983534efcbf439a1f"
+    },
+    "exploratory_P4/p4_strata.py": {
+      "bytes": 3393,
+      "sha256": "d3f4ed7279da787c557990584f07b96b516a55c084028dd8af991355c0367140"
+    },
+    "exploratory_P4/p4_x_robust.py": {
+      "bytes": 16616,
+      "sha256": "01dc86354e3243107a8ebb93c206e2a654715bb2fb58b4183072d23ed2784b8d"
+    },
+    "exploratory_P4/strata.parquet": {
+      "bytes": 12046,
+      "sha256": "40588a42e79f03fd2dc8ab5f3c1168c92f688a73ba687fcf569aa85734868566"
+    },
+    "exploratory_P4/strata_audit.json": {
+      "bytes": 618360,
+      "sha256": "fc9eb5a5708edbdf38fe4a6deb98dad6fcc71ca5a29c0dcc215dbd48dcd312e5"
+    },
+    "scripts/evalcore.py": {
+      "bytes": 10040,
+      "sha256": "517c37d7b3132c942f81cf224c8f356e148d9d7a33ba58ee184bad537d3e0be6"
+    }
+  },
+  "git_head": "7f8b120df7cd49e18d24800e58007d1bb7486f82",
+  "missing": [],
+  "mode": "preflight_no_science",
+  "passed": true,
+  "repo_root": "/root/autodl-tmp/idea"
+}
