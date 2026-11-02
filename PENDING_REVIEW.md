@@ -16,6 +16,9 @@
 3. `proposals/P8_fork_selection_audit_2026-11-01.md`。
 4. `exploratory_E5/PREREG_E5.md` 原修订 2 与 `proposals/E5_amendment3_history_credit_2026-11-02.md` 草案；后者仍待服务器零 pilot 数据核查与独立自测，未经冻结不得称修订生效。
 
+
+5. `proposals/E4b_zero_replay_credit_learning_value_2026-11-02.md`：**E4b 新实验方案（PROPOSED / NOT FROZEN）**。研究当前策略的三次回放全零状态是否仍提供有效训练监督；四个训练组 A-zero / A-gap / Bfac-gap / D-zero 加 Base，对齐事实锚定偏好对、训练预算和独立任务评估。来自 E4 事后分析，待合作者审核后才可冻结、执行；不改变 E4 R-L-HEURISTIC。
+
 ## 决策记录冲突
 E4 server 与 main/P8 server 分支从共同祖先后分别追加了**不同内容但同编号的 D-059、D-060、D-061**；不能按文件覆盖或把编号相同的记录当作同一条。
 - 工作树根目录 `DECISIONS.md` 保留 E4 server 原文。
