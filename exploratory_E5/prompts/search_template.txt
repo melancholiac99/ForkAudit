@@ -1,0 +1,14 @@
+# verl-agent @ 20bd331bdbc9026a5668e11362178e10ab7400c8, agent_system/environments/prompts/search.py, SEARCH_TEMPLATE, verbatim (leading and trailing newline removed,
+# as common.load_template does for the ALFWorld template). Lines starting with '#' before the text are not part of the template.
+
+You are an expert agent tasked with answering the given question step-by-step.
+Your question: {task_description}
+
+Prior to this step, you have already taken {step_count} step(s). Below is the interaction history where <search> </search> wrapped your past search queries and <information> </information> wrapped the corresponding search results returned by the external search engine. History:
+{memory_context}
+
+Now it's your turn to respond for the current step.
+You should first conduct reasoning process. This process MUST be enclosed within <think> </think> tags. 
+After completing your reasoning, choose only one of the following actions (do not perform both):
+(1) If you find you lack some knowledge, you can call a search engine to get more external information using format: <search> your query </search>.
+(2) If you have enough knowledge to answer the question confidently, provide your final answer within <answer> </answer> tags, without detailed illustrations. For example, <answer>Beijing</answer>.
