@@ -1,0 +1,81 @@
+E4c reading: E4c-MIXED  (delta = 4.0 pp; valid_unseen)
+hint: Hint: avoid examine, look and inventory unless they are needed, and do not repeat your previous action; prefer going to locations and opening containers that you have not visited yet.
+
+== valid_unseen: success (%)
+  base      38.06
+  P         36.82
+  R         39.30
+  PR        36.57
+  X         42.54
+  A         47.76
+  D         45.27
+  base_E4   36.82
+  paired differences (pp, 95% CI over games)
+  P-base          -1.24 [-6.97, +4.23]
+  R-base          +1.24 [-2.49, +5.22]
+  PR-base         -1.49 [-6.72, +3.73]
+  X-base          +4.48 [-0.25, +9.45]
+  P-A            -10.95 [-16.09, -6.05]
+  R-A             -8.46 [-12.35, -4.73]
+  PR-A           -11.19 [-16.00, -6.63]
+  X-A             -5.22 [-9.20, -1.33]
+  P-D             -8.46 [-13.68, -3.48]
+  R-D             -5.97 [-10.28, -1.74]
+  PR-D            -8.71 [-13.18, -4.31]
+  X-D             -2.74 [-6.63, +1.16]
+  A-base          +9.70 [+5.31, +14.18]
+  D-base          +7.21 [+2.40, +12.27]
+  A-D             +2.49 [-0.75, +5.72]
+  base-base_E4    +1.24 [-2.49, +4.98]
+  behaviour: inspect / goto / immediate repeat share of steps; target seen; success | seen; timeouts
+  base     0.470 0.382 0.090 | seen 0.649 succ|seen 0.586 | timeouts 1.00
+  P        0.240 0.625 0.032 | seen 0.761 succ|seen 0.484 | timeouts 1.00
+  R        0.421 0.421 0.002 | seen 0.669 succ|seen 0.587 | timeouts 1.00
+  PR       0.219 0.640 0.000 | seen 0.766 succ|seen 0.477 | timeouts 1.00
+  X        0.046 0.748 0.003 | seen 0.734 succ|seen 0.580 | timeouts 1.00
+  A        0.098 0.727 0.030 | seen 0.776 succ|seen 0.615 | timeouts 1.00
+  D        0.080 0.767 0.015 | seen 0.810 succ|seen 0.559 | timeouts 1.00
+  base_E4  0.472 0.383 0.089 | seen 0.642 succ|seen 0.574 | timeouts 1.00
+  redraw P   redrawn 0.000 of steps; kept-blocked fallback 0.000
+  redraw R   redrawn 0.080 of steps; kept-blocked fallback 0.002
+  redraw PR  redrawn 0.026 of steps; kept-blocked fallback 0.000
+  redraw X   redrawn 0.443 of steps; kept-blocked fallback 0.047
+== valid_seen: success (%)
+  base      35.71
+  P         32.14
+  R         35.71
+  PR        35.24
+  X         39.52
+  A         44.76
+  D         44.21
+  base_E4   34.52
+  paired differences (pp, 95% CI over games)
+  P-base          -3.57 [-7.62, +0.71]
+  R-base          +0.00 [-2.86, +2.86]
+  PR-base         -0.48 [-4.76, +3.81]
+  X-base          +3.81 [-0.00, +7.62]
+  P-A            -12.62 [-17.06, -8.25]
+  R-A             -9.05 [-13.10, -5.08]
+  PR-A            -9.52 [-14.05, -5.08]
+  X-A             -5.24 [-9.37, -1.27]
+  P-D            -12.06 [-15.71, -8.49]
+  R-D             -8.49 [-12.46, -4.60]
+  PR-D            -8.97 [-12.78, -5.24]
+  X-D             -4.68 [-8.57, -0.79]
+  A-base          +9.05 [+5.32, +13.10]
+  D-base          +8.49 [+4.44, +12.62]
+  A-D             +0.56 [-2.46, +3.49]
+  base-base_E4    +1.19 [-2.14, +4.52]
+  behaviour: inspect / goto / immediate repeat share of steps; target seen; success | seen; timeouts
+  base     0.409 0.442 0.066 | seen 0.619 succ|seen 0.577 | timeouts 1.00
+  P        0.186 0.665 0.022 | seen 0.712 succ|seen 0.452 | timeouts 1.00
+  R        0.370 0.470 0.001 | seen 0.643 succ|seen 0.556 | timeouts 1.00
+  PR       0.173 0.677 0.000 | seen 0.674 succ|seen 0.523 | timeouts 1.00
+  X        0.038 0.767 0.002 | seen 0.683 succ|seen 0.578 | timeouts 1.00
+  A        0.089 0.735 0.026 | seen 0.775 succ|seen 0.578 | timeouts 1.00
+  D        0.073 0.766 0.014 | seen 0.804 succ|seen 0.550 | timeouts 1.00
+  base_E4  0.420 0.433 0.071 | seen 0.614 succ|seen 0.562 | timeouts 1.00
+  redraw P   redrawn 0.000 of steps; kept-blocked fallback 0.000
+  redraw R   redrawn 0.063 of steps; kept-blocked fallback 0.001
+  redraw PR  redrawn 0.021 of steps; kept-blocked fallback 0.000
+  redraw X   redrawn 0.392 of steps; kept-blocked fallback 0.039
