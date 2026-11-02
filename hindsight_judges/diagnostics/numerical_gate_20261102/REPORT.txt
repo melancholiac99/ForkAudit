@@ -1,0 +1,26 @@
+Hindsight 32B numerical-gate diagnosis (2026-11-02 UTC)
+
+Formal scoring remains stopped. No formal score file was created or changed.
+Frozen model/backend/requests and the TV < 0.005 threshold were not modified.
+
+The original failing request s001_t07__SPE reproduces identically across three
+repeats in a fresh model load: TV = 0.010228006316480253, matching the failed run.
+Disabling BF16 reduced-precision GEMM reduction does not change that result.
+Selecting PyTorch SDPA MATH only (diagnostic process) gives TV = 0.0018283759142563413.
+All 11 original numerical-gate requests pass under MATH; this is the largest TV.
+The leading candidate remains the same: original shared/direct probabilities
+0.9189532 / 0.9291812. This is a probability consistency failure, not an argmax flip.
+
+Evidence points to computation-path-sensitive BF16 numerics, not random GPU
+instability. It does not establish hardware health or isolate all kernel internals.
+GPU was responsive, without a CUDA/OOM exception in the failed run. ECC is disabled,
+so ECC counters cannot rule out hardware faults; kernel dmesg is inaccessible.
+No comparison GPU was tested. The old E2 checks used different requests and do not
+validate the new identity-marker contexts.
+
+MATH is a promising execution-only remedy, but it changes the numerical runtime.
+Before formal use, record/freeze the attention mode and its fingerprint, preserve
+the failed session, and rerun every baseline/intervention under one configuration.
+Do not reuse scores across modes, relax the gate, or change the frozen backend.
+Only the 11 specified 32B gate samples were tested; this is not full-data validation
+or a completed 7B check. Formal experiment remains stopped pending remediation.

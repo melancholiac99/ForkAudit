@@ -1,0 +1,42 @@
+Hindsight experiment 1: attention execution amendment, 2026-11-02 UTC
+
+Authorization: after reviewing the numerical diagnosis, the researcher requested
+that the change be recorded, pushed to Git, and the experiment started.
+Destination remains research/hindsight-judges. No new server branch.
+
+Trigger, before any formal new scores
+The 32B run stopped at the original TV < 0.005 shared-prefix/direct gate.
+s001_t07__SPE had TV 0.010228006316480253. Three fresh-load diagnostic repeats
+reproduced identical values. Disabling BF16 reduced-precision GEMM reductions
+did not help. Selecting SDPA MATH gave TV 0.0018283759142563413; all 11 specified
+32B check requests passed. Diagnostics and the failed attempt are preserved in
+diagnostics/numerical_gate_20261102/. No formal scores existed in that attempt.
+
+Execution change
+exp1.score encloses the complete model load, numerical checks and scoring loop
+in torch.nn.attention.sdpa_kernel(SDPBackend.MATH), for BOTH 32B and 7B.
+The runtime fingerprint must record math_sdp=true and flash_sdp=false,
+efficient_sdp=false, cudnn_sdp=false. run.json additionally records sdpa_math and
+this amendment's SHA256. Resume, analysis and independent verification reject
+other attention configurations. The context restores caller flags on exit.
+This changes attention-kernel dispatch; it is not numerically identical to the
+original automatic dispatch. Cross-run original-E2 comparisons remain descriptive.
+
+Unchanged scientific and numerical requirements
+Original EXPERIMENT1_PROTOCOL.md is preserved. Model weights, tokenizer, original
+P4 BF16 transformer / FP32 vocabulary-projection backend source and hashes stay
+unchanged. All 386 points, 10 conditions (including newly scored S0/F0), requests,
+candidate ordering, q12 selection, q3456/Gold evaluation, bootstrap seed 20261102,
+4000 resamples and all decision thresholds stay unchanged. TV < 0.005 remains
+mandatory in each new model load; no failed check is skipped or relaxed.
+No original P4/E4/E4b scores are overwritten or reused as intervention baselines.
+Each model scores all conditions under one consistent runtime. No new training
+or trajectory collection. A fresh formal output directory follows preservation
+of the failed empty attempt; scores from different attention modes never mix.
+
+Validation and limits
+32B diagnostic gate: 11/11 pass, maximum TV 0.0018283759142563413.
+Formal 32B and 7B loads will independently rerun their checks before any writes.
+The diagnostic check does not establish all-context numerical agreement or GPU
+hardware health. Kernel choice was changed after a failed numerical gate, before
+formal results, and this provenance must accompany the final interpretation.

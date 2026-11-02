@@ -1,0 +1,279 @@
+{
+  "diagnostic_only": true,
+  "backend_sha256": "541ada89179979bfc2e65a9c521008899f7a31c9fddeb5346adec691c94bbdc5",
+  "checks": [
+    {
+      "request_id": "s001_t07__S0",
+      "original_tv": 9.067983554997854e-07,
+      "tv": 9.717506559398322e-07,
+      "passed": true,
+      "shared_sequence_logp": [
+        -14.429548381936826,
+        -9.62403499975315,
+        -19.690980076076208,
+        -0.000112172641735242,
+        -13.784779666660853
+      ],
+      "direct_sequence_logp": [
+        -14.324171303913232,
+        -9.638725994994871,
+        -19.71180760791625,
+        -0.00010978861601529388,
+        -13.791864155544118
+      ],
+      "seconds": 2.0343680381774902
+    },
+    {
+      "request_id": "s001_t07__SE",
+      "original_tv": 2.0633620063759717e-05,
+      "tv": 7.143749996426717e-05,
+      "passed": true,
+      "shared_sequence_logp": [
+        -9.173501370802086,
+        -6.972175117429167,
+        -14.831208107235852,
+        -0.0011363344964365751,
+        -9.70736669911986
+      ],
+      "direct_sequence_logp": [
+        -9.253366826367703,
+        -7.042279120636401,
+        -14.93653130280245,
+        -0.001111207216922594,
+        -9.695428484934212
+      ],
+      "seconds": 1.6468441486358643
+    },
+    {
+      "request_id": "s001_t07__SX",
+      "original_tv": 5.5734116275848825e-05,
+      "tv": 7.405330238878973e-05,
+      "passed": true,
+      "shared_sequence_logp": [
+        -9.303625463297038,
+        -6.727693197928566,
+        -13.886447905104205,
+        -0.0014282752598546722,
+        -8.642910239039225
+      ],
+      "direct_sequence_logp": [
+        -9.287469147406199,
+        -6.790301321008847,
+        -13.919970272501473,
+        -0.0014680365565027387,
+        -8.651507374612095
+      ],
+      "seconds": 1.638352632522583
+    },
+    {
+      "request_id": "s001_t07__SPE",
+      "original_tv": 0.010228006316480253,
+      "tv": 0.0018283759142563413,
+      "passed": true,
+      "shared_sequence_logp": [
+        -0.0803086001469282,
+        -7.983951327703686,
+        -9.658214448747259,
+        -2.5702860331875,
+        -8.894260164226438
+      ],
+      "direct_sequence_logp": [
+        -0.07832730453443304,
+        -7.956524369430404,
+        -9.612621783133164,
+        -2.594441888366333,
+        -8.816929575026535
+      ],
+      "seconds": 1.6809229850769043
+    },
+    {
+      "request_id": "s001_t07__SPX",
+      "original_tv": 6.686836413151559e-05,
+      "tv": 5.5018334674304296e-05,
+      "passed": true,
+      "shared_sequence_logp": [
+        -9.147294519861958,
+        -0.002970251232852661,
+        -12.535679696473096,
+        -9.271147724895684,
+        -5.979920503843395
+      ],
+      "direct_sequence_logp": [
+        -9.145232914495779,
+        -0.0030240951672908523,
+        -12.484525321462286,
+        -9.235439416734039,
+        -5.959885594602319
+      ],
+      "seconds": 1.673492431640625
+    },
+    {
+      "request_id": "s001_t07__F0",
+      "original_tv": 4.0314227503059646e-07,
+      "tv": 1.0591495157519169e-07,
+      "passed": true,
+      "shared_sequence_logp": [
+        -20.674072211281555,
+        -0.00012147057643119297,
+        -21.771448843421922,
+        -12.867645102716551,
+        -19.886515596645722
+      ],
+      "direct_sequence_logp": [
+        -20.5332054522803,
+        -0.0001231394009835185,
+        -21.847250453670767,
+        -12.827481475765353,
+        -19.95221302777236
+      ],
+      "seconds": 2.3083651065826416
+    },
+    {
+      "request_id": "s001_t07__FE",
+      "original_tv": 3.950396106175915e-07,
+      "tv": 6.398844992929943e-08,
+      "passed": true,
+      "shared_sequence_logp": [
+        -18.79506492306882,
+        -0.0001134841567136391,
+        -20.30734383556728,
+        -12.26652405865616,
+        -18.154309145782236
+      ],
+      "direct_sequence_logp": [
+        -18.76301455177861,
+        -0.00010454392929659662,
+        -20.467877025602775,
+        -12.253059847721943,
+        -18.284376136736455
+      ],
+      "seconds": 2.3814005851745605
+    },
+    {
+      "request_id": "s001_t07__FX",
+      "original_tv": 6.358966043271245e-07,
+      "tv": 6.809084117531964e-07,
+      "passed": true,
+      "shared_sequence_logp": [
+        -19.341665741516294,
+        -0.00012468918538388607,
+        -20.47775339566124,
+        -11.673005566634629,
+        -19.162107936771918
+      ],
+      "direct_sequence_logp": [
+        -19.330140110674506,
+        -0.00012445077044276331,
+        -20.5871374556325,
+        -11.59613893979349,
+        -19.28525232467996
+      ],
+      "seconds": 2.3787200450897217
+    },
+    {
+      "request_id": "s001_t07__FPE",
+      "original_tv": 2.669322328990252e-07,
+      "tv": 2.3709000900178588e-07,
+      "passed": true,
+      "shared_sequence_logp": [
+        -15.209113715974695,
+        -7.891495727108122e-05,
+        -21.03993177238317,
+        -13.072750326239884,
+        -17.04376887857984
+      ],
+      "direct_sequence_logp": [
+        -15.126601575664381,
+        -7.986858065578417e-05,
+        -21.01070678061751,
+        -12.975051399285348,
+        -17.062567468161888
+      ],
+      "seconds": 2.427259683609009
+    },
+    {
+      "request_id": "s001_t07__FPX",
+      "original_tv": 8.098342656965795e-10,
+      "tv": 1.3482305303512403e-10,
+      "passed": true,
+      "shared_sequence_logp": [
+        -20.70021247601744,
+        -8.57096416098102e-05,
+        -22.749036308104564,
+        -14.614505047382522,
+        -18.936409111595253
+      ],
+      "direct_sequence_logp": [
+        -20.66601252274222,
+        -8.630565167777604e-05,
+        -22.747534390177975,
+        -14.614668244703239,
+        -18.94679438653941
+      ],
+      "seconds": 2.427607774734497
+    },
+    {
+      "request_id": "s094_t41__FPE",
+      "original_tv": 1.888934282179176e-10,
+      "tv": 7.147501714871564e-11,
+      "passed": true,
+      "shared_sequence_logp": [
+        -4.5775583998874936e-05,
+        -12.065630431268971,
+        -27.125194893851585,
+        -18.14953286345166,
+        -35.37129620072028
+      ],
+      "direct_sequence_logp": [
+        -4.732524291739537e-05,
+        -12.065644259649133,
+        -27.32374251740839,
+        -18.14957433722497,
+        -35.53289740982291
+      ],
+      "seconds": 3.486118793487549
+    }
+  ],
+  "complete": true,
+  "runtime": {
+    "uuid": "4018b156-1646-4f4a-d566-42d271504323",
+    "name": "NVIDIA H800 PCIe",
+    "capability": [
+      9,
+      0
+    ],
+    "memory": 85017624576,
+    "driver": "GPU-4018b156-1646-4f4a-d566-42d271504323, 580.82.07",
+    "python": "3.11.17",
+    "torch": "2.13.0+cu130",
+    "cuda": "13.0",
+    "cudnn": 92000,
+    "torch_build": "PyTorch built with:\n  - GCC 13.3\n  - C++ Version: 202002\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.12.0 (Git Hash 80afa71049cd69a3df32adcccb623b12cd7baa22)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX512\n  - CUDA Runtime 13.0\n  - NVCC architecture flags: -gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120\n  - CuDNN 92.0  (built against CUDA 13.2)\n  - Magma 2.6.1\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=cf30153c4c131c8164ee7798e5022d810682e2cb, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all -DONNX_NAMESPACE=onnx_torch -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100 -gencode arch=compute_120,code=sm_120 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -Xfatbin -compress-all --threads 2 -compress-mode=size -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CUDA_VERSION=13.0, CUDNN_VERSION=9.20.0, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DHAS_CUPTI -DUSE_FBGEMM -DUSE_MSLK -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.13.0, USE_CUDA=1, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, \n",
+    "versions": {
+      "transformers": "5.19.0",
+      "numpy": "2.3.5",
+      "safetensors": "0.8.0"
+    },
+    "tf32_matmul": false,
+    "tf32_cudnn": true,
+    "bf16_reduction": true,
+    "fp16_reduction": true,
+    "flash_sdp": true,
+    "math_sdp": true,
+    "efficient_sdp": true,
+    "cudnn_sdp": true,
+    "deterministic": false,
+    "precision": "highest",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "math_environment": {
+      "CUBLAS_WORKSPACE_CONFIG": null,
+      "NVIDIA_TF32_OVERRIDE": null,
+      "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+    }
+  },
+  "override": "torch.nn.attention.sdpa_kernel(SDPBackend.MATH)",
+  "threshold": 0.005,
+  "passed": true,
+  "max_tv": 0.0018283759142563413
+}

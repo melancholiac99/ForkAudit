@@ -65,7 +65,7 @@ def preflight():
     lengths=[E.tokenize(tok,j) for j in jobs]
     token_report={c:dict(contexts=sum(j['condition']==c for j in lengths),
                     max_full_tokens=max(len(j['prefix_ids'])+max(len(x['suffix_ids']) for x in j['candidates']) for j in lengths if j['condition']==c)) for c in E.CONDS}
-    for p in [*H.glob('*.py'),H/'EXPERIMENT1_PROTOCOL.md',H/'SERVER_EXECUTION.md',SOURCE/'exploratory_P4/p4_e2_backend.py',
+    for p in [*H.glob('*.py'),H/'EXPERIMENT1_PROTOCOL.md',H/'SERVER_EXECUTION.md',H/'EXECUTION_AMENDMENT_20261102.txt',SOURCE/'exploratory_P4/p4_e2_backend.py',
               SOURCE/'exploratory_P4/e2_environment.json',*(OUT/f for f in ('manifest.json','pointmeta.json','requests.jsonl.gz'))]:
         frozen[str(p.resolve())]=E.digest(p)
     versions={k:importlib.metadata.version(k) for k in oldenv['versions']}

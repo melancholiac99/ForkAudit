@@ -229,6 +229,13 @@ def tokenize(tok, job):
 
 
 def score(args):
+    # Execution amendment 2026-11-02: one fixed attention kernel for every condition.
+    from torch.nn.attention import sdpa_kernel, SDPBackend
+    with sdpa_kernel(SDPBackend.MATH):
+        return _score_math(args)
+
+
+def _score_math(args):
     import torch
     from transformers import AutoTokenizer
     if not torch.cuda.is_available(): raise RuntimeError('CUDA required; no GPU scores were written')
@@ -251,7 +258,10 @@ def score(args):
     target=out/args.name; target.mkdir(parents=True,exist_ok=True)
     runpath=target/'run.json'; scorespath=target/'scores.jsonl'
     runtime=checks_runtime.fingerprint();hardware_sha=checks_runtime.fp_sha(runtime)
+    checks_runtime.require_math_attention(runtime)
     env=dict(gpu=torch.cuda.get_device_name(0), torch=torch.__version__, cuda=torch.version.cuda,
+             attention_backend='sdpa_math',
+             execution_amendment_sha256=digest(HERE/'EXECUTION_AMENDMENT_20261102.txt'),
              runtime=runtime,hardware_sha256=hardware_sha,checks_script_sha256=digest(checks_runtime.__file__),
              protocol_sha256=digest(HERE/'EXPERIMENT1_PROTOCOL.md'),
              revision=args.revision, model_sha256=actual, backend_sha256=digest(src),
@@ -384,6 +394,7 @@ def analyze(args):
     assert runs['scorer_script_sha256']==digest(__file__)
     assert runs['checks_script_sha256']==digest(checks_runtime.__file__)
     assert runs['protocol_sha256']==digest(HERE/'EXPERIMENT1_PROTOCOL.md')
+    checks_runtime.check_attention_run(runs,digest(HERE/'EXECUTION_AMENDMENT_20261102.txt'))
     validated=checks_runtime.load_scores(out/args.name/'scores.jsonl',jobs,runs['hardware_sha256'],complete=True)
     checks_runtime.check_sessions(out/args.name,validated,jobs,runs['hardware_sha256'])
     sc={}

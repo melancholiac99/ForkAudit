@@ -1,0 +1,24 @@
+{"stage": "waiting_for_e4b_verified", "pid": 12664, "utc": "2026-11-02T08:28:33Z", "upstream_pid": 3776, "upstream_identity": "3047505031", "models": ["32b", "7b"]}
+{"stage": "waiting_for_e4b_verified", "pid": 13437, "utc": "2026-11-02T08:44:30Z", "upstream_pid": 3776, "upstream_identity": "3047505031", "models": ["32b", "7b"]}
+{"stage": "waiting_for_e4b_verified", "pid": 13797, "utc": "2026-11-02T08:53:41Z", "upstream_pid": 3776, "upstream_identity": "3047505031", "models": ["32b", "7b"]}
+{"stage": "score_32b", "pid": 13797, "utc": "2026-11-02T13:07:11Z", "command": ["/root/miniconda3/envs/m0/bin/python", "-u", "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py", "score", "--repo", "/root/autodl-tmp/idea", "--out", "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1_p4", "--arms", "/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet", "--name", "32b", "--model", "/root/autodl-tmp/models/Qwen2.5-32B-Instruct", "--revision", "5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd"]}
+{"stage": "failed", "pid": 13797, "utc": "2026-11-02T13:21:23Z", "error": "Command '['/root/miniconda3/envs/m0/bin/python', '-u', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py', 'score', '--repo', '/root/autodl-tmp/idea', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--name', '32b', '--model', '/root/autodl-tmp/models/Qwen2.5-32B-Instruct', '--revision', '5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd']' returned non-zero exit status 1."}
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py", line 158, in main
+    stage('score_'+name,'exp1.py','score',*common,'--model',SOURCE.parent/'models'/dirname,'--revision',revision)
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py", line 124, in stage
+    subprocess.run(command,cwd=ROOT,stdout=f,stderr=subprocess.STDOUT,check=True,
+  File "/root/miniconda3/envs/m0/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/miniconda3/envs/m0/bin/python', '-u', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py', 'score', '--repo', '/root/autodl-tmp/idea', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--name', '32b', '--model', '/root/autodl-tmp/models/Qwen2.5-32B-Instruct', '--revision', '5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py", line 175, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py", line 158, in main
+    stage('score_'+name,'exp1.py','score',*common,'--model',SOURCE.parent/'models'/dirname,'--revision',revision)
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py", line 124, in stage
+    subprocess.run(command,cwd=ROOT,stdout=f,stderr=subprocess.STDOUT,check=True,
+  File "/root/miniconda3/envs/m0/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/miniconda3/envs/m0/bin/python', '-u', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py', 'score', '--repo', '/root/autodl-tmp/idea', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--name', '32b', '--model', '/root/autodl-tmp/models/Qwen2.5-32B-Instruct', '--revision', '5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd']' returned non-zero exit status 1.

@@ -36,6 +36,17 @@ def fp_sha(fp):
     return hashlib.sha256(json.dumps(fp,sort_keys=True).encode()).hexdigest()
 
 
+def require_math_attention(runtime):
+    assert runtime['math_sdp'] is True, 'MATH attention must be enabled'
+    assert all(runtime[k] is False for k in ('flash_sdp','efficient_sdp','cudnn_sdp')), 'Other attention kernels must be disabled'
+
+
+def check_attention_run(run,amendment_sha):
+    assert run['attention_backend']=='sdpa_math'
+    assert run['execution_amendment_sha256']==amendment_sha
+    require_math_attention(run['runtime'])
+
+
 def validate_row(row,job,hardware_sha):
     for k in ('request_id','request_sha256','point_id','condition'):
         assert row[k]==job[k], (job['request_id'],k)

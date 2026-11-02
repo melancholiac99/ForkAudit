@@ -66,8 +66,61 @@
     "pyarrow": "26.0.0",
     "safetensors": "0.8.0"
   },
-  "protected_files": 58,
+  "protected_files": 61,
   "free_disk_gib": 140.82066345214844,
   "protocol_commit": "2fab12da4d24223111bf83ff46d10b6015766421",
-  "gpu_started": false
+  "gpu_started": false,
+  "execution_amendment": {
+    "utc": "2026-11-02T13:52:06Z",
+    "authorized_by": "Researcher requested recording and Git push before starting the amended experiment",
+    "amendment_sha256": "fb41715e0cabf85520de94f2385b0afdc5f3d189f60ec003c9a3ab9d847adc1d",
+    "changed_protected_files": {
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py": {
+        "before": "d09c0ea8ac4626ff46e18ab936baedfb78ce4a73e140aece63b53f5f0e8eb2f6",
+        "after": "156b1841286f0d6a38df84108ef618dab7520a9d79a33fc6c0a78c14bb10e1ce"
+      },
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/test_execution.py": {
+        "before": "d676c99e078ab7f0f680b80ac4bffcd9c245d319d8a84f352284de8607e93ca8",
+        "after": "6149d6b65fd464737365f2c62392e9a0c63ba1655e71ff1420f427fb50888192"
+      },
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/execution_checks.py": {
+        "before": "d834e25d176fd5d866f772cbcaad172b6f11b48abc4c4eaf526b79aabb6391f4",
+        "after": "eb9f25557705c8460d188d3d8b07c14ed994e2c7ea50b44b94843f7154dd9b48"
+      },
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/verify_exp1.py": {
+        "before": "6aa7856b4be7fe3202e3f3e9b1bc6d64b6ea5df53c516394331d7e80af63135d",
+        "after": "a310a23bc844ea5c43ce482f472c420c67cc4940a4a852b04436acd8cff98f1b"
+      },
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py": {
+        "before": "a2cf52818aa9ddb6f41e0d914b6cd15c60fcf94ce85f24539b1dfa317e24c568",
+        "after": "6a7619acd8c8a4e6b894d921a79c7b036ff5a1df01f0b66b4bf3d1967faf32ca"
+      },
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/SERVER_EXECUTION.md": {
+        "before": "9e609338a4b28ef16e23ef48325bc0135e3b92436a48e72c6c31168ad4d133a3",
+        "after": "08af3fe50121c7a1a432e3ca782b53caeea1e317b41f5a2f20e19199dadffa7a"
+      }
+    },
+    "new_protected_files": {
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/EXECUTION_AMENDMENT_20261102.txt": "fb41715e0cabf85520de94f2385b0afdc5f3d189f60ec003c9a3ab9d847adc1d",
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/diagnose_numerics.py": "92f7ffa2d50cef235370afd46d4fc5a9b637846682d97ff03e3833147ad6aa5c",
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/diagnose_math_gate.py": "42036cf0975ce2f870fa300d4707f5b83b39f81d7e953f68ee5a60f7370f3540"
+    },
+    "original_protocol_unchanged": true,
+    "original_backend_unchanged": true,
+    "prepared_requests_and_metadata_rebuilt_identically": true,
+    "prior_failed_attempt": "diagnostics/numerical_gate_20261102/failed_original_attempt",
+    "prior_formal_scores": 0,
+    "cpu_tests": {
+      "command": "python -m unittest test_execution -v",
+      "tests": 7,
+      "passed": true
+    },
+    "original_selftest_passed": true,
+    "diagnostic_32b_gate": {
+      "checks": 11,
+      "passed": true,
+      "max_tv": 0.0018283759142563413
+    },
+    "weight_policy": "Original fixed shard hashes retained; score rechecks every weight shard before model load"
+  }
 }

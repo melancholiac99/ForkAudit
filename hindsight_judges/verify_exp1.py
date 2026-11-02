@@ -34,6 +34,7 @@ def verify(repo,out,arms,name):
     jobs,meta,man=E.rows_and_meta(out);target=out/name;run=E.load_json(target/'run.json')
     assert run['complete'] and run['contexts']==3860 and run['scores_sha256']==E.digest(target/'scores.jsonl')
     assert run['hardware_sha256']==X.fp_sha(run['runtime'])
+    X.check_attention_run(run,E.digest(E.HERE/'EXECUTION_AMENDMENT_20261102.txt'))
     original=E.load_json(repo/f'exploratory_P4/e2_{name}/run.json')
     assert run['model_sha256']==original['model_sha256'] and run['revision']==original['revision']
     assert run['backend_sha256']==original['scorer_sha256']

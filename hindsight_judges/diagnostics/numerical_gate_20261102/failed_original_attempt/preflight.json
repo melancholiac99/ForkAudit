@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "points": 386,
+  "contexts_per_model": 3860,
+  "models": [
+    "32b",
+    "7b"
+  ],
+  "layers": {
+    "I": 184,
+    "U": 202
+  },
+  "requests_identical_to_reviewed_branch": {
+    "requests.jsonl.gz": "9247ed0145ab3ede64d3900d67a1afac007c4d51c98176a01b9667ed60070323",
+    "pointmeta.json": "c6bbb562b56ac79ce785dc8273c5e559cda19917bea945f86a0f36b0b333ee40"
+  },
+  "tokens": {
+    "S0": {
+      "contexts": 386,
+      "max_full_tokens": 1147
+    },
+    "SE": {
+      "contexts": 386,
+      "max_full_tokens": 1180
+    },
+    "SX": {
+      "contexts": 386,
+      "max_full_tokens": 1180
+    },
+    "SPE": {
+      "contexts": 386,
+      "max_full_tokens": 1204
+    },
+    "SPX": {
+      "contexts": 386,
+      "max_full_tokens": 1204
+    },
+    "F0": {
+      "contexts": 386,
+      "max_full_tokens": 1476
+    },
+    "FE": {
+      "contexts": 386,
+      "max_full_tokens": 1509
+    },
+    "FX": {
+      "contexts": 386,
+      "max_full_tokens": 1509
+    },
+    "FPE": {
+      "contexts": 386,
+      "max_full_tokens": 1533
+    },
+    "FPX": {
+      "contexts": 386,
+      "max_full_tokens": 1533
+    }
+  },
+  "versions": {
+    "torch": "2.13.0",
+    "transformers": "5.19.0",
+    "numpy": "2.3.5",
+    "pandas": "3.0.6",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.9.1",
+    "pyarrow": "26.0.0",
+    "safetensors": "0.8.0"
+  },
+  "protected_files": 58,
+  "free_disk_gib": 140.82066345214844,
+  "protocol_commit": "2fab12da4d24223111bf83ff46d10b6015766421",
+  "gpu_started": false
+}

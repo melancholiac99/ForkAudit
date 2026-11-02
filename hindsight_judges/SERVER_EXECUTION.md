@@ -28,3 +28,10 @@ The queue requires E4b successful final verification and an idle GPU, then runs
 32B score/analyze/verify and 7B score/analyze/verify, followed by a result inventory
 and publication to `research/hindsight-judges`. No E4b/P8 scientific file changes.
 It never invokes old shutdown/repair watchers. A failure saves logs and stops.
+
+The 2026-11-02 original 32B attempt stopped before writing scores at its numerical
+gate. The researcher approved the recorded execution amendment in
+`EXECUTION_AMENDMENT_20261102.txt`: use SDPA MATH for all 32B/7B conditions,
+fingerprint it, and preserve the failed attempt separately. The original
+scientific protocol and TV threshold remain unchanged. Diagnostic evidence is
+under `diagnostics/numerical_gate_20261102/`.

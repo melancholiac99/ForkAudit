@@ -13,6 +13,22 @@ import verify_exp1 as V
 
 
 class Tests(unittest.TestCase):
+    def test_math_attention_scope_and_reject_mixed_runtime(self):
+        import torch
+        def flags():
+            c=torch.backends.cuda
+            return dict(math_sdp=c.math_sdp_enabled(),flash_sdp=c.flash_sdp_enabled(),
+                        efficient_sdp=c.mem_efficient_sdp_enabled(),cudnn_sdp=c.cudnn_sdp_enabled())
+        before=flags()
+        with patch.object(E,'_score_math',side_effect=lambda args:flags()):
+            inside=E.score(None)
+        X.require_math_attention(inside);self.assertEqual(before,flags())
+        run=dict(runtime=inside,attention_backend='sdpa_math',execution_amendment_sha256='amendment')
+        X.check_attention_run(run,'amendment')
+        for key in ('flash_sdp','efficient_sdp','cudnn_sdp'):
+            with self.assertRaises(AssertionError):X.check_attention_run(dict(run,runtime=dict(inside,**{key:True})),'amendment')
+        with self.assertRaises(AssertionError):X.check_attention_run(run,'wrong')
+
     def rows(self):
         jobs=[];rows=[]
         for c in E.CONDS:
@@ -82,6 +98,8 @@ class Tests(unittest.TestCase):
                          input_sha256={'exploratory_deep_discovery/exploratory_arms.parquet':E.digest(arms)}))
             (target/'scores.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in saved))
             E.write_json(target/'run.json',dict(complete=True,contexts=30,requests_sha256=E.sha(raw),scores_sha256=E.digest(target/'scores.jsonl'),
+                         attention_backend='sdpa_math',execution_amendment_sha256=E.digest(E.HERE/'EXECUTION_AMENDMENT_20261102.txt'),
+                         runtime=dict(math_sdp=True,flash_sdp=False,efficient_sdp=False,cudnn_sdp=False),
                          scorer_script_sha256=E.digest(E.__file__),checks_script_sha256=E.digest(X.__file__),
                          protocol_sha256=E.digest(E.HERE/'EXPERIMENT1_PROTOCOL.md'),hardware_sha256='fp'))
             check_ids=[next(j['request_id'] for j in jobs if j['condition']==c) for c in E.CONDS]+[jobs[0]['request_id']]
