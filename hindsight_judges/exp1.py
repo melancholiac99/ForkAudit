@@ -324,7 +324,10 @@ def analyze(args):
     result=dict(status='EXPERIMENTAL; NOT YET PEER REVIEWED',model=args.name,points=NPOINTS,
                 input_sha256=man['input_sha256'], score_run=runs, metrics={})
     for ctx in ['S','F']:
-        for group in ['all','q12_factual_worse','q12_factual_worse_ge_1_3','q12_factual_not_worse','gold_q12_factual_worse']:
+        for group in ['all','I_all','U_all','q12_factual_worse',
+                      'q12_factual_worse_ge_1_3','I_q12_factual_worse_ge_1_3',
+                      'U_q12_factual_worse_ge_1_3','q12_factual_not_worse',
+                      'gold_q12_factual_worse']:
             measures={k:[] for k in ['p_exec_true_minus_swap','p_alt_swap_minus_true',
                        'identity_switch_effect','placebo_switch_effect','identity_minus_placebo',
                        'value_true_minus_swap','value_true_minus_no_label',
@@ -332,8 +335,10 @@ def analyze(args):
             tids=[]
             for r in meta:
                 pid=r['point_id'];tr=r['traj'];alt=r['swap_arm']; gap=r['q12_gap']
+                if group.startswith('I_') and r['layer']!='I':continue
+                if group.startswith('U_') and r['layer']!='U':continue
                 if group=='q12_factual_worse' and gap<=0:continue
-                if group=='q12_factual_worse_ge_1_3' and gap < 1/3-1e-8:continue
+                if group.endswith('q12_factual_worse_ge_1_3') and gap < 1/3-1e-8:continue
                 if group=='q12_factual_not_worse' and gap>0:continue
                 if group=='gold_q12_factual_worse' and gap<=0:continue
                 qkey='qgold' if group.startswith('gold') else 'q3456'
