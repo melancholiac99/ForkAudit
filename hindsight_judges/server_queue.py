@@ -22,6 +22,7 @@ ARMS=SOURCE/'exploratory_deep_discovery/exploratory_arms.parquet'
 MODELS={'32b':('Qwen2.5-32B-Instruct','5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd'),
         '7b':('Qwen2.5-7B-Instruct','a09a35458c702b33eeacc393d103063234e8bc28')}
 BRANCH='server/hindsight-exp1-20261102'
+DESTINATION='research/hindsight-judges'
 
 
 def status(stage,**kw):
@@ -137,9 +138,9 @@ def publish():
     head=git('rev-parse','HEAD')
     for attempt in range(3):
         try:
-            git('push','origin',f'HEAD:refs/heads/{BRANCH}')
-            assert git('ls-remote','--heads','origin',BRANCH).split()[0]==head
-            E.write_json(RUN/'publication.json',dict(verified=True,branch=BRANCH,commit=head));return
+            git('push','origin',f'HEAD:refs/heads/{DESTINATION}')
+            assert git('ls-remote','--heads','origin',DESTINATION).split()[0]==head
+            E.write_json(RUN/'publication.json',dict(verified=True,branch=DESTINATION,commit=head));return
         except Exception:
             if attempt==2:raise
             time.sleep(20)

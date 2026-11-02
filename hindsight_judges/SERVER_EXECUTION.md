@@ -1,7 +1,9 @@
 # Experiment 1 v2: server execution
 
 Source freeze: `2fab12da4d24223111bf83ff46d10b6015766421`.
-Server branch: `server/hindsight-exp1-20261102`. Source data remains read-only at
+Local worktree branch: `server/hindsight-exp1-20261102`.
+GitHub destination: `research/hindsight-judges` (researcher's explicit correction).
+Source data remains read-only at
 `/root/autodl-tmp/idea`; model weights remain under `/root/autodl-tmp/models`.
 All new requests/results are under `hindsight_judges/results/exp1_p4` here.
 
@@ -24,5 +26,5 @@ sample of the whole population. 7B is secondary; primary conclusions use 32B.
 
 The queue requires E4b successful final verification and an idle GPU, then runs
 32B score/analyze/verify and 7B score/analyze/verify, followed by a result inventory
-and publication to this isolated server branch. No E4b/P8 scientific file changes.
+and publication to `research/hindsight-judges`. No E4b/P8 scientific file changes.
 It never invokes old shutdown/repair watchers. A failure saves logs and stops.

@@ -1,5 +1,16 @@
 # DECISIONS.md
 
+## Hindsight publication destination correction — 2026-11-02
+
+Researcher explicitly requested pushing the implementation correction to the
+original research/hindsight-judges branch. Its remote HEAD remains an ancestor
+of the server worktree, so publish by ordinary fast-forward push, without force.
+Keep the local worktree branch for isolation; change future result publication
+to research/hindsight-judges as well. Only the waiting hindsight queue is
+restarted; no score files exist and E4b is unaffected. Record old/new operational
+source and protected-manifest hashes in run/publication_destination_change.json.
+Scientific code, requests, models, seeds and thresholds are unchanged.
+
 ## Hindsight judges experiment 1 server queue — 2026-11-02 — authorized
 
 Researcher requested checking current-code execution and running this experiment

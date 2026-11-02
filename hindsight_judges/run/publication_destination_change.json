@@ -1,0 +1,17 @@
+{
+  "reason": "User explicitly requested original research/hindsight-judges branch",
+  "old_destination": "server/hindsight-exp1-20261102",
+  "new_destination": "research/hindsight-judges",
+  "before_sha256": {
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py": "6e01d8d30f9a78094acc4b6571f6f6eb9bd9a06e6a2ff89724a4cd5f0b1106f1",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/SERVER_EXECUTION.md": "c3405196ca030ce7fbbe0a2f8cd2f1706cfa9e809ba102553d9725fbc8554a62",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run/protected_inputs.json": "df0498344a4fb58e9b220438994e06a07ec44f562b26cab8a7f14efa7c4626b5"
+  },
+  "no_scores": true,
+  "stopped_waiter_pid": 12664,
+  "after_sha256": {
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py": "4e2e813a9819d1e4cf484a947a312e07ffc35b0ef4f3152cf480b091cd0ac91b",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/SERVER_EXECUTION.md": "f0b35cf8bba99f69d3c03d21406e5d33082ae5499f76b2a4e816c214be0bd276",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run/protected_inputs.json": "31d75d0036beac46a76bc41858dfb11e0afcd696289a19470e5c587e716539fc"
+  }
+}
