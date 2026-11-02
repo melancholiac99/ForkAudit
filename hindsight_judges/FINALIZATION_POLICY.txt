@@ -1,0 +1,25 @@
+User-authorized Hindsight finalization, 2026-11-02 UTC
+
+The researcher requested shutdown after completion, checks and GitHub upload,
+then clarified that ANY failure (not only upload failure) must first be examined
+and repaired when possible. If unrecoverable, preserve errors/results and shut down.
+
+finish_and_shutdown.py is a separate watcher. It does not modify the frozen
+scorer, requests, thresholds or active queue. It waits for the queue to exit.
+Success requires both 32B/7B audits, 3860 contexts each, local artifact hashes,
+exact result blobs on research/hindsight-judges, and E4b's published commit
+remaining reachable from main. It syncs and invokes the platform shutdown script.
+
+Publication failures receive three normal (never forced) push retries. All other
+failures, and unrepaired publication failures, preserve a verified tar archive
+and request recovery in the current Codex thread using codex queue --resume.
+The reviewer must claim via finalization/recovery_claim.json, diagnose/repair
+without changing the scientific protocol, then rearm this watcher if continuing.
+If Git histories diverge, inspect/merge in a detached worktree; do not overwrite
+conflicting research artifacts. If unrepairable, save evidence, sync, then shut down.
+
+If recovery cannot be invoked or is unclaimed for 15 minutes, the watcher saves
+that failure and shuts down only if the GPU is idle. A busy GPU prevents shutdown.
+No experiment data are deleted. Recovery archives live in finalization/failures/.
+Status is finalization/status.json; the watcher log is finalization/watcher.log.
+The platform command is /bin/bash /usr/bin/shutdown (the existing container hook).
