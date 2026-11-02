@@ -104,7 +104,7 @@ def score(args):
     checks = []
     for raw_job in [jobs[0], max(jobs, key=lambda j: len(j["text"]))]:
         j = tokenize(raw_job)
-        a, b = scorer.score(j), [scorer.direct(j, k) for k in range(5)]
+        a, b = scorer.score(j), [scorer.direct(j, k) for k in range(len(j["candidates"]))]
         prob = lambda lp: (lambda x: np.exp(x - x.max()) / np.exp(x - x.max()).sum())(np.array([sum(y) for y in lp]))
         tv = float(abs(prob(a) - prob(b)).sum() / 2)
         checks.append(dict(request_id=j["request_id"], tv=tv, passed=tv < .005))
