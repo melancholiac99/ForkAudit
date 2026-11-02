@@ -1,7 +1,7 @@
 # Experiment 1 v2: server execution
 
 Source freeze: `2fab12da4d24223111bf83ff46d10b6015766421`.
-Local worktree branch: `server/hindsight-exp1-20261102`.
+Local worktree branch: `research/hindsight-judges`.
 GitHub destination: `research/hindsight-judges` (researcher's explicit correction).
 Source data remains read-only at
 `/root/autodl-tmp/idea`; model weights remain under `/root/autodl-tmp/models`.

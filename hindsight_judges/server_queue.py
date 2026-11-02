@@ -21,7 +21,7 @@ OUT=H/'results/exp1_p4';RUN=H/'run'
 ARMS=SOURCE/'exploratory_deep_discovery/exploratory_arms.parquet'
 MODELS={'32b':('Qwen2.5-32B-Instruct','5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd'),
         '7b':('Qwen2.5-7B-Instruct','a09a35458c702b33eeacc393d103063234e8bc28')}
-BRANCH='server/hindsight-exp1-20261102'
+BRANCH='research/hindsight-judges'
 DESTINATION='research/hindsight-judges'
 
 

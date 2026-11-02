@@ -1,5 +1,15 @@
 # DECISIONS.md
 
+## Remove redundant hindsight server branch — 2026-11-02
+
+At the researcher's explicit request, rename the local worktree branch to
+research/hindsight-judges and delete only the remote server/hindsight-exp1-20261102
+branch after confirming its commits are preserved on the research branch. Keep
+the worktree, prepared inputs and experiment queue. Update the queue's local
+branch assertion and restart its waiting process; E4b and scientific settings
+are unchanged. Pre-score operational hash transition is recorded separately in
+hindsight_judges/run/server_branch_cleanup.json.
+
 ## Hindsight publication destination correction — 2026-11-02
 
 Researcher explicitly requested pushing the implementation correction to the

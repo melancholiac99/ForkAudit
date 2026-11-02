@@ -1,0 +1,17 @@
+{
+  "reason": "User explicitly requested deleting newly created server branch",
+  "old_branch": "server/hindsight-exp1-20261102",
+  "retained_branch": "research/hindsight-judges",
+  "before_sha256": {
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py": "4e2e813a9819d1e4cf484a947a312e07ffc35b0ef4f3152cf480b091cd0ac91b",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/SERVER_EXECUTION.md": "f0b35cf8bba99f69d3c03d21406e5d33082ae5499f76b2a4e816c214be0bd276",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run/protected_inputs.json": "31d75d0036beac46a76bc41858dfb11e0afcd696289a19470e5c587e716539fc"
+  },
+  "no_scores": true,
+  "stopped_waiter_pid": 13437,
+  "after_sha256": {
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py": "a2cf52818aa9ddb6f41e0d914b6cd15c60fcf94ce85f24539b1dfa317e24c568",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/SERVER_EXECUTION.md": "9e609338a4b28ef16e23ef48325bc0135e3b92436a48e72c6c31168ad4d133a3",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run/protected_inputs.json": "ba6c2ace40e3d3f70cce5a321829b5ec7fbfa04690a332395a70d4f6b9c78d09"
+  }
+}
