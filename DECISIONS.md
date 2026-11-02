@@ -1432,3 +1432,26 @@ The original pre-data timing claim is preserved from D-061; this later bookkeepi
   `prompts/judge_base_webshop.txt`, text unchanged (tested). `exploratory_E4/e4_03_judge.py`: the numerical check now
   loops over the actual number of candidates instead of a fixed 5 — no change for E4 (always 5; E4 tests pass).
   `test_e5.py`: 15 tests pass on CPU, including dry end-to-end runs of E5-S / E5-C / E5-K with a fake retriever.
+
+## D-062 — Publish verified server E4 and P8 CPU artifacts to main — DECIDED 2026-11-02
+
+Researcher authorized importing previously completed server results that had not been merged to main, in addition to the reviewed E4b. Content-only import commit: `f8276d33cf0850058b082e26bd947e9c8ff6da66` from `server/e4-results-20261101` (f03b5713ce126d426087c4275772c2d5b7f53097), `server/p8-preflight-20261101` (d24c3d0fd3b177c477d8fa2c25b15eb4f462ba25), and the two original E4 post-hoc files from `review/pending-20261102` (892b8f0ba528a0f23fd727dc757d3a8347116397).
+
+- E4 completed, independent final verification passed; original registered reading **R-L-HEURISTIC** unchanged. Includes compact reports, full non-weight results archive, execution evidence, train logs, and evaluation summaries.
+- P8 CPU audit independently verified (P1=NEG, P2=false, S4=true, R-P8-MISDIRECT-HISTORY). **P8 GPU phase C has NOT completed**: original-score reproduction failed the frozen TV < 0.005 gate on 7B; failures are documented, not converted into scientific findings.
+- E4 post-hoc pair composition is labeled exploratory; it motivates but does not constitute E4b training evidence.
+- Existing E5 amendment 2, V3 paper documents and E4 judge candidate-count compatibility fix on main were preserved; **E5 amendment 3 was not merged or approved by this request**.
+- E4 and P8 server DECISIONS.md files contain conflicting D-059–D-061 numbers and different appendices. Both complete source records were preserved verbatim under `review_sources/DECISIONS_e4_server_20261102.md` and `review_sources/DECISIONS_p8_server_20261102.md`, rather than silently overwriting this root log. Import inventory/provenance recorded in `review_sources/SERVER_RESULTS_IMPORT_20261102.md`.
+- This upload neither performs nor resumes E4, P8, or E5 GPU work.
+
+## D-063 — E4b experiment pre-registration frozen before training — DECIDED 2026-11-02
+
+Researcher explicitly approved **all four D1–D4 defaults** in the uploaded executable E4b patch and instructed freezing on `main` before starting server GPU runs. **Standalone pre-registration freeze commit: `82ebaa3801a6972a405b172ff1678997f73ff1c4`** (message `E4b: pre-registration`; file `exploratory_E4b/PREREG_E4b.md`). This commit follows the imported verified E4/P8 data and committed E4b executable scripts and checks; no E4b training or evaluation outcome was available at freeze time.
+
+Frozen scientific decisions:
+1. D1: add **Dgap**, yielding {Azero,Agap,Dzero,Dgap} as an A/D × Z3/V3 2×2; Bfacgap on V3-fac is secondary, base is separately re-evaluated.
+2. D2: valid_unseen paired 2×2 pooled `Z−G = (Azero+Dzero)/2 − (Agap+Dgap)/2` non-inferiority, margin **δ=4 pp**; P1 requires both Azero and Dzero improvements versus base with 95% CI lower > 0. Frozen reading sequence: NULL, SUPPORT, COUNTER, PARTIAL.
+3. D3: **N=960 unique factual-anchored preference pairs per training arm**, identical task-type composition (look_at 175, pick_simple 198, clean 160, cool 247, heat 169, pick_two 11), no replacement; exact per-arm input SHA256 frozen in `exploratory_E4b/e4b_gate.json`. Three training seeds, existing E4 LoRA-DPO settings, 5e−6 LR, 2 epochs, 10000 game-level bootstrap; valid_unseen primary and valid_seen secondary.
+4. D4: **no new E4-specific deeper replay before E4b**. M0's exploratory 0.8% finding from a different population remains report-only and does not enter the result reading. Z3 means 15/15 observed current-policy failures, NOT actual Q=0.
+
+Interpretation remains a comparison of training sets retained versus discarded by a replay-based state selection rule; it is **not** a causal effect of being a zero-credit state. Unmatched trajectory outcomes and turn positions are explicitly reported; there is no claim of conservative bias in either direction. The original E4 R-L-HEURISTIC reading is unchanged. Server must rerun E4b CPU integrity tests against local E4 source before training; the frozen training file hash gate aborts on discrepancies. The server GPU run was **not started** by this commit.
