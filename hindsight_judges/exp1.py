@@ -25,7 +25,11 @@ SEED = 20261102
 NBOOT = 4000
 
 
-# v2 label wording: avoid "selected" (used in the F feedback template); list positions are 1-based.
+# v2 wording. Neither label uses "selected": the F feedback template already says
+# "The Agent receives only the response to the selected action", so reusing that verb would let the
+# label be read as fixing the decision. The execution label carries no extra disclaimer, matching how
+# a real hindsight log presents the executed action (the base prompt keeps its anti-copy instruction
+# in every condition). Labels name a 1-based list position, never the action string.
 def execution_label(n):
     return (f"Execution record for the marked decision: the original agent executed candidate number {n} "
             f"(entry {n} of 5 in the Candidates list above, counting from 1).")
@@ -389,7 +393,8 @@ def analyze(args):
                 lp={c:np.array(sc[pid+'__'+ctx+c]['sequence_logp'],float) for c in ('0','E','X','PE','PX')}
                 e=p['E'][0]-p['X'][0]; x=p['X'][alt]-p['E'][alt]
                 pe=p['PE'][0]-p['PX'][0]; px=p['PX'][alt]-p['PE'][alt]
-                # Pairwise log odds: compare factual and contrast candidate sequence log probabilities.
+                # Log-odds of factual vs contrast arm (nats). Candidate strings are identical across
+                # conditions, so length terms cancel; unlike pp this does not saturate when one arm has p~1.
                 lo=lambda c: lp[c][0]-lp[c][alt]
                 id_nat=(lo('E')-lo('X'))/2; pl_nat=(lo('PE')-lo('PX'))/2
                 values=dict(p_exec_true_minus_swap=e,p_alt_swap_minus_true=x,
@@ -442,8 +447,9 @@ def selftest(_args):
     for label in (execution_label(3),placebo_label(3),execution_label(5),placebo_label(5)):
         changed=S['text']+'\n'+label+F['text'][len(S['text']):]
         assert changed.replace('\n'+label,'')==F['text']
-        # labels must not reuse F template's verb nor an action string.
+        # labels must not reuse the F template's verb, nor mention any action string
         assert 'select' not in label.lower() and not any(a in label for a in S['actions'])
+    # E vs X (and PE vs PX) differ only in the position digit
     assert execution_label(3).replace('3','5')==execution_label(5)
     assert placebo_label(3).replace('3','5')==placebo_label(5)
     # Bootstrap preserves a trajectory-cluster estimate rather than pretending points independent.
