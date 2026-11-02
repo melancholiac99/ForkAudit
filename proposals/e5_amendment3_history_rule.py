@@ -105,7 +105,7 @@ def rule_dist(prompt, candidates, full_history=None):
     Returns (distribution or None, diagnostics). No-answer at t=4 is not evaluable:
     the original candidate pool is never silently changed.
     """
-    if len(candidates) != K or len(set(candidates)) != K:
+    if len(candidates) != K or len({a.strip() for a in candidates}) != K:
         raise ValueError("Expected 5 distinct candidates")
     turn = turn_of(prompt)
     types = [parse_action(x) for x in candidates]
