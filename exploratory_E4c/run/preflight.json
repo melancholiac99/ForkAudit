@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "prereg_commit": "330b735",
+  "source_commit": "1d8d6f5",
+  "reference_files": 5768,
+  "protected_files": 6754,
+  "expected_episodes": 4110,
+  "conditions": [
+    "base",
+    "P",
+    "R",
+    "PR",
+    "X"
+  ],
+  "split_games": {
+    "valid_unseen": 134,
+    "valid_seen": 140
+  },
+  "goals_check": "goals mentioning examine/inventory/look, by task type: none | unparsed games: 0",
+  "versions": {
+    "torch": "2.13.0",
+    "transformers": "5.19.0",
+    "vllm": "0.32.0",
+    "numpy": "2.3.5",
+    "alfworld": "0.4.2"
+  },
+  "model": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+  "shutdown": false,
+  "publication_branch": "main"
+}

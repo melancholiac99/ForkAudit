@@ -1,0 +1,16 @@
+{
+  "utc": "2026-11-02T15:26:45Z",
+  "reason": "User identified CPU test blocking resumable runs when formal reports exist",
+  "original_sha256": "b67a6e0259f9c5307e8fe37470df74e523506e55dda4fdd49eb6ef2985e224d4",
+  "fixed_sha256": "4ddd1b3f490aa0ddafeb934245a3f257902e9cdeeebe8b762018c52470baaba3",
+  "changes": [
+    "Redirect C.HERE and test reports into temporary directory",
+    "Restore C.HERE, C.DATA, C.E4_DATA and sys.argv on success and failure",
+    "Never delete files in formal report directory"
+  ],
+  "scientific_scripts_unchanged": true,
+  "regressions": [
+    "Existing report bytes preserved",
+    "Global state restored after deliberate analysis exception"
+  ]
+}

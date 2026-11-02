@@ -1,0 +1,10 @@
+E4C operational execution, 2026-11-02 UTC
+
+Frozen source: 1d8d6f5; preregistration: 330b735. Scientific evaluation, analysis and definitions remain unchanged.
+The CPU analysis test is isolated into a temporary output directory per run/test_isolation_fix.json; existing reports and caller state are preserved.
+Run: /root/miniconda3/envs/m0/bin/python -u exploratory_E4c/server_run.py
+Wait for Hindsight completed_published with both independent audits passed and idle GPU, then run the original bash run_e4c.sh.
+CPU gates check 5768 original reference files against E4 archived hashes, fixed model, games, shared code and frozen source.
+Final audit independently reconstructs 4110 episodes, action constraints, resampling seeds, summaries, behaviour, 32 contrasts and ordered reading.
+Complete episode data are archived and roundtrip SHA256 verified. Publish final results to main using normal push.
+Failures preserve logs and queue this thread for repair. Shutdown is explicitly cancelled; this supervisor never shuts down the server.

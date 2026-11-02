@@ -1,0 +1,201 @@
+E4c reading: E4c-MIXED  (delta = 4.0 pp; valid_unseen)
+hint: Hint: avoid examine, look and inventory unless they are needed, and do not repeat your previous action; prefer going to locations and opening containers that you have not visited yet.
+
+== valid_unseen: success (%)
+  base      41.29
+  P         40.05
+  R         38.31
+  PR        40.80
+  X         37.06
+  A         46.52
+  D         45.85
+  base_E4   39.80
+  paired differences (pp, 95% CI over games)
+  P-base          -1.24 [-7.21, +4.98]
+  R-base          -2.99 [-9.45, +3.48]
+  PR-base         -0.50 [-6.97, +6.22]
+  X-base          -4.23 [-10.95, +2.49]
+  P-A             -6.47 [-11.28, -1.66]
+  R-A             -8.21 [-13.52, -2.99]
+  PR-A            -5.72 [-11.44, -0.08]
+  X-A             -9.45 [-14.76, -4.23]
+  P-D             -5.80 [-11.19, -0.41]
+  R-D             -7.55 [-12.44, -2.40]
+  PR-D            -5.06 [-11.03, +0.75]
+  X-D             -8.79 [-14.34, -3.23]
+  A-base          +5.22 [-0.17, +10.61]
+  D-base          +4.56 [-0.66, +9.87]
+  A-D             +0.66 [-3.40, +4.64]
+  base-base_E4    +1.49 [-4.98, +7.96]
+  behaviour: inspect / goto / immediate repeat share of steps; target seen; success | seen; timeouts
+  base     1.000 0.000 0.000 | seen 0.000 succ|seen 0.000 | timeouts 0.00
+  P        1.000 0.000 0.000 | seen 0.000 succ|seen 0.000 | timeouts 0.00
+  R        1.000 0.000 0.000 | seen 0.000 succ|seen 0.000 | timeouts 0.00
+  PR       1.000 0.000 0.000 | seen 0.000 succ|seen 0.000 | timeouts 0.00
+  X        0.000 1.000 0.000 | seen 0.000 succ|seen 0.000 | timeouts 0.00
+  A        0.000 1.000 0.000 | seen 0.000 succ|seen 0.000 | timeouts 0.00
+  D        0.000 1.000 0.000 | seen 0.000 succ|seen 0.000 | timeouts 0.00
+  base_E4  1.000 0.000 0.000 | seen 0.000 succ|seen 0.000 | timeouts 0.00
+  redraw P   redrawn 0.000 of steps; kept-blocked fallback 0.000
+  redraw R   redrawn 0.000 of steps; kept-blocked fallback 0.000
+  redraw PR  redrawn 0.000 of steps; kept-blocked fallback 0.000
+  redraw X   redrawn 0.000 of steps; kept-blocked fallback 0.000
+ok test_analyze_offline
+ok test_analyze_preserves_existing_outputs
+ok test_analyze_restores_state_on_failure
+ok test_behaviour_and_reading
+ok test_blocking_and_choice
+[base] turn 1 active 2 redrawn 0 won 0 (0s)
+[base] turn 2 active 2 redrawn 0 won 0 (0s)
+[base] turn 3 active 2 redrawn 0 won 0 (0s)
+[base] turn 4 active 2 redrawn 0 won 0 (0s)
+[base] turn 5 active 2 redrawn 0 won 0 (0s)
+[base] turn 6 active 2 redrawn 0 won 0 (0s)
+[base] turn 7 active 2 redrawn 0 won 0 (0s)
+[base] turn 8 active 2 redrawn 0 won 0 (0s)
+[base] turn 9 active 2 redrawn 0 won 0 (0s)
+[base] turn 10 active 2 redrawn 0 won 0 (0s)
+[base] turn 11 active 2 redrawn 0 won 0 (0s)
+[base] turn 12 active 2 redrawn 0 won 0 (0s)
+[base] turn 13 active 2 redrawn 0 won 0 (0s)
+[base] turn 14 active 2 redrawn 0 won 0 (0s)
+[base] turn 15 active 2 redrawn 0 won 0 (0s)
+[base] turn 16 active 2 redrawn 0 won 0 (0s)
+[base] turn 17 active 2 redrawn 0 won 0 (0s)
+[base] turn 18 active 2 redrawn 0 won 0 (0s)
+[base] turn 19 active 2 redrawn 0 won 0 (0s)
+[base] turn 20 active 2 redrawn 0 won 0 (0s)
+[base] turn 21 active 2 redrawn 0 won 0 (0s)
+[base] turn 22 active 2 redrawn 0 won 0 (0s)
+[base] turn 23 active 2 redrawn 0 won 0 (0s)
+[base] turn 24 active 2 redrawn 0 won 0 (0s)
+[base] turn 25 active 2 redrawn 0 won 0 (0s)
+[base] turn 26 active 2 redrawn 0 won 0 (0s)
+[base] turn 27 active 2 redrawn 0 won 0 (0s)
+[base] turn 28 active 2 redrawn 0 won 0 (0s)
+[base] turn 29 active 2 redrawn 0 won 0 (0s)
+[base] turn 30 active 2 redrawn 0 won 0 (0s)
+[base] turn 31 active 2 redrawn 0 won 0 (0s)
+[base] turn 32 active 2 redrawn 0 won 0 (0s)
+[base] turn 33 active 2 redrawn 0 won 0 (0s)
+[base] turn 34 active 2 redrawn 0 won 0 (0s)
+[base] turn 35 active 2 redrawn 0 won 0 (0s)
+[base] turn 36 active 2 redrawn 0 won 0 (0s)
+[base] turn 37 active 2 redrawn 0 won 0 (0s)
+[base] turn 38 active 2 redrawn 0 won 0 (0s)
+[base] turn 39 active 2 redrawn 0 won 0 (0s)
+[base] turn 40 active 2 redrawn 0 won 0 (0s)
+[base] turn 41 active 2 redrawn 0 won 0 (0s)
+[base] turn 42 active 2 redrawn 0 won 0 (0s)
+[base] turn 43 active 2 redrawn 0 won 0 (0s)
+[base] turn 44 active 2 redrawn 0 won 0 (0s)
+[base] turn 45 active 2 redrawn 0 won 0 (0s)
+[base] turn 46 active 2 redrawn 0 won 0 (0s)
+[base] turn 47 active 2 redrawn 0 won 0 (0s)
+[base] turn 48 active 2 redrawn 0 won 0 (0s)
+[base] turn 49 active 2 redrawn 0 won 0 (0s)
+[base] turn 50 active 2 redrawn 0 won 0 (0s)
+[P] turn 1 active 2 redrawn 0 won 0 (0s)
+[P] turn 2 active 2 redrawn 0 won 0 (0s)
+[P] turn 3 active 2 redrawn 0 won 0 (0s)
+[P] turn 4 active 2 redrawn 0 won 0 (0s)
+[P] turn 5 active 2 redrawn 0 won 0 (0s)
+[P] turn 6 active 2 redrawn 0 won 0 (0s)
+[P] turn 7 active 2 redrawn 0 won 0 (0s)
+[P] turn 8 active 2 redrawn 0 won 0 (0s)
+[P] turn 9 active 2 redrawn 0 won 0 (0s)
+[P] turn 10 active 2 redrawn 0 won 0 (0s)
+[P] turn 11 active 2 redrawn 0 won 0 (0s)
+[P] turn 12 active 2 redrawn 0 won 0 (0s)
+[P] turn 13 active 2 redrawn 0 won 0 (0s)
+[P] turn 14 active 2 redrawn 0 won 0 (0s)
+[P] turn 15 active 2 redrawn 0 won 0 (0s)
+[P] turn 16 active 2 redrawn 0 won 0 (0s)
+[P] turn 17 active 2 redrawn 0 won 0 (0s)
+[P] turn 18 active 2 redrawn 0 won 0 (0s)
+[P] turn 19 active 2 redrawn 0 won 0 (0s)
+[P] turn 20 active 2 redrawn 0 won 0 (0s)
+[P] turn 21 active 2 redrawn 0 won 0 (0s)
+[P] turn 22 active 2 redrawn 0 won 0 (0s)
+[P] turn 23 active 2 redrawn 0 won 0 (0s)
+[P] turn 24 active 2 redrawn 0 won 0 (0s)
+[P] turn 25 active 2 redrawn 0 won 0 (0s)
+[P] turn 26 active 2 redrawn 0 won 0 (0s)
+[P] turn 27 active 2 redrawn 0 won 0 (0s)
+[P] turn 28 active 2 redrawn 0 won 0 (0s)
+[P] turn 29 active 2 redrawn 0 won 0 (0s)
+[P] turn 30 active 2 redrawn 0 won 0 (0s)
+[P] turn 31 active 2 redrawn 0 won 0 (0s)
+[P] turn 32 active 2 redrawn 0 won 0 (0s)
+[P] turn 33 active 2 redrawn 0 won 0 (0s)
+[P] turn 34 active 2 redrawn 0 won 0 (0s)
+[P] turn 35 active 2 redrawn 0 won 0 (0s)
+[P] turn 36 active 2 redrawn 0 won 0 (0s)
+[P] turn 37 active 2 redrawn 0 won 0 (0s)
+[P] turn 38 active 2 redrawn 0 won 0 (0s)
+[P] turn 39 active 2 redrawn 0 won 0 (0s)
+[P] turn 40 active 2 redrawn 0 won 0 (0s)
+[P] turn 41 active 2 redrawn 0 won 0 (0s)
+[P] turn 42 active 2 redrawn 0 won 0 (0s)
+[P] turn 43 active 2 redrawn 0 won 0 (0s)
+[P] turn 44 active 2 redrawn 0 won 0 (0s)
+[P] turn 45 active 2 redrawn 0 won 0 (0s)
+[P] turn 46 active 2 redrawn 0 won 0 (0s)
+[P] turn 47 active 2 redrawn 0 won 0 (0s)
+[P] turn 48 active 2 redrawn 0 won 0 (0s)
+[P] turn 49 active 2 redrawn 0 won 0 (0s)
+[P] turn 50 active 2 redrawn 0 won 0 (0s)
+[R] turn 1 active 2 redrawn 0 won 0 (0s)
+[R] turn 2 active 2 redrawn 0 won 0 (0s)
+[R] turn 3 active 2 redrawn 2 won 0 (0s)
+[R] turn 4 active 2 redrawn 0 won 0 (0s)
+[R] turn 5 active 2 redrawn 2 won 0 (0s)
+[R] turn 6 active 2 redrawn 0 won 0 (0s)
+[R] turn 7 active 2 redrawn 2 won 0 (0s)
+[R] turn 8 active 2 redrawn 0 won 0 (0s)
+[R] turn 9 active 2 redrawn 2 won 0 (0s)
+[R] turn 10 active 2 redrawn 0 won 0 (0s)
+[R] turn 11 active 2 redrawn 2 won 0 (0s)
+[R] turn 12 active 2 redrawn 0 won 0 (0s)
+[R] turn 13 active 2 redrawn 2 won 0 (0s)
+[R] turn 14 active 2 redrawn 0 won 0 (0s)
+[R] turn 15 active 2 redrawn 2 won 0 (0s)
+[R] turn 16 active 2 redrawn 0 won 0 (0s)
+[R] turn 17 active 2 redrawn 2 won 0 (0s)
+[R] turn 18 active 2 redrawn 0 won 0 (0s)
+[R] turn 19 active 2 redrawn 2 won 0 (0s)
+[R] turn 20 active 2 redrawn 0 won 0 (0s)
+[R] turn 21 active 2 redrawn 2 won 0 (0s)
+[R] turn 22 active 2 redrawn 0 won 0 (0s)
+[R] turn 23 active 2 redrawn 2 won 0 (0s)
+[R] turn 24 active 2 redrawn 0 won 0 (0s)
+[R] turn 25 active 2 redrawn 2 won 0 (0s)
+[R] turn 26 active 2 redrawn 0 won 0 (0s)
+[R] turn 27 active 2 redrawn 2 won 0 (0s)
+[R] turn 28 active 2 redrawn 0 won 0 (0s)
+[R] turn 29 active 2 redrawn 2 won 0 (0s)
+[R] turn 30 active 2 redrawn 0 won 0 (0s)
+[R] turn 31 active 2 redrawn 2 won 0 (0s)
+[R] turn 32 active 2 redrawn 0 won 0 (0s)
+[R] turn 33 active 2 redrawn 2 won 0 (0s)
+[R] turn 34 active 2 redrawn 0 won 0 (0s)
+[R] turn 35 active 2 redrawn 2 won 0 (0s)
+[R] turn 36 active 2 redrawn 0 won 0 (0s)
+[R] turn 37 active 2 redrawn 2 won 0 (0s)
+[R] turn 38 active 2 redrawn 0 won 0 (0s)
+[R] turn 39 active 2 redrawn 2 won 0 (0s)
+[R] turn 40 active 2 redrawn 0 won 0 (0s)
+[R] turn 41 active 2 redrawn 2 won 0 (0s)
+[R] turn 42 active 2 redrawn 0 won 0 (0s)
+[R] turn 43 active 2 redrawn 2 won 0 (0s)
+[R] turn 44 active 2 redrawn 0 won 0 (0s)
+[R] turn 45 active 2 redrawn 2 won 0 (0s)
+[R] turn 46 active 2 redrawn 0 won 0 (0s)
+[R] turn 47 active 2 redrawn 2 won 0 (0s)
+[R] turn 48 active 2 redrawn 0 won 0 (0s)
+[R] turn 49 active 2 redrawn 2 won 0 (0s)
+[R] turn 50 active 2 redrawn 0 won 0 (0s)
+[X] turn 1 active 2 redrawn 2 won 2 (0s)
+ok test_run_conditions
+ok test_template
+all E4c tests passed

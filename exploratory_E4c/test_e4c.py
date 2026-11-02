@@ -141,10 +141,10 @@ def test_behaviour_and_reading():
 
 def test_analyze_offline():
     tmp = tempfile.mkdtemp()
-    here_json, here_rep = os.path.join(C.HERE, "e4c.json"), os.path.join(C.HERE, "E4c_REPORT.txt")
-    assert not [p for p in (here_json, here_rep) if os.path.exists(p)], "refuse to overwrite real E4c outputs"
-    old = C.DATA, C.E4_DATA
+    here_json = os.path.join(tmp, "e4c.json")
+    old = C.HERE, C.DATA, C.E4_DATA, sys.argv
     try:
+        C.HERE = tmp
         C.DATA, C.E4_DATA = os.path.join(tmp, "e4c"), os.path.join(tmp, "e4")
         games = json.load(open(C.E.GAMES_PATH))["valid_unseen"]
         rng = np.random.default_rng(0)
@@ -175,11 +175,42 @@ def test_analyze_offline():
         assert {"P-A", "X-D", "A-base", "base-base_E4"} <= set(u["diff"]) and u["behaviour"]["X"]["inspect_share"] == 0
         assert u["behaviour"]["base"]["inspect_share"] == 1.0 and out["behaviour_in_trained_range"]["X"] is True
     finally:
-        C.DATA, C.E4_DATA = old
+        C.HERE, C.DATA, C.E4_DATA, sys.argv = old
         shutil.rmtree(tmp)
-        for p in (here_json, here_rep):
-            if os.path.exists(p):
-                os.remove(p)
+
+
+def test_analyze_preserves_existing_outputs():
+    from contextlib import redirect_stdout
+    from io import StringIO
+    old_here, old_argv = C.HERE, sys.argv
+    with tempfile.TemporaryDirectory() as root:
+        sentinels = {"e4c.json": b'{"existing_formal_result": true}\n', "E4c_REPORT.txt": b"existing formal report\n"}
+        for name, content in sentinels.items():
+            with open(os.path.join(root, name), "wb") as f:
+                f.write(content)
+        try:
+            C.HERE = root
+            with redirect_stdout(StringIO()):
+                test_analyze_offline()
+            assert C.HERE == root and sys.argv is old_argv
+            for name, content in sentinels.items():
+                with open(os.path.join(root, name), "rb") as f:
+                    assert f.read() == content
+        finally:
+            C.HERE, sys.argv = old_here, old_argv
+
+
+def test_analyze_restores_state_on_failure():
+    from unittest.mock import patch
+    old = C.HERE, C.DATA, C.E4_DATA, sys.argv
+    with patch.object(e4c_analyze, "main", side_effect=RuntimeError("test analysis failure")):
+        try:
+            test_analyze_offline()
+        except RuntimeError as exc:
+            assert str(exc) == "test analysis failure"
+        else:
+            raise AssertionError("expected analysis failure")
+    assert (C.HERE, C.DATA, C.E4_DATA) == old[:3] and sys.argv is old[3]
 
 
 if __name__ == "__main__":
