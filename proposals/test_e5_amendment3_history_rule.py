@@ -107,7 +107,7 @@ def test_full_versus_window_history():
     f, fm = H.rule_dist(p, arms, full)
     assert wm["novel_ids"] == [0] and fm["novel_ids"] == []
     assert w[0] == 1 and f == [.2] * 5
-    assert H.executed_queries(p) == {"unrelated"}  # template example text must be ignored
+    assert {H.norm(q) for q in H.EXECUTED.findall(p)} == {"unrelated"}  # template example text must be ignored
 
 
 def test_pilot_coverage_excludes_final_step():
