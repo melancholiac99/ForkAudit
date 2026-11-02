@@ -1,0 +1,76 @@
+{
+  "source_manifest_sha256": "5ffb820c95c64d684f8445cb84dac849a183cf0e94c0e7b41a6587ad7c5523e2",
+  "included_files": 13223,
+  "parts": [
+    {
+      "path": "e4b_nonweight_results.tar.gz.part000",
+      "bytes": 11462566,
+      "sha256": "527cb8c9d65039088e062e5ef72b04a8fbc11fbc037d0f5056413b5b3965a35e"
+    }
+  ],
+  "compressed_bytes": 11462566,
+  "roundtrip_verified": true,
+  "excluded_tensor_checkpoints": {
+    "data/adapters/Dzero_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "0f8d6643f8dc04fdcb34e2dddbe7e36ed375d0cbc5bdb5482c2fde25ab6e82ae"
+    },
+    "data/adapters/Agap_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "d4cf9b4f5de92f8409a79997ee6f99ae359773eead983c7ad2d3fce7b8fe9b7e"
+    },
+    "data/adapters/Dzero_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "1b20f03f19ebf6cf858d7444113032f8fc9259b4da4a8b50b26b285f83583c9a"
+    },
+    "data/adapters/Bfacgap_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "8738dc3b986b000e4aa5b043be19e794e82a729758ef9f92c0cedec1d18c4dbd"
+    },
+    "data/adapters/Dzero_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "16883dd942faec048a2cb870d313698ac98f94ba38fc40696ac7cbc7db7da25e"
+    },
+    "data/adapters/Dgap_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "178ba8d205d188ba0dbecde25fae8efa1004ecc50549236dc4a9e4f222584e98"
+    },
+    "data/adapters/Agap_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "fc88231ef1e8d0e6ae05f3776cb91815bdac1652a29476f3e82186215a49c1d9"
+    },
+    "data/adapters/Dgap_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "ab90e13761f2a192d8309dc0a6c3953818a15d8c3750e0f2d9b9306f6af78b11"
+    },
+    "data/adapters/Agap_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "1e47153f0c807cd971883051e2c8c5871a3a725280770794d1e2e9b8d90bf55b"
+    },
+    "data/adapters/Azero_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "17b2f7ff941ec6b0ba95dd455aeb1b04efef0bcadc48971f51edc38a8388c35f"
+    },
+    "data/adapters/Azero_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "2339c3b459ef40b317247c6fd12d242b860a26dba022bfd46cb73d25f6e8d75e"
+    },
+    "data/adapters/Bfacgap_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "8344c6a78820adf2b878aebfe33b1cf9b5bd0d22b33e77b95c2fa69a0be585d3"
+    },
+    "data/adapters/Bfacgap_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "93953e01d072ed6bf60ce081568c5926f2ebbfd6c97b433d4845b0fd85b20856"
+    },
+    "data/adapters/Azero_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "8ab9d949a3b0d21783b4cec7cb4b6b2bb1e421a84e6992dbb1aef1e518e1d8e3"
+    },
+    "data/adapters/Dgap_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "931bbe4ec65a5495882f81d548ee778c158c4fdf784846ee4f6ac8ef9e24e954"
+    }
+  },
+  "exclusion_reason": "LoRA tensors retained on server; all non-weight results included."
+}

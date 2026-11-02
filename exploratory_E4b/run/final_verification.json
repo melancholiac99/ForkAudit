@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "training_runs": 15,
+  "episodes": 13152,
+  "reading": "E4b-SUPPORT",
+  "P1": true,
+  "P2": true,
+  "splits": {
+    "valid_unseen": {
+      "games": 134,
+      "models": 16,
+      "episodes": 6432,
+      "all_contrasts_verified": true
+    },
+    "valid_seen": {
+      "games": 140,
+      "models": 16,
+      "episodes": 6720,
+      "all_contrasts_verified": true
+    }
+  },
+  "max_numeric_error": 4.440892098500626e-16,
+  "original_inputs_unchanged": true
+}

@@ -1,0 +1,42 @@
+E4b reading: E4b-SUPPORT  (delta = 4.0 pp)  flags: {'gap_significantly_better': False, 'zero_significantly_better': False}
+
+== valid_unseen: success (%)
+  base      36.82
+  Azero     42.79
+  Agap      44.69
+  Dzero     43.53
+  Dgap      43.95
+  Bfacgap   43.45
+  paired differences (pp, 95% CI over games)
+  Azero-base        +5.97 [+1.99, +10.03]
+  Dzero-base        +6.72 [+2.32, +11.19]
+  Agap-base         +7.88 [+3.48, +12.35]
+  Dgap-base         +7.13 [+2.24, +12.11]
+  Bfacgap-base      +6.63 [+2.82, +10.61]
+  Z-G               -1.16 [-3.32, +1.00]
+  Azero-Agap        -1.91 [-5.22, +1.24]
+  Dzero-Dgap        -0.41 [-3.07, +2.32]
+  Bfacgap-Agap      -1.24 [-4.81, +2.32]
+  Bfacgap-Dgap      -0.50 [-4.06, +2.99]
+  Azero-Dzero       -0.75 [-4.64, +3.15]
+  base re-run vs E4 base: episode agreement 0.851, 36.82 vs 36.82
+== valid_seen: success (%)
+  base      32.14
+  Azero     41.19
+  Agap      44.29
+  Dzero     41.51
+  Dgap      40.32
+  Bfacgap   39.52
+  paired differences (pp, 95% CI over games)
+  Azero-base        +9.05 [+5.40, +12.78]
+  Dzero-base        +9.37 [+5.16, +13.73]
+  Agap-base        +12.14 [+8.57, +15.87]
+  Dgap-base         +8.17 [+4.21, +12.38]
+  Bfacgap-base      +7.38 [+3.65, +11.19]
+  Z-G               -0.95 [-2.90, +0.95]
+  Azero-Agap        -3.10 [-5.71, -0.56]
+  Dzero-Dgap        +1.19 [-1.51, +3.89]
+  Bfacgap-Agap      -4.76 [-7.54, -2.14]
+  Bfacgap-Dgap      -0.79 [-3.89, +2.30]
+  Azero-Dzero       -0.32 [-3.73, +3.10]
+  base re-run vs E4 base: episode agreement 0.895, 32.14 vs 34.52
