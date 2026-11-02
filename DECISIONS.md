@@ -1,5 +1,25 @@
 # DECISIONS.md
 
+## E4b bounded acceleration trial — 2026-11-02 — authorized
+
+User requested trying acceleration and abandoning it if the gain is not large.
+Before GPU measurements, define useful as >=1.25x training-step throughput AND
+>=30 minutes projected net saving over the remaining training runs, subtracting
+benchmark delay. Test cached input/target CUDA tensors plus deferred per-example
+metric synchronization, retaining micro-batch 1, accumulation 16, full logits,
+dropout, precision, loss, gradients and optimizer behavior. Reference caching
+alone has an optimistic <18 minute opportunity and is not pursued here.
+Select 16 DPO pairs evenly across total-token-length ranks of the 4800 frozen
+pairs, without looking at outcomes/losses; load a completed nonzero E4 adapter.
+Compare identical loss vectors and accumulated gradients under controlled RNG;
+use prior engineering tolerances (loss <=1e-4, relative gradient L2 <=1e-3,
+cosine >=.99999), and CPU update parity. Time default execution with three
+alternating repeats including gradient clipping and AdamW steps on a disposable
+model only. Hold only the waiting shell scheduler, let its current training
+worker finish unchanged, and use an independent guard to restore the scheduler
+even if the benchmark hook dies. GPU trial timeout 300 seconds. No formal
+training source or artifacts are edited; any marginal/failing result is rejected.
+
 ## E4b server start — 2026-11-02 — explicitly authorized
 
 Researcher requested pulling main, reading the latest E4b plan and starting it.

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "comparison": {
+    "passed": true,
+    "max_loss_difference": 0.0,
+    "gradient_relative_l2": 0.0,
+    "gradient_cosine": 1.0000000000000013,
+    "gradients_bitwise_equal": true,
+    "margin_counts_equal": true
+  },
+  "adamw_update_bitwise_equal": true,
+  "cpu_only": true
+}
