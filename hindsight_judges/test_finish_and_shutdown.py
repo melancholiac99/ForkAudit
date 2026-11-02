@@ -7,6 +7,11 @@ import finish_and_shutdown as F
 
 
 class Tests(TestCase):
+    def test_cancelled_shutdown_never_calls_platform(self):
+        with TemporaryDirectory() as tmp,patch.object(F,'FIN',Path(tmp)),patch.object(F.subprocess,'run') as call:
+            F.save(Path(tmp)/'shutdown_cancelled.json',dict(reason='User requested more experiments'))
+            F.shutdown('fixture');call.assert_not_called()
+
     def test_wait_until_queue_exits(self):
         for stage in ('score_32b','failed','completed_verified','completed_published','completed_verified_publication_failed'):
             self.assertEqual(F.classify(dict(stage=stage),True),'wait')
@@ -14,7 +19,7 @@ class Tests(TestCase):
         self.assertEqual(F.classify(dict(stage='failed'),False),'recover')
 
     def test_busy_gpu_never_shutdown(self):
-        with patch.object(F,'gpu_idle',return_value=False),patch.object(F.subprocess,'run') as call:
+        with TemporaryDirectory() as tmp,patch.object(F,'FIN',Path(tmp)),patch.object(F,'gpu_idle',return_value=False),patch.object(F.subprocess,'run') as call:
             with self.assertRaises(AssertionError):F.shutdown('test')
             call.assert_not_called()
 

@@ -150,6 +150,8 @@ def snapshot_failure(error):
 
 
 def shutdown(outcome,**extra):
+    if (FIN/'shutdown_cancelled.json').exists():
+        state('shutdown_cancelled',reason=read(FIN/'shutdown_cancelled.json'));return
     # Do not interrupt any newly started GPU work, including a recovery run.
     assert gpu_idle(),'GPU is busy: shutdown deferred'
     state('shutdown_requested',outcome=outcome,**extra);os.sync()
@@ -191,6 +193,8 @@ def recovery(thread,error):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--thread',required=True);args=parser.parse_args()
     FIN.mkdir(exist_ok=True)
+    if (FIN/'shutdown_cancelled.json').exists():
+        state('shutdown_cancelled',reason=read(FIN/'shutdown_cancelled.json'));return
     with (FIN/'watcher.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         # A prior claimed handoff must be retained, not mistaken for a new one.
