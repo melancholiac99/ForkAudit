@@ -41,6 +41,7 @@ python hindsight_judges/exp1.py analyze \
 ```
 
 32B 峰值显存约 74 GB，不要和 E4b 训练放在同一块卡上。
+
 依赖：P4 原始 `strata.parquet`、`e2_requests.jsonl.gz`、`e2_preparation.json`、`e2_point_audit.json`、`e2.json`、`e2_32b/run.json`；与其 SHA 一致的 deep-discovery arms；numpy + P4 自带 minipq；GPU 阶段需要原 P4 的 torch/transformers 环境和原始 Qwen2.5-32B-Instruct。**不要用其他人群替换缺失文件。** 分数每候选五臂计算，总计 386×10=3,860 条请求，不重跑 Agent 环境。
 
 结果：`hindsight_judges/results/exp1_p4/`，其中含输入/哈希 manifest、pointmeta、请求、`32b/scores.jsonl`、数值自检、分析 JSON 和文本报告。结果目录被 .gitignore 忽略；跑完核对并另行归档。
