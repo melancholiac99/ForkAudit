@@ -1,0 +1,140 @@
+{
+ "arm": "Bmatch",
+ "seed": 1,
+ "lr": 5e-06,
+ "beta": 0.1,
+ "r": 16,
+ "alpha": 32,
+ "dropout": 0.05,
+ "eff_batch": 16,
+ "epochs": 2,
+ "n_examples": 125,
+ "steps": 16,
+ "log": [
+  {
+   "step": 1,
+   "loss": 0.6931471824645996,
+   "reward_acc": 0.0,
+   "lr": 5e-06,
+   "seconds": 7.419535398483276
+  },
+  {
+   "step": 2,
+   "loss": 0.6969361156225204,
+   "reward_acc": 0.625,
+   "lr": 5e-06,
+   "seconds": 13.840546607971191
+  },
+  {
+   "step": 3,
+   "loss": 0.7103692516684532,
+   "reward_acc": 0.3125,
+   "lr": 5e-06,
+   "seconds": 20.395153522491455
+  },
+  {
+   "step": 4,
+   "loss": 0.6973097361624241,
+   "reward_acc": 0.5,
+   "lr": 5e-06,
+   "seconds": 26.3185293674469
+  },
+  {
+   "step": 5,
+   "loss": 0.6764553822577,
+   "reward_acc": 0.5,
+   "lr": 5e-06,
+   "seconds": 32.324994802474976
+  },
+  {
+   "step": 6,
+   "loss": 0.6662210412323475,
+   "reward_acc": 0.625,
+   "lr": 5e-06,
+   "seconds": 38.05449676513672
+  },
+  {
+   "step": 7,
+   "loss": 0.6987068764865398,
+   "reward_acc": 0.4375,
+   "lr": 5e-06,
+   "seconds": 43.92272758483887
+  },
+  {
+   "step": 8,
+   "loss": 0.6718277707695961,
+   "reward_acc": 0.5625,
+   "lr": 5e-06,
+   "seconds": 49.34459471702576
+  },
+  {
+   "step": 9,
+   "loss": 0.6811295486986637,
+   "reward_acc": 0.625,
+   "lr": 5e-06,
+   "seconds": 53.257375717163086
+  },
+  {
+   "step": 10,
+   "loss": 0.6826209463179111,
+   "reward_acc": 0.5625,
+   "lr": 5e-06,
+   "seconds": 57.18374228477478
+  },
+  {
+   "step": 11,
+   "loss": 0.688529010862112,
+   "reward_acc": 0.5625,
+   "lr": 5e-06,
+   "seconds": 61.26521873474121
+  },
+  {
+   "step": 12,
+   "loss": 0.725301168859005,
+   "reward_acc": 0.375,
+   "lr": 5e-06,
+   "seconds": 65.3519606590271
+  },
+  {
+   "step": 13,
+   "loss": 0.675270102918148,
+   "reward_acc": 0.625,
+   "lr": 5e-06,
+   "seconds": 69.47963833808899
+  },
+  {
+   "step": 14,
+   "loss": 0.6979468762874603,
+   "reward_acc": 0.375,
+   "lr": 5e-06,
+   "seconds": 73.47426319122314
+  },
+  {
+   "step": 15,
+   "loss": 0.6861402317881584,
+   "reward_acc": 0.6875,
+   "lr": 5e-06,
+   "seconds": 77.5578134059906
+  },
+  {
+   "step": 16,
+   "loss": 0.6731469869613648,
+   "reward_acc": 0.7,
+   "lr": 5e-06,
+   "seconds": 80.06926727294922
+  }
+ ],
+ "gpu_seconds": 80.33258390426636,
+ "smoke": false,
+ "pairs_sha256": "c9ea918f7322cad382bb0a5515074c25ef0f03975ff08c87b2d7dd4d50391b13",
+ "model": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+ "training_implementation": {
+  "name": "no_checkpoint_v1",
+  "source_sha256": "fa3b99139523b2b4ebd7a52701e7c765964ea91f40fd13a218ae28c0d48bf218",
+  "gradient_checkpointing": false,
+  "training_use_cache": false,
+  "reference_use_cache": "model_default",
+  "vocabulary_projection": "full",
+  "authorization_manifest_sha256": "2d9622e64367f3b97413d931bc68e3a1133dc4959c4e2d1eedba531b269191b4"
+ }
+}

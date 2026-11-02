@@ -1523,3 +1523,18 @@ Deployment checks execute the actual archived/new seq_logp function bodies on a 
 and one clipped AdamW update match exactly. The audit rejects incorrect runtime checkpoint mode.
 Prior real-7B deterministic gradient checks and isolated timing remain the supporting evidence;
 sampled parity is not a claim of bitwise equality for every future training trajectory.
+
+## Publish completed E4 independently of failed P8 — manual server request
+
+Researcher explicitly requests the complete E4 results on
+server/e4-results-20261101 after reopening the server. E4 is completed_verified
+with 23,016 reconstructed episodes and exact numeric agreement; P8 failed, so
+the earlier joint-success publisher had only pushed diagnostic excerpts.
+Reran the independent E4 verifier with writes redirected to /tmp and required
+its reports/manifest to equal the originals; all checks pass and originals stay
+unchanged. Publish complete final reports, analysis, audits, all native per-model
+summaries/training logs/scoring/pair evidence and an independently round-trip
+verified archive of all 40,642 non-weight result artifacts. LoRA tensors remain
+on the server with complete SHA256/size inventory; no data are deleted. Preserve
+current main checkout and push its publication commit to the explicitly named
+server branch, without force or a dependency on P8 success. See PUBLICATION.txt.

@@ -1,0 +1,40 @@
+E4 complete result publication
+
+Destination: melancholiac99/ForkAudit, server/e4-results-20261101
+E4 completed_verified independently of the failed P8 run. The earlier combined
+publisher waited for both experiments, so only P8 failure diagnostics reached
+GitHub. This publication explicitly uploads E4 on its own.
+
+Entry points:
+  E4_REPORT.txt                 complete seen/unseen success and paired comparisons
+  e4.json                      all PL-1..PL-5, mechanism results and final reading
+  run/final_verification.json   independent reconstruction of 23,016 eval episodes
+  run/publication_recheck.json  fresh independent verification before this upload
+  run/final_artifact_manifest.json  SHA256/size of every original output
+  publication_content_manifest.json  exact native files and archive parts uploaded
+  results_archive/README.txt    reconstruct every archived non-weight result file
+
+Result: R-L-HEURISTIC. PL-1, PL-2, PL-4, PL-5 pass; PL-3 fails.
+Unseen A-base: +10.95 pp [6.80,15.18]; A-D: +2.49 pp [-0.75,5.72].
+Thus the registered result is not R-L-WIN; no interpretation or threshold was
+changed for publication. Fresh verification exactly matches the original audit.
+
+Native data/ files include all 56 model evaluation summaries, per-game repetition
+outcomes, LR-tuning summaries, all training logs/configs, both judge score sets,
+preference-pair files, mechanism values and stage manifests.
+
+The split gzip/tar archive additionally contains ALL 40,642 non-safetensors
+artifacts in the original final manifest, including per-episode traces,
+point records and executed replay outputs. Every member was read back from
+the finished archive and SHA256-checked against the original manifest.
+Thirty LoRA checkpoint tensor files (~4.85 GB) remain on the server; they are
+explicitly listed with hashes/sizes in results_archive/archive_manifest.json.
+They are needed to rerun the trained policies, not to reconstruct the published
+statistics. This is a full result/evidence publication, not a model-weight upload.
+
+Known original limitation: mechanism collection retained per-point gains, not
+raw sampled drafts. The audit verifies their aggregation; unavailable draft
+texts are not claimed to be archived or independently regenerated.
+
+The original server branch is preserved. P8 is not rerun or relabeled by this
+publication. No model, original data, preregistration, or old report is changed.

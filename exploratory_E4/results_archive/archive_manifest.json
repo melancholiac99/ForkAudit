@@ -1,0 +1,159 @@
+{
+  "complete_nonweight_results": true,
+  "source_manifest": "run/final_artifact_manifest.json",
+  "source_manifest_sha256": "8b4af4d6729077f8d7df36bf4741ce82eb67fd7c6fc6e258f3d9b23c7152e6ed",
+  "included_files": 40642,
+  "uncompressed_bytes": 1122137920,
+  "compressed_bytes": 158188029,
+  "parts": [
+    {
+      "path": "e4_nonweight_results.tar.gz.part000",
+      "bytes": 33554432,
+      "sha256": "65c91803cce6f07084814511d6e26ae26a02ff962ea74fa754c559d5efce9c5b"
+    },
+    {
+      "path": "e4_nonweight_results.tar.gz.part001",
+      "bytes": 33554432,
+      "sha256": "9968036e98033f2fa0944482dc5fdebfa06d3ed482ed70c8f74381760e34fd28"
+    },
+    {
+      "path": "e4_nonweight_results.tar.gz.part002",
+      "bytes": 33554432,
+      "sha256": "e852c31545300b0af6823690c6007a209cca18d50f9e1db6582c3cbe4917ebee"
+    },
+    {
+      "path": "e4_nonweight_results.tar.gz.part003",
+      "bytes": 33554432,
+      "sha256": "7ecfb9ecac31230c47166ac59a2ffc815b127b2aa4cf7bc1aac42de8ca3cc187"
+    },
+    {
+      "path": "e4_nonweight_results.tar.gz.part004",
+      "bytes": 23970301,
+      "sha256": "104c6e60ac3e2e15d9a70a1f5c3d5b4b0ef48adff9d43489c25bdafb6cd41e61"
+    }
+  ],
+  "roundtrip_verified_files": 40642,
+  "excluded_checkpoint_tensors": {
+    "data/adapters/A_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "485fcc7ae95380b61beb7e6f4405682cd97091102588f407c05d4907107bd777"
+    },
+    "data/adapters/A_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "e81ac693cc6d82ee10b5cd971662b445b2cc32395099bbea26998acf78c4c604"
+    },
+    "data/adapters/A_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "8d7ae88e544b495dbec78d08c2eb04fd5afbbf77af788ec44a84a36b6d971836"
+    },
+    "data/adapters/Aprime_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "aec7bae46d815757f9b2602dbd99d2a60cd645b7dcc2ac7a37b56a9ea7ef17a3"
+    },
+    "data/adapters/Aprime_s0_lr2e-05/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "8536dd9ba19d97c8f77370f80952c7869d9e8b4d2ae0536cf9179fd96a70fd9e"
+    },
+    "data/adapters/Aprime_s0_lr5e-05/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "ecd023e460619d7c0fa97ed800c43ccbd5cd19f24fa86b0b60a8bff6cdee3cb9"
+    },
+    "data/adapters/Aprime_s0_lr5e-06/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "8b57165d409a4c3a0af4649b77902955d07ff797c9f0f160a6bd50e3cd7046e0"
+    },
+    "data/adapters/Aprime_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "912491e4f29929e93524eba9417fb55fbf92a1398aacedf23c68f2fc5446eafe"
+    },
+    "data/adapters/Aprime_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "af899dc04b2070e3adb22fabc74ff640d053714742be31f103ba41ba71aaccd1"
+    },
+    "data/adapters/Bfull_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "c0fe88cc42b563acecd70f22e6e91de31193a602f57a757da234168c07db9333"
+    },
+    "data/adapters/Bfull_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "e174e613480bb96403bd839baf8a10cf8fe2d106f5c4a1a9a1d18f350c424269"
+    },
+    "data/adapters/Bfull_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "a984c6899a2f3717c6a042931f7e49f352798c67af6505218617730b21131dee"
+    },
+    "data/adapters/Bmatch_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "03a7f66ba888adefedcc9d7975a80670c1d1094d8248d0d2e209a819d3ec07a3"
+    },
+    "data/adapters/Bmatch_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "43156b431ee494b81c8e352e3dd9fe140ea0f3cff41fd4cccba62d5547dc5437"
+    },
+    "data/adapters/Bmatch_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "76a43ecc918bd6e17faac1c2bba1b581bbdeca5ae9e2fda7e6c4c48d869cfc45"
+    },
+    "data/adapters/Cmatch_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "25684fe631eb735f22bd41b4f0914daddc5212ad0a8c50322bd2fb6777de6bf2"
+    },
+    "data/adapters/Cmatch_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "2fde83af38678c3b0d43a9f02afafb32164a2bfb84eea545b39b8c36ef0877dc"
+    },
+    "data/adapters/Cmatch_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "d2f4f7cea7030897bf6ba589112559bea652d08317ec888363bba405e49d52a2"
+    },
+    "data/adapters/D_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "f4522fae75998d43d379d95e148aba2dbd949c9bdd06adda45e04f43291f66c4"
+    },
+    "data/adapters/D_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "5adf8090219c28a2a382a65a8f3d48cb5080b6bb6387de463065d2ca879cd890"
+    },
+    "data/adapters/D_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "a0cfba7bdb435c699ce1aab0f000e9fe616f60c6630a8ff40fa0649568f236c6"
+    },
+    "data/adapters/Esft_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "cd2d6739424a90265d0920972c56472d110695c8c13613823c5e93d35d1acb4b"
+    },
+    "data/adapters/Esft_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "7433fad1de2b20840190b13aa1c7e8564fd9725fa7ce44c4ec85c01d81d4eac5"
+    },
+    "data/adapters/Esft_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "e41e57a502abf7cc2de8a785218ef0a2ccea79ed1a14ea9974e1de151bc0e2b3"
+    },
+    "data/adapters/H_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "e09ba14526a4d96696c055c20f4572f07234c5dbb91070db4df816ce653790f8"
+    },
+    "data/adapters/H_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "42f1f8f5398214965d2cc4500431ac5f2a442442832e8f9dbf099fc1950e7cb0"
+    },
+    "data/adapters/H_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "1631ab263ee5cb818aa8a4dd178e4da77b8cd470f1b7d89f2eceeec681b26fbf"
+    },
+    "data/adapters/Rnd_s0/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "3c2a8791f0d117f5757fb39a0af680aa2cd6a2074060ead0183b59c0dcbca354"
+    },
+    "data/adapters/Rnd_s1/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "732610e31efd07369b0f952f476ce98dc9b88d757c6ab86187d3300c1925b01c"
+    },
+    "data/adapters/Rnd_s2/adapter_model.safetensors": {
+      "bytes": 161533192,
+      "sha256": "6885a9811ffb1bab7bac64101acd7bfbac7aa9950e77a857e52310b7e4b0c101"
+    }
+  },
+  "exclusion_reason": "LoRA tensor checkpoints remain on server; all non-weight result artifacts are included."
+}

@@ -1,0 +1,14 @@
+{
+ "stage": "completed_verified",
+ "utc": "2026-11-01T19:11:23Z",
+ "reading": "R-L-HEURISTIC",
+ "predictions": {
+  "PL-1": true,
+  "PL-2": true,
+  "PL-3": false,
+  "PL-4": true,
+  "PL-5": true
+ },
+ "verification": "run/final_verification.json",
+ "manifest": "run/final_artifact_manifest.json"
+}

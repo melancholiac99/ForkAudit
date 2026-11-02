@@ -1,0 +1,16 @@
+{
+ "gpu_sec": 41670.89192199707,
+ "n_points": 6016,
+ "n_gen_steps": 2107081,
+ "refeed_div": 0,
+ "provenance": {
+  "script": "exploratory_E4/e4_04_replay.py",
+  "commit": "6889c3e59e3978ed19f2671b3fec7c6fff1775ad",
+  "argv": [
+   "e4_04_replay.py"
+  ],
+  "seed_offset": 5000000000000,
+  "vllm": "0.32.0",
+  "engine": "async"
+ }
+}
