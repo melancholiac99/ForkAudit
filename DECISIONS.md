@@ -1,5 +1,35 @@
 # DECISIONS.md
 
+## Hindsight judges experiment 1 server queue — 2026-11-02 — authorized
+
+Researcher requested checking current-code execution and running this experiment
+after E4b finishes. Use isolated server/hindsight-exp1-20261102 worktree based on
+research/hindsight-judges 2fab12d; original server checkout and E4b remain intact.
+Original CPU selftest and real prepare passed: exactly 386 points / 3860 contexts,
+with old input and arms hashes verified. Before any new GPU scores, align the
+implementation with the frozen v2 protocol: use SEED=20261102 for both metric
+scales; add the same >=1/3 quality-cutoff Gold counterpart to the primary value
+check (retain the existing >0 Gold group as descriptive). No prompt, population,
+contrast arm, endpoint or decision threshold changes. Save byte-level request
+parity against the original branch's prepare output.
+
+Add GPU UUID/driver/library/math-mode fingerprint locking, full score/log-prob
+integrity checks and recorded numerical-check evidence. A restart may retain
+only complete 10-condition point blocks on the identical runtime, so a within-
+point contrast cannot mix model loads; incomplete/corrupt blocks stop for review.
+Require q3456 complete on all 386 points rather than silently excluding points
+from the main identity endpoint. Add an independent final arithmetic audit.
+
+Queue waits for E4b completed_verified AND a passed final audit, checks that its
+supervisor and workers are gone and GPU memory is free, then runs 32B score /
+analysis / independent verification followed by the recommended 7B comparison.
+All original S0/F0 baselines are recomputed in each model run. No E4b overlap,
+new agent rollouts, replay, training or P8/E5 restart. Missing inputs, failed gates
+or upstream E4b failure stop the queue with logs, without changing thresholds.
+No shutdown is scheduled for this new task. Final results are retained with a
+complete hash manifest and published to this server branch under the researcher's
+standing completion/publication instruction, never force-pushed to main.
+
 Every choice not fixed by CLAUDE.md is recorded here before it is acted on.
 Status tags: **OPEN** (awaiting instruction), **DECIDED** (choice + reason), **INFO** (fact recorded, no choice needed).
 
