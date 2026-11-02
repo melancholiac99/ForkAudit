@@ -25,6 +25,19 @@ SEED = 20261102
 NBOOT = 4000
 
 
+# v2 label wording: avoid "selected" (used in the F feedback template); list positions are 1-based.
+def execution_label(n):
+    return (f"Execution record for the marked decision: the original agent executed candidate number {n} "
+            f"(entry {n} of 5 in the Candidates list above, counting from 1).")
+
+
+def placebo_label(n):
+    return (f"Evaluation marker for the marked decision: candidate number {n} "
+            f"(entry {n} of 5 in the Candidates list above, counting from 1) carries an arbitrary marker "
+            "added by this evaluation. It is not a record of what the original agent did and carries "
+            "no information about action quality.")
+
+
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -135,13 +148,9 @@ def build_dataset(repo, arms_path):
                     content = row['text']
                 else:
                     if placebo:
-                        label = (f"Placebo metadata: candidate number {slot} in the displayed Candidates list "
-                                 "carries an artificial selected marker introduced by this evaluation, "
-                                 "not a record of the original agent's decision. Do not treat this marker as evidence of quality.")
+                        label = placebo_label(slot)
                     else:
-                        label = (f"Execution metadata at the marked decision: candidate number {slot} in the "
-                                 "displayed Candidates list was selected by the original agent. "
-                                 "This historical choice is not proof of action quality.")
+                        label = execution_label(slot)
                     content = S['text'] + '\n' + label + tail
                 cond = orig + c
                 r = dict(request_id=pid+'__'+cond, point_id=pid, traj_id=S['traj_id'],
@@ -294,6 +303,41 @@ def mean_ci(values, trajs, nboot=NBOOT, seed=SEED):
                 ci95=[float(x) for x in np.percentile(b,[2.5,97.5])])
 
 
+PP_MEASURES=['p_exec_true_minus_swap','p_alt_swap_minus_true','identity_switch_effect',
+             'placebo_switch_effect','identity_minus_placebo','value_true_minus_swap',
+             'value_true_minus_no_label','value_swap_minus_no_label',
+             'exec_argmax_no_label','exec_argmax_true_label','exec_argmax_swap_label']
+NAT_MEASURES=['identity_switch_logodds','placebo_switch_logodds','identity_minus_placebo_logodds',
+              'identity_switch_logodds_clip10']
+REPORT_ORDER=['identity_switch_logodds','identity_switch_logodds_clip10','placebo_switch_logodds',
+              'identity_minus_placebo_logodds','identity_switch_effect','placebo_switch_effect',
+              'identity_minus_placebo','p_exec_true_minus_swap','value_true_minus_swap',
+              'value_true_minus_no_label','exec_argmax_no_label','exec_argmax_true_label',
+              'exec_argmax_swap_label']
+
+
+def cross_run_stability(repo,name,jobs,sc):
+    """Descriptive: how far this run's unlabeled S0/F0 lie from the original P4 E2 S/F scores of the
+    identical text (different GPU/stack). Never used to difference conditions across runs."""
+    path=repo/'exploratory_P4'/f'e2_{name}'/'scores.jsonl'
+    if not path.exists():return {}
+    old={}
+    for line in path.read_text().splitlines():
+        r=json.loads(line);old[r['request_id']]=np.array(r['candidate_prob'],float)
+    out={}
+    for c in ('S','F'):
+        tv,agree=[],[]
+        for j in jobs:
+            if j['condition']!=c+'0':continue
+            o=old.get(j['point_id']+'__'+c)
+            if o is None:continue
+            n=np.array(sc[j['request_id']]['candidate_prob'],float)
+            tv.append(float(np.abs(n-o).sum()/2));agree.append(float(n.argmax()==o.argmax()))
+        if tv:out[c+'0_vs_original_'+c]={'n':len(tv),'mean_tv':float(np.mean(tv)),
+            'share_tv_gt_0.005':float(np.mean(np.array(tv)>0.005)),'argmax_agreement':float(np.mean(agree))}
+    return out
+
+
 def analyze(args):
     repo=Path(args.repo).resolve();out=Path(args.out).resolve()
     jobs, meta, man=rows_and_meta(out)
@@ -328,10 +372,7 @@ def analyze(args):
                       'q12_factual_worse_ge_1_3','I_q12_factual_worse_ge_1_3',
                       'U_q12_factual_worse_ge_1_3','q12_factual_not_worse',
                       'gold_q12_factual_worse']:
-            measures={k:[] for k in ['p_exec_true_minus_swap','p_alt_swap_minus_true',
-                       'identity_switch_effect','placebo_switch_effect','identity_minus_placebo',
-                       'value_true_minus_swap','value_true_minus_no_label',
-                       'value_swap_minus_no_label','bad_exec_chosen_true','bad_exec_chosen_no_label']}
+            measures={k:[] for k in PP_MEASURES+NAT_MEASURES}
             tids=[]
             for r in meta:
                 pid=r['point_id'];tr=r['traj'];alt=r['swap_arm']; gap=r['q12_gap']
@@ -345,8 +386,12 @@ def analyze(args):
                 qq=np.array([vals[pid][i][qkey] for i in range(5)],float)
                 if not np.isfinite(qq).all():continue
                 p={c:np.array(sc[pid+'__'+ctx+c]['candidate_prob'],float) for c in ('0','E','X','PE','PX')}
+                lp={c:np.array(sc[pid+'__'+ctx+c]['sequence_logp'],float) for c in ('0','E','X','PE','PX')}
                 e=p['E'][0]-p['X'][0]; x=p['X'][alt]-p['E'][alt]
                 pe=p['PE'][0]-p['PX'][0]; px=p['PX'][alt]-p['PE'][alt]
+                # Pairwise log odds: compare factual and contrast candidate sequence log probabilities.
+                lo=lambda c: lp[c][0]-lp[c][alt]
+                id_nat=(lo('E')-lo('X'))/2; pl_nat=(lo('PE')-lo('PX'))/2
                 values=dict(p_exec_true_minus_swap=e,p_alt_swap_minus_true=x,
                     identity_switch_effect=(e+x)/2,
                     placebo_switch_effect=(pe+px)/2,
@@ -354,19 +399,33 @@ def analyze(args):
                     value_true_minus_swap=float((p['E']-p['X'])@qq),
                     value_true_minus_no_label=float((p['E']-p['0'])@qq),
                     value_swap_minus_no_label=float((p['X']-p['0'])@qq),
-                    bad_exec_chosen_true=float(p['E'].argmax()==0),
-                    bad_exec_chosen_no_label=float(p['0'].argmax()==0))
+                    exec_argmax_no_label=float(p['0'].argmax()==0),
+                    exec_argmax_true_label=float(p['E'].argmax()==0),
+                    exec_argmax_swap_label=float(p['X'].argmax()==0),
+                    identity_switch_logodds=id_nat,
+                    placebo_switch_logodds=pl_nat,
+                    identity_minus_placebo_logodds=id_nat-pl_nat,
+                    identity_switch_logodds_clip10=float(np.clip(id_nat,-10,10)))
                 for k,v in values.items():measures[k].append(v)
                 tids.append(tr)
             result['metrics'][ctx+'/'+group]={k:mean_ci(v,tids,seed=SEED+sum(map(ord,ctx+group+k))) for k,v in measures.items()}
+            result['metrics'][ctx+'/'+group]['identity_switch_logodds']['median']=(
+                float(np.median(measures['identity_switch_logodds'])) if measures['identity_switch_logodds'] else None)
+    result['cross_run_stability']=cross_run_stability(repo,args.name,jobs,sc)
     write_json(out/args.name/'analysis.json',result)
-    lines=[f"Experiment 1: {args.name}, {NPOINTS} I/U Forks. Percentages below are pp; 95% trajectory-cluster bootstrap.\n"]
+    lines=[f"Experiment 1: {args.name}, {NPOINTS} I/U Forks. pp = percentage points, nat = log-odds; "
+           "95% trajectory-cluster bootstrap.\n"]
     for key,metrics in result['metrics'].items():
         lines.append('\n'+key)
-        for nm in ['identity_switch_effect','placebo_switch_effect','identity_minus_placebo',
-                   'p_exec_true_minus_swap','value_true_minus_swap','value_true_minus_no_label']:
+        for nm in REPORT_ORDER:
             v=metrics[nm]
-            if v['n']:lines.append(f"  {nm:30s}: {v['estimate']*100:+.2f} [{v['ci95'][0]*100:+.2f},{v['ci95'][1]*100:+.2f}] n={v['n']} traj={v['n_trajectories']}")
+            if not v['n']:continue
+            k=1 if nm in NAT_MEASURES else 100; unit='nat' if nm in NAT_MEASURES else ('%' if nm.startswith('exec_argmax') else 'pp')
+            extra=f" median={v['median']:+.3f}" if v.get('median') is not None else ''
+            lines.append(f"  {nm:34s}: {v['estimate']*k:+.3f} [{v['ci95'][0]*k:+.3f},{v['ci95'][1]*k:+.3f}] {unit} n={v['n']} traj={v['n_trajectories']}{extra}")
+    lines.append('\nCross-run stability (descriptive only, NOT a gate): this run S0/F0 vs original P4 E2 S/F scores')
+    for c,v in result['cross_run_stability'].items():
+        lines.append(f"  {c}: mean TV {v['mean_tv']:.4f}, share TV>0.005 {v['share_tv_gt_0.005']:.3f}, argmax agreement {v['argmax_agreement']:.3f}, n={v['n']}")
     (out/args.name/'REPORT.txt').write_text('\n'.join(lines)+'\n')
     print('\n'.join(lines))
 
@@ -379,10 +438,14 @@ def selftest(_args):
     assert json.loads(S['text'].split('Candidates:\n')[-1])==[S['actions'][i] for i in order]
     assert order.index(0)+1==3 and order.index(2)+1==5
     # No evidence changes when adding a provenance statement to S/F.
-    label='Execution metadata at the marked decision: candidate number 3 was selected.'
     assert F['text'].startswith(S['text'])
-    changed=S['text']+'\n'+label+F['text'][len(S['text']):]
-    assert changed.replace('\n'+label,'')==F['text']
+    for label in (execution_label(3),placebo_label(3),execution_label(5),placebo_label(5)):
+        changed=S['text']+'\n'+label+F['text'][len(S['text']):]
+        assert changed.replace('\n'+label,'')==F['text']
+        # labels must not reuse F template's verb nor an action string.
+        assert 'select' not in label.lower() and not any(a in label for a in S['actions'])
+    assert execution_label(3).replace('3','5')==execution_label(5)
+    assert placebo_label(3).replace('3','5')==placebo_label(5)
     # Bootstrap preserves a trajectory-cluster estimate rather than pretending points independent.
     ci=mean_ci([0,1,1],["t0","t0","t1"],nboot=500)
     assert ci['n']==3 and abs(ci['estimate']-2/3)<1e-8
