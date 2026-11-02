@@ -28,7 +28,7 @@
    "n": 3550,
    "n_games": 225,
    "frac_traj_won": 0.002,
-   "turn_median": 30,
+   "turn_median": 30.0,
    "preferred_E_new": 0.314,
    "task_type": {
     "look_at_obj_in_light": 230,
@@ -43,7 +43,7 @@
    "n": 1289,
    "n_games": 195,
    "frac_traj_won": 0.243,
-   "turn_median": 15,
+   "turn_median": 15.0,
    "preferred_E_new": 0.6,
    "task_type": {
     "look_at_obj_in_light": 231,
@@ -58,8 +58,8 @@
    "n": 2406,
    "n_games": 212,
    "frac_traj_won": 0.002,
-   "turn_median": 27,
-   "preferred_E_new": 1,
+   "turn_median": 27.0,
+   "preferred_E_new": 1.0,
    "task_type": {
     "look_at_obj_in_light": 187,
     "pick_and_place_simple": 262,
@@ -73,8 +73,8 @@
    "n": 1018,
    "n_games": 179,
    "frac_traj_won": 0.25,
-   "turn_median": 15,
-   "preferred_E_new": 1,
+   "turn_median": 15.0,
+   "preferred_E_new": 1.0,
    "task_type": {
     "look_at_obj_in_light": 195,
     "pick_and_place_simple": 212,
@@ -88,7 +88,7 @@
    "n": 1124,
    "n_games": 195,
    "frac_traj_won": 0.214,
-   "turn_median": 16,
+   "turn_median": 16.0,
    "preferred_E_new": 0.5,
    "task_type": {
     "look_at_obj_in_light": 202,
@@ -105,7 +105,7 @@
    "n": 960,
    "n_games": 180,
    "frac_traj_won": 0.005,
-   "turn_median": 31,
+   "turn_median": 31.0,
    "preferred_E_new": 0.295,
    "task_type": {
     "look_at_obj_in_light": 175,
@@ -120,7 +120,7 @@
    "n": 960,
    "n_games": 186,
    "frac_traj_won": 0.25,
-   "turn_median": 15,
+   "turn_median": 15.0,
    "preferred_E_new": 0.602,
    "task_type": {
     "look_at_obj_in_light": 175,
@@ -135,8 +135,8 @@
    "n": 960,
    "n_games": 175,
    "frac_traj_won": 0.003,
-   "turn_median": 27,
-   "preferred_E_new": 1,
+   "turn_median": 27.0,
+   "preferred_E_new": 1.0,
    "task_type": {
     "look_at_obj_in_light": 175,
     "pick_and_place_simple": 198,
@@ -150,8 +150,8 @@
    "n": 960,
    "n_games": 177,
    "frac_traj_won": 0.249,
-   "turn_median": 15,
-   "preferred_E_new": 1,
+   "turn_median": 15.0,
+   "preferred_E_new": 1.0,
    "task_type": {
     "look_at_obj_in_light": 175,
     "pick_and_place_simple": 198,
@@ -165,7 +165,7 @@
    "n": 960,
    "n_games": 187,
    "frac_traj_won": 0.209,
-   "turn_median": 16,
+   "turn_median": 16.0,
    "preferred_E_new": 0.504,
    "task_type": {
     "look_at_obj_in_light": 175,
@@ -182,9 +182,9 @@
  "A_label_vs_3run_replay": {
   "Z3": {
    "n": 3550,
-   "agree": 0,
-   "tie": 1,
-   "opposite": 0
+   "agree": 0.0,
+   "tie": 1.0,
+   "opposite": 0.0
   },
   "V3": {
    "n": 1289,
