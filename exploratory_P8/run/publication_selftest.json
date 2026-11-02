@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": [
+    "exact file allowlist, current branch preserved, no force push, remote SHA checked",
+    "unrelated tracked changes rejected without overwrite",
+    "publication precedes shutdown; failed upload saved locally before shutdown"
+  ],
+  "network_mutations": false,
+  "real_shutdown": false
+}
