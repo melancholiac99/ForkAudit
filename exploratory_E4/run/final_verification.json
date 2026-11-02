@@ -1,0 +1,22 @@
+{
+ "passed": true,
+ "episodes_reconstructed": 23016,
+ "max_numeric_error": 0.0,
+ "protected_files_unchanged": 16,
+ "authorized_changes": {
+  "exploratory_E4/e4_06_train.py": {
+   "original_sha256": "021f0b63b0928457fca38005ba7c046388139c4733602fd34f6efde0d4250ec4",
+   "current_sha256": "fa3b99139523b2b4ebd7a52701e7c765964ea91f40fd13a218ae28c0d48bf218",
+   "manifest": "exploratory_E4/run/training_implementation_change.json"
+  }
+ },
+ "reading": "R-L-HEURISTIC",
+ "predictions": {
+  "PL-1": true,
+  "PL-2": true,
+  "PL-3": false,
+  "PL-4": true,
+  "PL-5": true
+ },
+ "mechanism_limit": "Mechanism source retains per-point gains, not raw generated drafts; audit checks aggregation, not regenerating draft counts."
+}

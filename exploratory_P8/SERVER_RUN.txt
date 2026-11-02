@@ -1,0 +1,78 @@
+P8 server execution (2026-11-01)
+
+Worktree: /root/autodl-tmp/forkaudit_p8
+Branch: server/p8-preflight-20261101
+Source data (read only): /root/autodl-tmp/idea
+Preregistration: 6b41fa6b3fc6348b5dd893e9745f3a2535145c98
+Blind sample freeze: 357ad1a
+Python: /root/miniconda3/envs/m0/bin/python
+
+Completed commands from this worktree:
+  python exploratory_P8/p8_preflight_selftest.py --selftest
+  python exploratory_P8/p8_preflight_selftest.py --preflight --repo-root /root/autodl-tmp/idea
+  python exploratory_P8/p8_audit.py freeze
+  python exploratory_P8/p8_audit.py analyze
+  python exploratory_P8/verify_cpu.py
+  python exploratory_P8/p8_judges.py prepare
+
+CPU report: exploratory_P8/P8_CPU_REPORT.txt
+Detailed CPU results: exploratory_P8/p8_cpu.json
+Independent verification: exploratory_P8/cpu_verification.json
+Old-result reproduction: exploratory_P8/consistency_gate.json
+Frozen sample: exploratory_P8/blind_sample.json (505 points)
+New judge requests and reused scores: exploratory_P8/data/judge/
+Costs/token lengths/reuse: phase_c_preparation.json, phase_c_token_preflight.json
+
+Background continuation command:
+  python -u exploratory_P8/p8_queue.py
+It waits for E4 completed_verified plus passed independent final_verification.json
+and no GPU compute process. Then:
+  python exploratory_P8/p8_judges.py score --name 7b
+  python exploratory_P8/p8_judges.py score --name 32b
+  python exploratory_P8/p8_judges.py analyze
+  python exploratory_P8/verify_complete.py
+
+Live status: exploratory_P8/run/status.json
+Process/launch receipt: exploratory_P8/run/launch.json
+Logs: exploratory_P8/run/queue.log, score_7b.log, score_32b.log, analyze.log, final_verify.log
+Final artifacts (only after GPU completion): P8_REPORT.txt, p8_phase_c.json,
+p8_complete.json, complete_verification.json, artifact_manifest.json.
+No original labels, data, P4 reports or E4 study parameters are modified.
+No repeated trajectory collection, policy training or automatic push.
+Missing inputs, hash changes, numerical failure, GPU conflict or disk <8 GiB
+stop the queue and preserve outputs for investigation.
+E5's waiting queue is suspended pending its separate pre-data amendment.
+
+User-authorized shutdown added 2026-11-01:
+  python -u exploratory_P8/shutdown_after_e4_p8.py
+Both E4 and P8 must reach completed_verified, both independent audits must pass,
+final result files must agree with those audits and the GPU must be idle.
+Only then invoke the installed AutoDL /usr/bin/shutdown wrapper after sync.
+Any experiment, audit, process-liveness or result-integrity failure leaves the
+server running. E4 and P8 queues are not paused or modified by this hook.
+Shutdown status: run/shutdown_status.json; log: run/shutdown.log.
+
+Failure recovery update (explicit user authorization):
+  python -u exploratory_P8/repair_guardian.py
+This REPLACES shutdown_after_e4_p8.py as the active watcher. Both successful
+verified experiments still trigger normal shutdown. A confirmed failure instead
+archives logs and invokes the installed authenticated Codex CLI for operational
+repair (max two invocations total, 20 minutes each). A successful repair resumes
+monitoring. If recovery fails, archive diagnostics, sync files and shut down.
+No failed experiment is relabeled as passed. The standalone CLI receives
+failure_repair_prompt.txt and incident evidence; it does not wake this chat UI.
+Status: run/repair_status.json; watcher log: run/repair_guardian.log.
+Failure evidence/agent transcripts/patches: run/incidents/.
+Create run/repair_hold to hold monitoring actions; remove to resume.
+
+Publication update (user: 做完了上传 git):
+The guardian now runs publish_completed.py after both final audits pass and
+before shutdown. E4's current main checkout is preserved; its verified compact
+results are committed locally and pushed to server/e4-results-20261101. P8's
+final report, IPW analysis, verification, derived inputs and judge scores are
+pushed to server/p8-preflight-20261101. Explicit file allowlists only; no force
+push or blanket staging. Remote SHA must equal local HEAD. Uploads retry three
+times; persistent failure retains the local commit and error logs before the
+previously authorized shutdown. Failed experiments upload bounded diagnostic
+excerpts if possible; complete logs remain under run/incidents/.
+Publication status: run/publication_status.json; failures: publication_failure.json.

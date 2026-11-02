@@ -1,0 +1,3 @@
+2 trajectories, 100 steps, 72 search-phase points to process
+draft batch 1: 0 points still short (0s)
+{'n_trajectories': 2, 'n_steps': 100, 'n_selected': 72, 'n_cf_defined': 72, 'gpu_sec_drafts': 0.008603096008300781, 'cpu_sec_peeks': 41.809043169021606, 'total_refeed_div': 0, 'commit': '9ddd1e5e149524b1192de129b4f63edee13d72d2', 'argv': ['e4_02_points.py', '--dry', '--limit', '2', '--rollouts', '/tmp/e4s2', '--out', '/tmp/e4s3'], 'vllm': 'dry'}

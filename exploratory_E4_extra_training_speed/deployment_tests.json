@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "scope": "Actual production seq_logp bodies, CUDA literals adapted to CPU; tiny model only",
+  "optimized_sha256": "fa3b99139523b2b4ebd7a52701e7c765964ea91f40fd13a218ae28c0d48bf218",
+  "checks": [
+    {
+      "kind": "DPO",
+      "reference_equal": true,
+      "loss_equal": true,
+      "gradients_equal": true,
+      "optimizer_update_equal": true
+    },
+    {
+      "kind": "SFT",
+      "reference_equal": true,
+      "loss_equal": true,
+      "gradients_equal": true,
+      "optimizer_update_equal": true
+    }
+  ],
+  "protection": {
+    "protected_files_unchanged": 16,
+    "authorized_changes": {
+      "exploratory_E4/e4_06_train.py": {
+        "original_sha256": "021f0b63b0928457fca38005ba7c046388139c4733602fd34f6efde0d4250ec4",
+        "current_sha256": "fa3b99139523b2b4ebd7a52701e7c765964ea91f40fd13a218ae28c0d48bf218",
+        "manifest": "exploratory_E4/run/training_implementation_change.json"
+      }
+    }
+  },
+  "audit_rejects_wrong_runtime_mode": true
+}

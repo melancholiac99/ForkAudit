@@ -1,0 +1,47 @@
+{
+  "utc": "2026-11-01T05:52:44Z",
+  "stage": "train_A_1",
+  "implementation": {
+    "name": "no_checkpoint_v1",
+    "source_sha256": "fa3b99139523b2b4ebd7a52701e7c765964ea91f40fd13a218ae28c0d48bf218",
+    "gradient_checkpointing": false,
+    "training_use_cache": false,
+    "reference_use_cache": "model_default",
+    "vocabulary_projection": "full",
+    "authorization_manifest_sha256": "2d9622e64367f3b97413d931bc68e3a1133dc4959c4e2d1eedba531b269191b4"
+  },
+  "observed_steps": [
+    {
+      "step": 1,
+      "loss": 0.6931471824645996,
+      "reward_acc": 0.0,
+      "lr": 8.333333333333333e-07,
+      "seconds": 7.407461166381836
+    },
+    {
+      "step": 2,
+      "loss": 0.6966317631304264,
+      "reward_acc": 0.4375,
+      "lr": 1.25e-06,
+      "seconds": 13.906875610351562
+    },
+    {
+      "step": 3,
+      "loss": 0.697723999619484,
+      "reward_acc": 0.375,
+      "lr": 1.6666666666666667e-06,
+      "seconds": 20.73336386680603
+    }
+  ],
+  "protection": {
+    "protected_files_unchanged": 16,
+    "authorized_changes": {
+      "exploratory_E4/e4_06_train.py": {
+        "original_sha256": "021f0b63b0928457fca38005ba7c046388139c4733602fd34f6efde0d4250ec4",
+        "current_sha256": "fa3b99139523b2b4ebd7a52701e7c765964ea91f40fd13a218ae28c0d48bf218",
+        "manifest": "exploratory_E4/run/training_implementation_change.json"
+      }
+    }
+  },
+  "passed": true
+}

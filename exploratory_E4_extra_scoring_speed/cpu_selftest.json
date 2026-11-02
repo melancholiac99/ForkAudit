@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "scope": "Tiny random CPU model only; not evidence of 32B equivalence",
+  "checks": [
+    {
+      "prefix_tokens": 1,
+      "batch": 1,
+      "tv": 0.0,
+      "actual_batches": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "prefix_tokens": 1,
+      "batch": 2,
+      "tv": 0.0,
+      "actual_batches": [
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "prefix_tokens": 1,
+      "batch": 5,
+      "tv": 0.0,
+      "actual_batches": [
+        5
+      ]
+    },
+    {
+      "prefix_tokens": 7,
+      "batch": 1,
+      "tv": 0.0,
+      "actual_batches": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "prefix_tokens": 7,
+      "batch": 2,
+      "tv": 0.0,
+      "actual_batches": [
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "prefix_tokens": 7,
+      "batch": 5,
+      "tv": 6.713121959513721e-06,
+      "actual_batches": [
+        5
+      ]
+    },
+    {
+      "prefix_tokens": 31,
+      "batch": 1,
+      "tv": 0.0,
+      "actual_batches": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "prefix_tokens": 31,
+      "batch": 2,
+      "tv": 0.0,
+      "actual_batches": [
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "prefix_tokens": 31,
+      "batch": 5,
+      "tv": 0.0,
+      "actual_batches": [
+        5
+      ]
+    },
+    {
+      "prefix_tokens": 80,
+      "batch": 1,
+      "tv": 0.0,
+      "actual_batches": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "prefix_tokens": 80,
+      "batch": 2,
+      "tv": 0.0,
+      "actual_batches": [
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "prefix_tokens": 80,
+      "batch": 5,
+      "tv": 0.0,
+      "actual_batches": [
+        5
+      ]
+    }
+  ]
+}

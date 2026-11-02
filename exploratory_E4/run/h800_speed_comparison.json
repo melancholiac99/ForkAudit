@@ -1,0 +1,10 @@
+{
+  "turns": 7,
+  "old_seconds": 186,
+  "h800_seconds": 82,
+  "speedup": 2.268292682926829,
+  "price_ratio": 1.3333333333333333,
+  "cost_ratio": 0.5878136200716846,
+  "limitations": "Early end-to-end rollout timing; excludes startup. GPU kernels and CPU allocations differ; sampled trajectories diverge after turn 4. Not a training/32B benchmark.",
+  "same_active_first_four": true
+}

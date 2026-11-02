@@ -1,0 +1,11 @@
+{
+  "authorization": "repair_on_failure_then_archive_shutdown_if_unrecoverable",
+  "user_instruction": "失败了唤醒你去修 修不好保存日志关机",
+  "codex": "/root/.local/bin/codex",
+  "max_attempts_total": 2,
+  "attempt_timeout_seconds": 1200,
+  "guardian_sha256": "64a801587d481649e05a12a1c241bc08c6cfc364da8aa4eb96fae262b9f2b11c",
+  "platform_shutdown_sha256": "0358e83eeeaf542aa98f64ba9e339c91df46f1e025892d52dba159f4fb1cf027",
+  "publisher_sha256": "80cb2824816cee02932a4faae324f249aca99c7f40348039d138cf2ed98619ea",
+  "publication_authorization": "做完了上传 git"
+}

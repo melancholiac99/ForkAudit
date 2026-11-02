@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "user_authorization": "就这么改",
+  "authorized_utc": "2026-11-01T05:48:32Z",
+  "optimization": "disable_gradient_checkpointing_only",
+  "original_snapshot": "exploratory_E4/run/frozen_training/e4_06_train_original.py",
+  "original_sha256": "021f0b63b0928457fca38005ba7c046388139c4733602fd34f6efde0d4250ec4",
+  "optimized_sha256": "fa3b99139523b2b4ebd7a52701e7c765964ea91f40fd13a218ae28c0d48bf218",
+  "verifier_sha256": "d246ee6fb658322d1ad479ace2a37991ffb62c5ec92e7b2e363993965c025605",
+  "numerical_control": "exploratory_E4_extra_training_speed/numerical_control.json",
+  "numerical_control_sha256": "c483fc8ba462790a372141298cd75fd91406408df2caf7a522ee75e7565b2316",
+  "legacy_training_tags": [
+    "Aprime_s0_lr5e-06",
+    "Aprime_s0_lr2e-05",
+    "Aprime_s0_lr5e-05",
+    "A_s0"
+  ],
+  "first_optimized_training_tag": "A_s1",
+  "preserved_legacy_artifacts": {
+    "exploratory_E4/data/adapters/Aprime_s0_lr5e-06/train_log.json": "f83fb74e855faf8f315c3faaf068b94c529384073f4e1d9fb25ebad467a96b85",
+    "exploratory_E4/data/adapters/Aprime_s0_lr5e-06/adapter_model.safetensors": "8b57165d409a4c3a0af4649b77902955d07ff797c9f0f160a6bd50e3cd7046e0",
+    "exploratory_E4/data/adapters/Aprime_s0_lr2e-05/train_log.json": "d41c1c2f1eee84b01dfecdf7184747ab62117efdfc2201e84d3332784471922a",
+    "exploratory_E4/data/adapters/Aprime_s0_lr2e-05/adapter_model.safetensors": "8536dd9ba19d97c8f77370f80952c7869d9e8b4d2ae0536cf9179fd96a70fd9e",
+    "exploratory_E4/data/adapters/Aprime_s0_lr5e-05/train_log.json": "6cb71693ea57a03c39c02469c620f0c84f380f3e110cc8b19f5126cf45b660a6",
+    "exploratory_E4/data/adapters/Aprime_s0_lr5e-05/adapter_model.safetensors": "ecd023e460619d7c0fa97ed800c43ccbd5cd19f24fa86b0b60a8bff6cdee3cb9",
+    "exploratory_E4/data/adapters/A_s0/train_log.json": "8aa6ef69d7ab7305b6576690678bfb6e4d3b2788101a6b712563fe7d2cf5bea9",
+    "exploratory_E4/data/adapters/A_s0/adapter_model.safetensors": "485fcc7ae95380b61beb7e6f4405682cd97091102588f407c05d4907107bd777"
+  },
+  "scope": "Future training processes only; current A_s0 finished unchanged. Training cache disabled, reference evaluation cache uses model default. Full vocabulary projection and all registered scientific settings retained."
+}

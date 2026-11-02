@@ -1,0 +1,36 @@
+cf-defined points 6016 with replay 6016
+factual class: {'Other': '0.45', 'R_seen': '0.33', 'E_new': '0.16', 'R_recent': '0.03', 'R_unseen': '0.03'}
+points with >=1 E_new alternative: 0.70
+mean 3-run q by class: {'Other': '0.061 (n=11178)', 'E_new': '0.141 (n=7500)', 'R_seen': '0.042 (n=9802)', 'R_unseen': '0.072 (n=676)', 'R_recent': '0.049 (n=924)'}
+A       n=1000 rej=factual 1.00 | pref E_new 0.40 rej E_new 0.13 | E>nonE 0.34 nonE>E 0.07 | replay(3-run): pref>rej 0.10 tie 0.83 pref<rej 0.07 (n=1000)
+         preferred classes {'R_seen': 422, 'E_new': 404, 'R_unseen': 22, 'Other': 134, 'R_recent': 18}  rejected classes {'R_seen': 272, 'R_recent': 37, 'Other': 531, 'E_new': 129, 'R_unseen': 31}
+Aprime  n=1000 rej=factual 1.00 | pref E_new 0.84 rej E_new 0.16 | E>nonE 0.71 nonE>E 0.02 | replay(3-run): pref>rej 0.34 tie 0.61 pref<rej 0.05 (n=1000)
+         preferred classes {'Other': 10, 'E_new': 845, 'R_seen': 144, 'R_recent': 1}  rejected classes {'Other': 501, 'E_new': 159, 'R_unseen': 34, 'R_seen': 284, 'R_recent': 22}
+H       n=1000 rej=factual 1.00 | pref E_new 0.34 rej E_new 0.07 | E>nonE 0.30 nonE>E 0.04 | replay(3-run): pref>rej 0.08 tie 0.86 pref<rej 0.06 (n=1000)
+         preferred classes {'R_seen': 439, 'E_new': 341, 'Other': 180, 'R_unseen': 24, 'R_recent': 16}  rejected classes {'R_seen': 297, 'Other': 574, 'E_new': 73, 'R_recent': 40, 'R_unseen': 16}
+D       n=1000 rej=factual 1.00 | pref E_new 1.00 rej E_new 0.00 | E>nonE 1.00 nonE>E 0.00 | replay(3-run): pref>rej 0.14 tie 0.81 pref<rej 0.06 (n=1000)
+         preferred classes {'E_new': 1000}  rejected classes {'R_seen': 414, 'Other': 526, 'R_unseen': 32, 'R_recent': 28}
+Rnd     n=1000 rej=factual 1.00 | pref E_new 0.28 rej E_new 0.13 | E>nonE 0.23 nonE>E 0.09 | replay(3-run): pref>rej 0.07 tie 0.86 pref<rej 0.07 (n=1000)
+         preferred classes {'R_seen': 337, 'Other': 335, 'E_new': 275, 'R_unseen': 28, 'R_recent': 25}  rejected classes {'R_seen': 272, 'R_recent': 37, 'Other': 531, 'E_new': 129, 'R_unseen': 31}
+Bfull   n=1000 rej=factual 0.57 | pref E_new 0.46 rej E_new 0.24 | E>nonE 0.35 nonE>E 0.12 | replay(3-run): pref>rej 1.00 tie 0.00 pref<rej 0.00 (n=1000)
+         preferred classes {'Other': 274, 'E_new': 463, 'R_seen': 219, 'R_unseen': 23, 'R_recent': 21}  rejected classes {'Other': 461, 'E_new': 236, 'R_seen': 252, 'R_unseen': 33, 'R_recent': 18}
+Bmatch  n= 125 rej=factual 0.54 | pref E_new 0.47 rej E_new 0.19 | E>nonE 0.38 nonE>E 0.10 | replay(3-run): pref>rej 1.00 tie 0.00 pref<rej 0.00 (n=125)
+         preferred classes {'Other': 31, 'R_seen': 31, 'E_new': 59, 'R_recent': 2, 'R_unseen': 2}  rejected classes {'E_new': 24, 'Other': 64, 'R_seen': 31, 'R_unseen': 4, 'R_recent': 2}
+Cmatch  n= 115 rej=factual 0.53 | pref E_new 0.49 rej E_new 0.22 | E>nonE 0.39 nonE>E 0.12 | replay(3-run): pref>rej 1.00 tie 0.00 pref<rej 0.00 (n=115)
+         preferred classes {'E_new': 56, 'R_seen': 21, 'Other': 35, 'R_unseen': 3}  rejected classes {'Other': 54, 'E_new': 25, 'R_seen': 30, 'R_unseen': 2, 'R_recent': 4}
+
+--- where the pairs sit (3-run replay at the point) ---
+all points: {'diff': '0.26', 'flat0': '0.73', 'flat_mid': '0.00', 'flat1': '0.00'}
+A       {'diff': '0.27', 'flat0': '0.73', 'flat1': '0.00', 'flat_mid': '0.00'}
+Aprime  {'diff': '0.52', 'flat0': '0.47', 'flat1': '0.01', 'flat_mid': '0.00'}
+H       {'diff': '0.25', 'flat0': '0.75', 'flat1': '0.00'}
+D       {'diff': '0.31', 'flat0': '0.69', 'flat1': '0.00', 'flat_mid': '0.00'}
+Rnd     {'diff': '0.27', 'flat0': '0.73', 'flat1': '0.00', 'flat_mid': '0.00'}
+Bfull   {'diff': '1.00'}
+A turn quartiles [13.0, 25.0, 37.0]
+D turn quartiles [13.0, 22.0, 34.0]
+Bfull turn quartiles [7.0, 14.0, 23.0]
+
+--- within-point value of E_new vs other arms (3-run q), cluster bootstrap by trajectory ---
+E_new - other: +3.54 pp [+2.61, +4.52] n=4401 traj=303
+share of those points with non-flat q: 0.3156100886162236

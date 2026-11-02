@@ -1,0 +1,10 @@
+{
+  "training_pid": 48596,
+  "training_identity": "3038705288",
+  "started_utc": "2026-11-01T04:36:18Z",
+  "reason": "Short exclusive timing test; optimizer/model/sample state stays in resident process",
+  "effect": "Formal train_log wall seconds include this interruption; no annotation cost is affected",
+  "stage": "timing_complete",
+  "pause_seconds": 33.29867237433791,
+  "resumed_utc": "2026-11-01T04:36:51Z"
+}

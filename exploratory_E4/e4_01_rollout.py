@@ -25,7 +25,7 @@ def seed_for(task_seed, turn, rep):
     return 1_000_000 * task_seed + turn + 10 ** 11 * (rep + 1)
 
 
-def run(games, reps, pol, pool, out_dir, full, alfenv, prov):
+def run(games, reps, pol, pool, out_dir, full, alfenv, prov, benchmark_logprobs_turns=0):
     jobs = [(g, r) for g in games for r in range(reps)
             if not os.path.exists(os.path.join(out_dir, f"s{g['seed']}_r{r}.json"))]
     if not jobs:
@@ -44,7 +44,10 @@ def run(games, reps, pol, pool, out_dir, full, alfenv, prov):
             break
         prompts = [common.build_prompt(st[k]["task"], st[k]["mem"], st[k]["obs"], st[k]["adm"]) for k in active]
         seeds = [seed_for(st[k]["seed"], turn, st[k]["rep"]) for k in active]
-        outs = pol.sample(prompts, seeds)
+        # E4 consumes response text only; token log-probabilities are never stored.
+        gen_start = time.time()
+        outs = pol.sample(prompts, seeds, logprobs=turn <= benchmark_logprobs_turns)
+        generation_seconds = time.time() - gen_start
         acts = {}
         for k, p, sd, o in zip(active, prompts, seeds, outs):
             a, valid, fmt = common.parse(o[0]["text"])
@@ -53,7 +56,9 @@ def run(games, reps, pol, pool, out_dir, full, alfenv, prov):
             if full:
                 step.update(prompt=p, obs_before=st[k]["obs"], admissible=st[k]["adm"], response=o[0]["text"])
             st[k]["steps"].append(step)
+        env_start = time.time()
         res = pool.step(acts)
+        environment_seconds = time.time() - env_start
         for k in active:
             obs, adm, won, done = res[k]
             x = st[k]
@@ -63,6 +68,10 @@ def run(games, reps, pol, pool, out_dir, full, alfenv, prov):
             if won or done:
                 x["won"], x["done"] = won, True
         print(f"turn {turn} active {len(active)} won {sum(st[k]['won'] for k in keys)} ({time.time() - t0:.0f}s)", flush=True)
+        print(json.dumps(dict(event="turn_timing", turn=turn, active=len(active),
+                              generation_seconds=generation_seconds,
+                              environment_seconds=environment_seconds,
+                              token_logprobs=turn <= benchmark_logprobs_turns)), flush=True)
     for k in keys:
         x = st[k]
         rec = {kk: v for kk, v in x.items() if kk not in ("obs", "adm", "mem")}
@@ -84,6 +93,8 @@ def main():
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--benchmark-logprobs-turns", type=int, default=0,
+                    help="First N turns retain old unused token logprobs for hardware timing comparison")
     args = ap.parse_args()
     games = json.load(open(E.GAMES_PATH))[args.split]
     if args.limit:
@@ -109,7 +120,8 @@ def main():
     jobs = [(g, r) for g in games for r in range(args.reps)]
     step = max(1, args.chunk // args.reps)
     for i in range(0, len(games), step):
-        run(games[i:i + step], args.reps, pol, pool, out_dir, args.full, alfenv, prov)
+        run(games[i:i + step], args.reps, pol, pool, out_dir, args.full, alfenv, prov,
+            benchmark_logprobs_turns=args.benchmark_logprobs_turns)
     eps = [json.load(open(os.path.join(out_dir, f"s{g['seed']}_r{r}.json"))) for g, r in jobs]
     E.write_json(os.path.join(out_dir, "summary.json"), dict(
         split=args.split, tag=args.tag, n=len(eps), success=sum(e["won"] for e in eps) / len(eps),

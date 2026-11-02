@@ -1,0 +1,366 @@
+{
+  "complete": true,
+  "scope": "Numerical control only; GPU shared with formal training, no speed measurements used",
+  "deterministic_algorithms": true,
+  "cublas_workspace_config": ":4096:8",
+  "per_process_memory_fraction": 0.5,
+  "metric_reduction_dtype": "float64",
+  "thresholds": {
+    "loss_absolute": 0.0001,
+    "gradient_relative_l2": 0.001,
+    "gradient_cosine_min": 0.99999
+  },
+  "note": "Initial benchmark cosine metrics used FP32 reductions and are not reliable; this control uses FP64. Original outputs retained.",
+  "summary": {
+    "original": {
+      "all_passed": true,
+      "all_bitwise_equal": true,
+      "max_loss_difference": 0.0,
+      "max_gradient_relative_l2": 0.0,
+      "min_gradient_cosine": 1.0000000000044074,
+      "peak_allocated_GiB": 15.747972011566162
+    },
+    "no_checkpoint": {
+      "all_passed": true,
+      "all_bitwise_equal": true,
+      "max_loss_difference": 0.0,
+      "max_gradient_relative_l2": 0.0,
+      "min_gradient_cosine": 1.0000000000044074,
+      "peak_allocated_GiB": 34.01287794113159
+    },
+    "response_only": {
+      "all_passed": false,
+      "all_bitwise_equal": false,
+      "max_loss_difference": 0.0,
+      "max_gradient_relative_l2": 0.018748551674635534,
+      "min_gradient_cosine": 0.9998243490006901,
+      "peak_allocated_GiB": 15.612310886383057
+    },
+    "response_only_no_checkpoint": {
+      "all_passed": false,
+      "all_bitwise_equal": false,
+      "max_loss_difference": 0.0,
+      "max_gradient_relative_l2": 0.018748551674635534,
+      "min_gradient_cosine": 0.9998243490006901,
+      "peak_allocated_GiB": 33.52147626876831
+    }
+  },
+  "cases": [
+    {
+      "kind": "DPO",
+      "arm": "Aprime",
+      "row": 685,
+      "total_tokens": 781,
+      "checks": [
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.000000000004903,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16041216512
+        },
+        {
+          "variant": "no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.000000000004903,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 22235391488
+        },
+        {
+          "variant": "response_only",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.013007874110890051,
+          "gradient_cosine": 0.9999156776798507,
+          "max_gradient_absolute_difference": 0.0002689361572265625,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 16045578752
+        },
+        {
+          "variant": "response_only_no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.013007874110890051,
+          "gradient_cosine": 0.9999156776798507,
+          "max_gradient_absolute_difference": 0.0002689361572265625,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 22136292864
+        },
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.000000000004903,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16045577728
+        }
+      ]
+    },
+    {
+      "kind": "DPO",
+      "arm": "D",
+      "row": 580,
+      "total_tokens": 1332,
+      "checks": [
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.000000000006904,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16302306816
+        },
+        {
+          "variant": "no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.000000000006904,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 26726718464
+        },
+        {
+          "variant": "response_only",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.012833247489448292,
+          "gradient_cosine": 0.9999176606369197,
+          "max_gradient_absolute_difference": 0.00042724609375,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 16274495488
+        },
+        {
+          "variant": "response_only_no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.012833247489448292,
+          "gradient_cosine": 0.9999176606369197,
+          "max_gradient_absolute_difference": 0.00042724609375,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 26633121792
+        },
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.000000000006904,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16302120448
+        }
+      ]
+    },
+    {
+      "kind": "DPO",
+      "arm": "Rnd",
+      "row": 337,
+      "total_tokens": 1582,
+      "checks": [
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.0000000000131344,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16427276800
+        },
+        {
+          "variant": "no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.0000000000131344,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 28717191680
+        },
+        {
+          "variant": "response_only",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.01625829153191144,
+          "gradient_cosine": 0.999868474170473,
+          "max_gradient_absolute_difference": 0.001708984375,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 16348375552
+        },
+        {
+          "variant": "response_only_no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.01625829153191144,
+          "gradient_cosine": 0.999868474170473,
+          "max_gradient_absolute_difference": 0.001708984375,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 28481440768
+        },
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.0000000000131344,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16427276800
+        }
+      ]
+    },
+    {
+      "kind": "DPO",
+      "arm": "Aprime",
+      "row": 302,
+      "total_tokens": 2530,
+      "checks": [
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.0000000000109932,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16907777536
+        },
+        {
+          "variant": "no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.0000000000109932,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 36521049600
+        },
+        {
+          "variant": "response_only",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.018748551674635534,
+          "gradient_cosine": 0.9998243490006901,
+          "max_gradient_absolute_difference": 0.00043487548828125,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 16763591168
+        },
+        {
+          "variant": "response_only_no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.018748551674635534,
+          "gradient_cosine": 0.9998243490006901,
+          "max_gradient_absolute_difference": 0.00043487548828125,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 35993411072
+        },
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.0000000000109932,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16909256192
+        }
+      ]
+    },
+    {
+      "kind": "SFT",
+      "arm": "Esft",
+      "row": 799,
+      "total_tokens": 1056,
+      "checks": [
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.0000000000044074,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16397216256
+        },
+        {
+          "variant": "no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.0000000000044074,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 24623710208
+        },
+        {
+          "variant": "response_only",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.014730589642542926,
+          "gradient_cosine": 0.999891522645772,
+          "max_gradient_absolute_difference": 0.00019073486328125,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 16279923200
+        },
+        {
+          "variant": "response_only_no_checkpoint",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.014730589642542926,
+          "gradient_cosine": 0.999891522645772,
+          "max_gradient_absolute_difference": 0.00019073486328125,
+          "gradients_bitwise_equal": false,
+          "finite": true,
+          "passed": false,
+          "peak_allocated_bytes": 24196476928
+        },
+        {
+          "variant": "original",
+          "loss_absolute_difference": 0.0,
+          "gradient_relative_l2": 0.0,
+          "gradient_cosine": 1.0000000000044074,
+          "max_gradient_absolute_difference": 0.0,
+          "gradients_bitwise_equal": true,
+          "finite": true,
+          "passed": true,
+          "peak_allocated_bytes": 16397216256
+        }
+      ]
+    }
+  ],
+  "benchmark_source_sha256": "83c4b0cbb1bcd6be9b597342881e0a716ad498366971988b283103026f019a96"
+}

@@ -4,7 +4,7 @@ DPO arms : loss = -log sigmoid(beta * [(pi_c - ref_c) - (pi_r - ref_r)]), respon
            reference = the frozen base model (adapter disabled), precomputed once before training.
 Esft     : mean NLL of response tokens.
 LoRA r=16, alpha=32, dropout 0.05 on all linear projections; AdamW, 10% linear warm-up then constant; effective batch 16
-(micro-batch 1, gradient accumulation); 2 epochs; bf16 base weights, fp32 LoRA weights; gradient checkpointing.
+(micro-batch 1, gradient accumulation); 2 epochs; bf16 base weights, fp32 LoRA weights; gradient checkpointing disabled.
 Prompt = the decision-time prompt under the chat template with generation prompt; response = the recorded text + <|im_end|>.
 
 Usage: python e4_06_train.py --arm A --seed 0 --lr 2e-5 [--smoke]
@@ -64,7 +64,7 @@ def main():
             data.append(dict(s=encode(r["prompt"], r["response"])))
     model = AutoModelForCausalLM.from_pretrained(args.model, local_files_only=True, dtype=torch.bfloat16,
                                                  attn_implementation="sdpa").to("cuda")
-    model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+    model.gradient_checkpointing_disable()
     model.enable_input_require_grads()
     model = get_peft_model(model, LoraConfig(r=R, lora_alpha=ALPHA, lora_dropout=DROPOUT, target_modules=TARGETS,
                                              bias="none", task_type="CAUSAL_LM"))
@@ -72,10 +72,18 @@ def main():
         if p.requires_grad:
             p.data = p.data.float()
 
+    assert not model.is_gradient_checkpointing
+    training_implementation = dict(
+        name="no_checkpoint_v1", source_sha256=E.file_sha256(__file__),
+        gradient_checkpointing=bool(model.is_gradient_checkpointing), training_use_cache=False,
+        reference_use_cache="model_default", vocabulary_projection="full",
+        authorization_manifest_sha256=E.file_sha256(os.path.join(E.HERE, "run", "training_implementation_change.json")))
+    print("TRAINING_IMPLEMENTATION " + json.dumps(training_implementation), flush=True)
+
     def seq_logp(pi, ri):
         ids = torch.tensor([pi + ri], device="cuda")
         with torch.autocast("cuda", dtype=torch.bfloat16):
-            logits = model(input_ids=ids).logits[0, len(pi) - 1:-1].float()
+            logits = model(input_ids=ids, use_cache=False if model.training else None).logits[0, len(pi) - 1:-1].float()
         lp = torch.log_softmax(logits, -1).gather(1, torch.tensor(ri, device="cuda")[:, None])[:, 0]
         return lp.sum(), lp.mean(), len(ri)
 
@@ -124,7 +132,8 @@ def main():
     E.write_json(os.path.join(out, "train_log.json"), dict(
         arm=args.arm, seed=args.seed, lr=args.lr, beta=BETA, r=R, alpha=ALPHA, dropout=DROPOUT, eff_batch=eff_batch, epochs=EPOCHS,
         n_examples=len(data), steps=step, log=log, gpu_seconds=time.time() - t0, smoke=args.smoke,
-        pairs_sha256=E.file_sha256(os.path.join(E.DATA, "pairs", f"{args.arm}.jsonl")), model=args.model))
+        pairs_sha256=E.file_sha256(os.path.join(E.DATA, "pairs", f"{args.arm}.jsonl")), model=args.model,
+        training_implementation=training_implementation))
     if args.smoke:
         assert all(math.isfinite(x["loss"]) for x in log)
         assert os.path.exists(os.path.join(out, "adapter_model.safetensors"))
