@@ -16,6 +16,7 @@ import time
 from pathlib import Path
 
 import numpy as np
+import execution_checks as checks_runtime
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -59,8 +60,10 @@ def load_json(path):
 
 
 def write_json(path, data):
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    Path(path).write_text(json.dumps(data, indent=2, ensure_ascii=False, allow_nan=False) + '\n')
+    path=Path(path);path.parent.mkdir(parents=True, exist_ok=True)
+    tmp=path.with_suffix(path.suffix+'.tmp')
+    tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False, allow_nan=False) + '\n')
+    tmp.replace(path)
 
 
 def read_parquet(repo, path):
@@ -105,14 +108,18 @@ def build_dataset(repo, arms_path):
     assert len(target) == NPOINTS, f'expected {NPOINTS} I/U Forks; got {len(target)}'
 
     a = read_parquet(repo, arms_path)
-    q12 = {}
+    q12 = {}; arm_actions={}; heldout={}
     for i in range(len(a['traj_id'])):
         pid = f"{a['traj_id'][i]}_t{int(a['turn'][i]):02d}"
         if pid in target:
-            q12.setdefault(pid, {})[int(a['j'][i])] = float(a['q_12'][i])
+            j=int(a['j'][i]);assert j not in q12.setdefault(pid,{})
+            q12[pid][j] = float(a['q_12'][i])
+            arm_actions.setdefault(pid,{})[j]=a['action'][i]
+            heldout.setdefault(pid,{})[j]=a['q_3456'][i]
     for pid in target:
         assert set(q12.get(pid, {})) == set(range(5)), f'missing q12 arms: {pid}'
         assert all(math.isfinite(v) for v in q12[pid].values()), f'nonfinite q12 {pid}'
+        assert all(v is not None and math.isfinite(float(v)) for v in heldout[pid].values()), f'missing q3456 {pid}'
 
     audit_records = load_json(p4 / 'e2_point_audit.json')
     audits = {r['point_id']: r for r in audit_records}
@@ -129,6 +136,7 @@ def build_dataset(repo, arms_path):
         assert set(context.get(pid, {})) == {'S', 'F'}, f'missing S/F {pid}'
         S, F = context[pid]['S'], context[pid]['F']
         assert S['actions'] == F['actions'] and F['text'].startswith(S['text'])
+        assert S['actions']==[arm_actions[pid][j] for j in range(5)], f'arm action mismatch {pid}'
         assert S['point_id'] == F['point_id'] == pid
         order = list(audits[pid]['display_order'])
         assert sorted(order) == list(range(5))
@@ -173,6 +181,12 @@ def prepare(args):
     records, meta, hashes = build_dataset(repo, arms)
     out.mkdir(parents=True, exist_ok=True)
     body = ('\n'.join(json.dumps(r, ensure_ascii=False) for r in records) + '\n').encode()
+    if (out/'manifest.json').exists():
+        prior=load_json(out/'manifest.json')
+        assert prior['requests_sha256']==sha(body) and prior['input_sha256']==hashes
+        assert load_json(out/'pointmeta.json')==meta
+        rows_and_meta(out)
+        print('Existing preparation is identical; retained unchanged');return
     (out / 'requests.jsonl.gz').write_bytes(gzip.compress(body, mtime=0))
     write_json(out / 'pointmeta.json', meta)
     write_json(out / 'manifest.json', dict(status='PRE-SCORING', source='P4-E2',
@@ -228,6 +242,7 @@ def score(args):
     assert actual==original['model_sha256'], 'model weights differ from frozen P4 E2'
     src=p4/'p4_e2_backend.py'
     assert digest(src)==original['scorer_sha256'], 'scorer source differs from original'
+    assert (p4/'e2_environment.json').exists(), 'Missing original environment metadata'
     if (p4/'e2_environment.json').exists():
         hashes=load_json(p4/'e2_environment.json')['model_metadata_hashes'][args.name.upper()]
         for name, value in hashes.items():
@@ -235,42 +250,52 @@ def score(args):
 
     target=out/args.name; target.mkdir(parents=True,exist_ok=True)
     runpath=target/'run.json'; scorespath=target/'scores.jsonl'
+    runtime=checks_runtime.fingerprint();hardware_sha=checks_runtime.fp_sha(runtime)
     env=dict(gpu=torch.cuda.get_device_name(0), torch=torch.__version__, cuda=torch.version.cuda,
+             runtime=runtime,hardware_sha256=hardware_sha,checks_script_sha256=digest(checks_runtime.__file__),
+             protocol_sha256=digest(HERE/'EXPERIMENT1_PROTOCOL.md'),
              revision=args.revision, model_sha256=actual, backend_sha256=digest(src),
              scorer_script_sha256=digest(__file__), requests_sha256=prep['requests_sha256'])
     if runpath.exists():
         old=load_json(runpath)
         assert all(old.get(k)==v for k,v in env.items()), 'resume env/checkpoint mismatch; use another output dir'
+    else:
+        assert not scorespath.exists(), 'Scores without a run identity must not be reused'
+    done=checks_runtime.load_scores(scorespath,rawjobs,hardware_sha)
+    checks_runtime.check_sessions(target,done,rawjobs,hardware_sha)
+    if runpath.exists() and old['complete']:
+        assert len(done)==len(rawjobs) and digest(scorespath)==old['scores_sha256']
+        print('Verified complete scores already present');return
     write_json(runpath,dict(**env,complete=False,contexts=0))
 
     spec=importlib.util.spec_from_file_location('original_p4_e2_backend',src)
     module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
     module.MODEL=str(model)
     tok=AutoTokenizer.from_pretrained(model,local_files_only=True)
-    scorer=module.Scorer()
+    load_start=time.time();scorer=module.Scorer();load_seconds=time.time()-load_start
+    assert checks_runtime.fingerprint()==runtime, 'Runtime changed during model load'
+    session=f'{time.time_ns()}_{os.getpid()}'
     def prob(lp):
         x=np.array([sum(v) for v in lp],float)
         x=np.exp(x-x.max()); return x/x.sum()
     checks=[]
     for job in [next(r for r in rawjobs if r['condition']==c) for c in CONDS]+[max(rawjobs,key=lambda r:len(r['text']))]:
         j=tokenize(tok,job)
-        p1=prob(scorer.score(j)); p2=prob([scorer.direct(j,k) for k in range(5)])
+        shared=scorer.score(j);direct=[scorer.direct(j,k) for k in range(5)]
+        p1=prob(shared);p2=prob(direct)
         tv=float(np.abs(p1-p2).sum()/2)
-        checks.append(dict(request_id=job['request_id'],tv=tv,passed=tv<0.005))
+        checks.append(dict(request_id=job['request_id'],tv=tv,passed=tv<0.005,
+                           shared_sequence_logp=[sum(x) for x in shared],direct_sequence_logp=[sum(x) for x in direct]))
+        write_json(target/'sessions'/f'{session}.json',dict(hardware_sha256=hardware_sha,checks=checks))
     write_json(target/'numerical_check.json',checks)
     assert all(x['passed'] for x in checks), 'shared prefix vs direct score numerical gate FAILED'
 
-    done={}
-    if scorespath.exists():
-        for line in scorespath.read_text().splitlines():
-            row=json.loads(line)
-            assert row['request_id'] not in done
-            done[row['request_id']]=row
     by_id={j['request_id']:j for j in rawjobs}
     assert set(done).issubset(by_id)
     assert all(done[k]['request_sha256']==by_id[k]['request_sha256'] for k in done)
     t0=time.time()
     with scorespath.open('a',buffering=1) as f:
+        pending=[]
         for job in rawjobs:
             if job['request_id'] in done:continue
             j=tokenize(tok,job)
@@ -280,12 +305,19 @@ def score(args):
             row=dict(request_id=job['request_id'],request_sha256=job['request_sha256'],
                      point_id=job['point_id'],condition=job['condition'],
                      candidate_prob=pp.tolist(),sequence_logp=logits.tolist(),
-                     argmax=int(pp.argmax()))
-            f.write(json.dumps(row)+'\n')
+                     argmax=int(pp.argmax()),session=session,hardware_sha256=hardware_sha)
+            checks_runtime.validate_row(row,job,hardware_sha);pending.append(row)
             done[row['request_id']]=row
+            if len(pending)==10:
+                assert len({r['point_id'] for r in pending})==1 and {r['condition'] for r in pending}==set(CONDS)
+                f.write(''.join(json.dumps(r,allow_nan=False)+'\n' for r in pending));f.flush();os.fsync(f.fileno());pending=[]
+                write_json(target/'progress.json',dict(contexts=len(done),total=len(rawjobs),session=session,seconds=time.time()-t0))
             if len(done)%50==0: print('scored',len(done),'/',len(rawjobs),flush=True)
+        assert not pending
+    assert checks_runtime.fingerprint()==runtime
     write_json(runpath,dict(**env,complete=len(done)==len(rawjobs),contexts=len(done),
                             total_contexts=len(rawjobs),last_segment_seconds=time.time()-t0,
+                            model_load_seconds=load_seconds,scores_sha256=digest(scorespath),
                             peak_gb=float(torch.cuda.max_memory_allocated()/1e9)))
     print('DONE',len(done),'/',len(rawjobs))
 
@@ -348,6 +380,12 @@ def analyze(args):
     assert len(jobs)==NPOINTS*len(CONDS)
     runs=load_json(out/args.name/'run.json')
     assert runs['complete'] and runs['requests_sha256']==man['requests_sha256']
+    assert runs['contexts']==len(jobs) and digest(out/args.name/'scores.jsonl')==runs['scores_sha256']
+    assert runs['scorer_script_sha256']==digest(__file__)
+    assert runs['checks_script_sha256']==digest(checks_runtime.__file__)
+    assert runs['protocol_sha256']==digest(HERE/'EXPERIMENT1_PROTOCOL.md')
+    validated=checks_runtime.load_scores(out/args.name/'scores.jsonl',jobs,runs['hardware_sha256'],complete=True)
+    checks_runtime.check_sessions(out/args.name,validated,jobs,runs['hardware_sha256'])
     sc={}
     for line in (out/args.name/'scores.jsonl').read_text().splitlines():
         r=json.loads(line)
@@ -375,7 +413,7 @@ def analyze(args):
         for group in ['all','I_all','U_all','q12_factual_worse',
                       'q12_factual_worse_ge_1_3','I_q12_factual_worse_ge_1_3',
                       'U_q12_factual_worse_ge_1_3','q12_factual_not_worse',
-                      'gold_q12_factual_worse']:
+                      'gold_q12_factual_worse','gold_q12_factual_worse_ge_1_3']:
             measures={k:[] for k in PP_MEASURES+NAT_MEASURES}
             tids=[]
             for r in meta:
@@ -388,7 +426,9 @@ def analyze(args):
                 if group=='gold_q12_factual_worse' and gap<=0:continue
                 qkey='qgold' if group.startswith('gold') else 'q3456'
                 qq=np.array([vals[pid][i][qkey] for i in range(5)],float)
-                if not np.isfinite(qq).all():continue
+                if not np.isfinite(qq).all():
+                    assert qkey=='qgold', f'Missing primary held-out q3456: {pid}'
+                    continue
                 p={c:np.array(sc[pid+'__'+ctx+c]['candidate_prob'],float) for c in ('0','E','X','PE','PX')}
                 lp={c:np.array(sc[pid+'__'+ctx+c]['sequence_logp'],float) for c in ('0','E','X','PE','PX')}
                 e=p['E'][0]-p['X'][0]; x=p['X'][alt]-p['E'][alt]
@@ -413,13 +453,24 @@ def analyze(args):
                     identity_switch_logodds_clip10=float(np.clip(id_nat,-10,10)))
                 for k,v in values.items():measures[k].append(v)
                 tids.append(tr)
-            result['metrics'][ctx+'/'+group]={k:mean_ci(v,tids,seed=SEED+sum(map(ord,ctx+group+k))) for k,v in measures.items()}
+            result['metrics'][ctx+'/'+group]={k:mean_ci(v,tids,seed=SEED) for k,v in measures.items()}
             result['metrics'][ctx+'/'+group]['identity_switch_logodds']['median']=(
                 float(np.median(measures['identity_switch_logodds'])) if measures['identity_switch_logodds'] else None)
     result['cross_run_stability']=cross_run_stability(repo,args.name,jobs,sc)
+    assert result['metrics']['F/all']['identity_switch_logodds']['n']==NPOINTS
+    f=result['metrics']['F/all'];bad=result['metrics']['F/q12_factual_worse_ge_1_3']
+    def excludes_zero(stat,side):
+        ci=stat.get('ci95');return bool(ci is not None and (ci[0]>0 if side=='positive' else ci[1]<0))
+    result['decisions']=dict(primary_model=args.name=='32b',
+        identity_logodds_positive=excludes_zero(f['identity_switch_logodds'],'positive'),
+        identity_probability_positive=excludes_zero(f['identity_switch_effect'],'positive'),
+        value_harm_vs_no_label=excludes_zero(bad['value_true_minus_no_label'],'negative'),
+        value_harm_vs_swapped_label=excludes_zero(bad['value_true_minus_swap'],'negative'),
+        bootstrap_seed=SEED,nboot=NBOOT)
     write_json(out/args.name/'analysis.json',result)
     lines=[f"Experiment 1: {args.name}, {NPOINTS} I/U Forks. pp = percentage points, nat = log-odds; "
            "95% trajectory-cluster bootstrap.\n"]
+    lines.append('Predefined decisions: '+json.dumps(result['decisions']))
     for key,metrics in result['metrics'].items():
         lines.append('\n'+key)
         for nm in REPORT_ORDER:

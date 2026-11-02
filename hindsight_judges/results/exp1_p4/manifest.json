@@ -1,0 +1,32 @@
+{
+  "status": "PRE-SCORING",
+  "source": "P4-E2",
+  "points": 386,
+  "contexts": 3860,
+  "conditions": [
+    "S0",
+    "SE",
+    "SX",
+    "SPE",
+    "SPX",
+    "F0",
+    "FE",
+    "FX",
+    "FPE",
+    "FPX"
+  ],
+  "input_sha256": {
+    "exploratory_P4/e2_requests.jsonl.gz": "b3ebf5e0a39a6e796ef745abc07c987f2162caaad2d09a15a8933cff193b83cc",
+    "exploratory_P4/e2_preparation.json": "caf574353cd7f5d60dd99f265918c34f901a0c1d5f80bba13078d2d49e67309c",
+    "exploratory_P4/e2_point_audit.json": "019db7894518a3b375c199dc86f78a4bb3b7c0d3512b183e167010c4371b6392",
+    "exploratory_P4/strata.parquet": "40588a42e79f03fd2dc8ab5f3c1168c92f688a73ba687fcf569aa85734868566",
+    "exploratory_P4/e2.json": "483a21a8786395cfed9867792de1a37aa03873b850422ceb4ddcc62fbf276255",
+    "exploratory_deep_discovery/exploratory_arms.parquet": "48426027758af2f0991f6b205a86d8c34cac641b412fb090bfee75b722226602"
+  },
+  "requests_sha256": "43b278f962e57a5d94acef080e0e28e31099b6a9d299f39f18b428d6ee7e2e3d",
+  "pointmeta_sha256": "c6bbb562b56ac79ce785dc8273c5e559cda19917bea945f86a0f36b0b333ee40",
+  "prepare_script_sha256": "d09c0ea8ac4626ff46e18ab936baedfb78ce4a73e140aece63b53f5f0e8eb2f6",
+  "selection": "argmax_q12_alternative; tie lowest arm",
+  "value_eval": "q3456 independent, Gold independent; q12 never as held-out outcome",
+  "git_commit": "4d1f2d56308f2efcdfe04024ea8eaef86b46637a"
+}
