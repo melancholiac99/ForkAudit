@@ -1,5 +1,18 @@
 # DECISIONS.md
 
+## E4b speed trial rejected — 2026-11-02
+
+The bounded trial passed CPU loss/gradient/AdamW parity and real-GPU controlled
+loss/bitwise-gradient parity, but did not improve throughput: median 4.1692 s
+original versus 4.2094 s candidate per 16-example optimizer step, 0.9904x.
+It fails the predeclared large-gain criteria. Additional queue delay was 62.29 s;
+Azero_s0 completed its 120 steps uninterrupted and Agap_s0 resumed normally.
+Frozen code/protocol and all five pair hashes are unchanged. Keep the original
+implementation and stop marginal acceleration work as the researcher requested.
+The reference-cache opportunity was counted/token-verified, not GPU-benchmarked
+or deployed. Scope/limitations and full evidence: exploratory_E4b_extra_speed/
+TRIAL_REPORT.txt and trial_result.json.
+
 ## E4b bounded acceleration trial — 2026-11-02 — authorized
 
 User requested trying acceleration and abandoning it if the gain is not large.

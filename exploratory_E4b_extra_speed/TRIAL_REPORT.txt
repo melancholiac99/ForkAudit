@@ -1,0 +1,8 @@
+E4b speed trial: REJECT / keep frozen implementation
+
+Cached input/target tensors plus deferred metric synchronization were tested on 16 pairs selected by token-length rank across all five arms. Micro-batch 1, accumulation 16, full logits, loss, dropout and optimizer unchanged.
+CPU: identical loss/gradient and one AdamW update. GPU deterministic control: identical loss and bitwise-identical accumulated gradients with a previously trained nonzero E4 adapter.
+Exclusive timing: original 4.1692 s, candidate 4.2094 s per 16-example optimizer step; speedup 0.9904x. Three alternating repetitions after warmup. No meaningful improvement.
+Scope: fresh disposable AdamW optimizer in each timing repetition; CUBLAS_WORKSPACE_CONFIG=:4096:8 for both variants, deterministic algorithms disabled in timing. This is a bounded microbenchmark, not a full-run estimate or a test of every possible optimization.
+Extra queue delay: 62.29 seconds after Azero_s0 completed normally. Waiting scheduler was held; active formal trainer was never stopped. Queue resumed automatically and Agap_s0 is next.
+Rejected against the predeclared >=1.25x AND >=30 minute net-saving criteria. No formal implementation or scientific setting changed. Do not pursue the separately estimated <18 minute reference-cache opportunity under the user's instruction to avoid marginal acceleration work.
