@@ -14,7 +14,7 @@
 1. `exploratory_E4/E4_REPORT.txt`, `exploratory_E4/e4.json`, `exploratory_E4/PUBLICATION.txt`；注册读法 R-L-HEURISTIC。
 2. `exploratory_P8/P8_CPU_REPORT.txt`, `exploratory_P8/failure_reports/`；CPU 已验证，阶段 C 失败，不应解释成科学负结果。
 3. `proposals/P8_fork_selection_audit_2026-11-01.md`。
-4. `exploratory_E5/PREREG_E5.md` 原修订 2 与 `proposals/E5_amendment3_history_credit_2026-11-02.md` 草案；后者仍待服务器零 pilot 数据核查与独立自测，未经冻结不得称修订生效。
+4. `exploratory_E5/PREREG_E5.md` 原修订 2 与 `proposals/E5_amendment3_history_credit_2026-11-02.md` **修订 3 v2 草案**：已纳入检索最多四步、实体级新颖性、最后一步 answer-only、移除 supported_answer 主规则，以及 E5-S(H_prompt) 与 E5-C(C_all/C_pre) 的新 H4 对照。纯数据无关的**待审参考解析器** `proposals/e5_amendment3_history_rule.py` 及**合成自测脚本** `proposals/test_e5_amendment3_history_rule.py` 已附；仍待执行合成测试、服务器零 pilot 数据核查与冻结提交，未经冻结不得称 §14 修订生效。
 
 
 5. `proposals/E4b_zero_replay_credit_learning_value_2026-11-02.md`：**E4b 新实验方案（PROPOSED / NOT FROZEN）**。研究当前策略的三次回放全零状态是否仍提供有效训练监督；四个训练组 A-zero / A-gap / Bfac-gap / D-zero 加 Base，对齐事实锚定偏好对、训练预算和独立任务评估。来自 E4 事后分析，待合作者审核后才可冻结、执行；不改变 E4 R-L-HEURISTIC。
