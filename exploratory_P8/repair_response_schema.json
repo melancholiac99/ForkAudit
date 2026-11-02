@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "outcome": {"type": "string", "enum": ["recovered", "unrecoverable"]},
+    "cause": {"type": "string"},
+    "changes": {"type": "array", "items": {"type": "string"}},
+    "validation": {"type": "array", "items": {"type": "string"}},
+    "resumed_stages": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": ["outcome", "cause", "changes", "validation", "resumed_stages"],
+  "additionalProperties": false
+}
