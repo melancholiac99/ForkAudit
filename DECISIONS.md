@@ -1706,3 +1706,21 @@ Frozen scientific decisions:
 4. D4: **no new E4-specific deeper replay before E4b**. M0's exploratory 0.8% finding from a different population remains report-only and does not enter the result reading. Z3 means 15/15 observed current-policy failures, NOT actual Q=0.
 
 Interpretation remains a comparison of training sets retained versus discarded by a replay-based state selection rule; it is **not** a causal effect of being a zero-credit state. Unmatched trajectory outcomes and turn positions are explicitly reported; there is no claim of conservative bias in either direction. The original E4 R-L-HEURISTIC reading is unchanged. Server must rerun E4b CPU integrity tests against local E4 source before training; the frozen training file hash gate aborts on discrepancies. The server GPU run was **not started** by this commit.
+
+## D-064 — E4c pre-registration: can a prompt or decoding constraint replace training? — 2026-11-02
+
+Raised by the researcher after the post-hoc behaviour analysis of all 38 trained E4/E4b models (inspection share
+47% -> 8-25%, goto 38% -> 58-78%, target-seen 64% -> 72-87%, success given seen roughly unchanged, all failures are
+50-step timeouts): if a single prompt line or a decoding constraint yields the same +7-10 pp, the closed-loop story
+reduces to teaching the action economics of this environment. Pre-registration `exploratory_E4c/PREREG_E4c.md`
+(commit `330b735504a95c516282582d4a7d631d16fdc47a`), frozen before any E4c evaluation.
+- Conditions on base weights, E4 evaluation protocol unchanged: base re-run, P (one fixed hint line after the
+  admissible-action line), R (redraw immediate repeats), PR, X (redraw repeats and examine/look/inventory; added as the
+  strongest action-economics control). Redraws: seed + k*10**13, k <= 8; all blocked -> keep the last draw.
+- Primary: valid_unseen success; control - A and control - D against E4's stored arms (3 seeds x 3 reps), paired game
+  bootstrap; delta = 4 pp as E4b. Readings in order: E4c-SUBSTITUTE (some control non-inferior to A), HEURISTIC-ONLY
+  (non-inferior to D only), NOMANIP (no control in the trained behaviour range: inspection <= 25%, repeats <= 4%),
+  LEARNED (every control significantly below D), MIXED. valid_seen replication and base drift always reported.
+- Scope notes recorded in the pre-registration: E4 training points are search-phase only, so "only search improved"
+  is partly by design; the operation-phase 2x2 would need new points, 32B judging and replay and is not part of E4c.
+- About 2-2.5 GPU hours; no training. `test_e4c.py` passes on CPU.
