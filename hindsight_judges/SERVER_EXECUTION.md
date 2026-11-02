@@ -35,3 +35,9 @@ gate. The researcher approved the recorded execution amendment in
 fingerprint it, and preserve the failed attempt separately. The original
 scientific protocol and TV threshold remain unchanged. Diagnostic evidence is
 under `diagnostics/numerical_gate_20261102/`.
+
+The later optional 7B BF16 attempt failed three gates before scoring. The researcher
+requested further repair; `EXECUTION_AMENDMENT_7B_FP32_20261102.txt` records a 7B-only
+FP32 recovery. All 11 diagnostic checks passed. The queue preserves verified 32B
+artifacts byte-for-byte and uses the separate FP32 scorer/precision verifier for
+7B. Both models still use MATH, with explicitly different transformer precision.

@@ -65,7 +65,7 @@ def preflight():
     lengths=[E.tokenize(tok,j) for j in jobs]
     token_report={c:dict(contexts=sum(j['condition']==c for j in lengths),
                     max_full_tokens=max(len(j['prefix_ids'])+max(len(x['suffix_ids']) for x in j['candidates']) for j in lengths if j['condition']==c)) for c in E.CONDS}
-    for p in [*H.glob('*.py'),H/'EXPERIMENT1_PROTOCOL.md',H/'SERVER_EXECUTION.md',H/'EXECUTION_AMENDMENT_20261102.txt',SOURCE/'exploratory_P4/p4_e2_backend.py',
+    for p in [*H.glob('*.py'),H/'EXPERIMENT1_PROTOCOL.md',H/'SERVER_EXECUTION.md',H/'EXECUTION_AMENDMENT_20261102.txt',H/'EXECUTION_AMENDMENT_7B_FP32_20261102.txt',SOURCE/'exploratory_P4/p4_e2_backend.py',
               SOURCE/'exploratory_P4/e2_environment.json',*(OUT/f for f in ('manifest.json','pointmeta.json','requests.jsonl.gz'))]:
         frozen[str(p.resolve())]=E.digest(p)
     versions={k:importlib.metadata.version(k) for k in oldenv['versions']}
@@ -154,10 +154,20 @@ def main():
         try:
             assert E.load_json(RUN/'preflight.json')['passed'];wait_e4()
             for name,(dirname,revision) in MODELS.items():
+                if name=='32b' and (OUT/name/'verification.json').exists():
+                    inventory=E.load_json(RUN/'primary32b_before_7b_repair.json')
+                    for path,info in inventory.items():
+                        p=H/path;assert p.stat().st_size==info['bytes'] and E.digest(p)==info['sha256'],path
+                    audit=E.load_json(OUT/name/'verification.json')
+                    assert audit['passed'] and audit['contexts']==3860 and audit['statistics_independently_verified']==300
+                    status('reuse_verified_32b',scores_sha256=audit['scores_sha256'])
+                    continue
                 common=['--repo',SOURCE,'--out',OUT,'--arms',ARMS,'--name',name]
-                stage('score_'+name,'exp1.py','score',*common,'--model',SOURCE.parent/'models'/dirname,'--revision',revision)
-                stage('analyze_'+name,'exp1.py','analyze',*common)
-                stage('verify_'+name,'verify_exp1.py',*common)
+                scorer='exp1_7b_fp32.py' if name=='7b' else 'exp1.py'
+                verifier='verify_7b_fp32.py' if name=='7b' else 'verify_exp1.py'
+                stage('score_'+name,scorer,'score',*common,'--model',SOURCE.parent/'models'/dirname,'--revision',revision)
+                stage('analyze_'+name,scorer,'analyze',*common)
+                stage('verify_'+name,verifier,*common)
             hashes_check(E.load_json(RUN/'protected_inputs.json'))
             audits={n:E.load_json(OUT/n/'verification.json') for n in MODELS};assert all(v['passed'] for v in audits.values())
             E.write_json(RUN/'final_verification.json',dict(passed=True,models=audits,protected_inputs_unchanged=True))

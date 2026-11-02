@@ -1,0 +1,246 @@
+{
+  "hindsight_judges/EXECUTION_AMENDMENT_20261102.txt": {
+    "bytes": 2696,
+    "sha256": "fb41715e0cabf85520de94f2385b0afdc5f3d189f60ec003c9a3ab9d847adc1d"
+  },
+  "hindsight_judges/EXPERIMENT1_PROTOCOL.md": {
+    "bytes": 9037,
+    "sha256": "5eed47e289820d960c02a7f718a75e9049db1d58afcb4aef7e2028044edf25d6"
+  },
+  "hindsight_judges/FINALIZATION_POLICY.txt": {
+    "bytes": 1667,
+    "sha256": "9cef782c724b5f3cdcf19c59512494deb5ae060a9c4b1838fd4672055c2ae55a"
+  },
+  "hindsight_judges/README.md": {
+    "bytes": 3685,
+    "sha256": "444003d465f80005d9d658bc73c8e5ab5ba6df4c190bccd799677cf8011656d0"
+  },
+  "hindsight_judges/SERVER_EXECUTION.md": {
+    "bytes": 2275,
+    "sha256": "08af3fe50121c7a1a432e3ca782b53caeea1e317b41f5a2f20e19199dadffa7a"
+  },
+  "hindsight_judges/diagnose_math_gate.py": {
+    "bytes": 2236,
+    "sha256": "42036cf0975ce2f870fa300d4707f5b83b39f81d7e953f68ee5a60f7370f3540"
+  },
+  "hindsight_judges/diagnose_numerics.py": {
+    "bytes": 2449,
+    "sha256": "92f7ffa2d50cef235370afd46d4fc5a9b637846682d97ff03e3833147ad6aa5c"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/REPORT.txt": {
+    "bytes": 1727,
+    "sha256": "9834ad21207f0421053fd973b3c3910b23e0573574586d8bca55097cb995cf51"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/diagnosis.json": {
+    "bytes": 8743,
+    "sha256": "b047d284111db83511c2a31fec39dc83edd0d5b6670455ae06a5d01ed6e3e9fc"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/32b/numerical_check.json": {
+    "bytes": 4831,
+    "sha256": "43d5b60b1bf5b053cc22411339f94ba5e0a56c47ab6194054d2bf3ed2ee5563f"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/32b/run.json": {
+    "bytes": 6470,
+    "sha256": "65fdc3d645f1629e0c077f6ce00b944bf5ea7f13c39bf5b57f0c7da4ef5c64fe"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/32b/sessions/1793625662088078169_22269.json": {
+    "bytes": 5356,
+    "sha256": "6215d455bbcb9b2f9dd8156d2d09f8546bc6231058f799b389f21a95756a8ebc"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/launch.json": {
+    "bytes": 149,
+    "sha256": "a442f88178a9f14393e8eedcb50e5a5ee6cce0ac5733485e74625ff7f9015954"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/preflight.json": {
+    "bytes": 1503,
+    "sha256": "f8f04cbe0a2f0652cb776521a4b95ca086e9fbc22628eb374165d8df974e3ca9"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/preservation_manifest.json": {
+    "bytes": 1298,
+    "sha256": "305d58aa84e04c684d997f72a4f090c900d006fdd3b45cbeae5a9568ac19aad9"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/protected_inputs.json": {
+    "bytes": 8231,
+    "sha256": "ba6c2ace40e3d3f70cce5a321829b5ec7fbfa04690a332395a70d4f6b9c78d09"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/queue.log": {
+    "bytes": 3969,
+    "sha256": "d10df6cd5265ee73c3ae00e63a69f47c2134b6497561442396428cea7480b19d"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/score_32b.log": {
+    "bytes": 775,
+    "sha256": "197829615c701ae3dfa23e993efc8b615f96389f2b1a2ce43d32d1fb6b9c56e4"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/failed_original_attempt/status.json": {
+    "bytes": 588,
+    "sha256": "7d1ee2d62c67b2413668405990828dafc5765032f48b933df6c77213c70fe902"
+  },
+  "hindsight_judges/diagnostics/numerical_gate_20261102/math_gate.json": {
+    "bytes": 10318,
+    "sha256": "1245995dd28c800a364abdf888e8bc23b2eb70f36b9e7cc3e8bedcc3ddb9cc0d"
+  },
+  "hindsight_judges/execution_checks.py": {
+    "bytes": 5047,
+    "sha256": "eb9f25557705c8460d188d3d8b07c14ed994e2c7ea50b44b94843f7154dd9b48"
+  },
+  "hindsight_judges/exp1.py": {
+    "bytes": 29453,
+    "sha256": "156b1841286f0d6a38df84108ef618dab7520a9d79a33fc6c0a78c14bb10e1ce"
+  },
+  "hindsight_judges/finish_and_shutdown.py": {
+    "bytes": 10279,
+    "sha256": "790d603bbdd8c089eee9079cf0fafff3cc750471cddfca34d5020a958275f92b"
+  },
+  "hindsight_judges/results/exp1_p4/32b/REPORT.txt": {
+    "bytes": 21795,
+    "sha256": "5a2a62e288e528f853be984c4bce1c959d14a0d378cbae90fd86edd7f9c8318e"
+  },
+  "hindsight_judges/results/exp1_p4/32b/analysis.json": {
+    "bytes": 76503,
+    "sha256": "242dce08b29afdf3ef78b4c69769d2d7dd7ea5160fd1efe8504954cf5862cee0"
+  },
+  "hindsight_judges/results/exp1_p4/32b/numerical_check.json": {
+    "bytes": 4825,
+    "sha256": "cbe67d986e48688599b507c6f8668abb90895eab71fd764b7e6c41971d98de6b"
+  },
+  "hindsight_judges/results/exp1_p4/32b/progress.json": {
+    "bytes": 114,
+    "sha256": "b2bcf06aaf26af483c9daa467f0aaff3f18d81fa787a5c89f2adbd1c10b9dcfb"
+  },
+  "hindsight_judges/results/exp1_p4/32b/run.json": {
+    "bytes": 6839,
+    "sha256": "f277ea453933a33e88b6c1f5e5a51d2944c9454a1ec99ff848ab2a9f4dfc6180"
+  },
+  "hindsight_judges/results/exp1_p4/32b/scores.jsonl": {
+    "bytes": 2148988,
+    "sha256": "77afeb3eb0350c51688e085aaa6490348da54dcfb8aec2475a59be2760d591cc"
+  },
+  "hindsight_judges/results/exp1_p4/32b/sessions/1793627659051549743_24307.json": {
+    "bytes": 5350,
+    "sha256": "753faaffb1a7b7c9b920a5e483f75eb1c36f803ebb6b8c058ae99572a3c050d8"
+  },
+  "hindsight_judges/results/exp1_p4/32b/verification.json": {
+    "bytes": 643,
+    "sha256": "251c9250042e5a00b0af03e21f85c2e5c3bbce333a5aa6168ad212c4fa50432f"
+  },
+  "hindsight_judges/results/exp1_p4/7b/numerical_check.json": {
+    "bytes": 4812,
+    "sha256": "89a8a5ee759b22873880cda952c8620c5ae8a150a698015451459af786cc6add"
+  },
+  "hindsight_judges/results/exp1_p4/7b/run.json": {
+    "bytes": 5205,
+    "sha256": "da02edee7b4b3b82fde67cd504481404dc43982ee671ec94ec742831e2d2f388"
+  },
+  "hindsight_judges/results/exp1_p4/7b/sessions/1793630023713563916_25922.json": {
+    "bytes": 5337,
+    "sha256": "9b1e3aa2ae3b2a2c57c7fbeda7f72328f6aa8556b56fdadab796a00b20b76fb3"
+  },
+  "hindsight_judges/results/exp1_p4/manifest.json": {
+    "bytes": 1376,
+    "sha256": "56e22a0ed6ace3e1d2c4a45afb174db92f8f3a10739f74462e8318364ae0f089"
+  },
+  "hindsight_judges/results/exp1_p4/pointmeta.json": {
+    "bytes": 78971,
+    "sha256": "c6bbb562b56ac79ce785dc8273c5e559cda19917bea945f86a0f36b0b333ee40"
+  },
+  "hindsight_judges/results/exp1_p4/requests.jsonl.gz": {
+    "bytes": 365450,
+    "sha256": "9247ed0145ab3ede64d3900d67a1afac007c4d51c98176a01b9667ed60070323"
+  },
+  "hindsight_judges/run/analyze_32b.log": {
+    "bytes": 21795,
+    "sha256": "5a2a62e288e528f853be984c4bce1c959d14a0d378cbae90fd86edd7f9c8318e"
+  },
+  "hindsight_judges/run/attention_amendment_validation.json": {
+    "bytes": 2895,
+    "sha256": "ff8bbdb089daf277c588ec3aadc274e72982c18be6f8ae5dc28174c4ab233217"
+  },
+  "hindsight_judges/run/cpu_tests.log": {
+    "bytes": 104,
+    "sha256": "c3c0ed573b2d664be5d863579ef5c0cc2fb9418b71d447f303ec265208fe2da9"
+  },
+  "hindsight_judges/run/launch.json": {
+    "bytes": 217,
+    "sha256": "a576b14bb6406cdfb3dec91754f82d5605b4583756d75405d37caecc8640fa44"
+  },
+  "hindsight_judges/run/launch_before_branch_cleanup.json": {
+    "bytes": 161,
+    "sha256": "4d9fad2cd5df648f31e892e01f9872b11b0e209439eb77b2c52b846564ec207e"
+  },
+  "hindsight_judges/run/launch_before_destination_change.json": {
+    "bytes": 182,
+    "sha256": "3e5c2ecfe2e828193986ccfa45d9764e7c4cbd09de677abdc9e0365b4ddb9923"
+  },
+  "hindsight_judges/run/preflight.json": {
+    "bytes": 4528,
+    "sha256": "d3d623ef3aca3ef481c43310c00097099c4d5b5579fc6f9fc8d525dc56d821c8"
+  },
+  "hindsight_judges/run/preflight.log": {
+    "bytes": 1071,
+    "sha256": "b8f58b6a4bda26cbc167e6fad004e74995f4065d846d7e00a5cd0fc85371f39c"
+  },
+  "hindsight_judges/run/preflight_sequential_attempt.log": {
+    "bytes": 41,
+    "sha256": "718d237ee65d15bee6ed2a9048e818c81038a4959696c5614a29809fe7c06900"
+  },
+  "hindsight_judges/run/protected_inputs.json": {
+    "bytes": 8688,
+    "sha256": "91ba955174f2d904ad2d1ad977aec11a5d4637350ee420a5b61ebac48011293a"
+  },
+  "hindsight_judges/run/publication_destination_change.json": {
+    "bytes": 1190,
+    "sha256": "a35aea7740e97edc2ae9b580caaf56a6bce2f0d9a048331a77cd17fd6d9adae8"
+  },
+  "hindsight_judges/run/queue.log": {
+    "bytes": 8974,
+    "sha256": "5f8bbe8dff17ed2891b7cfd505a15b31db9fd69f4fb8ceb20867728f9d2ead1e"
+  },
+  "hindsight_judges/run/queue_gate_test.json": {
+    "bytes": 100,
+    "sha256": "6935c34848f39ca808957115d39d9244a6a53a1d5063794cf58d96372d1b2019"
+  },
+  "hindsight_judges/run/request_parity.json": {
+    "bytes": 175,
+    "sha256": "a919092649604e7b99d23e7d61b5bdb980adcf0f90c13fafb99e5a66d44cfc66"
+  },
+  "hindsight_judges/run/score_32b.log": {
+    "bytes": 2501,
+    "sha256": "ef7069dfcffd65d78c687235146d113801a8562f5df16b7c7be6e18fc6a6830d"
+  },
+  "hindsight_judges/run/score_7b.log": {
+    "bytes": 930,
+    "sha256": "f394b0d887f46215b65cf21e83ca6ef31b4f61f468f2d61f4985fe24abf812a3"
+  },
+  "hindsight_judges/run/server_branch_cleanup.json": {
+    "bytes": 1180,
+    "sha256": "f8e444a671d1225316012e45283a4bb8be37bc275ea743aa13941b4f7e240cad"
+  },
+  "hindsight_judges/run/status.json": {
+    "bytes": 586,
+    "sha256": "fbea8714db9c89ce97807da7610a02a64945242d2cd054f6bb8cdf800f38ef1b"
+  },
+  "hindsight_judges/run/upstream_verified.json": {
+    "bytes": 783,
+    "sha256": "6650599824896ea74adcdb3151973a58feb07ba73b210cfea8be9580ff885473"
+  },
+  "hindsight_judges/run/verify_32b.log": {
+    "bytes": 51,
+    "sha256": "481460f436867a9d377a73b29c421f33b93e2428025820b56fbcdf1ee8735691"
+  },
+  "hindsight_judges/server_queue.py": {
+    "bytes": 9824,
+    "sha256": "6a7619acd8c8a4e6b894d921a79c7b036ff5a1df01f0b66b4bf3d1967faf32ca"
+  },
+  "hindsight_judges/test_execution.py": {
+    "bytes": 7424,
+    "sha256": "6149d6b65fd464737365f2c62392e9a0c63ba1655e71ff1420f427fb50888192"
+  },
+  "hindsight_judges/test_finish_and_shutdown.py": {
+    "bytes": 3188,
+    "sha256": "9a8e80bb312a6a3c5f87a9060fea40db945f2ae52bff99d61b136ff9a07f5455"
+  },
+  "hindsight_judges/verify_exp1.py": {
+    "bytes": 7682,
+    "sha256": "a310a23bc844ea5c43ce482f472c420c67cc4940a4a852b04436acd8cff98f1b"
+  }
+}

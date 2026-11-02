@@ -1,0 +1,38 @@
+--- exp1.py (unchanged 32B)
++++ exp1_7b_fp32.py
+@@ -230,0 +231,4 @@
++def precision_runtime():
++    return dict(checks_runtime.fingerprint(), transformer_compute_dtype="float32", vocabulary_projection_dtype="float32")
++
++
+@@ -231,0 +236,4 @@
++    import torch
++    assert args.name == "7b", "FP32 specialization is only for the secondary 7B model"
++    torch.backends.cuda.matmul.allow_tf32=False
++    torch.backends.cudnn.allow_tf32=False
+@@ -260 +268 @@
+-    runtime=checks_runtime.fingerprint();hardware_sha=checks_runtime.fp_sha(runtime)
++    runtime=precision_runtime();hardware_sha=checks_runtime.fp_sha(runtime)
+@@ -263,0 +272,2 @@
++             compute_precision='float32', precision_amendment_sha256=digest(HERE/'EXECUTION_AMENDMENT_7B_FP32_20261102.txt'),
++             parent_scorer_sha256=digest(HERE/'exp1.py'),
+@@ -285,2 +295,3 @@
+-    load_start=time.time();scorer=module.Scorer();load_seconds=time.time()-load_start
+-    assert checks_runtime.fingerprint()==runtime, 'Runtime changed during model load'
++    load_start=time.time();scorer=module.Scorer();scorer.model.float();load_seconds=time.time()-load_start
++    assert all(p.dtype==torch.float32 for p in scorer.model.parameters())
++    assert precision_runtime()==runtime, 'Runtime changed during model load'
+@@ -327 +338 @@
+-    assert checks_runtime.fingerprint()==runtime
++    assert precision_runtime()==runtime
+@@ -397,0 +409,3 @@
++    assert runs['compute_precision']=='float32' and runs['runtime']['transformer_compute_dtype']=='float32'
++    assert runs['precision_amendment_sha256']==digest(HERE/'EXECUTION_AMENDMENT_7B_FP32_20261102.txt')
++    assert runs['parent_scorer_sha256']==digest(HERE/'exp1.py')
+@@ -483,0 +498 @@
++    lines.append('Execution amendment: secondary 7B uses FP32 transformer/projection with TF32 disabled and SDPA MATH. Primary 32B remains BF16 transformer / FP32 projection. Numerical precision differs across model sizes; do not attribute cross-model differences solely to model size.')
+@@ -530,2 +545,2 @@
+-    ap.add_argument('--name',choices=['32b','7b'],default='32b')
+-    ap.add_argument('--revision',default='5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd')
++    ap.add_argument('--name',choices=['7b'],default='7b')
++    ap.add_argument('--revision',default='a09a35458c702b33eeacc393d103063234e8bc28')

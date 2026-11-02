@@ -79,6 +79,8 @@ def local_audit():
         p=H/'results/exp1_p4'/name;v=read(p/'verification.json');r=read(p/'run.json')
         assert v==audit['models'][name] and v['passed'] and v['points']==386 and v['contexts']==3860
         assert r['complete'] and r['contexts']==3860 and r['attention_backend']=='sdpa_math'
+        if name=='7b':
+            assert r['compute_precision']=='float32' and v['precision_provenance_verified']
         assert sha(p/'scores.jsonl')==v['scores_sha256']==r['scores_sha256']
         assert sha(p/'analysis.json')==v['analysis_sha256']
     files=read(RUN/'artifact_manifest.json')
@@ -167,7 +169,7 @@ def recovery(thread,error):
         '【Hindsight 自动异常修复】用户已要求：任何阶段失败先检查并尝试修复；修不好保存错误日志和结果、sync 后关机。'
         f'工作区 {ROOT}，原分支 research/hindsight-judges。失败快照：{dest}。'
         '先读取 finalization/status.json、run/status.json 和最新日志，并在 finalization/recovery_claim.json 写入接管时间。'
-        'E4B 已完成并推 main，不重跑。Hindsight 使用已提交的 SDPA MATH 修订，不得放宽 TV<0.005、改统计门槛或混用运行配置。'
+        'E4B 已完成并推 main，不重跑。Hindsight 使用 SDPA MATH；32B 已验证保留，7B 已授权 FP32 修复。不得放宽 TV<0.005、改统计门槛或混用运行配置。用户明确要求尽力修复，不要因少量诊断尝试失败就过早放弃。'
         '上传失败可重试；远端分歧用独立 detached worktree 检查合并，冲突保留，不强推或覆盖研究结果。'
         '若能修复续跑，重新启动 finish_and_shutdown.py 监控新队列；所有结果核验并确认上传后执行 /bin/bash /usr/bin/shutdown。'
         '若无法修复，完整保存错误日志和已有结果并 sync，再执行同一关机命令，不无限重试。'

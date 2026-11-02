@@ -1,0 +1,307 @@
+Experiment 1: 32b, 386 I/U Forks. pp = percentage points, nat = log-odds; 95% trajectory-cluster bootstrap.
+
+Predefined decisions: {"primary_model": true, "identity_logodds_positive": true, "identity_probability_positive": true, "value_harm_vs_no_label": true, "value_harm_vs_swapped_label": true, "bootstrap_seed": 20261102, "nboot": 4000}
+
+S/all
+  identity_switch_logodds           : +1.445 [+1.307,+1.591] nat n=386 traj=60 median=+1.211
+  identity_switch_logodds_clip10    : +1.445 [+1.307,+1.591] nat n=386 traj=60
+  placebo_switch_logodds            : +5.038 [+4.662,+5.405] nat n=386 traj=60
+  identity_minus_placebo_logodds    : -3.593 [-3.923,-3.257] nat n=386 traj=60
+  identity_switch_effect            : +4.685 [+3.485,+6.060] pp n=386 traj=60
+  placebo_switch_effect             : +22.494 [+18.859,+26.550] pp n=386 traj=60
+  identity_minus_placebo            : -17.809 [-21.376,-14.524] pp n=386 traj=60
+  p_exec_true_minus_swap            : +5.212 [+3.827,+6.671] pp n=386 traj=60
+  value_true_minus_swap             : -1.843 [-2.785,-1.041] pp n=386 traj=60
+  value_true_minus_no_label         : -1.068 [-1.705,-0.473] pp n=386 traj=60
+  exec_argmax_no_label              : +30.570 [+25.308,+36.018] % n=386 traj=60
+  exec_argmax_true_label            : +35.751 [+30.791,+40.572] % n=386 traj=60
+  exec_argmax_swap_label            : +31.347 [+26.052,+36.536] % n=386 traj=60
+
+S/I_all
+  identity_switch_logodds           : +1.617 [+1.420,+1.840] nat n=184 traj=39 median=+1.459
+  identity_switch_logodds_clip10    : +1.617 [+1.420,+1.840] nat n=184 traj=39
+  placebo_switch_logodds            : +5.771 [+5.267,+6.292] nat n=184 traj=39
+  identity_minus_placebo_logodds    : -4.154 [-4.624,-3.720] nat n=184 traj=39
+  identity_switch_effect            : +5.625 [+3.789,+7.756] pp n=184 traj=39
+  placebo_switch_effect             : +29.101 [+22.805,+36.763] pp n=184 traj=39
+  identity_minus_placebo            : -23.476 [-29.657,-18.357] pp n=184 traj=39
+  p_exec_true_minus_swap            : +6.394 [+4.151,+8.895] pp n=184 traj=39
+  value_true_minus_swap             : -2.640 [-4.112,-1.382] pp n=184 traj=39
+  value_true_minus_no_label         : -1.243 [-2.448,-0.198] pp n=184 traj=39
+  exec_argmax_no_label              : +29.891 [+19.872,+38.625] % n=184 traj=39
+  exec_argmax_true_label            : +37.500 [+28.387,+44.920] % n=184 traj=39
+  exec_argmax_swap_label            : +32.065 [+22.449,+40.000] % n=184 traj=39
+
+S/U_all
+  identity_switch_logodds           : +1.289 [+1.095,+1.491] nat n=202 traj=35 median=+1.044
+  identity_switch_logodds_clip10    : +1.289 [+1.095,+1.491] nat n=202 traj=35
+  placebo_switch_logodds            : +4.371 [+3.918,+4.754] nat n=202 traj=35
+  identity_minus_placebo_logodds    : -3.082 [-3.422,-2.660] nat n=202 traj=35
+  identity_switch_effect            : +3.828 [+2.150,+5.723] pp n=202 traj=35
+  placebo_switch_effect             : +16.475 [+12.529,+19.844] pp n=202 traj=35
+  identity_minus_placebo            : -12.647 [-16.133,-9.019] pp n=202 traj=35
+  p_exec_true_minus_swap            : +4.135 [+2.440,+5.971] pp n=202 traj=35
+  value_true_minus_swap             : -1.116 [-2.147,-0.188] pp n=202 traj=35
+  value_true_minus_no_label         : -0.909 [-1.506,-0.309] pp n=202 traj=35
+  exec_argmax_no_label              : +31.188 [+24.731,+38.889] % n=202 traj=35
+  exec_argmax_true_label            : +34.158 [+28.063,+41.573] % n=202 traj=35
+  exec_argmax_swap_label            : +30.693 [+23.958,+38.506] % n=202 traj=35
+
+S/q12_factual_worse
+  identity_switch_logodds           : +1.502 [+1.349,+1.664] nat n=308 traj=52 median=+1.269
+  identity_switch_logodds_clip10    : +1.502 [+1.349,+1.664] nat n=308 traj=52
+  placebo_switch_logodds            : +5.104 [+4.675,+5.528] nat n=308 traj=52
+  identity_minus_placebo_logodds    : -3.602 [-3.977,-3.214] nat n=308 traj=52
+  identity_switch_effect            : +5.136 [+3.616,+6.786] pp n=308 traj=52
+  placebo_switch_effect             : +22.814 [+18.819,+27.421] pp n=308 traj=52
+  identity_minus_placebo            : -17.678 [-21.555,-14.238] pp n=308 traj=52
+  p_exec_true_minus_swap            : +5.686 [+4.081,+7.456] pp n=308 traj=52
+  value_true_minus_swap             : -2.452 [-3.552,-1.515] pp n=308 traj=52
+  value_true_minus_no_label         : -1.297 [-2.135,-0.599] pp n=308 traj=52
+  exec_argmax_no_label              : +27.597 [+20.820,+34.098] % n=308 traj=52
+  exec_argmax_true_label            : +33.766 [+27.734,+39.568] % n=308 traj=52
+  exec_argmax_swap_label            : +28.571 [+21.839,+34.817] % n=308 traj=52
+
+S/q12_factual_worse_ge_1_3
+  identity_switch_logodds           : +1.504 [+1.339,+1.689] nat n=259 traj=46 median=+1.311
+  identity_switch_logodds_clip10    : +1.504 [+1.339,+1.689] nat n=259 traj=46
+  placebo_switch_logodds            : +5.191 [+4.702,+5.638] nat n=259 traj=46
+  identity_minus_placebo_logodds    : -3.686 [-4.097,-3.213] nat n=259 traj=46
+  identity_switch_effect            : +5.079 [+3.462,+7.042] pp n=259 traj=46
+  placebo_switch_effect             : +23.050 [+18.447,+28.186] pp n=259 traj=46
+  identity_minus_placebo            : -17.971 [-22.414,-14.033] pp n=259 traj=46
+  p_exec_true_minus_swap            : +5.584 [+3.891,+7.527] pp n=259 traj=46
+  value_true_minus_swap             : -2.825 [-4.212,-1.755] pp n=259 traj=46
+  value_true_minus_no_label         : -1.441 [-2.428,-0.648] pp n=259 traj=46
+  exec_argmax_no_label              : +27.799 [+20.276,+34.398] % n=259 traj=46
+  exec_argmax_true_label            : +34.363 [+27.801,+40.273] % n=259 traj=46
+  exec_argmax_swap_label            : +29.344 [+21.428,+36.260] % n=259 traj=46
+
+S/I_q12_factual_worse_ge_1_3
+  identity_switch_logodds           : +1.582 [+1.353,+1.863] nat n=148 traj=28 median=+1.455
+  identity_switch_logodds_clip10    : +1.582 [+1.353,+1.863] nat n=148 traj=28
+  placebo_switch_logodds            : +5.666 [+5.141,+6.226] nat n=148 traj=28
+  identity_minus_placebo_logodds    : -4.084 [-4.598,-3.597] nat n=148 traj=28
+  identity_switch_effect            : +4.962 [+3.215,+6.961] pp n=148 traj=28
+  placebo_switch_effect             : +26.773 [+19.998,+34.549] pp n=148 traj=28
+  identity_minus_placebo            : -21.811 [-28.198,-16.270] pp n=148 traj=28
+  p_exec_true_minus_swap            : +5.606 [+3.428,+8.129] pp n=148 traj=28
+  value_true_minus_swap             : -3.131 [-5.005,-1.549] pp n=148 traj=28
+  value_true_minus_no_label         : -1.434 [-3.001,-0.185] pp n=148 traj=28
+  exec_argmax_no_label              : +30.405 [+19.008,+40.238] % n=148 traj=28
+  exec_argmax_true_label            : +39.189 [+29.545,+47.121] % n=148 traj=28
+  exec_argmax_swap_label            : +34.459 [+23.846,+43.357] % n=148 traj=28
+
+S/U_q12_factual_worse_ge_1_3
+  identity_switch_logodds           : +1.401 [+1.147,+1.658] nat n=111 traj=23 median=+1.169
+  identity_switch_logodds_clip10    : +1.401 [+1.147,+1.658] nat n=111 traj=23
+  placebo_switch_logodds            : +4.556 [+3.852,+5.147] nat n=111 traj=23
+  identity_minus_placebo_logodds    : -3.156 [-3.709,-2.481] nat n=111 traj=23
+  identity_switch_effect            : +5.234 [+2.345,+8.797] pp n=111 traj=23
+  placebo_switch_effect             : +18.085 [+13.143,+22.582] pp n=111 traj=23
+  identity_minus_placebo            : -12.851 [-17.195,-8.396] pp n=111 traj=23
+  p_exec_true_minus_swap            : +5.555 [+2.775,+8.939] pp n=111 traj=23
+  value_true_minus_swap             : -2.416 [-4.132,-0.997] pp n=111 traj=23
+  value_true_minus_no_label         : -1.451 [-2.406,-0.516] pp n=111 traj=23
+  exec_argmax_no_label              : +24.324 [+17.599,+30.476] % n=111 traj=23
+  exec_argmax_true_label            : +27.928 [+21.052,+34.832] % n=111 traj=23
+  exec_argmax_swap_label            : +22.523 [+14.583,+29.915] % n=111 traj=23
+
+S/q12_factual_not_worse
+  identity_switch_logodds           : +1.220 [+1.005,+1.454] nat n=78 traj=37 median=+0.962
+  identity_switch_logodds_clip10    : +1.220 [+1.005,+1.454] nat n=78 traj=37
+  placebo_switch_logodds            : +4.778 [+4.096,+5.573] nat n=78 traj=37
+  identity_minus_placebo_logodds    : -3.558 [-4.241,-2.952] nat n=78 traj=37
+  identity_switch_effect            : +2.902 [+1.144,+5.228] pp n=78 traj=37
+  placebo_switch_effect             : +21.227 [+14.003,+29.172] pp n=78 traj=37
+  identity_minus_placebo            : -18.324 [-25.596,-11.771] pp n=78 traj=37
+  p_exec_true_minus_swap            : +3.339 [+1.459,+5.799] pp n=78 traj=37
+  value_true_minus_swap             : +0.564 [-0.090,+1.307] pp n=78 traj=37
+  value_true_minus_no_label         : -0.165 [-0.778,+0.430] pp n=78 traj=37
+  exec_argmax_no_label              : +42.308 [+33.333,+51.351] % n=78 traj=37
+  exec_argmax_true_label            : +43.590 [+34.781,+52.779] % n=78 traj=37
+  exec_argmax_swap_label            : +42.308 [+33.333,+51.251] % n=78 traj=37
+
+S/gold_q12_factual_worse
+  identity_switch_logodds           : +1.534 [+1.273,+1.829] nat n=94 traj=38 median=+1.301
+  identity_switch_logodds_clip10    : +1.534 [+1.273,+1.829] nat n=94 traj=38
+  placebo_switch_logodds            : +5.034 [+4.506,+5.552] nat n=94 traj=38
+  identity_minus_placebo_logodds    : -3.500 [-3.927,-3.039] nat n=94 traj=38
+  identity_switch_effect            : +6.523 [+3.601,+10.563] pp n=94 traj=38
+  placebo_switch_effect             : +20.293 [+15.094,+26.730] pp n=94 traj=38
+  identity_minus_placebo            : -13.770 [-18.547,-9.666] pp n=94 traj=38
+  p_exec_true_minus_swap            : +7.814 [+4.445,+12.180] pp n=94 traj=38
+  value_true_minus_swap             : -1.833 [-3.713,-0.177] pp n=94 traj=38
+  value_true_minus_no_label         : -2.294 [-4.630,-0.444] pp n=94 traj=38
+  exec_argmax_no_label              : +27.660 [+16.278,+38.236] % n=94 traj=38
+  exec_argmax_true_label            : +36.170 [+25.333,+46.465] % n=94 traj=38
+  exec_argmax_swap_label            : +28.723 [+17.073,+39.316] % n=94 traj=38
+
+S/gold_q12_factual_worse_ge_1_3
+  identity_switch_logodds           : +1.541 [+1.265,+1.854] nat n=81 traj=34 median=+1.311
+  identity_switch_logodds_clip10    : +1.541 [+1.265,+1.854] nat n=81 traj=34
+  placebo_switch_logodds            : +5.120 [+4.581,+5.677] nat n=81 traj=34
+  identity_minus_placebo_logodds    : -3.579 [-4.049,-3.053] nat n=81 traj=34
+  identity_switch_effect            : +6.242 [+3.381,+10.092] pp n=81 traj=34
+  placebo_switch_effect             : +20.216 [+14.329,+27.699] pp n=81 traj=34
+  identity_minus_placebo            : -13.974 [-19.672,-9.000] pp n=81 traj=34
+  p_exec_true_minus_swap            : +7.772 [+4.254,+12.411] pp n=81 traj=34
+  value_true_minus_swap             : -2.198 [-4.436,-0.261] pp n=81 traj=34
+  value_true_minus_no_label         : -2.738 [-5.591,-0.666] pp n=81 traj=34
+  exec_argmax_no_label              : +30.864 [+18.519,+41.305] % n=81 traj=34
+  exec_argmax_true_label            : +39.506 [+27.869,+50.000] % n=81 traj=34
+  exec_argmax_swap_label            : +32.099 [+19.355,+42.857] % n=81 traj=34
+
+F/all
+  identity_switch_logodds           : +0.924 [+0.788,+1.065] nat n=386 traj=60 median=+0.878
+  identity_switch_logodds_clip10    : +0.924 [+0.788,+1.065] nat n=386 traj=60
+  placebo_switch_logodds            : +2.567 [+2.356,+2.786] nat n=386 traj=60
+  identity_minus_placebo_logodds    : -1.642 [-1.820,-1.456] nat n=386 traj=60
+  identity_switch_effect            : +3.467 [+2.159,+4.874] pp n=386 traj=60
+  placebo_switch_effect             : +10.587 [+7.228,+14.055] pp n=386 traj=60
+  identity_minus_placebo            : -7.120 [-9.655,-4.717] pp n=386 traj=60
+  p_exec_true_minus_swap            : +3.408 [+2.025,+4.912] pp n=386 traj=60
+  value_true_minus_swap             : -0.895 [-1.661,-0.105] pp n=386 traj=60
+  value_true_minus_no_label         : -2.369 [-4.074,-0.840] pp n=386 traj=60
+  exec_argmax_no_label              : +17.098 [+12.850,+22.222] % n=386 traj=60
+  exec_argmax_true_label            : +20.725 [+15.717,+26.482] % n=386 traj=60
+  exec_argmax_swap_label            : +16.839 [+12.833,+21.557] % n=386 traj=60
+
+F/I_all
+  identity_switch_logodds           : +0.925 [+0.758,+1.119] nat n=184 traj=39 median=+0.916
+  identity_switch_logodds_clip10    : +0.925 [+0.758,+1.119] nat n=184 traj=39
+  placebo_switch_logodds            : +2.602 [+2.275,+2.978] nat n=184 traj=39
+  identity_minus_placebo_logodds    : -1.677 [-1.938,-1.452] nat n=184 traj=39
+  identity_switch_effect            : +1.086 [-0.051,+2.615] pp n=184 traj=39
+  placebo_switch_effect             : +7.535 [+2.867,+13.752] pp n=184 traj=39
+  identity_minus_placebo            : -6.449 [-11.620,-2.670] pp n=184 traj=39
+  p_exec_true_minus_swap            : +1.168 [-0.158,+2.935] pp n=184 traj=39
+  value_true_minus_swap             : -0.377 [-1.056,+0.172] pp n=184 traj=39
+  value_true_minus_no_label         : -2.647 [-5.561,-0.427] pp n=184 traj=39
+  exec_argmax_no_label              : +9.783 [+5.179,+16.779] % n=184 traj=39
+  exec_argmax_true_label            : +11.957 [+6.500,+20.169] % n=184 traj=39
+  exec_argmax_swap_label            : +10.870 [+5.584,+18.919] % n=184 traj=39
+
+F/U_all
+  identity_switch_logodds           : +0.924 [+0.696,+1.163] nat n=202 traj=35 median=+0.819
+  identity_switch_logodds_clip10    : +0.924 [+0.696,+1.163] nat n=202 traj=35
+  placebo_switch_logodds            : +2.534 [+2.256,+2.829] nat n=202 traj=35
+  identity_minus_placebo_logodds    : -1.611 [-1.836,-1.338] nat n=202 traj=35
+  identity_switch_effect            : +5.636 [+3.714,+7.644] pp n=202 traj=35
+  placebo_switch_effect             : +13.367 [+9.645,+16.938] pp n=202 traj=35
+  identity_minus_placebo            : -7.731 [-10.304,-5.141] pp n=202 traj=35
+  p_exec_true_minus_swap            : +5.449 [+3.412,+7.565] pp n=202 traj=35
+  value_true_minus_swap             : -1.367 [-2.482,-0.138] pp n=202 traj=35
+  value_true_minus_no_label         : -2.117 [-4.193,-0.259] pp n=202 traj=35
+  exec_argmax_no_label              : +23.762 [+18.081,+30.994] % n=202 traj=35
+  exec_argmax_true_label            : +28.713 [+21.653,+37.247] % n=202 traj=35
+  exec_argmax_swap_label            : +22.277 [+16.514,+29.703] % n=202 traj=35
+
+F/q12_factual_worse
+  identity_switch_logodds           : +0.935 [+0.787,+1.109] nat n=308 traj=52 median=+0.895
+  identity_switch_logodds_clip10    : +0.935 [+0.787,+1.109] nat n=308 traj=52
+  placebo_switch_logodds            : +2.570 [+2.342,+2.840] nat n=308 traj=52
+  identity_minus_placebo_logodds    : -1.635 [-1.838,-1.443] nat n=308 traj=52
+  identity_switch_effect            : +3.147 [+1.639,+4.771] pp n=308 traj=52
+  placebo_switch_effect             : +10.656 [+6.652,+14.802] pp n=308 traj=52
+  identity_minus_placebo            : -7.509 [-10.618,-4.643] pp n=308 traj=52
+  p_exec_true_minus_swap            : +2.588 [+1.081,+4.206] pp n=308 traj=52
+  value_true_minus_swap             : -1.510 [-2.354,-0.695] pp n=308 traj=52
+  value_true_minus_no_label         : -2.983 [-4.941,-1.164] pp n=308 traj=52
+  exec_argmax_no_label              : +11.364 [+7.273,+16.206] % n=308 traj=52
+  exec_argmax_true_label            : +14.935 [+9.726,+20.803] % n=308 traj=52
+  exec_argmax_swap_label            : +12.013 [+7.921,+16.559] % n=308 traj=52
+
+F/q12_factual_worse_ge_1_3
+  identity_switch_logodds           : +0.969 [+0.819,+1.160] nat n=259 traj=46 median=+0.908
+  identity_switch_logodds_clip10    : +0.969 [+0.819,+1.160] nat n=259 traj=46
+  placebo_switch_logodds            : +2.618 [+2.367,+2.928] nat n=259 traj=46
+  identity_minus_placebo_logodds    : -1.650 [-1.872,-1.438] nat n=259 traj=46
+  identity_switch_effect            : +3.307 [+1.714,+5.117] pp n=259 traj=46
+  placebo_switch_effect             : +10.942 [+6.502,+15.667] pp n=259 traj=46
+  identity_minus_placebo            : -7.635 [-11.106,-4.320] pp n=259 traj=46
+  p_exec_true_minus_swap            : +2.892 [+1.323,+4.747] pp n=259 traj=46
+  value_true_minus_swap             : -1.757 [-2.720,-0.876] pp n=259 traj=46
+  value_true_minus_no_label         : -3.440 [-5.849,-1.286] pp n=259 traj=46
+  exec_argmax_no_label              : +9.653 [+5.648,+14.607] % n=259 traj=46
+  exec_argmax_true_label            : +13.127 [+7.729,+19.469] % n=259 traj=46
+  exec_argmax_swap_label            : +10.039 [+5.976,+14.816] % n=259 traj=46
+
+F/I_q12_factual_worse_ge_1_3
+  identity_switch_logodds           : +0.972 [+0.813,+1.202] nat n=148 traj=28 median=+0.912
+  identity_switch_logodds_clip10    : +0.972 [+0.813,+1.202] nat n=148 traj=28
+  placebo_switch_logodds            : +2.632 [+2.268,+3.079] nat n=148 traj=28
+  identity_minus_placebo_logodds    : -1.660 [-1.975,-1.407] nat n=148 traj=28
+  identity_switch_effect            : +1.315 [+0.177,+2.921] pp n=148 traj=28
+  placebo_switch_effect             : +7.569 [+2.191,+15.357] pp n=148 traj=28
+  identity_minus_placebo            : -6.255 [-12.529,-1.893] pp n=148 traj=28
+  p_exec_true_minus_swap            : +1.170 [+0.105,+2.695] pp n=148 traj=28
+  value_true_minus_swap             : -0.949 [-2.174,-0.114] pp n=148 traj=28
+  value_true_minus_no_label         : -2.967 [-6.561,-0.467] pp n=148 traj=28
+  exec_argmax_no_label              : +4.054 [+0.625,+9.631] % n=148 traj=28
+  exec_argmax_true_label            : +6.757 [+1.676,+15.000] % n=148 traj=28
+  exec_argmax_swap_label            : +6.081 [+1.117,+13.953] % n=148 traj=28
+
+F/U_q12_factual_worse_ge_1_3
+  identity_switch_logodds           : +0.964 [+0.657,+1.310] nat n=111 traj=23 median=+0.873
+  identity_switch_logodds_clip10    : +0.964 [+0.657,+1.310] nat n=111 traj=23
+  placebo_switch_logodds            : +2.599 [+2.212,+3.064] nat n=111 traj=23
+  identity_minus_placebo_logodds    : -1.635 [-1.971,-1.288] nat n=111 traj=23
+  identity_switch_effect            : +5.963 [+3.315,+8.864] pp n=111 traj=23
+  placebo_switch_effect             : +15.439 [+10.249,+20.972] pp n=111 traj=23
+  identity_minus_placebo            : -9.475 [-13.547,-5.544] pp n=111 traj=23
+  p_exec_true_minus_swap            : +5.189 [+2.350,+8.290] pp n=111 traj=23
+  value_true_minus_swap             : -2.834 [-4.104,-1.511] pp n=111 traj=23
+  value_true_minus_no_label         : -4.072 [-7.492,-0.952] pp n=111 traj=23
+  exec_argmax_no_label              : +17.117 [+11.198,+24.211] % n=111 traj=23
+  exec_argmax_true_label            : +21.622 [+13.286,+31.184] % n=111 traj=23
+  exec_argmax_swap_label            : +15.315 [+9.160,+22.222] % n=111 traj=23
+
+F/q12_factual_not_worse
+  identity_switch_logodds           : +0.883 [+0.651,+1.124] nat n=78 traj=37 median=+0.804
+  identity_switch_logodds_clip10    : +0.883 [+0.651,+1.124] nat n=78 traj=37
+  placebo_switch_logodds            : +2.553 [+2.199,+2.883] nat n=78 traj=37
+  identity_minus_placebo_logodds    : -1.670 [-1.913,-1.405] nat n=78 traj=37
+  identity_switch_effect            : +4.730 [+1.474,+8.580] pp n=78 traj=37
+  placebo_switch_effect             : +10.313 [+5.787,+15.673] pp n=78 traj=37
+  identity_minus_placebo            : -5.583 [-8.255,-3.312] pp n=78 traj=37
+  p_exec_true_minus_swap            : +6.647 [+2.965,+11.039] pp n=78 traj=37
+  value_true_minus_swap             : +1.535 [-0.268,+3.700] pp n=78 traj=37
+  value_true_minus_no_label         : +0.052 [-1.290,+1.467] pp n=78 traj=37
+  exec_argmax_no_label              : +39.744 [+30.950,+49.296] % n=78 traj=37
+  exec_argmax_true_label            : +43.590 [+34.285,+53.846] % n=78 traj=37
+  exec_argmax_swap_label            : +35.897 [+27.585,+45.333] % n=78 traj=37
+
+F/gold_q12_factual_worse
+  identity_switch_logodds           : +0.887 [+0.704,+1.118] nat n=94 traj=38 median=+0.882
+  identity_switch_logodds_clip10    : +0.887 [+0.704,+1.118] nat n=94 traj=38
+  placebo_switch_logodds            : +2.453 [+2.207,+2.748] nat n=94 traj=38
+  identity_minus_placebo_logodds    : -1.565 [-1.829,-1.304] nat n=94 traj=38
+  identity_switch_effect            : +3.664 [+1.164,+6.826] pp n=94 traj=38
+  placebo_switch_effect             : +12.340 [+6.650,+18.079] pp n=94 traj=38
+  identity_minus_placebo            : -8.676 [-13.109,-4.536] pp n=94 traj=38
+  p_exec_true_minus_swap            : +3.285 [+0.914,+6.318] pp n=94 traj=38
+  value_true_minus_swap             : -1.063 [-2.014,-0.094] pp n=94 traj=38
+  value_true_minus_no_label         : -3.212 [-5.463,-1.069] pp n=94 traj=38
+  exec_argmax_no_label              : +12.766 [+6.316,+21.429] % n=94 traj=38
+  exec_argmax_true_label            : +18.085 [+9.820,+28.724] % n=94 traj=38
+  exec_argmax_swap_label            : +14.894 [+7.921,+24.242] % n=94 traj=38
+
+F/gold_q12_factual_worse_ge_1_3
+  identity_switch_logodds           : +0.925 [+0.719,+1.177] nat n=81 traj=34 median=+0.900
+  identity_switch_logodds_clip10    : +0.925 [+0.719,+1.177] nat n=81 traj=34
+  placebo_switch_logodds            : +2.501 [+2.225,+2.849] nat n=81 traj=34
+  identity_minus_placebo_logodds    : -1.576 [-1.883,-1.288] nat n=81 traj=34
+  identity_switch_effect            : +4.072 [+1.069,+7.484] pp n=81 traj=34
+  placebo_switch_effect             : +13.140 [+6.938,+20.211] pp n=81 traj=34
+  identity_minus_placebo            : -9.068 [-14.201,-4.741] pp n=81 traj=34
+  p_exec_true_minus_swap            : +3.742 [+0.906,+7.004] pp n=81 traj=34
+  value_true_minus_swap             : -1.146 [-2.148,-0.087] pp n=81 traj=34
+  value_true_minus_no_label         : -3.630 [-6.225,-1.116] pp n=81 traj=34
+  exec_argmax_no_label              : +11.111 [+4.762,+19.403] % n=81 traj=34
+  exec_argmax_true_label            : +17.284 [+8.333,+28.334] % n=81 traj=34
+  exec_argmax_swap_label            : +13.580 [+6.185,+22.951] % n=81 traj=34
+
+Cross-run stability (descriptive only, NOT a gate): this run S0/F0 vs original P4 E2 S/F scores
+  S0_vs_original_S: mean TV 0.0225, share TV>0.005 0.365, argmax agreement 0.984, n=386
+  F0_vs_original_F: mean TV 0.0179, share TV>0.005 0.225, argmax agreement 0.984, n=386

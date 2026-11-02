@@ -1,0 +1,14 @@
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 10730.60it/s]
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py", line 536, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py", line 534, in main
+    globals()[args.command](args)
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py", line 235, in score
+    return _score_math(args)
+           ^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py", line 301, in _score_math
+    assert all(x['passed'] for x in checks), 'shared prefix vs direct score numerical gate FAILED'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: shared prefix vs direct score numerical gate FAILED

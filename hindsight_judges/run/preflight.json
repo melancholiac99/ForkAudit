@@ -66,7 +66,7 @@
     "pyarrow": "26.0.0",
     "safetensors": "0.8.0"
   },
-  "protected_files": 61,
+  "protected_files": 67,
   "free_disk_gib": 140.82066345214844,
   "protocol_commit": "2fab12da4d24223111bf83ff46d10b6015766421",
   "gpu_started": false,
@@ -122,5 +122,43 @@
       "max_tv": 0.0018283759142563413
     },
     "weight_policy": "Original fixed shard hashes retained; score rechecks every weight shard before model load"
+  },
+  "secondary_precision_recovery": {
+    "utc": "2026-11-02T14:44:37Z",
+    "authorization": "User explicitly requested best-effort repair and continuation after initial failure diagnosis",
+    "primary32b_byte_identical": true,
+    "original_protocol_unchanged": true,
+    "original_backend_unchanged": true,
+    "original_scorer_unchanged": true,
+    "prepared_inputs_identical": true,
+    "secondary_precision": "float32",
+    "fp32_diagnostic_gate": {
+      "passed": true,
+      "checks": 11,
+      "max_tv": 8.733766196761054e-06
+    },
+    "original_selftest_passed": true,
+    "shutdown_safety_tests_passed": 5,
+    "scientific_analysis_ast_identical_except_provenance_and_note": true,
+    "changed_protected_files": {
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/server_queue.py": {
+        "before": "6a7619acd8c8a4e6b894d921a79c7b036ff5a1df01f0b66b4bf3d1967faf32ca",
+        "after": "d1bf17f09e6e3062d2fe2879640c273b7e1da2768fcc1fedc418ab0d30e00f31"
+      },
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/SERVER_EXECUTION.md": {
+        "before": "08af3fe50121c7a1a432e3ca782b53caeea1e317b41f5a2f20e19199dadffa7a",
+        "after": "acf1cfe211ba30e056a530320ff02b06ab01584e835cb88620870e33ad7037cc"
+      }
+    },
+    "new_protected_files": {
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1_7b_fp32.py": "0347ea9fcbdd3ffa78771486d538e26970e5a2ca33eee889889bbb8a8244ed59",
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/verify_7b_fp32.py": "d9e31c76aee46a4e7bb7857af4b5c9b1d184afc8074ac65c40caa0f9976f9937",
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/diagnose_7b_recovery.py": "76747b2353cbf357f1cdec21c0079b88e8fd48be79365d616f786e625eded2f4",
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/diagnose_7b_fp32.py": "493f992231e24973f3a5d5c439449e3a5793b6df87ef266576a27479b40cd3d9",
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/EXECUTION_AMENDMENT_7B_FP32_20261102.txt": "26ca597e1bbee60439bea198dc1fe06ac90de5885122af0c9d4c1f9b4967fc5b",
+      "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run/primary32b_before_7b_repair.json": "e216611a39e8cb30d597c3edaf32d0382a89701995b4ec2c1d7ecab186232757"
+    },
+    "prior_7b_scores": 0,
+    "amendment_sha256": "26ca597e1bbee60439bea198dc1fe06ac90de5885122af0c9d4c1f9b4967fc5b"
   }
 }

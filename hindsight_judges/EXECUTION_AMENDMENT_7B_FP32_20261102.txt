@@ -1,0 +1,46 @@
+Hindsight secondary 7B precision recovery amendment, 2026-11-02 UTC
+
+Authorization and timing
+After the automated failure review, the researcher explicitly instructed further
+best-effort repair and continuation on success. This amendment is recorded and
+pushed before any formal 7B scores. Primary 32B scores/analysis are already complete
+and independently verified, and remain byte-identical to their recorded hashes.
+
+Evidence
+The secondary 7B under BF16/FP32 SDPA MATH failed 3 of 11 pre-scoring gates:
+S0 TV 0.01251568115, SE 0.00655606466, SPE 0.01352972581 (threshold <0.005).
+A fresh-load repeat and disabling BF16 reduced-precision GEMM reduction reproduced
+these failures. Diagnostic FP32 arithmetic with TF32 disabled passed all 11 gates,
+maximum TV 0.000008733766196761054. No failed 7B attempt wrote formal scores.
+All diagnostics and the failed BF16 attempt are retained under
+diagnostics/numerical_7b_20261102/; the automatic failure snapshot also remains.
+
+Change and limits
+Only secondary 7B uses full FP32 transformer and vocabulary projection, with
+TF32 disabled and SDPA MATH. The original checkpoint is loaded using the original
+BF16 backend, then converted to FP32: stored numerical weight values are preserved;
+arithmetic precision changes. Checkpoint files and original P4 backend are unmodified.
+exp1_7b_fp32.py is a source-identical specialization of the frozen exp1.py except
+precision setup, provenance/assertions, CLI restriction and an explicit report note.
+The source diff is archived. The original exp1.py and independent statistics
+verifier remain unchanged, preserving the verified 32B run's source identities.
+
+The runtime fingerprint includes actual compute dtype and TF32 flags. Every 7B
+baseline/intervention is newly scored with this one configuration and same model
+load. No BF16/FP32 runs are mixed within the 7B comparison. An independent precision
+verifier checks dtype, source and amendment hashes before the existing 300-statistic
+verification. The numerical gate is rerun in the actual formal model load.
+
+This is an explicit departure from the initial BF16-transformer execution setting
+for the OPTIONAL secondary 7B result, not an unreported identical-precision run.
+Primary 32B remains BF16 transformer / FP32 projection with SDPA MATH. Cross-model
+differences cannot be attributed solely to model size because precision differs.
+Each model's within-run interventions remain the scientific comparisons; original
+E2 cross-run stability is descriptive only. No claim of full-dataset numerical
+equivalence follows from the 11 gate checks.
+
+Unchanged: original scientific protocol file, input population, all 386 points and
+3860 requests, candidate order, labels, q12 selection, q3456/Gold outcomes, all
+decision thresholds, bootstrap 20261102/4000, and TV <0.005. No new training or
+trajectory collection. No 32B scoring or analysis rerun. Original completed P4,
+E4 and E4b results are untouched. Both models must verify before normal finalization.

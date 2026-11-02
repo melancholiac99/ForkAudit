@@ -1,0 +1,10 @@
+{
+  "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/finish_and_shutdown.py\", line 201, in main\n    files=local_audit()\n          ^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/finish_and_shutdown.py\", line 75, in local_audit\n    audit=read(RUN/'final_verification.json')\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/finish_and_shutdown.py\", line 26, in read\n    def read(path):return json.loads(Path(path).read_text())\n                                     ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/envs/m0/lib/python3.11/pathlib.py\", line 1058, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/envs/m0/lib/python3.11/pathlib.py\", line 1044, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run/final_verification.json'\n",
+  "queue_state": {
+    "stage": "failed",
+    "pid": 24298,
+    "utc": "2026-11-02T14:33:52Z",
+    "error": "Command '['/root/miniconda3/envs/m0/bin/python', '-u', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1.py', 'score', '--repo', '/root/autodl-tmp/idea', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--name', '7b', '--model', '/root/autodl-tmp/models/Qwen2.5-7B-Instruct', '--revision', 'a09a35458c702b33eeacc393d103063234e8bc28']' returned non-zero exit status 1."
+  },
+  "head": "f58959ea82c35e41be6932ed46209b5bee9fc29c"
+}

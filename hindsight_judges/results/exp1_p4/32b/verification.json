@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "model": "32b",
+  "points": 386,
+  "contexts": 3860,
+  "statistics_independently_verified": 300,
+  "decisions": {
+    "primary_model": true,
+    "identity_logodds_positive": true,
+    "identity_probability_positive": true,
+    "value_harm_vs_no_label": true,
+    "value_harm_vs_swapped_label": true,
+    "bootstrap_seed": 20261102,
+    "nboot": 4000
+  },
+  "scores_sha256": "77afeb3eb0350c51688e085aaa6490348da54dcfb8aec2475a59be2760d591cc",
+  "analysis_sha256": "242dce08b29afdf3ef78b4c69769d2d7dd7ea5160fd1efe8504954cf5862cee0",
+  "verifier_sha256": "a310a23bc844ea5c43ce482f472c420c67cc4940a4a852b04436acd8cff98f1b"
+}
