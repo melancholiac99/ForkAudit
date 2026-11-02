@@ -1,0 +1,210 @@
+{
+ "n_points": 6016,
+ "classes": {
+  "V3": 1586,
+  "Z3": 4405,
+  "E3": 25
+ },
+ "V3_with_fac_alternative": 1124,
+ "target_shares": {
+  "look_at_obj_in_light": 0.1822,
+  "pick_and_place_simple": 0.2062,
+  "pick_clean_then_place_in_recep": 0.1665,
+  "pick_cool_then_place_in_recep": 0.2573,
+  "pick_heat_then_place_in_recep": 0.1759,
+  "pick_two_obj_and_place": 0.012
+ },
+ "N": 960,
+ "quotas": {
+  "look_at_obj_in_light": 175,
+  "pick_and_place_simple": 198,
+  "pick_clean_then_place_in_recep": 160,
+  "pick_cool_then_place_in_recep": 247,
+  "pick_heat_then_place_in_recep": 169,
+  "pick_two_obj_and_place": 11
+ },
+ "available": {
+  "Azero": {
+   "n": 3550,
+   "n_games": 225,
+   "frac_traj_won": 0.002,
+   "turn_median": 30.0,
+   "preferred_E_new": 0.314,
+   "task_type": {
+    "look_at_obj_in_light": 230,
+    "pick_and_place_simple": 383,
+    "pick_clean_then_place_in_recep": 755,
+    "pick_cool_then_place_in_recep": 1071,
+    "pick_heat_then_place_in_recep": 600,
+    "pick_two_obj_and_place": 511
+   }
+  },
+  "Agap": {
+   "n": 1289,
+   "n_games": 195,
+   "frac_traj_won": 0.243,
+   "turn_median": 15.0,
+   "preferred_E_new": 0.6,
+   "task_type": {
+    "look_at_obj_in_light": 231,
+    "pick_and_place_simple": 260,
+    "pick_clean_then_place_in_recep": 216,
+    "pick_cool_then_place_in_recep": 336,
+    "pick_heat_then_place_in_recep": 229,
+    "pick_two_obj_and_place": 17
+   }
+  },
+  "Dzero": {
+   "n": 2406,
+   "n_games": 212,
+   "frac_traj_won": 0.002,
+   "turn_median": 27.0,
+   "preferred_E_new": 1.0,
+   "task_type": {
+    "look_at_obj_in_light": 187,
+    "pick_and_place_simple": 262,
+    "pick_clean_then_place_in_recep": 508,
+    "pick_cool_then_place_in_recep": 692,
+    "pick_heat_then_place_in_recep": 414,
+    "pick_two_obj_and_place": 343
+   }
+  },
+  "Dgap": {
+   "n": 1018,
+   "n_games": 179,
+   "frac_traj_won": 0.25,
+   "turn_median": 15.0,
+   "preferred_E_new": 1.0,
+   "task_type": {
+    "look_at_obj_in_light": 195,
+    "pick_and_place_simple": 212,
+    "pick_clean_then_place_in_recep": 172,
+    "pick_cool_then_place_in_recep": 253,
+    "pick_heat_then_place_in_recep": 175,
+    "pick_two_obj_and_place": 11
+   }
+  },
+  "Bfacgap": {
+   "n": 1124,
+   "n_games": 195,
+   "frac_traj_won": 0.214,
+   "turn_median": 16.0,
+   "preferred_E_new": 0.5,
+   "task_type": {
+    "look_at_obj_in_light": 202,
+    "pick_and_place_simple": 223,
+    "pick_clean_then_place_in_recep": 182,
+    "pick_cool_then_place_in_recep": 296,
+    "pick_heat_then_place_in_recep": 203,
+    "pick_two_obj_and_place": 18
+   }
+  }
+ },
+ "selected": {
+  "Azero": {
+   "n": 960,
+   "n_games": 180,
+   "frac_traj_won": 0.005,
+   "turn_median": 31.0,
+   "preferred_E_new": 0.295,
+   "task_type": {
+    "look_at_obj_in_light": 175,
+    "pick_and_place_simple": 198,
+    "pick_clean_then_place_in_recep": 160,
+    "pick_cool_then_place_in_recep": 247,
+    "pick_heat_then_place_in_recep": 169,
+    "pick_two_obj_and_place": 11
+   }
+  },
+  "Agap": {
+   "n": 960,
+   "n_games": 186,
+   "frac_traj_won": 0.25,
+   "turn_median": 15.0,
+   "preferred_E_new": 0.602,
+   "task_type": {
+    "look_at_obj_in_light": 175,
+    "pick_and_place_simple": 198,
+    "pick_clean_then_place_in_recep": 160,
+    "pick_cool_then_place_in_recep": 247,
+    "pick_heat_then_place_in_recep": 169,
+    "pick_two_obj_and_place": 11
+   }
+  },
+  "Dzero": {
+   "n": 960,
+   "n_games": 175,
+   "frac_traj_won": 0.003,
+   "turn_median": 27.0,
+   "preferred_E_new": 1.0,
+   "task_type": {
+    "look_at_obj_in_light": 175,
+    "pick_and_place_simple": 198,
+    "pick_clean_then_place_in_recep": 160,
+    "pick_cool_then_place_in_recep": 247,
+    "pick_heat_then_place_in_recep": 169,
+    "pick_two_obj_and_place": 11
+   }
+  },
+  "Dgap": {
+   "n": 960,
+   "n_games": 177,
+   "frac_traj_won": 0.249,
+   "turn_median": 15.0,
+   "preferred_E_new": 1.0,
+   "task_type": {
+    "look_at_obj_in_light": 175,
+    "pick_and_place_simple": 198,
+    "pick_clean_then_place_in_recep": 160,
+    "pick_cool_then_place_in_recep": 247,
+    "pick_heat_then_place_in_recep": 169,
+    "pick_two_obj_and_place": 11
+   }
+  },
+  "Bfacgap": {
+   "n": 960,
+   "n_games": 187,
+   "frac_traj_won": 0.209,
+   "turn_median": 16.0,
+   "preferred_E_new": 0.504,
+   "task_type": {
+    "look_at_obj_in_light": 175,
+    "pick_and_place_simple": 198,
+    "pick_clean_then_place_in_recep": 160,
+    "pick_cool_then_place_in_recep": 247,
+    "pick_heat_then_place_in_recep": 169,
+    "pick_two_obj_and_place": 11
+   }
+  }
+ },
+ "overlap_selected_Azero_Dzero": 306,
+ "overlap_selected_Agap_Dgap": 620,
+ "A_label_vs_3run_replay": {
+  "Z3": {
+   "n": 3550,
+   "agree": 0.0,
+   "tie": 1.0,
+   "opposite": 0.0
+  },
+  "V3": {
+   "n": 1289,
+   "agree": 0.417,
+   "tie": 0.371,
+   "opposite": 0.212
+  }
+ },
+ "inputs": {
+  "judgeF_sha256": "9efa583642445a989b4f66e3d1f5894a809e8b75e8ccb7d272668f93c1e532c4",
+  "replay_manifest_sha256": "bf8961f8254c9b0ba1fa13cb6e9fe3b2c41bb435b5ca92600a5adce95f34f97b",
+  "points_manifest_sha256": "c1723ce7790c830c352420185ba93424ade1ab0670f499bd05869c00812dbc45"
+ },
+ "note": "Z3 = 15/15 observed zeros under pi0 (3 runs x 5 arms); not 'Q = 0'.",
+ "expected_pairs_sha256": {
+  "Azero": "0a98542e2827d30fe7df5695158c15581fb6956b0fa4addb3b58261ad51abe76",
+  "Agap": "0199b7c766e4b13235bd43196548de874a2cea5d277c7fab67b326c9b61cf854",
+  "Dzero": "f9218271553c61dc57127b6d4e9fcb3e3729500f0ac9401e5635f8ef3061c5dd",
+  "Dgap": "f11c0c5c8496467c9476215697473c27ec34446314294e95bb940b776e180305",
+  "Bfacgap": "aaa47019718f587cf86306cf1c5fae92efb32ea2833b1ce50825acf57eb145b9"
+ },
+ "source": "e4b_pairs.py --gate-only on the published E4 non-weight archive (results_archive, 5 parts); pairs SHA256 from a full local build of the same inputs"
+}

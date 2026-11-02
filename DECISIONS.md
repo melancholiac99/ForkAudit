@@ -1357,6 +1357,8 @@ missing 32B checkpoint equality guard without changing scoring or numerical gate
 E1, P4-X, preregistration and P5 documents remain unchanged. This new task has no shutdown step;
 the preceding authorized E2 shutdown was already completed.
 
+<!-- Preserved server execution entries; D-059–D-061 numbering was independently used on main. -->
+
 ## D-059 — Start preregistered E4 closed-loop experiment — 2026-10-31
 
 The researcher explicitly asked to read the latest GitHub E4 proposal/code and start E4 experiments.
@@ -1538,3 +1540,104 @@ verified archive of all 40,642 non-weight result artifacts. LoRA tensors remain
 on the server with complete SHA256/size inventory; no data are deleted. Preserve
 current main checkout and push its publication commit to the explicitly named
 server branch, without force or a dependency on P8 success. See PUBLICATION.txt.
+
+<!-- Preserved origin/main entries, including approved E4b freeze. -->
+
+## D-059 — E4 and E5 pre-registered; paper story v3 — 2026-10-31
+
+Written by Claude at the researcher's request ("把E4 E5做完，论文故事怎么讲"). This session has no GPU, ALFWorld, WebShop
+or torch, so nothing was run; both experiments are prepared to run on the server. No frozen M0/P4 item changes.
+- **E4** (`exploratory_E4/PREREG_E4.md`, commit `37f1873` on origin/main, applied from patch babafdd): closed loop on ALFWorld. 400 train games (M0 tasks excluded), 40 tune,
+  valid_seen/unseen eval. Arms A (32B judge, F), A′ (rule), H (32B judge, L), Rnd (same points as A), D (exploration
+  heuristic), Bfull / Bmatch (cost-matched by measured GPU seconds) / Cmatch (top sampled entropy), Esft, base; cap 1,000
+  examples per arm; LoRA-DPO (r 16, β 0.1, 2 epochs), lr chosen once on tune with A′; 3 training seeds; 3 rollouts per game.
+  Predictions PL-1..PL-5, readings R-L-NULL / HEURISTIC / COSTLY / WIN. `test_e4.py` passes on CPU, including a byte-identical
+  rebuild of real P4 E2 F and L requests. Judge scoring asserts the same revision, checkpoint SHA256 and backend as P4 E2.
+  Smoke gates S1–S7 precede any outcome. games.json is frozen and committed separately by `e4_00_freeze.py`.
+- **E5** (`exploratory_E5/PREREG_E5.md`, commit `2d341bd` on origin/main, applied from patch bebe6d3): WebShop, 150 sessions from the training
+  goal range, M0 protocol (banks 1–6, five-arm G test), strata from the goal ASIN, judges 7B/32B × S/L/F/Fx. Predictions
+  W-1..W-5 with a power gate (≥ 40 Fork points in each of I and U). The WebShop adapter (`ws_env.py`) speaks the envpool
+  protocol so `scripts/11_replay.run_async` runs unchanged; API details marked VERIFY and the verl-agent template are fixed
+  at gates S0–S2 before any rollout. `test_e5.py` passes offline. A WebShop learning arm is deferred to a separate
+  pre-registration, conditional on R-E5-REPLICATE and E4 R-L-WIN.
+- **Paper story v3** (`papers/STORY_v3.md`) replaces the deep-branch draft v0.1 mainline: step-level credit at
+  information-limited forks is an information problem; evidence chain M0 → P4 E2/E2-M (pre-registered) → post-hoc
+  diagnostics → E4 → E5; versions of the paper under each E4/E5 reading.
+
+## D-060 — E5 pre-registration amendment 1 (structural targets restored) — 2026-10-31
+
+Raised by the researcher: P5 §3.4 listed regime proportions, the Masked share and the policy/rule comparison as WebShop
+replication targets, but the original E5 (`2d341bd`) registered only W-1 and a narrowed W-2. Claude's assessment: the
+narrowing toward W-3..W-5 followed the thesis shift, but which earlier targets to drop was not argued — it was an
+omission, and most of the dropped targets need no extra data. Amendment 1 (`exploratory_E5/PREREG_E5.md` §12, commit
+message `E5: pre-registration amendment 1`) is committed before any WebShop rollout; W-3..W-5, their thresholds and the
+core reading are unchanged.
+- Added: W-0a regime proportions with task-cluster CIs and null expectations (report only — proportions are
+  environment- and policy-specific); W-0b Masked share of Forks, CI lower bound > 0.30 (declared descriptive threshold);
+  W-0c split-sample gain on Masked Forks (choose on banks 3–4, evaluate on 5–6), CI lower bound > 0.
+- Extended W-2: −conf (M0 arm-A convention), sampled entropy and a layer-21 hidden-state probe
+  (`evalcore.fit_oof_logistic`, the M0 machinery) on B1 (Live/Dead) and B2 (Fork/Indifferent), with the W1 goal bit as
+  the B2 positive control; layers 14/26 descriptive. New GPU stage `introspect` (≈ 1–2 GPU h).
+- Added W-6: at I-layer Live Forks, the policy's own first-batch draft marginal vs the one-step rule (P4-X / P4 E1 world
+  rule), now confirmatory.
+- Separate structural reading R-E5-STRUCT-REPLICATE / PARTIAL / CONTROL-FAILED; §12.5 states which paper claims each
+  outcome allows. Excluded with reasons: B family (candidate set undefined with free-text search), V (redundant with the
+  hidden-state probe in M0), siblings G, B3, E2-M memory, E5-L.
+- `test_e5.py` passes offline, including the probe on planted synthetic data and the full analysis path.
+- Also corrected in D-059: the applied pre-registration hashes are `37f1873` (E4) and `2d341bd` (E5).
+
+## D-061 — E5 pre-registration amendment 2 (presence + predicted-absence environments) — 2026-10-31
+
+Raised by the researcher: WebShop may not suit the mechanism (decisive fact only proxied by the goal ASIN, low 7B
+success, heavy setup), and a single further environment can at best replicate. Claude's proposal, accepted by the
+researcher ("按照你说的来吧"): pair one environment where the effect is predicted with two where it is predicted absent,
+so that E5 can show a dissociation rather than a repeat. Written up as `proposals/P7_env_selection.md`; registered as
+`exploratory_E5/PREREG_E5.md` §13, committed as **`ec9ec42d03997331f66c16f3f706926a36dd6a14`**
+(message `E5: pre-registration amendment 2`; actual main commit independently verified on 2026-11-01).
+The original pre-data timing claim is preserved from D-061; this later bookkeeping correction does not itself verify the server-side E5 data state.
+- Environments (verl-agent `20bd331bdbc9026a5668e11362178e10ab7400c8` semantics, templates copied verbatim):
+  E5-S HotpotQA multi-hop with open retrieval (wiki-18 + e5, top-3, 4 actions, history 4; 1,000 questions, pilot 50);
+  E5-C the same questions with the ten context paragraphs in the task description; E5-K Sokoban text (verl-agent
+  defaults 6x6 / 1 box / depth 30 / 15 steps; ladder L2 depth 15, L3 depth 6; 150 rooms). WebShop (§1–§12) is kept
+  but deferred; it runs only if E5-S fails its pilot.
+- Predictions: E5-S carries W-0..W-6 and both readings unchanged (decisive facts = the two supporting-article titles).
+  E5-C / E5-K: A-1 32B F − S CI upper < 10 pp, A-2 32B − 7B (S) CI lower > 0, with manipulation checks C-0 (≥ 95 % of
+  Live points in U) and K-0 (BFS planner on the prompt board, G_u CI lower > 0). Cross: A-3 (vs E5-C, questions resampled
+  jointly) and K-3 (vs E5-K, independent). Combined reading R-E5-DISSOCIATION / R-E5-PRESENCE-ONLY; §13.6 lists what
+  each outcome allows the paper to say.
+- Pilot gate (§13.4) on disjoint pilot tasks, reading no Fork label and no judge output: 7B success in [0.15, 0.85],
+  Live ≥ 25 % of defined points, zero refeed divergence and 100 % factual-peek match, projected Live I and U ≥ 150 each
+  (presence) or Live ≥ 300 (absence); failure rules written in advance.
+- Declared deviations from verl-agent: retrieval errors abort the run; a shared SQLite cache fixes each query's documents
+  at first retrieval (first writer wins) so that replay is exact; Sokoban generation retries use seed + 1,000,003 ×
+  attempt instead of the process-randomised `hash(str(seed))`. Sokoban room generator vendored verbatim
+  (`exploratory_E5/third_party/verl_agent_room_utils.py`, matplotlib-only functions omitted); cross-machine check:
+  sha256 of the first five L1 pilot rooms = `71c6148a8ef71c0bd95588376000b467417627b053c0a9bc78c075ebc12649b7`.
+- Code: `e5_run.py` made environment-agnostic (`adapters.py`, `search_env.py`, `sokoban_env.py`); labels for any number
+  of arms; new `pilot` and `cross` stages; judge candidates shown as `search[q]` / `answer[a]`; WebShop judge base renamed
+  `prompts/judge_base_webshop.txt`, text unchanged (tested). `exploratory_E4/e4_03_judge.py`: the numerical check now
+  loops over the actual number of candidates instead of a fixed 5 — no change for E4 (always 5; E4 tests pass).
+  `test_e5.py`: 15 tests pass on CPU, including dry end-to-end runs of E5-S / E5-C / E5-K with a fake retriever.
+
+## D-062 — Publish verified server E4 and P8 CPU artifacts to main — DECIDED 2026-11-02
+
+Researcher authorized importing previously completed server results that had not been merged to main, in addition to the reviewed E4b. Content-only import commit: `f8276d33cf0850058b082e26bd947e9c8ff6da66` from `server/e4-results-20261101` (f03b5713ce126d426087c4275772c2d5b7f53097), `server/p8-preflight-20261101` (d24c3d0fd3b177c477d8fa2c25b15eb4f462ba25), and the two original E4 post-hoc files from `review/pending-20261102` (892b8f0ba528a0f23fd727dc757d3a8347116397).
+
+- E4 completed, independent final verification passed; original registered reading **R-L-HEURISTIC** unchanged. Includes compact reports, full non-weight results archive, execution evidence, train logs, and evaluation summaries.
+- P8 CPU audit independently verified (P1=NEG, P2=false, S4=true, R-P8-MISDIRECT-HISTORY). **P8 GPU phase C has NOT completed**: original-score reproduction failed the frozen TV < 0.005 gate on 7B; failures are documented, not converted into scientific findings.
+- E4 post-hoc pair composition is labeled exploratory; it motivates but does not constitute E4b training evidence.
+- Existing E5 amendment 2, V3 paper documents and E4 judge candidate-count compatibility fix on main were preserved; **E5 amendment 3 was not merged or approved by this request**.
+- E4 and P8 server DECISIONS.md files contain conflicting D-059–D-061 numbers and different appendices. Both complete source records were preserved verbatim under `review_sources/DECISIONS_e4_server_20261102.md` and `review_sources/DECISIONS_p8_server_20261102.md`, rather than silently overwriting this root log. Import inventory/provenance recorded in `review_sources/SERVER_RESULTS_IMPORT_20261102.md`.
+- This upload neither performs nor resumes E4, P8, or E5 GPU work.
+
+## D-063 — E4b experiment pre-registration frozen before training — DECIDED 2026-11-02
+
+Researcher explicitly approved **all four D1–D4 defaults** in the uploaded executable E4b patch and instructed freezing on `main` before starting server GPU runs. **Standalone pre-registration freeze commit: `82ebaa3801a6972a405b172ff1678997f73ff1c4`** (message `E4b: pre-registration`; file `exploratory_E4b/PREREG_E4b.md`). This commit follows the imported verified E4/P8 data and committed E4b executable scripts and checks; no E4b training or evaluation outcome was available at freeze time.
+
+Frozen scientific decisions:
+1. D1: add **Dgap**, yielding {Azero,Agap,Dzero,Dgap} as an A/D × Z3/V3 2×2; Bfacgap on V3-fac is secondary, base is separately re-evaluated.
+2. D2: valid_unseen paired 2×2 pooled `Z−G = (Azero+Dzero)/2 − (Agap+Dgap)/2` non-inferiority, margin **δ=4 pp**; P1 requires both Azero and Dzero improvements versus base with 95% CI lower > 0. Frozen reading sequence: NULL, SUPPORT, COUNTER, PARTIAL.
+3. D3: **N=960 unique factual-anchored preference pairs per training arm**, identical task-type composition (look_at 175, pick_simple 198, clean 160, cool 247, heat 169, pick_two 11), no replacement; exact per-arm input SHA256 frozen in `exploratory_E4b/e4b_gate.json`. Three training seeds, existing E4 LoRA-DPO settings, 5e−6 LR, 2 epochs, 10000 game-level bootstrap; valid_unseen primary and valid_seen secondary.
+4. D4: **no new E4-specific deeper replay before E4b**. M0's exploratory 0.8% finding from a different population remains report-only and does not enter the result reading. Z3 means 15/15 observed current-policy failures, NOT actual Q=0.
+
+Interpretation remains a comparison of training sets retained versus discarded by a replay-based state selection rule; it is **not** a causal effect of being a zero-credit state. Unmatched trajectory outcomes and turn positions are explicitly reported; there is no claim of conservative bias in either direction. The original E4 R-L-HEURISTIC reading is unchanged. Server must rerun E4b CPU integrity tests against local E4 source before training; the frozen training file hash gate aborts on discrepancies. The server GPU run was **not started** by this commit.

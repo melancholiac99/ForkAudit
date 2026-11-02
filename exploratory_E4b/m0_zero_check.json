@@ -1,0 +1,13 @@
+{
+ "counts": {
+  "bank1_constant": 1727,
+  "live_after_bank2": 167,
+  "het": 14,
+  "het_and_credit_pivotal": 8,
+  "constant_30_runs": 1560
+ },
+ "frac_het_given_bank1_constant": 0.008106543138390272,
+ "frac_het_among_those_turned_live": 0.08383233532934131,
+ "null_het_rate_on_live": 0.0702797699594046,
+ "note": "bank-1 constant includes a few all-success points (M0 dead pools: 1516 all-fail, 44 all-success)"
+}

@@ -1,0 +1,31 @@
+{
+  "states": {
+    "E4": {
+      "stage": "completed_verified",
+      "utc": "2026-11-01T19:11:23Z",
+      "reading": "R-L-HEURISTIC",
+      "predictions": {
+        "PL-1": true,
+        "PL-2": true,
+        "PL-3": false,
+        "PL-4": true,
+        "PL-5": true
+      },
+      "verification": "run/final_verification.json",
+      "manifest": "run/final_artifact_manifest.json"
+    },
+    "P8": {
+      "stage": "failed",
+      "utc": "2026-11-01T19:12:41Z",
+      "pid": 68155,
+      "error": "score_7b: exit 1; inspect its log"
+    }
+  },
+  "processes": [],
+  "reasons": [
+    "P8: failed",
+    "P8 queue absent before verified completion"
+  ],
+  "hold": false,
+  "both_done": false
+}
