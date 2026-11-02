@@ -19,6 +19,9 @@
 
 5. `proposals/E4b_zero_replay_credit_learning_value_2026-11-02.md`：**E4b 新实验方案（PROPOSED / NOT FROZEN）**。研究当前策略的三次回放全零状态是否仍提供有效训练监督；四个训练组 A-zero / A-gap / Bfac-gap / D-zero 加 Base，对齐事实锚定偏好对、训练预算和独立任务评估。来自 E4 事后分析，待合作者审核后才可冻结、执行；不改变 E4 R-L-HEURISTIC。
 
+
+6. `exploratory_E4/post_hoc/E4_LABEL_COMPOSITION.txt` 与 `exploratory_E4/post_hoc/e4_label_composition.py`：原始 E4 事后标签构成补丁中的**两份文件，按原 patch 恢复**；已核验 Git blob SHA 分别为 `a35260d`、`651da75`，与补丁声明一致。性质仍为 exploratory / post-hoc，不是 E4b 的实验结果，也不修改 E4 原注册读法。
+
 ## 决策记录冲突
 E4 server 与 main/P8 server 分支从共同祖先后分别追加了**不同内容但同编号的 D-059、D-060、D-061**；不能按文件覆盖或把编号相同的记录当作同一条。
 - 工作树根目录 `DECISIONS.md` 保留 E4 server 原文。
