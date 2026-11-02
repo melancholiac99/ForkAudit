@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "protected_files": 17830,
+  "versions": {
+    "torch": "2.13.0",
+    "vllm": "0.32.0",
+    "transformers": "5.19.0",
+    "peft": "0.21.2",
+    "accelerate": "1.15.0",
+    "alfworld": "0.4.2",
+    "textworld": "1.7.0"
+  },
+  "gpu": "NVIDIA H800 PCIe",
+  "gpu_uuid": "4018b156-1646-4f4a-d566-42d271504323",
+  "cuda": "13.0",
+  "train_source_sha256": "fa3b99139523b2b4ebd7a52701e7c765964ea91f40fd13a218ae28c0d48bf218"
+}

@@ -1,5 +1,25 @@
 # DECISIONS.md
 
+## E4b server start — 2026-11-02 — explicitly authorized
+
+Researcher requested pulling main, reading the latest E4b plan and starting it.
+Merged origin/main 7b5a53f into the existing main checkout; the sole conflict was
+independently appended DECISIONS entries, resolved by retaining both sections.
+No experiment data or scientific conclusions were overwritten. P8 rescue remains
+paused in its separate worktree. E4b preregistration freeze 82ebaa3 and all D1–D4
+decisions are unchanged. H800 PCIe 80 GiB is available, idle, with about 143 GiB
+disk free. All nine E4b CPU tests pass, including the real E4 data gate.
+
+Before launch, verify all five 960-pair file hashes, original E4 source artifacts,
+7B weights/metadata, frozen games and approved training implementation. Execute
+the supplied run_e4b.sh in m0 with PATH including m0/bin (ninja dependency), fixed
+ALFWORLD_DATA and offline model loading. A separate operational supervisor will
+record failure/completion and audit final raw episodes, training logs, statistics
+and artifact hashes. It does not alter the frozen trainer, evaluator or analysis.
+No E2/P8/E5 work, new training-data collection, replay or LR selection is started.
+The earlier shutdown condition concerned E4 and P8; this new E4b launch does not
+invoke those old shutdown/repair guardians.
+
 Every choice not fixed by CLAUDE.md is recorded here before it is acted on.
 Status tags: **OPEN** (awaiting instruction), **DECIDED** (choice + reason), **INFO** (fact recorded, no choice needed).
 
