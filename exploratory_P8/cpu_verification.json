@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "raw_bank_values_exact": true,
+  "raw_draft_probabilities_exact": true,
+  "input_hashes_verified": 18473,
+  "direct_cluster_bootstrap": {
+    "P1": {
+      "estimate": -0.005946779100746521,
+      "ci95": [
+        -0.010048523048825517,
+        -0.0021531692511046136
+      ],
+      "max_error": 1.0408340855860843e-17
+    },
+    "P2": {
+      "estimate": 0.0031083212813123482,
+      "ci95": [
+        -0.003599737258618392,
+        0.00998397077954844
+      ],
+      "max_error": 1.214306433183765e-17
+    },
+    "S4": {
+      "estimate": 0.017630796648052213,
+      "ci95": [
+        0.010504398450474663,
+        0.02583711963099104
+      ],
+      "max_error": 3.469446951953614e-18
+    }
+  },
+  "history_only_sample_verified": true,
+  "formal_gpu_results_pending": true
+}
