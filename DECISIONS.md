@@ -1,5 +1,17 @@
 # DECISIONS.md
 
+## Separate E4b and hindsight publication — 2026-11-02
+
+Researcher reiterated that the two experiments must publish to different
+branches. E4b publishes to main, its existing protocol/code branch; hindsight
+publishes to research/hindsight-judges. Add an independent E4b publication watcher
+without editing the live supervisor or any protected scientific file. After
+verified E4b completion, archive every non-weight final-manifest artifact with
+per-file hashes and decompression round-trip verification, retain LoRA tensors
+on the server with hashes, and publish reports plus complete non-weight evidence.
+Push only normally to main, never force; preserve logs/local results on failure.
+Hindsight's own queue and publication remain independent and unchanged.
+
 ## E4b speed trial rejected — 2026-11-02
 
 The bounded trial passed CPU loss/gradient/AdamW parity and real-GPU controlled
