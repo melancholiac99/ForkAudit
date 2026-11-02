@@ -55,9 +55,10 @@ def logp(model,pair,ready=None):
     else:ids=ready[0]
     with torch.autocast(dev.type,dtype=torch.bfloat16):
         logits=model(input_ids=ids,use_cache=False if model.training else None).logits[0,len(pi)-1:-1].float()
-    target=torch.tensor(ri,device=dev)[:,None] if ready is None else ready[1]
-    lp=torch.log_softmax(logits,-1).gather(1,target)[:,0]
-    return lp.sum()
+    lp=torch.log_softmax(logits,-1).gather(1,torch.tensor(ri,device=dev)[:,None] if ready is None else ready[1])[:,0]
+    total=lp.sum()
+    _=lp.mean()  # Retain the frozen trainer's unused mean reduction in both variants.
+    return total
 
 
 def refs(model,jobs):
