@@ -1,0 +1,5 @@
+{
+  "pid": 4417,
+  "reason": "Static inspection found model.to(fp16) would cast RoPE buffers. Restart diagnostic with parameter-only cast, preserving all buffers bitwise. No formal scores.",
+  "utc": "2026-11-03T09:22:42Z"
+}

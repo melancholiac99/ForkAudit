@@ -284,4 +284,25 @@ class ChunkedScorerTest(unittest.TestCase):
                 self.assertLess(max(abs(x-y) for x,y in zip(c,d)),1e-4,f'direct chunk={chunk} arm={arm}')
 
 
+class PrecisionRecoveryTest(unittest.TestCase):
+    def test_parameter_cast_preserves_rotary_buffers_and_head(self):
+        import torch
+        import exp1c_precision as P
+        body=torch.nn.Sequential(torch.nn.Embedding(13,8),torch.nn.Linear(8,8)).to(torch.bfloat16)
+        # Values intentionally not exactly representable in FP16.
+        body.register_buffer('inv_freq',torch.tensor([1.0,0.123456789,1e-8],dtype=torch.float32))
+        model=torch.nn.Module();model.model=body;model.lm_head=torch.nn.Linear(8,13).float()
+        before={n:p.clone() for n,p in body.named_parameters()}
+        rotary=body.inv_freq.clone();head=model.lm_head.weight.clone()
+        result=P.configure(SimpleNamespace(t=torch,model=model))
+        self.assertEqual(result['policy'],P.POLICY)
+        self.assertTrue(result['buffers_unchanged'])
+        self.assertEqual(body.inv_freq.dtype,torch.float32)
+        self.assertTrue(torch.equal(body.inv_freq,rotary))
+        self.assertTrue(torch.equal(model.lm_head.weight,head))
+        for name,param in body.named_parameters():
+            self.assertEqual(param.dtype,torch.float16)
+            self.assertTrue(torch.equal(param,before[name].half()))
+
+
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,59 @@
+Hindsight 1c execution-precision recovery amendment — 2026-11-03 UTC
+
+Authorization and timing
+The user requested checking/running 1c and best-effort repair of stage failures,
+with necessary precision/chunk changes documented and no mixed configurations.
+This repair is recorded and committed before the first formal 1c score.
+The user approved 4000 bootstrap resamples; this is unchanged. No shutdown is authorized.
+The original branch remains research/hindsight-judges; original protocol stays unchanged.
+
+Failure and diagnostic evidence
+BF16 transformer / FP32 head, SDPA MATH, chunk 1024 at commit 782ef4f failed:
+  s021_t08__L:   shared/direct TV 0.006967261207755196
+  s001_t07__D1F: shared/direct TV 0.005319389296189427
+A fresh model load reproduced both values exactly. No formal scores existed.
+FP16 transformer parameters with FP32 head and preserved buffers passed all
+19 prescribed diagnostics, maximum TV 0.0020557598947495564; D1F TV 0.00042731.
+The failure-selected cross-precision comparisons are separately archived. They
+are not a representative cohort estimate or evidence of BF16/FP16 equivalence.
+All evidence is in run_exp1c/recovery_20261103T0920/ (including failed original run).
+An initial diagnostic was stopped before FP16 conversion when static inspection
+showed that blanket Module.to(fp16) would round RoPE buffers. Corrected diagnostic
+and production helper cast parameters only, with bitwise buffer-preservation checks.
+
+Execution change
+Load the exact original checkpoint through unchanged p4_e2_backend.py, then cast
+only model.model parameters from BF16 to FP16; retain FP32 lm_head. Stored checkpoint
+files are unchanged; runtime FP16 casts can round very small stored weight values.
+All RoPE/other buffers retain their original values and dtypes. SDPA MATH and
+1024-token chunks remain fixed. Disable matmul TF32, cuDNN TF32 and FP16 reduced-
+precision GEMM reductions. Assert finite parameters and record actual precision.
+This is an explicit departure from the original BF16 execution setting.
+
+The 10 shared-prefix/direct and 9 chunked/one-pass checks retain TV <0.005 and
+exactly the original requests. Both sides use the SAME amended FP16 model: the
+one-pass reference is the unchanged frozen backend algorithm, using the model
+whose parameters were cast as above. This checks execution-path agreement under
+FP16; it is NOT a claim that the results equal the original BF16 one-pass scores.
+The actual formal model load repeats every check before writing any formal score.
+Record precision-helper/amendment hashes, flags and verified dtypes in run.json
+and precision_check.json. Resume rejects mismatched code/configuration manifests.
+All nine conditions are scored together from scratch in this single configuration.
+No BF16 diagnostic score or old P4/E1 score is substituted as a 1c condition.
+
+Unchanged science and data
+All 386 points, 3474 requests, bank-1 replica-0 continuations, candidate order,
+q12 competitor selection, q3456/Gold outcomes, H1-H3 definitions/thresholds,
+4000 resamples and seed 20261103 are unchanged. The original protocol, prepared
+CPU requests, original trajectories and prior experiment outputs remain byte-identical.
+No extra policy sampling, training, context truncation or exclusion. CPU replay
+is reused, not repeated. New CPU buffer-preservation regression and all 11 tests pass.
+
+Interpretation and completion
+This gate supports numerical agreement on the prescribed 19 cases only. It does
+not prove all-context equivalence or establish that the GPU is faulty/healthy.
+Comparisons with old BF16 P4/E1 runs confound hardware, context and precision;
+do not attribute those differences solely to hardware. Report precision explicitly.
+After all 3474 rows complete: analyze, independently verify the primary endpoints,
+check source/old-result hashes, and publish only to research/hindsight-judges.
+The continuation driver wakes the agent on failure and has no shutdown action.

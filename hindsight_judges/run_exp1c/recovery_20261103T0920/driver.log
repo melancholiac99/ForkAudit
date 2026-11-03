@@ -1,0 +1,24 @@
+cpu_prepare_running {'prepare_pid': 2123}
+lengths {'command': ['lengths', '--repo', '/root/autodl-tmp/forkaudit_hindsight', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1c_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--model', '/root/autodl-tmp/models/Qwen2.5-32B-Instruct']}
+score {'command': ['score', '--repo', '/root/autodl-tmp/forkaudit_hindsight', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1c_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--model', '/root/autodl-tmp/models/Qwen2.5-32B-Instruct', '--approved-commit', '782ef4fd65e296f6130bb71b70169bedebf614d1']}
+failed {'error': "Command '['/root/miniconda3/envs/m0/bin/python', '-u', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c.py', 'score', '--repo', '/root/autodl-tmp/forkaudit_hindsight', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1c_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--model', '/root/autodl-tmp/models/Qwen2.5-32B-Instruct', '--approved-commit', '782ef4fd65e296f6130bb71b70169bedebf614d1']' returned non-zero exit status 1."}
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run_exp1c/driver.py", line 133, in main
+    stage('score','score',*common,'--model',MODEL,'--approved-commit',APPROVED)
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run_exp1c/driver.py", line 37, in stage
+    subprocess.run([sys.executable,'-u',str(H/'exp1c.py'),*map(str,args)],cwd=ROOT,stdout=f,stderr=subprocess.STDOUT,check=True,
+  File "/root/miniconda3/envs/m0/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/miniconda3/envs/m0/bin/python', '-u', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c.py', 'score', '--repo', '/root/autodl-tmp/forkaudit_hindsight', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1c_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--model', '/root/autodl-tmp/models/Qwen2.5-32B-Instruct', '--approved-commit', '782ef4fd65e296f6130bb71b70169bedebf614d1']' returned non-zero exit status 1.
+Queued message 01a1a0b2-3aba-7951-be5b-5c7f32f92927 for thread 01a18b94-a1c9-76b1-8738-660760d4ba36.
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run_exp1c/driver.py", line 144, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run_exp1c/driver.py", line 133, in main
+    stage('score','score',*common,'--model',MODEL,'--approved-commit',APPROVED)
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run_exp1c/driver.py", line 37, in stage
+    subprocess.run([sys.executable,'-u',str(H/'exp1c.py'),*map(str,args)],cwd=ROOT,stdout=f,stderr=subprocess.STDOUT,check=True,
+  File "/root/miniconda3/envs/m0/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/miniconda3/envs/m0/bin/python', '-u', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c.py', 'score', '--repo', '/root/autodl-tmp/forkaudit_hindsight', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1c_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--model', '/root/autodl-tmp/models/Qwen2.5-32B-Instruct', '--approved-commit', '782ef4fd65e296f6130bb71b70169bedebf614d1']' returned non-zero exit status 1.

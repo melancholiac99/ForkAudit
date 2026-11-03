@@ -1,6 +1,6 @@
 # Hindsight Experiment 1c — review implementation
 
-**Status:** protocol v1, frozen at the commit approved via `score --approved-commit`. GPU NOT RUN. Do **not** merge into `main`.
+**Status:** protocol v1; CPU reconstruction completed. The initial BF16 numerical gate failed before any formal score. The recorded [FP16 execution amendment](EXECUTION_AMENDMENT_1C_FP16_20261103.txt) passed all 19 diagnostic checks; the formal load repeats them before scoring. The protocol and scientific thresholds remain unchanged. Do **not** merge into `main`.
 
 Read [EXPERIMENT1C_DRAFT.md](EXPERIMENT1C_DRAFT.md) first. E1c is separate from E4c (a different experiment in `main`). Existing E1 / P4 / E4 / E4b / E4c inputs are read-only.
 

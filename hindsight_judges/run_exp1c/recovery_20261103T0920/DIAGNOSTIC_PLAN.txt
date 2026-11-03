@@ -1,0 +1,14 @@
+Hindsight 1c numerical recovery — diagnostic only, before formal scores.
+Original run 782ef4f: BF16 transformer, FP32 head, SDPA MATH, chunk1024.
+Failed shared/direct TV: s021_t08__L 0.0069672612; s001_t07__D1F 0.0053193893.
+No formal score file exists. All original inputs and prepared 3474 requests preserved.
+Plan: repeat these two checks unchanged; then test all original 19 checks with the
+same model weights cast to FP16, FP32 head, MATH, chunk1024, TF32 disabled.
+FP16 is an execution-precision candidate, not an accepted scientific result.
+Both shared and direct and one-pass references must use the same precision.
+Record BF16/FP16 differences separately; never combine their scores.
+Acceptance remains ALL original TV checks <0.005, finite log probabilities, same
+requests, same statistical thresholds. No conclusions from diagnostic checks.
+Any chosen change will be documented and committed before full formal scoring.
+
+Implementation detail: cast transformer PARAMETERS only; preserve every RoPE/other buffer bitwise. The first diagnostic was aborted before FP16 conversion to correct blanket Module.to casting.

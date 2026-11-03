@@ -488,20 +488,26 @@ def run_fingerprint():
             "cuda":torch.version.cuda,"sdpa_math":bool(torch.backends.cuda.math_sdp_enabled()),
             "sdpa_flash":bool(torch.backends.cuda.flash_sdp_enabled()),
             "sdpa_mem_efficient":bool(torch.backends.cuda.mem_efficient_sdp_enabled()),
-            "sdpa_cudnn":bool(torch.backends.cuda.cudnn_sdp_enabled())}
+            "sdpa_cudnn":bool(torch.backends.cuda.cudnn_sdp_enabled()),
+            "matmul_tf32":bool(torch.backends.cuda.matmul.allow_tf32),
+            "cudnn_tf32":bool(torch.backends.cudnn.allow_tf32),
+            "fp16_reduced_precision_reduction":bool(torch.backends.cuda.matmul.allow_fp16_reduced_precision_reduction)}
 
 
 def score(args):
     import torch
+    import exp1c_precision as precision
     from torch.nn.attention import sdpa_kernel,SDPBackend
     if not torch.cuda.is_available():raise SystemExit("CUDA GPU required. No scoring started.")
-    # Entire model load and scoring run use same MATH kernel as verified 32B experiment 1.
+    # Explicit execution amendment: FP16 parameters, preserved RoPE buffers, FP32 head.
+    precision.set_flags(torch)
     with sdpa_kernel(SDPBackend.MATH):
         _score_math(args)
 
 
 def _score_math(args):
     import torch
+    import exp1c_precision as precision
     repo=Path(args.repo).resolve();out=Path(args.out).resolve()
     jobs,audit,man=prepared(out)
     model=Path(args.model).resolve()
@@ -529,6 +535,8 @@ def _score_math(args):
     assert fingerprint["sdpa_math"] and not any(fingerprint[k] for k in ("sdpa_flash","sdpa_mem_efficient","sdpa_cudnn"))
     run_meta=dict(model="32b",revision=args.revision,model_sha256=weights,
         backend_sha256=file_sha(backend),chunked_backend_sha256=file_sha(chunk_src),chunk=cmod.CHUNK,
+        precision=precision.POLICY,precision_backend_sha256=file_sha(HERE/"exp1c_precision.py"),
+        precision_amendment_sha256=file_sha(HERE/"EXECUTION_AMENDMENT_1C_FP16_20261103.txt"),
         script_sha256=file_sha(Path(__file__)),
         protocol_sha256=file_sha(HERE/"EXPERIMENT1C_DRAFT.md"),
         requests_sha256=man["requests_sha256"],audit_sha256=man["audit_sha256"],
@@ -552,7 +560,11 @@ def _score_math(args):
         assert len(done)==len(jobs) and file_sha(score_path)==prev["scores_sha256"]
         print("Already scored and verified; stopping without overwrite");return
     save(run_path,{**run_meta,"complete":False,"contexts":len(done)})
-    model_start=time.time();frozen=module.Scorer();scorer=cmod.ChunkedScorer(frozen)
+    model_start=time.time();frozen=module.Scorer()
+    precision_check=precision.configure(frozen)
+    save(target/"precision_check.json",precision_check)
+    assert not any(fingerprint[k] for k in ("matmul_tf32","cudnn_tf32","fp16_reduced_precision_reduction"))
+    scorer=cmod.ChunkedScorer(frozen)
     assert run_fingerprint()==fingerprint
     def prob(lps):
         x=np.array([sum(x) for x in lps],float);y=np.exp(x-x.max());return y/y.sum()
@@ -748,6 +760,10 @@ def analyze(args):
            "CAUTION: D0/D1 display branches only for f and the q12-selected b; any D-vs-M/L value contrast",
            "includes that oracle selection and is descriptive, not evidence that removing the pointer helps.",
            "Causal identity manipulation is DE vs DX (identical two-branch evidence); H2 is the display-only pointer."]
+    if run.get("precision"):
+        lines.extend(["EXECUTION AMENDMENT: "+run["precision"]+"; all nine conditions use this one new run.",
+                      "Original BF16 pre-score gate failed; TV <0.005 is unchanged. See EXECUTION_AMENDMENT_1C_FP16_20261103.txt.",
+                      "Do not interpret cross-run differences from BF16 E1/P4 as hardware-only effects or exact numerical equivalence."])
     for g,data in metrics.items():
         lines.append("\n"+g)
         for k,z in data.items():
@@ -831,7 +847,9 @@ def main():
         current=subprocess.run(["git","rev-parse","HEAD"],cwd=args.repo,text=True,capture_output=True,check=True).stdout.strip()
         assert current == args.approved_commit, f"HEAD {current} differs from approved {args.approved_commit}"
         tracked=subprocess.run(["git","status","--porcelain","--","hindsight_judges/exp1c.py",
-                "hindsight_judges/EXPERIMENT1C_DRAFT.md"],cwd=args.repo,text=True,capture_output=True,check=True).stdout.strip()
+                "hindsight_judges/EXPERIMENT1C_DRAFT.md", "hindsight_judges/exp1c_backend.py",
+                "hindsight_judges/exp1c_precision.py", "hindsight_judges/EXECUTION_AMENDMENT_1C_FP16_20261103.txt"],
+                cwd=args.repo,text=True,capture_output=True,check=True).stdout.strip()
         assert not tracked, "approved script or protocol has uncommitted changes"
     globals()[args.command](args)
 

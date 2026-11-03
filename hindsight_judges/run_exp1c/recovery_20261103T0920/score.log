@@ -1,0 +1,13 @@
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights: 100%|██████████| 771/771 [00:00<00:00, 9749.02it/s]
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c.py", line 839, in <module>
+    if __name__=="__main__":main()
+                            ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c.py", line 836, in main
+    globals()[args.command](args)
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c.py", line 500, in score
+    _score_math(args)
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c.py", line 587, in _score_math
+    assert all(x["passed"] for x in checks),"Numerical gate failed; NO score file written"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Numerical gate failed; NO score file written

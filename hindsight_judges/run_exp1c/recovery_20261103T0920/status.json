@@ -1,0 +1,6 @@
+{
+  "stage": "failed",
+  "pid": 2845,
+  "utc": "2026-11-03T09:16:37Z",
+  "error": "Command '['/root/miniconda3/envs/m0/bin/python', '-u', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c.py', 'score', '--repo', '/root/autodl-tmp/forkaudit_hindsight', '--out', '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/exp1c_p4', '--arms', '/root/autodl-tmp/idea/exploratory_deep_discovery/exploratory_arms.parquet', '--model', '/root/autodl-tmp/models/Qwen2.5-32B-Instruct', '--approved-commit', '782ef4fd65e296f6130bb71b70169bedebf614d1']' returned non-zero exit status 1."
+}

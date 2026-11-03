@@ -1,0 +1,13 @@
+{
+  "scope": "Two failure-selected contexts only; not representative of full cohort; not an equivalence gate",
+  "comparisons": [
+    {
+      "request_id": "s021_t08__L",
+      "bf16_vs_fp16_shared_tv": 0.03957527382454781
+    },
+    {
+      "request_id": "s001_t07__D1F",
+      "bf16_vs_fp16_shared_tv": 0.040194408062735894
+    }
+  ]
+}

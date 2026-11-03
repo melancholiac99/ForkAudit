@@ -1,0 +1,90 @@
+{
+  "diagnostics.json": {
+    "bytes": 11475,
+    "sha256": "caf31700e758c59388796c83d4f6de36921873bddc7f4ca06a3b4ae8607d0c87"
+  },
+  "hardware.json": {
+    "bytes": 219,
+    "sha256": "b9ecdfb27bc55a66531d958202426172bb150e1e3614b9fe8d9d99ece1de36b3"
+  },
+  "score.log": {
+    "bytes": 880,
+    "sha256": "31b1c7ce2ab6522d7f8b4b9ed6b78fff725794ee15e0c9555474975c792e0d1e"
+  },
+  "protected_inputs.json": {
+    "bytes": 4296,
+    "sha256": "af0142af4dd83ccc993328a9c1361c67c1d70e2032fd053991afb015407d8f8e"
+  },
+  "DIAGNOSTIC_PLAN.txt": {
+    "bytes": 1127,
+    "sha256": "f6612c1102f2adac37365ad1c4473dcd1dafdd02b98e1e77ce83dff1de6658da"
+  },
+  "launch.json": {
+    "bytes": 50,
+    "sha256": "ea9901c663dfcbc40cce0cc154f4b56f8da5662484c430380f44685f24495ff1"
+  },
+  "status.json": {
+    "bytes": 594,
+    "sha256": "c4015dfb5d416bc107160816e699b421b9c593855dc5fac28fc5d69ca385b7cd"
+  },
+  "aborted_diagnose.log": {
+    "bytes": 160,
+    "sha256": "13c3fa1bdee5f5250a85d5a0695ba6704fb56bfb62e02b9da8e0fc0a913785be"
+  },
+  "cpu_tests.log": {
+    "bytes": 17622,
+    "sha256": "efc5b40c0c829d4f0db282cecf128c7d019554d120971f05c3830aadb2379895"
+  },
+  "cross_precision_diagnostic.json": {
+    "bytes": 338,
+    "sha256": "78cd4b89468649e3040a25f542276e7f78f07658e7d4388b768695f668c73800"
+  },
+  "diagnose.py": {
+    "bytes": 3345,
+    "sha256": "51d45d529e107dfbe16f5c71448453934ca38c7dd8d0dec0806793e658a416d5"
+  },
+  "cpu_gate.json": {
+    "bytes": 531,
+    "sha256": "53694a1b5c5a12fcdb444718a8fe0f6f7a0d1e530e11b5f943040fda662388c2"
+  },
+  "diagnostic_summary.json": {
+    "bytes": 138,
+    "sha256": "893c232b4ddbfbcd195c349fc34a05afcaf514187b20df1739ee6a3d58693e13"
+  },
+  "aborted_diagnostic_reason.json": {
+    "bytes": 224,
+    "sha256": "576ed36dd55a2f3d8e7674c909108f8e65669bcb5ace76f2d1aa49fe3612757a"
+  },
+  "exp1c.py": {
+    "bytes": 45665,
+    "sha256": "0ef484351ffaa16e1e2548a58b2d3afbdbf3d5866caf828031f00b2e6a274f80"
+  },
+  "driver.log": {
+    "bytes": 3772,
+    "sha256": "77246efa5431f3fed3f1fdc1266e44c96e134d1f0c6afe7115e3f835c1861b7d"
+  },
+  "exp1c_backend.py": {
+    "bytes": 3818,
+    "sha256": "0ce7c1693b14e727ee545e9829c3f237f83ce1a27046f6049cb85ed003bd00ac"
+  },
+  "diagnose.log": {
+    "bytes": 9284,
+    "sha256": "d8927c26d93faf94f0203c66317ab81e629702482af7741cec6d882506e9ba03"
+  },
+  "failed_32b/numerical_check.json": {
+    "bytes": 3022,
+    "sha256": "cecb315aa34fd6e0047ed586fc0a7cb23499b7db5e58dc59987c7e6936f17c7c"
+  },
+  "failed_32b/run.json": {
+    "bytes": 2789,
+    "sha256": "61d213ed9d7eb48e3d774b483832d0b808258d375d299237349bfbacadeaf1f5"
+  },
+  "original_output_32b/numerical_check.json": {
+    "bytes": 3022,
+    "sha256": "cecb315aa34fd6e0047ed586fc0a7cb23499b7db5e58dc59987c7e6936f17c7c"
+  },
+  "original_output_32b/run.json": {
+    "bytes": 2789,
+    "sha256": "61d213ed9d7eb48e3d774b483832d0b808258d375d299237349bfbacadeaf1f5"
+  }
+}
