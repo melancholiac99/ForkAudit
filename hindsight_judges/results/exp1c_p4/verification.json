@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "contexts": 3474,
+  "points": 386,
+  "primary_endpoints_independently_verified": 3,
+  "primary_statistics": [
+    {
+      "n": 386,
+      "n_trajectories": 60,
+      "estimate": 0.39039973875915523,
+      "ci95": [
+        0.18617060151249162,
+        0.5880988075312249
+      ]
+    },
+    {
+      "n": 310,
+      "n_trajectories": 52,
+      "estimate": 0.1289407151099844,
+      "ci95": [
+        -0.7911326753054126,
+        1.0469722515659272
+      ]
+    },
+    {
+      "n": 259,
+      "n_trajectories": 46,
+      "estimate": -0.026123777193765418,
+      "ci95": [
+        -0.03610736276021959,
+        -0.01652623963841979
+      ]
+    }
+  ],
+  "decisions": {
+    "H1_identity_label_under_symmetric_two_branch_evidence": true,
+    "H2_pull_toward_displayed_failed_branch": false,
+    "H3_true_label_value_harm_on_q12_worse": true,
+    "bootstrap_seed": 20261103,
+    "nboot": 4000
+  },
+  "scores_sha256": "fea5288f3de545755156e719c4e061e7ef281c633a1d40863a28277f2f29ae7f",
+  "analysis_sha256": "f814b0ba1d64115528e87491287302f42d4ba298d49fe3dd47b40b739ee41a00",
+  "source_and_prior_E1_unchanged": true,
+  "hardware_unchanged": true
+}

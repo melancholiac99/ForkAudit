@@ -1,0 +1,20 @@
+{
+  "utc": "2026-11-03T09:31:57Z",
+  "repair_commit": "4ff00e86bb9bce3fed74377e8e3ccb346b01480b",
+  "prior_protected_files": 27,
+  "unchanged_prior_protected_files": 26,
+  "intentional_code_changes": [
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c.py"
+  ],
+  "protocol_and_prepared_data_and_old_results_unchanged": true,
+  "original_formal_score_count": 0,
+  "diagnostics": {
+    "all_fp16_passed": true,
+    "fp16_checks": 19,
+    "max_fp16_tv": 0.0020557598947495564,
+    "peak_gb": 75.727972864,
+    "complete": true
+  },
+  "snapshot_path": "hindsight_judges/run_exp1c/recovery_20261103T0920",
+  "shutdown_authorized": false
+}

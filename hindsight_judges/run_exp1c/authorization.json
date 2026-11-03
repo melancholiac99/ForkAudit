@@ -1,0 +1,13 @@
+{
+  "utc": "2026-11-03T08:26:27Z",
+  "user_request": "Pull latest hindsight branch, check new 1c experiment, start if checks pass",
+  "authorization": "Conditional authorization to execute the retrieved latest experiment after passing its gates",
+  "resolved_branch": "research/hindsight-judges",
+  "resolved_head": "3496133ef1c2dd09e38c510cd3396c6debb3e3cc",
+  "shutdown_authorized": false,
+  "execution_head": "4ff00e86bb9bce3fed74377e8e3ccb346b01480b",
+  "explicit_user_alignment": "改成4000就行",
+  "repair_authorization": "User-authorized best-effort failure repair; record necessary precision/chunk revisions before scoring; no mixed configs",
+  "precision_amendment": "hindsight_judges/EXECUTION_AMENDMENT_1C_FP16_20261103.txt",
+  "repair_utc": "2026-11-03T09:31:18Z"
+}

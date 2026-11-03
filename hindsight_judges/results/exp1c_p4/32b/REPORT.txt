@@ -1,0 +1,224 @@
+Experiment 1c: full hindsight logs, anonymous replay branches and execution labels (32B, one run).
+Values in pp, log odds in nats; 95% trajectory-cluster bootstrap.
+Predefined decisions: {"H1_identity_label_under_symmetric_two_branch_evidence": true, "H2_pull_toward_displayed_failed_branch": false, "H3_true_label_value_harm_on_q12_worse": true, "bootstrap_seed": 20261103, "nboot": 4000}
+CAUTION: D0/D1 display branches only for f and the q12-selected b; any D-vs-M/L value contrast
+includes that oracle selection and is descriptive, not evidence that removing the pointer helps.
+Causal identity manipulation is DE vs DX (identical two-branch evidence); H2 is the display-only pointer.
+EXECUTION AMENDMENT: fp16_transformer_fp32_head_preserved_buffers; all nine conditions use this one new run.
+Original BF16 pre-score gate failed; TV <0.005 is unchanged. See EXECUTION_AMENDMENT_1C_FP16_20261103.txt.
+Do not interpret cross-run differences from BF16 E1/P4 as hardware-only effects or exact numerical equivalence.
+
+all
+  dual_pointer_swap_nat                            +0.390 [+0.186,+0.588] nat n=386 traj=60
+  dual_pointer_true_minus_anon_nat                 +2.177 [+1.721,+2.599] nat n=386 traj=60
+  dual_true_label_minus_anon_value                 -1.451 [-2.257,-0.552] pp n=386 traj=60
+  dual_true_minus_swap_label_value                 +0.051 [-0.805,+0.988] pp n=386 traj=60
+  dual_no_pointer_minus_L_value                    +30.023 [+21.786,+37.888] pp n=386 traj=60
+  dual_no_pointer_minus_M_value                    +28.083 [+19.579,+36.381] pp n=386 traj=60
+  dual_no_pointer_minus_true_value                 +1.451 [+0.552,+2.257] pp n=386 traj=60
+  dual_no_pointer_minus_swap_value                 +1.503 [+0.852,+2.204] pp n=386 traj=60
+  single_f_minus_M_value                           +4.450 [+1.845,+7.276] pp n=386 traj=60
+  L_minus_M_value                                  -1.940 [-4.379,+0.264] pp n=386 traj=60
+  LN_minus_L_value                                 +5.058 [+2.508,+8.192] pp n=386 traj=60
+  LT_minus_L_value                                 -0.360 [-1.905,+1.155] pp n=386 traj=60
+  L_minus_M_factual_logodds_nat                    +5.372 [+4.511,+6.370] nat n=386 traj=60 slope=+1.958 [-0.170,+3.973]
+  LN_minus_L_factual_logodds_nat                   -4.851 [-5.715,-3.999] nat n=386 traj=60
+  LT_minus_L_factual_logodds_nat                   +1.730 [+0.974,+2.529] nat n=386 traj=60
+  D0_minus_M_factual_logodds_nat                   -9.014 [-11.877,-6.244] nat n=386 traj=60 slope=+18.867 [+15.201,+22.267]
+  D1F_minus_M_factual_logodds_nat                  +0.477 [-0.644,+1.638] nat n=386 traj=60 slope=+6.714 [+4.366,+9.082]
+  M_argmax_factual                                 +31.347 [+26.470,+36.000] % n=386 traj=60
+  L_argmax_factual                                 +52.073 [+44.952,+58.881] % n=386 traj=60
+  D0_argmax_factual                                +17.876 [+13.063,+23.006] % n=386 traj=60
+  DE_argmax_factual                                +20.984 [+16.373,+26.042] % n=386 traj=60
+  DX_argmax_factual                                +19.948 [+15.367,+24.899] % n=386 traj=60
+  D1F_argmax_factual                               +29.793 [+25.060,+34.243] % n=386 traj=60
+  dual_branch_length_diff                          +8.640 [+6.289,+11.060] turns n=386 traj=60
+  dual_pointer_swap_nat_f0b1                       -0.308 [-0.651,+0.019] nat n=179 traj=45
+  single_branch_pull_failed_nat                    +0.129 [-0.791,+1.047] nat n=310 traj=52
+  single_branch_pull_failed_nat_headroom           +1.048 [+0.032,+2.166] nat n=228 traj=46
+  single_branch_pull_succeeded_nat                 +10.856 [+9.427,+12.327] nat n=462 traj=56
+  single_branch_pull_succeeded_nat_headroom        +12.482 [+10.838,+14.152] nat n=330 traj=52
+  single_f_failed_minus_M_factual_logodds_nat      -1.337 [-2.261,-0.408] nat n=231 traj=49
+  dual_pointer_swap_nat_f0b0                       -0.167 [-0.510,+0.179] nat n=52 traj=26
+  dual_pointer_swap_nat_f1b0                       -0.063 [-0.579,+0.498] nat n=27 traj=20
+  dual_pointer_swap_nat_f1b1                       +1.689 [+1.389,+2.018] nat n=128 traj=41
+  dual_pointer_swap_nat_headroom                   +0.834 [+0.479,+1.195] nat n=48 traj=25
+
+I
+  dual_pointer_swap_nat                            +0.273 [-0.037,+0.586] nat n=184 traj=39
+  dual_pointer_true_minus_anon_nat                 +2.778 [+2.139,+3.247] nat n=184 traj=39
+  dual_true_label_minus_anon_value                 -2.050 [-3.216,-0.669] pp n=184 traj=39
+  dual_true_minus_swap_label_value                 +0.200 [-1.348,+1.588] pp n=184 traj=39
+  dual_no_pointer_minus_L_value                    +46.459 [+35.610,+54.253] pp n=184 traj=39
+  dual_no_pointer_minus_M_value                    +47.026 [+37.011,+54.339] pp n=184 traj=39
+  dual_no_pointer_minus_true_value                 +2.050 [+0.669,+3.216] pp n=184 traj=39
+  dual_no_pointer_minus_swap_value                 +2.250 [+1.182,+3.191] pp n=184 traj=39
+  single_f_minus_M_value                           +9.244 [+5.722,+12.346] pp n=184 traj=39
+  L_minus_M_value                                  +0.566 [-1.769,+3.057] pp n=184 traj=39
+  LN_minus_L_value                                 +7.018 [+2.289,+13.022] pp n=184 traj=39
+  LT_minus_L_value                                 -0.731 [-3.215,+1.340] pp n=184 traj=39
+  L_minus_M_factual_logodds_nat                    +4.576 [+3.479,+6.030] nat n=184 traj=39 slope=+4.773 [+2.030,+7.854]
+  LN_minus_L_factual_logodds_nat                   -5.155 [-6.975,-3.602] nat n=184 traj=39
+  LT_minus_L_factual_logodds_nat                   +1.957 [+0.707,+3.450] nat n=184 traj=39
+  D0_minus_M_factual_logodds_nat                   -15.038 [-17.642,-11.662] nat n=184 traj=39 slope=+21.038 [+16.454,+25.264]
+  D1F_minus_M_factual_logodds_nat                  -1.810 [-3.076,-0.315] nat n=184 traj=39 slope=+7.833 [+4.013,+11.402]
+  M_argmax_factual                                 +30.435 [+21.709,+37.500] % n=184 traj=39
+  L_argmax_factual                                 +59.783 [+49.333,+68.511] % n=184 traj=39
+  D0_argmax_factual                                +9.783 [+4.667,+16.875] % n=184 traj=39
+  DE_argmax_factual                                +13.587 [+8.205,+21.139] % n=184 traj=39
+  DX_argmax_factual                                +12.500 [+7.179,+19.893] % n=184 traj=39
+  D1F_argmax_factual                               +26.630 [+19.780,+33.530] % n=184 traj=39
+  dual_branch_length_diff                          +12.897 [+9.438,+15.984] turns n=184 traj=39
+  dual_pointer_swap_nat_f0b1                       -0.416 [-0.758,-0.031] nat n=104 traj=28
+  single_branch_pull_failed_nat                    +0.397 [-1.200,+1.882] nat n=147 traj=33
+  single_branch_pull_failed_nat_headroom           +1.879 [+0.047,+3.653] nat n=106 traj=31
+  single_branch_pull_succeeded_nat                 +13.975 [+12.189,+15.364] nat n=221 traj=36
+  single_branch_pull_succeeded_nat_headroom        +15.493 [+13.513,+17.003] nat n=184 traj=35
+  single_f_failed_minus_M_factual_logodds_nat      -2.492 [-3.678,-1.205] nat n=121 traj=31
+  dual_pointer_swap_nat_f0b0                       -0.116 [-0.692,+0.763] nat n=17 traj=10
+  dual_pointer_swap_nat_f1b0                       +0.069 [-0.791,+1.284] nat n=9 traj=8
+  dual_pointer_swap_nat_f1b1                       +1.754 [+1.277,+2.267] nat n=54 traj=24
+  dual_pointer_swap_nat_headroom                   +0.942 [+0.457,+1.561] nat n=13 traj=11
+
+U
+  dual_pointer_swap_nat                            +0.498 [+0.251,+0.764] nat n=202 traj=35
+  dual_pointer_true_minus_anon_nat                 +1.631 [+1.128,+2.102] nat n=202 traj=35
+  dual_true_label_minus_anon_value                 -0.906 [-1.941,+0.411] pp n=202 traj=35
+  dual_true_minus_swap_label_value                 -0.085 [-1.027,+1.159] pp n=202 traj=35
+  dual_no_pointer_minus_L_value                    +15.052 [+8.528,+21.683] pp n=202 traj=35
+  dual_no_pointer_minus_M_value                    +10.828 [+5.823,+16.089] pp n=202 traj=35
+  dual_no_pointer_minus_true_value                 +0.906 [-0.411,+1.941] pp n=202 traj=35
+  dual_no_pointer_minus_swap_value                 +0.822 [+0.189,+1.704] pp n=202 traj=35
+  single_f_minus_M_value                           +0.083 [-2.554,+3.158] pp n=202 traj=35
+  L_minus_M_value                                  -4.223 [-8.222,-0.526] pp n=202 traj=35
+  LN_minus_L_value                                 +3.272 [+1.097,+5.564] pp n=202 traj=35
+  LT_minus_L_value                                 -0.022 [-1.964,+2.224] pp n=202 traj=35
+  L_minus_M_factual_logodds_nat                    +6.096 [+5.132,+7.325] nat n=202 traj=35 slope=-1.495 [-4.798,+1.825]
+  LN_minus_L_factual_logodds_nat                   -4.575 [-5.498,-3.665] nat n=202 traj=35
+  LT_minus_L_factual_logodds_nat                   +1.523 [+0.552,+2.481] nat n=202 traj=35
+  D0_minus_M_factual_logodds_nat                   -3.527 [-5.016,-1.939] nat n=202 traj=35 slope=+11.421 [+8.818,+14.475]
+  D1F_minus_M_factual_logodds_nat                  +2.560 [+1.742,+3.648] nat n=202 traj=35 slope=+3.515 [+1.233,+6.526]
+  M_argmax_factual                                 +32.178 [+26.382,+39.572] % n=202 traj=35
+  L_argmax_factual                                 +45.050 [+36.910,+54.191] % n=202 traj=35
+  D0_argmax_factual                                +25.248 [+20.096,+31.430] % n=202 traj=35
+  DE_argmax_factual                                +27.723 [+22.353,+34.395] % n=202 traj=35
+  DX_argmax_factual                                +26.733 [+21.371,+33.333] % n=202 traj=35
+  D1F_argmax_factual                               +32.673 [+26.540,+40.120] % n=202 traj=35
+  dual_branch_length_diff                          +4.762 [+2.810,+6.868] turns n=202 traj=35
+  dual_pointer_swap_nat_f0b0                       -0.192 [-0.594,+0.167] nat n=35 traj=18
+  single_branch_pull_failed_nat                    -0.113 [-1.049,+0.811] nat n=163 traj=28
+  single_branch_pull_failed_nat_headroom           +0.327 [-0.699,+1.498] nat n=122 traj=24
+  single_f_failed_minus_M_factual_logodds_nat      -0.066 [-1.109,+0.955] nat n=110 traj=26
+  dual_pointer_swap_nat_f0b1                       -0.159 [-0.720,+0.263] nat n=75 traj=24
+  single_branch_pull_succeeded_nat                 +7.995 [+7.090,+8.895] nat n=241 traj=33
+  single_branch_pull_succeeded_nat_headroom        +8.686 [+7.738,+9.630] nat n=146 traj=28
+  dual_pointer_swap_nat_f1b1                       +1.642 [+1.311,+2.040] nat n=74 traj=24
+  dual_pointer_swap_nat_f1b0                       -0.129 [-0.736,+0.432] nat n=18 traj=12
+  dual_pointer_swap_nat_headroom                   +0.794 [+0.350,+1.232] nat n=35 traj=18
+
+bad_q12_ge_third
+  dual_pointer_swap_nat                            +0.219 [-0.059,+0.479] nat n=259 traj=46
+  dual_pointer_true_minus_anon_nat                 +2.865 [+2.393,+3.284] nat n=259 traj=46
+  dual_true_label_minus_anon_value                 -2.612 [-3.611,-1.653] pp n=259 traj=46
+  dual_true_minus_swap_label_value                 -0.615 [-1.804,+0.511] pp n=259 traj=46
+  dual_no_pointer_minus_L_value                    +42.038 [+33.647,+49.470] pp n=259 traj=46
+  dual_no_pointer_minus_M_value                    +37.812 [+28.710,+46.113] pp n=259 traj=46
+  dual_no_pointer_minus_true_value                 +2.612 [+1.653,+3.611] pp n=259 traj=46
+  dual_no_pointer_minus_swap_value                 +1.997 [+1.073,+2.962] pp n=259 traj=46
+  single_f_minus_M_value                           +3.139 [-0.351,+6.731] pp n=259 traj=46
+  L_minus_M_value                                  -4.226 [-7.808,-1.430] pp n=259 traj=46
+  LN_minus_L_value                                 +6.591 [+3.095,+10.746] pp n=259 traj=46
+  LT_minus_L_value                                 -1.051 [-3.479,+1.250] pp n=259 traj=46
+  L_minus_M_factual_logodds_nat                    +4.846 [+3.725,+6.215] nat n=259 traj=46 slope=+0.796 [-1.708,+3.831]
+  LN_minus_L_factual_logodds_nat                   -5.151 [-6.518,-3.811] nat n=259 traj=46
+  LT_minus_L_factual_logodds_nat                   +1.266 [+0.313,+2.250] nat n=259 traj=46
+  D0_minus_M_factual_logodds_nat                   -13.615 [-16.407,-10.796] nat n=259 traj=46 slope=+14.034 [+9.522,+18.885]
+  D1F_minus_M_factual_logodds_nat                  -1.379 [-2.672,-0.106] nat n=259 traj=46 slope=+0.605 [-1.801,+3.151]
+  M_argmax_factual                                 +28.958 [+22.448,+34.983] % n=259 traj=46
+  L_argmax_factual                                 +48.263 [+39.070,+56.881] % n=259 traj=46
+  D0_argmax_factual                                +6.950 [+2.724,+12.202] % n=259 traj=46
+  DE_argmax_factual                                +9.266 [+4.955,+14.237] % n=259 traj=46
+  DX_argmax_factual                                +8.880 [+4.608,+13.928] % n=259 traj=46
+  D1F_argmax_factual                               +22.780 [+16.665,+28.571] % n=259 traj=46
+  dual_branch_length_diff                          +13.039 [+10.750,+15.528] turns n=259 traj=46
+  dual_pointer_swap_nat_f0b1                       -0.310 [-0.660,+0.021] nat n=162 traj=42
+  single_branch_pull_failed_nat                    -0.170 [-1.274,+0.897] nat n=228 traj=43
+  single_branch_pull_succeeded_nat                 +12.767 [+11.101,+14.307] nat n=290 traj=45
+  single_branch_pull_succeeded_nat_headroom        +14.098 [+12.089,+15.946] nat n=222 traj=42
+  single_f_failed_minus_M_factual_logodds_nat      -1.477 [-2.524,-0.382] nat n=193 traj=43
+  dual_pointer_swap_nat_f0b0                       -0.274 [-0.712,+0.223] nat n=31 traj=18
+  single_branch_pull_failed_nat_headroom           +0.796 [-0.487,+2.108] nat n=164 traj=39
+  dual_pointer_swap_nat_f1b1                       +1.840 [+1.328,+2.332] nat n=62 traj=28
+  dual_pointer_swap_nat_headroom                   +0.704 [+0.126,+1.226] nat n=31 traj=17
+  dual_pointer_swap_nat_f1b0                       +0.358 [-0.984,+3.688] nat n=4 traj=3
+
+gold_all
+  dual_pointer_swap_nat                            +0.324 [+0.076,+0.567] nat n=119 traj=42
+  dual_pointer_true_minus_anon_nat                 +1.975 [+1.418,+2.483] nat n=119 traj=42
+  dual_true_label_minus_anon_value                 -0.303 [-0.823,+0.094] pp n=119 traj=42
+  dual_true_minus_swap_label_value                 +0.555 [+0.046,+1.152] pp n=119 traj=42
+  dual_no_pointer_minus_L_value                    +32.394 [+22.656,+42.051] pp n=119 traj=42
+  dual_no_pointer_minus_M_value                    +29.082 [+18.251,+39.508] pp n=119 traj=42
+  dual_no_pointer_minus_true_value                 +0.303 [-0.094,+0.823] pp n=119 traj=42
+  dual_no_pointer_minus_swap_value                 +0.858 [+0.359,+1.471] pp n=119 traj=42
+  single_f_minus_M_value                           +4.834 [+0.702,+10.050] pp n=119 traj=42
+  L_minus_M_value                                  -3.312 [-7.173,+0.599] pp n=119 traj=42
+  LN_minus_L_value                                 +7.972 [+3.382,+13.187] pp n=119 traj=42
+  LT_minus_L_value                                 +0.670 [-2.041,+3.453] pp n=119 traj=42
+  L_minus_M_factual_logodds_nat                    +5.639 [+4.205,+7.264] nat n=119 traj=42 slope=+2.485 [-1.204,+6.152]
+  LN_minus_L_factual_logodds_nat                   -4.869 [-6.136,-3.585] nat n=119 traj=42
+  LT_minus_L_factual_logodds_nat                   +1.552 [+0.403,+2.820] nat n=119 traj=42
+  D0_minus_M_factual_logodds_nat                   -8.770 [-12.361,-5.454] nat n=119 traj=42 slope=+18.536 [+12.941,+24.150]
+  D1F_minus_M_factual_logodds_nat                  +0.847 [-0.958,+2.610] nat n=119 traj=42 slope=+7.325 [+4.126,+10.802]
+  M_argmax_factual                                 +29.412 [+21.138,+36.924] % n=119 traj=42
+  L_argmax_factual                                 +47.059 [+36.842,+57.601] % n=119 traj=42
+  D0_argmax_factual                                +18.487 [+11.450,+26.772] % n=119 traj=42
+  DE_argmax_factual                                +19.328 [+12.295,+28.037] % n=119 traj=42
+  DX_argmax_factual                                +20.168 [+12.613,+29.246] % n=119 traj=42
+  D1F_argmax_factual                               +31.092 [+22.857,+39.640] % n=119 traj=42
+  dual_branch_length_diff                          +8.294 [+5.286,+11.220] turns n=119 traj=42
+  dual_pointer_swap_nat_f0b0                       -0.086 [-0.467,+0.371] nat n=14 traj=11
+  single_branch_pull_failed_nat                    +0.035 [-0.983,+1.008] nat n=91 traj=34
+  single_branch_pull_failed_nat_headroom           +0.894 [-0.360,+2.241] nat n=66 traj=33
+  single_f_failed_minus_M_factual_logodds_nat      -1.351 [-2.892,+0.219] nat n=70 traj=32
+  dual_pointer_swap_nat_f1b1                       +1.389 [+1.086,+1.692] nat n=42 traj=26
+  single_branch_pull_succeeded_nat                 +10.770 [+9.175,+12.345] nat n=147 traj=40
+  single_branch_pull_succeeded_nat_headroom        +11.975 [+10.250,+13.722] nat n=108 traj=36
+  dual_pointer_swap_nat_f0b1                       -0.363 [-0.759,+0.014] nat n=56 traj=28
+  dual_pointer_swap_nat_f1b0                       +0.245 [-0.601,+1.111] nat n=7 traj=7
+  dual_pointer_swap_nat_headroom                   +0.879 [+0.381,+1.453] nat n=14 traj=11
+
+gold_bad_q12_ge_third
+  dual_pointer_swap_nat                            +0.062 [-0.279,+0.372] nat n=81 traj=34
+  dual_pointer_true_minus_anon_nat                 +2.571 [+1.998,+3.192] nat n=81 traj=34
+  dual_true_label_minus_anon_value                 -0.510 [-1.278,+0.011] pp n=81 traj=34
+  dual_true_minus_swap_label_value                 +0.549 [-0.195,+1.487] pp n=81 traj=34
+  dual_no_pointer_minus_L_value                    +44.274 [+33.274,+53.023] pp n=81 traj=34
+  dual_no_pointer_minus_M_value                    +38.643 [+25.725,+48.610] pp n=81 traj=34
+  dual_no_pointer_minus_true_value                 +0.510 [-0.011,+1.278] pp n=81 traj=34
+  dual_no_pointer_minus_swap_value                 +1.060 [+0.350,+2.007] pp n=81 traj=34
+  single_f_minus_M_value                           +3.211 [-1.914,+8.795] pp n=81 traj=34
+  L_minus_M_value                                  -5.630 [-10.797,-1.446] pp n=81 traj=34
+  LN_minus_L_value                                 +9.615 [+4.105,+16.565] pp n=81 traj=34
+  LT_minus_L_value                                 -0.737 [-5.645,+3.663] pp n=81 traj=34
+  L_minus_M_factual_logodds_nat                    +5.219 [+3.685,+7.092] nat n=81 traj=34 slope=+1.627 [-2.768,+6.235]
+  LN_minus_L_factual_logodds_nat                   -5.655 [-7.607,-3.849] nat n=81 traj=34
+  LT_minus_L_factual_logodds_nat                   +1.519 [+0.136,+3.133] nat n=81 traj=34
+  D0_minus_M_factual_logodds_nat                   -13.674 [-17.345,-10.078] nat n=81 traj=34 slope=+12.243 [+4.835,+19.997]
+  D1F_minus_M_factual_logodds_nat                  -0.968 [-3.042,+1.012] nat n=81 traj=34 slope=+3.303 [-1.139,+8.035]
+  M_argmax_factual                                 +30.864 [+20.895,+39.241] % n=81 traj=34
+  L_argmax_factual                                 +46.914 [+34.409,+58.655] % n=81 traj=34
+  D0_argmax_factual                                +7.407 [+1.612,+14.286] % n=81 traj=34
+  DE_argmax_factual                                +8.642 [+2.778,+16.216] % n=81 traj=34
+  DX_argmax_factual                                +8.642 [+2.778,+16.216] % n=81 traj=34
+  D1F_argmax_factual                               +27.160 [+17.722,+36.735] % n=81 traj=34
+  dual_branch_length_diff                          +13.728 [+10.646,+17.358] turns n=81 traj=34
+  dual_pointer_swap_nat_f1b1                       +1.309 [+0.815,+1.729] nat n=21 traj=15
+  single_branch_pull_succeeded_nat                 +12.629 [+10.680,+14.545] nat n=95 traj=32
+  single_branch_pull_succeeded_nat_headroom        +13.836 [+11.602,+15.887] nat n=72 traj=27
+  dual_pointer_swap_nat_f0b1                       -0.415 [-0.816,-0.025] nat n=53 traj=28
+  single_branch_pull_failed_nat                    -0.364 [-1.565,+0.855] nat n=67 traj=30
+  single_branch_pull_failed_nat_headroom           +0.380 [-1.123,+2.057] nat n=47 traj=27
+  single_f_failed_minus_M_factual_logodds_nat      -1.583 [-3.377,+0.353] nat n=60 traj=30
+  dual_pointer_swap_nat_f0b0                       -0.073 [-0.481,+0.420] nat n=7 traj=6
+  dual_pointer_swap_nat_headroom                   +0.745 [-0.298,+1.802] nat n=8 traj=7

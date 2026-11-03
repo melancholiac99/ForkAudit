@@ -1,0 +1,13 @@
+{
+  "authorized": true,
+  "only_after_verified_publication": true,
+  "user_instruction": "ok 做完了核验好就关机",
+  "utc": "2026-11-03T10:21:01Z",
+  "branch": "research/hindsight-judges",
+  "guard_sha256": "0d68a208f938abb2bfb7eec28c6519de943c269f2aa9e01984c249de3b380480",
+  "shutdown_command": [
+    "/bin/bash",
+    "/usr/bin/shutdown"
+  ],
+  "scope": "This Hindsight 1c run; success, independent verification, complete GitHub publication and idle GPU required."
+}

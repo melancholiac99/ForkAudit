@@ -1,0 +1,10 @@
+{
+  "policy": "fp16_transformer_fp32_head_preserved_buffers",
+  "transformer_dtype": "torch.float16",
+  "head_dtype": "torch.float32",
+  "buffers_unchanged": true,
+  "buffer_dtypes": {
+    "rotary_emb.inv_freq": "torch.float32",
+    "rotary_emb.original_inv_freq": "torch.float32"
+  }
+}
