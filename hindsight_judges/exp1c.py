@@ -4,7 +4,8 @@ CPU: selftest / preflight / prepare / lengths / analyze. GPU: score (32B ONLY).
 No original P4 data, frozen hindsight experiment-one code, or model weights are modified.
 
 Input: original P4 E2 L/S and E2-M M; P4 bank-1 replay action traces (rep=0),
-original P4 rollout files, and ALFWorld games. Replay observations are reconstructed
+original P4 task_list game map, and ALFWorld games. Rollout JSON is optional for cross-checks.
+Replay observations are reconstructed
 by CPU deterministic re-feed, with outcome, action, one-step-feedback and divergence gates.
 """
 from __future__ import annotations
@@ -97,6 +98,7 @@ def original_sources(repo: Path):
         "P4-L-TEMPLATE": p4 / "prompts" / "log.txt",
         "P4-EXP1-POINTMETA": h1 / "pointmeta.json",
         "P4-EXP1-MANIFEST": h1 / "manifest.json",
+        "P4-TASKLIST": repo / "data" / "task_list.json",
     }
     hashes = {key: file_sha(path) for key, path in files.items()}
     raw_e2 = source_rows(files["P4-E2"], p_e2["requests_sha256"])
@@ -241,38 +243,79 @@ def make_request(S: dict, condition: str, text: str):
     return row
 
 
+def task_map(repo:Path):
+    task_file=repo/"data"/"task_list.json"
+    obj=load(task_file)
+    tasks={int(z["seed"]):z for z in obj["tasks"]}
+    assert len(tasks)==len(obj["tasks"]) and len(tasks)>=100
+    for task in tasks.values():
+        assert task["game_sha256"] and task["game_file"].endswith("/game.tw-pddl")
+    return tasks
+
+
+def task_for(traj_id: str, tasks: dict):
+    match=re.fullmatch(r"s(\d{3})",traj_id)
+    assert match, f"P4 cohort trajectory ID incompatible with task_list seed: {traj_id}"
+    return tasks[int(match.group(1))]
+
+
+def factual_trace(episode:dict, traj_id:str, task:dict):
+    """Rebuild *factual prefix* directly from frozen E2 L (not absent rollout JSON).
+    P4 E2 L includes each prior action and post-step observation; task_list has the game path.
+    """
+    before=episode["initial_observation"]
+    steps=[]
+    for index,st in enumerate(episode["steps"],1):
+        assert int(st["turn"])==index
+        assert isinstance(st["observation_after"],str)
+        steps.append(dict(turn=index,action=st["executed_action"],obs_before=before,
+                          obs_after=st["observation_after"]))
+        before=st["observation_after"]
+    return dict(traj_id=traj_id,game_file=task["game_file"],task=episode["task"],steps=steps)
+
+
+def verify_optional_original_rollout(repo, trace, episode):
+    """If source P4 rollout JSON is also present, require exact consistency. Not a prerequisite."""
+    path=repo/"data"/"rollout"/(trace["traj_id"]+".json")
+    if not path.exists():return
+    r=load(path)
+    assert r["traj_id"]==trace["traj_id"] and r["game_file"]==trace["game_file"]
+    assert r["task"]==episode["task"] and r["initial_obs"]==episode["initial_observation"]
+    assert len(r["steps"])==len(trace["steps"])
+    for a,b in zip(r["steps"],trace["steps"]):
+        assert int(a["turn"])==b["turn"] and a["action"]==b["action"]
+        assert a["obs_before"]==b["obs_before"] and a["obs_after"]==b["obs_after"]
+
+
 def prerequisite_paths(repo, replay_root, pointmeta):
-    rollouts = {repo / "data" / "rollout" / f"{z['traj']}.json" for z in pointmeta}
-    replays = {replay_root / z["traj"] / f"t{int(z['point_id'].rsplit('_t',1)[1]):02d}.json" for z in pointmeta}
-    missing = [str(p) for p in sorted(rollouts | replays) if not p.exists()]
-    return sorted(rollouts), sorted(replays), missing
+    tasks=task_map(repo)
+    replays={replay_root/z["traj"]/f"t{int(z['point_id'].rsplit('_t',1)[1]):02d}.json" for z in pointmeta}
+    games_root=Path(os.environ.get("ALFWORLD_DATA", "/root/autodl-tmp/alfworld_data"))
+    games={games_root/task_for(z["traj"],tasks)["game_file"] for z in pointmeta}
+    missing_replays=[str(p) for p in sorted(replays) if not p.exists()]
+    missing_games=[str(p) for p in sorted(games) if not p.exists()]
+    return sorted(replays), sorted(games), missing_replays, missing_games
 
 
 def preflight(args):
     repo=Path(args.repo).resolve()
     replay_root=Path(args.replay_root).resolve()
     meta, e2, e2m, template, hashes=original_sources(repo)
-    rollouts, replays, missing=prerequisite_paths(repo,replay_root,meta)
-    print(f"P4 I/U Fork points: {len(meta)}. Original rollout files: {len(rollouts)}. "
-          f"P4 bank1 replay records: {len(replays)}. Missing: {len(missing)}")
-    if missing:
-        print("Missing first 8:",*missing[:8],sep="\n  ")
+    replays,games,missing_replays,missing_games=prerequisite_paths(repo,replay_root,meta)
+    print(f"P4 I/U Fork points: {len(meta)}. P4 bank-1 replay records: {len(replays)}. "
+          f"ALFWorld game files: {len(games)}. Missing: {len(missing_replays)} replay / "
+          f"{len(missing_games)} games")
+    if missing_replays:
+        print("Missing P4 bank-1 files (first 8):",*missing_replays[:8],sep="\n  ")
         raise SystemExit("PRE-FLIGHT BLOCKED: original P4 bank-1 action sequences are unavailable. "
                          "They are not in the public git tree; supply --replay-root from the P4 server archive. "
-                         "Do NOT substitute E4 replay from different decisions or regenerate policy trajectories.")
-    for p in replays:
-        assert p.stat().st_size>100, f"empty/incomplete replay: {p}"
-    games_root=Path(os.environ.get("ALFWORLD_DATA", "/root/autodl-tmp/alfworld_data"))
-    games=[]
-    for p in rollouts:
-        tr=load(p)
-        games.append(games_root/tr["game_file"])
-    missing_games=[str(g) for g in games if not g.exists()]
+                         "Do NOT substitute E4 replay or regenerate trajectories.")
     if missing_games:
         print("Missing ALFWorld game paths (first 5):",*missing_games[:5],sep="\n  ")
-        raise SystemExit("PRE-FLIGHT BLOCKED: set ALFWORLD_DATA to P4's original game files before CPU replay")
-    print(f"PRE-FLIGHT input availability passed; {len(set(games))} game paths verified. "
-          "Replay content and observations checked again during prepare.")
+        raise SystemExit("PRE-FLIGHT BLOCKED: set ALFWORLD_DATA to the original P4 game files")
+    for p in replays:assert p.stat().st_size>100, f"incomplete replay: {p}"
+    print("PRE-FLIGHT PASS: original P4 bank-1 files and game paths available. "
+          "P4 E2 L and task_list supply factual prefixes; rollout JSON is optional for cross-checks.")
 
 
 def prepare(args):
@@ -280,8 +323,10 @@ def prepare(args):
     out=Path(args.out).resolve()
     replay_root=Path(args.replay_root).resolve()
     meta,e2,e2m,template,hashes=original_sources(repo)
-    rollouts,replays,missing=prerequisite_paths(repo,replay_root,meta)
-    assert not missing, f"Missing {len(missing)} P4 originals; run preflight: {missing[:3]}"
+    replays,games,missing_replays,missing_games=prerequisite_paths(repo,replay_root,meta)
+    assert not missing_replays and not missing_games, "Missing original P4 bank-1 or games; run preflight"
+    tasks=task_map(repo)
+    game_hash_cache={}
     sys.path.insert(0,str(repo/"scripts"))
     import alfenv  # noqa: import only once input sources have been verified; no GPU imports
     env=None
@@ -297,11 +342,16 @@ def prepare(args):
             ln=S["text"]+"\n"+template+json.dumps(logged_nocot,ensure_ascii=False)
             lt=S["text"]+"\n"+LT_INTRO+json.dumps(truncate_after_t(ep,t),ensure_ascii=False)
             rp=replay_root/z["traj"]/f"t{t:02d}.json"
-            trp=repo/"data"/"rollout"/(z["traj"]+".json")
-            replay=load(rp);tr=load(trp)
+            replay=load(rp)
+            task=task_for(z["traj"],tasks)
+            tr=factual_trace(ep,z["traj"],task)
+            verify_optional_original_rollout(repo,tr,ep)
             c0,cb=validate_replay_header(replay,tr,S,b)
-            game_path=Path(alfenv.ALFWORLD_DATA)/tr["game_file"]
+            game_path=Path(alfenv.ALFWORLD_DATA)/task["game_file"]
             assert game_path.exists(),f"Missing ALFWorld game {game_path}; set ALFWORLD_DATA"
+            if str(game_path) not in game_hash_cache:
+                game_hash_cache[str(game_path)]=file_sha(game_path)
+            assert game_hash_cache[str(game_path)]==task["game_sha256"],f"ALFWorld game hash mismatch {game_path}"
             if current_game!=str(game_path):
                 if env is None:env=alfenv.AlfGame(str(game_path))
                 else:env.load(str(game_path))
@@ -319,7 +369,9 @@ def prepare(args):
                 bank=1,rep=0,factual_outcome=f_branch["terminal_success"],
                 contrast_outcome=b_branch["terminal_success"],
                 factual_steps=len(f_branch["steps"]),contrast_steps=len(b_branch["steps"]),
-                replay_sha256=file_sha(rp),rollout_sha256=file_sha(trp),game_sha256=file_sha(game_path)))
+                replay_sha256=file_sha(rp),
+                factual_episode_sha256=sha(json.dumps(ep,sort_keys=True,ensure_ascii=False).encode()),
+                game_sha256=game_hash_cache[str(game_path)]))
             if (index+1)%50==0:print(f"CPU replay {index+1}/{len(meta)}",flush=True)
     finally:
         if env is not None:env.close()
