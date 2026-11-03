@@ -192,7 +192,7 @@ def pairs(args):
     save_json(folder/'pairs_manifest.json',dict(**info,source_score_sha256=run['scores_sha256'],
             pairs_sha256=hashes,counts={k:len(v) for k,v in pairmap.items()}))
     print('PAIRS READY',info,'(H_re and H_LN share identical number of examples)')
-    print('Train using: python hindsight_judges/exp3_hln_dpo.py train --arm H_re --seed 0 --lr 2e-5')
+    print('Train using: python hindsight_judges/exp3_hln_dpo.py train --arm H_re --seed 0 --lr 5e-6')
 
 
 def train(args):
@@ -264,7 +264,9 @@ def main():
     p.add_argument('--model',default=None);p.add_argument('--limit',type=int,default=0)
     p.add_argument('--cap',type=int,default=1000)
     p.add_argument('--arm',default='H_LN');p.add_argument('--seed',type=int,default=0)
-    p.add_argument('--seeds',type=int,nargs='+',default=[0,1,2]);p.add_argument('--lr',type=float,default=2e-5)
+    p.add_argument('--seeds',type=int,nargs='+',default=[0,1,2])
+    # E4 selected 5e-6 on tune (every E4 adapter train_log.json records lr=5e-06); 2e-5 is NOT the E4 setting.
+    p.add_argument('--lr',type=float,default=5e-6)
     p.add_argument('--split',choices=('valid_unseen','valid_seen'),default='valid_unseen')
     p.add_argument('--smoke',action='store_true')
     args=p.parse_args()
