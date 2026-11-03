@@ -1,0 +1,12 @@
+test_cached_prefix_predicts_correct_tokens_without_mutation (test_token_diagnostic.BackendTests.test_cached_prefix_predicts_correct_tokens_without_mutation) ... ok
+test_full_vocabulary_kl_directions_and_sampled_proxy (test_token_diagnostic.BackendTests.test_full_vocabulary_kl_directions_and_sampled_proxy) ... ok
+test_evidence_redaction_and_student_context (test_token_diagnostic.DataTests.test_evidence_redaction_and_student_context) ... ok
+test_installed_qwen_prefix_and_space_merged_action (test_token_diagnostic.DataTests.test_installed_qwen_prefix_and_space_merged_action) ... ok
+test_malformed_historical_action_is_preserved (test_token_diagnostic.DataTests.test_malformed_historical_action_is_preserved) ... ok
+test_ranking_uses_replay_quality_and_handles_ties (test_token_diagnostic.DataTests.test_ranking_uses_replay_quality_and_handles_ties) ... ok
+test_response_partition_and_no_synthetic_eos (test_token_diagnostic.DataTests.test_response_partition_and_no_synthetic_eos) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 4.524s
+
+OK
