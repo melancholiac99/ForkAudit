@@ -1,3 +1,5 @@
+> **正式的同步双 GPU OPD 实现**：参见 [README_EXP2_ONLINE.md](README_EXP2_ONLINE.md)。此文件记载的缓存式 Top-k 训练仅保留为原型和诊断，不能替代更新后重新采样的正式对照。
+
 # Hindsight: Think localization and Experiment 2
 
 **Status: implemented / CPU tests passed / no GPU or student-learning result yet.** Independent exploratory work on `research/hindsight-judges` only. Do not modify E1/E1c, P4, E4 or `main`. E1c is completed; its 32B FP16 numerical baseline is reused without cross-dtype subtraction.
