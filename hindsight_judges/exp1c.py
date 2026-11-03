@@ -1,6 +1,6 @@
-"""Experiment 1c (review draft): separate hindsight world evidence from factual-action provenance.
+"""Experiment 1c (protocol v1): separate hindsight world evidence from factual-action provenance.
 
-CPU: selftest / preflight / prepare / lengths / analyze. GPU: score (32B ONLY).
+CPU: selftest / preflight / prepare / lengths / analyze. GPU: score (32B ONLY, chunked prefill under SDPA MATH).
 No original P4 data, frozen hindsight experiment-one code, or model weights are modified.
 
 Input: original P4 E2 L/S and E2-M M; P4 bank-1 replay action traces (rep=0),
@@ -28,14 +28,27 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-CONDITIONS = ("M", "L", "LN", "LT", "D0", "DE", "DX")
+CONDITIONS = ("M", "L", "LN", "LT", "D0", "DE", "DX", "D1F", "D1B")
 N_POINTS = 386
 NBOOT = 4000
 BOOT_SEED = 20261103
 MAX_TOKENS = 32768
+FROZEN_STATUS = "PROTOCOL 1c v1: frozen when the researcher approves this commit (--approved-commit)"
+UNCHUNKED_CHECK_MAX = 4096  # contexts short enough for the frozen one-pass MATH scorer on an 85 GB H800
 GAP = 1 / 3
 BRANCH_SEED = "Hindsight-1c-20261103-v1"
-LABEL = "Original-agent provenance: branch {branch} was the action chosen at the marked turn."
+# Same verb as the verified E1 execution label ("executed"); names the branch's first action, because a
+# replay branch is not the historical trajectory itself.
+LABEL = ("Execution record for the marked decision: the original agent executed the first action "
+         "of branch {branch}.")
+# Deliberately says nothing about who chose the displayed action (E1: an "evaluation marker" was itself
+# a strong pointer). Showing one branch is the manipulation; no provenance is stated.
+SINGLE_INTRO = (
+    "The following is one replay continuation from the marked decision state. It starts with one of "
+    "the candidate actions and then follows the same continuing Agent policy, with the same remaining "
+    "50-step episode budget. The other four candidate actions have no displayed continuation. "
+    "Judge all five original candidate actions."
+)
 DUAL_INTRO = (
     "The following two replay continuations start at the same marked decision state. "
     "Each uses one candidate action and then the same continuing Agent policy, with the same "
@@ -45,8 +58,8 @@ DUAL_INTRO = (
 )
 LT_INTRO = (
     "The following is the factual episode truncated just after the marked decision's "
-    "action and environment observation. Subsequent actions and terminal reward are omitted."
-)
+    "action and environment observation. Subsequent actions and terminal reward are omitted.\n"
+)  # trailing newline: same layout as the frozen log.txt / memory.txt templates
 THINK_BLOCK = re.compile(r"<think>.*?</think>\s*", flags=re.I | re.S)
 
 
@@ -235,6 +248,11 @@ def dual_text(M_text: str, pid: str, fac: dict, alt: dict):
     return {"D0":shared,"DE":d_true,"DX":d_swap}, dict(factual_branch=fact_label,contrast_branch=alt_label)
 
 
+def single_text(M_text: str, branch: dict):
+    """One anonymous replay branch (f's for D1F, b's for D1B), same JSON layout as one dual branch."""
+    return M_text + "\n" + SINGLE_INTRO + "\n" + json.dumps({"replay": branch}, ensure_ascii=False)
+
+
 def make_request(S: dict, condition: str, text: str):
     row=dict(request_id=f"{S['point_id']}__{condition}",point_id=S["point_id"],
              traj_id=S["traj_id"],turn=int(S["turn"]),condition=condition,
@@ -360,7 +378,8 @@ def prepare(args):
             f_branch=reconstruct(env,tr,t,c0,feedback[S["actions"][0]])
             b_branch=reconstruct(env,tr,t,cb,feedback[S["actions"][b]])
             dual,order=dual_text(M["text"],pid,f_branch,b_branch)
-            texts={"M":M["text"],"L":L["text"],"LN":ln,"LT":lt,**dual}
+            texts={"M":M["text"],"L":L["text"],"LN":ln,"LT":lt,**dual,
+                   "D1F":single_text(M["text"],f_branch),"D1B":single_text(M["text"],b_branch)}
             assert set(texts)==set(CONDITIONS)
             records.extend(make_request(S,c,texts[c]) for c in CONDITIONS)
             audit.append(dict(point_id=pid,traj=z["traj"],turn=t,layer=z["layer"],
@@ -385,7 +404,7 @@ def prepare(args):
     expected_arms=p4_e2["inputs"]["exploratory_deep_discovery/exploratory_arms.parquet"]
     assert file_sha(arms_path)==expected_arms, "P4 arms source mismatch"
     hashes["P4-ARMS"]=expected_arms
-    man=dict(status="UNFROZEN REVIEW / NOT RUN",points=N_POINTS,requests=len(records),
+    man=dict(status="PREPARED / NOT SCORED; "+FROZEN_STATUS,points=N_POINTS,requests=len(records),
              conditions=list(CONDITIONS),requests_sha256=sha(body),
              audit_sha256=None,source_sha256=hashes,
              replay_source_root=str(replay_root),
@@ -424,7 +443,8 @@ def prepared(out):
         actual=rows[i*len(CONDITIONS):(i+1)*len(CONDITIONS)]
         assert [r["condition"] for r in actual]==list(CONDITIONS)
         assert all(r["point_id"]==z["point_id"] for r in actual)
-        assert actual[4]["text"].startswith(actual[0]["text"]), "dual lacks history"
+        for c in ("D0", "DE", "DX", "D1F", "D1B"):
+            assert actual[CONDITIONS.index(c)]["text"].startswith(actual[0]["text"]), f"{c} lacks history"
     return rows,audit,man
 
 
@@ -496,16 +516,20 @@ def _score_math(args):
         assert file_sha(model/name)==digest,"Qwen metadata changed: "+name
     tok=get_tokenizer(model)
     # All token lengths checked BEFORE model load, and no point can be silently removed.
-    maxlen=0
-    for j in jobs:maxlen=max(maxlen,tokenize(tok,j)["max_tokens"])
+    lens={j["request_id"]:tokenize(tok,j)["max_tokens"] for j in jobs}
+    maxlen=max(lens.values())
     assert maxlen<=MAX_TOKENS, f"context length {maxlen} exceeds {MAX_TOKENS}"
     spec=importlib.util.spec_from_file_location("frozen_p4_scorer",backend)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     module.MODEL=str(model)
+    chunk_src=HERE/"exp1c_backend.py"
+    cspec=importlib.util.spec_from_file_location("exp1c_chunked_scorer",chunk_src)
+    cmod=importlib.util.module_from_spec(cspec);cspec.loader.exec_module(cmod)
     fingerprint=run_fingerprint()
     assert fingerprint["sdpa_math"] and not any(fingerprint[k] for k in ("sdpa_flash","sdpa_mem_efficient","sdpa_cudnn"))
     run_meta=dict(model="32b",revision=args.revision,model_sha256=weights,
-        backend_sha256=file_sha(backend),script_sha256=file_sha(Path(__file__)),
+        backend_sha256=file_sha(backend),chunked_backend_sha256=file_sha(chunk_src),chunk=cmod.CHUNK,
+        script_sha256=file_sha(Path(__file__)),
         protocol_sha256=file_sha(HERE/"EXPERIMENT1C_DRAFT.md"),
         requests_sha256=man["requests_sha256"],audit_sha256=man["audit_sha256"],
         fingerprint=fingerprint, max_tokens=maxlen)
@@ -528,19 +552,38 @@ def _score_math(args):
         assert len(done)==len(jobs) and file_sha(score_path)==prev["scores_sha256"]
         print("Already scored and verified; stopping without overwrite");return
     save(run_path,{**run_meta,"complete":False,"contexts":len(done)})
-    model_start=time.time();scorer=module.Scorer()
+    model_start=time.time();frozen=module.Scorer();scorer=cmod.ChunkedScorer(frozen)
     assert run_fingerprint()==fingerprint
     def prob(lps):
         x=np.array([sum(x) for x in lps],float);y=np.exp(x-x.max());return y/y.sum()
-    check_jobs=[next(j for j in jobs if j["condition"]==c) for c in CONDITIONS]
-    check_jobs.append(max(jobs,key=lambda j:len(j["text"])))
+    # Longest context first: an out-of-memory failure must surface before anything else runs.
+    longest=max(jobs,key=lambda j:lens[j["request_id"]])
+    check_jobs=[longest]+[next(j for j in jobs if j["condition"]==c) for c in CONDITIONS]
+    # Chunking equivalence: shortest context of each condition, if short enough for one-pass MATH.
+    short=[min((j for j in jobs if j["condition"]==c),key=lambda j:lens[j["request_id"]]) for c in CONDITIONS]
+    short=[j for j in short if lens[j["request_id"]]<=UNCHUNKED_CHECK_MAX]
     checks=[]
-    for item in check_jobs:
-        j=tokenize(tok,item)
-        a=prob(scorer.score(j));b=prob([scorer.direct(j,k) for k in range(5)])
-        tv=float(np.abs(a-b).sum()/2)
-        checks.append(dict(request_id=item["request_id"],tv=tv,passed=tv<0.005))
+    try:
+        for item in check_jobs:
+            j=tokenize(tok,item)
+            a=prob(scorer.score(j));b=prob([scorer.direct(j,k) for k in range(5)])
+            tv=float(np.abs(a-b).sum()/2)
+            checks.append(dict(kind="chunked_shared_prefix_vs_chunked_direct",request_id=item["request_id"],
+                               tokens=lens[item["request_id"]],tv=tv,passed=tv<0.005))
+        for item in short:
+            j=tokenize(tok,item)
+            a=prob(scorer.score(j));b=prob(frozen.score(j))
+            tv=float(np.abs(a-b).sum()/2)
+            checks.append(dict(kind="chunked_vs_frozen_one_pass",request_id=item["request_id"],
+                               tokens=lens[item["request_id"]],tv=tv,passed=tv<0.005))
+    except torch.cuda.OutOfMemoryError as exc:
+        save(target/"numerical_check.json",checks+[dict(kind="OOM",error=str(exc)[:500],
+             peak_gb=float(torch.cuda.max_memory_allocated()/1e9))])
+        raise SystemExit("OUT OF MEMORY in the numerical gate; NO score file written. "
+                         "Do not change kernels or chunk size without a recorded amendment.")
     save(target/"numerical_check.json",checks)
+    assert sum(x["kind"]=="chunked_vs_frozen_one_pass" for x in checks)>=3, \
+        "fewer than 3 chunking-equivalence checks possible; review before scoring"
     assert all(x["passed"] for x in checks),"Numerical gate failed; NO score file written"
     start=time.time()
     with score_path.open("a",buffering=1) as f:
@@ -615,13 +658,16 @@ def analyze(args):
     arms=read_arms(repo,Path(args.arms).resolve(),man["source_sha256"]["P4-ARMS"])
     groups={"all":lambda a:True,"I":lambda a:a["layer"]=="I","U":lambda a:a["layer"]=="U",
         "bad_q12_ge_third":lambda a:a["q12_gap"]>=GAP-1e-8,
+        "gold_all":lambda a:True,
         "gold_bad_q12_ge_third":lambda a:a["q12_gap"]>=GAP-1e-8}
     metrics={}
     for name,selector in groups.items():
-        d=defaultdict(list);traj=[]
+        d=defaultdict(list);traj=defaultdict(list)
+        def put(key,value,tr):
+            d[key].append(value);traj[key].append(tr)
         for a in audit:
             if not selector(a):continue
-            pid=a["point_id"];b=a["swap_arm"]
+            pid=a["point_id"];b=a["swap_arm"];tr=a["traj"]
             qkey="qgold" if name.startswith("gold") else "q3456"
             vals=np.array([arms[pid][j][qkey] for j in range(5)],float)
             if not np.isfinite(vals).all():
@@ -632,13 +678,23 @@ def analyze(args):
             ll={k:np.array(s[k]["sequence_logp"],float) for k in CONDITIONS}
             lo={k:ll[k][0]-ll[k][b] for k in CONDITIONS}
             value={k:float(p[k]@vals) for k in CONDITIONS}
+            others=[j for j in range(5) if j not in (0,b)]
+            def pull(cond,arm,ref="M"):
+                dd=ll[cond]-ll[ref];return float(dd[arm]-dd[others].mean())
+            fo,bo=int(a["factual_outcome"]),int(a["contrast_outcome"])
             measurements={
+                # H1: identity label with both full branches displayed and fixed
                 "dual_pointer_swap_nat":(lo["DE"]-lo["DX"])/2,
                 "dual_pointer_true_minus_anon_nat":lo["DE"]-lo["D0"],
+                # H3: decision value of adding the true label to symmetric evidence
+                "dual_true_label_minus_anon_value":value["DE"]-value["D0"],
+                "dual_true_minus_swap_label_value":value["DE"]-value["DX"],
+                # descriptive only: D0 displays branches for f and the q12-selected b (oracle competitor)
                 "dual_no_pointer_minus_L_value":value["D0"]-value["L"],
                 "dual_no_pointer_minus_M_value":value["D0"]-value["M"],
                 "dual_no_pointer_minus_true_value":value["D0"]-value["DE"],
                 "dual_no_pointer_minus_swap_value":value["D0"]-value["DX"],
+                "single_f_minus_M_value":value["D1F"]-value["M"],
                 "L_minus_M_value":value["L"]-value["M"],
                 "LN_minus_L_value":value["LN"]-value["L"],
                 "LT_minus_L_value":value["LT"]-value["L"],
@@ -646,40 +702,78 @@ def analyze(args):
                 "LN_minus_L_factual_logodds_nat":lo["LN"]-lo["L"],
                 "LT_minus_L_factual_logodds_nat":lo["LT"]-lo["L"],
                 "D0_minus_M_factual_logodds_nat":lo["D0"]-lo["M"],
+                "D1F_minus_M_factual_logodds_nat":lo["D1F"]-lo["M"],
+                "M_argmax_factual":float(p["M"].argmax()==0),
+                "L_argmax_factual":float(p["L"].argmax()==0),
                 "D0_argmax_factual":float(p["D0"].argmax()==0),
                 "DE_argmax_factual":float(p["DE"].argmax()==0),
                 "DX_argmax_factual":float(p["DX"].argmax()==0),
-                "L_argmax_factual":float(p["L"].argmax()==0),
+                "D1F_argmax_factual":float(p["D1F"].argmax()==0),
                 "q3456_f_minus_b":vals[0]-vals[b],
                 "dual_branch_length_diff":a["factual_steps"]-a["contrast_steps"],
             }
-            for k,v in measurements.items():d[k].append(v)
-            traj.append(a["traj"])
-        metrics[name]={key:mean_ci(vals,traj) for key,vals in d.items()}
-        # Exploratory slope of representation-induced factual log odds against independent q difference.
-        q=np.array(d["q3456_f_minus_b"])
-        for target_name in ("L_minus_M_factual_logodds_nat","D0_minus_M_factual_logodds_nat"):
-            y=np.array(d[target_name]);slope=float(np.cov(q,y,bias=True)[0,1]/np.var(q)) if len(q)>2 and np.var(q)>1e-12 else None
-            metrics[name][target_name]["ols_slope_vs_heldout_q"] = slope
-    findings=dict(status="EXPLORATORY_DRAFT_NOT_FROZEN",scope="P4 I/U Fork 386 points; bank1 rep0 two-branch",
+            for k,v in measurements.items():put(k,v,tr)
+            # H1 secondary: both arms below the log-prob ceiling in D0 (E1 lesson: sequence log-prob <= 0)
+            if ll["D0"][0]<-1 and ll["D0"][b]<-1:put("dual_pointer_swap_nat_headroom",(lo["DE"]-lo["DX"])/2,tr)
+            put(f"dual_pointer_swap_nat_f{fo}b{bo}",(lo["DE"]-lo["DX"])/2,tr)
+            # H2: pull toward the only displayed action, relative to M and to the three never-displayed arms,
+            # pooled over displayed branches that FAILED (an information-only judge should not move toward it)
+            for cond,arm,outcome in (("D1F",0,fo),("D1B",b,bo)):
+                tag="failed" if outcome==0 else "succeeded"
+                put(f"single_branch_pull_{tag}_nat",pull(cond,arm),tr)
+                if ll["M"][arm]<-1:put(f"single_branch_pull_{tag}_nat_headroom",pull(cond,arm),tr)
+            if fo==0:put("single_f_failed_minus_M_factual_logodds_nat",lo["D1F"]-lo["M"],tr)
+        metrics[name]={key:mean_ci(vals,traj[key]) for key,vals in d.items()}
+        q=np.array(d["q3456_f_minus_b"]);tq=traj["q3456_f_minus_b"]
+        for target_name in ("L_minus_M_factual_logodds_nat","D0_minus_M_factual_logodds_nat",
+                            "D1F_minus_M_factual_logodds_nat"):
+            metrics[name][target_name]["slope_vs_heldout_q"]=slope_ci(q,np.array(d[target_name]),tq)
+    main=metrics["all"];bad=metrics["bad_q12_ge_third"]
+    lower=lambda z:z["ci95"] is not None and z["ci95"][0]>0
+    upper=lambda z:z["ci95"] is not None and z["ci95"][1]<0
+    none={"ci95":None}
+    decisions={
+        "H1_identity_label_under_symmetric_two_branch_evidence":lower(main.get("dual_pointer_swap_nat",none)),
+        "H2_pull_toward_displayed_failed_branch":lower(main.get("single_branch_pull_failed_nat",none)),
+        "H3_true_label_value_harm_on_q12_worse":upper(bad.get("dual_true_label_minus_anon_value",none)),
+        "bootstrap_seed":BOOT_SEED,"nboot":NBOOT}
+    findings=dict(status=FROZEN_STATUS,scope="P4 I/U Fork 386 points; bank1 rep0 branches for f and q12-best b",
                   analysis_seed=BOOT_SEED,nboot=NBOOT,conditions=list(CONDITIONS),
                   manifest_sha256=file_sha(out/"manifest.json"),
-                  run=run,metrics=metrics)
+                  run=run,decisions=decisions,metrics=metrics)
     save(target/"analysis.json",findings)
-    lines=["Experiment 1c (unfrozen exploratory design): complete P4 post-hoc L and anonymous symmetric two-branch evidence.",
-           "All 32B conditions re-scored within one run. Values in pp, log odds in nats.",
-           "CAUTION: D0 vs L changes both provenance and available world evidence; this is NOT the pure pointer effect.",
-           "Causal pointer manipulation is DE vs DX with identical two-branch evidence; D0 vs DE is removal of explicit label."]
+    lines=["Experiment 1c: full hindsight logs, anonymous replay branches and execution labels (32B, one run).",
+           "Values in pp, log odds in nats; 95% trajectory-cluster bootstrap.",
+           "Predefined decisions: "+json.dumps(decisions),
+           "CAUTION: D0/D1 display branches only for f and the q12-selected b; any D-vs-M/L value contrast",
+           "includes that oracle selection and is descriptive, not evidence that removing the pointer helps.",
+           "Causal identity manipulation is DE vs DX (identical two-branch evidence); H2 is the display-only pointer."]
     for g,data in metrics.items():
         lines.append("\n"+g)
         for k,z in data.items():
             if k=="q3456_f_minus_b" or z["n"]==0:continue
             unit="nat" if "nat" in k else ("turns" if "branch_length" in k else ("%" if "argmax" in k else "pp"))
             scale=1 if unit in ("nat","turns") else 100
-            extra=f" slope={z['ols_slope_vs_heldout_q']:+.3f}" if z.get("ols_slope_vs_heldout_q") is not None else ""
-            lines.append(f"  {k:42s} {z['estimate']*scale:+.3f} [{z['ci95'][0]*scale:+.3f},{z['ci95'][1]*scale:+.3f}] {unit} n={z['n']} traj={z['n_trajectories']}{extra}")
+            sl=z.get("slope_vs_heldout_q")
+            extra=f" slope={sl['estimate']:+.3f} [{sl['ci95'][0]:+.3f},{sl['ci95'][1]:+.3f}]" if sl else ""
+            lines.append(f"  {k:48s} {z['estimate']*scale:+.3f} [{z['ci95'][0]*scale:+.3f},{z['ci95'][1]*scale:+.3f}] {unit} n={z['n']} traj={z['n_trajectories']}{extra}")
     (target/"REPORT.txt").write_text("\n".join(lines)+"\n")
     print("\n".join(lines))
+
+
+def slope_ci(x,y,trajectories,seed=BOOT_SEED,nboot=1000):
+    """OLS slope of y on x with a trajectory-cluster bootstrap CI (descriptive)."""
+    x=np.asarray(x,float);y=np.asarray(y,float);tt=np.asarray(trajectories)
+    if len(x)<3 or np.var(x)<1e-12:return None
+    ids=sorted(set(tt));rows={t:np.where(tt==t)[0] for t in ids}
+    def fit(ix):
+        xx,yy=x[ix],y[ix];v=np.var(xx)
+        return float(np.cov(xx,yy,bias=True)[0,1]/v) if v>1e-12 else np.nan
+    rng=np.random.default_rng(seed);bs=[]
+    for _ in range(nboot):
+        pick=rng.integers(0,len(ids),len(ids));bs.append(fit(np.concatenate([rows[ids[i]] for i in pick])))
+    bs=np.array(bs);bs=bs[np.isfinite(bs)]
+    return dict(estimate=fit(np.arange(len(x))),ci95=[float(np.percentile(bs,2.5)),float(np.percentile(bs,97.5))])
 
 
 def selftest(_args):
@@ -708,10 +802,15 @@ def selftest(_args):
     txt,roles=dual_text("M prompt", "s000_t01",z,{"steps":[{"turn":1,"action":"look","observation_after":"nothing"}],"terminal_success":0})
     assert txt["DE"].replace(LABEL.format(branch=roles["factual_branch"]),"")==txt["D0"]+"\n"
     assert txt["DX"].replace(LABEL.format(branch=roles["contrast_branch"]),"")==txt["D0"]+"\n"
-    assert "provenance" not in txt["D0"].lower() and "original agent" not in txt["D0"].lower()
+    assert "execution record" not in txt["D0"].lower() and "original agent" not in txt["D0"].lower()
+    assert LABEL.format(branch="A").replace("A.","B.")==LABEL.format(branch="B")
+    one=single_text("M prompt",z)
+    assert one.startswith("M prompt\n") and "branch_" not in one and "original agent" not in one.lower()
+    assert "executed" not in SINGLE_INTRO.lower() and "marker" not in SINGLE_INTRO.lower()
+    assert LT_INTRO.endswith("\n")
     assert replay_continuation({"continuations":[dict(cont,rep=1,won=False),cont]},0)==cont
     assert mean_ci([1,0,0],["A","A","B"],nboot=100)["estimate"]==1/3
-    print("SELFTEST PASSED (written CoT, truncation, CPU replay, replica selection, two-branch label isolation, bootstrap)")
+    print("SELFTEST PASSED (written CoT, truncation, CPU replay, replica selection, two-branch label isolation, single-branch text, bootstrap)")
 
 
 def main():

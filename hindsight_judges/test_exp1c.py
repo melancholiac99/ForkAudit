@@ -1,4 +1,4 @@
-"""CPU-only tests for the review version of Experiment 1c.
+"""CPU-only tests for Experiment 1c (protocol v1).
 
 No Qwen checkpoint, GPU, TextWorld installation or external model service required.
 Includes a small synthetic prepare -> score-fixture -> analyze test.
@@ -94,8 +94,8 @@ class Tests(unittest.TestCase):
         for i in range(20):
             t,order=C.dual_text('M',f's{i:03d}_t01',fac,alt)
             self.assertIn('branch_A',t['D0'])
-            self.assertNotIn('Original-agent provenance',t['D0'])
-            self.assertIn('Original-agent provenance',t['DE'])
+            self.assertNotIn('Execution record',t['D0'])
+            self.assertIn('Execution record',t['DE'])
             self.assertEqual(t['DE'].replace(C.LABEL.format(branch=order['factual_branch']),''),t['D0']+'\n')
             self.assertEqual(t['DX'].replace(C.LABEL.format(branch=order['contrast_branch']),''),t['D0']+'\n')
             self.assertNotEqual(order['factual_branch'],order['contrast_branch'])
@@ -103,7 +103,7 @@ class Tests(unittest.TestCase):
 
     def test_request_hash_must_change_with_label(self):
         s={'point_id':'s001_t01','traj_id':'s001','turn':1,'actions':['a','b','c','d','e']}
-        a=C.make_request(s,'DE','Executed branch A')
+        a=C.make_request(s,'DE','Executed branch A')  # label text itself is tested in selftest
         b=C.make_request(s,'DX','Executed branch B')
         self.assertNotEqual(a['request_sha256'],b['request_sha256'])
         self.assertEqual(a['actions'],b['actions'])
@@ -179,7 +179,8 @@ class Tests(unittest.TestCase):
                 scores=[]
                 for r in requests:
                     k=r['condition']
-                    odds={'M':0,'L':1.8,'LN':1.2,'LT':1.4,'D0':-1.0,'DE':0.9,'DX':-2.2}[k]
+                    odds={'M':0,'L':1.8,'LN':1.2,'LT':1.4,'D0':-1.0,'DE':0.9,'DX':-2.2,
+                          'D1F':1.5,'D1B':-0.5}[k]
                     logits=np.array([odds,0,-8,-8,-8],float)
                     xx=np.exp(logits-logits.max());pr=(xx/xx.sum()).tolist()
                     scores.append(dict(request_id=r['request_id'],request_sha256=r['request_sha256'],
@@ -199,9 +200,74 @@ class Tests(unittest.TestCase):
                 report=C.load(out/'32b/analysis.json')
                 self.assertGreater(report['metrics']['all']['dual_pointer_swap_nat']['estimate'],0)
                 self.assertGreater(report['metrics']['all']['dual_no_pointer_minus_true_value']['estimate'],0)
-                self.assertIn('CAUTION: D0 vs L', (out/'32b/REPORT.txt').read_text())
+                self.assertIn('CAUTION: D0/D1', (out/'32b/REPORT.txt').read_text())
+                # fixture: factual branch fails, contrast branch succeeds -> one failed instance per point
+                self.assertEqual(report['metrics']['all']['single_branch_pull_failed_nat']['n'],2)
+                self.assertAlmostEqual(report['metrics']['all']['single_branch_pull_failed_nat']['estimate'],1.5)
+                self.assertTrue(report['decisions']['H1_identity_label_under_symmetric_two_branch_evidence'] in (True,False))
+                self.assertEqual(set(k for k in report['decisions'] if k.startswith('H')),
+                    {'H1_identity_label_under_symmetric_two_branch_evidence',
+                     'H2_pull_toward_displayed_failed_branch','H3_true_label_value_harm_on_q12_worse'})
+                d1f=[r for r in requests if r['condition']=='D1F'][0]['text']
+                self.assertIn('"replay"',d1f); self.assertNotIn('Execution record',d1f)
+                self.assertIn('empty',d1f)  # factual branch observation, rebuilt by CPU replay
             finally:
                 C.N_POINTS=old_n
+
+
+class ChunkedScorerTest(unittest.TestCase):
+    """Runs only where torch + transformers are installed (e.g. the GPU server, on CPU).
+    A tiny random Qwen2 model in FP32: chunked prefill must reproduce the one-pass frozen logic."""
+    def test_chunked_equals_one_pass(self):
+        try:
+            import torch
+            from transformers import Qwen2Config, Qwen2ForCausalLM
+        except Exception as exc:  # pragma: no cover
+            self.skipTest(f'torch/transformers unavailable: {exc}')
+        import copy
+        import exp1c_backend as B
+        torch.manual_seed(0)
+        cfg=Qwen2Config(vocab_size=97,hidden_size=64,intermediate_size=128,num_hidden_layers=2,
+                        num_attention_heads=4,num_key_value_heads=2,max_position_embeddings=2048)
+        try:
+            model=Qwen2ForCausalLM._from_config(cfg,attn_implementation='sdpa')
+        except Exception:
+            cfg._attn_implementation='sdpa'; model=Qwen2ForCausalLM(cfg)
+        model=model.float().eval()
+
+        class OnePass:  # device-generic copy of exploratory_P4/p4_e2_backend.py Scorer logic
+            def __init__(self,m):self.t=torch;self.model=m
+            def score(self,job):
+                t,m=self.t,self.model;pre=job['prefix_ids'];cmds=[c['suffix_ids'] for c in job['candidates']]
+                with t.inference_mode():
+                    out=m.model(input_ids=t.tensor([pre]),use_cache=True)
+                    lp0=t.log_softmax(m.lm_head(out.last_hidden_state[0,-1].float()),-1);cache=out.past_key_values
+                    rows=[]
+                    for cmd in cmds:
+                        kv=copy.deepcopy(cache)
+                        h=m.model(input_ids=t.tensor([cmd[:-1]]),past_key_values=kv,use_cache=False).last_hidden_state
+                        lp=t.log_softmax(m.lm_head(h[0].float()),-1)
+                        rows.append([float(lp0[cmd[0]])]+lp[t.arange(len(cmd)-1),t.tensor(cmd[1:])].tolist())
+                    return rows
+            def direct(self,job,arm):
+                t,m=self.t,self.model;pre=job['prefix_ids'];cmd=job['candidates'][arm]['suffix_ids'];ids=pre+cmd
+                with t.inference_mode():
+                    h=m.model(input_ids=t.tensor([ids]),use_cache=False).last_hidden_state
+                    lp=t.log_softmax(m.lm_head(h[0,len(pre)-1:len(ids)-1].float()),-1)
+                    return lp[t.arange(len(cmd)),t.tensor(cmd)].tolist()
+
+        rng=np.random.default_rng(1)
+        pre=rng.integers(0,97,301).tolist()
+        job=dict(prefix_ids=pre,candidates=[dict(suffix_ids=rng.integers(0,97,n).tolist()) for n in (3,5,8,4,6)])
+        ref=OnePass(model)
+        for chunk in (7,64,300,301,1024):
+            ch=B.ChunkedScorer(ref,chunk=chunk)
+            a=ch.score(job);b=ref.score(job)
+            self.assertEqual([len(x) for x in a],[len(x) for x in b])
+            self.assertLess(max(abs(x-y) for u,v in zip(a,b) for x,y in zip(u,v)),1e-4,f'score chunk={chunk}')
+            for arm in range(5):
+                c=ch.direct(job,arm);d=ref.direct(job,arm)
+                self.assertLess(max(abs(x-y) for x,y in zip(c,d)),1e-4,f'direct chunk={chunk} arm={arm}')
 
 
 if __name__=='__main__':unittest.main()
