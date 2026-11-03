@@ -45,6 +45,35 @@ def student_prefix(response: str, mode: str) -> str:
     return before + action.group(0)
 
 
+CLOSE_ACTION = re.compile(r'\s*(\[/action\]|</action>|\[/action>)', re.I)
+
+
+def action_format(response: str, executed: str):
+    """The Student's own wrapping of its action: whitespace after the open tag and the closing tag.
+
+    Review 2026-11-03: the 386 original responses use '<action>X</action>' (298), '[action] X' with
+    or without '[/action]', and '[action>'. Scoring every candidate as 'X</action>' after the
+    Student's own open tag puts 88 points' first action token without its leading space and 86
+    points' closing tag in a form the Student never wrote. Candidates now reuse the Student's
+    exact lead/tail; the executed action's text must match the frozen candidate string exactly.
+    """
+    matches = list(OPEN_ACTION.finditer(response))
+    if not matches:
+        raise ValueError('No tagged action in original Student response')
+    last_think_end = response.lower().rfind('</think>')
+    after = [m for m in matches if m.start() >= last_think_end + len('</think>')]
+    action = after[-1] if after else matches[-1]
+    rest = response[action.end():]
+    lead = re.match(r'\s*', rest).group(0)
+    body = rest[len(lead):]
+    close = CLOSE_ACTION.search(body)
+    text = (body[:close.start()] if close else body).strip()
+    tail = close.group(0) if close else ''
+    if text != executed:
+        raise ValueError(f'Executed action text {text!r} differs from frozen candidate {executed!r}')
+    return lead, tail
+
+
 def redact_episode(ep: dict, turn: int, strip_other_thinks: bool) -> dict:
     """Mask current action and its duplicated entire response, retain environment observation.
 
@@ -75,6 +104,7 @@ def make_cases(S, L, F, template, feedback_template):
     response = ep['steps'][turn - 1]['response']
     pre = {m:student_prefix(response, m) for m in THINKS}
     assert pre['keep'] != pre['drop'], 'Missing operative <think> span at marked turn'
+    lead, tail = action_format(response, S['actions'][0])
     feedback_prefix = S['text'] + '\n' + feedback_template
     assert F['text'].startswith(feedback_prefix), 'Original P4 F evidence mismatch'
     feedback = json.loads(F['text'][len(feedback_prefix):])
@@ -98,7 +128,7 @@ def make_cases(S, L, F, template, feedback_template):
             item = dict(id=S['point_id']+'__'+condition+'__'+mode,
                 point_id=S['point_id'], traj=S['traj_id'], turn=turn,
                 condition=condition, think=mode, prompt=user,
-                reply_prefix=pre[mode], actions=S['actions'])
+                reply_prefix=pre[mode], action_lead=lead, action_tail=tail, actions=S['actions'])
             item['sha256'] = hashlib.sha256(json.dumps(item, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
             rows.append(item)
     return rows
@@ -135,7 +165,8 @@ def tokenize(tok, row):
     prefix=tok.apply_chat_template([dict(role='user',content=row['prompt'])],
                     tokenize=False,add_generation_prompt=True)+row['reply_prefix']
     pre=tok.encode(prefix,add_special_tokens=False)
-    full=[tok.encode(prefix+a+'</action>'+tok.eos_token,add_special_tokens=False) for a in row['actions']]
+    full=[tok.encode(prefix+row['action_lead']+a+row['action_tail']+tok.eos_token,add_special_tokens=False)
+          for a in row['actions']]
     start=len(pre)
     for ids in full:
         i=0
@@ -269,12 +300,25 @@ def analyze(args):
                     tag=f'{name}_{cond}_{mode}'
                     correction=float((ll[0]-ll[b])-(llr[0]-llr[b]))
                     put(tag+'_correction_logodds',correction,tr)
+                    # Clipped at +-10 nats per side: with Think kept both models are near-certain of f,
+                    # so ll(b) sits far in the tail and unclipped log-odds are dominated by it.
+                    put(tag+'_correction_logodds_clip10',float(np.clip(ll[0]-ll[b],-10,10)-np.clip(llr[0]-llr[b],-10,10)),tr)
+                    put(tag+'_teacher_value',float(p@q),tr)
+                    put(tag+'_teacher_argmax_factual',float(np.argmax(p)==0),tr)
                     put(tag+'_value_gain',float((p-pr)@q),tr)
                     put(tag+'_factual_logp_delta',float(ll[0]-llr[0]),tr)
                     put(tag+'_factual_probability',float(p[0]),tr)
                     put(tag+'_bad_factual_correction',correction if gap < -1e-6 else np.nan,tr)
                     paired[(name,pid,cond,mode)]=dict(correction=correction,value_gain=float((p-pr)@q),gap=gap,traj=tr)
+            for mode in THINKS:
+                if name == '7b' and ('7b',pid,'M',mode) in scores:
+                    put(f'student7b_M_{mode}_value',float(np.array(scores[('7b',pid,'M',mode)]['prob'])@q),tr)
             for cond in args.conditions:
+                if all((name,pid,cond,m) in scores for m in THINKS):
+                    # Same teacher, same privilege, Think removed vs kept: raw decision value, no Student subtraction.
+                    vk=float(np.array(scores[(name,pid,cond,'keep')]['prob'])@q)
+                    vd=float(np.array(scores[(name,pid,cond,'drop')]['prob'])@q)
+                    put(f'{name}_{cond}_drop_minus_keep_teacher_value',vd-vk,tr)
                 a=paired.get((name,pid,cond,'keep'));b2=paired.get((name,pid,cond,'drop'))
                 if a and b2:
                     put(f'{name}_{cond}_drop_minus_keep_value_gain',b2['value_gain']-a['value_gain'],tr)
@@ -294,7 +338,8 @@ def analyze(args):
                                               [x['traj'] for x in cases],nboot=2000)
     save_json(out/f'analysis_{cohort}.json',dict(n_points=len(mids),status='diagnosis, NOT proof of OPD gradient quality',metrics=stats))
     for k,v in stats.items():
-        if k.endswith(('slope_vs_qgap','drop_minus_keep_value_gain','bad_factual_correction')):
+        if k.endswith(('slope_vs_qgap','drop_minus_keep_value_gain','bad_factual_correction',
+                       'drop_minus_keep_teacher_value','_teacher_value','_student_value')) and not k.startswith('student7b_x'):
             print(k,v)
 
 
@@ -310,6 +355,12 @@ def selftest(_):
     assert L['steps'][0]==LN['steps'][0] and L['steps'][0]['observation_after']=='nothing'
     assert '<think>' in L['steps'][1]['response'] and '<think>' not in LN['steps'][1]['response']
     assert extract_decision_prompt(s)=='Task'
+    assert action_format('<think>x</think>\n<action>open fridge</action>','open fridge')==('','</action>')
+    assert action_format('<think>x</think>\n[action] go to desk 1 [/action]','go to desk 1')==(' ',' [/action]')
+    assert action_format('<think>x</think>[action] go to desk 1','go to desk 1')==(' ','')
+    try:
+        action_format('<think>x</think><action>look</action>','open fridge');raise AssertionError('mismatch accepted')
+    except ValueError:pass
     print('SELFTEST PASS')
 
 
