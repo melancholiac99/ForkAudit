@@ -29,7 +29,7 @@ class HindsightExp2CPU(unittest.TestCase):
         self.assertIn('<think>A',loc.edit_episode(ep,1,'KEEP_T')[0]['steps'][0]['response'])
         self.assertIn('<think>B',loc.edit_episode(ep,1,'DROP_T')[0]['steps'][1]['response'])
 
-    def test_localize_makes_three_frozen_format_requests(self):
+    def test_localize_makes_four_frozen_format_requests(self):
         meta=[]; e2={}; template='LOG\n'
         for i in range(3):
             pid=f's{i:03d}_t01'
@@ -39,8 +39,11 @@ class HindsightExp2CPU(unittest.TestCase):
             meta.append(dict(point_id=pid,traj=f's{i:03d}'))
             e2[pid]={'S':s,'L':dict(text='M\n'+template+json.dumps(ep))}
         rows,audit=loc.build(meta,e2,template)
-        self.assertEqual(len(rows),9)
-        self.assertEqual(len({r['request_id'] for r in rows}),9)
+        self.assertEqual(len(rows),12)
+        self.assertEqual(len({r['request_id'] for r in rows}),12)
+        anchors=[r for r in rows if r['condition']==loc.ANCHOR]
+        self.assertEqual(len(anchors),3)
+        self.assertEqual([r['text'] for r in anchors], [e2[z['point_id']]['L']['text'] for z in meta])
         self.assertEqual(sum(a['condition']=='SWAP_T' and a['changed_blocks']==1 for a in audit),3)
         self.assertEqual(len({a['donor_id'] for a in audit if a['condition']=='SWAP_T'}),len(set(a['donor_id'] for a in audit if a['condition']=='SWAP_T')))
 
