@@ -20,6 +20,10 @@ import exp1c
 from exp2_common import ROOT, HERE, decode_rows, encode_rows, read_json, save_json, sha_file
 
 CONDITIONS = ('DROP_T', 'KEEP_T', 'SWAP_T')
+# Review 2026-11-03: the frozen E1c L text is re-scored in THIS run as the baseline. Subtracting
+# scores from the separate E1c run is a cross-run comparison (new cards, new load); agreement with
+# E1c L is reported as a reproducibility check instead.
+ANCHOR = 'L_RE'
 
 
 def edit_episode(ep, turn, condition, donor=None):
@@ -58,6 +62,9 @@ def build(meta, e2, template):
         pool = [p for p in sorted(donors) if p != pid and next(x['traj'] for x in meta if x['point_id'] == p) != traj]
         assert pool, 'No independent rationale donor found'
         donor_id = pool[int(exp1c.sha(pid.encode())[:10], 16) % len(pool)]
+        anchor = exp1c.make_request(e2[pid]['S'], ANCHOR, e2[pid]['L']['text'])
+        rows.append(anchor)
+        audit.append(dict(point_id=pid, traj=traj, turn=turn, condition=ANCHOR, changed_blocks=0, donor_id=None))
         for cond in CONDITIONS:
             adjusted, n = edit_episode(ep, turn, cond, donors[donor_id])
             rendered = e2[pid]['S']['text'] + '\n' + template + json.dumps(adjusted, ensure_ascii=False)
@@ -65,8 +72,8 @@ def build(meta, e2, template):
             rows.append(req)
             audit.append(dict(point_id=pid, traj=traj, turn=turn, condition=cond,
                               changed_blocks=n, donor_id=donor_id if cond == 'SWAP_T' else None))
-        assert all(r['point_id'] == pid for r in rows[-3:])
-    assert len(rows) == len(meta)*3 and len({r['request_id'] for r in rows}) == len(rows)
+        assert all(r['point_id'] == pid for r in rows[-4:])
+    assert len(rows) == len(meta)*4 and len({r['request_id'] for r in rows}) == len(rows)
     return rows, audit
 
 
@@ -88,7 +95,7 @@ def prepare(args):
     else:
         encode_rows(p, rows)
     save_json(out / 'audit.json', audit)
-    save_json(out / 'manifest.json', dict(status='prepared_not_scored', n=len(rows), conditions=list(CONDITIONS),
+    save_json(out / 'manifest.json', dict(status='prepared_not_scored', n=len(rows), conditions=[ANCHOR]+list(CONDITIONS),
         requests_sha256=decode_rows(p)[1], source_sha256=src,
         exp1c_requests_sha256=frozen['requests_sha256'],
         script_sha256=sha_file(Path(__file__))))
@@ -185,14 +192,14 @@ def analyze(args):
     assert sha_file(out/'32b/scores.jsonl') == new_run['scores_sha256']
     assert frozen_run['requests_sha256'] == man['exp1c_requests_sha256']
     scores = {}
-    for p in [out/'32b/scores.jsonl', Path(args.exp1c)/'32b/scores.jsonl']:
+    for p in [Path(args.exp1c)/'32b/scores.jsonl', out/'32b/scores.jsonl']:
         for line in p.read_text().splitlines():
             r=json.loads(line); scores[(r['point_id'],r['condition'])] = r
     audit = read_json(out/'audit.json')
     meta = {x['point_id']:x for x in read_json(Path(args.repo)/'hindsight_judges/results/exp1_p4/pointmeta.json')}
     arms_sha = read_json(Path(args.repo)/'exploratory_P4/e2.json')['inputs']['exploratory_deep_discovery/exploratory_arms.parquet']
     arms = exp1c.read_arms(Path(args.repo),Path(args.arms),arms_sha)
-    conditions = ('M','L','LN') + CONDITIONS
+    conditions = ('M','L','LN',ANCHOR) + CONDITIONS
     points = sorted(meta)
     assert all((p,c) in scores for p in points for c in conditions)
     metrics=defaultdict(list); trajs=defaultdict(list)
@@ -206,14 +213,20 @@ def analyze(args):
                 metrics[cond+'_'+key].append(v);trajs[cond+'_'+key].append(tr)
         for c in CONDITIONS:
             for name in ('value','factual_logodds','choose_f'):
+                # primary: within-run anchor; the E1c-run baseline is kept only for comparison
+                key=c+'_minus_LRE_'+name
+                metrics[key].append(metrics[c+'_'+name][-1]-metrics[ANCHOR+'_'+name][-1]);trajs[key].append(tr)
                 key=c+'_minus_L_'+name
                 metrics[key].append(metrics[c+'_'+name][-1]-metrics['L_'+name][-1]);trajs[key].append(tr)
+        a=np.array(scores[(pid,ANCHOR)]['candidate_prob']);o=np.array(scores[(pid,'L')]['candidate_prob'])
+        metrics['LRE_vs_E1c_L_tv'].append(float(np.abs(a-o).sum()/2));trajs['LRE_vs_E1c_L_tv'].append(tr)
+        metrics['LRE_vs_E1c_L_argmax_agree'].append(float(a.argmax()==o.argmax()));trajs['LRE_vs_E1c_L_argmax_agree'].append(tr)
     result={k:exp1c.mean_ci(v,trajs[k]) for k,v in metrics.items()}
     result['status']='EXPLORATORY: intervention effects, not a causal decomposition of rationalization'
     result['n_points']=len(points)
     save_json(out/'analysis.json',result)
     for k in sorted(result):
-        if k.endswith('minus_L_value') or k.endswith('minus_L_factual_logodds'):
+        if k.endswith(('minus_LRE_value','minus_LRE_factual_logodds','minus_L_value')) or k.startswith('LRE_vs'):
             print(k,result[k])
 
 
