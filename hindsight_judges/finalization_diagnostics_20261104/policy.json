@@ -1,0 +1,24 @@
+{
+  "authorized": true,
+  "user_instruction": "好吧，就是按以前的要求做好了就关机",
+  "utc": "2026-11-03T17:15:02Z",
+  "scope": [
+    "action_diagnostic_7b_32b",
+    "think_localization",
+    "full_response_p4_7b_32b",
+    "full_response_e4_32b_with_7b_student"
+  ],
+  "success_requires": [
+    "all_queues_complete",
+    "independent_verification",
+    "complete_github_publication",
+    "idle_gpu"
+  ],
+  "on_failure": "Wake agent and make best effort to repair; if genuinely unrecoverable preserve results/errors and sync before shutdown. Never force-push or relax scientific gates.",
+  "shutdown_command": [
+    "/bin/bash",
+    "/usr/bin/shutdown"
+  ],
+  "branch": "research/hindsight-judges",
+  "supersedes_prior_no_shutdown_notes": true
+}
