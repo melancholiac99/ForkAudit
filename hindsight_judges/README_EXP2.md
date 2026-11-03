@@ -31,7 +31,7 @@ python hindsight_judges/think_localization.py analyze \
   --arms /path/to/original-matching/exploratory_arms.parquet
 ```
 
-Inputs: existing frozen E1c `results/exp1c_p4/{requests.jsonl.gz,manifest.json,audit.json,32b/scores.jsonl,32b/run.json}`, P4 tracked archives, E1 point metadata and original exact deep-discovery arms. This does **not** need the original P4 bank-1 replay directory again. Scores: `hindsight_judges/results/think_localization/32b/scores.jsonl`; analysis: `.../analysis.json`. 386 × 3 = 1,158 new 32B score jobs, plus frozen L/LN reused only if they are from the validated E1c run. Requires the original 32B checkpoint; no silent truncation; numerical gate before scores. No GPU executed by this code publication.
+Inputs: existing frozen E1c `results/exp1c_p4/{requests.jsonl.gz,manifest.json,audit.json,32b/scores.jsonl,32b/run.json}`, P4 tracked archives, E1 point metadata and original exact deep-discovery arms. This does **not** need the original P4 bank-1 replay directory again. Scores: `hindsight_judges/results/think_localization/32b/scores.jsonl`; analysis: `.../analysis.json`. 386 × 4 = 1,544 new 32B score jobs (L_RE + DROP_T / KEEP_T / SWAP_T). Frozen E1c L/LN scores are retained for comparison; L_RE is the within-run anchor. Requires the original 32B checkpoint; no silent truncation; numerical gate before scores. No GPU executed by this code publication.
 
 ## Experiment 2: first on-policy round
 
