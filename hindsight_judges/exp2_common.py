@@ -58,7 +58,7 @@ def load_32b(model_path: Path, repo: Path):
     backend = repo / 'exploratory_P4/p4_e2_backend.py'
     assert sha_file(backend) == original['scorer_sha256'], 'frozen P4 backend changed'
     exp1c_precision.set_flags(torch)
-    assert torch.backends.cuda.is_available(), 'CUDA is required'
+    assert torch.cuda.is_available(), 'CUDA is required'
     spec = importlib.util.spec_from_file_location('p4_frozen_exp2', backend)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)

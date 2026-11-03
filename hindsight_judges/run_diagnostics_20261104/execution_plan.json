@@ -1,0 +1,20 @@
+{
+  "utc": "2026-11-03T16:07:16Z",
+  "user_instruction": "去hindsight上拉最新的代码 然后只跑诊断 不跑hln",
+  "upstream_commit": "046004e49d54d1071ac6067ce144ccc2014522d2",
+  "branch": "research/hindsight-judges",
+  "scope": [
+    "action_diagnostic_7b_full",
+    "action_diagnostic_32b_full",
+    "think_localization_32b_full"
+  ],
+  "excluded": [
+    "hln_prepare",
+    "hln_score",
+    "hln_train",
+    "opd",
+    "new_rollouts"
+  ],
+  "shutdown_authorized_for_this_task": false,
+  "repair": "exp2_common.py: use torch.cuda.is_available(); torch.backends.cuda.is_available does not exist in installed PyTorch 2.13.0+cu130. No inference/statistical settings changed."
+}
