@@ -1,6 +1,34 @@
 # Hindsight next three steps: run-first implementation
 
-**Status:** code + 7 targeted CPU tests; **no new GPU data or H-LN training result**. Branch `research/hindsight-judges`; no modifications to frozen E1/E1c, E4 or `main`.
+## Review 2026-11-03 (before any GPU work): what to run on two cards
+
+**Run now (scoring only, both cards in parallel).** Each job is one process pinned to one card.
+
+| Card | Order | Command | Contexts | Rough time* |
+|---|---|---|---|---|
+| 0 | 1 | `exp3_action_diagnostic.py score --name 7b` | 3,088 | ~2 h |
+| 1 | 1 | `exp3_action_diagnostic.py score --name 32b` | 3,088 | ~2.5 h |
+| 1 | 2 | `think_localization.py score` | 1,544 | ~1.5 h |
+| 0 | 2 | `exp3_hln_dpo.py score` (32B) | 12,032 | ~10 h |
+
+*From E1c: 2.7 s per 32B context, longer for full logs. Run every `prepare` (CPU) first; the GPU gates still run before any score is written. If an older 3-condition `think_localization` preparation already exists, use a fresh `--out` directory consistently for prepare / score / analyze (do not mix 1,158 and 1,544 requests).
+
+**Changes in this review**
+
+1. *Action diagnostic, candidate format.* The 386 responses wrap actions as `<action>X</action>` (298), `[action] X` with or without `[/action]` (86) and `[action>X` (54); 88 have a space after the tag. Candidates were always scored as `X</action>`, i.e. in a form the Student never wrote at 88–140 points, which depresses exactly the Student reference log-probs the diagnostic subtracts. Candidates now reuse the Student's own lead whitespace and closing tag; the executed text matches the frozen candidate string at 386/386 points (checked; mismatches would be skipped and logged).
+2. *Action diagnostic, metrics.* Added raw teacher decision value per condition × Think mode and the same-teacher `drop − keep` value (no Student subtraction, which differs between modes), clipped (±10 nat) log-odds corrections, and the 7B Student's own value. With Think kept both models are near-certain of f, so unclipped log-odds are dominated by the tail of ℓ(b) (E1/E1c lesson).
+3. *Think localization, baseline.* The frozen E1c L text is re-scored in the same run (`L_RE`, +386 contexts) and is the baseline for `*_minus_LRE_*`. The old `*_minus_L_*` (E1c run) and the `L_RE` vs E1c agreement are reported for comparison only.
+4. *H-LN DPO, learning rate.* E4 selected 5e-6 on tune; every E4 adapter's `train_log.json` records `lr=5e-06`. The default and commands below now use 5e-6.
+
+**Decide after scoring, not now: the H-LN training design.** Both natural arms have far more than 1,000 candidate pairs (E4 H had 3,162 before the cap), so capping both at 1,000 removes the main channel through which anchoring acts (fewer corrections). And `argmax ≻ executed` pairs can never reinforce the executed action, so DPO cannot show self-confirmation. A more direct test with the same scores: credit-filtered self-imitation (top-1,000 executed responses ranked by the judge's p(f) under L, LN, F; trained with the frozen E4 SFT path, one E4 data directory per arm with its own `pairs/Esft.jsonl`). A zero-cost check on the original E4 scores already separates them: among the top-1,000 by p(f), the executed action is clearly worse than an alternative (3-run replay gap ≥ 1/3) at 22% of points under L, 17% for a random 1,000 and 15% under F.
+
+**Hold: online OPD (`exp2_online.py`).**
+- *Target leakage.* `guarded_context_log` keeps the supervised turn's `action`, the rest of its response (action tag and text) and its observation in the Teacher's privileged log, unlike the diagnostic's redaction. Every privileged arm can read the answer to the tokens it scores.
+- *Action-dependent hindsight is self-confirming even without the leak.* A Teacher conditioned on the realized future of the Student's own sample approximates a posterior over what was done; for a calibrated posterior, the average target over the Student's own rollouts equals the Student's current policy, so distilling it carries no expected improvement signal on actions and pulls toward the sampled action (the action-independence condition of counterfactual credit assignment). Useful OPD privileged information should be action-independent, e.g. F-style one-step evidence for all candidates. `L_guarded` vs `LN_guarded` compares two action-dependent teachers.
+- *Cost.* Episodes are generated with batch-size-1 HF `generate` (≈40 steps × 134 tokens per episode): roughly 25–30 min per update, ~2 days per 100-update run, ~3–4 weeks of two-card time for 4 conditions × 3 seeds, before held-out evaluation.
+- Redesign after the action diagnostic: arms M / F (action-independent) / L-redacted (action-dependent), batched generation, fewer arms.
+
+**Status:** code + 8 targeted CPU tests; **no new GPU data or H-LN training result**. Branch `research/hindsight-judges`; no modifications to frozen E1/E1c, E4 or `main`.
 
 ## Step 1. Do the mechanism test first (386 original P4 forks)
 
@@ -60,7 +88,7 @@ python hindsight_judges/exp3_hln_dpo.py pairs --e4-data /tmp/e4_results/data
 for seed in 0 1 2; do
   for arm in H_re H_LN; do
     python hindsight_judges/exp3_hln_dpo.py train --e4-data /tmp/e4_results/data \
-      --arm "$arm" --seed "$seed" --lr 2e-5
+      --arm "$arm" --seed "$seed" --lr 5e-6
   done
 done
 
