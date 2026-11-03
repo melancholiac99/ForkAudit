@@ -1,7 +1,6 @@
 """Fast CPU checks for the three Hindsight follow-up components."""
 import json
 import unittest
-import torch
 import numpy as np
 
 import exp3_action_diagnostic as diagnostic
@@ -52,6 +51,15 @@ class TestActionDiagnostic(unittest.TestCase):
         self.assertEqual(len({tuple(x['actions']) for x in cases}),1)
         self.assertTrue(all('Open' not in x['prompt'] for x in cases))
         self.assertNotIn('executed_action": "open fridge"',next(x for x in cases if x['condition']=='L')['prompt'])
+        self.assertTrue(all(x['action_lead']=='' and x['action_tail']=='</action>' for x in cases))
+
+    def test_candidate_suffix_uses_student_wrapping(self):
+        lead,tail=diagnostic.action_format('<think>t</think>\n[action] go to desk 1','go to desk 1')
+        self.assertEqual((lead,tail),(' ',''))
+        lead,tail=diagnostic.action_format('<think>t</think>[action] look [/action]','look')
+        self.assertEqual((lead,tail),(' ',' [/action]'))
+        with self.assertRaises(ValueError):
+            diagnostic.action_format('<think>t</think><action>look</action>','open fridge')
 
 
 class TestHLN(unittest.TestCase):
@@ -86,6 +94,10 @@ class TestBlindCredit(unittest.TestCase):
                 self.assertEqual(np.sign(advantage*w),np.sign(advantage))
 
     def test_all_response_tokens_get_grad(self):
+        try:
+            import torch
+        except ImportError as exc:
+            self.skipTest(f'torch unavailable: {exc}')
         new=torch.zeros(7,requires_grad=True)
         loss,_=credit.weighted_ppo_policy_loss(new,torch.zeros(7),1,2,1,torch.ones(7))
         loss.backward()
