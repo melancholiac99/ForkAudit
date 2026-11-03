@@ -13,12 +13,12 @@ Read [EXPERIMENT1C_DRAFT.md](EXPERIMENT1C_DRAFT.md) first. E1c is separate from 
 On the original P4 research server, provide:
 
 - Existing P4 `exploratory_P4/e2_requests.jsonl.gz`, `e2m_requests.jsonl.gz`, their matching preparation files and `e2.json`.
-- Existing `hindsight_judges/results/exp1_p4/{pointmeta.json,manifest.json}` and the original full `data/rollout/*.json` files.
+- Existing `hindsight_judges/results/exp1_p4/{pointmeta.json,manifest.json}` plus P4's tracked `data/task_list.json` (100 original task paths and game SHA256s). **Full `data/rollout/*.json` is optional:** only 50 such files are tracked on GitHub, but all factual prefix actions and observations can be recovered losslessly from the E2 L requests. The script cross-checks any original rollout JSON that is present.
 - **Original P4 bank-1** `data/replay/<traj_id>/t<turn>.json`, with the complete `continuations[].actions` (this directory is **Git-ignored**, so GitHub clone alone is insufficient).
 - ALFWorld/TextWorld 0.4.2 environment with the original P4 game files, pointed to by `ALFWORLD_DATA` (default `/root/autodl-tmp/alfworld_data`).
 - Exact `exploratory_deep_discovery/exploratory_arms.parquet` from `research/deep-discovery-2026-10-27` (not the source `E4` replay estimates). Hash is matched to the original P4 `e2.json`.
 
-If the old P4 bank-1 replay JSON is missing, **stop and recover it**. Do not infer trajectories from aggregate q values, take a different E4 sample, or ask the policy to generate replacements.
+If the old P4 bank-1 replay JSON is missing, **stop and recover it**. Missing Git-tracked rollout JSON **does not** block E1c, because the source factual prefix is recovered from the frozen E2 L requests and `data/task_list.json`. Do not infer trajectories from aggregate q values, take a different E4 sample, or ask the policy to generate replacements.
 
 ## Commands, in order
 
