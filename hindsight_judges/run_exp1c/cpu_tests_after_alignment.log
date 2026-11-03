@@ -1,0 +1,203 @@
+test_chunked_equals_one_pass (test_exp1c.ChunkedScorerTest.test_chunked_equals_one_pass) ... ok
+test_bank1_rep0_not_best_reward (test_exp1c.Tests.test_bank1_rep0_not_best_reward) ... ok
+test_cluster_bootstrap_weighted_point_estimate (test_exp1c.Tests.test_cluster_bootstrap_weighted_point_estimate) ... ok
+test_descriptive_slope_uses_protocol_bootstrap_count (test_exp1c.Tests.test_descriptive_slope_uses_protocol_bootstrap_count) ... ok
+test_dual_anonymous_provenance_and_random_order (test_exp1c.Tests.test_dual_anonymous_provenance_and_random_order) ... ok
+test_reconstruct_detects_false_observation (test_exp1c.Tests.test_reconstruct_detects_false_observation) ... ok
+test_request_hash_must_change_with_label (test_exp1c.Tests.test_request_hash_must_change_with_label) ... ok
+test_synthetic_cpu_prepare_and_analysis (test_exp1c.Tests.test_synthetic_cpu_prepare_and_analysis) ... P4 I/U Fork points: 2. P4 bank-1 replay records: 2. ALFWorld game files: 2. Missing: 0 replay / 0 games
+PRE-FLIGHT PASS: original P4 bank-1 files and game paths available. P4 E2 L and task_list supply factual prefixes; rollout JSON is optional for cross-checks.
+PREPARED 18 requests; 2 visible think blocks removed.
+Experiment 1c: full hindsight logs, anonymous replay branches and execution labels (32B, one run).
+Values in pp, log odds in nats; 95% trajectory-cluster bootstrap.
+Predefined decisions: {"H1_identity_label_under_symmetric_two_branch_evidence": true, "H2_pull_toward_displayed_failed_branch": true, "H3_true_label_value_harm_on_q12_worse": true, "bootstrap_seed": 20261103, "nboot": 4000}
+CAUTION: D0/D1 display branches only for f and the q12-selected b; any D-vs-M/L value contrast
+includes that oracle selection and is descriptive, not evidence that removing the pointer helps.
+Causal identity manipulation is DE vs DX (identical two-branch evidence); H2 is the display-only pointer.
+
+all
+  dual_pointer_swap_nat                            +1.550 [+1.550,+1.550] nat n=2 traj=2
+  dual_pointer_true_minus_anon_nat                 +1.900 [+1.900,+1.900] nat n=2 traj=2
+  dual_true_label_minus_anon_value                 -35.324 [-35.324,-35.324] pp n=2 traj=2
+  dual_true_minus_swap_label_value                 -48.837 [-48.837,-48.837] pp n=2 traj=2
+  dual_no_pointer_minus_L_value                    +47.095 [+47.095,+47.095] pp n=2 traj=2
+  dual_no_pointer_minus_M_value                    +18.462 [+18.462,+18.462] pp n=2 traj=2
+  dual_no_pointer_minus_true_value                 +35.324 [+35.324,+35.324] pp n=2 traj=2
+  dual_no_pointer_minus_swap_value                 -13.513 [-13.513,-13.513] pp n=2 traj=2
+  single_f_minus_M_value                           -25.389 [-25.389,-25.389] pp n=2 traj=2
+  L_minus_M_value                                  -28.633 [-28.633,-28.633] pp n=2 traj=2
+  LN_minus_L_value                                 +7.167 [+7.167,+7.167] pp n=2 traj=2
+  LT_minus_L_value                                 +4.476 [+4.476,+4.476] pp n=2 traj=2
+  L_minus_M_factual_logodds_nat                    +1.800 [+1.800,+1.800] nat n=2 traj=2
+  LN_minus_L_factual_logodds_nat                   -0.600 [-0.600,-0.600] nat n=2 traj=2
+  LT_minus_L_factual_logodds_nat                   -0.400 [-0.400,-0.400] nat n=2 traj=2
+  D0_minus_M_factual_logodds_nat                   -1.000 [-1.000,-1.000] nat n=2 traj=2
+  D1F_minus_M_factual_logodds_nat                  +1.500 [+1.500,+1.500] nat n=2 traj=2
+  M_argmax_factual                                 +100.000 [+100.000,+100.000] % n=2 traj=2
+  L_argmax_factual                                 +100.000 [+100.000,+100.000] % n=2 traj=2
+  D0_argmax_factual                                +0.000 [+0.000,+0.000] % n=2 traj=2
+  DE_argmax_factual                                +100.000 [+100.000,+100.000] % n=2 traj=2
+  DX_argmax_factual                                +0.000 [+0.000,+0.000] % n=2 traj=2
+  D1F_argmax_factual                               +100.000 [+100.000,+100.000] % n=2 traj=2
+  dual_branch_length_diff                          +1.000 [+1.000,+1.000] turns n=2 traj=2
+  dual_pointer_swap_nat_f0b1                       +1.550 [+1.550,+1.550] nat n=2 traj=2
+  single_branch_pull_failed_nat                    +1.500 [+1.500,+1.500] nat n=2 traj=2
+  single_branch_pull_succeeded_nat                 +0.000 [+0.000,+0.000] nat n=2 traj=2
+  single_f_failed_minus_M_factual_logodds_nat      +1.500 [+1.500,+1.500] nat n=2 traj=2
+
+I
+  dual_pointer_swap_nat                            +1.550 [+1.550,+1.550] nat n=1 traj=1
+  dual_pointer_true_minus_anon_nat                 +1.900 [+1.900,+1.900] nat n=1 traj=1
+  dual_true_label_minus_anon_value                 -35.324 [-35.324,-35.324] pp n=1 traj=1
+  dual_true_minus_swap_label_value                 -48.837 [-48.837,-48.837] pp n=1 traj=1
+  dual_no_pointer_minus_L_value                    +47.095 [+47.095,+47.095] pp n=1 traj=1
+  dual_no_pointer_minus_M_value                    +18.462 [+18.462,+18.462] pp n=1 traj=1
+  dual_no_pointer_minus_true_value                 +35.324 [+35.324,+35.324] pp n=1 traj=1
+  dual_no_pointer_minus_swap_value                 -13.513 [-13.513,-13.513] pp n=1 traj=1
+  single_f_minus_M_value                           -25.389 [-25.389,-25.389] pp n=1 traj=1
+  L_minus_M_value                                  -28.633 [-28.633,-28.633] pp n=1 traj=1
+  LN_minus_L_value                                 +7.167 [+7.167,+7.167] pp n=1 traj=1
+  LT_minus_L_value                                 +4.476 [+4.476,+4.476] pp n=1 traj=1
+  L_minus_M_factual_logodds_nat                    +1.800 [+1.800,+1.800] nat n=1 traj=1
+  LN_minus_L_factual_logodds_nat                   -0.600 [-0.600,-0.600] nat n=1 traj=1
+  LT_minus_L_factual_logodds_nat                   -0.400 [-0.400,-0.400] nat n=1 traj=1
+  D0_minus_M_factual_logodds_nat                   -1.000 [-1.000,-1.000] nat n=1 traj=1
+  D1F_minus_M_factual_logodds_nat                  +1.500 [+1.500,+1.500] nat n=1 traj=1
+  M_argmax_factual                                 +100.000 [+100.000,+100.000] % n=1 traj=1
+  L_argmax_factual                                 +100.000 [+100.000,+100.000] % n=1 traj=1
+  D0_argmax_factual                                +0.000 [+0.000,+0.000] % n=1 traj=1
+  DE_argmax_factual                                +100.000 [+100.000,+100.000] % n=1 traj=1
+  DX_argmax_factual                                +0.000 [+0.000,+0.000] % n=1 traj=1
+  D1F_argmax_factual                               +100.000 [+100.000,+100.000] % n=1 traj=1
+  dual_branch_length_diff                          +1.000 [+1.000,+1.000] turns n=1 traj=1
+  dual_pointer_swap_nat_f0b1                       +1.550 [+1.550,+1.550] nat n=1 traj=1
+  single_branch_pull_failed_nat                    +1.500 [+1.500,+1.500] nat n=1 traj=1
+  single_branch_pull_succeeded_nat                 +0.000 [+0.000,+0.000] nat n=1 traj=1
+  single_f_failed_minus_M_factual_logodds_nat      +1.500 [+1.500,+1.500] nat n=1 traj=1
+
+U
+  dual_pointer_swap_nat                            +1.550 [+1.550,+1.550] nat n=1 traj=1
+  dual_pointer_true_minus_anon_nat                 +1.900 [+1.900,+1.900] nat n=1 traj=1
+  dual_true_label_minus_anon_value                 -35.324 [-35.324,-35.324] pp n=1 traj=1
+  dual_true_minus_swap_label_value                 -48.837 [-48.837,-48.837] pp n=1 traj=1
+  dual_no_pointer_minus_L_value                    +47.095 [+47.095,+47.095] pp n=1 traj=1
+  dual_no_pointer_minus_M_value                    +18.462 [+18.462,+18.462] pp n=1 traj=1
+  dual_no_pointer_minus_true_value                 +35.324 [+35.324,+35.324] pp n=1 traj=1
+  dual_no_pointer_minus_swap_value                 -13.513 [-13.513,-13.513] pp n=1 traj=1
+  single_f_minus_M_value                           -25.389 [-25.389,-25.389] pp n=1 traj=1
+  L_minus_M_value                                  -28.633 [-28.633,-28.633] pp n=1 traj=1
+  LN_minus_L_value                                 +7.167 [+7.167,+7.167] pp n=1 traj=1
+  LT_minus_L_value                                 +4.476 [+4.476,+4.476] pp n=1 traj=1
+  L_minus_M_factual_logodds_nat                    +1.800 [+1.800,+1.800] nat n=1 traj=1
+  LN_minus_L_factual_logodds_nat                   -0.600 [-0.600,-0.600] nat n=1 traj=1
+  LT_minus_L_factual_logodds_nat                   -0.400 [-0.400,-0.400] nat n=1 traj=1
+  D0_minus_M_factual_logodds_nat                   -1.000 [-1.000,-1.000] nat n=1 traj=1
+  D1F_minus_M_factual_logodds_nat                  +1.500 [+1.500,+1.500] nat n=1 traj=1
+  M_argmax_factual                                 +100.000 [+100.000,+100.000] % n=1 traj=1
+  L_argmax_factual                                 +100.000 [+100.000,+100.000] % n=1 traj=1
+  D0_argmax_factual                                +0.000 [+0.000,+0.000] % n=1 traj=1
+  DE_argmax_factual                                +100.000 [+100.000,+100.000] % n=1 traj=1
+  DX_argmax_factual                                +0.000 [+0.000,+0.000] % n=1 traj=1
+  D1F_argmax_factual                               +100.000 [+100.000,+100.000] % n=1 traj=1
+  dual_branch_length_diff                          +1.000 [+1.000,+1.000] turns n=1 traj=1
+  dual_pointer_swap_nat_f0b1                       +1.550 [+1.550,+1.550] nat n=1 traj=1
+  single_branch_pull_failed_nat                    +1.500 [+1.500,+1.500] nat n=1 traj=1
+  single_branch_pull_succeeded_nat                 +0.000 [+0.000,+0.000] nat n=1 traj=1
+  single_f_failed_minus_M_factual_logodds_nat      +1.500 [+1.500,+1.500] nat n=1 traj=1
+
+bad_q12_ge_third
+  dual_pointer_swap_nat                            +1.550 [+1.550,+1.550] nat n=2 traj=2
+  dual_pointer_true_minus_anon_nat                 +1.900 [+1.900,+1.900] nat n=2 traj=2
+  dual_true_label_minus_anon_value                 -35.324 [-35.324,-35.324] pp n=2 traj=2
+  dual_true_minus_swap_label_value                 -48.837 [-48.837,-48.837] pp n=2 traj=2
+  dual_no_pointer_minus_L_value                    +47.095 [+47.095,+47.095] pp n=2 traj=2
+  dual_no_pointer_minus_M_value                    +18.462 [+18.462,+18.462] pp n=2 traj=2
+  dual_no_pointer_minus_true_value                 +35.324 [+35.324,+35.324] pp n=2 traj=2
+  dual_no_pointer_minus_swap_value                 -13.513 [-13.513,-13.513] pp n=2 traj=2
+  single_f_minus_M_value                           -25.389 [-25.389,-25.389] pp n=2 traj=2
+  L_minus_M_value                                  -28.633 [-28.633,-28.633] pp n=2 traj=2
+  LN_minus_L_value                                 +7.167 [+7.167,+7.167] pp n=2 traj=2
+  LT_minus_L_value                                 +4.476 [+4.476,+4.476] pp n=2 traj=2
+  L_minus_M_factual_logodds_nat                    +1.800 [+1.800,+1.800] nat n=2 traj=2
+  LN_minus_L_factual_logodds_nat                   -0.600 [-0.600,-0.600] nat n=2 traj=2
+  LT_minus_L_factual_logodds_nat                   -0.400 [-0.400,-0.400] nat n=2 traj=2
+  D0_minus_M_factual_logodds_nat                   -1.000 [-1.000,-1.000] nat n=2 traj=2
+  D1F_minus_M_factual_logodds_nat                  +1.500 [+1.500,+1.500] nat n=2 traj=2
+  M_argmax_factual                                 +100.000 [+100.000,+100.000] % n=2 traj=2
+  L_argmax_factual                                 +100.000 [+100.000,+100.000] % n=2 traj=2
+  D0_argmax_factual                                +0.000 [+0.000,+0.000] % n=2 traj=2
+  DE_argmax_factual                                +100.000 [+100.000,+100.000] % n=2 traj=2
+  DX_argmax_factual                                +0.000 [+0.000,+0.000] % n=2 traj=2
+  D1F_argmax_factual                               +100.000 [+100.000,+100.000] % n=2 traj=2
+  dual_branch_length_diff                          +1.000 [+1.000,+1.000] turns n=2 traj=2
+  dual_pointer_swap_nat_f0b1                       +1.550 [+1.550,+1.550] nat n=2 traj=2
+  single_branch_pull_failed_nat                    +1.500 [+1.500,+1.500] nat n=2 traj=2
+  single_branch_pull_succeeded_nat                 +0.000 [+0.000,+0.000] nat n=2 traj=2
+  single_f_failed_minus_M_factual_logodds_nat      +1.500 [+1.500,+1.500] nat n=2 traj=2
+
+gold_all
+  dual_pointer_swap_nat                            +1.550 [+1.550,+1.550] nat n=2 traj=2
+  dual_pointer_true_minus_anon_nat                 +1.900 [+1.900,+1.900] nat n=2 traj=2
+  dual_true_label_minus_anon_value                 -35.324 [-35.324,-35.324] pp n=2 traj=2
+  dual_true_minus_swap_label_value                 -48.837 [-48.837,-48.837] pp n=2 traj=2
+  dual_no_pointer_minus_L_value                    +47.095 [+47.095,+47.095] pp n=2 traj=2
+  dual_no_pointer_minus_M_value                    +18.462 [+18.462,+18.462] pp n=2 traj=2
+  dual_no_pointer_minus_true_value                 +35.324 [+35.324,+35.324] pp n=2 traj=2
+  dual_no_pointer_minus_swap_value                 -13.513 [-13.513,-13.513] pp n=2 traj=2
+  single_f_minus_M_value                           -25.389 [-25.389,-25.389] pp n=2 traj=2
+  L_minus_M_value                                  -28.633 [-28.633,-28.633] pp n=2 traj=2
+  LN_minus_L_value                                 +7.167 [+7.167,+7.167] pp n=2 traj=2
+  LT_minus_L_value                                 +4.476 [+4.476,+4.476] pp n=2 traj=2
+  L_minus_M_factual_logodds_nat                    +1.800 [+1.800,+1.800] nat n=2 traj=2
+  LN_minus_L_factual_logodds_nat                   -0.600 [-0.600,-0.600] nat n=2 traj=2
+  LT_minus_L_factual_logodds_nat                   -0.400 [-0.400,-0.400] nat n=2 traj=2
+  D0_minus_M_factual_logodds_nat                   -1.000 [-1.000,-1.000] nat n=2 traj=2
+  D1F_minus_M_factual_logodds_nat                  +1.500 [+1.500,+1.500] nat n=2 traj=2
+  M_argmax_factual                                 +100.000 [+100.000,+100.000] % n=2 traj=2
+  L_argmax_factual                                 +100.000 [+100.000,+100.000] % n=2 traj=2
+  D0_argmax_factual                                +0.000 [+0.000,+0.000] % n=2 traj=2
+  DE_argmax_factual                                +100.000 [+100.000,+100.000] % n=2 traj=2
+  DX_argmax_factual                                +0.000 [+0.000,+0.000] % n=2 traj=2
+  D1F_argmax_factual                               +100.000 [+100.000,+100.000] % n=2 traj=2
+  dual_branch_length_diff                          +1.000 [+1.000,+1.000] turns n=2 traj=2
+  dual_pointer_swap_nat_f0b1                       +1.550 [+1.550,+1.550] nat n=2 traj=2
+  single_branch_pull_failed_nat                    +1.500 [+1.500,+1.500] nat n=2 traj=2
+  single_branch_pull_succeeded_nat                 +0.000 [+0.000,+0.000] nat n=2 traj=2
+  single_f_failed_minus_M_factual_logodds_nat      +1.500 [+1.500,+1.500] nat n=2 traj=2
+
+gold_bad_q12_ge_third
+  dual_pointer_swap_nat                            +1.550 [+1.550,+1.550] nat n=2 traj=2
+  dual_pointer_true_minus_anon_nat                 +1.900 [+1.900,+1.900] nat n=2 traj=2
+  dual_true_label_minus_anon_value                 -35.324 [-35.324,-35.324] pp n=2 traj=2
+  dual_true_minus_swap_label_value                 -48.837 [-48.837,-48.837] pp n=2 traj=2
+  dual_no_pointer_minus_L_value                    +47.095 [+47.095,+47.095] pp n=2 traj=2
+  dual_no_pointer_minus_M_value                    +18.462 [+18.462,+18.462] pp n=2 traj=2
+  dual_no_pointer_minus_true_value                 +35.324 [+35.324,+35.324] pp n=2 traj=2
+  dual_no_pointer_minus_swap_value                 -13.513 [-13.513,-13.513] pp n=2 traj=2
+  single_f_minus_M_value                           -25.389 [-25.389,-25.389] pp n=2 traj=2
+  L_minus_M_value                                  -28.633 [-28.633,-28.633] pp n=2 traj=2
+  LN_minus_L_value                                 +7.167 [+7.167,+7.167] pp n=2 traj=2
+  LT_minus_L_value                                 +4.476 [+4.476,+4.476] pp n=2 traj=2
+  L_minus_M_factual_logodds_nat                    +1.800 [+1.800,+1.800] nat n=2 traj=2
+  LN_minus_L_factual_logodds_nat                   -0.600 [-0.600,-0.600] nat n=2 traj=2
+  LT_minus_L_factual_logodds_nat                   -0.400 [-0.400,-0.400] nat n=2 traj=2
+  D0_minus_M_factual_logodds_nat                   -1.000 [-1.000,-1.000] nat n=2 traj=2
+  D1F_minus_M_factual_logodds_nat                  +1.500 [+1.500,+1.500] nat n=2 traj=2
+  M_argmax_factual                                 +100.000 [+100.000,+100.000] % n=2 traj=2
+  L_argmax_factual                                 +100.000 [+100.000,+100.000] % n=2 traj=2
+  D0_argmax_factual                                +0.000 [+0.000,+0.000] % n=2 traj=2
+  DE_argmax_factual                                +100.000 [+100.000,+100.000] % n=2 traj=2
+  DX_argmax_factual                                +0.000 [+0.000,+0.000] % n=2 traj=2
+  D1F_argmax_factual                               +100.000 [+100.000,+100.000] % n=2 traj=2
+  dual_branch_length_diff                          +1.000 [+1.000,+1.000] turns n=2 traj=2
+  dual_pointer_swap_nat_f0b1                       +1.550 [+1.550,+1.550] nat n=2 traj=2
+  single_branch_pull_failed_nat                    +1.500 [+1.500,+1.500] nat n=2 traj=2
+  single_branch_pull_succeeded_nat                 +0.000 [+0.000,+0.000] nat n=2 traj=2
+  single_f_failed_minus_M_factual_logodds_nat      +1.500 [+1.500,+1.500] nat n=2 traj=2ok
+test_truncated_has_step_t_but_no_later_observation_or_reward (test_exp1c.Tests.test_truncated_has_step_t_but_no_later_observation_or_reward) ... ok
+test_written_cot_preserves_commands_and_does_not_touch_original (test_exp1c.Tests.test_written_cot_preserves_commands_and_does_not_touch_original) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 4.207s
+
+OK

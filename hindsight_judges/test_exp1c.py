@@ -56,6 +56,20 @@ class FakeAlfGame:
 
 
 class Tests(unittest.TestCase):
+    def test_descriptive_slope_uses_protocol_bootstrap_count(self):
+        rng=np.random.default_rng(C.BOOT_SEED)
+        calls=[]
+        class CountedRng:
+            def integers(self,*args,**kwargs):
+                calls.append(1)
+                return rng.integers(*args,**kwargs)
+        with patch.object(C.np.random,'default_rng',return_value=CountedRng()) as factory:
+            result=C.slope_ci([0,1,0,2,0,3],[0,1.2,.1,2.1,-.1,2.8],['a','a','b','b','c','c'])
+        factory.assert_called_once_with(C.BOOT_SEED)
+        self.assertEqual(len(calls),4000)
+        self.assertEqual(C.NBOOT,4000)
+        self.assertTrue(np.isfinite(result['ci95']).all())
+
     def test_written_cot_preserves_commands_and_does_not_touch_original(self):
         ep={'task':'a task','initial_observation':'hello','steps':[
             {'turn':1,'response':'<think>Visible reasoning</think>\n<action>go to desk 1</action>',

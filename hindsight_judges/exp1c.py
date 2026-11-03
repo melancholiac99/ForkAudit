@@ -761,7 +761,7 @@ def analyze(args):
     print("\n".join(lines))
 
 
-def slope_ci(x,y,trajectories,seed=BOOT_SEED,nboot=1000):
+def slope_ci(x,y,trajectories,seed=BOOT_SEED,nboot=NBOOT):
     """OLS slope of y on x with a trajectory-cluster bootstrap CI (descriptive)."""
     x=np.asarray(x,float);y=np.asarray(y,float);tt=np.asarray(trajectories)
     if len(x)<3 or np.var(x)<1e-12:return None
