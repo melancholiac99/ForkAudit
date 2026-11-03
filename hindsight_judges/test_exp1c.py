@@ -121,14 +121,18 @@ class Tests(unittest.TestCase):
             (root/'exploratory_P4/prompts/feedback.txt').write_text('Five aligned feedback:\n')
             arms_file=root/'exploratory_deep_discovery/exploratory_arms.parquet'
             arms_file.write_bytes(b'synthetic arms')
+            tasks=[dict(seed=i,game_file=f's{i:03d}/game.tw-pddl',game_sha256=C.sha(b'fake game')) for i in range(100)]
+            (root/'data/task_list.json').write_text(json.dumps({'tasks':tasks}))
             (root/'exploratory_P4/e2.json').write_text(json.dumps({'inputs':{'exploratory_deep_discovery/exploratory_arms.parquet':C.file_sha(arms_file)}}))
             meta=[];e2={};e2m={};template='Original full episode: '
             acts=['open left','open right','look','wait','inventory']
             for i in range(2):
                 traj=f's{i:03d}';pid=f'{traj}_t01'
                 (root/'data/replay'/traj).mkdir(parents=True)
-                (root/'games'/f'{traj}.tw-pddl').write_text('fake game')
-                tr={'traj_id':traj,'game_file':f'{traj}.tw-pddl','steps':[{'turn':1,'obs_before':'start',
+                (root/'games'/traj).mkdir(parents=True)
+                (root/'games'/traj/'game.tw-pddl').write_text('fake game')
+                tr={'traj_id':traj,'game_file':f'{traj}/game.tw-pddl','task':'find key','initial_obs':'start',
+                    'steps':[{'turn':1,'obs_before':'start',
                     'action':'open left','obs_after':'empty','response':'<think>Thought</think><action>open left</action>'}]}
                 (root/'data/rollout'/f'{traj}.json').write_text(json.dumps(tr))
                 replay={'traj_id':traj,'turn':1,'cf_defined':True,'factual_action':acts[0],
@@ -152,6 +156,8 @@ class Tests(unittest.TestCase):
                 e2[pid]={'S':s,'F':ff,'L':ll};e2m[pid]={'M':mm}
                 meta.append(dict(point_id=pid,traj=traj,layer='I' if i==0 else 'U',
                                  swap_arm=1,q12_gap=2/3,factual_arm=0))
+            # Simulate the real repository: some originals are absent, but E2 L has every prefix.
+            (root/'data/rollout/s001.json').unlink()
             out=root/'hindsight_judges/results/exp1c_p4'
             old_n=C.N_POINTS
             try:
