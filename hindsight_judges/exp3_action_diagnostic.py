@@ -184,11 +184,13 @@ def score(args):
     assert set(completed)<={j['id'] for j in jobs}
     if runfile.exists() and old.get('complete'):
         assert sha_file(file)==old['scores_sha256'];print('Already complete');return
+    torch.backends.cuda.matmul.allow_tf32=False
+    torch.backends.cudnn.allow_tf32=False
     with sdpa_kernel(SDPBackend.MATH):
         if args.name=='32b':
             scorer,model_meta=load_32b(Path(args.model),Path(args.repo))
         else:
-            # Standard frozen P4 BF16 7B checkpoint; same original scoring stack.
+            # Frozen 7B checkpoint with the VERIFIED E1 7B full-FP32 numerical recovery.
             from exp1c_backend import ChunkedScorer
             original=read_json(Path(args.repo)/'exploratory_P4/e2_7b/run.json')
             weights={p.name:sha_file(p) for p in sorted(Path(args.model).glob('*.safetensors'))}
@@ -197,8 +199,10 @@ def score(args):
             assert sha_file(script)==original['scorer_sha256']
             spec=importlib.util.spec_from_file_location('p4_7b_diagnostic',script)
             m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);m.MODEL=str(args.model)
-            frozen=m.Scorer();scorer=ChunkedScorer(frozen)
-            model_meta=dict(weights=weights,precision='frozen_p4_bf16_transformer_fp32_head')
+            frozen=m.Scorer();frozen.model.float()
+            assert all(p.dtype==torch.float32 for p in frozen.model.parameters())
+            scorer=ChunkedScorer(frozen)
+            model_meta=dict(weights=weights,precision='frozen_7b_fp32_sdpa_math')
         def probs(v):
             ll=np.array([sum(x) for x in v],float);p=np.exp(ll-ll.max());return p/p.sum()
         gate=[]
