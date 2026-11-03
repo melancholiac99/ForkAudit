@@ -26,7 +26,7 @@ python hindsight_judges/exp3_action_diagnostic.py score --name 32b --model /root
 python hindsight_judges/exp3_action_diagnostic.py analyze --arms /path/to/exact/original/exploratory_arms.parquet
 ```
 
-Report: `hindsight_judges/results/action_diagnostic/analysis_first64.json` or `analysis_full.json`. The frozen P4 / E1c preparation files must be present; the exact original deep-discovery arms parquet is hash-checked against P4 E2. Recompute M and privileged conditions with the SAME model precision within each model; do not subtract 7B/32B logprobs without acknowledging they are different teachers. The 32B scorer uses the verified E1c FP16 MATH chunked backend; 7B uses the original frozen P4 BF16 scorer (both gate against direct candidate scoring).
+Report: `hindsight_judges/results/action_diagnostic/analysis_first64.json` or `analysis_full.json`. The frozen P4 / E1c preparation files must be present; the exact original deep-discovery arms parquet is hash-checked against P4 E2. Recompute M and privileged conditions with the SAME model precision within each model; do not subtract 7B/32B logprobs without acknowledging they are different teachers. The 32B scorer uses the verified E1c FP16 MATH chunked backend; 7B uses the **E1-verified full-FP32 recovery** of that frozen 7B scorer (both gate against direct candidate scoring).
 
 **Decision rule:** If current Think makes the Teacher systematically *less* corrective on bad factual actions and less aligned with independent Q, the blind-credit method is directly motivated. A change in logprob alone is insufficient. If the effect is absent, do not claim the mechanism or treat blind credit as established.
 
