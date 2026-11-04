@@ -1,0 +1,17 @@
+{
+  "utc": "2026-11-03T20:43:56.657385+00:00",
+  "observed_e4": {
+    "points": 15,
+    "responses": 300,
+    "seconds": 194.4681692123413,
+    "total": 1586
+  },
+  "seconds_per_point": 12.964544614156088,
+  "remaining_score_hours_linear": 5.657583219122004,
+  "remaining_all_work_hours_range": [
+    6,
+    7
+  ],
+  "basis": "Initial 14-point audit: remaining mean prefix tokens 0.936x observed; response tokens 1.000x; still a small initial sample. Add analysis, independent verification and complete publication. P4 runs in parallel.",
+  "shutdown_policy": "Latest user authorization: all requested diagnostics verified and published, then shutdown; best-effort recovery on failure."
+}

@@ -1,0 +1,23 @@
+Historical teacher-forced signal diagnostic; not a measured OPD gradient or training benefit.
+{"points": 1586, "responses": 31720, "scored_token_positions": 4233092, "model": "32b", "cohort": "e4", "numerical_gates": [{"condition": "L", "id": "s1269_t06", "kind": "cached_vs_chunked_direct_full_vocab", "max_tv": 0.0029914844781160355, "passed": true, "tokens": 136}, {"condition": "M", "id": "s1254_t01", "kind": "cached_vs_chunked_direct_full_vocab", "max_tv": 0.002301338594406843, "passed": true, "tokens": 89}, {"condition": "M", "id": "s1254_t01", "kind": "chunked_vs_onepass_full_vocab", "max_tv": 0.0, "passed": true, "tokens": 78}]}
+Historical response text was canonically re-encoded; original generated token IDs/probabilities unavailable.
+L/LN share action-dependent factual future across targets; within-group ranking must be compared with independent replay Q.
+Sum delta is a sampled-token density-ratio proxy, not exact reverse-KL loss.
+E4 selection is conditional on nonconstant noisy three-replay values; not a full-population estimate.
+L_minus_M_all_delta_sum {"n": 1586, "n_trajectories": 219, "estimate": 12.777193186677668, "ci95": [11.176150650764766, 14.267111744468364], "undefined_or_missing": 0}
+LN_minus_M_all_delta_sum {"n": 1586, "n_trajectories": 219, "estimate": 2.5455395145582704, "ci95": [1.0471733087008508, 3.8877393125609667], "undefined_or_missing": 0}
+F_minus_M_all_delta_sum {"n": 1586, "n_trajectories": 219, "estimate": -4.501569749586256, "ci95": [-5.419188309053659, -3.6375185242669597], "undefined_or_missing": 0}
+M_delta_sum_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.018080263698734517, "ci95": [-0.006179440457586513, 0.04260384355913755], "undefined_or_missing": 0}
+M_delta_mean_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.039137216367772974, "ci95": [0.0133802014974143, 0.06317443506841501], "undefined_or_missing": 0}
+L_delta_sum_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.018325291104483613, "ci95": [-0.006572935367795171, 0.04341493377184114], "undefined_or_missing": 0}
+L_delta_mean_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.03741921282874009, "ci95": [0.011970794614330366, 0.06115227781782811], "undefined_or_missing": 0}
+LN_delta_sum_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.02697921298444196, "ci95": [0.0018108993748514803, 0.05267948889867257], "undefined_or_missing": 0}
+LN_delta_mean_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.05221248790102418, "ci95": [0.0230749807233765, 0.0807342545273517], "undefined_or_missing": 0}
+F_delta_sum_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.03895524358408966, "ci95": [0.013474823138121457, 0.06423766985084323], "undefined_or_missing": 0}
+F_delta_mean_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.0712701221004845, "ci95": [0.044301891195166025, 0.09651107402123708], "undefined_or_missing": 0}
+L_minus_M_delta_sum_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.0002450274057490926, "ci95": [-0.01951617959569099, 0.02155815158070695], "undefined_or_missing": 0}
+L_minus_M_delta_mean_spearman {"n": 1586, "n_trajectories": 219, "estimate": -0.0017180035390328835, "ci95": [-0.023804756531988904, 0.019589228811015564], "undefined_or_missing": 0}
+LN_minus_M_delta_sum_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.008898949285707445, "ci95": [-0.009303851581381901, 0.0267555184231949], "undefined_or_missing": 0}
+LN_minus_M_delta_mean_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.013075271533251196, "ci95": [-0.009352911165195852, 0.0358669750629662], "undefined_or_missing": 0}
+F_minus_M_delta_sum_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.020874979885355138, "ci95": [0.006311902464711146, 0.03548239625295552], "undefined_or_missing": 0}
+F_minus_M_delta_mean_spearman {"n": 1586, "n_trajectories": 219, "estimate": 0.03213290573271153, "ci95": [0.01630385973889067, 0.04894374308868744], "undefined_or_missing": 0}

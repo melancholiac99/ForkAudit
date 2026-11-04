@@ -1,0 +1,17 @@
+Historical teacher-forced signal diagnostic; not a measured OPD gradient or training benefit.
+{"points": 386, "responses": 1544, "scored_token_positions": 211256, "model": "7b", "cohort": "p4", "numerical_gates": [{"condition": "L", "id": "s021_t08", "kind": "cached_vs_chunked_direct_full_vocab", "max_tv": 1.2843705917475745e-05, "passed": true, "tokens": 149}, {"condition": "M", "id": "s046_t04", "kind": "cached_vs_chunked_direct_full_vocab", "max_tv": 2.1161988115636632e-05, "passed": true, "tokens": 86}, {"condition": "M", "id": "s046_t04", "kind": "chunked_vs_onepass_full_vocab", "max_tv": 0.0, "passed": true, "tokens": 86}]}
+Historical response text was canonically re-encoded; original generated token IDs/probabilities unavailable.
+L/LN share action-dependent factual future across targets; within-group ranking must be compared with independent replay Q.
+Sum delta is a sampled-token density-ratio proxy, not exact reverse-KL loss.
+E4 selection is conditional on nonconstant noisy three-replay values; not a full-population estimate.
+L_minus_M_all_delta_sum {"n": 386, "n_trajectories": 60, "estimate": -58.71126674393316, "ci95": [-62.05565948319658, -55.49755742452879], "undefined_or_missing": 0}
+LN_minus_M_all_delta_sum {"n": 386, "n_trajectories": 60, "estimate": -43.61125014535728, "ci95": [-47.49279548436624, -39.863809793287935], "undefined_or_missing": 0}
+F_minus_M_all_delta_sum {"n": 386, "n_trajectories": 60, "estimate": -26.551638823168933, "ci95": [-29.69920283938419, -23.5826525764957], "undefined_or_missing": 0}
+M_delta_sum_slope_vs_q3456_advantage {"estimate": 0.0, "ci95": [0.0, 0.0]}
+M_delta_mean_slope_vs_q3456_advantage {"estimate": 0.0, "ci95": [0.0, 0.0]}
+L_delta_sum_slope_vs_q3456_advantage {"estimate": 5.173366491628104, "ci95": [-5.323531444470952, 14.283047728526222]}
+L_delta_mean_slope_vs_q3456_advantage {"estimate": 0.0426691891074823, "ci95": [-0.0148399202570853, 0.0976480397068658]}
+LN_delta_sum_slope_vs_q3456_advantage {"estimate": -0.29633106360171674, "ci95": [-9.944713690566456, 8.302969846391955]}
+LN_delta_mean_slope_vs_q3456_advantage {"estimate": -0.0062879060018287145, "ci95": [-0.061433774176900754, 0.042799378554654925]}
+F_delta_sum_slope_vs_q3456_advantage {"estimate": 10.452557446388003, "ci95": [2.0144879204620034, 18.139783668956948]}
+F_delta_mean_slope_vs_q3456_advantage {"estimate": 0.08365693521443635, "ci95": [0.027770764492080744, 0.13966479787979816]}

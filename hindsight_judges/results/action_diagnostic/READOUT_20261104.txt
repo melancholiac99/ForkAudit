@@ -1,0 +1,32 @@
+Readout: completed action-correction and Think-localization diagnostics
+All 386 original P4 points / 60 trajectories retained. Action: 3088 rows per model; localization: 1544 rows.
+Independent verification passed. No training, new trajectories, or HLN. Full-response token diagnostic is a separate pending stage.
+
+Units below: percentage points of five-candidate probability-weighted held-out replay value, NOT measured agent success gains.
+Action: same-teacher current Think prefix drop minus keep; 95% trajectory-cluster bootstrap (2000 resamples).
+7b M: -1.12 pp [-3.68, +1.35]
+7b L: +4.05 pp [+0.64, +7.29]
+7b LN: +5.75 pp [+2.57, +9.07]
+7b F: +17.89 pp [+11.18, +25.06]
+32b M: +3.63 pp [+1.01, +6.34]
+32b L: +7.95 pp [+4.89, +11.03]
+32b LN: +9.76 pp [+6.05, +13.38]
+32b F: +25.62 pp [+18.74, +32.60]
+
+Localization: edits to written Think inside the hindsight log; baseline L_RE re-scored in the same run.
+95% trajectory-cluster bootstrap (4000 resamples).
+DROP_T value: +0.77 pp [-0.19, +1.71]
+DROP_T factual argmax rate: -16.84 pp [-21.81, -11.85]
+KEEP_T value: -1.07 pp [-3.06, +0.93]
+KEEP_T factual argmax rate: +19.95 pp [+15.40, +24.94]
+SWAP_T value: +0.67 pp [-0.33, +1.69]
+SWAP_T factual argmax rate: -22.80 pp [-27.62, -17.68]
+
+L_RE vs frozen E1c L: mean TV = 0; argmax agreement = 100% on all 386 points.
+Interpretation: current-prefix Think removal improves conditional five-candidate teacher value in most privilege conditions, especially F.
+This is not universal: 7B M drop-minus-keep includes zero. Localization changes factual-action preference strongly, while all three within-run value contrasts include zero.
+Current-prefix ablation and log-Think localization manipulate different inputs; do not conflate them.
+Candidate normalization and action-only continuation scores do not measure full-response OPD loss/gradients. Wait for the new token-level diagnostic; favorable ranking is not proof of beneficial OPD training.
+All intervals are exploratory, without a familywise multiplicity correction. Failure to exclude zero is not proof of no effect.
+
+Sources: action_diagnostic/analysis_full.json, think_localization/analysis.json, run_diagnostics_20261104/verification.json.
