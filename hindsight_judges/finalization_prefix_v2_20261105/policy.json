@@ -1,0 +1,23 @@
+{
+  "authorized": true,
+  "user_instruction": "ok 跑完了按照原来要求关机",
+  "utc": "2026-11-05T13:40:55.645284+00:00",
+  "scope": [
+    "prefix_v2_7b_full_386",
+    "prefix_v2_32b_full_386"
+  ],
+  "branch": "research/hindsight-judges",
+  "success_requires": [
+    "both_models_full_complete",
+    "independent_verification",
+    "historical_anchor_compatibility",
+    "complete_github_publication",
+    "idle_gpu"
+  ],
+  "shutdown_command": [
+    "/bin/bash",
+    "/usr/bin/shutdown"
+  ],
+  "on_failure": "Best-effort repair, resume if repaired; if unrecoverable preserve results/logs and sync before shutdown; no force push or relaxed thresholds.",
+  "supersedes_prior_no_shutdown_notes": true
+}

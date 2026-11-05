@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "tests": [
+    "success_requires_all_full_runs",
+    "failure_handoff",
+    "live_queue_wait",
+    "dead_queue_recovery",
+    "new_experiment_scope_only"
+  ],
+  "shutdown_executed": false
+}
