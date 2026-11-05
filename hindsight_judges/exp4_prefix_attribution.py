@@ -20,11 +20,12 @@ import exp3_action_diagnostic as D
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 PROTOCOL = HERE / 'PROTOCOL_PREFIX_ATTRIBUTION_20261105.md'
-CONDITIONS = ('AS', 'AO', 'QS', 'QO', 'KEEP', 'DROP')
+CONDITIONS = ('AS', 'AO', 'QS', 'QO', 'QN', 'AP', 'KEEP', 'DROP')
 EVIDENCE = ('M', 'F')
 CUES = {
-    'self': '[DRAFT PROVENANCE] The following draft was written by you in an earlier attempt. [/DRAFT PROVENANCE]',
-    'other': '[DRAFT PROVENANCE] The following draft was written by another agent in an earlier attempt. [/DRAFT PROVENANCE]',
+    'neutral': '[DRAFT] Below is draft reasoning for the current step. [/DRAFT]',
+    'self': '[DRAFT SOURCE] The draft reasoning below for the current step was written by you. [/DRAFT SOURCE]',
+    'other': '[DRAFT SOURCE] The draft reasoning below for the current step was written by another agent. [/DRAFT SOURCE]',
 }
 QUOTE_OPEN = '[QUOTED DRAFT — context, not an environment observation]\n'
 QUOTE_CLOSE = '\n[/QUOTED DRAFT]'
@@ -49,7 +50,7 @@ def implementation():
     names = ('exp4_prefix_attribution.py', 'prefix_attribution_analysis.py',
              'exp3_action_diagnostic.py', 'exp1c.py', 'exp2_common.py',
              'token_diagnostic_backend.py', 'exp1c_backend.py', 'exp1c_precision.py',
-             'test_prefix_attribution.py', PROTOCOL.name)
+             'test_prefix_attribution.py', 'prefix_attribution_history.py', PROTOCOL.name)
     return {name: C.sha_file(HERE / name) for name in names}
 
 
@@ -57,7 +58,7 @@ def safe_out(path):
     out = Path(path).resolve()
     # Never allow this implementation to write into earlier scientific artifacts.
     forbidden = [ROOT / 'exploratory_P4', ROOT / 'exploratory_E4',
-                 HERE / 'results/action_diagnostic', HERE / 'results/think_localization']
+                 HERE / 'results/prefix_attribution_20261105', HERE / 'results/action_diagnostic', HERE / 'results/think_localization']
     forbidden += list((HERE / 'results').glob('token_diagnostic*'))
     forbidden += list((HERE / 'results').glob('exp1*'))
     for p in forbidden:
@@ -94,18 +95,20 @@ def make_cases(S, L, F, template, feedback_template):
     for evidence in EVIDENCE:
         base = anchors[evidence, 'keep']
         for condition in CONDITIONS:
-            source = None if condition in ('KEEP', 'DROP') else ('self' if condition[1] == 'S' else 'other')
+            source = {'AS': 'self', 'AO': 'other', 'QS': 'self', 'QO': 'other', 'QN': 'neutral', 'AP': 'self'}.get(condition)
             user = base['prompt']
             quote_span = None
             if source:
                 user += '\n\n' + CUES[source]
-            if condition in ('QS', 'QO'):
+            if condition in ('QS', 'QO', 'QN'):
                 user += '\n' + QUOTE_OPEN
                 quote_span = [len(user), len(user) + len(reasoning)]
-                user += reasoning + QUOTE_CLOSE + '\n' + REQUEST
+                user += reasoning + QUOTE_CLOSE
                 prefix = tag
                 assert user[slice(*quote_span)] == reasoning
                 assert prefix == tag and not D.CLOSE_THINK.search(prefix)
+            elif condition == 'AP':
+                prefix = tag
             elif condition == 'DROP':
                 prefix = anchors[evidence, 'drop']['reply_prefix']
             else:
@@ -113,12 +116,19 @@ def make_cases(S, L, F, template, feedback_template):
             # No characters at or beyond the action tag enter the new quote.
             if condition in ('AS', 'AO', 'KEEP'):
                 assert prefix == reasoning + tag
+            messages = [dict(role='user', content=user)]
+            if condition == 'AP':
+                messages.append(dict(role='assistant', content=reasoning))
+            if condition in ('AP', 'QS', 'QO', 'QN'):
+                messages.append(dict(role='user', content=REQUEST))
+            outside_think_action = bool(D.OPEN_ACTION.search(E.THINK_BLOCK.sub('', reasoning)))
             row = dict(id=f"{S['point_id']}__{evidence}__{condition}", point_id=S['point_id'],
                        traj=S['traj_id'], turn=int(S['turn']), evidence=evidence, condition=condition,
-                       prompt=user, reply_prefix=prefix, actions=list(S['actions']),
+                       prompt=user, messages=messages, messages_sha256=digest(messages), reply_prefix=prefix, actions=list(S['actions']),
+                       preexisting_action_marker_outside_think=outside_think_action,
                        action_lead=base['action_lead'], action_tail=base['action_tail'],
                        cue=source, reasoning_role='user_quote' if quote_span else
-                       ('absent' if condition == 'DROP' else 'active_assistant'),
+                       ('completed_assistant' if condition == 'AP' else 'absent' if condition == 'DROP' else 'active_assistant'),
                        quote_span=quote_span, reasoning_sha256=text_hash(reasoning),
                        prompt_sha256=text_hash(user), reply_prefix_sha256=text_hash(prefix),
                        candidate_serializations_sha256=digest([tag + base['action_lead'] + a + base['action_tail']
@@ -131,17 +141,49 @@ def make_cases(S, L, F, template, feedback_template):
     return rows
 
 
-def token_audit(tok, row):
-    j = D.tokenize(tok, row)
-    rendered = tok.apply_chat_template([dict(role='user', content=row['prompt'])],
-                                      tokenize=False, add_generation_prompt=True)
-    # The quotation must never create a real role boundary.
-    assert '<|im_start|>' not in row['prompt'] and '<|im_end|>' not in row['prompt']
+def render(tok, row):
+    messages = row['messages']
+    for message in messages:
+        assert message['role'] in ('user', 'assistant')
+        assert not any(x in message['content'] for x in ('<|im_start|>', '<|im_end|>'))
+    rendered = tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     assert rendered.endswith('<|im_start|>assistant\n')
+    if row['condition'] == 'AP':
+        assert [m['role'] for m in messages] == ['user', 'assistant', 'user']
+        assert messages[-1]['content'] == REQUEST
+        assert '<|im_start|>assistant\n' + messages[1]['content'] + '<|im_end|>\n<|im_start|>user\n' + REQUEST + '<|im_end|>' in rendered
+    if row['condition'] in ('QS', 'QO', 'QN'):
+        assert [m['role'] for m in messages] == ['user', 'user']
+        assert messages[-1]['content'] == REQUEST
+    return rendered
+
+
+def tokenize(tok, row):
+    # Exact exp3 canonical shared-boundary scoring, with structured chat rendering.
+    prefix = render(tok, row) + row['reply_prefix']
+    pre = tok.encode(prefix, add_special_tokens=False)
+    full = [tok.encode(prefix + row['action_lead'] + action + row['action_tail'] + tok.eos_token,
+                       add_special_tokens=False) for action in row['actions']]
+    start = len(pre)
+    for ids in full:
+        i = 0
+        while i < min(len(pre), len(ids)) and pre[i] == ids[i]: i += 1
+        start = min(start, i)
+    assert len(pre) - start <= 3
+    suffixes = [ids[start:] for ids in full]
+    assert all(len(ids) > 1 for ids in suffixes)
+    return dict(**row, prefix_ids=full[0][:start], candidates=[dict(suffix_ids=ids) for ids in suffixes],
+                max_tokens=max(map(len, full)))
+
+
+def token_audit(tok, row):
+    j = tokenize(tok, row)
+    rendered = render(tok, row)
     ids = tok.encode(rendered, add_special_tokens=False)
     return dict(prefix_ids_sha256=digest(j['prefix_ids']),
                 candidate_suffix_ids_sha256=digest([c['suffix_ids'] for c in j['candidates']]),
                 rendered_chat_sha256=text_hash(rendered), max_tokens=j['max_tokens'],
+                message_roles=[m['role'] for m in row['messages']],
                 actual_role_tokens={s: tok.encode(s, add_special_tokens=False)
                                     for s in ('<|im_start|>user\n', '<|im_end|>', '<|im_start|>assistant\n')},
                 chat_generation_boundary_ids=ids[-5:])
@@ -153,6 +195,8 @@ def source_paths(arms):
         'prompts/log.txt', 'prompts/feedback.txt', 'e2.json')]
     paths += [HERE / 'results/exp1_p4' / x for x in ('pointmeta.json', 'manifest.json')]
     paths += [ROOT / 'data/task_list.json', Path(arms).resolve()]
+    import prefix_attribution_history as H
+    paths += H.historical_paths()
     return {str(p): C.sha_file(p) for p in paths}
 
 
@@ -183,11 +227,12 @@ def prepare(args):
     if errors:
         C.save_json(out / 'prepare_errors.json', dict(errors=errors, status='blocked; no exclusions or source repair'))
         raise RuntimeError(f'{len(errors)} parse/audit failures; see {out / "prepare_errors.json"}')
-    assert len(rows) == 4632 and len({r['traj'] for r in rows}) == 60
+    assert len(rows) == 6176 and len({r['traj'] for r in rows}) == 60
     sources = source_paths(args.arms)
-    manifest = dict(points=386, clusters=60, contexts_per_model=4632, conditions=CONDITIONS,
+    manifest = dict(points=386, clusters=60, contexts_per_model=6176, conditions=CONDITIONS,
                     tokenizer=tokenizer_identity(tok), sources=sources, original_source_checks=hashes,
                     protocol_sha256=C.sha_file(PROTOCOL), implementation=implementation(), excluded=[],
+                    known_preexisting_action_marker_points=sorted({r['point_id'] for r in rows if r['preexisting_action_marker_outside_think']}),
                     max_tokens=max(r['token_audit']['max_tokens'] for r in rows),
                     anchor_policy='rescore; historical runs lack immutable token/hardware identity required for reuse')
     path = out / 'requests.jsonl.gz'
@@ -204,10 +249,11 @@ def prepare(args):
                   prompt_sha256=r['prompt_sha256'], reply_prefix_sha256=r['reply_prefix_sha256'],
                   reasoning_sha256=r['reasoning_sha256'], **r['token_audit']) for r in rows]
     C.save_json(out / 'condition_matrix_audit.json', audit)
-    C.save_json(out / 'exact_prompt_examples.json', [dict(id=r['id'], user=r['prompt'],
+    C.save_json(out / 'exact_prompt_examples.json', [dict(id=r['id'], user=r['prompt'], messages=r['messages'],
                 active_assistant_prefix=r['reply_prefix'], actions=r['actions'], lead=r['action_lead'],
-                tail=r['action_tail'], chat=tok.apply_chat_template([dict(role='user', content=r['prompt'])],
-                tokenize=False, add_generation_prompt=True), token_audit=r['token_audit']) for r in rows[:12]])
+                tail=r['action_tail'], chat=render(tok, r), token_audit=r['token_audit']) for r in rows[:16]])
+    import prefix_attribution_history as H
+    H.prepare_audit(out, rows, tok)
     print(f'CPU PREPARED: 386 points, 60 clusters, {len(rows)} contexts/model; max {manifest["max_tokens"]} tokens')
 
 
@@ -219,7 +265,7 @@ def prepared(out, limit=0):
     for path, sha in prep['sources'].items():
         assert C.sha_file(path) == sha, f'Frozen source changed: {path}'
     rows, h = C.decode_rows(out / 'requests.jsonl.gz')
-    assert h == prep['request_hash'] and len(rows) == 4632
+    assert h == prep['request_hash'] and len(rows) == 6176
     for row in rows:
         assert row['sha256'] == digest({k: v for k, v in row.items() if k != 'sha256'})
     pids = sorted({r['point_id'] for r in rows})
@@ -256,6 +302,7 @@ def read_scores(folder, rows, complete=True):
         r = expected[z['id']]
         assert z['sha256'] == r['sha256'] and z['request'] == r
         assert z['fingerprint_sha256'] == digest(run['fingerprint'])
+        assert np.asarray(z['prob']).shape == (5,)
         assert np.allclose(softmax(z['sequence_logp']), z['prob'], atol=1e-12, rtol=0)
         assert z['record_sha256'] == digest({k: v for k, v in z.items() if k != 'record_sha256'})
         result[z['id']] = z
@@ -278,13 +325,16 @@ def score(args):
                     '-p', 'test_prefix_attribution.py', '-v'], check=True,
                    env=dict(os.environ, CUDA_VISIBLE_DEVICES='', OMP_NUM_THREADS='1', OPENBLAS_NUM_THREADS='1'))
     rows, prep = prepared(args.out, args.limit)
+    historical_cpu = C.read_json(safe_out(args.out) / 'historical_cpu_audit.json')
+    assert historical_cpu['passed'] and historical_cpu['anchors'] == 1544
+    assert all(prep['sources'][path] == sha for path, sha in historical_cpu['sources'].items())
     pilot_run = None
     if not args.limit:
         pilot = safe_out(args.out) / args.name / f'first{args.pilot_size}'
         pilot_rows, _ = prepared(args.out, args.pilot_size)
         _, pilot_run = read_scores(pilot, pilot_rows)
         verification = C.read_json(pilot / 'verification.json')
-        assert verification['passed'] and pilot_run['complete']
+        assert verification['passed'] and verification['historical_anchors_compatible'] and pilot_run['complete']
         assert verification['run_sha256'] == C.sha_file(pilot / 'run.json')
         assert verification['scores_sha256'] == C.sha_file(pilot / 'scores.jsonl')
         assert verification['analysis_sha256'] == C.sha_file(pilot / 'analysis.json')
@@ -300,8 +350,8 @@ def score(args):
         jobs = []
         for row in rows:
             assert token_audit(tok, row) == row['token_audit']
-            jobs.append(D.tokenize(tok, row))
-        # Four factorial cells before anchors, fixed ordering; no favorable-condition selection.
+            jobs.append(tokenize(tok, row))
+        # Fixed eight-condition order; every condition scored regardless of outcomes.
         jobs.sort(key=lambda j: (CONDITIONS.index(j['condition']), j['point_id'], j['evidence']))
         with torch.inference_mode(), sdpa_kernel(SDPBackend.MATH):
             scorer, model = B.load_model(args.name, args.model, ROOT)
@@ -377,8 +427,11 @@ def analyze(args):
     folder = run_dir(args)
     scores, run = read_scores(folder, rows)
     assert run['fingerprint']['request_hash'] == prep['request_hash']
+    import prefix_attribution_history as H
+    history = H.compare(rows, scores, args.name)
+    C.save_json(folder / 'historical_anchor_comparison.json', history)
     result, points = A.analyze_rows(rows, scores)
-    result.update(model=args.name, cohort=folder.name, run_sha256=C.sha_file(folder / 'run.json'),
+    result.update(historical_anchors=history['summary'], known_preexisting_action_marker_points=prep['known_preexisting_action_marker_points'], model=args.name, cohort=folder.name, run_sha256=C.sha_file(folder / 'run.json'),
                   scores_sha256=run['scores_sha256'], implementation=implementation(),
                   numerical_gate=C.read_json(folder / 'numerical_gate.json'),
                   runtime=run['fingerprint']['runtime'], model_fingerprint=run['fingerprint']['model'],
@@ -407,11 +460,13 @@ def verify(args):
         values[row['point_id'], row['evidence'], row['condition']] = float(sum(weights * np.array(row['q3456'])))
         clusters[row['point_id']] = row['traj']
     pids = sorted(clusters)
-    primary = {'P_Q_F': [], 'P_Q_M': [], 'I_Q': []}
+    primary = {k: [] for k in ('SLOT_F', 'SLOT_M', 'I_SLOT', 'P_Q_F', 'P_Q_M', 'I_Q')}
     for pid in pids:
         f = values[pid, 'F', 'QO'] - values[pid, 'F', 'QS']
         m = values[pid, 'M', 'QO'] - values[pid, 'M', 'QS']
-        for key, value in zip(primary, (f, m, f - m)):
+        sf = values[pid, 'F', 'QS'] - values[pid, 'F', 'AP']
+        sm = values[pid, 'M', 'QS'] - values[pid, 'M', 'AP']
+        for key, value in zip(primary, (sf, sm, sf-sm, f, m, f - m)):
             primary[key].append(value * 100)
     checks = {}
     # Independent cluster bootstrap implementation; exact same fixed resampling protocol.
@@ -426,19 +481,64 @@ def verify(args):
         assert abs(estimate - reported['estimate']) < 1e-10
         assert np.allclose(ci, reported['ci95'], atol=1e-10, rtol=0)
         checks[key] = dict(estimate=estimate, ci95=ci.tolist())
+    import prefix_attribution_history as H
+    history = H.compare(rows, scores, args.name)
+    assert history == C.read_json(folder / 'historical_anchor_comparison.json')
+    assert history['summary']['compatible'], 'Historical anchors require investigation; no mixed interpretation/full progression'
+    verify_centered(rows, scores, analysis, clusters, draws, labels)
     assert analysis['n_points'] == len(pids) and analysis['n_clusters'] == len(labels)
     C.save_json(folder / 'verification.json', dict(passed=True, utc=utc(), points=len(pids),
                 contexts=len(rows), clusters=len(labels), primary_recomputed=checks,
+                historical_anchors_compatible=True, centered_slopes_recomputed=True,
                 raw_scores_validated=True, frozen_sources_unchanged=True,
                 run_sha256=C.sha_file(folder / 'run.json'), scores_sha256=C.sha_file(folder / 'scores.jsonl'),
                 analysis_sha256=C.sha_file(folder / 'analysis.json')))
     print('VERIFIED', folder)
 
 
+def verify_centered(rows, scores, analysis, clusters, draws, labels):
+    """Independently form all five-arm centered products and paired bootstrap ratios."""
+    indexed = {(r['point_id'], r['evidence'], r['condition']): r for r in rows}
+    pids = sorted(clusters)
+    by_condition = {}
+    estimates = {}
+    for condition in CONDITIONS:
+        numerator = np.zeros(len(labels)); denominator = np.zeros(len(labels))
+        for pid in pids:
+            r = indexed[pid, 'M', condition]
+            q = np.asarray(r['q3456'], float)
+            d = np.asarray(scores[indexed[pid, 'F', condition]['id']]['sequence_logp']) - np.asarray(scores[r['id']]['sequence_logp'])
+            group = labels.index(clusters[pid])
+            for j in range(5):
+                numerator[group] += (q[j] - q.mean()) * (d[j] - d.mean())
+                denominator[group] += (q[j] - q.mean()) ** 2
+        den = denominator.sum()
+        estimate = float(numerator.sum() / den) if den else None
+        boot_den = draws @ denominator
+        boot = np.divide(draws @ numerator, boot_den, out=np.full(NBOOT, np.nan), where=boot_den != 0)
+        reported = analysis['centered']['conditions'][condition]['slope']
+        if estimate is None: assert reported['estimate'] is None
+        else: assert abs(estimate - reported['estimate']) < 1e-10
+        if np.isfinite(boot).all():
+            assert np.allclose(np.percentile(boot, [2.5, 97.5]), reported['ci95'], atol=1e-10, rtol=0)
+        else: assert reported['ci95'] is None
+        by_condition[condition] = boot; estimates[condition] = estimate
+    for condition in CONDITIONS:
+        report = analysis['centered']['conditions'][condition]['ratio_to_DROP']
+        ratio = estimates[condition] / estimates['DROP'] if estimates['DROP'] not in (0, None) else None
+        if ratio is None: assert report['estimate'] is None
+        else: assert abs(ratio - report['estimate']) < 1e-10
+        if report['ci95'] is not None:
+            ref = by_condition['DROP']
+            dist = np.divide(by_condition[condition], ref, out=np.full(NBOOT, np.nan), where=ref != 0)
+            assert np.isfinite(dist).all()
+            assert np.allclose(np.percentile(dist, [2.5, 97.5]), report['ci95'], atol=1e-10, rtol=0)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=('prepare', 'score', 'analyze', 'verify'))
-    parser.add_argument('--out', default=str(HERE / 'results/prefix_attribution_20261105'))
+    parser.add_argument('--out', default=str(HERE / 'results/prefix_attribution_v2_20261105'))
     parser.add_argument('--model', help='Local frozen model/tokenizer directory; required for prepare/score')
     parser.add_argument('--arms', default=str(ROOT / 'exploratory_deep_discovery/exploratory_arms.parquet'))
     parser.add_argument('--name', choices=('7b', '32b'), default='7b')

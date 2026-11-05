@@ -2,12 +2,14 @@
 import numpy as np
 import exp1c as E
 
-CONDITIONS = ('AS', 'AO', 'QS', 'QO', 'KEEP', 'DROP')
+CONDITIONS = ('AS', 'AO', 'QS', 'QO', 'QN', 'AP', 'KEEP', 'DROP')
 SEED = 20261105
 NBOOT = 4000
 LIMITATIONS = (
     'Restricted five-action continuation diagnostic, not observed policy success or an OPD gradient. '
     'QO−QS identifies a stated-authorship wording intervention, not internal self-recognition. '
+    'QS−AP matches restart and final request but still changes message/history/quotation structure. '
+    'AP−AS combines turn completion, restart and a new user request. '
     'QS−AS and QO−AO combine placement, generation restart and prompt/task format. '
     'CIs are exploratory without multiplicity correction; crossing zero is unresolved, not equivalence. '
     'Null quote effects do not establish a content-only mechanism. '
@@ -31,7 +33,10 @@ def evidence_metrics(m, f, q):
         slope = float(np.sum(x * y) / np.sum(x * x))
     else:
         concordance = aligned = slope = None
-    return dict(shift_nats=shift.tolist(), qgap=dq.tolist(), non_tie_pairs=int(non_tie.sum()),
+    centered_q = q - q.mean()
+    centered_delta = (f - m) - (f - m).mean()
+    return dict(centered_q=centered_q.tolist(), centered_delta=centered_delta.tolist(),
+                centered_xy=float(centered_q @ centered_delta), centered_xx=float(centered_q @ centered_q), shift_nats=shift.tolist(), qgap=dq.tolist(), non_tie_pairs=int(non_tie.sum()),
                 aligned_shift_nat=aligned, concordance=concordance, slope_nat_per_q=slope)
 
 
@@ -96,7 +101,11 @@ def analyze_rows(rows, scores):
                          for k in cell_names} for e in ('M', 'F') for c in CONDITIONS}
     evidence = {c: {k: ci([p['evidence'][c][k] for p in points], clusters, units[k])
                     for k in evidence_names} for c in CONDITIONS}
-    pairs = {'quote_provenance_QO_minus_QS': ('QO', 'QS'),
+    pairs = {'matched_restart_slot_QS_minus_AP': ('QS', 'AP'),
+             'restart_AP_minus_AS': ('AP', 'AS'),
+             'neutral_QN_minus_QS': ('QN', 'QS'),
+             'neutral_QN_minus_QO': ('QN', 'QO'),
+             'quote_provenance_QO_minus_QS': ('QO', 'QS'),
              'assistant_provenance_AO_minus_AS': ('AO', 'AS'),
              'mixed_placement_QS_minus_AS': ('QS', 'AS'),
              'mixed_placement_QO_minus_AO': ('QO', 'AO'),
@@ -121,7 +130,9 @@ def analyze_rows(rows, scores):
             subtract(subtract(p['cells'][f'{e}_QO'][k], p['cells'][f'{e}_QS'][k]),
                      subtract(p['cells'][f'{e}_AO'][k], p['cells'][f'{e}_AS'][k]))
             for p in points], clusters, units[k]) for k in cell_names}
-    primary = dict(P_Q_F=contrasts['F_quote_provenance_QO_minus_QS']['value_pp'],
+    primary = dict(SLOT_F=contrasts['F_matched_restart_slot_QS_minus_AP']['value_pp'],
+                   SLOT_M=contrasts['M_matched_restart_slot_QS_minus_AP']['value_pp'],
+                   I_SLOT=contrasts['F_minus_M_matched_restart_slot_QS_minus_AP']['value_pp'], P_Q_F=contrasts['F_quote_provenance_QO_minus_QS']['value_pp'],
                    P_Q_M=contrasts['M_quote_provenance_QO_minus_QS']['value_pp'],
                    I_Q=contrasts['F_minus_M_quote_provenance_QO_minus_QS']['value_pp'])
     result = dict(n_points=len(points), n_clusters=len(set(clusters)), contexts=len(rows),
@@ -134,7 +145,7 @@ def analyze_rows(rows, scores):
                                    aligned_shift='mean sign(Q_j-Q_f)*E_j over non-tie Q pairs within point',
                                    slope='within-point through-origin sum(Qgap*E)/sum(Qgap^2)',
                                    undefined='all-Q-tied points retained for V; E-alignment undefined and counts reported'),
-                  cells=cells, evidence=evidence, contrasts=contrasts, primary=primary,
+                  centered=centered_statistics(points, pairs), cells=cells, evidence=evidence, contrasts=contrasts, primary=primary,
                   interpretation={k: verdict(v) for k, v in primary.items()}, limitations=LIMITATIONS)
     return result, points
 
@@ -162,7 +173,51 @@ def report(result):
     for c, metrics in result['evidence'].items():
         for k, s in metrics.items():
             lines.append(f"{c} {k}: {s['estimate']}, CI {s['ci95']}; n={s['n']}, undefined={s['undefined']}")
+    lines += ['', 'Pooled five-arm centered evidence slopes and paired DROP ratios:']
+    for c, stat in result['centered']['conditions'].items():
+        lines.append(f"{c}: slope {stat['slope']}; slope/DROP {stat['ratio_to_DROP']}")
+    for label, stat in result['centered']['paired_slope_contrasts'].items():
+        lines.append(f'{label}: {stat}')
+    lines += ['', 'Historical KEEP/DROP: ' + str(result.get('historical_anchors', {})),
+              'Original action markers outside Think preserved: ' + str(result.get('known_preexisting_action_marker_points', []))]
     lines += ['', 'All raw four-alternative E values and Q gaps are in point_metrics.jsonl.gz.',
               'Exact user/assistant prompts and role token IDs: ../../exact_prompt_examples.json.',
               'All numerical gates, model/source hashes and runtime/VRAM: analysis.json and run.json.', '', LIMITATIONS]
     return '\n'.join(lines) + '\n'
+
+
+def centered_statistics(points, pairs):
+    """Pooled within-point-centered slope; paired cluster draws shared by ALL conditions."""
+    labels = sorted({p['traj'] for p in points})
+    groups = np.array([labels.index(p['traj']) for p in points])
+    draws = np.random.default_rng(SEED).multinomial(len(labels), [1 / len(labels)] * len(labels), size=NBOOT)
+    xx = np.array([p['evidence']['DROP']['centered_xx'] for p in points])
+    den = float(xx.sum())
+    bd = draws @ np.bincount(groups, weights=xx, minlength=len(labels))
+    samples, estimates = {}, {}
+    for c in CONDITIONS:
+        xy = np.array([p['evidence'][c]['centered_xy'] for p in points])
+        bn = draws @ np.bincount(groups, weights=xy, minlength=len(labels))
+        estimates[c] = float(xy.sum() / den) if den != 0 else None
+        samples[c] = np.divide(bn, bd, out=np.full(NBOOT, np.nan), where=bd != 0)
+    def summary(value, draws_, unit):
+        valid = np.isfinite(draws_)
+        return dict(estimate=value, ci95=np.percentile(draws_[valid], [2.5, 97.5]).tolist() if valid.all() else None,
+                    undefined_draws=int((~valid).sum()), unit=unit)
+    reference = summary(estimates['DROP'], samples['DROP'], 'nat per replay Q')
+    unstable = reference['ci95'] is None or reference['ci95'][0] <= 0 <= reference['ci95'][1]
+    conditions = {}
+    for c in CONDITIONS:
+        ratio = estimates[c] / estimates['DROP'] if estimates['DROP'] not in (0, None) else None
+        dist = np.divide(samples[c], samples['DROP'], out=np.full(NBOOT, np.nan), where=samples['DROP'] != 0)
+        ratio_stat = summary(ratio, dist, 'relative to DROP')
+        ratio_stat['denominator_ci_contains_zero_or_undefined'] = unstable
+        if unstable:
+            ratio_stat['ci95'] = None
+            ratio_stat['interpretation'] = 'Unstable denominator; do not interpret a bounded ratio interval.'
+        conditions[c] = dict(slope=summary(estimates[c], samples[c], 'nat per replay Q'), ratio_to_DROP=ratio_stat)
+    contrasts = {label: summary(subtract(estimates[a], estimates[b]), samples[a] - samples[b], 'nat per replay Q')
+                 for label, (a, b) in pairs.items()}
+    return dict(definition='sum_i,j (Q_ij-mean_j Q_i)*(delta_ij-mean_j delta_i) / sum_i,j (Q_ij-mean_j Q_i)^2; delta=ell_F-ell_M',
+                conditions=conditions, paired_slope_contrasts=contrasts, bootstrap_draws=NBOOT, seed=SEED,
+                comparison_to_prior_ratios='Only compare to prior 0.55/0.36 if their estimator is confirmed identical; historical anchors are recomputed using this formula.')

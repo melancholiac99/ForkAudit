@@ -26,7 +26,7 @@ def fixture(response='<think> preserve\n  the exact draft </think>\n<action>look
 class ConstructionTests(unittest.TestCase):
     def test_exact_reasoning_and_matched_cues(self):
         rows = P.make_cases(*fixture())
-        self.assertEqual(len(rows), 12)
+        self.assertEqual(len(rows), 16)
         for evidence in P.EVIDENCE:
             by = {r['condition']: r for r in rows if r['evidence'] == evidence}
             as_, ao, qs, qo = (by[c] for c in ('AS', 'AO', 'QS', 'QO'))
@@ -40,7 +40,7 @@ class ConstructionTests(unittest.TestCase):
             self.assertNotIn('<action>', qs['prompt'][slice(*qs['quote_span'])])
             self.assertNotIn(raw, by['DROP']['prompt'] + by['DROP']['reply_prefix'])
             self.assertEqual(by['KEEP']['reply_prefix'], as_['reply_prefix'])
-            self.assertNotIn('DRAFT PROVENANCE', by['KEEP']['prompt'])
+            self.assertNotIn('DRAFT SOURCE', by['KEEP']['prompt'])
 
     def test_legacy_anchor_and_counterfactual_serialization(self):
         for text in ('<think>r</think>\n<action>look</action>',
@@ -54,9 +54,34 @@ class ConstructionTests(unittest.TestCase):
                     anchor = old[row['evidence'], row['condition'].lower()]
                     for k in ('prompt', 'reply_prefix', 'actions', 'action_lead', 'action_tail'):
                         self.assertEqual(row[k], anchor[k])
-                if row['condition'] in ('QS', 'QO'):
+                if row['condition'] in ('QS', 'QO', 'QN', 'AP'):
                     self.assertTrue(P.D.OPEN_ACTION.fullmatch(row['reply_prefix']))
             self.assertEqual(P.D.action_format(text, 'look'), (old['M', 'keep']['action_lead'], old['M', 'keep']['action_tail']))
+
+    def test_ap_completed_assistant_and_identical_quote_text(self):
+        rows = P.make_cases(*fixture())
+        for e in P.EVIDENCE:
+            by = {r['condition']: r for r in rows if r['evidence'] == e}
+            ap = by['AP']; qs = by['QS']
+            self.assertEqual([m['role'] for m in ap['messages']], ['user', 'assistant', 'user'])
+            self.assertEqual(ap['messages'][0], by['AS']['messages'][0])
+            self.assertEqual(ap['messages'][-1], qs['messages'][-1])
+            self.assertEqual(ap['reply_prefix'], qs['reply_prefix'])
+            for c in ('QS', 'QO', 'QN'):
+                r = by[c]
+                self.assertEqual([m['role'] for m in r['messages']], ['user', 'user'])
+                self.assertEqual(r['messages'][0]['content'][slice(*r['quote_span'])], ap['messages'][1]['content'])
+            self.assertNotIn('earlier attempt', ap['messages'][0]['content'])
+            self.assertNotIn('written by', by['QN']['messages'][0]['content'])
+
+    def test_original_action_marker_outside_think_is_preserved(self):
+        text = '<think>r</think> [action] old wording <action>look</action>'
+        rows = P.make_cases(*fixture(text))
+        for r in rows:
+            self.assertTrue(r['preexisting_action_marker_outside_think'])
+            if r['condition'] == 'AP':
+                self.assertEqual(r['messages'][1]['content'], '<think>r</think> [action] old wording ')
+
 
     def test_bad_factual_or_duplicate_candidates_fail(self):
         with self.assertRaises(ValueError):
@@ -81,7 +106,10 @@ class ConstructionTests(unittest.TestCase):
         old = {(r['condition'], r['think']): r for r in P.D.make_cases(*f)}
         for row in P.make_cases(*f):
             audit = P.token_audit(tok, row)
-            job = P.D.tokenize(tok, row)
+            if row['condition'] == 'AP':
+                expected = '<|im_start|>assistant\n' + row['messages'][1]['content'] + '<|im_end|>\n<|im_start|>user\n' + P.REQUEST + '<|im_end|>'
+                self.assertIn(expected, P.render(tok, row))
+            job = P.tokenize(tok, row)
             self.assertEqual(len(job['candidates']), 5)
             for action, candidate in zip(row['actions'], job['candidates']):
                 full = tok.decode(job['prefix_ids'] + candidate['suffix_ids'], clean_up_tokenization_spaces=False)
@@ -131,6 +159,7 @@ class StatisticsTests(unittest.TestCase):
                 r['sha256'] = P.digest(r)
                 ll = [-2] * 5
                 if r['condition'] == 'QO': ll[1] = -1 if r['evidence'] == 'M' else 0
+                if r['condition'] == 'AP': ll[1] = -3 if r['evidence'] == 'M' else -4
                 scores[r['id']] = dict(id=r['id'], sha256=r['sha256'], request=r,
                                        sequence_logp=ll, prob=P.softmax(ll).tolist(), seconds=.001)
                 rows.append(r)
@@ -144,6 +173,8 @@ class StatisticsTests(unittest.TestCase):
         self.assertAlmostEqual(result['primary']['I_Q']['estimate'],
                                result['primary']['P_Q_F']['estimate'] - result['primary']['P_Q_M']['estimate'])
         self.assertGreater(result['primary']['I_Q']['estimate'], 0)
+        self.assertGreater(result['primary']['SLOT_F']['estimate'], 0)
+        self.assertGreater(result['primary']['I_SLOT']['estimate'], 0)
         with tempfile.TemporaryDirectory() as tmp:
             folder = Path(tmp) / '7b/full'; folder.mkdir(parents=True)
             fp = dict(implementation=P.implementation(), request_hash='fixture', limit=0, name='7b')
@@ -158,8 +189,10 @@ class StatisticsTests(unittest.TestCase):
             result.update(run_sha256=P.C.sha_file(folder / 'run.json'), scores_sha256=run['scores_sha256'],
                           implementation=P.implementation())
             P.C.save_json(folder / 'analysis.json', result)
+            history = dict(summary=dict(compatible=True))
+            P.C.save_json(folder / 'historical_anchor_comparison.json', history)
             args = SimpleNamespace(out=tmp, name='7b', limit=0)
-            with patch.object(P, 'prepared', return_value=(rows, dict(request_hash='fixture'))):
+            with patch.object(P, 'prepared', return_value=(rows, dict(request_hash='fixture'))), patch('prefix_attribution_history.compare', return_value=history):
                 P.verify(args)
                 self.assertTrue(P.C.read_json(folder / 'verification.json')['passed'])
                 result['primary']['I_Q']['estimate'] += 1
@@ -168,6 +201,26 @@ class StatisticsTests(unittest.TestCase):
             # Hash and softmax checks also catch altered or duplicated raw records.
             with (folder / 'scores.jsonl').open('a') as f: f.write(json.dumps(next(iter(scores.values()))) + '\n')
             with self.assertRaises(AssertionError): P.read_scores(folder, rows)
+
+    def test_centered_slope_ratio_and_shared_cluster_resampling(self):
+        rows, scores = self.sample_rows()
+        for r in rows:
+            q = np.array(r['q3456'])
+            factor = 2 if r['condition'] == 'DROP' else 1
+            scores[r['id']]['sequence_logp'] = (factor * q if r['evidence'] == 'F' else np.zeros(5)).tolist()
+        result, _ = A.analyze_rows(rows, scores)
+        for c in A.CONDITIONS:
+            expected = 2 if c == 'DROP' else 1
+            stat = result['centered']['conditions'][c]
+            self.assertAlmostEqual(stat['slope']['estimate'], expected)
+            np.testing.assert_allclose(stat['ratio_to_DROP']['ci95'], [expected / 2] * 2)
+        self.assertEqual(result['primary']['SLOT_F']['estimate'], 0)
+        # An exactly zero DROP slope must not yield an invented finite ratio interval.
+        for r in rows:
+            if r['condition'] == 'DROP': scores[r['id']]['sequence_logp'] = [0] * 5
+        result, _ = A.analyze_rows(rows, scores)
+        self.assertIsNone(result['centered']['conditions']['QS']['ratio_to_DROP']['ci95'])
+
 
     def test_missing_condition_is_not_silently_dropped(self):
         rows, scores = self.sample_rows()
