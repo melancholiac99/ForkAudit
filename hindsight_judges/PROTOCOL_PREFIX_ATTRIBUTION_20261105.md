@@ -1,171 +1,140 @@
-# Prefix Provenance × Message-Role Intervention — Hindsight/OPD Mechanism Protocol
+# Prefix Attribution × Message-Slot Diagnostic — Revised Protocol (2026-11-05)
 
-**Date:** 2026-11-05  
-**Status:** PROPOSED — protocol and execution specification only; **not run**.  
-**Repository / branch:** `melancholiac99/ForkAudit` / `research/hindsight-judges` (**do not touch `main`**).  
-**Scope:** P4 frozen 386 decision points / 60 original trajectories; action continuation scoring only; frozen Qwen2.5-7B-Instruct and Qwen2.5-32B-Instruct; M/F × provenance/role conditions. **No new trajectory collection, OPD training, H-LN DPO, or alteration of prior results.**
+**状态：正式实验方案修订版；尚未运行 GPU。** 本文件替代 2026-11-05 的旧版六条件协议。需要先同步更新现有 `exp4_prefix_attribution.py` / `prefix_attribution_analysis.py` / 测试（实现提交 `efea3bd` 仍是六条件版本），**不要直接拿未修改的旧实现运行本协议**。
 
-## 中文执行摘要（服务器 Agent 可直接按下方英文正式协议实施）
+**GitHub 分支：** `research/hindsight-judges`。**不修改 main，不覆盖 E1/E1c/P4/E4 或现有动作/逐 token 结果；不启动训练或新 rollout。**
 
-**研究目标。** 在 **Student 推理文本完全不变、Teacher 权重不变、同一 M/F 证据、同一五个合法动作、同一独立回放 Q** 下，区分：（1）推理的内容承诺；（2）推理处于 Teacher 当前 Assistant 续写前缀的位置效应；（3）“自己写的/另一个 Agent 写的”这一归属提示效应。**角色归属只是待检验假说，不是既定结论。**
+## 1. 研究问题
 
-**六个条件（四格因素设计 + 两个锚点）：**
+我们已观察到：相同 Teacher、相同五臂一步反馈 F，P4 上 32B 的五候选独立回放加权价值从 **Keep 42.2%** 升至 **Drop 67.8%**。本实验要进一步识别，这个落差主要和哪一种因素有关：
 
-| 条件 | Student Think 放在哪里 | 归属描述 | 作用 |
-|---|---|---|---|
-| **AS** | 当前 Assistant 的生成前缀 | “你之前写的草稿” | 四格中的 Assistant-self |
-| **AO** | 同样的当前 Assistant 前缀 | “另一个 Agent 的草稿” | 在同一续写位置测试归属标签 |
-| **QS** | User 消息中的逐字引用 | “你之前写的草稿” | User-self |
-| **QO** | 同样的 User 引用 | “另一个 Agent 的草稿” | **主要归属对照：QO−QS** |
-| **KEEP** | 当前 Assistant 前缀 | 不加归属声明 | 与原 P4 结果直接衔接 |
-| **DROP** | 不提供当前 Think | 无 | 原 P4 删除推理的参照上界 |
+- **推理内容**：文本明确承诺某个动作，导致自然后续偏向这个动作。
+- **消息槽位 / 轮次**：Student 的文字位于 Teacher 当前未结束的 Assistant 回复、已结束的 Assistant 回复，还是外部 User 引用。
+- **来源归属描述**：相同引用被标注为“你写的”还是“另一 Agent 写的”。
 
-这里额外增加 **AS** 是为了避免把原来没有显式作者说明的 KEEP 硬当作严格的 self 条件；这样才形成真正配对的 **Assistant/User × self/other** 四格对照。KEEP 和 DROP 单独作为原始锚点。
+**核心假说是“Student 的错误在 Assistant 槽位被当作已有自我推理，从而妨碍纠错”；这是待检验假说，不预设会成立。** 只改归属标签不等同于改变实际消息槽位。研究对象首先是**动作评分与 F 的证据响应**，不声称测到了 OPD 逐 token 梯度或训练后的 Agent 成功率。
 
-**规模与工作量。** 原始 P4 的 **386 点、60 条轨迹**；每个条件跑 **M/F × 7B/32B**；每次给五个固定候选动作打分，不生成新轨迹、不训练。完整六条件共 **9,264 个“模型×证据×条件×状态”上下文**，其中历史 KEEP/DROP 分数在完全同一模型权重、精度、Token 序列时才允许复用。先做 32–64 点的小样本测速与数值核验；之前的“1–2 GPU 小时”只是猜测，不当作预算承诺。
+## 2. 数据、模型和不变量
 
-**最重要的统计问题。** 既看 QUOTE-other 与 QUOTE-self 的**绝对离线价值差**，也看这两种条件下 **F 相比 M 带来的增益是否不同**。再用同一个动作的 M/F **log-odds 变化**与固定的独立 Q 差异比较，区分“仅仅降低了原动作的强先验”和“真正增强了反事实证据的相对支持”。所有点按原始轨迹聚类 bootstrap，报告 95% CI。
+- 直接复用冻结的 **386 个 P4 状态 / 60 条原始轨迹**；每点 Student 真正写出的原始前动作推理 R，五个固定合法动作（事实臂 f + 四个替代臂），独立 `q3456` 回放值；**不抽新数据、不重新估计 Q**。
+- 两个 Teacher：**Qwen2.5-7B-Instruct** 和 **Qwen2.5-32B-Instruct**。7B 使用已验证 FP32 恢复；32B 使用已验证 FP16 transformer + FP32 head；遵循旧实验的 SDPA MATH / chunked prefill 与数值校验。
+- 两种证据：**M** = 原决策时输入；**F** = 现有五动作对称的一步反馈。证据和动作候选在同一点、同模型、不同条件间严格保持不变。
+- R 包括 Student 在原动作开标签前的原样文本，Think 原封不动；任何改动仅限于**放置位置及固定来源说明**。不提示“错误”“检查”“纠正”“忽略旧推理”，不透露最终正确动作；不得把 `executed_action` 或原始动作字符串随引用复制进去。
+- 使用真正的 Qwen chat template 和 role token，不用文本 `[Assistant]` 假装结构化消息；保留原始动作开标签、空格与结束标签，继续使用 `exp3_action_diagnostic.py` 的候选路径评分语义。
 
-**最重要的解释限制。** QO−QS 识别的是在 User 引用位置改变**作者归属措辞**的效应；QS−AS 还混入**消息角色、重启生成、指令任务**变化，不能直接命名为纯粹的轮内连贯效应。若所有引用条件都无改善，也不能立刻断言内容机制是唯一原因。该实验只研究**动作 continuation 评分**，还不能证明 OPD 逐 token 梯度或训练收益。
+## 3. 八种条件（六条件 + AP + QN）
 
-**交付边界。** 本提交只有实验协议；暂不自动启动 GPU、OPD 训练、HLN 或数学复现。具体实现应单独提交脚本与测试到 `research/hindsight-judges`，不要改动 `main` 和任何已有结果。
+| 条件 | R 放置位置 | 来源说明 | 当前动作输出位置 | 主要用途 |
+|---|---|---|---|---|
+| **KEEP** | **正在生成的 Assistant 前缀** | 无 | 接在原 R 后的动作标签 | 原始 OPD 式锚点 |
+| **DROP** | 不提供当前 R | 无 | 原始无 Think 动作前缀 | 原始无推理锚点 |
+| **AS** | 正在生成的 Assistant 前缀 | “你写的” | 接在原 R 后 | 对照 AO |
+| **AO** | 正在生成的 Assistant 前缀 | “另一 Agent 写的” | 接在原 R 后 | Assistant 槽位内归属提示 |
+| **QS** | 第一条 User 消息内逐字引用 | “你写的” | 新的 Assistant 从动作标签开始 | 与 AP 比消息槽位；与 QO 比来源 |
+| **QO** | 同样的 User 引用 | “另一 Agent 写的” | 新的 Assistant 从动作标签开始 | User 内归属提示 |
+| **QN** | 同样的 User 引用 | **中性、无作者说明** | 新的 Assistant 从动作标签开始 | 控制归属提示本身 |
+| **AP** | **已结束的上一条 Assistant 消息** | 与 QS 相同：“你写的” | 新 User 请求后再开 Assistant、从动作标签开始 | 与 QS 比已结束 Assistant vs User 槽位 |
 
----
+**AP 是本次修订最重要的新条件。** 它不是把 R 保留在当前正在生成的 Assistant 前缀，而是先让 Assistant 发完 R、正常以 `<|im_end|>` 结束该轮，再让 User 提出同一句动作请求，最后由新的 Assistant 输出动作。**这样 AP 与 QS 都经历新的一轮 Assistant 生成，避免旧版 `QS−AS` 把“轮次重启”混进槽位对比。** 但 AP vs QS 仍不可避免地改变了消息结构、引用格式和对话历史，所以解释为“匹配重启条件下的消息槽位效应”，不宣称绝对纯粹的角色因果识别。
 
-## 0. Research question and motivation
+### 明确的聊天结构（示意；实际以 tokenizer 的 chat template 渲染）
 
-**Question:** Does Student-generated reasoning reduce a hindsight Teacher's ability to use the same action-symmetric environmental evidence because of (i) the *semantic commitment* in the reasoning, (ii) its position as the Teacher's active **assistant-generation prefix**, or (iii) an attribution cue implying that the reasoning belongs to the Teacher rather than another agent?
+下述 `BASE` 是完全相同的 M/F 信息，`R` 是原样 Student 前动作推理，`TAG` 是原始动作开标签，`REQUEST` 固定为 `Output the next legal action.`。
 
-This is a **mechanism diagnostic**. We do **not** assume that role attribution explains the previously observed effect. A change in action score is not, by itself, proof of self-attribution or a beneficial OPD update.
+```text
+AS: [user: BASE + SELF_CUE] [assistant (OPEN): R + TAG]
+AO: [user: BASE + OTHER_CUE] [assistant (OPEN): R + TAG]
+KEEP: [user: BASE] [assistant (OPEN): R + TAG]
+DROP: [user: BASE] [assistant (OPEN): original no-Think prefix]
 
-Relevant prior results, scored on the **same five original candidate actions** and weighted by **independent q3456 replay value** (not measured policy success):
+QS: [user: BASE + SELF_CUE + QUOTE(R)] [user: REQUEST] [assistant (OPEN): TAG]
+QO: [user: BASE + OTHER_CUE + QUOTE(R)] [user: REQUEST] [assistant (OPEN): TAG]
+QN: [user: BASE + NEUTRAL_CUE + QUOTE(R)] [user: REQUEST] [assistant (OPEN): TAG]
 
-| 32B condition | M | F | F−M |
-|---|---:|---:|---:|
-| Current Think **keep** | 37.6 pp | 42.2 pp | +4.6 pp |
-| Current Think **drop** | 41.2 pp | 67.8 pp | +26.6 pp |
+AP: [user: BASE + SELF_CUE] [assistant (COMPLETED): R]
+    [user: REQUEST] [assistant (OPEN): TAG]
+```
 
-The same qualitative interaction appears for 7B. This establishes that the current reasoning prefix strongly alters *observed action choice*, but **does not by itself distinguish** strong preexisting action prior from suppressed response to evidence. Nor does it establish a self/other authorship effect.
+**提示语统一修订：** 不再使用 `in an earlier attempt`。例如：
 
-Sources: `hindsight_judges/results/action_diagnostic/analysis_full.json`, `hindsight_judges/results/action_diagnostic/READOUT_20261104.txt`, `hindsight_judges/exp3_action_diagnostic.py`. The historical full-response token diagnostic is a distinct experiment and is not being silently reused as an OPD training result.
+- `SELF_CUE = "[DRAFT SOURCE] The draft reasoning below for the current step was written by you. [/DRAFT SOURCE]"`
+- `OTHER_CUE = "[DRAFT SOURCE] The draft reasoning below for the current step was written by another agent. [/DRAFT SOURCE]"`
+- `NEUTRAL_CUE = "[DRAFT] Below is draft reasoning for the current step. [/DRAFT]"`
 
-## 1. Cohort, invariants, and evidence
+QS 与 AP 的 **SELF_CUE 字符串完全相同**；二者最后的 User `REQUEST` 也完全相同。QS/QO/QN 的引用边界及 R 完全相同。AS/AO 只改变来源描述。无任何纠错暗示。
 
-- Use **all 386** original P4 I/U decision forks / **60** trajectory clusters, with the exact frozen current-turn Student response, factual executed action `a0=f`, four original legal alternatives `a1..a4`, action formatting, original decision-time prompt, and five candidate independent **q3456** values. Log all parse failures; no silent repair or outcome-based filtering.
-- **M:** original Student-visible decision prompt, no privilege. **F:** exactly the existing, action-symmetric one-step evidence for all five candidate actions, in the same original encoding and order, appended with the existing evidence wrapper. Do not invent an alternative future log. F is privileged and **never** a Student input.
-- All conditions at a point share the same task, state, candidate list, replay Q, Teacher weights, decoding-free teacher-forced candidate scorer, and (within each model) precision.
-- **Only the presentation and claimed provenance of the same verbatim Student reasoning may change.** No wording such as “wrong,” “please critique,” “review for errors,” or “ignore your draft.” No gold solution or target action exposed.
-- Distinguish **stated authorship** (“your draft” vs “another agent's draft”) from actual chat role (**user** vs active **assistant**). An authorship statement is an experimental cue, not proof of an internal self-recognition mechanism.
+**代码特别注意：** 旧实现只有一个平铺的 `prompt` 加 `reply_prefix`，无法生成真实 AP 的历史 Assistant 消息；新实现需接收结构化 `messages=[{role,content},...]` 后用 chat template 渲染。不要将 `<|im_start|>assistant` 直接塞进 User 文本伪造角色。AP 的完整 R 必须确实位于历史 Assistant 轮次，且 `<|im_end|>` 后才出现新 User 请求；不能带上事实动作。
 
-## 2. Conditions: matched 2×2 plus original anchors
+**一个已知边界：** `s071_t01` 的 R 在 Think 外还包含旧 `[action]` 文本。原样保留、记录其存在，不为了让结果好看而清理；汇总时注明这一点即可。
 
-A complete, interpretable factorial needs **explicit, symmetric provenance wording on both sides of the 2×2**. Retain the original `KEEP` and `DROP` as historical anchors; do **not** silently treat the unlabelled KEEP as a fully matched “self”-label condition.
+## 4. 主终点与主要对照（先固定，后看结果）
 
-| ID | Source cue | Student reasoning placement | Action-output prefix |
-|---|---|---|---|
-| **AS** — ASSISTANT-self | explicitly “your earlier draft” | verbatim text in the **active assistant continuation** | original action-open tag |
-| **AO** — ASSISTANT-other | explicitly “another agent's draft” | **same** active assistant continuation as AS | original action-open tag |
-| **QS** — QUOTE-self | explicitly “your earlier draft” | verbatim text **quoted within user message** | action-open tag, without active Think |
-| **QO** — QUOTE-other | explicitly “another agent's draft” | **same** user quote location as QS | action-open tag, without active Think |
-| **KEEP** (original anchor) | implicit assistant authorship; **no added cue** | original active assistant Think | original action-open tag |
-| **DROP** (original anchor) | no current Think | absent from active assistant; same old non-Think prefix | original action-open tag |
+对每个点 `i`、条件 `c`、证据 `e`，用**同一个 Teacher**给五条固定动作续写算原始序列对数概率 `ell[e,c,i,j]`，归一化得到五候选分布：
 
-**Primary factorial:** `AS/AO × QS/QO` (assistant/user placement × self/other provenance cue). **Anchors:** original `KEEP/DROP` contextualize the mechanism and permit comparison with already published diagnostics. To minimize GPU work, first complete the four factorial cells, using strictly validated historical KEEP/DROP values when possible.
+```text
+p[e,c,i,:] = softmax(ell[e,c,i,:])
+V[e,c,i]   = sum_j p[e,c,i,j] * q3456[i,j]
+```
 
-### Exact rendering requirement
+`V` 是“固定五动作概率加权的独立回放价值”，不是实测策略成功率。
 
-Use Qwen's **real chat template** via `tokenizer.apply_chat_template`; the labels `[User]` and `[Assistant]` below are explanatory, **not** literal text to inject into prompts.
+**两个并列主终点：**
 
-Preserve the raw original reasoning **bytes** before the opening action tag, including its `<think>...</think>` (or original variant) and any other pre-action preamble. Let `R` denote that exact span; let `TAG` be the actual original action-open tag, and let `LEAD`/`TAIL` be the candidate's original whitespace and action-close serialization as recovered by `action_format`. All five candidates are scored as `TAG + LEAD + action_j + TAIL` in the appropriate active assistant prefix, using the scorer's existing token-boundary logic.
+1. **消息槽位对照（最重要）：** `V[F,QS] − V[F,AP]`，同时报告 M 下对应差异与 `(F−M)[QS] − (F−M)[AP]`。R 原样相同；两条件都已重启 Assistant 且最终请求相同。解释上保留消息结构差异限制。
+2. **引用内来源效应：** `V[F,QO] − V[F,QS]`，同时报告 M 下差异与 `(F−M)[QO] − (F−M)[QS]`。它检验的是自我/他人**来源措辞**，不是消息槽位。
 
-The source cue should be a predeclared, otherwise **identical** one-sentence block. For example:
+**配套次级对照（都报告，不临时挑选）：**
 
-- `[DRAFT PROVENANCE] The following draft was written by you in an earlier attempt. [/DRAFT PROVENANCE]`
-- `[DRAFT PROVENANCE] The following draft was written by another agent in an earlier attempt. [/DRAFT PROVENANCE]`
+- `AP − AS`：在 self 归属下，从当前 Assistant 延续变成结束前一轮再开始新一轮；包括重启与用户请求效应。
+- `QN` 与 QS/QO：来源提示是否使相同引用产生不同响应。
+- `AO − AS`：在当前 Assistant 前缀里，仅来源文字是否有效。
+- `QS − AS`：旧方案的混合位置/重启对照，仅作辅助。
+- `DROP − KEEP`：复现原始强效应。
+- 每条件单独的 M/F 离线价值、选事实动作的比例、事实臂概率、坏事实动作纠错率，以及所有配对对照的置信区间。
 
-**AS/AO:** include the matched provenance statement in the **user** message (alongside the unmodified M or F content); the currently scored assistant continuation remains exactly `R + TAG`. Thus, within AS vs AO, **chat role, target continuation, evidence and original text are identical; only the authorship cue changes.** This also means that the text is still *structurally assistant-owned* regardless of the cue.
+**证据利用能力不能只看 V。** 用相同动作的 `M→F` 相对 Log-Odds 变化评估，而不是只看 F 下的绝对评分。对于事实臂 `f=0` 和替代臂 `j=1..4`：
 
-**QS/QO:** put the **same exact R** into a delimited quotation within the **user** message, adjacent to the matched provenance statement; the active assistant continuation begins at `TAG` with **no R**. Quote boundaries and common request to output the next legal action must be *identical* across QS and QO. Never put the factual action or any token beyond `TAG` inside the quote. No request to critique or revise. Quote is context, not an environment observation.
+```text
+E[c,i,j] = [ell[F,c,i,j] - ell[F,c,i,0]]
+         - [ell[M,c,i,j] - ell[M,c,i,0]]
+```
 
-**KEEP/DROP:** reproduce the previously released prompts and prefixes *bit-for-bit*, including the established M/F evidence wrapper and original Student action serialization. Adding the matched source cue creates AS/AO rather than modifying KEEP.
+`E` 与 `q3456[i,j]-q3456[i,0]` 比较，报告价值方向一致率/回归斜率。
 
-**Important confound control:** placing R in a user quote instead of the active assistant prefix also changes the point at which assistant generation starts and may change the interpretation of the task. Thus `QS−AS` is a **combined placement/restart/prompt-format intervention**, *not* a pure “within-turn coherence” causal effect. Keep this distinction in every report.
+**与先前机制 A/B 分析统一尺度：**
 
-### Cheap optional robustness
+- 除以事实臂为参照的 E 外，再计算每个点五臂的 **去均值证据增量**，以 `Q_j - mean(Q)` 对 `E_j - mean(E)` 做合并的价值对齐斜率；在同一点配对比较各条件。
+- 以相同公式计算 `slope(c)/slope(DROP)`，用**同一批轨迹的 bootstrap**得到区间，同时报告绝对斜率，避免分母接近零时误判。和先前 KEEP/DROP 的 32B 0.55、7B 0.36 参照值只在定义完全一致时直接对照。
 
-After primary analysis (not as a condition selected based on favorable outcomes): one paraphrased self/other provenance pair, or a neutral-quote condition, can test sensitivity to the exact phrasing. Do not expand the main factorial unless its costs are measured and approved.
+以上保证能区分“引用只是降低原动作的强先验”与“引用恢复了 F 对更好动作的证据响应”。
 
-## 3. Comparisons, estimands, and what they identify
+## 5. 统计与结果解释
 
-For model `m∈{7B,32B}`, evidence `e∈{M,F}`, condition `c`, and point `i`, score the full five action-string log-likelihoods `ell[m,e,c,i,j]` with the original calibrated backend. Define conditional **five-candidate** probabilities `p_j = softmax_j(ell_j)` and offline independent replay-weighted value:
+- 全量 **386 点、60 条轨迹**，原轨迹为 bootstrap cluster；**4,000 次**，seed `20261105`；所有差异按**同一点配对**后再聚类重采样。报告 95% CI、单位和绝对值；未做多重比较校正，不能把置信区间跨 0 当作“证明无影响”。
+- `QS≫AP`：支持匹配重启条件下的消息槽位干预有效；不直接断言 Teacher 真的“把文本当自己写的”。
+- `QO≫QS`：支持来源归属措辞有效；若在 F−M 的证据增量上也明显改善，更有理由讨论证据利用。
+- `AP≈QS≫AS`：更可能是**当前未结束 Assistant 续写**造成额外约束，而非一切 Assistant 历史都会造成相同干扰。
+- `AS≈AO≈AP≈QS≈QO≈QN≈KEEP` 但 `DROP` 好：更像推理文本内容/动作承诺效应；也可能是这些呈现方式没有有效改变模型行为，不能强称单一因果机制。
+- 所有发现都只限**动作续写打分**；对数学推理、完整 OPD 监督分布、训练成功率的结论需要下一阶段单独验证。
 
-`V[m,e,c,i] = sum_{j=0}^4 p_j * q3456[i,j]`.
+## 6. 历史锚点必须重现（本次增加）
 
-This is a *restricted five-action diagnostic*, **not** an unrestricted policy, observed online success rate, true action Q-estimator, or an OPD loss/gradient.
+旧 `KEEP/DROP` 使用与已发布 `exp3_action_diagnostic.py` 完全相同的真实 prompt、reply prefix、五条动作续写、tokenizer、模型精度。
 
-**Primary estimands (paired within point, 95% trajectory-cluster bootstrap):**
+新评分结束后，**只读**对照历史 `results/action_diagnostic/{7b,32b}/full/scores.jsonl`：
 
-1. **External quote provenance effect at F:** `P_Q = mean_i(V[F,QO,i] - V[F,QS,i])`. The same effect at M is a necessary companion.
-2. **External quote evidence-responsiveness interaction:** `I_Q = mean_i([V[F,QO]-V[M,QO]] - [V[F,QS]-V[M,QS]])`. Distinguishes a main shift in baseline action preference from improved *incremental use of F*.
+1. 按点和 M/F × KEEP/DROP 匹配，比较五条原始 `sequence_logp` 和候选概率；
+2. 报告每点概率总变差距离 TV 的均值、最大值及不一致点；
+3. 重算并报告历史头条价值：32B 的 `M keep 37.6 / M drop 41.2 / F keep 42.2 / F drop 67.8`（百分点），及 7B 对应值；
+4. 如出现非数值误差所能解释的差异，**暂停将新旧结果混表解读**，先查清 prompt、序列化、精度或数据版本差异；不得覆盖历史结果。
 
-**Matched factorial and controls (equally reported, secondary):**
+## 7. 实现、预算与交付
 
-3. **Active assistant provenance:** `P_A(e) = mean_i(V[e,AO]-V[e,AS])`; evidence interaction `I_A` defined analogously.
-4. **Placement/restart contrasts:** `V[e,QS]-V[e,AS]`, `V[e,QO]-V[e,AO]`, each explicitly marked *mixed interventions*, plus `V[e,AS]-V[e,KEEP]` to measure how merely adding explicit self provenance changes the baseline.
-5. **Role × provenance interaction:** `(V[e,QO]-V[e,QS]) - (V[e,AO]-V[e,AS])`.
-6. **Anchoring controls:** `V[e,DROP]-V[e,KEEP]`; factual candidate argmax rate and `p_f` for all conditions; differences in the fraction of bad factual choices corrected.
+- 使用现有 P4 数据加载、独立 Q、动作标记解析、候选评分和缓存/直接评分的数值校验；所有新文件和评分写入独立目录 `hindsight_judges/results/prefix_attribution_v2_20261105/`。
+- 修订现有实现（`exp4_prefix_attribution.py`、`prefix_attribution_analysis.py`、`test_prefix_attribution.py` 及 README），增加真实多轮模板、AP/QN、主终点、旧结果只读复现、证据斜率/DROP 比值。**该代码更新不包含在本协议提交中，旧代码在同步之前不能据此直接运行。**
+- 运行前先完成 CPU 测试、真实 tokenizer 的结构检查以及候选 score/direct 数值门槛；**首先在 32–64 个点试跑测速**，正式 386 点和试跑严格分目录。测试集里需要明确覆盖 AP 的 assistant 轮次结束 token，以及 QS/QO/QN 的逐字引用一致性。
+- **规模：** `386×2(M/F)×8 条件 = 6,176` 个上下文/模型，7B 与 32B 合计 **12,352** 个上下文；每上下文固定五候选动作。比此前六条件方案每模型增加 1,544 个上下文（**+33.3%**）。两张大显存卡可各负责一个模型；总耗时以 pilot 实测为准，不承诺“1–2 GPU 小时”。
+- 报告逐条件价值/事实动作偏好、两条并列主终点、F−M 交互、去均值证据斜率、DROP 斜率比、轨迹聚类 CI、老锚点复现、所有源/权重/代码哈希、数值校验和排除点。
+- 服务器 Agent 完成实现后再申请或按单独任务指示执行 GPU。**本次仅保存方案，不自动运行、不训练 Student、不修改 main。**
 
-**Disentangle evidence assimilation from strong action priors (essential):** record all five raw `ell` values. For each alternative `j`, using the factual action `f=0` as a fixed reference, compute the **evidence-induced log-odds shift**
-
-`E[c,i,j] = (ell[F,c,i,j] - ell[F,c,i,0]) - (ell[M,c,i,j] - ell[M,c,i,0])`.
-
-Compare its sign/rank against the fixed independent `q3456[i,j]-q3456[i,0]` on non-tie pairs; summarize concordance or slope at point level, plus paired attribution and placement contrasts. Use unchanged action strings and model weights across M/F within each c. This answers whether F changes *relative action support* coherently with Q **even when F fails to overturn a strong prior**. A large `V` effect without a matched `E` effect should not be called recovered evidence assimilation.
-
-**Statistical protocol:** all 386 points; unit of resampling = original trajectory (**60 clusters**); 4,000 cluster bootstrap draws, fixed seed `20261105`; pointwise paired differences first, then mean. Preserve all 386 unless a documented frozen-source parse failure; report full cohort and any first-64 pilot separately. Numerical CIs exploratory; no multiplicity correction, and CI crossing zero is not evidence of equivalence. Report absolute values, differences and CIs in **percentage points** for V, **nat** for log-odds, and 0–1 for rates.
-
-## 4. What each possible result would / would not support
-
-- **QO consistently beats QS** within identical user-message quote format: evidence that **stated self/other provenance cue** affects action scoring. If it also increases `I_Q` and Q-aligned `E`, stronger evidence that provenance changes *use of F*. **It is not automatic proof** of the Teacher internally believing it wrote the text.
-- **AO beats AS** despite identical active assistant prefix: evidence that **explicit authorship cues** can modulate continuation *even inside the assistant role*.
-- **QS≈QO≫AS≈AO≈KEEP** with DROP higher: relocation/restart is more promising than provenance wording; the action task itself changed, so do not label it a pure role-causality result.
-- **QUOTE conditions≈KEEP** despite DROP≫KEEP: content-dependent action consistency is one interpretation, but **failed manipulation, prompt format, or overpowering assistant-style behavior** remain alternatives; do not declare “content-only mechanism proven.”
-- **F−M value gain small, but Q-aligned E remains strong**: action prior dominance is plausible; naive raw-value gain underestimates evidence extraction. **E loses Q alignment in keep/assistant and recovers under quoted conditions:** supports a deeper prefix-dependent evidence-response effect.
-- **Results weak or contradictory:** document as null/mixed. Do not invent a distillation method or selectively redefine the primary metric afterward.
-
-For a publishable attribution mechanism, look for **consistency across both models, across M/F, in value and in Q-aligned log-odds**, and replication under a paraphrase/neutral condition if a source-label effect is large. Report exceptions.
-
-## 5. Implementation outline and resource gates
-
-Add a **new script** (e.g. `hindsight_judges/exp4_prefix_attribution.py`) and its CPU tests in a *separate implementation commit after protocol review*. This document authorizes **no GPU run by itself**.
-
-1. Reuse the frozen `exp3_action_diagnostic.py` original P4 input loader, `extract_decision_prompt`, current-turn Think parser, `action_format`, F payload and original q3456 source hash checks. Never edit or overwrite `results/action_diagnostic/`, `results/token_diagnostic_*/`, `exploratory_P4/`, or any original E1c/E4 artifacts.
-2. Generate deterministic `(point, M/F, condition)` request rows, including SHA256 of: source input, exact user message, exact assistant prefix, serialized candidate actions, quotation/provenance template, tokenizer chat-template version. Emit a **condition matrix audit** showing source cue, actual role tokens and text span location. Assert the student reasoning text is verbatim-identical in AS/AO/QS/QO/KEEP, and absent only from DROP active/quoted context.
-3. Validate every candidate: exact factual action match, original `LEAD/TAIL`, five candidate distinct action strings, no future supervised action in quote, no hidden target leakage. For quote rows, **active assistant prefix starts at action-open tag**; no newly generated Think or accidental extra role boundary.
-4. Use the existing verified **7B FP32** and **32B FP16-transformer/FP32-head** MATH/1024-chunk backends and original canonical candidate-token scoring. Numerically gate prefix-cache vs direct full continuation (TV <0.005), and run compact CPU unit tests for role/provenance construction, action serialization, counterfactual candidate identity, and raw-score log-odds calculations before a full GPU run.
-5. First score **first 32–64 P4 points** in a separate exploratory directory to measure real GPU-seconds/context, VRAM and correctness; **do not** use this pilot for final confirmation or choose the best condition based on it. The earlier “1–2 GPU hours” is only a guess; benchmark before estimating a full 386-point run. Each model stays on a recorded GPU UUID with immutable precision/weight SHA fingerprints, resumable completed-run hashes, and no silent truncation.
-6. For the six conditions, there are `386 × 2(M/F) × 6 = 4,632` point/context jobs **per model** (9,264 across 7B/32B), each scoring five candidate actions. Original KEEP/DROP under M/F are `386×2×2=1,544` per model and can be reused **only if their exact tokenized prompt, prefix, candidate suffixes, tokenizer, model weights and precision match**; otherwise re-score. The four new cells are 3,088 jobs per model (6,176 total). Save under `hindsight_judges/results/prefix_attribution_20261105/`; never mix pilot/full files.
-7. Save per-point/per-condition five raw candidate log-likelihoods, candidate-normalized probabilities, raw context text hashes, Q values from independently frozen replay source, source/model fingerprints, numerical checks, computation timestamps, cluster IDs, analysis code version, and a verification report. A separate independent verification pass should recompute the primary paired contrasts from raw scores.
-
-### Execution budget and authorization
-
-**This commit is a protocol only.** It requests neither server execution nor an automatic shutdown. A server Agent can implement it after review and obtain a real timing estimate from the pilot. No H-LN/OPD training or mathematical cross-domain study is bundled into this task.
-
-## 6. Relationship to OPD, follow-up decision, and novelty limit
-
-This is **action-continuation diagnostic**, not a tokenwise OPD update. Its specific value is to test whether a Student-generated reasoning string changes Teacher scoring by **role placement / attribution cue** rather than only by semantic commitment. It **does not** prove that a different Teacher presentation helps Student learn.
-
-If a provenance/role condition reliably restores evidence-sensitive action evaluation, the **next, separate** question is whether it supports an actual distillation target. A true token-level “externalized prefix” Teacher must receive **only `y_<t` at position `t`**, never the entire completed Student response when supervising early Think tokens; align vocabulary, current prediction slot and permissible output space. User-quoted prefixes change the task and can alter format; one must validate teacher and student token probabilities and real training performance rather than transferring action-scorer gains by assertion.
-
-Related literature already investigates model self/other error attribution and critique-assisted or evidence-contrastive OPD. This experiment does not preclaim novelty. It can at most isolate a **specific OPD-relevant role/presentation mechanism** in the controlled ALFWorld action setting. Cross-domain mathematical replication and training are separate later decisions.
-
-## 7. Mandatory report format
-
-A final report should include:
-
-- Population, model/precision, exact six prompts (and message-role tokenization), final counts, numerical gates, runtime/GPU usage, any exclusions and source hashes.
-- **By model, condition and M/F:** expected replay-weighted five-candidate decision value, factual argmax rate, `p_f`, and mean evidence-induced Q-aligned log-odds.
-- All primary `P_Q`, `I_Q` plus factorial `P_A`, `I_A`, placement/restart and role × provenance contrasts, paired 95% trajectory-cluster CIs.
-- Plots/tables separating **M→F evidence effect** from **self→other cue** and **assistant→quote placement**, not only a single favorable chart.
-- A short conclusion that labels findings as *supported*, *not supported*, or *unresolved* and explicitly avoids claims about OPD gradient quality, actual Student learning, internal identity attribution or universal generalization.
-
-**Decision rule:** Run this bounded mechanism test first. Do not propose a “role-transfer distillation” algorithm as validated until the same-source paired attribution/role interactions and evidence-response metrics justify it and actual token-level/learning tests are performed.
+**决策原则：** 先测清楚是否真的有可重复的“消息槽位效应”或“来源提示效应”。只有当它还改善 F 的价值对齐证据响应时，才进一步讨论角色外部化的 Token-level OPD 训练方法；绝不因动作打分改善就直接宣布 OPD 去偏成功。
