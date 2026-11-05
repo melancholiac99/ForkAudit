@@ -5,6 +5,33 @@
 **Repository / branch:** `melancholiac99/ForkAudit` / `research/hindsight-judges` (**do not touch `main`**).  
 **Scope:** P4 frozen 386 decision points / 60 original trajectories; action continuation scoring only; frozen Qwen2.5-7B-Instruct and Qwen2.5-32B-Instruct; M/F × provenance/role conditions. **No new trajectory collection, OPD training, H-LN DPO, or alteration of prior results.**
 
+## 中文执行摘要（服务器 Agent 可直接按下方英文正式协议实施）
+
+**研究目标。** 在 **Student 推理文本完全不变、Teacher 权重不变、同一 M/F 证据、同一五个合法动作、同一独立回放 Q** 下，区分：（1）推理的内容承诺；（2）推理处于 Teacher 当前 Assistant 续写前缀的位置效应；（3）“自己写的/另一个 Agent 写的”这一归属提示效应。**角色归属只是待检验假说，不是既定结论。**
+
+**六个条件（四格因素设计 + 两个锚点）：**
+
+| 条件 | Student Think 放在哪里 | 归属描述 | 作用 |
+|---|---|---|---|
+| **AS** | 当前 Assistant 的生成前缀 | “你之前写的草稿” | 四格中的 Assistant-self |
+| **AO** | 同样的当前 Assistant 前缀 | “另一个 Agent 的草稿” | 在同一续写位置测试归属标签 |
+| **QS** | User 消息中的逐字引用 | “你之前写的草稿” | User-self |
+| **QO** | 同样的 User 引用 | “另一个 Agent 的草稿” | **主要归属对照：QO−QS** |
+| **KEEP** | 当前 Assistant 前缀 | 不加归属声明 | 与原 P4 结果直接衔接 |
+| **DROP** | 不提供当前 Think | 无 | 原 P4 删除推理的参照上界 |
+
+这里额外增加 **AS** 是为了避免把原来没有显式作者说明的 KEEP 硬当作严格的 self 条件；这样才形成真正配对的 **Assistant/User × self/other** 四格对照。KEEP 和 DROP 单独作为原始锚点。
+
+**规模与工作量。** 原始 P4 的 **386 点、60 条轨迹**；每个条件跑 **M/F × 7B/32B**；每次给五个固定候选动作打分，不生成新轨迹、不训练。完整六条件共 **9,264 个“模型×证据×条件×状态”上下文**，其中历史 KEEP/DROP 分数在完全同一模型权重、精度、Token 序列时才允许复用。先做 32–64 点的小样本测速与数值核验；之前的“1–2 GPU 小时”只是猜测，不当作预算承诺。
+
+**最重要的统计问题。** 既看 QUOTE-other 与 QUOTE-self 的**绝对离线价值差**，也看这两种条件下 **F 相比 M 带来的增益是否不同**。再用同一个动作的 M/F **log-odds 变化**与固定的独立 Q 差异比较，区分“仅仅降低了原动作的强先验”和“真正增强了反事实证据的相对支持”。所有点按原始轨迹聚类 bootstrap，报告 95% CI。
+
+**最重要的解释限制。** QO−QS 识别的是在 User 引用位置改变**作者归属措辞**的效应；QS−AS 还混入**消息角色、重启生成、指令任务**变化，不能直接命名为纯粹的轮内连贯效应。若所有引用条件都无改善，也不能立刻断言内容机制是唯一原因。该实验只研究**动作 continuation 评分**，还不能证明 OPD 逐 token 梯度或训练收益。
+
+**交付边界。** 本提交只有实验协议；暂不自动启动 GPU、OPD 训练、HLN 或数学复现。具体实现应单独提交脚本与测试到 `research/hindsight-judges`，不要改动 `main` 和任何已有结果。
+
+---
+
 ## 0. Research question and motivation
 
 **Question:** Does Student-generated reasoning reduce a hindsight Teacher's ability to use the same action-symmetric environmental evidence because of (i) the *semantic commitment* in the reasoning, (ii) its position as the Teacher's active **assistant-generation prefix**, or (iii) an attribution cue implying that the reasoning belongs to the Teacher rather than another agent?
