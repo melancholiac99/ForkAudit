@@ -1,0 +1,47 @@
+test_ap_completed_assistant_and_identical_quote_text (test_prefix_attribution.ConstructionTests.test_ap_completed_assistant_and_identical_quote_text) ... ok
+test_bad_factual_or_duplicate_candidates_fail (test_prefix_attribution.ConstructionTests.test_bad_factual_or_duplicate_candidates_fail) ... ok
+test_exact_reasoning_and_matched_cues (test_prefix_attribution.ConstructionTests.test_exact_reasoning_and_matched_cues) ... ok
+test_legacy_anchor_and_counterfactual_serialization (test_prefix_attribution.ConstructionTests.test_legacy_anchor_and_counterfactual_serialization) ... ok
+test_original_action_marker_outside_think_is_preserved (test_prefix_attribution.ConstructionTests.test_original_action_marker_outside_think_is_preserved) ... ok
+test_output_protects_old_results (test_prefix_attribution.ConstructionTests.test_output_protects_old_results) ... ok
+test_real_chat_template_and_five_suffixes (test_prefix_attribution.ConstructionTests.test_real_chat_template_and_five_suffixes) ... ok
+test_role_boundary_injection_fails (test_prefix_attribution.ConstructionTests.test_role_boundary_injection_fails) ... ok
+test_candidate_cache_and_direct_match_one_pass_on_cpu (test_prefix_attribution.ScorerTests.test_candidate_cache_and_direct_match_one_pass_on_cpu) ... ok
+test_centered_slope_ratio_and_shared_cluster_resampling (test_prefix_attribution.StatisticsTests.test_centered_slope_ratio_and_shared_cluster_resampling) ... ok
+test_cluster_bootstrap_is_point_weighted (test_prefix_attribution.StatisticsTests.test_cluster_bootstrap_is_point_weighted) ... ok
+test_logodds_invariant_to_normalizers_and_strong_prior (test_prefix_attribution.StatisticsTests.test_logodds_invariant_to_normalizers_and_strong_prior) ... ok
+test_missing_condition_is_not_silently_dropped (test_prefix_attribution.StatisticsTests.test_missing_condition_is_not_silently_dropped) ... ok
+test_primary_interaction_and_independent_verifier (test_prefix_attribution.StatisticsTests.test_primary_interaction_and_independent_verifier) ... ok
+test_q_ties_are_undefined_only_for_alignment (test_prefix_attribution.StatisticsTests.test_q_ties_are_undefined_only_for_alignment) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 4.161s
+
+OK
+VERIFIED /tmp/tmp62v3ucbr/7b/full
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 9670.14it/s]
+7b 20 / 512
+7b 40 / 512
+7b 60 / 512
+7b 80 / 512
+7b 100 / 512
+7b 120 / 512
+7b 140 / 512
+7b 160 / 512
+7b 180 / 512
+7b 200 / 512
+7b 220 / 512
+7b 240 / 512
+7b 260 / 512
+7b 280 / 512
+7b 300 / 512
+7b 320 / 512
+7b 340 / 512
+7b 360 / 512
+7b 380 / 512
+7b 400 / 512
+7b 420 / 512
+7b 440 / 512
+7b 460 / 512
+7b 480 / 512
+7b 500 / 512

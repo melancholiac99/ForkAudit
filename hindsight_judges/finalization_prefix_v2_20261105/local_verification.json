@@ -1,0 +1,133 @@
+{
+  "passed": true,
+  "models": [
+    {
+      "analysis_sha256": "5c646bdce4d6dd22afdb3c521baa1c336d08979893dcdb004bd3a3d011f26ab2",
+      "centered_slopes_recomputed": true,
+      "clusters": 60,
+      "contexts": 6176,
+      "frozen_sources_unchanged": true,
+      "historical_anchors_compatible": true,
+      "passed": true,
+      "points": 386,
+      "primary_recomputed": {
+        "I_Q": {
+          "ci95": [
+            0.030607030285201453,
+            0.41543585232990493
+          ],
+          "estimate": 0.21373318889732115
+        },
+        "I_SLOT": {
+          "ci95": [
+            -0.04739618505318764,
+            0.8614322354081858
+          ],
+          "estimate": 0.36927313048657395
+        },
+        "P_Q_F": {
+          "ci95": [
+            0.004659869446835397,
+            0.36319894861046387
+          ],
+          "estimate": 0.15426782666671984
+        },
+        "P_Q_M": {
+          "ci95": [
+            -0.1449543151256489,
+            0.03125370586316548
+          ],
+          "estimate": -0.05946536223060132
+        },
+        "SLOT_F": {
+          "ci95": [
+            -0.23252050608812622,
+            0.5710957640377454
+          ],
+          "estimate": 0.13272423753962706
+        },
+        "SLOT_M": {
+          "ci95": [
+            -0.5115872075697735,
+            -0.012010316506005323
+          ],
+          "estimate": -0.23654889294694686
+        }
+      },
+      "raw_scores_validated": true,
+      "run_sha256": "c01f88ea05c825bb869d37881d426438baa325ec66b4b841142d6f0273721860",
+      "scores_sha256": "75bea0441fa690d83c4aedbf1ea81d057ce69aabcdb599216f4dad213200df44",
+      "utc": "2026-11-05T16:16:09.696517+00:00"
+    },
+    {
+      "analysis_sha256": "c5f73c7efb4c27ca93a9f97c4f327c26899573960d2a6099a0fd4c961e023e55",
+      "centered_slopes_recomputed": true,
+      "clusters": 60,
+      "contexts": 6176,
+      "frozen_sources_unchanged": true,
+      "historical_anchors_compatible": true,
+      "passed": true,
+      "points": 386,
+      "primary_recomputed": {
+        "I_Q": {
+          "ci95": [
+            4.370187022292198,
+            9.780777997701042
+          ],
+          "estimate": 7.039799850549173
+        },
+        "I_SLOT": {
+          "ci95": [
+            5.656007390053795,
+            13.096394919959687
+          ],
+          "estimate": 9.307420568302025
+        },
+        "P_Q_F": {
+          "ci95": [
+            5.940560804643711,
+            10.650036788349146
+          ],
+          "estimate": 8.226080028323047
+        },
+        "P_Q_M": {
+          "ci95": [
+            0.4731314569216744,
+            1.9991764953122348
+          ],
+          "estimate": 1.186280177773875
+        },
+        "SLOT_F": {
+          "ci95": [
+            6.08575748982358,
+            13.489863041499301
+          ],
+          "estimate": 9.713029873019355
+        },
+        "SLOT_M": {
+          "ci95": [
+            -0.06894565830189672,
+            1.0661672046051525
+          ],
+          "estimate": 0.4056093047173304
+        }
+      },
+      "raw_scores_validated": true,
+      "run_sha256": "16e8b4d43befd1eb7592842460d209d71eebff070c2fe0f7cb5ab7d8afa459e9",
+      "scores_sha256": "074c7e3a97689352bdc33586049948d56b6927ed4f8771934a2e5b1cafcfc8c8",
+      "utc": "2026-11-05T16:16:12.468931+00:00"
+    }
+  ],
+  "total_contexts": 12352,
+  "conditions": [
+    "AS",
+    "AO",
+    "QS",
+    "QO",
+    "QN",
+    "AP",
+    "KEEP",
+    "DROP"
+  ],
+  "prior_results_read_only": true
+}

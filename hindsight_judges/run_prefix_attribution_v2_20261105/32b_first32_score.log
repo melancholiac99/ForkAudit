@@ -1,0 +1,47 @@
+test_ap_completed_assistant_and_identical_quote_text (test_prefix_attribution.ConstructionTests.test_ap_completed_assistant_and_identical_quote_text) ... ok
+test_bad_factual_or_duplicate_candidates_fail (test_prefix_attribution.ConstructionTests.test_bad_factual_or_duplicate_candidates_fail) ... ok
+test_exact_reasoning_and_matched_cues (test_prefix_attribution.ConstructionTests.test_exact_reasoning_and_matched_cues) ... ok
+test_legacy_anchor_and_counterfactual_serialization (test_prefix_attribution.ConstructionTests.test_legacy_anchor_and_counterfactual_serialization) ... ok
+test_original_action_marker_outside_think_is_preserved (test_prefix_attribution.ConstructionTests.test_original_action_marker_outside_think_is_preserved) ... ok
+test_output_protects_old_results (test_prefix_attribution.ConstructionTests.test_output_protects_old_results) ... ok
+test_real_chat_template_and_five_suffixes (test_prefix_attribution.ConstructionTests.test_real_chat_template_and_five_suffixes) ... ok
+test_role_boundary_injection_fails (test_prefix_attribution.ConstructionTests.test_role_boundary_injection_fails) ... ok
+test_candidate_cache_and_direct_match_one_pass_on_cpu (test_prefix_attribution.ScorerTests.test_candidate_cache_and_direct_match_one_pass_on_cpu) ... ok
+test_centered_slope_ratio_and_shared_cluster_resampling (test_prefix_attribution.StatisticsTests.test_centered_slope_ratio_and_shared_cluster_resampling) ... ok
+test_cluster_bootstrap_is_point_weighted (test_prefix_attribution.StatisticsTests.test_cluster_bootstrap_is_point_weighted) ... ok
+test_logodds_invariant_to_normalizers_and_strong_prior (test_prefix_attribution.StatisticsTests.test_logodds_invariant_to_normalizers_and_strong_prior) ... ok
+test_missing_condition_is_not_silently_dropped (test_prefix_attribution.StatisticsTests.test_missing_condition_is_not_silently_dropped) ... ok
+test_primary_interaction_and_independent_verifier (test_prefix_attribution.StatisticsTests.test_primary_interaction_and_independent_verifier) ... ok
+test_q_ties_are_undefined_only_for_alignment (test_prefix_attribution.StatisticsTests.test_q_ties_are_undefined_only_for_alignment) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 4.316s
+
+OK
+VERIFIED /tmp/tmp87o_qp02/7b/full
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights:   2%|▏         | 12/771 [00:00<00:46, 16.46it/s]Loading weights:   2%|▏         | 18/771 [00:01<01:05, 11.48it/s]Loading weights:   3%|▎         | 22/771 [00:01<00:59, 12.65it/s]Loading weights:   4%|▍         | 30/771 [00:02<01:17,  9.60it/s]Loading weights:   4%|▍         | 32/771 [00:03<02:05,  5.87it/s]Loading weights:   5%|▌         | 39/771 [00:04<01:21,  9.03it/s]Loading weights:   5%|▌         | 41/771 [00:04<01:22,  8.85it/s]Loading weights:   6%|▌         | 45/771 [00:05<01:52,  6.43it/s]Loading weights:   6%|▋         | 49/771 [00:05<01:34,  7.66it/s]Loading weights:   7%|▋         | 51/771 [00:06<01:40,  7.15it/s]Loading weights:   8%|▊         | 59/771 [00:06<01:23,  8.49it/s]Loading weights:   8%|▊         | 63/771 [00:07<01:27,  8.14it/s]Loading weights:   8%|▊         | 64/771 [00:07<01:49,  6.44it/s]Loading weights:   8%|▊         | 65/771 [00:08<02:00,  5.84it/s]Loading weights:   9%|▉         | 73/771 [00:09<01:37,  7.13it/s]Loading weights:  11%|█         | 81/771 [00:09<01:08, 10.02it/s]Loading weights:  15%|█▍        | 112/771 [00:10<00:30, 21.39it/s]Loading weights:  24%|██▍       | 187/771 [00:10<00:08, 69.04it/s]Loading weights: 100%|██████████| 771/771 [00:10<00:00, 73.82it/s]
+32b 20 / 512
+32b 40 / 512
+32b 60 / 512
+32b 80 / 512
+32b 100 / 512
+32b 120 / 512
+32b 140 / 512
+32b 160 / 512
+32b 180 / 512
+32b 200 / 512
+32b 220 / 512
+32b 240 / 512
+32b 260 / 512
+32b 280 / 512
+32b 300 / 512
+32b 320 / 512
+32b 340 / 512
+32b 360 / 512
+32b 380 / 512
+32b 400 / 512
+32b 420 / 512
+32b 440 / 512
+32b 460 / 512
+32b 480 / 512
+32b 500 / 512

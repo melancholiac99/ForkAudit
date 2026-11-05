@@ -1,0 +1,20 @@
+{
+  "lossless": true,
+  "compressed": [
+    {
+      "original": "hindsight_judges/results/prefix_attribution_v2_20261105/32b/full/scores.jsonl",
+      "published": "hindsight_judges/results/prefix_attribution_v2_20261105/32b/full/scores.jsonl.gz",
+      "original_sha256": "074c7e3a97689352bdc33586049948d56b6927ed4f8771934a2e5b1cafcfc8c8",
+      "gzip_sha256": "ec21f1cbe51575902cddc0c315eb646043d5c2d37426c22a9bf382b6d14721d7",
+      "restore": "gzip -dk scores.jsonl.gz"
+    },
+    {
+      "original": "hindsight_judges/results/prefix_attribution_v2_20261105/7b/full/scores.jsonl",
+      "published": "hindsight_judges/results/prefix_attribution_v2_20261105/7b/full/scores.jsonl.gz",
+      "original_sha256": "75bea0441fa690d83c4aedbf1ea81d057ce69aabcdb599216f4dad213200df44",
+      "gzip_sha256": "7e0083303c913458bdf2c543d15062c15758ed26764fa5cfcb5fd0da0a111498",
+      "restore": "gzip -dk scores.jsonl.gz"
+    }
+  ],
+  "note": "Large raw files are published as verified gzip; restore with gzip -dk for the frozen verifier. Local originals retained."
+}

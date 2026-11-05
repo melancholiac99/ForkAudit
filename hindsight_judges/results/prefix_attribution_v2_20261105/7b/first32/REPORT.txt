@@ -1,0 +1,327 @@
+PREFIX PROVENANCE × MESSAGE ROLE
+7b / first32: 32 points, 8 trajectories, 512 contexts.
+95% cluster bootstrap, 4000 draws, seed 20261105. No multiplicity correction.
+
+Primary paired contrasts (percentage points):
+SLOT_F: -1.229924, CI [-2.3945545389675553, 0.01905775105007319]; unresolved: CI crosses zero; not evidence of equivalence
+SLOT_M: -0.178158, CI [-0.34645957139170186, 0.0019346807576272444]; unresolved: CI crosses zero; not evidence of equivalence
+I_SLOT: -1.051766, CI [-2.0480923694275415, 0.01712320770612484]; unresolved: CI crosses zero; not evidence of equivalence
+P_Q_F: 0.980303, CI [0.00011065094065487685, 1.891191414697116]; supported: positive contrast
+P_Q_M: 0.076542, CI [-0.0001025584344029545, 0.14849605833631704]; unresolved: CI crosses zero; not evidence of equivalence
+I_Q: 0.903761, CI [0.00011454488511859371, 1.7426816545853585]; supported: positive contrast
+
+Absolute M/F values and factual anchoring (all conditions):
+Cell | value pp [CI] | factual argmax rate | p_f | bad factual correction rate
+M_AS | 23.362383 [16.21604265806157, 36.7449163806858] | 0.90625 | 0.9143116568398573 | 0.0
+M_AO | 23.286352 [16.145833898632965, 36.744916337358525] | 0.90625 | 0.9069635044951364 | 0.0
+M_QS | 23.490905 [16.053736461470752, 37.30178208594844] | 0.90625 | 0.9067270203644965 | 0.03333333333333333
+M_QO | 23.567447 [16.166070600429702, 37.30172214681926] | 0.90625 | 0.9114879264384448 | 0.03333333333333333
+M_QN | 23.542769 [16.14558284646493, 37.30114464520262] | 0.90625 | 0.9095520671522405 | 0.03333333333333333
+M_AP | 23.669063 [16.281997576759682, 37.30079595574563] | 0.90625 | 0.8965108509586192 | 0.03333333333333333
+M_KEEP | 24.075104 [16.826157623961542, 36.744916652824806] | 0.96875 | 0.9361999872388735 | 0.0
+M_DROP | 21.450982 [13.561488218516198, 35.62363924574762] | 0.25 | 0.22950950198406275 | 0.13333333333333333
+F_AS | 24.885871 [17.108569456823922, 36.87142390204207] | 0.875 | 0.8883725796784956 | 0.03333333333333333
+F_AO | 24.876618 [17.100789285116957, 36.85854918575528] | 0.875 | 0.887419372474906 | 0.03333333333333333
+F_QS | 24.272318 [17.030665127734515, 37.255476946116595] | 0.90625 | 0.9078674808832545 | 0.03333333333333333
+F_QO | 25.252621 [17.85714818036929, 37.28485116419012] | 0.875 | 0.8812013488996144 | 0.06666666666666667
+F_QN | 24.668309 [17.36096197097709, 37.25801341885087] | 0.875 | 0.8871253227920081 | 0.06666666666666667
+F_AP | 25.502242 [17.899447220410536, 37.41166339321764] | 0.875 | 0.8674632155170336 | 0.06666666666666667
+F_KEEP | 24.694878 [17.072471700627553, 36.84774218238244] | 0.90625 | 0.9084793158731046 | 0.03333333333333333
+F_DROP | 57.130902 [32.80474554986828, 72.22442400127537] | 0.15625 | 0.1725519311994601 | 0.7333333333333333
+
+Paired contrasts: value pp, F−M interaction, and Q-aligned evidence support:
+M_matched_restart_slot_QS_minus_AP
+  value_pp: -0.17815813778410122 [[-0.34645957139170186, 0.0019346807576272444]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: 0.010216169405877374 [[-7.253841152234973e-05, 0.016807777299545874]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+F_matched_restart_slot_QS_minus_AP
+  value_pp: -1.2299239900406966 [[-2.3945545389675553, 0.01905775105007319]], percentage points; n=32
+  factual_argmax_rate: 0.03125 [[0.0, 0.06060606060606061]], 0–1; n=32
+  factual_probability: 0.040404265366220736 [[-0.0007059853647090385, 0.07203300394814592]], 0–1; n=32
+  bad_factual_corrected_rate: -0.03333333333333333 [[-0.0625, 0.0]], 0–1; n=30
+evidence_matched_restart_slot_QS_minus_AP
+  aligned_shift_nat: -0.3651074343181891 [[-1.6828759852552524, 0.19521052206696127]], nat; n=32
+  concordance: 0.005208333333333336 [[-0.15945263975155277, 0.0564516129032258]], 0–1; n=32
+  slope_nat_per_q: -1.2934477084176412 [[-5.734320213193436, 0.7194072334563845]], nat per unit replay Q; n=32
+F_minus_M_matched_restart_slot_QS_minus_AP
+  value_pp: -1.0517658522565951 [[-2.0480923694275415, 0.01712320770612484]], percentage points; n=32
+  factual_argmax_rate: 0.03125 [[0.0, 0.06060606060606061]], 0–1; n=32
+  factual_probability: 0.030188095960343362 [[-0.0006334469531822367, 0.055498422617465515]], 0–1; n=32
+  bad_factual_corrected_rate: -0.03333333333333333 [[-0.0625, 0.0]], 0–1; n=30
+M_restart_AP_minus_AS
+  value_pp: 0.306680264899709 [[-0.8525337482426505, 2.2521246573186295]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[-0.08695652173913043, 0.11764705882352941]], 0–1; n=32
+  factual_probability: -0.017800805881238238 [[-0.08355729630510578, 0.05671327170785692]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.1111111111111111]], 0–1; n=30
+F_restart_AP_minus_AS
+  value_pp: 0.6163709623118949 [[-0.2034868705553237, 2.167906329524582]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[-0.08695652173913043, 0.11764705882352941]], 0–1; n=32
+  factual_probability: -0.02090936416146196 [[-0.0812676582284724, 0.07661100549694333]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.1111111111111111]], 0–1; n=30
+evidence_restart_AP_minus_AS
+  aligned_shift_nat: -0.10536898739740402 [[-1.0436505038239101, 0.819303505289122]], nat; n=32
+  concordance: -0.1015625 [[-0.19309552845528455, -0.04166666666666667]], 0–1; n=32
+  slope_nat_per_q: 1.3546291912536148 [[-1.0033559499922249, 4.566416132896555]], nat per unit replay Q; n=32
+F_minus_M_restart_AP_minus_AS
+  value_pp: 0.3096906974121859 [[-0.08505388175839082, 0.6490547553242277]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: -0.00310855828022372 [[-0.017424607662861757, 0.02114267842464559]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+M_neutral_QN_minus_QS
+  value_pp: 0.051864511429021556 [[-0.0012361546877624747, 0.10119041849633954]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: 0.0028250467877439784 [[2.6037273196955226e-05, 0.005845525701675922]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+F_neutral_QN_minus_QS
+  value_pp: 0.3959910585840853 [[-0.06662660877870719, 0.8029440106899018]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.020742158091246334 [[-0.041349065057970896, 0.0025401725743281886]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+evidence_neutral_QN_minus_QS
+  aligned_shift_nat: 0.30042626646786263 [[-0.06476777510991004, 0.7189723466709492]], nat; n=32
+  concordance: 0.015625 [[-0.029411764705882353, 0.03591954022988506]], 0–1; n=32
+  slope_nat_per_q: 0.7649924700061232 [[0.03442765166028904, 1.5189795968435342]], nat per unit replay Q; n=32
+F_minus_M_neutral_QN_minus_QS
+  value_pp: 0.34412654715506397 [[-0.06539950996971262, 0.7025708186632511]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.023567204878990312 [[-0.044805733607343044, 0.0024249326975767645]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+M_neutral_QN_minus_QO
+  value_pp: -0.024677945440468543 [[-0.047121429858960076, -7.408540632541048e-06]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: -0.001935859286204265 [[-0.004112571488522749, 0.0008876718951544959]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+F_neutral_QN_minus_QO
+  value_pp: -0.5843120177422467 [[-1.0801390669283155, -0.00010842514913790228]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: 0.005923973892393631 [[0.00044818980027633174, 0.00913704554638163]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+evidence_neutral_QN_minus_QO
+  aligned_shift_nat: -0.2832505042244445 [[-0.7370813221771594, 0.6290031505971319]], nat; n=32
+  concordance: -0.018229166666666668 [[-0.14705882352941177, 0.06127773477812179]], 0–1; n=32
+  slope_nat_per_q: -1.1665767705024643 [[-2.4692168389705276, 1.0969956420376867]], nat per unit replay Q; n=32
+F_minus_M_neutral_QN_minus_QO
+  value_pp: -0.559634072301778 [[-1.033017637065538, -9.277525212154229e-05]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: 0.007859833178597895 [[5.314714324599684e-05, 0.01324936062026968]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+M_quote_provenance_QO_minus_QS
+  value_pp: 0.0765424568694901 [[-0.0001025584344029545, 0.14849605833631704]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: 0.004760906073948243 [[3.5653275238087453e-06, 0.0078102984038755366]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+F_quote_provenance_QO_minus_QS
+  value_pp: 0.980303076326332 [[0.00011065094065487685, 1.891191414697116]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.026666131983639964 [[-0.05038263219664991, -0.00029688527633395907]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+evidence_quote_provenance_QO_minus_QS
+  aligned_shift_nat: 0.5836767706923071 [[-0.2022915804859815, 1.0775611072430014]], nat; n=32
+  concordance: 0.03385416666666667 [[-0.06439393939393939, 0.15217391304347827]], 0–1; n=32
+  slope_nat_per_q: 1.9315692405085878 [[-0.3673957142263422, 3.315339927081738]], nat per unit replay Q; n=32
+F_minus_M_quote_provenance_QO_minus_QS
+  value_pp: 0.9037606194568418 [[0.00011454488511859371, 1.7426816545853585]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.03142703805758821 [[-0.05779356589166074, -0.000301686280089065]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+M_assistant_provenance_AO_minus_AS
+  value_pp: -0.07603122174548359 [[-0.14429440352796163, -5.546328260831132e-08]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: -0.007348152344720995 [[-0.019414233788828516, 0.00018117339070150803]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+F_assistant_provenance_AO_minus_AS
+  value_pp: -0.00925264886080481 [[-0.016169108951091596, -5.11216608204587e-06]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: -0.0009532072035896787 [[-0.006281129724943843, 0.001086638154905692]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+evidence_assistant_provenance_AO_minus_AS
+  aligned_shift_nat: 0.1296236245013261 [[0.04128132296264945, 0.28971054575332894]], nat; n=32
+  concordance: 0.0078125 [[-0.010869565217391302, 0.0196078431372549]], 0–1; n=32
+  slope_nat_per_q: 0.3430022170754203 [[0.1254748985455778, 0.6899043582863086]], nat per unit replay Q; n=32
+F_minus_M_assistant_provenance_AO_minus_AS
+  value_pp: 0.06677857288467884 [[-1.0557210734768412e-05, 0.12828594586380132]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: 0.0063949451411313175 [[-7.029303114211704e-05, 0.013852502694823838]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+M_mixed_placement_QS_minus_AS
+  value_pp: 0.1285221271156079 [[-1.1958356564082393, 2.2540593369787443]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[-0.08695652173913043, 0.11764705882352941]], 0–1; n=32
+  factual_probability: -0.007584636475360871 [[-0.08362983471654331, 0.06648065617826254]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.1111111111111111]], 0–1; n=30
+F_mixed_placement_QS_minus_AS
+  value_pp: -0.6135530277288015 [[-2.5771441543789524, 2.186128959591194]], percentage points; n=32
+  factual_argmax_rate: 0.03125 [[-0.08695652173913043, 0.12903225806451613]], 0–1; n=32
+  factual_probability: 0.01949490120475877 [[-0.08110387836647202, 0.10180587459893875]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[-0.0625, 0.1111111111111111]], 0–1; n=30
+evidence_mixed_placement_QS_minus_AS
+  aligned_shift_nat: -0.4704764217155931 [[-2.215973461098886, 0.3687393732563287]], nat; n=32
+  concordance: -0.09635416666666667 [[-0.2698412698412698, -0.02927927927927928]], 0–1; n=32
+  slope_nat_per_q: 0.061181482835973855 [[-3.142909776545664, 1.669294504417968]], nat per unit replay Q; n=32
+F_minus_M_mixed_placement_QS_minus_AS
+  value_pp: -0.7420751548444094 [[-1.3952848009976242, 6.0470140117947635e-05]], percentage points; n=32
+  factual_argmax_rate: 0.03125 [[0.0, 0.06060606060606061]], 0–1; n=32
+  factual_probability: 0.027079537680119642 [[0.0013235101920950894, 0.04356200792594733]], 0–1; n=32
+  bad_factual_corrected_rate: -0.03333333333333333 [[-0.0625, 0.0]], 0–1; n=30
+M_mixed_placement_QO_minus_AO
+  value_pp: 0.2810958057305815 [[-0.9059604014694066, 2.2588491247366185]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[-0.08695652173913043, 0.11764705882352941]], 0–1; n=32
+  factual_probability: 0.004524421943308373 [[-0.08380617874879469, 0.0933168505118156]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.1111111111111111]], 0–1; n=30
+F_mixed_placement_QO_minus_AO
+  value_pp: 0.37600269745833526 [[-0.6889385777495333, 2.204556043847111]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[-0.08695652173913043, 0.11764705882352941]], 0–1; n=32
+  factual_probability: -0.006218023575291515 [[-0.08178227225456881, 0.09798002187626441]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.1111111111111111]], 0–1; n=30
+evidence_mixed_placement_QO_minus_AO
+  aligned_shift_nat: -0.01642327552461209 [[-2.1131958481389392, 0.635715767486101]], nat; n=32
+  concordance: -0.0703125 [[-0.25, 0.006250000000000003]], 0–1; n=32
+  slope_nat_per_q: 1.6497485062691415 [[-2.6228894941173295, 3.1563401916926566]], nat per unit replay Q; n=32
+F_minus_M_mixed_placement_QO_minus_AO
+  value_pp: 0.09490689172775357 [[-0.05437691343834822, 0.2170270803151788]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: -0.010742445518599887 [[-0.02645384940967556, 0.010436142781743714]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+M_explicit_self_AS_minus_KEEP
+  value_pp: -0.7127216741340971 [[-1.017599681783338, 3.242030491074681e-08]], percentage points; n=32
+  factual_argmax_rate: -0.0625 [[-0.13333333333333333, 0.0]], 0–1; n=32
+  factual_probability: -0.021888330399016165 [[-0.06384545212114244, 0.02696766372856167]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+F_explicit_self_AS_minus_KEEP
+  value_pp: 0.190992892098664 [[-6.434268774521294e-05, 0.36217974553181437]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.125, 0.0]], 0–1; n=32
+  factual_probability: -0.020106736194609016 [[-0.07730634394669897, -0.0002476554289945297]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+evidence_explicit_self_AS_minus_KEEP
+  aligned_shift_nat: -0.26100699736802646 [[-0.5667900322622336, -0.09539651885261845]], nat; n=32
+  concordance: 0.0026041666666666644 [[-0.021556409295352328, 0.05959821428571455]], 0–1; n=32
+  slope_nat_per_q: -0.4183405648481482 [[-0.8525384344894877, -0.036856246386935236]], nat per unit replay Q; n=32
+F_minus_M_explicit_self_AS_minus_KEEP
+  value_pp: 0.9037145662327611 [[-6.429452848012955e-05, 1.3426260584614784]], percentage points; n=32
+  factual_argmax_rate: 0.03125 [[0.0, 0.06060606060606061]], 0–1; n=32
+  factual_probability: 0.0017815942044071484 [[-0.03381175617373605, 0.02896557030903494]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+M_anchor_DROP_minus_KEEP
+  value_pp: -2.624122425317882 [[-6.815926014909101, 2.7466524479522274]], percentage points; n=32
+  factual_argmax_rate: -0.71875 [[-0.92, -0.375]], 0–1; n=32
+  factual_probability: -0.7066904852548107 [[-0.8609668871420245, -0.45177259664580005]], 0–1; n=32
+  bad_factual_corrected_rate: 0.13333333333333333 [[0.06666666666666667, 0.2608695652173913]], 0–1; n=30
+F_anchor_DROP_minus_KEEP
+  value_pp: 32.436024578867375 [[9.844420127016873, 47.2131984764637]], percentage points; n=32
+  factual_argmax_rate: -0.75 [[-0.896551724137931, -0.5925505050505049]], 0–1; n=32
+  factual_probability: -0.7359273846736445 [[-0.8743694502793733, -0.5775761612282313]], 0–1; n=32
+  bad_factual_corrected_rate: 0.7 [[0.5769230769230769, 0.8276108374384237]], 0–1; n=30
+evidence_anchor_DROP_minus_KEEP
+  aligned_shift_nat: 2.1086576006623865 [[-1.442622946601093, 4.079901997681785]], nat; n=32
+  concordance: -0.002604166666666673 [[-0.19791666666666666, 0.09444444444444443]], 0–1; n=32
+  slope_nat_per_q: 8.09303885133115 [[2.036920035580133, 11.700117920442258]], nat per unit replay Q; n=32
+F_minus_M_anchor_DROP_minus_KEEP
+  value_pp: 35.060147004185254 [[11.280053945509907, 51.96335574286219]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.2693181818181818, 0.10642610695802202]], 0–1; n=32
+  factual_probability: -0.029236899418833832 [[-0.1587044901750032, 0.05165460311441989]], 0–1; n=32
+  bad_factual_corrected_rate: 0.5666666666666667 [[0.3888888888888889, 0.6666666666666666]], 0–1; n=30
+F_minus_M_AS
+  value_pp: 1.5234879629400004 [[-0.029095278162251475, 2.9687403738863813]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.02593907716136169 [[-0.04384514865337697, 0.0010760613367457941]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+F_minus_M_AO
+  value_pp: 1.5902665358246793 [[-0.027200421690798417, 3.097335639721897]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.019544132020230368 [[-0.035615941655771845, 0.0010057683056025701]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+F_minus_M_QS
+  value_pp: 0.7814128080955909 [[-0.09702647884175916, 1.5624749067513648]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: 0.0011404605187579527 [[-0.004246072846325691, 0.009749188237298586]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+F_minus_M_QO
+  value_pp: 1.6851734275524328 [[-0.08157707930975179, 3.307642381260466]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.030286577538830253 [[-0.06129803745361191, 0.003939681044475248]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+F_minus_M_QN
+  value_pp: 1.1255393552506547 [[-0.16241693289582063, 2.2649834607957255]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.022426744360232363 [[-0.048332494526149856, 0.007078280846097802]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+F_minus_M_AP
+  value_pp: 1.8331786603521862 [[-0.11414868529039489, 3.6105862078991264]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.02904763544158541 [[-0.05867413283236679, 0.0045346648852308815]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+F_minus_M_KEEP
+  value_pp: 0.6197733967072392 [[-0.76868503766892, 1.681892802180618]], percentage points; n=32
+  factual_argmax_rate: -0.0625 [[-0.12121212121212122, 0.0]], 0–1; n=32
+  factual_probability: -0.027720671365768838 [[-0.07078721205891073, 0.029813859901433818]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+F_minus_M_DROP
+  value_pp: 35.6799204008925 [[10.572975208722026, 53.550676770454274]], percentage points; n=32
+  factual_argmax_rate: -0.09375 [[-0.2693181818181818, 0.0]], 0–1; n=32
+  factual_probability: -0.05695757078460268 [[-0.14054359147322315, -0.004137543491384782]], 0–1; n=32
+  bad_factual_corrected_rate: 0.6 [[0.3888888888888889, 0.7021276595744681]], 0–1; n=30
+M_role_by_provenance
+  value_pp: 0.15257367861497367 [[-3.33903262249071e-05, 0.29280418206041353]], percentage points; n=32
+  factual_argmax_rate: 0.0 [[0.0, 0.0]], 0–1; n=32
+  factual_probability: 0.012109058418669237 [[-0.0001763440421722294, 0.025606736573120674]], 0–1; n=32
+  bad_factual_corrected_rate: 0.0 [[0.0, 0.0]], 0–1; n=30
+F_role_by_provenance
+  value_pp: 0.9895557251871367 [[0.00011576310673692272, 1.9071971461900148]], percentage points; n=32
+  factual_argmax_rate: -0.03125 [[-0.06060606060606061, 0.0]], 0–1; n=32
+  factual_probability: -0.02571292478005029 [[-0.051018330659963355, 0.003979382203136038]], 0–1; n=32
+  bad_factual_corrected_rate: 0.03333333333333333 [[0.0, 0.0625]], 0–1; n=30
+
+Absolute evidence-induced log-odds alignment (factual reference; no clipping):
+AS aligned_shift_nat: 1.4434457041357853, CI [0.07553501881468193, 3.289866725155153]; n=32, undefined=0
+AS concordance: 0.6484375, CI [0.5238095238095238, 0.8125]; n=32, undefined=0
+AS slope_nat_per_q: 4.403448778135743, CI [-0.7467117408135597, 9.484185570368517]; n=32, undefined=0
+AO aligned_shift_nat: 1.5730693286371114, CI [0.30183157020318935, 3.391207263441331]; n=32, undefined=0
+AO concordance: 0.65625, CI [0.5231481481481481, 0.8020970394736842]; n=32, undefined=0
+AO slope_nat_per_q: 4.746450995211163, CI [-0.10055448454504964, 9.866351247681727]; n=32, undefined=0
+QS aligned_shift_nat: 0.9729692824201921, CI [-0.5622745157609279, 2.1834128060773765]; n=32, undefined=0
+QS concordance: 0.5520833333333333, CI [0.3994252873563219, 0.6458333333333333]; n=32, undefined=0
+QS slope_nat_per_q: 4.464630260971717, CI [-0.517207331449288, 8.577935084050589]; n=32, undefined=0
+QO aligned_shift_nat: 1.5566460531124993, CI [-0.487493052165338, 2.8611852480537396]; n=32, undefined=0
+QO concordance: 0.5859375, CI [0.45588235294117646, 0.6750132978723404]; n=32, undefined=0
+QO slope_nat_per_q: 6.396199501480304, CI [-0.5748761997222509, 10.905509665029028]; n=32, undefined=0
+QN aligned_shift_nat: 1.2733955488880548, CI [-0.052433793422143035, 2.3677481207511715]; n=32, undefined=0
+QN concordance: 0.5677083333333333, CI [0.40350877192982454, 0.6649346501572326]; n=32, undefined=0
+QN slope_nat_per_q: 5.229622730977841, CI [0.2740878727672317, 9.11587535045223]; n=32, undefined=0
+AP aligned_shift_nat: 1.3380767167383811, CI [-0.11045764398953285, 3.3321816774797792]; n=32, undefined=0
+AP concordance: 0.546875, CI [0.4136423319327731, 0.6833333333333332]; n=32, undefined=0
+AP slope_nat_per_q: 5.758077969389357, CI [-0.338954558929988, 13.392794683952987]; n=32, undefined=0
+KEEP aligned_shift_nat: 1.7044527015038118, CI [0.4827396906308636, 3.68140426870167]; n=32, undefined=0
+KEEP concordance: 0.6458333333333333, CI [0.5148809523809523, 0.7696136788048552]; n=32, undefined=0
+KEEP slope_nat_per_q: 4.821789342983891, CI [-0.012022599442948534, 9.743698618720723]; n=32, undefined=0
+DROP aligned_shift_nat: 3.8131103021661983, CI [0.6366125549242133, 5.884195979100391]; n=32, undefined=0
+DROP concordance: 0.6432291666666666, CI [0.4318181818181818, 0.7614379084967321]; n=32, undefined=0
+DROP slope_nat_per_q: 12.91482819431504, CI [3.0156204878061525, 19.363411859238493]; n=32, undefined=0
+
+Pooled five-arm centered evidence slopes and paired DROP ratios:
+AS: slope {'estimate': 5.064863514963987, 'ci95': [2.5641803650147845, 7.144607677995421], 'undefined_draws': 0, 'unit': 'nat per replay Q'}; slope/DROP {'estimate': 0.36857397611171333, 'ci95': [0.29786693650919743, 0.668516296443], 'undefined_draws': 0, 'unit': 'relative to DROP', 'denominator_ci_contains_zero_or_undefined': False}
+AO: slope {'estimate': 5.102844660806486, 'ci95': [2.876018615697519, 7.426480567448435], 'undefined_draws': 0, 'unit': 'nat per replay Q'}; slope/DROP {'estimate': 0.3713378930265699, 'ci95': [0.29702268025528133, 0.7063361836999819], 'undefined_draws': 0, 'unit': 'relative to DROP', 'denominator_ci_contains_zero_or_undefined': False}
+QS: slope {'estimate': 4.402631132984001, 'ci95': [1.426328221729064, 6.005879333942496], 'undefined_draws': 0, 'unit': 'nat per replay Q'}; slope/DROP {'estimate': 0.3203828212236966, 'ci95': [0.2108575830823865, 0.49082969644428975], 'undefined_draws': 0, 'unit': 'relative to DROP', 'denominator_ci_contains_zero_or_undefined': False}
+QO: slope {'estimate': 6.311507932691386, 'ci95': [1.6177633419147113, 8.172413856443574], 'undefined_draws': 0, 'unit': 'nat per replay Q'}; slope/DROP {'estimate': 0.45929324001324534, 'ci95': [0.22411160056618565, 0.6460315607569745], 'undefined_draws': 0, 'unit': 'relative to DROP', 'denominator_ci_contains_zero_or_undefined': False}
+QN: slope {'estimate': 4.825008500706397, 'ci95': [2.3821636877568944, 6.3218182984957165], 'undefined_draws': 0, 'unit': 'nat per replay Q'}; slope/DROP {'estimate': 0.3511195440161467, 'ci95': [0.29241090509822554, 0.5592934269518497], 'undefined_draws': 0, 'unit': 'relative to DROP', 'denominator_ci_contains_zero_or_undefined': False}
+AP: slope {'estimate': 4.857362118041616, 'ci95': [1.8621654399972678, 7.816271195111137], 'undefined_draws': 0, 'unit': 'nat per replay Q'}; slope/DROP {'estimate': 0.3534739413947942, 'ci95': [0.24190493313895098, 0.7305533001175338], 'undefined_draws': 0, 'unit': 'relative to DROP', 'denominator_ci_contains_zero_or_undefined': False}
+KEEP: slope {'estimate': 5.047273989120265, 'ci95': [2.644423416788951, 7.422426666025323], 'undefined_draws': 0, 'unit': 'nat per replay Q'}; slope/DROP {'estimate': 0.3672939729173555, 'ci95': [0.2847711868634222, 0.7215404252192263], 'undefined_draws': 0, 'unit': 'relative to DROP', 'denominator_ci_contains_zero_or_undefined': False}
+DROP: slope {'estimate': 13.741782771523855, 'ci95': [5.643393515814645, 16.216455942465906], 'undefined_draws': 0, 'unit': 'nat per replay Q'}; slope/DROP {'estimate': 1.0, 'ci95': [1.0, 1.0], 'undefined_draws': 0, 'unit': 'relative to DROP', 'denominator_ci_contains_zero_or_undefined': False}
+matched_restart_slot_QS_minus_AP: {'estimate': -0.45473098505761467, 'ci95': [-4.136061166880943, 0.8217722261693402], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+restart_AP_minus_AS: {'estimate': -0.20750139692237113, 'ci95': [-1.8698298824689283, 1.7389822627091276], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+neutral_QN_minus_QS: {'estimate': 0.42237736772239565, 'ci95': [0.03968084335709865, 1.3863885286266204], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+neutral_QN_minus_QO: {'estimate': -1.4864994319849894, 'ci95': [-2.459207421278188, 1.3051812575789048], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+quote_provenance_QO_minus_QS: {'estimate': 1.908876799707385, 'ci95': [-0.11788071193919109, 2.651688834368291], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+assistant_provenance_AO_minus_AS: {'estimate': 0.03798114584249923, 'ci95': [-0.12030825988970761, 0.43513907659333606], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+mixed_placement_QS_minus_AS: {'estimate': -0.6622323819799858, 'ci95': [-3.311857840167123, 0.5997869140011369], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+mixed_placement_QO_minus_AO: {'estimate': 1.2086632718849, 'ci95': [-3.3359944045618284, 2.7326574383789066], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+explicit_self_AS_minus_KEEP: {'estimate': 0.017589525843721532, 'ci95': [-0.7951730623391036, 0.3517984995131808], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+anchor_DROP_minus_KEEP: {'estimate': 8.69450878240359, 'ci95': [2.142457321689547, 10.908285017631293], 'undefined_draws': 0, 'unit': 'nat per replay Q'}
+
+Historical KEEP/DROP: {'n': 128, 'mean_tv': 0.0, 'max_tv': 0.0, 'max_abs_logp_delta': 0.0, 'nonidentical_ids': [], 'review_ids': [], 'compatible': True, 'review_tv': 0.005, 'review_rule': 'Numerical review trigger only, not an outcome/significance threshold', 'cells': {'M_KEEP': {'n': 32, 'mean_tv': 0.0, 'max_tv': 0.0, 'historical_value_pp': 24.075104431569123, 'new_value_pp': 24.075104431569123}, 'M_DROP': {'n': 32, 'mean_tv': 0.0, 'max_tv': 0.0, 'historical_value_pp': 21.450982006251245, 'new_value_pp': 21.450982006251245}, 'F_KEEP': {'n': 32, 'mean_tv': 0.0, 'max_tv': 0.0, 'historical_value_pp': 24.69487782827636, 'new_value_pp': 24.69487782827636}, 'F_DROP': {'n': 32, 'mean_tv': 0.0, 'max_tv': 0.0, 'historical_value_pp': 57.130902407143736, 'new_value_pp': 57.130902407143736}}}
+Original action markers outside Think preserved: ['s071_t01']
+
+All raw four-alternative E values and Q gaps are in point_metrics.jsonl.gz.
+Exact user/assistant prompts and role token IDs: ../../exact_prompt_examples.json.
+All numerical gates, model/source hashes and runtime/VRAM: analysis.json and run.json.
+
+Restricted five-action continuation diagnostic, not observed policy success or an OPD gradient. QO−QS identifies a stated-authorship wording intervention, not internal self-recognition. QS−AP matches restart and final request but still changes message/history/quotation structure. AP−AS combines turn completion, restart and a new user request. QS−AS and QO−AO combine placement, generation restart and prompt/task format. CIs are exploratory without multiplicity correction; crossing zero is unresolved, not equivalence. Null quote effects do not establish a content-only mechanism. A value gain without a corresponding Q-aligned evidence-log-odds effect is not recovered evidence assimilation. No Student training, trajectory collection, HLN or OPD was performed by this diagnostic.
