@@ -1,0 +1,11 @@
+{
+  "formal_scores_exist": false,
+  "model_or_dependency_versions_changed": false,
+  "new_path": "/root/miniconda3/envs/m0/bin:/usr/local/cuda/bin:/root/miniconda3/bin:/usr/local/bin:/root/.codex/packages/app-server-daemon/releases/0.167.0-x86_64-unknown-linux-musl/codex-path:/root/.codex/tmp/arg0-linux/codex-arg0KxSfb8:/root/.codex/tmp/arg0-linux/codex-arg0zQZ12v:/root/.codex/packages/standalone/releases/0.166.0-x86_64-unknown-linux-musl/codex-path:/root/.local/bin:/root/miniconda3/bin:/usr/local/bin:/root/miniconda3/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+  "ninja_version": "1.13.2.git.kitware.jobserver-pipe-1",
+  "old_path": "/root/miniconda3/bin:/usr/local/bin:/root/.codex/packages/app-server-daemon/releases/0.167.0-x86_64-unknown-linux-musl/codex-path:/root/.codex/tmp/arg0-linux/codex-arg0KxSfb8:/root/.codex/tmp/arg0-linux/codex-arg0zQZ12v:/root/.codex/packages/standalone/releases/0.166.0-x86_64-unknown-linux-musl/codex-path:/root/.local/bin:/root/miniconda3/bin:/usr/local/bin:/root/miniconda3/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+  "plan_sha256": "2cd33fb11a7989f55ea40f2aca0fc6283bb8d344d18e8457e7ea259c02d854c5",
+  "reason": "Both smoke workers failed before scores: ninja exists in m0 but was absent from inherited PATH.",
+  "scientific_configuration_changed": false,
+  "shutdown_authorized": false
+}
