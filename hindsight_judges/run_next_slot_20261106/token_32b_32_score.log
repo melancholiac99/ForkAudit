@@ -1,0 +1,58 @@
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights:  58%|█████▊    | 448/771 [00:00<00:00, 4475.23it/s]Loading weights: 100%|██████████| 771/771 [00:00<00:00, 4157.28it/s]
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 272, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 269, in main
+    else:globals()[args.command](args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 200, in score
+    assert all(x['passed'] for x in gates),'Full vocabulary TV gate failed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Full vocabulary TV gate failed
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights:  71%|███████▏  | 550/771 [00:00<00:00, 5484.30it/s]Loading weights: 100%|██████████| 771/771 [00:00<00:00, 5743.68it/s]
+SCORED 32b 1 / 32 seconds 432.21
+[W1106 15:55:12.257974883 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 90177536 bytes (free: 2031616, total: 89173131264).
+SCORED 32b 2 / 32 seconds 154.33
+SCORED 32b 3 / 32 seconds 298.07
+SCORED 32b 4 / 32 seconds 343.2
+[W1106 16:12:02.790303145 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 165675008 bytes (free: 62849024, total: 89173131264).
+SCORED 32b 5 / 32 seconds 414.53
+SCORED 32b 6 / 32 seconds 230.82
+[W1106 16:17:07.327546285 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 161480704 bytes (free: 23003136, total: 89173131264).
+SCORED 32b 7 / 32 seconds 524.61
+SCORED 32b 8 / 32 seconds 246.52
+[W1106 16:36:21.788490929 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 142606336 bytes (free: 121569280, total: 89173131264).
+SCORED 32b 9 / 32 seconds 424.21
+SCORED 32b 10 / 32 seconds 346.28
+SCORED 32b 11 / 32 seconds 300.91
+[W1106 16:47:41.527067565 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 23068672 bytes (free: 2031616, total: 89173131264).
+SCORED 32b 12 / 32 seconds 245.47
+SCORED 32b 13 / 32 seconds 163.03
+[W1106 16:58:47.549928875 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 111149056 bytes (free: 111083520, total: 89173131264).
+SCORED 32b 14 / 32 seconds 296.29
+SCORED 32b 15 / 32 seconds 265.16
+SCORED 32b 16 / 32 seconds 407.6
+[W1106 17:10:40.908044427 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 71303168 bytes (free: 62849024, total: 89173131264).
+SCORED 32b 17 / 32 seconds 363.46
+SCORED 32b 18 / 32 seconds 152.16
+[W1106 17:19:24.853509351 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 144703488 bytes (free: 27197440, total: 89173131264).
+SCORED 32b 19 / 32 seconds 211.0
+SCORED 32b 20 / 32 seconds 316.16
+[W1106 17:28:06.627220193 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 83886080 bytes (free: 60751872, total: 89173131264).
+SCORED 32b 21 / 32 seconds 355.2
+SCORED 32b 22 / 32 seconds 320.56
+SCORED 32b 23 / 32 seconds 170.78
+[W1106 17:42:11.143561169 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 2097152 bytes (free: 2031616, total: 89173131264).
+SCORED 32b 24 / 32 seconds 109.66
+SCORED 32b 25 / 32 seconds 219.05
+SCORED 32b 26 / 32 seconds 226.86
+[W1106 17:51:27.354420086 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 16711680, total: 89173131264).
+SCORED 32b 27 / 32 seconds 303.02
+SCORED 32b 28 / 32 seconds 257.19
+[W1106 18:00:52.409060403 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 106954752 bytes (free: 81723392, total: 89173131264).
+SCORED 32b 29 / 32 seconds 279.13
+SCORED 32b 30 / 32 seconds 356.64
+[W1106 18:14:45.074234167 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 138412032 bytes (free: 52363264, total: 89173131264).
+SCORED 32b 31 / 32 seconds 240.27
+SCORED 32b 32 / 32 seconds 495.95

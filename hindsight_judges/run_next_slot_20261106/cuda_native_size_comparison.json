@@ -1,0 +1,30 @@
+[
+  {
+    "elements": 1000000,
+    "bytes": 4000000,
+    "exitcode": 1,
+    "stdout": "malloc no error\nkernel an illegal memory access was encountered\n",
+    "stderr": ""
+  },
+  {
+    "elements": 16000000,
+    "bytes": 64000000,
+    "exitcode": 1,
+    "stdout": "malloc no error\nkernel an illegal memory access was encountered\n",
+    "stderr": ""
+  },
+  {
+    "elements": 128000000,
+    "bytes": 512000000,
+    "exitcode": 1,
+    "stdout": "malloc no error\nkernel an illegal memory access was encountered\n",
+    "stderr": ""
+  },
+  {
+    "elements": 545000000,
+    "bytes": 2180000000,
+    "exitcode": 1,
+    "stdout": "malloc no error\nkernel an illegal memory access was encountered\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 271, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 268, in main
+    else:globals()[args.command](args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 173, in score
+    pin=os.environ.get('CUDA_VISIBLE_DEVICES','');assert pin.startswith('GPU-') and ',' not in pin and torch.cuda.device_count()==1
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

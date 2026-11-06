@@ -1,0 +1,11 @@
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 9581.84it/s]
+weight torch.Size([152064, 3584]) (3584, 1) torch.float32 cuda:0 140394864050176
+ids 1 1 1
+equal True
+output torch.Size([1, 1, 3584]) True
+ids 1 151644 151644
+equal True
+output torch.Size([1, 1, 3584]) True
+ids 428 11 151645
+equal True
+output torch.Size([1, 428, 3584]) True

@@ -1,0 +1,9 @@
+2.13.0+cu130
+Traceback (most recent call last):
+  File "/tmp/slot_cuda_repro.py", line 3, in <module>
+    x=torch.ones((152064,3584),device='cuda',dtype=torch.bfloat16)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: no kernel image is available for execution on the device
+Search for `cudaErrorNoKernelImageForDevice' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+For more detailed error information, run with CUDA_LOG_FILE=stderr
+

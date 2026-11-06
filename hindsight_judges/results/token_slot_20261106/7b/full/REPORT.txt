@@ -1,0 +1,63 @@
+P4 CAUSAL TOKEN-SLOT DIAGNOSTIC
+{'name': '7b', 'pilot': False, 'points': 386, 'no_k': 8, 'seconds': 21215.925088802353, 'native_positions': 2563, 'probe_positions': 2444}
+{'enough_pre_k': True, 'training_design_candidate': False, 'main_gain': {'n': 336, 'n_trajectories': 56, 'estimate': -14.952089217641007, 'ci95': [-20.160186702089383, -9.750838172603697]}, 'native_logp_guard': {'n': 386, 'n_trajectories': 60, 'estimate': 1.1347539908467628, 'ci95': [0.8638153052961168, 1.419165101743878]}, 'native_kl_guards': [{'n': 386, 'n_trajectories': 60, 'estimate': -0.6208648156713864, 'ci95': [-0.7817030430283465, -0.47090744763718667]}, {'n': 386, 'n_trajectories': 60, 'estimate': -0.56216294915771, 'ci95': [-0.7395915040854082, -0.4026102570225037]}], 'rule': '>=30 pre-k points/10 clusters; gain>=3pp, lower CI>0; both KL upper CIs<=0; logp lower CI>=-0.1nat', 'conclusion': 'Do not claim T2 superiority or training readiness under the fixed gate.'}
+all_T2_minus_T1_b1_value_pp {'n': 386, 'n_trajectories': 60, 'estimate': -10.896921240886154, 'ci95': [-14.29041356601414, -7.269833827974682]}
+all_T2_minus_T0_value_pp {'n': 386, 'n_trajectories': 60, 'estimate': -6.599660655918389, 'ci95': [-8.900831240363145, -4.115049196032696]}
+all_T2_minus_T3_value_pp {'n': 386, 'n_trajectories': 60, 'estimate': 9.001827421442403, 'ci95': [5.290944521889374, 12.320339470192426]}
+all_all_T2_minus_T1_logp {'n': 386, 'n_trajectories': 60, 'estimate': 1.267296629938442, 'ci95': [0.9956638500114107, 1.542107924438249]}
+all_all_T2_minus_T1_kl_target_AF {'n': 386, 'n_trajectories': 60, 'estimate': -0.5302370650072821, 'ci95': [-0.6615002933426644, -0.4043446668425651]}
+all_all_T2_minus_T1_kl_AF_target {'n': 386, 'n_trajectories': 60, 'estimate': -0.5221736467197158, 'ci95': [-0.6656782320481334, -0.38949390789774785]}
+all_think_T2_minus_T1_logp {'n': 386, 'n_trajectories': 60, 'estimate': 1.1347539908467628, 'ci95': [0.8638153052961168, 1.419165101743878]}
+all_think_T2_minus_T1_kl_target_AF {'n': 386, 'n_trajectories': 60, 'estimate': -0.6208648156713864, 'ci95': [-0.7817030430283465, -0.47090744763718667]}
+all_think_T2_minus_T1_kl_AF_target {'n': 386, 'n_trajectories': 60, 'estimate': -0.56216294915771, 'ci95': [-0.7395915040854082, -0.4026102570225037]}
+all_action_T2_minus_T1_logp {'n': 386, 'n_trajectories': 60, 'estimate': 1.9788436344810807, 'ci95': [1.4942666864363867, 2.454759936672048]}
+all_action_T2_minus_T1_kl_target_AF {'n': 386, 'n_trajectories': 60, 'estimate': -0.016355623108855404, 'ci95': [-0.1542072997336409, 0.12126597183812371]}
+all_action_T2_minus_T1_kl_AF_target {'n': 386, 'n_trajectories': 60, 'estimate': -0.259994947534655, 'ci95': [-0.42776717564443406, -0.08480602605201244]}
+all_other_T2_minus_T1_logp {'n': 1, 'n_trajectories': 1, 'estimate': -0.019233494997024536, 'ci95': [-0.019233494997024536, -0.019233494997024536]}
+all_other_T2_minus_T1_kl_target_AF {'n': 1, 'n_trajectories': 1, 'estimate': 0.00857551395893097, 'ci95': [0.00857551395893097, 0.00857551395893097]}
+all_other_T2_minus_T1_kl_AF_target {'n': 1, 'n_trajectories': 1, 'estimate': 0.009831108152866364, 'ci95': [0.009831108152866364, 0.009831108152866364]}
+pre_k_T2_minus_T1_b1_value_pp {'n': 336, 'n_trajectories': 56, 'estimate': -14.952089217641007, 'ci95': [-20.160186702089383, -9.750838172603697]}
+pre_k_T2_minus_T0_value_pp {'n': 336, 'n_trajectories': 56, 'estimate': -10.009261814754197, 'ci95': [-13.738718637352676, -6.371945218312562]}
+pre_k_T2_minus_T3_value_pp {'n': 336, 'n_trajectories': 56, 'estimate': 12.301350443111229, 'ci95': [7.728962468032466, 17.109602091827515]}
+pre_k_all_T2_minus_T1_logp {'n': 337, 'n_trajectories': 56, 'estimate': 1.1648461150993672, 'ci95': [0.8195422747549098, 1.53912689364619]}
+pre_k_all_T2_minus_T1_kl_target_AF {'n': 337, 'n_trajectories': 56, 'estimate': -0.8141119817728074, 'ci95': [-1.0739369206513354, -0.5735446509871706]}
+pre_k_all_T2_minus_T1_kl_AF_target {'n': 337, 'n_trajectories': 56, 'estimate': -0.6326863735158795, 'ci95': [-0.8972058518916113, -0.3943979744057857]}
+pre_k_think_T2_minus_T1_logp {'n': 337, 'n_trajectories': 56, 'estimate': 1.1648461150993672, 'ci95': [0.8195422747549098, 1.53912689364619]}
+pre_k_think_T2_minus_T1_kl_target_AF {'n': 337, 'n_trajectories': 56, 'estimate': -0.8141119817728074, 'ci95': [-1.0739369206513354, -0.5735446509871706]}
+pre_k_think_T2_minus_T1_kl_AF_target {'n': 337, 'n_trajectories': 56, 'estimate': -0.6326863735158795, 'ci95': [-0.8972058518916113, -0.3943979744057857]}
+pre_k_action_T2_minus_T1_logp {'n': 0, 'n_trajectories': 0, 'estimate': None, 'ci95': None}
+pre_k_action_T2_minus_T1_kl_target_AF {'n': 0, 'n_trajectories': 0, 'estimate': None, 'ci95': None}
+pre_k_action_T2_minus_T1_kl_AF_target {'n': 0, 'n_trajectories': 0, 'estimate': None, 'ci95': None}
+pre_k_other_T2_minus_T1_logp {'n': 0, 'n_trajectories': 0, 'estimate': None, 'ci95': None}
+pre_k_other_T2_minus_T1_kl_target_AF {'n': 0, 'n_trajectories': 0, 'estimate': None, 'ci95': None}
+pre_k_other_T2_minus_T1_kl_AF_target {'n': 0, 'n_trajectories': 0, 'estimate': None, 'ci95': None}
+at_or_after_k_T2_minus_T1_b1_value_pp {'n': 378, 'n_trajectories': 59, 'estimate': -5.3087633647274135, 'ci95': [-7.1341741467551945, -3.4818785461503805]}
+at_or_after_k_T2_minus_T0_value_pp {'n': 378, 'n_trajectories': 59, 'estimate': -2.3227360353835644, 'ci95': [-3.284449608389715, -1.4007452180120785]}
+at_or_after_k_T2_minus_T3_value_pp {'n': 378, 'n_trajectories': 59, 'estimate': 3.8150942578699008, 'ci95': [1.067264888681064, 6.275076774602729]}
+at_or_after_k_all_T2_minus_T1_logp {'n': 378, 'n_trajectories': 59, 'estimate': 1.5003849586708518, 'ci95': [1.2040349373603672, 1.8159176100219814]}
+at_or_after_k_all_T2_minus_T1_kl_target_AF {'n': 378, 'n_trajectories': 59, 'estimate': -0.32274558511933765, 'ci95': [-0.43812467635795527, -0.2028383480218387]}
+at_or_after_k_all_T2_minus_T1_kl_AF_target {'n': 378, 'n_trajectories': 59, 'estimate': -0.46047692058128176, 'ci95': [-0.5883739715168086, -0.32657139507215144]}
+at_or_after_k_think_T2_minus_T1_logp {'n': 302, 'n_trajectories': 56, 'estimate': 1.1387418961800235, 'ci95': [0.8593355792821682, 1.4286041001098198]}
+at_or_after_k_think_T2_minus_T1_kl_target_AF {'n': 302, 'n_trajectories': 56, 'estimate': -0.4291789437827498, 'ci95': [-0.5459958133884745, -0.3181726642679242]}
+at_or_after_k_think_T2_minus_T1_kl_AF_target {'n': 302, 'n_trajectories': 56, 'estimate': -0.5009596730968794, 'ci95': [-0.6526797355415592, -0.35404010679035997]}
+at_or_after_k_action_T2_minus_T1_logp {'n': 378, 'n_trajectories': 59, 'estimate': 1.9708402098806381, 'ci95': [1.5316551387746902, 2.41837676685745]}
+at_or_after_k_action_T2_minus_T1_kl_target_AF {'n': 378, 'n_trajectories': 59, 'estimate': -0.03211226657654564, 'ci95': [-0.1681929966753273, 0.10586745217310634]}
+at_or_after_k_action_T2_minus_T1_kl_AF_target {'n': 378, 'n_trajectories': 59, 'estimate': -0.2753483178543934, 'ci95': [-0.4355864194625811, -0.1062646663896161]}
+at_or_after_k_other_T2_minus_T1_logp {'n': 1, 'n_trajectories': 1, 'estimate': -0.019233494997024536, 'ci95': [-0.019233494997024536, -0.019233494997024536]}
+at_or_after_k_other_T2_minus_T1_kl_target_AF {'n': 1, 'n_trajectories': 1, 'estimate': 0.00857551395893097, 'ci95': [0.00857551395893097, 0.00857551395893097]}
+at_or_after_k_other_T2_minus_T1_kl_AF_target {'n': 1, 'n_trajectories': 1, 'estimate': 0.009831108152866364, 'ci95': [0.009831108152866364, 0.009831108152866364]}
+no_k_T2_minus_T1_b1_value_pp {'n': 8, 'n_trajectories': 6, 'estimate': -24.5990214767624, 'ci95': [-32.337916694051586, -12.13520382115557]}
+no_k_T2_minus_T0_value_pp {'n': 8, 'n_trajectories': 6, 'estimate': -14.203293788697028, 'ci95': [-19.348763944935296, -5.648354741145901]}
+no_k_T2_minus_T3_value_pp {'n': 8, 'n_trajectories': 6, 'estimate': 5.958074045908328, 'ci95': [-11.851897733974665, 31.38156045919607]}
+no_k_all_T2_minus_T1_logp {'n': 8, 'n_trajectories': 6, 'estimate': 1.160342410151077, 'ci95': [0.49118261586244466, 2.062428322145442]}
+no_k_all_T2_minus_T1_kl_target_AF {'n': 8, 'n_trajectories': 6, 'estimate': -0.3509176083223709, 'ci95': [-0.6341573320415473, -0.09372322337182633]}
+no_k_all_T2_minus_T1_kl_AF_target {'n': 8, 'n_trajectories': 6, 'estimate': -0.29027925336493193, 'ci95': [-0.7070750892707468, -0.05683623022588704]}
+no_k_think_T2_minus_T1_logp {'n': 8, 'n_trajectories': 6, 'estimate': 1.0693506501152112, 'ci95': [0.4216431635298549, 1.6647867916567822]}
+no_k_think_T2_minus_T1_kl_target_AF {'n': 8, 'n_trajectories': 6, 'estimate': -0.5287955393066797, 'ci95': [-0.7754543071164661, -0.1898939892615816]}
+no_k_think_T2_minus_T1_kl_AF_target {'n': 8, 'n_trajectories': 6, 'estimate': -0.4242177955043801, 'ci95': [-0.8238039430109789, -0.1734638607485156]}
+no_k_action_T2_minus_T1_logp {'n': 8, 'n_trajectories': 6, 'estimate': 2.3570054468519857, 'ci95': [-0.971027359663708, 10.86454463005066]}
+no_k_action_T2_minus_T1_kl_target_AF {'n': 8, 'n_trajectories': 6, 'estimate': 0.7281457807395082, 'ci95': [0.06288189270010491, 1.216557522512402]}
+no_k_action_T2_minus_T1_kl_AF_target {'n': 8, 'n_trajectories': 6, 'estimate': 0.46545180007298104, 'ci95': [-0.18053555898888263, 0.9085365246173751]}
+no_k_other_T2_minus_T1_logp {'n': 0, 'n_trajectories': 0, 'estimate': None, 'ci95': None}
+no_k_other_T2_minus_T1_kl_target_AF {'n': 0, 'n_trajectories': 0, 'estimate': None, 'ci95': None}
+no_k_other_T2_minus_T1_kl_AF_target {'n': 0, 'n_trajectories': 0, 'estimate': None, 'ci95': None}

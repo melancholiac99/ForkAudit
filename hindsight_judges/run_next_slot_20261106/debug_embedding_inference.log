@@ -1,0 +1,18 @@
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 7608.75it/s]
+weight torch.Size([152064, 3584]) (3584, 1) torch.float32 cuda:0 140135890944000
+ids 1 1 1
+equal True
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+  File "<frozen runpy>", line 291, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/tmp/debug_slot_embedding.py", line 10, in <module>
+    z=torch.nn.functional.embedding(t,w);torch.cuda.synchronize();print('output',z.shape,torch.isfinite(z).all().item(),flush=True)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/functional.py", line 2615, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+

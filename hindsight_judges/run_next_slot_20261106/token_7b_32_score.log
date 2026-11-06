@@ -1,0 +1,159 @@
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 7637.81it/s]
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 271, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 268, in main
+    else:globals()[args.command](args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 198, in score
+    gates=K.gate(scorer,tok,groups);C.save_json(dest/'numerical_gate.json',gates)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/token_slot_backend.py", line 133, in gate
+    cached=engine.lp(slot,evidence,h)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/token_slot_backend.py", line 66, in lp
+    kv, last = self.s._feed(stem, len(stem)-1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c_backend.py", line 44, in _feed
+    out = m.model(input_ids=self._ids(part), past_key_values=cache, use_cache=True)
+                            ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c_backend.py", line 36, in _ids
+    return self.t.tensor([ids], device=self.device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 9039.10it/s]
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 272, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 269, in main
+    else:globals()[args.command](args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 199, in score
+    gates=K.gate(scorer,tok,groups);C.save_json(dest/'numerical_gate.json',gates)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/token_slot_backend.py", line 133, in gate
+    cached=engine.lp(slot,evidence,h)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/token_slot_backend.py", line 66, in lp
+    kv, last = self.s._feed(stem, len(stem)-1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c_backend.py", line 44, in _feed
+    out = m.model(input_ids=self._ids(part), past_key_values=cache, use_cache=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/transformers/utils/generic.py", line 1081, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 355, in forward
+    position_ids = torch.arange(inputs_embeds.shape[1], device=inputs_embeds.device) + past_seen_tokens
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 8870.77it/s]
+SCORED 7b 1 / 32 seconds 78.99
+SCORED 7b 2 / 32 seconds 24.78
+SCORED 7b 3 / 32 seconds 49.89
+SCORED 7b 4 / 32 seconds 51.95
+SCORED 7b 5 / 32 seconds 81.23
+SCORED 7b 6 / 32 seconds 37.39
+SCORED 7b 7 / 32 seconds 98.2
+SCORED 7b 8 / 32 seconds 40.7
+SCORED 7b 9 / 32 seconds 75.09
+SCORED 7b 10 / 32 seconds 62.95
+SCORED 7b 11 / 32 seconds 50.82
+SCORED 7b 12 / 32 seconds 52.28
+SCORED 7b 13 / 32 seconds 28.15
+SCORED 7b 14 / 32 seconds 65.34
+SCORED 7b 15 / 32 seconds 39.85
+SCORED 7b 16 / 32 seconds 81.83
+SCORED 7b 17 / 32 seconds 65.97
+SCORED 7b 18 / 32 seconds 21.55
+SCORED 7b 19 / 32 seconds 31.53
+SCORED 7b 20 / 32 seconds 47.55
+SCORED 7b 21 / 32 seconds 61.14
+SCORED 7b 22 / 32 seconds 68.01
+SCORED 7b 23 / 32 seconds 31.84
+SCORED 7b 24 / 32 seconds 19.01
+SCORED 7b 25 / 32 seconds 40.23
+SCORED 7b 26 / 32 seconds 41.09
+SCORED 7b 27 / 32 seconds 47.41
+SCORED 7b 28 / 32 seconds 53.79
+SCORED 7b 29 / 32 seconds 58.62
+SCORED 7b 30 / 32 seconds 63.66
+SCORED 7b 31 / 32 seconds 37.97
+SCORED 7b 32 / 32 seconds 105.59
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 5057.85it/s]
+SCORED 7b 1 / 32 seconds 340.83
+SCORED 7b 2 / 32 seconds 114.39
+SCORED 7b 3 / 32 seconds 234.95
+SCORED 7b 4 / 32 seconds 270.4
+SCORED 7b 5 / 32 seconds 334.52
+SCORED 7b 6 / 32 seconds 178.26
+SCORED 7b 7 / 32 seconds 417.98
+SCORED 7b 8 / 32 seconds 195.27
+SCORED 7b 9 / 32 seconds 342.7
+SCORED 7b 10 / 32 seconds 278.74
+SCORED 7b 11 / 32 seconds 241.24
+SCORED 7b 12 / 32 seconds 191.6
+SCORED 7b 13 / 32 seconds 126.52
+SCORED 7b 14 / 32 seconds 239.17
+SCORED 7b 15 / 32 seconds 209.56
+SCORED 7b 16 / 32 seconds 331.07
+SCORED 7b 17 / 32 seconds 291.21
+SCORED 7b 18 / 32 seconds 110.53
+SCORED 7b 19 / 32 seconds 161.79
+SCORED 7b 20 / 32 seconds 251.0
+SCORED 7b 21 / 32 seconds 282.33
+SCORED 7b 22 / 32 seconds 461.73
+SCORED 7b 23 / 32 seconds 128.82
+SCORED 7b 24 / 32 seconds 99.31
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 5213.77it/s]
+SCORED 7b 1 / 32 seconds 65.15
+SCORED 7b 2 / 32 seconds 22.15
+SCORED 7b 3 / 32 seconds 41.86
+SCORED 7b 4 / 32 seconds 43.09
+SCORED 7b 5 / 32 seconds 66.6
+SCORED 7b 6 / 32 seconds 32.12
+SCORED 7b 7 / 32 seconds 81.07
+SCORED 7b 8 / 32 seconds 33.99
+SCORED 7b 9 / 32 seconds 62.46
+SCORED 7b 10 / 32 seconds 52.12
+SCORED 7b 11 / 32 seconds 41.83
+SCORED 7b 12 / 32 seconds 43.55
+SCORED 7b 13 / 32 seconds 24.18
+SCORED 7b 14 / 32 seconds 53.59
+SCORED 7b 15 / 32 seconds 33.55
+SCORED 7b 16 / 32 seconds 67.2
+SCORED 7b 17 / 32 seconds 54.8
+SCORED 7b 18 / 32 seconds 19.53
+SCORED 7b 19 / 32 seconds 27.17
+SCORED 7b 20 / 32 seconds 39.69
+SCORED 7b 21 / 32 seconds 50.64
+SCORED 7b 22 / 32 seconds 56.38
+SCORED 7b 23 / 32 seconds 27.52
+SCORED 7b 24 / 32 seconds 17.47
+SCORED 7b 25 / 32 seconds 33.7
+SCORED 7b 26 / 32 seconds 34.88
+SCORED 7b 27 / 32 seconds 38.91
+SCORED 7b 28 / 32 seconds 44.24
+SCORED 7b 29 / 32 seconds 48.88
+SCORED 7b 30 / 32 seconds 52.48
+SCORED 7b 31 / 32 seconds 32.54
+SCORED 7b 32 / 32 seconds 87.72

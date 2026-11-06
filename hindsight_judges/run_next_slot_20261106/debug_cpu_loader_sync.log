@@ -1,0 +1,50 @@
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 10964.36it/s]
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 272, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 269, in main
+    else:globals()[args.command](args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 199, in score
+    gates=K.gate(scorer,tok,groups);C.save_json(dest/'numerical_gate.json',gates)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/token_slot_backend.py", line 133, in gate
+    cached=engine.lp(slot,evidence,h)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/token_slot_backend.py", line 66, in lp
+    kv, last = self.s._feed(stem, len(stem)-1)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp1c_backend.py", line 44, in _feed
+    out = m.model(input_ids=self._ids(part), past_key_values=cache, use_cache=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/transformers/utils/generic.py", line 1081, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 348, in forward
+    inputs_embeds = self.embed_tokens(input_ids)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/sparse.py", line 189, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/functional.py", line 2615, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+

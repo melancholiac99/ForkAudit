@@ -1,0 +1,15 @@
+token running {'task': 'token_7b_score_adopted_no_32b_followup', 'child_pid': 3123}
+math running {'task': 'math_screen_adopted_until_7b_finishes', 'child_pid': 3125}
+token running {'task': 'token_7b_full_analyze_final_scope', 'child_pid': 12227}
+token running {'task': 'token_7b_full_verify_final_scope', 'child_pid': 12268}
+token completed_7b_verified_32b_full_cancelled {'models_completed': ['7b'], 'cancelled': ['32b_full']}
+math dual_gpu_screen {'children': {'helper': 12386, 'primary': 12387}}
+math awaiting_full_cut_review {}
+awaiting_review {'path': '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/math_slot_20261106/full/cut_annotations.json'}
+math dual_gpu_evaluate {'children': {'helper': 14732, 'primary': 14733}}
+math running {'task': 'math_full_analyze_dual', 'child_pid': 17478}
+math awaiting_full_outcome_review {}
+awaiting_review {'path': '/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/results/math_slot_20261106/full/outcome_review.json'}
+math running {'task': 'math_full_analyze_dual_final', 'child_pid': 18035}
+math running {'task': 'math_full_verify_dual_final', 'child_pid': 18052}
+math completed_verified {}

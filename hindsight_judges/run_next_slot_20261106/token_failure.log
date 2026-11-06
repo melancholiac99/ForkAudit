@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run_next_slot_20261106/driver.py", line 37, in worker
+    execute(name,f'token_{model}_{limit}_{command}',[H/'exp5_token_slot.py',command,'--name',model,'--limit',limit,'--model',f'/root/autodl-tmp/models/Qwen2.5-{model.upper()}-Instruct'])
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run_next_slot_20261106/driver.py", line 25, in execute
+    assert p.returncode==0,f'{key} failed, exit {p.returncode}'
+           ^^^^^^^^^^^^^^^
+AssertionError: token_32b_32_score failed, exit 1
