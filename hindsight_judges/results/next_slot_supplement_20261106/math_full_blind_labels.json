@@ -1,0 +1,176 @@
+{
+  "blind_payload_sha256": "aa0051e22f08fd711385792a16c1fa4e6666f4050a443f058a3cdec4801c9a0a",
+  "limitations": "Single assistant review, not an independent human panel. Earlier prefix/cut review context may be familiar. Labels assess visible continuity, not mathematical correctness or later response behavior.",
+  "review_scope": "Fixed 24 samples; only supplied prefix tails (up to 380 characters) and X/Y openings (up to 450 characters). No correctness, condition mapping, or outcome review request read before freezing these labels.",
+  "reviewed_at_utc": "2026-11-06T18:39:01.488479+00:00",
+  "samples": [
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "counting_and_probability:380",
+      "reason": "X substitutes the given mean into the prefix-derived 2^n/(n+1); Y tests n using that same expression.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "intermediate_algebra:439",
+      "reason": "X explicitly assesses the just-derived (0,-1) against the bounds; Y combines the previously discussed cases including that point.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "prealgebra:171",
+      "reason": "X briefly recaps the prefix counts before counting leap years; Y immediately counts years and uses the existing per-year counts. Local recap is not a full restart.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "intermediate_algebra:568",
+      "reason": "X explicitly reacts to the immediately preceding c=0 and re-evaluates that calculation; Y explicitly corrects the preceding root-product interpretation and continues with the existing variables. Local self-correction is continuation, independent of its correctness.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "intermediate_algebra:417",
+      "reason": "X and Y solve the first equation of the displayed system and substitute its value into the next equations.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "intermediate_algebra:571",
+      "reason": "X supplies the transformed denominators promised by the prefix; Y applies the already defined substitution and advances to a common denominator.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "precalculus:429",
+      "reason": "X and Y complete the substitution announced at the cut, then perform the vector arithmetic.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "algebra:117",
+      "reason": "X locally restates the simplified expression then executes the announced last-digit analysis; Y directly performs that analysis.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "ambiguous",
+      "Y": "ambiguous",
+      "id": "number_theory:445",
+      "reason": "X and Y restate problem information and introduce logarithms, but the visible prefix contains only a generic introduction and factorial definition. These short openings do not distinguish continuation from a new solution reliably.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "intermediate_algebra:580",
+      "reason": "X and Y immediately fill in the second substitution case left open by the prefix.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "algebra:1149",
+      "reason": "X and Y use the two discriminants just derived to form the stated ratio equation and simplify it.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "algebra:932",
+      "reason": "X and Y continue the numbered list at step 2, converting the previously obtained nine hours to minutes before counting tours.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "ambiguous",
+      "Y": "ambiguous",
+      "id": "intermediate_algebra:141",
+      "reason": "The prefix is only a generic promise to solve the displayed sum. X and Y begin the first substantive transformation; the short visible material cannot distinguish continuation from restarting the solution.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "intermediate_algebra:415",
+      "reason": "X substitutes the prefix-derived root sum into the existing expression; Y briefly repeats that value then makes the same substitution and advances.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "number_theory:182",
+      "reason": "X and Y start step 4, testing the cubes listed in prefix step 3 against the remaining condition.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "number_theory:167",
+      "reason": "X and Y start step 2 by converting the fraction obtained in prefix step 1, then advance to summing its digits.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "number_theory:92",
+      "reason": "X and Y use the just-derived upper bound on k to count the inclusive range.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "intermediate_algebra:646",
+      "reason": "X eliminates a from the first two equations already written; Y locally repeats those equations then performs the elimination.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "intermediate_algebra:125",
+      "reason": "X and Y proceed to step 3, inserting the previously obtained center and radius into the circle equation.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "geometry:469",
+      "reason": "X and Y continue at step 2 with the cyclic-quadrilateral relation and then use the angle established in step 1.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "counting_and_probability:329",
+      "reason": "X and Y advance from the prefix list of candidate groups to permutations within those groups, without restarting the setup.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "algebra:753",
+      "reason": "X simplifies the fraction left at the cut and solves for r; Y locally repeats that factorization, then takes the sixth root and proceeds to a.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "prealgebra:410",
+      "reason": "X and Y continue at step 4, applying unit costs to the area established in step 3.",
+      "reviewer": "Codex blind text review"
+    },
+    {
+      "X": "genuine_continuation",
+      "Y": "genuine_continuation",
+      "id": "geometry:95",
+      "reason": "X and Y continue at step 3 by computing the triangle height explicitly announced at the cut.",
+      "reviewer": "Codex blind text review"
+    }
+  ]
+}
