@@ -42,6 +42,14 @@ def require_verified(directory: Path):
     assert vfile.exists() and C.read_json(vfile)["passed"], (
         f"Wait for original verified run: {vfile}"
     )
+    v = C.read_json(vfile)
+    expected = v.get("analysis_sha256", v.get("analysis_sha"))
+    assert expected == C.sha_file(directory / "analysis.json"), "Analysis changed after verification"
+    if "manifest_sha256" in v:
+        assert v["manifest_sha256"] == C.sha_file(directory / "manifest.json")
+    for key, filename in (("annotations_sha", "cut_annotations.json"), ("review_sha", "outcome_review.json")):
+        if key in v:
+            assert v[key] == C.sha_file(directory / filename)
     return C.sha_file(vfile)
 
 
@@ -82,31 +90,40 @@ def bounds(arms):
         s[len(s) - 1 - end] for s in seqs
     }) == 1:
         end += 1
-    assert any(len(s) > start + end for s in seqs), (
-        "No discriminating candidate tokens"
-    )
     return start, end
 
 
+def selected_tokens(probe, trim):
+    start, end = bounds(probe["arms"]) if trim else (0, 0)
+    rows = [a["tokens"][start:len(a["ids"])-end if end else len(a["ids"])]
+            for a in probe["arms"]]
+    # Empty discrimination is not assigned a made-up neutral score.
+    return None if trim and any(not row for row in rows) else rows
+
+
 def probe_value(probe, q, target, trim=False):
-    arms = probe["arms"]
-    start, end = bounds(arms) if trim else (0, 0)
-    scores = []
-    for arm in arms:
-        stop = len(arm["ids"]) - end if end else len(arm["ids"])
-        toks = arm["tokens"][start:stop]
-        scores.append(sum(t["target_logp"][target] for t in toks))
+    rows = selected_tokens(probe, trim)
+    if rows is None:
+        return None
+    scores = [sum(t["target_logp"][target] for t in toks) for toks in rows]
     return float(100 * softmax(scores) @ np.asarray(q, float))
 
 
+def external_value_delta(probe, q, trim=False):
+    rows = selected_tokens(probe, trim)
+    if rows is None:
+        return None
+    values = [100 * softmax([sum(t["raw_logp"][c] for t in ts) for ts in rows]) @ np.asarray(q)
+              for c in ("EF", "EM")]
+    return float(values[0] - values[1])
+
+
 def probe_slope(probe, q, trim=False):
-    start, end = bounds(probe["arms"]) if trim else (0, 0)
-    delta = []
-    for arm in probe["arms"]:
-        stop = len(arm["ids"]) - end if end else len(arm["ids"])
-        toks = arm["tokens"][start:stop]
-        delta.append(sum(t["raw_logp"]["EF"] - t["raw_logp"]["EM"] for t in toks))
-    x = np.asarray(q, float)
+    rows = selected_tokens(probe, trim)
+    if rows is None:
+        return None
+    delta = [sum(t["raw_logp"]["EF"] - t["raw_logp"]["EM"] for t in toks) for toks in rows]
+    x = np.array(q, dtype=float, copy=True)
     x -= x.mean()
     y = np.asarray(delta, float)
     y -= y.mean()
@@ -144,6 +161,8 @@ def analyze_token(args):
         section = {
             "points_with_positions": sum(bool(x) for x in chosen),
             "position_count": sum(map(len, chosen)),
+            "trajectory_count": len({c for c, ps in zip(clusters, chosen) if ps}),
+            "support_status": "available_counts_reported" if any(chosen) else "inconclusive_insufficient_support",
         }
         for field in fields:
             t1_values = [
@@ -194,7 +213,8 @@ def analyze_token(args):
             label = "discriminating" if trim else "full_sequence"
             rows = [
                 [p for p in r["probes"]
-                 if phase == "all" or p["phase"] == phase]
+                 if (phase == "all" or p["phase"] == phase)
+                 and (not trim or selected_tokens(p, True) is not None)]
                 for r in records
             ]
             contrasts = []
@@ -218,6 +238,10 @@ def analyze_token(args):
                     ])
                     for r, ps in zip(records, rows)
                 ], clusters),
+                "external_F_minus_M_value_pp": paired([
+                    mean_or_none([external_value_delta(p, r["q"], trim) for p in ps])
+                    for r, ps in zip(records, rows)
+                ], clusters),
             }
         span_stats = [
             (bounds(p["arms"]), [len(a["ids"]) for a in p["arms"]])
@@ -228,8 +252,20 @@ def analyze_token(args):
             "n_probes": len(span_stats),
             "average_LCP_tokens": mean_or_none([x[0][0] for x in span_stats]),
             "average_LCS_tokens": mean_or_none([x[0][1] for x in span_stats]),
+            "empty_span_arms": sum(n == b[0] + b[1] for b, lengths in span_stats for n in lengths),
+            "empty_span_arm_fraction": mean_or_none([float(n == b[0] + b[1]) for b, lengths in span_stats for n in lengths]),
+            "probes_unavailable_due_to_empty_span": sum(any(n == b[0] + b[1] for n in lengths) for b, lengths in span_stats),
             "note": "Sensitivity only: external slot still restarts at every candidate token.",
         }
+        section["discriminating_minus_full"] = {}
+        for metric in ("T2_minus_T1_value_pp", "T3_value_pp", "external_F_minus_M_Q_slope", "external_F_minus_M_value_pp"):
+            full = section["full_sequence"][metric]["estimate"]
+            trimmed = section["discriminating"][metric]["estimate"]
+            section["discriminating_minus_full"][metric] = {
+                "estimate_difference": trimmed-full if full is not None and trimmed is not None else None,
+                "sign_changed": bool(full*trimmed < 0) if full is not None and trimmed is not None else None,
+                "note": "Descriptive difference; paired estimates retain their individual cluster CIs. Check unavailable-span counts.",
+            }
         probes[phase] = section
 
     gain = original_analysis["paired"]["pre_k_T2_minus_T1_b1_value_pp"]
@@ -248,13 +284,22 @@ def analyze_token(args):
         "points": len(records),
         "legacy_gate": original_analysis["decision"],
         "supplement_gate": {
-            "eligible_to_consider_training": new_gate if args.cohort == "full" else None,
+            "eligible_to_consider_training": new_gate if args.cohort == "full" and guards["position_count"] else None,
+            "support_status": guards["support_status"],
             "pre_k_probe_gain_from_original": gain,
             "ordinary_position_guards": guards,
             "rule": "Pre-k +3pp and CI>0, 30 points/10 clusters; ordinary Think both KL upper(T2-1.1*T1)<=0; ordinary logp lower(T2-T1)>=-0.1 nat/token",
         },
         "ordinary_native": regular,
         "probe_sensitivity": probes,
+        "position_and_span_audit": [{
+            "id": r["id"], "cluster": r["cluster"],
+            "native_positions": [{"t": p["t"], "kind": p["kind"], "phase": p["phase"],
+                                  "reasons": p["reasons"], "included_as_ordinary": ordinary(p)} for p in r["native"]],
+            "probes": [{"char": p["char"], "phase": p["phase"], "lcp": bounds(p["arms"])[0],
+                        "lcs": bounds(p["arms"])[1], "arm_lengths": [len(a["ids"]) for a in p["arms"]],
+                        "discriminating_available": selected_tokens(p, True) is not None} for p in r["probes"]],
+        } for r in records],
         "original_verification_sha256": original_verification,
         "original_analysis_sha256": C.sha_file(directory / "analysis.json"),
         "original_manifest_sha256": C.sha_file(directory / "manifest.json"),
@@ -266,7 +311,7 @@ def clean(text):
     return re.sub(r"\s+", " ", text).strip().lower()
 
 
-def continuity_features(prefix, continuation, active_ids):
+def continuity_features(prefix, continuation, continuation_ids):
     norm_prefix = clean(prefix)
     norm_reply = clean(continuation)
     opening = continuation[:320]
@@ -283,7 +328,7 @@ def continuity_features(prefix, continuation, active_ids):
         "carryover_literals": sorted(seen),
         "opening_preview": opening,
         "continuation_chars": len(continuation),
-        "continuation_token_count": len(active_ids),
+        "continuation_token_count": len(continuation_ids),
     }
 
 
@@ -294,12 +339,13 @@ def analyze_math(args):
     request = C.read_json(stage / "cut_review_request.json")
     annotations = C.read_json(stage / "cut_annotations.json")["questions"]
     aggregate = C.read_json(stage / "aggregate_rows.json")
+    original_analysis = C.read_json(stage / "analysis.json")
+    assert hashlib.sha256(C.json_bytes(aggregate)).hexdigest() == original_analysis["records_sha"]
+    assert set(annotations) == {q["id"] for q in request["questions"]} == {q["id"] for q in aggregate}
     grades = {r["id"]: r for r in aggregate}
     rows = []
     blinded = []
-    sample = sorted(request["questions"], key=lambda r: hashlib.sha256(
-        ("20261106-continuity:" + r["id"]).encode()
-    ).hexdigest())[:24]
+    sample = continuity_sample(request["questions"])
     sample_ids = {r["id"] for r in sample}
     for q in request["questions"]:
         qid = q["id"]
@@ -310,6 +356,9 @@ def analyze_math(args):
             arm: C.read_json(stage / "responses" / qid / (arm + ".json"))
             for arm in ("ACTIVE", "QUOTE-CONTINUE", "QUOTE-REWRITE", "INDEPENDENT")
         }
+        for arm in acts:
+            path = stage / "responses" / qid / (arm + ".json")
+            assert C.sha_file(path) == original_analysis["raw_results_hashes"][str(path)]
         active = acts["ACTIVE"]["generation"]
         quote = acts["QUOTE-CONTINUE"]["generation"]
         features = continuity_features(prefix, quote["text"], quote["ids"])
@@ -317,11 +366,15 @@ def analyze_math(args):
             len(quote["ids"]) / len(active["ids"])
             if active["ids"] else None
         )
+        features["length_ratio_unavailable_zero_denominator"] = not bool(active["ids"])
         rows.append({
             "id": qid, "cohort": annotations[qid]["cohort"],
             "features": features,
             "correctness": {
                 arm: grades[qid]["grades"][arm]["correct"] for arm in acts
+            },
+            "retains_student_answer": {
+                arm: grades[qid]["grades"][arm]["retains_student_answer"] for arm in acts
             },
             "raw_response_sha256": {
                 arm: C.sha_file(stage / "responses" / qid / (arm + ".json"))
@@ -347,7 +400,8 @@ def analyze_math(args):
             if cohort == "all_descriptive" or r["cohort"] == cohort
         ]
         clusters = [r["id"] for r in subset]
-        stats = {"n": len(subset)}
+        stats = {"n": len(subset), "zero_ACTIVE_token_denominators": sum(
+            r["features"]["length_ratio_unavailable_zero_denominator"] for r in subset)}
         for key in ("restart_opener_heuristic", "prefix_repetition_heuristic",
                     "carryover_hint", "length_ratio_vs_ACTIVE"):
             stats[key] = paired([
@@ -360,18 +414,68 @@ def analyze_math(args):
             100 * r["correctness"]["ACTIVE"] for r in subset
         ], clusters)
         strata[cohort] = stats
+    review = blind_review_summary(getattr(args, "blind_labels", None), blinded)
     return {
-        "status": "automated lexical indicators only; blind continuity review pending",
+        "status": "automated lexical indicators; blind continuity review " + review["status"],
         "stage": args.stage, "pilot_only": args.stage == "first32",
         "original_verification_sha256": verified,
         "original_analysis_sha256": C.sha_file(stage / "analysis.json"),
         "n": len(rows), "strata": strata,
         "per_question": rows, "blinded_review_sample": blinded,
+        "blind_review": review,
+        "original_aggregate_sha256": C.sha_file(stage / "aggregate_rows.json"),
+        "original_annotations_sha256": C.sha_file(stage / "cut_annotations.json"),
+        "original_cut_request_sha256": C.sha_file(stage / "cut_review_request.json"),
         "limitations": [
             "Restart/repetition/numeric carryover are weak heuristics, not verified continuation.",
             "Conditioning on generated behavior is post-treatment; stratified correctness descriptive only.",
         ],
     }
+
+
+def blind_payload(samples):
+    return {"instructions": "Review X/Y without opening correctness or source labels.", "samples": samples}
+
+
+def continuity_sample(questions):
+    return sorted(questions, key=lambda r: hashlib.sha256(
+        ("20261106-continuity:" + r["id"]).encode()
+    ).hexdigest())[:24]
+
+
+def blind_review_summary(labels_path, samples):
+    allowed = {"genuine_continuation", "restart_or_rewrite", "ambiguous"}
+    total = len(samples)
+    result = {"sample_size": total, "reviewed_questions": 0, "coverage": 0.0 if total else None,
+              "status": "pending", "sample_ids": [s["id"] for s in samples]}
+    if not labels_path:
+        return result
+    doc = C.read_json(Path(labels_path))
+    expected = hashlib.sha256(C.json_bytes(blind_payload(samples))).hexdigest()
+    assert doc["blind_payload_sha256"] == expected, "Blind review belongs to another sample"
+    ids = set(result["sample_ids"])
+    seen = set()
+    labels = {a: {label: 0 for label in sorted(allowed)} for a in ("ACTIVE", "QUOTE-CONTINUE")}
+    for r in doc["samples"]:
+        qid = r["id"]
+        assert qid in ids and qid not in seen and r["reviewer"] and r["reason"]
+        assert r["X"] in allowed and r["Y"] in allowed
+        seen.add(qid)
+        swap = int(hashlib.sha256(("blind:"+qid).encode()).hexdigest()[-1], 16) % 2
+        mapping = ("ACTIVE", "QUOTE-CONTINUE") if swap == 0 else ("QUOTE-CONTINUE", "ACTIVE")
+        for arm, label in zip(mapping, (r["X"], r["Y"])):
+            labels[arm][label] += 1
+    result.update(reviewed_questions=len(seen), coverage=len(seen)/total if total else None,
+                  status="complete" if len(seen)==total else "partial", counts_by_arm=labels,
+                  labels_sha256=C.sha_file(Path(labels_path)))
+    return result
+
+
+def output_directory(args):
+    dest = Path(args.output).resolve()
+    for original in (TOKEN_ROOT.resolve(), MATH_ROOT.resolve(), Path(args.token_root).resolve(), Path(args.math_root).resolve()):
+        assert dest != original and original not in dest.parents, "Supplement may not write into original score directories"
+    return dest
 
 
 def main():
@@ -383,25 +487,20 @@ def main():
     p.add_argument("--token-root", default=str(TOKEN_ROOT))
     p.add_argument("--math-root", default=str(MATH_ROOT))
     p.add_argument("--output", default=str(OUTPUT))
+    p.add_argument("--blind-labels", help="Optional independently recorded X/Y continuity annotations")
     args = p.parse_args()
+    dest = output_directory(args)
     result = analyze_token(args) if args.experiment == "token" else analyze_math(args)
-    dest = Path(args.output).resolve()
-    for original in (TOKEN_ROOT.resolve(), MATH_ROOT.resolve()):
-        assert dest != original and original not in dest.parents, (
-            "Supplement may not write into original score directories"
-        )
     dest.mkdir(parents=True, exist_ok=True)
     result["supplement_script_sha256"] = C.sha_file(Path(__file__))
+    result["amendment_sha256"] = C.sha_file(HERE / "AMENDMENT_TOKEN_MATH_20261106.md")
     name = (
         f"token_{args.model}_{args.cohort}.json"
         if args.experiment == "token" else f"math_{args.stage}.json"
     )
     C.save_json(dest / name, result)
     if args.experiment == "math":
-        C.save_json(dest / f"math_{args.stage}_blind_review.json", {
-            "instructions": "Review X/Y without opening correctness or source labels.",
-            "samples": result["blinded_review_sample"],
-        })
+        C.save_json(dest / f"math_{args.stage}_blind_review.json", blind_payload(result["blinded_review_sample"]))
     print("SUPPLEMENT COMPLETE", dest / name, "no original data changed")
 
 
