@@ -1,0 +1,23 @@
+{
+  "authorized": true,
+  "time": 1793972078.2323234,
+  "user_instruction": "ok 按照原来要求做完关机",
+  "scope": [
+    "token_7b_full386",
+    "math_full",
+    "required_supplemental_analysis_and_reviews"
+  ],
+  "cancelled": [
+    "token_32b_full"
+  ],
+  "publication_branch": "research/hindsight-judges",
+  "success": "Independent verification, complete GitHub artifact comparison, all workers ended, sync, platform shutdown",
+  "failure": "Best-effort repair and resume; if unrecoverable preserve complete logs/results and sync before shutdown",
+  "recovery_unavailable_fallback_seconds": 1800,
+  "override": "This latest explicit authorization overrides no_shutdown in older queue files/messages; do not edit frozen experiment fingerprints",
+  "finalizer_source": {
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/finalize_7b_math_20261106.py": "26ae3be9314dee2e8cf3d3bec073aef9e660f69f0fdbf73e2aa648b15fc43109",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/finalize_prefix_v2_20261105.py": "ff67fc097991640f6b087c7df4152bc333df85e7049b295ba538f772eeb289ff",
+    "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/test_finalize_7b_math_20261106.py": "f1da188c91473f414985ca95443fc85cdf583161d27fab69f487a0697b30fe93"
+  }
+}
