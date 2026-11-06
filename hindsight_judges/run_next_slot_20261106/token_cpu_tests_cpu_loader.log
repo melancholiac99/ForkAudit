@@ -1,0 +1,12 @@
+test_cluster_point_weighting_and_vectorized_slope (test_token_slot.RuleTests.test_cluster_point_weighting_and_vectorized_slope) ... ok
+test_kl_directions_and_sampled_student_proxy (test_token_slot.RuleTests.test_kl_directions_and_sampled_student_proxy) ... ok
+test_stable_commitment_is_not_first_crossing (test_token_slot.RuleTests.test_stable_commitment_is_not_first_crossing) ... ok
+test_targets_and_no_zero_probability_outside_topk (test_token_slot.RuleTests.test_targets_and_no_zero_probability_outside_topk) ... ok
+test_engine_caching_matches_direct_and_never_mutates_base (test_token_slot.TokenTests.test_engine_caching_matches_direct_and_never_mutates_base) ... ok
+test_native_positions_are_real_and_quotes_see_only_prefix (test_token_slot.TokenTests.test_native_positions_are_real_and_quotes_see_only_prefix) ... ok
+test_probe_preserves_all_five_full_actions_and_original_spacing (test_token_slot.TokenTests.test_probe_preserves_all_five_full_actions_and_original_spacing) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 4.390s
+
+OK

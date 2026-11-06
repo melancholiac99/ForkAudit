@@ -13,6 +13,7 @@ import exp3_action_diagnostic as D
 import exp3_token_diagnostic as OLD
 import token_diagnostic_backend as B
 import token_slot_backend as K
+import slot_model_loader as L
 
 HERE=Path(__file__).resolve().parent; ROOT=HERE.parent
 OUT=HERE/'results/token_slot_20261106'
@@ -21,7 +22,7 @@ PROTOCOL=HERE/'PROTOCOL_NEXT_TOKEN_SLOT_AND_MATH_20261106.md'
 
 def fingerprint():
     return {p.name:C.sha_file(p) for p in [Path(__file__),HERE/'token_slot_backend.py',HERE/'token_slot_analysis.py',
-        HERE/'test_token_slot.py',HERE/'TOKEN_SLOT_EXECUTION_20261106.txt',PROTOCOL,HERE/'exp3_action_diagnostic.py',
+        HERE/'test_token_slot.py',HERE/'slot_model_loader.py',HERE/'TOKEN_SLOT_EXECUTION_20261106.txt',PROTOCOL,HERE/'exp3_action_diagnostic.py',
         HERE/'exp3_token_diagnostic.py',HERE/'token_diagnostic_backend.py',HERE/'exp2_common.py',HERE/'exp1c_backend.py',HERE/'exp1c_precision.py']}
 
 
@@ -184,7 +185,7 @@ def score(args):
             assert v['passed'] and v['source']==fingerprint() and v['analysis_sha256']==C.sha_file(pilot/'analysis.json')
     with (dest/'score.lock').open('a') as lock,torch.inference_mode(),sdpa_kernel(SDPBackend.MATH):
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        scorer,model=B.load_model(args.name,args.model,ROOT)
+        scorer,model=L.load_model(args.name,args.model,ROOT)
         fp=dict(source=fingerprint(),model=model,runtime=B.runtime(),gpu_uuid=pin,groups_hash=meta['groups_hash'],limit=args.limit,name=args.name,
                 student_manifest_sha256=C.sha_file(refdir/'manifest.json') if refs else None)
         runfile=dest/'run.json'

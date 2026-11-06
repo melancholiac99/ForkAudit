@@ -1,0 +1,28 @@
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights: 100%|██████████| 339/339 [00:00<00:00, 8600.14it/s]
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 271, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 268, in main
+    else:globals()[args.command](args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/exp5_token_slot.py", line 187, in score
+    scorer,model=B.load_model(args.name,args.model,ROOT)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/token_diagnostic_backend.py", line 33, in load_model
+    frozen=module.Scorer();frozen.model.float()
+           ^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/exploratory_P4/p4_e2_backend.py", line 10, in __init__
+    self.model.lm_head.to(dtype=torch.float32)
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1383, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/root/miniconda3/envs/m0/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1369, in convert
+    return t.to(
+           ^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+

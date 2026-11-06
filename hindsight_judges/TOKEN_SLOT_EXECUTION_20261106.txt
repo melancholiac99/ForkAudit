@@ -45,3 +45,5 @@ Experiment 1
   logps/log normalizers, KL summaries, full action sums, raw quartet sampled logps, and
   deterministic full-vocabulary audit vectors for the first native position of first2
   points and first token of first probe/candidate. Full large vectors are audit-only.
+
+Pre-score runtime repair (2026-11-06): first GPU attempt failed before any numeric gate or point record, in large GPU dtype conversion. CUDA_LAUNCH_BLOCKING localized failure to lm_head BF16->FP32. Minimal large tensor GPU fill also raised illegal address; CPU FP32 construction -> CUDA transfer -> same-size linear projection passed. New slot_model_loader.py converts parameters on CPU before CUDA transfer, with same frozen checkpoint hashes, 7B FP32 / 32B FP16 transformer + FP32 head + preserved RoPE, SDPA MATH and TF32 off. No previous score is reused; failed run metadata/logs archived. Full cached/direct TV<0.005 gates retained. Old loaders and all old experiment results untouched.
