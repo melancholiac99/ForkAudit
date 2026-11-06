@@ -12,6 +12,7 @@ import os
 import re
 import sys
 import time
+from contextlib import contextmanager
 from pathlib import Path
 
 import numpy as np
@@ -100,6 +101,40 @@ def prefix_of(tr, i):
     mem = [dict(text_obs=(tr["initial_obs"] if j == 0 else steps[j-1]["obs_after"]),
                 action=steps[j]["action"]) for j in range(i)]
     return prefix, expected, before, mem
+
+
+def shard_points(points, args):
+    n, i = getattr(args, 'shard_count', 1), getattr(args, 'shard_index', 0)
+    if not 1 <= n <= 2 or not 0 <= i < n:
+        raise ValueError('Invalid deterministic point shard')
+    return [p for p in points if int(D.digest('E4d-gpu-shard:'+p['point_id']), 16) % n == i]
+
+
+def execution_metadata():
+    return dict(gpu_uuid=os.environ.get('CUDA_VISIBLE_DEVICES'),
+                execution_plan_sha256=os.environ.get('E4D_EXECUTION_PLAN_SHA256'),
+                source_sha256=sha_file(Path(__file__)))
+
+
+@contextmanager
+def durable_target_writer(replay, tracker):
+    """No final result path is visible until its target log is also durable."""
+    original = replay._write
+    def write(dp, continuations, provenance):
+        if any(c.div for c in continuations):
+            raise RuntimeError('Divergent replay must not be published')
+        final = Path(dp['path'])
+        staged = final.with_name(final.name+'.pending-target')
+        original(dict(dp, path=str(staged)), continuations, provenance)
+        # Reuse the original attachment schema, but only for this completed record.
+        proxies = [type('TargetRef', (), dict(dp=0, key=c.key, role=c.role, rep=c.rep))() for c in continuations]
+        attach_target_logs([dict(path=str(staged))], proxies, tracker)
+        verify_target_log(load(staged))
+        if final.exists():raise RuntimeError('Refusing to replace complete replay '+str(final))
+        staged.replace(final)
+    replay._write = write
+    try:yield
+    finally:replay._write = original
 
 
 def stage_candidates(args):
@@ -353,6 +388,7 @@ def replay_run(jobs, policy, pool, offset, args, provenance):
     first_valid, so a sampled invalid pi1 action cannot be misreported as valid.
     """
     R = importlib.import_module("11_replay")
+    provenance = dict(provenance, execution=execution_metadata(), vllm=policy.vllm_version)
     import alfenv
     dps, conts = [], []
     for j, (p, a, valid, path, u) in enumerate(jobs):
@@ -363,9 +399,8 @@ def replay_run(jobs, policy, pool, offset, args, provenance):
         return dict(n=0, gen_steps=0, divergences=0, seconds=0)
     started = time.time()
     tracker = TargetLoggingPool(pool, dps, conts)
-    gen, div = R.run_async(dps, conts, tracker, stream_for(policy), args, offset, provenance, alfenv, started)
-    if not div:
-        attach_target_logs(dps, conts, tracker)
+    with durable_target_writer(R, tracker):
+        gen, div = R.run_async(dps, conts, tracker, stream_for(policy), args, offset, provenance, alfenv, started)
     if div:
         raise RuntimeError(f"Refeed divergence during E4d continuation: {div}; outputs invalid")
     return dict(n=len(dps), gen_steps=gen, divergences=div, seconds=time.time()-started)
@@ -380,6 +415,7 @@ def stage_screen(args):
     if args.limit:
         # Hashed, not chronological, pi0-only pilot; full run still uses the full frozen selection.
         sel = sorted(sel, key=lambda p: (D.digest("E4d-pi0-pilot:" + p["point_id"]), p["point_id"]))[:args.limit]
+    sel = shard_points(sel, args)
     jobs = []
     for p in sel:
         path = DATA / "screen" / p["point_id"] / "replay.json"
@@ -403,19 +439,19 @@ def stage_screen(args):
                 conts.append(R.Cont(f"{j}:{role}:{rep}", j, role, rep, act))
     started = time.time()
     prov = dict(protocol="E4d-screen-v1", source_sha256=sha_file(SELECTED), seed_offset=D.SCREEN_OFFSET,
-                model="base", commit=io()[0].git_commit())
+                model="base", commit=io()[0].git_commit(), execution=execution_metadata(), vllm=pol.vllm_version)
     # The normal engine receives alfenv.ALFWORLD_DATA as the final path locator.
     import alfenv
     tracker = TargetLoggingPool(pool, dps, conts)
-    gen, div = R.run_async(dps, conts, tracker, R.VllmStream(pol), args, D.SCREEN_OFFSET, prov, alfenv, started) if dps else (0, 0)
-    if not div and dps:
-        attach_target_logs(dps, conts, tracker)
+    with durable_target_writer(R, tracker):
+        gen, div = R.run_async(dps, conts, tracker, R.VllmStream(pol), args, D.SCREEN_OFFSET, prov, alfenv, started) if dps else (0, 0)
     pool.shutdown(); pol.close()
     if div:
         raise RuntimeError(f"Screen refeed divergence: {div}")
     summary = dict(stage="screen", n=len(jobs), seconds=time.time()-started, gen_steps=gen, refeed_div=div,
                    limit=args.limit, selected_sha256=sha_file(SELECTED))
-    with (DATA / "screen_runs.jsonl").open("a", encoding="utf-8") as f:
+    shard_suffix = f"_shard{args.shard_index}" if getattr(args, 'shard_count', 1) > 1 else ''
+    with (DATA / ("screen_runs"+shard_suffix+".jsonl")).open("a", encoding="utf-8") as f:
         f.write(json.dumps(summary) + "\n")
     print(summary)
 
@@ -587,7 +623,8 @@ def stage_first(args):
             outputs[p["point_id"]] = seq
     pol.close()
     save_json(out, dict(lock_sha256=sha_file(LOCK), arm=args.arm, seed=args.seed,
-                        adapter_sha256=lock["adapters"][f"{args.arm}_s{args.seed}"], actions=outputs))
+                        adapter_sha256=lock["adapters"][f"{args.arm}_s{args.seed}"], actions=outputs,
+                        execution=execution_metadata()))
     print("FIRST", out, len(outputs), "sha", sha_file(out))
 
 
@@ -633,7 +670,7 @@ def stage_run(args):
         else:
             pol.set_adapter(None, 0)
         jobs = []
-        for p in pts:
+        for p in shard_points(pts, args):
             indices = (range(ps*D.REPS, (ps+1)*D.REPS) if ps is not None else range(len(D.SEEDS)*D.REPS))
             for u in indices:
                 path = D.run_path(DATA, args.arm, args.cond, p["point_id"], u)
@@ -959,6 +996,7 @@ def stage_armprobe(args):
     subset = [ps[pid] for pid in lock["probe_ids"]]
     if len(subset) != len(lock["probe_ids"]):
         raise RuntimeError("Probe cohort differs from frozen lock")
+    subset = shard_points(subset, args)
     from envpool import EnvPool
     from e4_policy import LoraPolicy
     pool = EnvPool(args.workers)
@@ -1162,6 +1200,8 @@ def main():
     ap.add_argument("--cond", choices=["00", "01", "10", "11"], default=None)
     ap.add_argument("--workers", type=int, default=20)
     ap.add_argument("--max_concurrent", type=int, default=400)
+    ap.add_argument("--shard-index", type=int, default=0)
+    ap.add_argument("--shard-count", type=int, choices=(1, 2), default=1)
     ap.add_argument("--limit", type=int, default=0, help="screen only: first N selected points (pi0 pilot)")
     ap.add_argument("--approve", action="store_true", help="lock / register-probe: explicit approval")
     ap.add_argument("--probe-n", type=int, choices=D.PROBE_N_OPTIONS, default=None,
@@ -1172,6 +1212,8 @@ def main():
     ap.add_argument("--checkpoint-kind", choices=("lora", "full"), default="lora")
     ap.add_argument("--revision", default=None, help="register-probe: human-readable revision/amendment ID")
     args = ap.parse_args()
+    if args.shard_count != 1 and args.stage not in ('screen', 'run', 'armprobe'):
+        ap.error('Only replay stages support point sharding')
     if args.probe_n is not None and args.stage != "lock":
         ap.error("--probe-n may only be supplied to lock; changing it after lock is forbidden")
     f = dict(candidates=stage_candidates, screen=stage_screen, lock=stage_lock,

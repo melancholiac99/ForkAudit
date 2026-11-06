@@ -1724,3 +1724,34 @@ reduces to teaching the action economics of this environment. Pre-registration `
 - Scope notes recorded in the pre-registration: E4 training points are search-phase only, so "only search improved"
   is partly by design; the operation-phase 2x2 would need new points, 32B judging and replay and is not part of E4c.
 - About 2-2.5 GPU hours; no training. `test_e4c.py` passes on CPU.
+
+
+## D-065 — credit-grok isolated dual-GPU execution and durable resume — 2026-11-07
+
+User authorized adding credit-grok/E4d before final shutdown, separately from main and hindsight.
+Retain the frozen E4d primary and credit-grok secondary definitions. Default probe_n=72 is chosen
+before any pi1 results; no new RL checkpoint is included. Reuse the 134 original E4 base r0 files
+and twelve original E4b LoRA adapters through input-only file links, verify their archived hashes.
+Wait until current hindsight GPU work has completed. Use two existing RTX 6000D cards in separate
+processes, deterministic point-ID hash partition for screening, formal replay and armprobe. All
+conditions/repetitions of a point use one card. Pilot remains the first 20 SHA-ranked pi0 points,
+split over the same fixed partition; pool timing across both cards, never inspect pi1 to choose scale.
+All selected Z3 points are retained; insufficient power is reported, never filled by resampling.
+Generate all 12 first-action files before freezing first_manifest and any formal continuation.
+All source/runtime/model/adapter/config/input hashes and GPU assignments are recorded before running.
+Main and hindsight sources/results remain unchanged. Outputs and publication go only to credit-grok.
+
+Fix the crash window in passive target logging: stage each original replay record at a temporary path,
+attach its completed target log, then atomically publish the final path immediately when that record
+completes. An interrupted stage retains complete records; incomplete temporary files are not results.
+Use a separate screening timing file per shard to avoid concurrent append races. No prompts, seeds,
+precision, actions, outcome definitions, sample counts or statistical thresholds are changed.
+
+Before any pi1 action, a CPU audit after the pi0 pilot freezes observed cost, complete selection,
+input hashes and anticipated continuation count. The existing --approve lock is authorized by the
+user instruction to perform the experiment; no new discretionary re-selection is permitted.
+A GPU base smoke test precedes candidates; a genuine LoRA API check occurs only after lock, during
+first-action generation. Hardware/runtime failures wake the agent for best-effort repair.
+Final shutdown waits for separate remote artifact verification of hindsight and credit-grok. Failures
+are repaired when possible; if unrecoverable preserve results/logs, sync, then shut down. Earlier
+hindsight-only shutdown permission is superseded by this combined completion condition.

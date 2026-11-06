@@ -108,3 +108,22 @@ python e4d.py probe-analyze --policy-id grpo-v1
 **防误跑提示：** `scripts/11_replay.VllmStream` 不自动传 LoRARequest；本实验的续跑采用 `stream_for(pol)`，显式给 `.add_request(..., lora_request=pol.lora)`，否则假装“训练策略接管”其实会悄悄用 Base。已加入 CPU mock 检查，真实 GPU 上仍需核对 vLLM 版本和 checkpoint 哈希。阶段输出可续跑：完整 JSON 已存在则校验锁哈希并跳过，缺失才继续。
 
 **没有运行过 GPU E4d**。CPU 通过只证明实现中的纯函数、关键桥接与统计在假数据上按预定规则运行；真实服务器上还要完成环境/模型前置门。
+
+## 服务器独立双卡队列（2026-11-07）
+
+执行修订见根目录 `DECISIONS.md` D-065。`run_server.py` 等待现有 hindsight 的 GPU 工作完成，
+然后运行 Base 双卡 smoke、候选构建、20 点 pi0 试点、全部筛选、`lock --approve --probe-n 72`、
+全部首步采样、主四格与三种策略的次要五臂探针，最后分析并独立核验。
+screen/run/armprobe 支持 `--shard-count 2 --shard-index 0|1`；按状态 ID 的固定哈希分卡，
+同一状态的条件和重复不拆到不同卡。样本和统计门槛不变。
+
+```bash
+python exploratory_E4d/run_server.py
+python exploratory_E4d/finalize_server.py --thread "$CODEX_THREAD_ID"
+```
+
+前置 `run/plan.json` 保存模型、输入、源代码和 GPU 配置哈希。进度为 `run/status.json`，
+CPU 检查为 `run/cpu_verification.json`，20 点成本为 `run/pilot_budget.json`，
+最终核验为 `run/verification.json`。`finalization/status.json` 监控两个独立分支的发布与最终关机。
+数据只写本目录，输入链接仅指向旧 E4/E4b 的只读文件；credit-grok 结果只推 `credit-grok`。
+目标发现日志在每条完整记录发布时同步原子保存，避免关机留下只有结果却没有目标日志的断点。

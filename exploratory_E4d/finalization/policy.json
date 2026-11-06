@@ -1,0 +1,21 @@
+{
+  "authorized": true,
+  "branches": {
+    "E4d_credit_grok": "credit-grok",
+    "hindsight": "research/hindsight-judges"
+  },
+  "cancelled": [
+    "token_32b_full"
+  ],
+  "failure": "Best-effort repair; if genuinely unrecoverable save complete logs/results, sync, shutdown",
+  "recovery_unavailable_timeout_seconds": 1800,
+  "scope": "7B full + mathematics + E4d full primary and 72-point secondary probe",
+  "source": {
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/e4d.py": "5a34461903fbda3d99f36274afb7fd8ac853b0006133d60983843d9544f86a4f",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/finalize_server.py": "21e325ad8bbc20860654a5f3133e9b59e722e0c2c84cac89e208761ca53b4364"
+  },
+  "success": "Independently verified results, both remote artifact trees verified, no active GPU experiments, sync, shutdown",
+  "time": 1793983620.940378,
+  "unchanged_main": true,
+  "user_instruction": "加上这个实验 然后关机 看看能不能双卡跑"
+}

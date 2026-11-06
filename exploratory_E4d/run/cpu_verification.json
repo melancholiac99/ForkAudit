@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "protected_input_count": 730,
+  "real_alfworld_fixture": {
+    "completed_record_target_logging": true,
+    "formal_results_created": false,
+    "passed": true,
+    "refeed_divergences": 0,
+    "seed_alignment": true
+  },
+  "source": {
+    "/root/autodl-tmp/forkaudit_credit_grok/DECISIONS.md": "34d96c6a13bdfbd53f6556410846e9b32543cc745c2183dbcf991a0172c869f6",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4/e4_common.py": "b3f5a0452ff51073277955beef2dfea3bf9a5f5bfb87bd3bf6928612d4975290",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4/e4_policy.py": "541fb3f75092a90c969e10edd107b794784e1603d8723d303dc4891ecacba5e7",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4/games.json": "ed523147a4e53e95b8e13969c13a6c5f450fe71fec59213e6dcb2808f101be3f",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/CREDIT_GROK_AMENDMENT.md": "a99390d31c617c45e4491dc8eb699fb4b5f968fc6e98ffc06735f836e30a01f7",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/PREREG_E4d.md": "0345252932d9c69e3bfe51e8a5bb4efdf4011d6c03927b9bc6f93d3474e25e30",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/README.md": "cf2f239e48faf8b381aae75ba2c1029e8fb9c98452ccdb547452a90d2e87130a",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/e4d.py": "5a34461903fbda3d99f36274afb7fd8ac853b0006133d60983843d9544f86a4f",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/e4d_common.py": "e16c0ae1f653ceb60cb60d2fb978d7b91f03f73657c396d4dc0d32b125c0c610",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/finalize_server.py": "21e325ad8bbc20860654a5f3133e9b59e722e0c2c84cac89e208761ca53b4364",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_server.py": "f6dc34a9b73751859f3888aceec8fcf82f9165c25c67af48ceb51ac63059af74",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/test_e4d.py": "588b1707f05e91f52c6489e79586e2e36ad8053b53b61a4d3e8a56ba2027412d",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/test_server_execution.py": "17ce80677664cf01306f7afbcce3aeb7f06dba3ee83c7893bc247a88272beda4",
+    "/root/autodl-tmp/forkaudit_credit_grok/prompts/hcapo_alfworld_template.txt": "fc6b468a915f8fdaf778f1eb8ce75467c3272d32eef1dda01826deb4bc863dbb",
+    "/root/autodl-tmp/forkaudit_credit_grok/scripts/11_replay.py": "fa441a27a6597720ca9227d4b99065ed03c4ccba074d2c75ed1ac722114b89f7",
+    "/root/autodl-tmp/forkaudit_credit_grok/scripts/alfenv.py": "d01e93b44b0ed19bc61865e012553e7e536cb9a5b8a194c218233551b4b5f244",
+    "/root/autodl-tmp/forkaudit_credit_grok/scripts/common.py": "8f45b3fc35569ba210ab311a5f9d45fe85f2d3111f978e0e8f6c9eb1194cb140",
+    "/root/autodl-tmp/forkaudit_credit_grok/scripts/envpool.py": "ee79c2580a0e2b38f35b6d831c2235a584c3ecccb25a13dbcc58127037046cf3",
+    "/root/autodl-tmp/forkaudit_credit_grok/scripts/policy.py": "802529c6337c6334bddb79eba2e100fc04b5bff32d5002f3a962a9ed7667c08e"
+  },
+  "time": 1793983620.9401433,
+  "unit_tests": 28
+}
