@@ -8,7 +8,6 @@ import math_slot_core as M
 OUT=HERE/'results/math_slot_20261106';RUN=HERE/'run_next_slot_20261106'
 MODEL_ROOT=Path('/root/autodl-tmp/models')
 CONFIG=dict(max_new_tokens=2048,temperature=.7,top_p=1.,top_k=0)
-GPU='GPU-2d103f24-c0fc-18b0-c2f3-9edd2710692a'
 
 def fingerprint():
  files=['exp6_math_slot.py','math_slot_core.py','test_math_slot.py','MATH_SLOT_EXECUTION_20261106.txt','PROTOCOL_NEXT_TOKEN_SLOT_AND_MATH_20261106.md','token_diagnostic_backend.py','exp1c_backend.py','exp1c_precision.py','exp2_common.py','slot_model_loader.py']
@@ -56,7 +55,9 @@ def load(name,stage):
  import torch,token_diagnostic_backend as B
  from transformers import AutoTokenizer
  prepared();assert torch.cuda.device_count()==1
- assert GPU in subprocess.check_output(['nvidia-smi','--query-gpu=uuid','--format=csv,noheader'],text=True)
+ gpu=jread(RUN/'execution.json')['gpu_assignments']['math']
+ assert os.environ.get('CUDA_VISIBLE_DEVICES')==gpu
+ assert gpu in subprocess.check_output(['nvidia-smi','--query-gpu=uuid','--format=csv,noheader'],text=True)
  path=MODEL_ROOT/f'Qwen2.5-{name.upper()}-Instruct'
  import slot_model_loader as L
  scorer,meta=L.load_model(name,path,ROOT);tok=AutoTokenizer.from_pretrained(str(path),local_files_only=True)
@@ -253,7 +254,8 @@ def wait_file(path,message,validator):
 def run():
  with (OUT/'queue.lock').open('a') as f:
   fcntl.flock(f,fcntl.LOCK_EX|fcntl.LOCK_NB)
-  for name in ('7b','32b'):assert jread(HERE/'results/token_slot_20261106'/name/'full/verification.json')['passed']
+  plan=jread(RUN/'execution.json')
+  assert plan['mode']=='parallel' and plan['user_parallel_authorized']
   prepared();command(['student']);command(['screen','--target','32'])
   for stage in ('first32','full'):
    target=32

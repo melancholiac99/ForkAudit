@@ -1,0 +1,26 @@
+{
+  "gpu": "GPU-7b97d848-6d88-01e9-0675-ac9b9358f617",
+  "time": 1793938186.8111873,
+  "tests": [
+    {
+      "test": "native_cuda_fill",
+      "elements": 1000000,
+      "code": 0,
+      "stdout": "malloc no error\nkernel no error\n",
+      "stderr": ""
+    },
+    {
+      "test": "native_cuda_fill",
+      "elements": 545000000,
+      "code": 0,
+      "stdout": "malloc no error\nkernel no error\n",
+      "stderr": ""
+    },
+    {
+      "test": "torch_cuda_fill",
+      "code": 0,
+      "stdout": "2.13.0+cu130\npassed\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+User replaced the prior failing RTX 6000D instance with two RTX 6000D cards and explicitly instructed: 现在直接并行跑呗.
+GPU 0 token-slot: GPU-14a859e5-e36a-fb19-a1d6-3490d992e219.
+GPU 1 math-slot: GPU-7b97d848-6d88-01e9-0675-ac9b9358f617.
+Each passed native CUDA array fill (1 million and 545 million FP32 elements) and the previously failing large BF16 torch.ones operation; logs in replacement_gpu_check/. Same installed Torch 2.13+cu130 and driver 595.71.05. This implicates the previous instance GPU/driver environment, but does not distinguish damaged hardware from driver state.
+Prior attempts failed before any point score; failed run metadata and logs preserved. No old scores mixed into new runs.
+Experiments run independently on pinned GPUs; only model loading uses a shared advisory file lock to limit simultaneous CPU weight-conversion memory. Numerical policies, generation budget, statistical thresholds and sample queues unchanged. Two-model first32 then full386 remains mandatory inside experiment 1. Mathematics retains pre-outcome cut review and post-pilot budget gates. User parallel instruction supersedes the earlier sequential scheduling restriction, matching the protocol's independence of the experiments.
+No shutdown authorized for this task.

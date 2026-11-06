@@ -6,6 +6,13 @@ from pathlib import Path
 import exp2_common as C
 
 def load_model(name,path,repo):
+ import fcntl
+ lock=Path(repo)/'hindsight_judges/run_next_slot_20261106/model_load.lock'
+ with lock.open('a') as handle:
+  fcntl.flock(handle,fcntl.LOCK_EX)
+  return _load_model(name,path,repo)
+
+def _load_model(name,path,repo):
  import torch
  from transformers import AutoModelForCausalLM
  from exp1c_backend import ChunkedScorer
