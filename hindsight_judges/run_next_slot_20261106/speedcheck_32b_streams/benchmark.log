@@ -1,0 +1,17 @@
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights:  83%|████████▎ | 639/771 [00:00<00:00, 6388.09it/s]Loading weights: 100%|██████████| 771/771 [00:00<00:00, 6594.20it/s]
+serial s046_t04 4.927748830057681
+serial s010_t24 6.0547188045457006
+serial s094_t41 7.622809123247862
+serial s010_t45 5.2293268060311675
+RESULT serial {'seconds': 23.83460356388241, 'checks': 64, 'max_tv': 0.0, 'all_bitwise_equal': True, 'passed': True, 'peak_vram_bytes': 68445851136}
+streams2 s046_t04 4.2419202560558915
+streams2 s010_t24 5.616132496856153
+streams2 s094_t41 7.056157352402806
+streams2 s010_t45 4.8605818366631866
+RESULT streams2 {'seconds': 21.774791941978037, 'checks': 64, 'max_tv': 0.0, 'all_bitwise_equal': True, 'passed': True, 'peak_vram_bytes': 69717067264}
+streams4 s046_t04 4.046405119821429
+streams4 s010_t24 5.3684306088835
+[W1106 15:05:40.219724845 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 41943040 bytes (free: 37683200, total: 89173131264).
+streams4 s094_t41 6.532510383054614
+streams4 s010_t45 4.647078451700509
+RESULT streams4 {'seconds': 20.594424563460052, 'checks': 64, 'max_tv': 0.0, 'all_bitwise_equal': True, 'passed': True, 'peak_vram_bytes': 71986835968}

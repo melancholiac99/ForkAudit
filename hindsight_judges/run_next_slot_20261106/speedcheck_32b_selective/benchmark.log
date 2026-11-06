@@ -1,0 +1,21 @@
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights:  95%|█████████▌| 734/771 [00:00<00:00, 7273.42it/s]Loading weights: 100%|██████████| 771/771 [00:00<00:00, 7330.51it/s]
+reference s046_t04 4.8430829010903835
+reference s010_t24 6.050611830316484
+reference s094_t41 7.613889893516898
+reference s010_t45 5.2319994224235415
+RESULT reference {'passed': True, 'seconds': 23.739584047347307, 'checks': 64, 'max_tv_by_distribution': {'AF': 0.0, 'AM': 0.0, 'EF': 0.0, 'EM': 0.0}, 'gate_max_tv': 0.0, 'chunk': 1024}
+semantic s046_t04 2.324177958071232
+semantic s010_t24 2.7261793091893196
+semantic s094_t41 3.9286916740238667
+semantic s010_t45 2.3851283751428127
+RESULT semantic {'passed': False, 'seconds': 11.36417731642723, 'checks': 64, 'max_tv_by_distribution': {'AF': 0.005841738544404507, 'AM': 0.004267468582838774, 'EF': 0.006827597972005606, 'EM': 0.011604180559515953}, 'gate_max_tv': 0.008569331839680672, 'chunk': 1024}
+hybrid s046_t04 4.093129393644631
+hybrid s010_t24 5.3638552045449615
+hybrid s094_t41 5.984898563474417
+hybrid s010_t45 4.774478164501488
+RESULT hybrid {'passed': True, 'seconds': 20.216361326165497, 'checks': 64, 'max_tv_by_distribution': {'AF': 0.0, 'AM': 0.004267468582838774, 'EF': 0.0, 'EM': 0.0}, 'gate_max_tv': 0.0, 'chunk': 1024}
+chunk512 s046_t04 3.1260618614032865
+chunk512 s010_t24 3.1930427150800824
+chunk512 s094_t41 5.741338178515434
+chunk512 s010_t45 3.6969762379303575
+RESULT chunk512 {'passed': False, 'seconds': 15.75741899292916, 'checks': 64, 'max_tv_by_distribution': {'AF': 0.00034508283715695143, 'AM': 0.002815814223140478, 'EF': 0.008311172015964985, 'EM': 0.019756771624088287}, 'gate_max_tv': 0.0, 'chunk': 512}

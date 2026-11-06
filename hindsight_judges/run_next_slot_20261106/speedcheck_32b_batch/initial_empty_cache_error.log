@@ -1,0 +1,14 @@
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 516/771 [00:00<00:00, 5158.01it/s]Loading weights: 100%|██████████| 771/771 [00:00<00:00, 5171.95it/s]
+batch1 s046_t04 9.315500603057444
+batch1 s010_t24 11.868489450775087
+batch1 s094_t41 14.00389433838427
+batch1 s010_t45 10.306546167470515
+RESULT batch1 {'seconds': 45.494430559687316, 'checks': 128, 'max_tv': 0.0, 'all_bitwise_equal': True, 'passed': True, 'peak_vram_bytes': 68328655872}
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run_next_slot_20261106/speedcheck_32b_batch/benchmark.py", line 55, in <module>
+    vs=[e.lp(slot,evidence,chunk[0]).cpu().clone()] if bsz==1 else batch(e,slot,evidence,chunk)
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_hindsight/hindsight_judges/run_next_slot_20261106/speedcheck_32b_batch/benchmark.py", line 19, in batch
+    kv.batch_repeat_interleave(len(hs))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'batch_repeat_interleave'

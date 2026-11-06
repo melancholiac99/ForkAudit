@@ -1,0 +1,16 @@
+Loading weights:   0%|          | 0/771 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 518/771 [00:00<00:00, 5177.96it/s]Loading weights: 100%|██████████| 771/771 [00:00<00:00, 5501.52it/s]
+batch1 s046_t04 9.29179638903588
+batch1 s010_t24 11.919212049804628
+batch1 s094_t41 14.204109923914075
+batch1 s010_t45 10.303476387634873
+RESULT batch1 {'seconds': 45.71859475038946, 'checks': 128, 'max_tv': 0.0, 'all_bitwise_equal': True, 'passed': True, 'peak_vram_bytes': 68328655872}
+batch2 s046_t04 8.847990198992193
+batch2 s010_t24 11.875750377774239
+batch2 s094_t41 13.016718607395887
+batch2 s010_t45 10.227464653551579
+RESULT batch2 {'seconds': 43.9679238377139, 'checks': 128, 'max_tv': 0.0022189533337950706, 'all_bitwise_equal': False, 'passed': True, 'peak_vram_bytes': 68953054720}
+batch4 s046_t04 8.630241590552032
+batch4 s010_t24 11.674970087595284
+batch4 s094_t41 13.593987002968788
+batch4 s010_t45 10.16116985399276
+RESULT batch4 {'seconds': 44.060368535108864, 'checks': 128, 'max_tv': 0.0037328251637518406, 'all_bitwise_equal': False, 'passed': True, 'peak_vram_bytes': 70513434112}

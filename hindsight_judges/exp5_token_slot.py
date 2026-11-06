@@ -23,6 +23,7 @@ PROTOCOL=HERE/'PROTOCOL_NEXT_TOKEN_SLOT_AND_MATH_20261106.md'
 def fingerprint():
     return {p.name:C.sha_file(p) for p in [Path(__file__),HERE/'token_slot_backend.py',HERE/'token_slot_analysis.py',
         HERE/'test_token_slot.py',HERE/'test_token_slot_alignment.py',HERE/'TOKEN_SLOT_CHUNK_RECOVERY_20261106.txt',
+        HERE/'test_token_slot_cache_policy.py',HERE/'TOKEN_SLOT_CACHE_SPEEDUP_20261106.txt',
         HERE/'slot_model_loader.py',HERE/'TOKEN_SLOT_EXECUTION_20261106.txt',PROTOCOL,HERE/'exp3_action_diagnostic.py',
         HERE/'exp3_token_diagnostic.py',HERE/'token_diagnostic_backend.py',HERE/'exp2_common.py',HERE/'exp1c_backend.py',HERE/'exp1c_precision.py']}
 
@@ -187,7 +188,11 @@ def score(args):
     with (dest/'score.lock').open('a') as lock,torch.inference_mode(),sdpa_kernel(SDPBackend.MATH):
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         scorer,model=L.load_model(args.name,args.model,ROOT)
+        scorer.slot_cache_policy=K.CACHE_POLICIES[args.name]
+        scorer.slot_memo_limit=K.MEMO_LIMIT
+        scorer.slot_workers=K.WORKERS[args.name]
         fp=dict(source=fingerprint(),model=model,runtime=B.runtime(),gpu_uuid=pin,groups_hash=meta['groups_hash'],limit=args.limit,name=args.name,
+                cache_policy=scorer.slot_cache_policy,memo_limit=scorer.slot_memo_limit,workers=scorer.slot_workers,
                 student_manifest_sha256=C.sha_file(refdir/'manifest.json') if refs else None)
         runfile=dest/'run.json'
         if runfile.exists():
@@ -195,7 +200,7 @@ def score(args):
             if old['complete']:print('Already complete');return
         if not args.limit:
             pilot_fp=C.read_json(out/args.name/'first32/run.json')['fingerprint']
-            for k in ('source','model','runtime','gpu_uuid','groups_hash','name'):assert pilot_fp[k]==fp[k],k
+            for k in ('source','model','runtime','gpu_uuid','groups_hash','name','cache_policy','memo_limit','workers'):assert pilot_fp[k]==fp[k],k
         C.save_json(runfile,dict(fingerprint=fp,complete=False))
         gates=K.gate(scorer,tok,groups);C.save_json(dest/'numerical_gate.json',gates)
         assert all(x['passed'] for x in gates),'Full vocabulary TV gate failed'
@@ -205,7 +210,7 @@ def score(args):
             if file.exists():
                 rec=read(file);assert rec['fingerprint_sha256']==K.digest(fp) and rec['group_sha256']==g['sha256']
                 manifest[g['id']]=C.sha_file(file);continue
-            tick=time.monotonic();engine=K.Engine(scorer,tok,g['prompts'])
+            tick=time.monotonic();engine=K.make_engine(scorer,tok,g['prompts'])
             if args.name=='7b':
                 curve=[]
                 for boundary in g['boundary_rules']['boundaries']:
@@ -253,7 +258,7 @@ def score(args):
             dump(file,rec);manifest[g['id']]=C.sha_file(file);fresh+=1
             C.save_json(dest/'progress.json',dict(points=i+1,total=len(groups),new_points=fresh,elapsed_seconds=time.monotonic()-start,
                         seconds_per_point=(time.monotonic()-start)/fresh,last_point_seconds=rec['seconds'],peak_vram_bytes=torch.cuda.max_memory_allocated()))
-            print('SCORED',args.name,i+1,'/',len(groups),'seconds',round(rec['seconds'],2),flush=True);del engine
+            print('SCORED',args.name,i+1,'/',len(groups),'seconds',round(rec['seconds'],2),flush=True);engine.close();del engine
         C.save_json(dest/'manifest.json',manifest)
         C.save_json(runfile,dict(fingerprint=fp,complete=True,n=len(groups),manifest_sha256=C.sha_file(dest/'manifest.json'),
                     gate_sha256=C.sha_file(dest/'numerical_gate.json')))

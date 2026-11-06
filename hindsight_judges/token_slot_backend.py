@@ -11,6 +11,9 @@ CLOSE = '\n[/PARTIAL DRAFT]'
 BETAS = (.5, 1., 2.)
 MAIN = 'T2_b1_clip5_full'
 BASELINE = 'T1_b1'
+CACHE_POLICIES = {'7b': 'semantic_prefix_fp32', '32b': 'canonical_complete_chunks'}
+MEMO_LIMIT = 2048
+WORKERS = {'7b': 1, '32b': 4}
 RESTART_STRINGS = {
  'restart': ['Let', ' Let', 'First', ' First', "Let's", 'We need', 'To solve', 'Sure'],
  'rephrase': ['The problem', 'Given', 'In this', 'Here is', 'We are'],
@@ -47,9 +50,16 @@ def contexts(tok, prompt, slot, hids):
 
 class Engine:
     def __init__(self, scorer, tok, prompts):
+        import torch
         self.s, self.tok, self.prompts = scorer, tok, prompts
         self.bases, self.memo, self.audit = {}, OrderedDict(), {}
         self.calls = 0
+        self.cache_policy = getattr(scorer, 'slot_cache_policy', 'canonical_complete_chunks')
+        assert self.cache_policy in set(CACHE_POLICIES.values())
+        if self.cache_policy == 'semantic_prefix_fp32':
+            assert all(p.dtype == torch.float32 for p in scorer.model.parameters()), 'Semantic cache is validated for FP32 only'
+        self.memo_limit = int(getattr(scorer, 'slot_memo_limit', 256))
+        assert self.memo_limit > 0
 
     def input(self, slot, evidence, hids):
         ids, stem, audit = contexts(self.tok, self.prompts[evidence], slot, hids)
@@ -57,11 +67,12 @@ class Engine:
         # changes GEMM/attention shapes versus _feed(ids), enough to fail FP16 TV.
         # The uncached remainder is replayed; rendered inputs/targets are identical.
         semantic_length = len(stem)
-        stem = stem[:len(stem)//self.s.chunk*self.s.chunk]
+        if self.cache_policy == 'canonical_complete_chunks':
+            stem = stem[:len(stem)//self.s.chunk*self.s.chunk]
         assert ids[:len(stem)] == stem
         audit.update(cache_prefix_tokens=len(stem), cache_chunk=self.s.chunk,
                      recomputed_prefix_tokens=semantic_length-len(stem),
-                     cache_boundary_policy='canonical_complete_chunks')
+                     cache_boundary_policy=self.cache_policy)
         return ids, stem, audit
 
     def lp(self, slot, evidence, hids):
@@ -88,12 +99,69 @@ class Engine:
         audit.update(evidence=evidence, full_logp_sha256=hashlib.sha256(lp.cpu().numpy().tobytes()).hexdigest())
         self.audit[digest([slot,evidence,list(hids)])] = audit
         self.memo[key] = lp.cpu().numpy().copy()
-        if len(self.memo)>256: self.memo.popitem(last=False)
+        if len(self.memo)>self.memo_limit: self.memo.popitem(last=False)
         self.calls += 1
         return lp
 
     def quartet(self, hids):
         return {s+e:self.lp(s,e,hids) for s in ('A','E') for e in ('F','M')}
+
+    def close(self):
+        pass
+
+
+class ParallelEngine:
+    """Independent batch-one requests; no changed shapes or shared mutable KV."""
+    def __init__(self, scorer, tok, prompts, workers):
+        import torch
+        from concurrent.futures import ThreadPoolExecutor
+        assert workers in (2,4)
+        self.engines = {d:Engine(scorer,tok,prompts) for d in ('AF','AM','EF','EM')}
+        for e in self.engines.values():
+            e.memo_limit = max(1,e.memo_limit//4)
+        self.cuda = scorer.device.type == 'cuda'
+        self.streams = {d:torch.cuda.Stream(device=scorer.device) for d in self.engines} if self.cuda else {}
+        self.pool = ThreadPoolExecutor(max_workers=workers)
+
+    def _work(self, d, hids):
+        import torch
+        from contextlib import nullcontext
+        with torch.inference_mode(), torch.cuda.stream(self.streams[d]) if self.cuda else nullcontext():
+            out = self.engines[d].lp(d[0],d[1],hids)
+            if self.cuda:self.streams[d].synchronize()
+            return out
+
+    def _receive(self, future):
+        import torch
+        out = future.result()
+        if self.cuda:out.record_stream(torch.cuda.current_stream(out.device))
+        return out
+
+    def lp(self, slot, evidence, hids):
+        return self._receive(self.pool.submit(self._work,slot+evidence,hids))
+
+    def quartet(self, hids):
+        jobs = {d:self.pool.submit(self._work,d,hids) for d in self.engines}
+        return {d:self._receive(job) for d,job in jobs.items()}
+
+    def input(self, slot, evidence, hids):
+        return self.engines[slot+evidence].input(slot,evidence,hids)
+
+    @property
+    def audit(self):
+        return {k:v for e in self.engines.values() for k,v in e.audit.items()}
+
+    @property
+    def calls(self):
+        return sum(e.calls for e in self.engines.values())
+
+    def close(self):
+        self.pool.shutdown(wait=True)
+
+
+def make_engine(scorer,tok,prompts):
+    workers = int(getattr(scorer,'slot_workers',1))
+    return Engine(scorer,tok,prompts) if workers==1 else ParallelEngine(scorer,tok,prompts,workers)
 
 
 def targets(q):
@@ -137,7 +205,8 @@ def gate(scorer,tok,groups):
     checks=[]
     ranked=sorted(groups,key=lambda g:len(tok.encode(g['prompts']['F']))+len(g['response']['ids']))
     for g in (ranked[0],ranked[-1]):
-        engine=Engine(scorer,tok,g['prompts']); h=g['response']['ids'][:-1]
+        engine=make_engine(scorer,tok,g['prompts']); h=g['response']['ids'][:-1]
+        if int(getattr(scorer,'slot_workers',1))>1:engine.quartet(h)
         for slot in ('A','E'):
             for evidence in ('M','F'):
                 cached=engine.lp(slot,evidence,h)
@@ -153,5 +222,5 @@ def gate(scorer,tok,groups):
             direct=torch.log_softmax(scorer.model.lm_head(z.last_hidden_state[0,-1].float()).float(),-1)
             tv=float((engine.lp('E','M',h).exp()-direct.exp()).abs().sum()/2)
             checks.append(dict(point=g['id'],tv=tv,passed=tv<.005,kind='cached_vs_onepass_full_vocab'));del z
-        del engine
+        engine.close();del engine
     return checks
