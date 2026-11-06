@@ -1,0 +1,47 @@
+Prospective execution details for PROTOCOL_NEXT_TOKEN_SLOT_AND_MATH_20261106.md
+Frozen before any new Teacher scores. Single GPU: experiment 1 fully verified before
+experiment 2 GPU generation. This does not amend old experiments or train a model.
+
+Experiment 1
+- All 386 P4 responses, original canonical token IDs/segmentation and independent Q.
+- Probe boundaries: true sentence punctuation/newlines within Think, plus final Think
+  content boundary. No artificial empty initial boundary to inflate pre-k. When BPE spans
+  punctuation and a closing tag, re-encode the exact text prefix for the counterfactual
+  probe only. Record character boundary and next canonical token boundary; native
+  positions always use unmodified historical token IDs. Preserve exact response bytes.
+- Stable k: earliest checked boundary whose factual probability and every later checked
+  boundary's probability are >=0.90. Before means t<k; at/after means t>=k. no-k separate.
+- Native positions: 3 evenly spaced whole-word boundaries on each side of k (or 6 for
+  no-k), first/last Think paragraph boundaries, exact unambiguous factual-action mention
+  boundaries if present, first action-content token and first candidate-distinguishing
+  token. Deduplicate positions; retain all reasons. No future text enters a model input.
+- Native A uses original chat IDs concatenated with the canonical response prefix IDs.
+  E quotes only decoded y_<t in a user message, then a separate user request:
+  'Continue from the interruption. Output only the continuation.' No active reply prefix.
+- Probes append </think> and the original action-open tag as needed, then use the exact
+  old five-candidate serialization and EOS. At EVERY candidate token, reconstruct all
+  four contexts using the already-consumed probe prefix (including prior candidate
+  tokens). Normalize target logits over the ENTIRE vocabulary at every step, then sum
+  token logps for each full action. No one-token surrogate for a full action string.
+- T0=AF, T3=EF; T1 and T2 beta in {0.5,1,2}; T2 clipped +/-5 and unclipped, full-vocab
+  and union top128(AF,EF). Outside union retain AF logits, then normalize globally.
+  Main pair is T2_b1_clip5_full versus T1_b1. No top64 extension in this execution.
+- Full FP32 log-softmax, finite checks, TV<0.005 gates using cache/direct full vocabulary
+  and short one-pass paths. Frozen 7B FP32 / 32B FP16-transformer FP32-head, MATH/1024.
+- Student sampled-token reference is recomputed with frozen 7B+M on the SAME native
+  prefix; 7B Teacher+Student stage is combined to reuse these exact distributions.
+- Restart/rephrase/format sets are fixed from tokenizer first IDs of recorded strings;
+  they are lexical proxies that can include legitimate continuations, not a classifier.
+- Aggregate repeated positions/boundaries within each point first, then resample original
+  trajectory clusters 4000 times, seed 20261106. Never treat tokens as independent.
+- Enough pre-k support means >=30 points and >=10 trajectory clusters. A training-design
+  candidate additionally needs main probe gain >=3 percentage points, CI lower>0; BOTH
+  KL directions to AF must have T2-T1 CI upper<=0 on ordinary native Think positions;
+  actual next-token logp difference CI lower>=-0.1 nat/token. Otherwise no positive
+  training-design recommendation. This is an exploratory gate, not demonstrated learning.
+- Pilot first32 and full386 have separate references, records, manifests and analyses;
+  pilots check code, numeric integrity and resource costs only. No pilot significance claim.
+- Store all request messages/token IDs/hashes, commitment curves, all token-target sampled
+  logps/log normalizers, KL summaries, full action sums, raw quartet sampled logps, and
+  deterministic full-vocabulary audit vectors for the first native position of first2
+  points and first token of first probe/candidate. Full large vectors are audit-only.
