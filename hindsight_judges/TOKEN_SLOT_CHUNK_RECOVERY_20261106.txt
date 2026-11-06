@@ -1,0 +1,15 @@
+Token-slot prefill/cache recovery, 2026-11-06. Applies only to experiment 1.
+
+Failure: the 32B pilot's mandatory full-vocabulary cached/direct check failed at s010_t45, external F, TV=0.008224870078265667 (limit remains strictly <0.005). No 32B point scores were written. Fresh model load reproduced the same value exactly. GPU basic tests passed; this failure is numerical path disagreement, not another CUDA crash.
+
+Cause and fix: the old cache ended at an arbitrary semantic-prefix token boundary, so its last partial prefill chunk and the continuation used matrix/attention shapes different from the canonical direct _feed(ids) schedule. Cache only complete 1024-token chunks of the invariant prefix. Replay any remaining prefix tokens together with the variable tail. If no complete prefix chunk exists, use no base KV and compute the whole request through the unchanged chunked backend. No token is removed, reordered, padded, or added. Both A and E, both M and F, and all probe/native requests use the same rule.
+
+Evidence before formal repair: all nine unchanged 32B numerical checks become TV=0, including the independent short one-pass test. Another 48 comparisons on the first three deterministic points, four prefix positions (native and action probe), and all four distributions also give TV=0. Diagnostics are in run_next_slot_20261106/recovery_token_chunk_alignment/. These are path-agreement diagnostics, not scientific target-effect results. A CPU tiny-Qwen regression checks exact agreement with the unchanged direct chunk schedule for both nonempty and empty reusable prefixes, unchanged messages/token IDs, and no cache mutation.
+
+Unchanged: original protocol and execution notes, input data/Q/candidate sequences, commitment and position definitions, checkpoint and precision, attention backend, 1024 chunk size, T0–T3 definitions, bootstrap and every numerical/statistical threshold. The existing direct-reference implementation and gate are untouched. The new backend policy, this amendment and regression are fingerprinted.
+
+Run separation: preserve old 7B pilot, failed 32B metadata, old prepare files and old pilot supplement under recovery_token_chunk_alignment/previous_attempt/. Regenerate identical prepared groups with new source fingerprints; rerun both pilots and then full386 consistently with aligned caching. No old pilot score or old supplementary output is substituted. The 7B full run had not begun. Frozen P4/E1/E4 and historical Hindsight results remain unchanged.
+
+Mathematics keeps running on GPU1 with its unchanged source fingerprint and original sampling configuration. Only token backend/input fingerprint and an independent new test are changed; shared model loader is untouched. The CPU supplementary watcher restarts against the new token pilot when verified, retaining its frozen statistical definitions. No shutdown.
+
+Cost: extra uncached prefix tokens can increase time. Re-estimate from fresh pilot; the earlier 7B throughput estimate is superseded.

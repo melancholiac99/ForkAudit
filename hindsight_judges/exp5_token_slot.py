@@ -22,7 +22,8 @@ PROTOCOL=HERE/'PROTOCOL_NEXT_TOKEN_SLOT_AND_MATH_20261106.md'
 
 def fingerprint():
     return {p.name:C.sha_file(p) for p in [Path(__file__),HERE/'token_slot_backend.py',HERE/'token_slot_analysis.py',
-        HERE/'test_token_slot.py',HERE/'slot_model_loader.py',HERE/'TOKEN_SLOT_EXECUTION_20261106.txt',PROTOCOL,HERE/'exp3_action_diagnostic.py',
+        HERE/'test_token_slot.py',HERE/'test_token_slot_alignment.py',HERE/'TOKEN_SLOT_CHUNK_RECOVERY_20261106.txt',
+        HERE/'slot_model_loader.py',HERE/'TOKEN_SLOT_EXECUTION_20261106.txt',PROTOCOL,HERE/'exp3_action_diagnostic.py',
         HERE/'exp3_token_diagnostic.py',HERE/'token_diagnostic_backend.py',HERE/'exp2_common.py',HERE/'exp1c_backend.py',HERE/'exp1c_precision.py']}
 
 

@@ -52,7 +52,17 @@ class Engine:
         self.calls = 0
 
     def input(self, slot, evidence, hids):
-        return contexts(self.tok, self.prompts[evidence], slot, hids)
+        ids, stem, audit = contexts(self.tok, self.prompts[evidence], slot, hids)
+        # Reuse only complete canonical prefill chunks. A partial cached chunk
+        # changes GEMM/attention shapes versus _feed(ids), enough to fail FP16 TV.
+        # The uncached remainder is replayed; rendered inputs/targets are identical.
+        semantic_length = len(stem)
+        stem = stem[:len(stem)//self.s.chunk*self.s.chunk]
+        assert ids[:len(stem)] == stem
+        audit.update(cache_prefix_tokens=len(stem), cache_chunk=self.s.chunk,
+                     recomputed_prefix_tokens=semantic_length-len(stem),
+                     cache_boundary_policy='canonical_complete_chunks')
+        return ids, stem, audit
 
     def lp(self, slot, evidence, hids):
         import torch

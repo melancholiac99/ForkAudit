@@ -1,0 +1,28 @@
+test_cut_errors_need_review (test_math_slot.Core.test_cut_errors_need_review) ... ok
+test_decoder_incremental_alignment (test_math_slot.Core.test_decoder_incremental_alignment) ... ok
+test_grading (test_math_slot.Core.test_grading) ... ok
+test_prompts_no_answer_or_future (test_math_slot.Core.test_prompts_no_answer_or_future) ... ok
+test_question_paired_analysis (test_math_slot.Core.test_question_paired_analysis) ... ok
+test_seed_namespaces (test_math_slot.Core.test_seed_namespaces) ... ok
+test_blind_review_linkage_and_coverage (test_supplement_slot_20261106.SupplementTests.test_blind_review_linkage_and_coverage) ... ok
+test_lexical_features_and_limits (test_supplement_slot_20261106.SupplementTests.test_lexical_features_and_limits) ... ok
+test_math_report_blinding_and_read_only (test_supplement_slot_20261106.SupplementTests.test_math_report_blinding_and_read_only) ... ok
+test_nonoverlapping_common_spans (test_supplement_slot_20261106.SupplementTests.test_nonoverlapping_common_spans) ... ok
+test_original_verification_hash_is_required (test_supplement_slot_20261106.SupplementTests.test_original_verification_hash_is_required) ... ok
+test_output_guard_including_custom_roots (test_supplement_slot_20261106.SupplementTests.test_output_guard_including_custom_roots) ... ok
+test_span_value_and_slope_independently (test_supplement_slot_20261106.SupplementTests.test_span_value_and_slope_independently) ... ok
+test_token_report_preserves_legacy_and_all_points (test_supplement_slot_20261106.SupplementTests.test_token_report_preserves_legacy_and_all_points) ... ok
+test_true_ordinary_excludes_decision_overlap (test_supplement_slot_20261106.SupplementTests.test_true_ordinary_excludes_decision_overlap) ... ok
+test_cluster_point_weighting_and_vectorized_slope (test_token_slot.RuleTests.test_cluster_point_weighting_and_vectorized_slope) ... ok
+test_kl_directions_and_sampled_student_proxy (test_token_slot.RuleTests.test_kl_directions_and_sampled_student_proxy) ... ok
+test_stable_commitment_is_not_first_crossing (test_token_slot.RuleTests.test_stable_commitment_is_not_first_crossing) ... ok
+test_targets_and_no_zero_probability_outside_topk (test_token_slot.RuleTests.test_targets_and_no_zero_probability_outside_topk) ... ok
+test_engine_caching_matches_direct_and_never_mutates_base (test_token_slot.TokenTests.test_engine_caching_matches_direct_and_never_mutates_base) ... ok
+test_native_positions_are_real_and_quotes_see_only_prefix (test_token_slot.TokenTests.test_native_positions_are_real_and_quotes_see_only_prefix) ... ok
+test_probe_preserves_all_five_full_actions_and_original_spacing (test_token_slot.TokenTests.test_probe_preserves_all_five_full_actions_and_original_spacing) ... ok
+test_exact_chunked_reference_and_unchanged_messages (test_token_slot_alignment.TestAlignment.test_exact_chunked_reference_and_unchanged_messages) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.546s
+
+OK
