@@ -50,7 +50,11 @@ def main():
      if kind=='math' and labels.exists():args += ['--blind-labels',str(labels)]
      execute(args);result=C.read_json(OUT/(key+'.json'))
      assert result['supplement_script_sha256']==source[str(SCRIPT)] and result['original_verification_sha256']==signature['original_verification_sha']
-     if kind=='math':assert result['blind_review']['sample_ids']==C.read_json(OUT/f'math_{stage}_blind_sample_selection.json')['ids']
+     if kind=='math':
+      # Selection is SHA-ranked; the report retains original question order.
+      # Require identical membership with no duplicate or missing questions.
+      actual=result['blind_review']['sample_ids'];expected=C.read_json(OUT/f'math_{stage}_blind_sample_selection.json')['ids']
+      assert len(actual)==len(set(actual))==len(expected) and set(actual)==set(expected)
      done[key]=signature
      C.save_json(OUT/(key+'_execution_check.json'),dict(passed=True,output_sha256=C.sha_file(OUT/(key+'.json')),source=source,original=signature,pilot_only=stage=='first32',blind_review_status=result.get('blind_review',{}).get('status')))
      if kind=='math' and result['blind_review']['status']!='complete' and key not in announced:
