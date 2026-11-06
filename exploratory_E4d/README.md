@@ -1,6 +1,6 @@
 # E4d: 死局救回（旧策略单步 vs 训练后续执行）
 
-独立实验，**不是 E4 训练臂 D，也不是 E4b 的重训练**。研究方案与结果阅读规则见 [`PREREG_E4d.md`](PREREG_E4d.md)。没有做任何训练；所有模型均复用 `exploratory_E4b/data/adapters/{Azero,Dzero,Agap,Dgap}_s{0,1,2}`。
+独立实验，**不是 E4 训练臂 D，也不是 E4b 的重训练**。研究方案与结果阅读规则见 [`PREREG_E4d.md`](PREREG_E4d.md)；`credit-grok` 的**仅次要探针/日志修订**见 [`CREDIT_GROK_AMENDMENT.md`](CREDIT_GROK_AMENDMENT.md)。没有做任何训练；所有模型均复用 `exploratory_E4b/data/adapters/{Azero,Dzero,Agap,Dgap}_s{0,1,2}`。
 
 ## 前置条件
 
@@ -34,7 +34,7 @@ python e4d.py screen --limit 20 --workers 20 --max_concurrent 400
 python e4d.py screen --workers 20 --max_concurrent 400
 
 # 3. 冻结全部 pi0 screening、Z3 点集与 E4b 模型权重 SHA。先审核；一经锁定不重选。
-python e4d.py lock --approve
+python e4d.py lock --approve --probe-n 72  # 默认 72；可在任何 pi1 结果前改为 96，不能事后改
 
 # 4. 必须预先生成全部4组×3训练种子的 pi1 当前一步，再开始任何正式续跑。
 for arm in Azero Dzero Agap Dgap; do
@@ -65,16 +65,41 @@ done
 python e4d.py analyze
 ```
 
-### 可选且已预登记：五臂价值是否重新显现
+### credit-grok：72/96 点 × 5 臂 × 8 次的独立次要探针
 
-正式样本 Z3 在 `lock.json` 里已冻结，并在里面确定前 24 个用于此项。此项不影响主 reading，必须在锁定后独立运行：
+`lock.json` 的 `probe_ids` 在**观察任何 π₁ 结果前**冻结。默认 72 个 Z3 点；如果成本允许，在 `lock --approve --probe-n 96` 时预先选 96 个（成本约 +33%，之后禁止更改）。每臂对 `base`、`Azero`、`Dzero` 分别续跑 **8 次**，两半 4+4 双向交叉估计；Azero/Dzero 的 8 次是**跨三个已有模型种子**轮流分配（3/3/2），**不是每个种子再跑 8 次**，统计时种子等权。72 点共 8640 次续跑（含 Base）。
 
 ```bash
-for arm in base Azero Dzero; do
-  python e4d.py armprobe --arm "$arm" --workers 20 --max_concurrent 400
+# 已完成上述 lock、全部首步采样与 first_manifest 冻结后
+for policy in base Azero Dzero; do
+  python e4d.py armprobe --policy-id "$policy" --workers 20 --max_concurrent 400
 done
-python e4d.py probe-analyze  # e4d_armprobe.json
+python e4d.py probe-analyze  # -> e4d_armprobe.json，次要判读/前向 O(h) 预测
 ```
+
+`candidates` 阶段先在 CPU 上对每个锁定候选的**事实 + 四个替代动作各试一步**，存下五臂的完整环境观察、目标出现标志、`O_h`（一部分臂看见目标而另一部分没看见时为 1）。任何 π₁ 续跑开始之前锁住 `O_h`，不能后算后选。`screen`、所有四格 `run` 和 `armprobe` 保存每条续跑中首次看见任务目标实例的**全局回合号**；主报告额外包含找到目标和找到后成功的**描述性**分解，原四格主判定规则不变。注意这组 O(h) 需要**执行候选一步**，不是免费状态特征。
+
+#### 未来 RL/MCR checkpoint 的相同样本重测
+
+可以在 **已有 lock/first_manifest** 之后，单独注册不可变的 LoRA adapter 或完整模型 checkpoint（权重哈希+修订编号）：
+
+```bash
+# 下面只示例一个 LoRA checkpoint。可给出 3 个路径实现三种 seed 等权轮换。
+python e4d.py register-probe --policy-id mcr-v1 --revision R1 \
+  --checkpoint-kind lora --checkpoint-paths /path/to/mcr_adapter --approve
+python e4d.py armprobe --policy-id mcr-v1 --workers 20 --max_concurrent 400
+python e4d.py probe-analyze --policy-id mcr-v1
+
+# 完整 GRPO/MCR 模型也可注册，单个 checkpoint 对应一个 policy ID：
+python e4d.py register-probe --policy-id grpo-v1 --revision R1 \
+  --checkpoint-kind full --checkpoint-paths /path/to/full_checkpoint --approve
+python e4d.py armprobe --policy-id grpo-v1
+python e4d.py probe-analyze --policy-id grpo-v1
+```
+
+所有未来 checkpoint 使用同一批 `probe_ids`、五臂和八个后续随机种子。该接口**只影响次要 armprobe**，不会加入/修改 E4d 的原主检验或原 reading。如果已经存在旧版 E4d 筛选/lock 输出，须先将它们单独存档，再在全新数据目录重新执行本分支的前向 O(h) 冻结，不允许根据已观察的 π₁ 结果追算或重选。
+
+**待后续独立决定：** 约 40 个 V3 点的同样 2×2 对照目前没有实现；不能假装该结果已经存在，也不要在看过 Z3 的 π₁ 效果后才追补成确认性对照。
 
 ## 判定与边界
 

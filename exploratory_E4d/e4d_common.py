@@ -22,7 +22,9 @@ SCREEN_OFFSET = 6 * 10**12
 FORMAL_OFFSET = 7 * 10**12
 FIRST_OFFSET = 8 * 10**12
 PROBE_OFFSET = 9 * 10**12
-PROBE_N = 24
+PROBE_N = 72
+PROBE_REPS = 8  # per policy, pooled across E4b training seeds (3+3+2)
+PROBE_N_OPTIONS = (72, 96)
 MIN_Z3, MIN_GAMES = 80, 40
 N_BOOT = 10000
 
@@ -128,21 +130,113 @@ def remaining_bin(remaining):
 
 
 def probe_ids(z_ids, n=PROBE_N):
-    """Deterministic subset, selected after pi0 screening but before ANY pi1 observations."""
+    """Deterministic subset from locked Z3, chosen before ANY pi1 outcomes."""
+    if n not in PROBE_N_OPTIONS:
+        raise ValueError(f"Probe size must be frozen from {PROBE_N_OPTIONS}: {n}")
     return sorted(sorted(z_ids, key=lambda p: (digest("E4d-armprobe:" + p), p))[:n])
 
 
-def crossfit_range(outcomes):
-    """Five arms x 24 binary outcomes. Balance halves within all three blocks of 8.
-    Select best/worst on first 4 of each block, measure their gap on held-out 4.
-    Unlike the in-sample max-min range, expected gap is 0 if all arm q values coincide.
+def probe_seed_for(pid, rep, n_seeds=3):
+    """Rotate training seeds without reading outcomes; exactly 8 trajectories per
+    policy/point/arm, not 8 per training seed. Both halves contain all seeds.
+    """
+    assert 0 <= rep < PROBE_REPS and n_seeds in (1, 3)
+    return (rep + int(digest("E4d-probe-seed:" + pid)[:8], 16)) % n_seeds
+
+
+def target_peek_flags(observations, target_word):
+    """One-step observation asymmetry O(h), computed in candidates before screening.
+    The current prompt contains no target instance by the search-phase gate.
+    """
+    import re
+    assert len(observations) == 5 and target_word
+    pat = re.compile(r"\b" + re.escape(target_word) + r"\s+[0-9]+\b", re.I)
+    flags = [bool(pat.search(text)) for text in observations]
+    return dict(O=int(any(flags) and not all(flags)), flags=flags)
+
+
+def seed_balanced_arm_means(values, seed_ids=None, columns=None):
+    """Arm means are computed within checkpoint seed before equal seed pooling.
+    For eight mixed-seed reps (3+3+2), this avoids overweighting the seed
+    appearing three times. Both crossfit halves have all three seeds.
+    """
+    a = np.asarray(values, dtype=float)
+    assert a.shape == (5, PROBE_REPS)
+    ids = np.zeros(PROBE_REPS, dtype=int) if seed_ids is None else np.asarray(seed_ids, dtype=int)
+    assert ids.shape == (PROBE_REPS,)
+    cols = np.arange(PROBE_REPS) if columns is None else np.asarray(columns, dtype=int)
+    chosen = ids[cols]
+    if len(set(chosen)) != len(set(ids)):
+        raise ValueError("All checkpoint seeds must occur in each crossfit half")
+    return np.mean([a[:, cols[chosen == seed]].mean(axis=1) for seed in sorted(set(ids))], axis=0)
+
+
+def crossfit_range(outcomes, seed_ids=None):
+    """5 arms x 8 binary rewards, two-way 4+4 heldout top-minus-bottom.
+    Select high/low on A, evaluate on B; reverse and average. Each half's
+    per-arm estimate equally pools checkpoint seeds, even when allocation is
+    3+3+2 for exactly eight trajectories.
     """
     a = np.asarray(outcomes, float)
-    assert a.shape == (5, 24) and np.all((a == 0) | (a == 1))
-    train_idx = [u for u in range(24) if u % 8 < 4]
-    test_idx = [u for u in range(24) if u % 8 >= 4]
-    fit = a[:, train_idx].mean(axis=1)
-    hi, lo = int(np.argmax(fit)), int(np.argmin(fit))
-    held = a[:, test_idx].mean(axis=1)
-    return dict(mean=float(a.mean()), range_naive=float(a.mean(axis=1).max() - a.mean(axis=1).min()),
-                heldout_gap=float(held[hi] - held[lo]), selected_high=hi, selected_low=lo)
+    assert a.shape == (5, PROBE_REPS) and np.all((a == 0) | (a == 1))
+    fit_a = seed_balanced_arm_means(a, seed_ids, range(4))
+    fit_b = seed_balanced_arm_means(a, seed_ids, range(4,8))
+    hi_a, lo_a = int(np.argmax(fit_a)), int(np.argmin(fit_a))
+    hi_b, lo_b = int(np.argmax(fit_b)), int(np.argmin(fit_b))
+    gap_ab, gap_ba = float(fit_b[hi_a] - fit_b[lo_a]), float(fit_a[hi_b] - fit_a[lo_b])
+    means = seed_balanced_arm_means(a, seed_ids)
+    return dict(mean=float(means.mean()), range_naive=float(means.max() - means.min()),
+                heldout_gap=(gap_ab + gap_ba)/2,
+                crossfit_ab=gap_ab, crossfit_ba=gap_ba,
+                selected_high=[hi_a, hi_b], selected_low=[lo_a, lo_b])
+
+
+def probe_triage(mean_gain_ci, gap_gain_ci, O_contrast_ci, n_o1, n_o0, n_games_o1, n_games_o0, O1_gap_ci=None):
+    """Secondary decision framework; not a revision to E4d.reading.
+    Three actionable outcomes + UNRESOLVED. Lack of significance is not
+    proof of absent differentiation. O prediction requires both strata.
+    """
+    if (gap_gain_ci[0] > 0 and min(n_o1, n_o0) >= 10 and min(n_games_o1, n_games_o0) >= 5
+        and O_contrast_ci is not None and O_contrast_ci[0] > 0
+        and O1_gap_ci is not None and O1_gap_ci[0] > 0):
+        return "MCR-PREDICTIVE-CANDIDATE"
+    if gap_gain_ci[0] > 0:
+        return "EMERGENCE-NOT-PREDICTED"
+    if mean_gain_ci[0] > 0 and gap_gain_ci[0] >= -10.0 and gap_gain_ci[1] <= 10.0:
+        return "UPLIFT-WITHOUT-RESOLVED-FORK"
+    return "UNRESOLVED"
+
+
+def bootstrap_O_contrast(state_rows, field="gap_gain", n_boot=N_BOOT, seed=20261107):
+    """Within the same pre-frozen probe cohort, compare O=1 against O=0.
+    Cluster by game and use a shared resampling of game IDs (so a game
+    carrying both O values is not treated as independent across strata).
+    Per-game means come before the across-game mean, as in E4d's primary.
+    Returns None if either group is empty. This is descriptive/secondary.
+    """
+    groups = defaultdict(lambda: {0: [], 1: []})
+    for row in state_rows:
+        if row["O_h"] not in (0, 1):
+            raise ValueError("O(h) missing or not binary")
+        groups[row["game"]][row["O_h"]].append(float(row[field]))
+    ids = sorted(groups)
+    if not ids or not any(groups[g][0] for g in ids) or not any(groups[g][1] for g in ids):
+        return None
+    a = np.asarray([[np.mean(groups[g][bit]) if groups[g][bit] else float("nan") for bit in (0, 1)] for g in ids])
+    def group_mean(sample, bit):
+        vals = sample[:, bit]
+        return float(np.mean(vals[np.isfinite(vals)])) if np.any(np.isfinite(vals)) else float("nan")
+    observed = group_mean(a, 1) - group_mean(a, 0)
+    rng = np.random.default_rng(seed)
+    dist = []
+    for _ in range(n_boot):
+        sample = a[rng.integers(0, len(ids), size=len(ids))]
+        m1, m0 = group_mean(sample, 1), group_mean(sample, 0)
+        if np.isfinite(m1) and np.isfinite(m0):
+            dist.append(m1 - m0)
+    if len(dist) < max(20, int(n_boot * 0.9)):
+        return None
+    return dict(mean_pp=100*observed,
+                ci95_pp=[100*float(np.percentile(dist, 2.5)), 100*float(np.percentile(dist, 97.5))],
+                n_games_total=len(ids), n_games_O0=sum(bool(groups[g][0]) for g in ids),
+                n_games_O1=sum(bool(groups[g][1]) for g in ids))
