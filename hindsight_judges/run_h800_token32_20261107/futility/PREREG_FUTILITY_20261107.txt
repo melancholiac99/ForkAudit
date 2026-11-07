@@ -1,0 +1,63 @@
+Prospective, one-look futility amendment for the H800 32B token-slot run
+
+User authorized this rule while H800 first32 timing/validation was running.
+No H800 full-cohort records existed at registration. Existing 7B findings and
+32B timing/numerical checks were known; this is not a claim of complete blindness
+to all earlier evidence. No 32B full outcome is inspected before commit/push.
+
+Population and checkpoint
+Use the original frozen 386-point order from groups.jsonl.gz. Freeze the shortest
+prefix with at least 190 total points and at least 30 distinct trajectory IDs.
+For this order the prefix is 204 points / 30 trajectories, ending at s046_t04.
+The exact IDs and original-input hashes are in registration.json. This is the
+only look. It uses complete, atomically saved full-run records, never pilot
+records. Polling file existence is allowed; examining earlier full effects is
+not. A later extra completed record does not enter the registered decision.
+
+Estimand and interval
+Keep the primary beta=1 setting: T2_b1_clip5_full minus T1_b1, using complete
+candidate-action sequences (not the discriminating-span sensitivity). For each
+pre-k probe, softmax the five sequence logprobs and compute the difference in
+independent q3456-weighted value times 100. Average pre-k probes within each
+point. Points with no pre-k probe contribute no fabricated zero; retain and
+report their number. Use exactly the original point-weighted trajectory-cluster
+bootstrap: 4,000 multinomial draws, seed 20261106, two-sided percentile 95% CI.
+The number of available pre-k points and clusters is reported separately from
+the checkpoint's total coverage. Keep the original minimum support of 30 pre-k
+points and 10 contributing clusters. Insufficient support or undefined CI means
+continue to 386, not stop and not wait for a second look.
+
+Decision
+If support is sufficient and the 95% CI upper endpoint is strictly less than
++3 percentage points, stop the remaining H800 32B scoring and record
+"stopped_early_for_futility / 因无效提前停止". Equality to +3 does not stop.
+Otherwise continue to all 386 points. Never declare success at this look.
+The original final efficacy/gate thresholds are unchanged. This is a prospective
+resource-saving futility rule, not proof that future data cannot reverse the
+estimate. The original bootstrap is exploratory; this amendment does not confer
+new type-I-error or confidence-interval coverage guarantees on it. Early stopping
+can sacrifice power. Fixed-order prefix selection may not represent later
+trajectories; stopped-sample analyses must disclose this limitation.
+
+Implementation and preservation
+analyze_interim.py reads original records and writes only this amendment's
+separate output directory. It never changes a scoring/protocol fingerprint,
+raw record, Q, response, model, or running configuration. monitor.py waits for
+the frozen 204-record prefix and calls it once, after checking the committed
+registration receipt and unchanged code/input hashes. Continue decisions leave
+the existing driver untouched. On futility it freezes only the matching H800
+driver, terminates its matching full-score child, then terminates that driver.
+No other experiment is signalled. Complete JSON.GZ files remain unchanged;
+in-flight temporary files are retained but are not admitted as complete records.
+The original full run remains incomplete, never falsely marked verified/full.
+The stopped prefix receives separate commitment-alignment/native-token
+descriptive analyses, hashes and a stopping receipt. Any extra complete records
+are inventoried separately. Their outcomes do not alter the one-look decision.
+
+Failure and follow-up
+Invalid data or a failed monitor is an operational error requiring agent repair,
+not evidence of futility; it does not automatically stop the scoring process.
+Hooks request repair/reporting/publication to research/hindsight-judges and
+subsequent credit-grok migration/resumption. Neither this monitor nor the
+analyzer shuts down the server. Remaining tasks on both branches must be handled
+before the user's previously authorized final shutdown.
