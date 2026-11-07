@@ -1,0 +1,40 @@
+{
+  "all_formal_restarted": true,
+  "data": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/data_deterministic_20261107",
+  "engine_changes": {
+    "async_scheduling": false,
+    "enable_prefix_caching": false,
+    "enforce_eager": true
+  },
+  "environment": {
+    "PYTHONHASHSEED": "0",
+    "VLLM_BATCH_INVARIANT": "1",
+    "VLLM_USE_V2_MODEL_RUNNER": "0"
+  },
+  "expected_formal": 49920,
+  "expected_probe": 8640,
+  "gpu_inventory": "GPU-14a859e5-e36a-fb19-a1d6-3490d992e219, NVIDIA RTX 6000D, 595.71.05\nGPU-cb032268-b458-dbeb-e5c8-b6ae50c46a3d, NVIDIA RTX 6000D, 595.71.05",
+  "gpus": [
+    "GPU-14a859e5-e36a-fb19-a1d6-3490d992e219",
+    "GPU-cb032268-b458-dbeb-e5c8-b6ae50c46a3d"
+  ],
+  "max_concurrent_per_gpu": 200,
+  "model": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+  "no_shutdown": true,
+  "old_formal_records_archived": 5622,
+  "old_formal_records_used": 0,
+  "original_plan_sha256": "2cd33fb11a7989f55ea40f2aca0fc6283bb8d344d18e8457e7ea259c02d854c5",
+  "preserved_manifest_sha256": "953dcbc69c9b518e9857175919306cd30c7ee27c19a808bcdc087dc9598c7944",
+  "screening_and_first_actions_frozen": true,
+  "smoke_verification_sha256": "07b129b27696ed5170a9029d5ea9d7a5624aeb91350d477ba88905f141347740",
+  "source": {
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/DETERMINISTIC_RESTART_20261107.txt": "cb0465f7e260f98d8cece88953c4838d823482daad372013dade860bdcf83ab2",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/RESUME_6000D_20261107.txt": "48744a7b76ab81359f8268843b285190fd7c0a849f0fccaa887ddc8eb7ac141f",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/check_deterministic_20261107.py": "7c1ef181a24f883d67640aacb3555cd0dbe75b190904405b4e5e6c4b5d245914",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/check_resume_6000d_20261107.py": "0ad7100d3cb17bce01674deb2cd1aada05f13f3317582ed0743be0a4649c6ad9",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_6000d_20261107.py": "4c1eb05a2df38d1b2683b189fcd3538a9ad5e808e76620b4bcb284cf7c3e0b75",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_deterministic_20261107.py": "b8c810736194dd0e33938e9a8ed02316eff3ca68ae56590dff796d65cca8702e"
+  },
+  "time": 1794040943.9415553,
+  "workers_per_gpu": 12
+}

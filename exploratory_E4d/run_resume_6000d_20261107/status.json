@@ -1,0 +1,6 @@
+{
+  "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_6000d_20261107.py\", line 165, in main\n    dual('smoke'); dual('lora_smoke'); check_smokes()\n                                       ^^^^^^^^^^^^^^\n  File \"/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_6000d_20261107.py\", line 94, in check_smokes\n    assert len(a['outputs']) == 13 and a['outputs'] == b['outputs'], 'Base/LoRA cross-card outputs differ'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Base/LoRA cross-card outputs differ\n",
+  "pid": 2848,
+  "stage": "failed",
+  "time": 1794039899.2429657
+}

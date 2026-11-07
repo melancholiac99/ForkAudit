@@ -1,0 +1,49 @@
+E4d execution revision: deterministic continuation, 2026-11-07
+
+Reason (before any replacement-GPU formal records): the execution-only resume
+gate failed. Base's original two smoke prompts reproduced, but the additional
+Base/12-adapter check differed in 18/26 responses between the current GPUs.
+Repeating the identical checks on the same GPUs changed 15/26 and 14/26
+responses respectively. Thus physical GPU replacement alone does not explain
+the failure. The failed attempt and original 5,622 formal records are retained.
+This demonstrates generation reproducibility limitations, not by itself invalid
+success-rate estimates or invalidity of past E4/E4b/hindsight experiments.
+
+Batch-invariant mode alone reproduced all 26 responses on card 0 but still
+differed between cards in 15/26 responses. It was not used for formal results.
+Execution fix to test and freeze: VLLM_BATCH_INVARIANT=1, PYTHONHASHSEED=0,
+VLLM_USE_V2_MODEL_RUNNER=0, enforce_eager=True, async_scheduling=False,
+enable_prefix_caching=False. This selects the prior model runner and
+batch-invariant inference kernels without compiled graphs or asynchronous
+scheduling/prefix reuse; it is a disclosed numerical execution change.
+The diagnostics do not isolate the causal contribution of each switch.
+Model weights, BF16 dtype, all sampling parameters,
+seeds, 12 workers/card, 200 concurrent requests/card, two state-hash shards,
+sample cohort, conditions, statistics, and decision thresholds are unchanged.
+Require all 26 fixed responses to agree exactly across cards and in a same-card
+repeat before formal execution. Do not relax this check if it fails.
+
+Because execution changes, ALL formal four-cell continuations are generated
+fresh into data_deterministic_20261107, followed by the frozen 72-point probe.
+No old formal response or outcome is copied or substituted into the new
+analysis. In particular the 5,622 completed old formal records (11.3% of the
+49,920 formal budget) are archived in their original directory, not overwritten.
+The primary report uses only the new 49,920 formal and 8,640 probe records.
+Existing outputs are never selected based on success, effect, or usefulness.
+
+Reuse the byte-identical old candidates, 230 pi0 screening records, locked
+160 Z3 states / 65 games, 72 probe IDs, and all 12 frozen pi1 first-action
+files. Do NOT reselect states or resample pi1 first actions. The first actions
+and screening arose under the original numerical execution and remain fixed
+design inputs. Only continuation execution changes, uniformly in all four
+cells including the fresh independent Base baseline. Report this qualification;
+the new continuation mode must not be presented as bitwise-identical to the
+screening/first-action generation or as a new experiment with newly chosen data.
+
+The original protocol/source/data remain intact. An isolated wrapper routes
+the unchanged scientific implementation to the new data directory. Each new
+record includes a new plan SHA and actual GPU UUID. Verification rejects any
+old plan or old outcome in the new directory and verifies every original input
+and archived record hash. Publication remains on credit-grok, not main or
+research/hindsight-judges. The H80032B run remains paused at its preserved
+49-point checkpoint; completion of E4d alone does not satisfy joint shutdown.

@@ -1,0 +1,25 @@
+{
+  "card0": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_resume_6000d_20261107/diagnostics/eager/lora_smoke_0.json",
+  "card1": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_resume_6000d_20261107/diagnostics/eager/lora_smoke_1.json",
+  "cross_card_and_same_card_exact": true,
+  "engine_changes": {
+    "async_scheduling": false,
+    "enable_prefix_caching": false,
+    "enforce_eager": true
+  },
+  "environment": {
+    "PYTHONHASHSEED": "0",
+    "VLLM_BATCH_INVARIANT": "1",
+    "VLLM_USE_V2_MODEL_RUNNER": "0"
+  },
+  "files": {
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_resume_6000d_20261107/diagnostics/eager/lora_smoke_0.json": "9f0c95b684abc17b59e0e6971b0daacd76187312a84f91d73fe9ea3d1d6069b8",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_resume_6000d_20261107/diagnostics/eager/lora_smoke_1.json": "bf2f57e237bd5e1ed9770fc02dfca860810f16504becafafb421870a2b6e6859",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_resume_6000d_20261107/diagnostics/eager_repeat/lora_smoke_1.json": "bf2f57e237bd5e1ed9770fc02dfca860810f16504becafafb421870a2b6e6859"
+  },
+  "passed": true,
+  "repeat": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_resume_6000d_20261107/diagnostics/eager_repeat/lora_smoke_1.json",
+  "repeat_gpu": 1,
+  "responses": 26,
+  "time": 1794040943.7845547
+}

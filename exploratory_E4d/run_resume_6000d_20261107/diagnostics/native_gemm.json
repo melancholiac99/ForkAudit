@@ -1,0 +1,18 @@
+{
+  "time": 1794040551.7702777,
+  "native_bfloat16_gemm": [
+    {
+      "gpu": 0,
+      "identical_repeats": 10,
+      "repeats": 10,
+      "sha256": "90e3c3d1ef4c078317d5d68db61f76fceb7799c126b19581d28663cf9b40f521"
+    },
+    {
+      "gpu": 1,
+      "identical_repeats": 10,
+      "repeats": 10,
+      "sha256": "90e3c3d1ef4c078317d5d68db61f76fceb7799c126b19581d28663cf9b40f521"
+    }
+  ],
+  "cross_card_equal": true
+}

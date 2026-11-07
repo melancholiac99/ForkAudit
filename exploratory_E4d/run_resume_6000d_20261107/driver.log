@@ -1,0 +1,15 @@
+checking_preserved_inputs {}
+smoke {'children': [2866, 2869]}
+lora_smoke {'children': [3213, 3216]}
+failed {'error': 'Traceback (most recent call last):\n  File "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_6000d_20261107.py", line 165, in main\n    dual(\'smoke\'); dual(\'lora_smoke\'); check_smokes()\n                                       ^^^^^^^^^^^^^^\n  File "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_6000d_20261107.py", line 94, in check_smokes\n    assert len(a[\'outputs\']) == 13 and a[\'outputs\'] == b[\'outputs\'], \'Base/LoRA cross-card outputs differ\'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Base/LoRA cross-card outputs differ\n'}
+Traceback (most recent call last):
+  File "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_6000d_20261107.py", line 185, in <module>
+    else: main()
+          ^^^^^^
+  File "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_6000d_20261107.py", line 165, in main
+    dual('smoke'); dual('lora_smoke'); check_smokes()
+                                       ^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_6000d_20261107.py", line 94, in check_smokes
+    assert len(a['outputs']) == 13 and a['outputs'] == b['outputs'], 'Base/LoRA cross-card outputs differ'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Base/LoRA cross-card outputs differ
