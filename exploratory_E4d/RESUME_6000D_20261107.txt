@@ -1,0 +1,38 @@
+E4d execution-only resume amendment, 2026-11-07
+
+The server now exposes two RTX 6000D GPUs, not the H800 from the preceding
+hindsight run. Shard 0 retains GPU-14a859e5-e36a-fb19-a1d6-3490d992e219;
+shard 1 replaces GPU-7b97d848-6d88-01e9-0675-ac9b9358f617 with
+GPU-cb032268-b458-dbeb-e5c8-b6ae50c46a3d. Driver and package versions must match
+the original execution plan. Original scientific source and plan remain intact.
+
+The user requested completion of E4d. Resume only missing formal and probe
+records. Preserve all 5,622 existing formal records, 230 screening records,
+the 160-state / 65-game Z3 cohort, 72 probe points, all first actions, seeds,
+weights, worker counts, concurrency, precision, sampling, and statistical gates.
+No new selection, first-action sampling, training, or hindsight scoring occurs.
+The 49 H800 32B full records remain untouched and are not continued on 6000D.
+
+Before new formal results, freeze a hash inventory of all existing E4d data.
+Run the original Base smoke on both current cards and require exact response
+agreement with both old smoke outputs. Additionally use the unchanged
+LoRA-capable E4 engine on two fixed locked prompts (first and last sorted point),
+two fixed seeds, Base and all twelve existing adapters. Require identical
+responses on the two current cards. These are execution checks, not new
+first-action files or outcome-based selection. A disagreement stops the queue
+for investigation; no weaker numerical threshold or replacement is allowed.
+Passing finite smoke tests does not prove universal cross-device equality.
+
+Every new record carries the new execution-plan SHA and actual GPU UUID;
+old records retain their original provenance. Preserve the deterministic
+point-ID shard assignment. Verification accepts old execution provenance only
+for byte-identical records in the frozen pre-resume inventory, and new
+provenance only for newly created records on their registered shard GPU.
+This is an explicitly documented same-model hardware replacement, not silent
+mixing or a claim that two GPU UUIDs are identical.
+
+The independent resume controller reuses the frozen E4d scoring implementation,
+then runs both original analyses and complete seed/provenance/input checks.
+It wakes the agent on completion or failure for review and publication to
+credit-grok only. It never shuts down: hindsight H80032B remains unfinished,
+so the prior joint completion prerequisite is not satisfied.

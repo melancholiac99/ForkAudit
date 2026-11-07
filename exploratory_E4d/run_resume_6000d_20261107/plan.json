@@ -1,0 +1,21 @@
+{
+  "gpu_inventory": "GPU-14a859e5-e36a-fb19-a1d6-3490d992e219, NVIDIA RTX 6000D, 595.71.05\nGPU-cb032268-b458-dbeb-e5c8-b6ae50c46a3d, NVIDIA RTX 6000D, 595.71.05",
+  "gpus": [
+    "GPU-14a859e5-e36a-fb19-a1d6-3490d992e219",
+    "GPU-cb032268-b458-dbeb-e5c8-b6ae50c46a3d"
+  ],
+  "max_concurrent_per_gpu": 200,
+  "model": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+  "no_shutdown": true,
+  "old_formal_records": 5622,
+  "original_plan_sha256": "2cd33fb11a7989f55ea40f2aca0fc6283bb8d344d18e8457e7ea259c02d854c5",
+  "preserved_manifest_sha256": "24f3a40d9b6e96ace980bc6c2cb9c6f217651dcb9955a160182a3a5748396c99",
+  "same_model_replacement": true,
+  "source": {
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/RESUME_6000D_20261107.txt": "48744a7b76ab81359f8268843b285190fd7c0a849f0fccaa887ddc8eb7ac141f",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/check_resume_6000d_20261107.py": "0ad7100d3cb17bce01674deb2cd1aada05f13f3317582ed0743be0a4649c6ad9",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_6000d_20261107.py": "4c1eb05a2df38d1b2683b189fcd3538a9ad5e808e76620b4bcb284cf7c3e0b75"
+  },
+  "time": 1794039545.6419525,
+  "workers_per_gpu": 12
+}
