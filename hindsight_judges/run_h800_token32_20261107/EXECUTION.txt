@@ -1,0 +1,27 @@
+H800 32B token-slot restart, authorized by user on 2026-11-07.
+
+Scope: original frozen 32B protocol, first32 score/analyze/verify followed by
+386-point score/analyze/verify and original supplementary analysis. No training.
+Output: results/token_slot_20261106/h800_20261107, separate from all old scores.
+The frozen 7B first32/full reference directories are read-only symlinks. They
+provide the previously committed k, positions and Student logprob. No 7B scoring,
+analysis or verification command is directed at those symlinks. Teacher records
+are generated entirely on H800; original 6000D 32B records are comparison-only.
+
+Scoring unchanged: FP16 transformer, FP32 head and original RoPE buffers;
+SDPA MATH, canonical 1024-token chunks, memo limit 2048, four independent
+batch-one streams. TF32 and numerical thresholds retain the frozen policy.
+The original cached/direct numerical gate must pass TV < 0.005 before scoring;
+pilot/full use the same H800 fingerprint. Cross-hardware TV on saved full-vocab
+audit arrays is separately reported, never used to substitute old Teacher data.
+
+Timing compares identical point IDs and model-call counts against the 6000D pilot.
+After two points it is provisional; after 32 points it is the pilot estimate.
+Neither comparison includes model loading or CPU analysis. No effect-based
+point selection, parameter selection or gate revision is permitted.
+
+Current hardware is one H800 PCIe. Credit-grok results remain preserved and its
+old dual-6000D runner is not started on this incompatible inventory. Completion
+and failure hooks request agent recovery/publication and subsequent credit-grok
+migration. This runner does not shut down the server; all remaining tasks must
+finish and both branches must be verified/published before authorized shutdown.
