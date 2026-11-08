@@ -1,0 +1,89 @@
+{
+  "limitation": "Agap/Dgap and 72-point five-action probe are still pending; this is not the complete E4d report.",
+  "lock_sha256": "b4e35f6013379200c97fd148b998f8368a308092941dac8d3bec78993e35aa73",
+  "n_games": 65,
+  "n_states": 160,
+  "pooled": {
+    "after": {
+      "ci95_pp": [
+        1.9764957264957264,
+        5.384615384615385
+      ],
+      "mean_pp": 3.530982905982906,
+      "n_games": 65
+    },
+    "base": {
+      "ci95_pp": [
+        0.4487179487179487,
+        2.532051282051282
+      ],
+      "mean_pp": 1.324786324786325,
+      "n_games": 65
+    },
+    "full": {
+      "ci95_pp": [
+        1.8107638888888888,
+        4.989316239316239
+      ],
+      "mean_pp": 3.274572649572649,
+      "n_games": 65
+    },
+    "full_gain": {
+      "ci95_pp": [
+        0.9615384615384616,
+        3.189102564102564
+      ],
+      "mean_pp": 1.9497863247863247,
+      "n_games": 65
+    },
+    "interaction": {
+      "ci95_pp": [
+        -0.6997863247863249,
+        0.6410256410256409
+      ],
+      "mean_pp": -0.01602564102564114,
+      "n_games": 65
+    },
+    "one_step": {
+      "ci95_pp": [
+        -0.8173076923076924,
+        0.15491452991452986
+      ],
+      "mean_pp": -0.24038461538461545,
+      "n_games": 65
+    },
+    "primary": {
+      "ci95_pp": [
+        1.3514957264957268,
+        3.7126068376068377
+      ],
+      "mean_pp": 2.4465811965811968,
+      "n_games": 65
+    },
+    "rescue": {
+      "ci95_pp": [
+        1.1965811965811968,
+        3.4508547008547006
+      ],
+      "mean_pp": 2.206196581196582,
+      "n_games": 65
+    },
+    "step": {
+      "ci95_pp": [
+        0.46474358974358965,
+        1.859107905982904
+      ],
+      "mean_pp": 1.0844017094017095,
+      "n_games": 65
+    }
+  },
+  "reading": "E4d-SUPPORT",
+  "records": 26880,
+  "scope": "All fixed Azero/Dzero 00/01/10/11 cells. No partial sampling, optional stopping, changed threshold, or cancelled secondary work.",
+  "source": {
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/e4d.py": "5a34461903fbda3d99f36274afb7fd8ac853b0006133d60983843d9544f86a4f",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/e4d_common.py": "e16c0ae1f653ceb60cb60d2fb978d7b91f03f73657c396d4dc0d32b125c0c610",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/primary_complete_20261109.py": "f28873aeb94b2a7c4a074a1ca865e178fac1e0dc140c80967a38ab4c687013ca"
+  },
+  "status": "PRIMARY_CELLS_COMPLETE_SECONDARY_PENDING"
+}

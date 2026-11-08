@@ -1,0 +1,16 @@
+E4d: complete primary cells; secondary comparisons/probes pending
+160 locked states / 65 games / 26880 records
+Primary reading: E4d-SUPPORT
+
+base: +1.325 pp; 95% game-bootstrap CI [0.4487179487179487, 2.532051282051282]
+after: +3.531 pp; 95% game-bootstrap CI [1.9764957264957264, 5.384615384615385]
+step: +1.084 pp; 95% game-bootstrap CI [0.46474358974358965, 1.859107905982904]
+full: +3.275 pp; 95% game-bootstrap CI [1.8107638888888888, 4.989316239316239]
+rescue: +2.206 pp; 95% game-bootstrap CI [1.1965811965811968, 3.4508547008547006]
+one_step: -0.240 pp; 95% game-bootstrap CI [-0.8173076923076924, 0.15491452991452986]
+primary: +2.447 pp; 95% game-bootstrap CI [1.3514957264957268, 3.7126068376068377]
+full_gain: +1.950 pp; 95% game-bootstrap CI [0.9615384615384616, 3.189102564102564]
+interaction: -0.016 pp; 95% game-bootstrap CI [-0.6997863247863249, 0.6410256410256409]
+
+All fixed Azero/Dzero 00/01/10/11 cells. No partial sampling, optional stopping, changed threshold, or cancelled secondary work.
+Agap/Dgap and 72-point five-action probe are still pending; this is not the complete E4d report.
