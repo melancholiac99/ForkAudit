@@ -1,0 +1,26 @@
+2026-11-09: resume after interruption, same two RTX 6000D UUIDs and driver.
+Both GPUs passed a native torch CUDA allocation/reduction/synchronization check.
+27,476 completed formal records preserved in a new checkpoint hash manifest.
+No model, engine, sampling, protocol, threshold or scientific-source changes.
+The immutable 20261108 accelerated plan remains the execution fingerprint.
+GPU0's previous handoff had finished: its 703 transition records remain frozen.
+Original completed-record skipping is reused. Unfinished continuations restart.
+
+Latest explicit user instruction: 跑完了按照原来的要求关机
+Scope of this resumed queue: E4d; complete all 49,920 formal and 8,640 probe
+records, perform original analysis and full independent verification, publish
+complete results only to credit-grok, verify remote blobs, then sync/shutdown.
+Previously published hindsight 7B/math remote artifacts are rechecked separately.
+Paused H800 32B scores are preserved and not restarted on these 6000D cards.
+The immutable old plan's no_shutdown field and old embedded wake text describe
+its earlier authorization; this new external policy supersedes only shutdown
+permission, not scientific execution. Do not edit the old plan to change it.
+
+Use finalize_accelerated_20261109.py, not either old finalization entrypoint.
+It redirects the verification command to accelerate_20261108.py --verify and
+uses the current data/run paths. It checks no active GPU/experiment workers
+before shutdown. Push retries are bounded at three; never force push. Failures
+save complete results/logs, wake the agent for best-effort repair, preserve a
+healthy GPU worker, and await a recovery claim. If no agent claims recovery for
+30 minutes and all GPU work is idle, preserve a final snapshot, sync, shutdown.
+A claimed recovery must finish or register its own finalization monitor.
