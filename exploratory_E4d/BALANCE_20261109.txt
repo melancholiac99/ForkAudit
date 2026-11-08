@@ -1,0 +1,29 @@
+Remaining-work balance, 2026-11-09. User asks for further optimization overnight.
+Change only physical GPU placement of not-yet-started whole condition/shard jobs.
+Keep original logical SHA256 point shards, cohort, seeds, first actions, weights,
+BF16 precision, generation caps, replay code, statistical functions/thresholds,
+and the registered accelerated engine settings. No training or new trajectories.
+A new immutable execution plan explicitly records each job's physical GPU UUID;
+new records reference it. Prior plans and all completed data remain unchanged.
+
+Freeze assignment before executing migrated jobs, using only completed-file
+counts and previous measured time per continuation. Never inspect outcomes for
+scheduling. Greedy largest-job-first assignment minimizes predicted card idle
+time; formal conditions precede probes on each card. Original running stages
+finish uninterrupted. Each old stage's final outputs are hash-frozen separately.
+Old scheduler parents are paused, then retired only when their child finishes.
+Before a card starts the new queue, 26 Base/all-12-adapter responses must exactly
+match the existing historical reference (text, token IDs, finish reasons).
+No numerical threshold is relaxed. If a check fails, preserve the other card,
+retain all records and request repair. Do not silently fall back or mix plans.
+
+Final full verification accepts only hash-frozen prior records/tails or new-plan
+records on the physical GPU registered for their original logical job. Original
+analysis is unchanged. A separate primary-only report waits for all 26,880
+Azero/Dzero 2x2 records (160 states, 65 games), uses the original estimators,
+bootstrap and hierarchy, and labels secondary comparisons/probes as pending.
+It is not a partial-sample interim look and does not stop or resize any work.
+The final complete analysis must agree exactly with that primary-only report.
+Final complete publication stays on credit-grok. Latest authorization: verify,
+upload and then shutdown; repair failures first, preserve/sync on unrecoverable
+failure. The frozen H800 32B work is not restarted here.

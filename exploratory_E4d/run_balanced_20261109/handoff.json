@@ -1,0 +1,78 @@
+{
+  "controller": 2340,
+  "processes": {
+    "2340": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/accelerate_20261108.py ",
+      "exitcode": 0,
+      "start": "502451267",
+      "state": "S"
+    },
+    "3073": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/accelerate_20261108.py --worker formal --gpu 0 ",
+      "exitcode": 0,
+      "start": "502460227",
+      "state": "S"
+    },
+    "3076": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/accelerate_20261108.py --worker formal --gpu 1 ",
+      "exitcode": 0,
+      "start": "502460239",
+      "state": "S"
+    }
+  },
+  "science": {
+    "0": {
+      "args": [
+        "/root/miniconda3/envs/m0/bin/python",
+        "-u",
+        "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/accelerate_20261108.py",
+        "--science",
+        "run",
+        "--arm",
+        "Dzero",
+        "--cond",
+        "11",
+        "--workers",
+        "24",
+        "--max_concurrent",
+        "400",
+        "--shard-count",
+        "2",
+        "--shard-index",
+        "0"
+      ],
+      "log": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_accelerated_20261108/formal_Dzero_11_gpu0.log",
+      "pid": 5797,
+      "start": "502487337"
+    },
+    "1": {
+      "args": [
+        "/root/miniconda3/envs/m0/bin/python",
+        "-u",
+        "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/accelerate_20261108.py",
+        "--science",
+        "run",
+        "--arm",
+        "Agap",
+        "--cond",
+        "10",
+        "--workers",
+        "24",
+        "--max_concurrent",
+        "400",
+        "--shard-count",
+        "2",
+        "--shard-index",
+        "1"
+      ],
+      "log": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_accelerated_20261108/formal_Agap_10_gpu1.log",
+      "pid": 6470,
+      "start": "502495972"
+    }
+  },
+  "time": 1794156235.6936743,
+  "workers": [
+    3073,
+    3076
+  ]
+}
