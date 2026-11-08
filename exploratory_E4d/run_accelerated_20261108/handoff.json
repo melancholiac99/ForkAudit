@@ -1,0 +1,128 @@
+{
+  "continuing_gpu0": 3781,
+  "controller": 3373,
+  "instruction": "User requests acceleration; preserve current GPU0 science, test GPU1, no completed results deleted",
+  "old_run": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_resume_devices_20261108",
+  "processes": {
+    "3373": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py ",
+      "ppid": 1,
+      "start": "497819429",
+      "state": "T"
+    },
+    "3397": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --worker formal --gpu 0 ",
+      "ppid": 3373,
+      "start": "497821393",
+      "state": "T"
+    },
+    "3400": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --worker formal --gpu 1 ",
+      "ppid": 3373,
+      "start": "497821401",
+      "state": "T"
+    },
+    "3770": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3400,
+      "start": "497825073",
+      "state": "S"
+    },
+    "3781": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 0 ",
+      "ppid": 3397,
+      "start": "497825129",
+      "state": "S"
+    },
+    "3786": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825283",
+      "state": "S"
+    },
+    "3787": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "S"
+    },
+    "3788": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "S"
+    },
+    "3789": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "S"
+    },
+    "3790": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "S"
+    },
+    "3791": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "R"
+    },
+    "3792": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "R"
+    },
+    "3793": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "S"
+    },
+    "3794": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "S"
+    },
+    "3795": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "S"
+    },
+    "3796": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "S"
+    },
+    "3797": {
+      "args": "/root/miniconda3/envs/m0/bin/python -u /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/resume_devices_20261108.py --science run --arm Azero --cond 01 --workers 12 --max_concurrent 200 --shard-count 2 --shard-index 1 ",
+      "ppid": 3770,
+      "start": "497825284",
+      "state": "S"
+    },
+    "3832": {
+      "args": "/root/miniconda3/envs/m0/bin/python -c from multiprocessing.resource_tracker import main;main(72) ",
+      "ppid": 3770,
+      "start": "497826201",
+      "state": "S"
+    },
+    "3833": {
+      "args": "VLLM::EngineCore                                                                                                                                      ",
+      "ppid": 3770,
+      "start": "497826201",
+      "state": "R"
+    }
+  },
+  "terminated_gpu1": 3770,
+  "time": 1794109434.5859075,
+  "workers": [
+    3397,
+    3400
+  ]
+}

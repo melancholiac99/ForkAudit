@@ -1,0 +1,32 @@
+E4d execution-only acceleration, 2026-11-08
+User requested faster completion on the two currently registered RTX 6000D cards.
+No cohort, seed, model, precision, temperature, adapter, response cap, replay,
+analysis, or statistical threshold changes. No completed formal record is rerun.
+Original source and all preceding execution plans stay immutable.
+
+Retain V1 runner, VLLM_BATCH_INVARIANT=1, PYTHONHASHSEED=0 and BF16.
+Use prefix caching, async scheduling and CUDA graphs, compilation mode 0 (no
+Inductor compiler). vLLM resolves FULL graphs to FULL_DECODE_ONLY on this backend.
+Raise concurrent episodes from 200 to 400/card and CPU workers from 12 to 24/card.
+CPU quota is 50 cores and memory limit ~184 GiB. Graph sizes are frozen in plan.
+
+Checks used only fixed prompts/seeds/timing, never experimental outcome effects.
+Small workload: 128 responses plus 26 historical Base/12-adapter anchor responses
+match exactly, including token IDs and repeated warm-cache batches.
+Large workload: all 160 locked state prompts x 5 diagnostic seeds, Azero_s2.
+Exactly the same 800 responses match between old execution (4 x 200) and new
+execution (2 x 400): 90.1416 vs 37.7531 seconds, 2.3877x offline speedup.
+This is not an end-to-end replay ETA and finite equality tests do not prove
+universal numerical equivalence. The larger capture list adds 320/400/512 only;
+the full-adapter small check used the otherwise identical engine configuration.
+
+Completed records are hash-frozen before the cutover and retain their original
+execution-plan/device provenance. GPU0 finishes its current Azero01 stage using
+the old engine while GPU1 starts the accelerated queue. GPU0's final old-stage
+records are separately frozen as transition_tail_manifest.json after a normal
+exit and complete shard check. The new GPU0 worker then starts the new engine.
+No other old-plan records may enter the active dataset. New records reference
+the new immutable plan. Analysis and final full-record verification are reused
+from the original code, with explicit provenance validation for all revisions.
+Original nondeterministic records remain archived and excluded as before.
+No main/hindsight changes. Completion/failure wakes the agent; no shutdown.
