@@ -1,0 +1,38 @@
+test_rl_checkpoint_comparison_has_independent_O_prediction (test_e4d.CreditGrokAdditionalRegression.test_rl_checkpoint_comparison_has_independent_O_prediction) ... ok
+test_seed_balanced_crossfit_does_not_overweight_repeat_seed (test_e4d.CreditGrokAdditionalRegression.test_seed_balanced_crossfit_does_not_overweight_repeat_seed) ... ok
+test_O_is_frozen_one_step_target_asymmetry (test_e4d.CreditGrokSecondaryTests.test_O_is_frozen_one_step_target_asymmetry) ... ok
+test_O_prediction_is_game_clustered (test_e4d.CreditGrokSecondaryTests.test_O_prediction_is_game_clustered) ... ok
+test_crossfit_swapping_4_plus_4_estimation (test_e4d.CreditGrokSecondaryTests.test_crossfit_swapping_4_plus_4_estimation) ... ok
+test_discovery_decomposition_exact_even_with_undefined_conditional (test_e4d.CreditGrokSecondaryTests.test_discovery_decomposition_exact_even_with_undefined_conditional) ... ok
+test_probe_budget_and_round_robin_seeds (test_e4d.CreditGrokSecondaryTests.test_probe_budget_and_round_robin_seeds) ... ok
+test_registered_rl_checkpoint_is_immutable (test_e4d.CreditGrokSecondaryTests.test_registered_rl_checkpoint_is_immutable) ... ok
+test_secondary_triage_leaves_main_reading_alone (test_e4d.CreditGrokSecondaryTests.test_secondary_triage_leaves_main_reading_alone) ... ok
+test_target_logging_attaches_to_actual_replay_records (test_e4d.CreditGrokSecondaryTests.test_target_logging_attaches_to_actual_replay_records) ... ok
+test_target_logging_records_first_target_turn_even_after_prefix (test_e4d.CreditGrokSecondaryTests.test_target_logging_records_first_target_turn_even_after_prefix) ... ok
+test_lock_is_independent_of_pi1_and_rejects_change (test_e4d.E4dLockGate.test_lock_is_independent_of_pi1_and_rejects_change) ... ok
+test_probe_heldout_gap_noise_control (test_e4d.E4dLockGate.test_probe_heldout_gap_noise_control) ... ok
+test_classification_e4b_compatible (test_e4d.E4dProtocol.test_classification_e4b_compatible) ... ok
+test_dp_first_step_validity_is_per_condition (test_e4d.E4dProtocol.test_dp_first_step_validity_is_per_condition) ... ok
+test_even_spacing_is_among_qualified_states (test_e4d.E4dProtocol.test_even_spacing_is_among_qualified_states) ... ok
+test_frozen_replay_seed_offsets_are_distinct (test_e4d.E4dProtocol.test_frozen_replay_seed_offsets_are_distinct) ... ok
+test_hierarchy_uses_fresh_contrasts_and_power_gate (test_e4d.E4dProtocol.test_hierarchy_uses_fresh_contrasts_and_power_gate) ... ok
+test_lora_request_explictly_passed_through_async_interface (test_e4d.E4dProtocol.test_lora_request_explictly_passed_through_async_interface) ... ok
+test_prefix_reconstructed_from_existing_e4_base_record (test_e4d.E4dProtocol.test_prefix_reconstructed_from_existing_e4_base_record) ... ok
+test_primary_is_after_minus_step_and_pooling_is_game_level (test_e4d.E4dProtocol.test_primary_is_after_minus_step_and_pooling_is_game_level) ... ok
+test_recovery_can_improve_without_arm_range_change (test_e4d.E4dProtocol.test_recovery_can_improve_without_arm_range_change) ... ok
+test_divergent_record_is_never_saved (test_server_execution.DurableExecution.test_divergent_record_is_never_saved) ... ok
+test_interruption_never_exposes_bare_result_and_can_retry (test_server_execution.DurableExecution.test_interruption_never_exposes_bare_result_and_can_retry) ... ok
+test_shards_are_disjoint_stable_and_complete (test_server_execution.DurableExecution.test_shards_are_disjoint_stable_and_complete) ... ok
+test_busy_or_cancelled_never_shuts_down (test_server_execution.ShutdownGates.test_busy_or_cancelled_never_shuts_down) ... ok
+test_separate_branches_must_both_finish (test_server_execution.ShutdownGates.test_separate_branches_must_both_finish) ... ok
+test_sync_precedes_authorized_shutdown (test_server_execution.ShutdownGates.test_sync_precedes_authorized_shutdown) ... ok
+test_old_and_new_records_require_respective_plan_and_gpu (check_resume_6000d_20261107.ResumeProvenance.test_old_and_new_records_require_respective_plan_and_gpu) ... ok
+test_data_root_and_frozen_first_actions (__main__.IsolatedExecution.test_data_root_and_frozen_first_actions) ... ok
+test_engine_initialization_stays_after_original_pool_boundary (__main__.IsolatedExecution.test_engine_initialization_stays_after_original_pool_boundary) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 1.237s
+
+OK
+REGISTERED mcr-v1 /tmp/tmp75mfc2i3/regs/mcr-v1.json SHA256 7f3a52c6840e9dfe18520626f3406f210a057da278f1b37126897903b24af880
+LOCKED 1 Z3 states across 1 games a7dc407bf20a9ee919ace51d9e3e66f96901fde6fb0ef60ec133ab40d9db2f7f underpowered= True
