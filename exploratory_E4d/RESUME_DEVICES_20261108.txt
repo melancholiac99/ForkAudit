@@ -1,0 +1,38 @@
+E4d continuation after user-authorized pause and two-device replacement
+
+The user requested resumption on 2026-11-08. Both current devices are RTX
+6000D, driver 595.71.05. Shard 0 is now
+GPU-4c7fda5d-b718-16d6-a00f-4723b225f017; shard 1 is now
+GPU-02b774a2-0820-44c8-dc8c-1b24bade61e4. Keep the same deterministic
+configuration registered in run_deterministic_20261107/plan.json, including
+BF16, VLLM_BATCH_INVARIANT=1, VLLM_USE_V2_MODEL_RUNNER=0, PYTHONHASHSEED=0,
+enforce_eager=True, async_scheduling=False, enable_prefix_caching=False,
+12 CPU workers and 200 concurrent requests per GPU. No numerical change.
+
+Preserve and reuse all 6,248 complete deterministic formal records:
+3,840 Base/00 and 2,408 Azero/01. Before any new formal work, verify their
+pause-time SHA256 manifest and all original input/model/source hashes.
+Each new GPU must reproduce all 26 fixed responses from the previous
+deterministic smoke (two frozen prompts, Base plus all twelve adapters),
+including token IDs, exactly. If this check fails, stop for investigation;
+do not relax it, automatically change configuration, or restart completed work.
+Finite smoke checks do not establish equality for every possible context.
+
+Keep data_deterministic_20261107 as the sole formal analysis dataset. Only
+missing continuations are generated. The old non-deterministic 5,622 records
+remain archived and excluded, as already registered. Screening, first actions,
+sample IDs, seeds, shard assignment, statistical thresholds and probes remain
+unchanged. This does not restart H80032B or modify hindsight/main.
+
+The new execution plan links the immutable previous deterministic plan.
+Previously completed records retain their exact bytes and old device/plan
+provenance. New records carry the new plan SHA and current shard GPU UUID.
+Verification accepts old provenance only for records present in the frozen
+pause manifest and still byte-identical. No old plan or record is overwritten.
+The previous PAUSED.json remains historical; the newly authorized controller
+lives in run_resume_devices_20261108 and has a separate execution lock.
+
+The controller resumes formal/probe work, original analysis, and complete
+record/provenance verification. Completion/failure wakes the agent for review
+and publication to credit-grok. Do not start the old finalizer: H80032B remains
+unfinished; this resumption does not authorize immediate shutdown.
