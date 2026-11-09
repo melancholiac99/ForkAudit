@@ -1,0 +1,122 @@
+{
+  "alt_outcomes": [],
+  "alternatives": [],
+  "cf_defined": true,
+  "continuations": [
+    {
+      "actions": [
+        "examine box 1",
+        "examine shelf 3",
+        "examine box 1",
+        "go to sofa 1",
+        "move box 1 to sofa 1",
+        "examine sofa 1",
+        "take box 1 from sofa 1",
+        "examine sofa 1",
+        "examine sofa 1",
+        "go to sidetable 1",
+        "go to cabinet 1",
+        "go to drawer 1",
+        "open drawer 1",
+        "go to cabinet 1",
+        "go to sofa 1",
+        "go to cabinet 2"
+      ],
+      "first_action": "examine box 1",
+      "len": 50,
+      "refeed_div": 0,
+      "rep": 4,
+      "role": 1,
+      "seeds": [
+        7312735100435,
+        7312735100436,
+        7312735100437,
+        7312735100438,
+        7312735100439,
+        7312735100440,
+        7312735100441,
+        7312735100442,
+        7312735100443,
+        7312735100444,
+        7312735100445,
+        7312735100446,
+        7312735100447,
+        7312735100448,
+        7312735100449
+      ],
+      "target_observation": {
+        "ever_seen": false,
+        "first_seen_after_decision": null,
+        "observed_steps": 16,
+        "schema": "credit-grok-target-v1",
+        "seen_after_decision": false,
+        "seen_before_decision": false,
+        "seen_on_forced_step": false,
+        "target_first_seen_turn": null
+      },
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": false
+    }
+  ],
+  "drafts": [],
+  "exclude_reason": null,
+  "factual_action": "examine box 1",
+  "factual_outcomes": [
+    0
+  ],
+  "n_draws": 0,
+  "provenance": {
+    "adapter_sha256": "17b2f7ff941ec6b0ba95dd455aeb1b04efef0bcadc48971f51edc38a8388c35f",
+    "arm": "Azero",
+    "commit": "89850c38a3fd83c0df0d10e2bda733f42453d106",
+    "cond": "11",
+    "execution": {
+      "execution_plan_sha256": "6510fc3baf44d1f2d0b643bacd1f6517234f65dfd6d8b81b4395096e49d62cae",
+      "gpu_uuid": "GPU-02b774a2-0820-44c8-dc8c-1b24bade61e4",
+      "source_sha256": "5a34461903fbda3d99f36274afb7fd8ac853b0006133d60983843d9544f86a4f"
+    },
+    "first_manifest_sha256": "65efe08d7466520ac17a51de00f871ca65f9b260ddc9369eadc8c56fc7155f08",
+    "first_policy": "Azero",
+    "lo_ra_explicit": true,
+    "lock_sha256": "b4e35f6013379200c97fd148b998f8368a308092941dac8d3bec78993e35aa73",
+    "post_policy": "Azero",
+    "protocol": "E4d-formal-v1",
+    "seed_offset": 7000000000000,
+    "selected_sha256": "2a092c62f110fd68984c01bf47255736234d50ac60389ab424738748378c8f5a",
+    "train_seed": 0,
+    "vllm": "0.32.0"
+  },
+  "seed": 3127,
+  "target_logging_schema": "credit-grok-target-v1",
+  "target_observation": {
+    "ever_seen": false,
+    "first_seen_after_decision": null,
+    "observed_steps": 16,
+    "schema": "credit-grok-target-v1",
+    "seen_after_decision": false,
+    "seen_before_decision": false,
+    "seen_on_forced_step": false,
+    "target_first_seen_turn": null
+  },
+  "task_id": "json_2.1.1/valid_unseen/pick_two_obj_and_place-Pillow-None-Sofa-219/trial_T20190907_163408_914117/game.tw-pddl",
+  "task_type": "pick_two_obj_and_place",
+  "traj_id": "s3127",
+  "turn": 35
+}

@@ -1,0 +1,24 @@
+{
+  "args": [
+    "/root/miniconda3/envs/m0/bin/python",
+    "-u",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/accelerate_20261108.py",
+    "--science",
+    "run",
+    "--arm",
+    "Azero",
+    "--cond",
+    "01",
+    "--workers",
+    "24",
+    "--max_concurrent",
+    "400",
+    "--shard-count",
+    "2",
+    "--shard-index",
+    "1"
+  ],
+  "gpu": 1,
+  "pid": 3603,
+  "time": 1794155311.3803606
+}

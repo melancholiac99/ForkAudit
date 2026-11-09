@@ -1,0 +1,24 @@
+{
+  "args": [
+    "/root/miniconda3/envs/m0/bin/python",
+    "-u",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/balance_20261109.py",
+    "--science",
+    "run",
+    "--arm",
+    "Dgap",
+    "--cond",
+    "10",
+    "--workers",
+    "24",
+    "--max_concurrent",
+    "400",
+    "--shard-count",
+    "2",
+    "--shard-index",
+    "0"
+  ],
+  "gpu": 1,
+  "pid": 17367,
+  "time": 1794170572.6859775
+}

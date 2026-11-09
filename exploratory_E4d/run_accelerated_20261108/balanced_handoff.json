@@ -1,0 +1,55 @@
+{
+  "new_controller": 7702,
+  "new_run": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_balanced_20261109",
+  "old_science_continues": {
+    "0": {
+      "args": [
+        "/root/miniconda3/envs/m0/bin/python",
+        "-u",
+        "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/accelerate_20261108.py",
+        "--science",
+        "run",
+        "--arm",
+        "Dzero",
+        "--cond",
+        "11",
+        "--workers",
+        "24",
+        "--max_concurrent",
+        "400",
+        "--shard-count",
+        "2",
+        "--shard-index",
+        "0"
+      ],
+      "log": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_accelerated_20261108/formal_Dzero_11_gpu0.log",
+      "pid": 5797,
+      "start": "502487337"
+    },
+    "1": {
+      "args": [
+        "/root/miniconda3/envs/m0/bin/python",
+        "-u",
+        "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/accelerate_20261108.py",
+        "--science",
+        "run",
+        "--arm",
+        "Agap",
+        "--cond",
+        "10",
+        "--workers",
+        "24",
+        "--max_concurrent",
+        "400",
+        "--shard-count",
+        "2",
+        "--shard-index",
+        "1"
+      ],
+      "log": "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/run_accelerated_20261108/formal_Agap_10_gpu1.log",
+      "pid": 6470,
+      "start": "502495972"
+    }
+  },
+  "time": 1794156340.8634334
+}

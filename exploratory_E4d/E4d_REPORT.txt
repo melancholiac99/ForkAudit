@@ -1,0 +1,30 @@
+E4d reading: E4d-SUPPORT (n=160 Z3 states; 65 games)
+lock_sha256: b4e35f6013379200c97fd148b998f8368a308092941dac8d3bec78993e35aa73
+
+Primary contrasts (pp, 95% game bootstrap CI):
+  rescue       : +2.21  [+1.20, +3.45]
+  one_step     : -0.24  [-0.82, +0.15]
+  primary      : +2.45  [+1.35, +3.71]
+  full_gain    : +1.95  [+0.96, +3.19]
+  interaction  : -0.02  [-0.70, +0.64]
+
+Per trained arm:
+  Azero: after +2.12; one-step -0.27; contrast +2.38
+  Dzero: after +2.30; one-step -0.21; contrast +2.51
+  Agap: after +2.48; one-step -0.03; contrast +2.51
+  Dgap: after +2.47; one-step +0.10; contrast +2.37
+
+Secondary zero-trained vs gap-trained (paired game contrasts):
+  Azero-Agap: rescue diff -0.36; primary diff -0.13
+  Dzero-Dgap: rescue diff -0.17; primary diff +0.14
+
+Target discovery (secondary descriptive; 01 minus 00, pp):
+  target_seen: +12.77 [+9.37, +16.44]
+  seen_after_decision: +13.49 [+10.12, +17.13]
+  seen_and_success: +2.21 [+1.20, +3.45]
+  unseen_and_success: +0.00 [+0.00, +0.00]
+
+Remaining-step bins (descriptive, NOT independent hypotheses):
+  10-19: 47 states, 46 games, after +0.45, one-step -0.14
+  20-29: 39 states, 37 games, after +0.84, one-step -0.28
+  30+: 74 states, 56 games, after +3.14, one-step -0.02

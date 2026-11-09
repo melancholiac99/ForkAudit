@@ -1,0 +1,14 @@
+PROBE ANALYSIS /root/autodl-tmp/forkaudit_credit_grok/exploratory_E4d/e4d_armprobe.json {
+  "pooled_reading": "UPLIFT-WITHOUT-RESOLVED-FORK",
+  "checkpoint_readings": {},
+  "pooled_O_prediction": {
+    "mean_pp": 3.453947368421052,
+    "ci95_pp": [
+      -1.7992424242424243,
+      9.58335559116809
+    ],
+    "n_games_total": 46,
+    "n_games_O0": 38,
+    "n_games_O1": 12
+  }
+}

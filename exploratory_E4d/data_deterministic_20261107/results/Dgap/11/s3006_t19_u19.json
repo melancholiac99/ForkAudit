@@ -1,0 +1,110 @@
+{
+  "alt_outcomes": [],
+  "alternatives": [],
+  "cf_defined": true,
+  "continuations": [
+    {
+      "actions": [
+        "use desklamp 1",
+        "examine desk 1",
+        "use desklamp 1",
+        "examine desk 1",
+        "examine desk 1",
+        "inventory",
+        "go to desk 1",
+        "go to desk 1",
+        "go to desk 2",
+        "examine desk 2",
+        "take bowl 1 from desk 2",
+        "go to desk 1"
+      ],
+      "first_action": "use desklamp 1",
+      "len": 30,
+      "refeed_div": 0,
+      "rep": 19,
+      "role": 1,
+      "seeds": [
+        7300619101919,
+        7300619101920,
+        7300619101921,
+        7300619101922,
+        7300619101923,
+        7300619101924,
+        7300619101925,
+        7300619101926,
+        7300619101927,
+        7300619101928,
+        7300619101929
+      ],
+      "target_observation": {
+        "ever_seen": true,
+        "first_seen_after_decision": 27,
+        "observed_steps": 12,
+        "schema": "credit-grok-target-v1",
+        "seen_after_decision": true,
+        "seen_before_decision": false,
+        "seen_on_forced_step": false,
+        "target_first_seen_turn": 27
+      },
+      "valids": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "won": true
+    }
+  ],
+  "drafts": [],
+  "exclude_reason": null,
+  "factual_action": "use desklamp 1",
+  "factual_outcomes": [
+    1
+  ],
+  "n_draws": 0,
+  "provenance": {
+    "adapter_sha256": "931bbe4ec65a5495882f81d548ee778c158c4fdf784846ee4f6ac8ef9e24e954",
+    "arm": "Dgap",
+    "commit": "6f7eac8e0ec18e4595a7c85235ee00061d758812",
+    "cond": "11",
+    "execution": {
+      "execution_plan_sha256": "ddca41bc5035ea07e67efd3a2c3a5b18c7eec2615939d72da8af24dc06dbda5b",
+      "gpu_uuid": "GPU-02b774a2-0820-44c8-dc8c-1b24bade61e4",
+      "source_sha256": "5a34461903fbda3d99f36274afb7fd8ac853b0006133d60983843d9544f86a4f"
+    },
+    "first_manifest_sha256": "65efe08d7466520ac17a51de00f871ca65f9b260ddc9369eadc8c56fc7155f08",
+    "first_policy": "Dgap",
+    "lo_ra_explicit": true,
+    "lock_sha256": "b4e35f6013379200c97fd148b998f8368a308092941dac8d3bec78993e35aa73",
+    "post_policy": "Dgap",
+    "protocol": "E4d-formal-v1",
+    "seed_offset": 7000000000000,
+    "selected_sha256": "2a092c62f110fd68984c01bf47255736234d50ac60389ab424738748378c8f5a",
+    "train_seed": 2,
+    "vllm": "0.32.0"
+  },
+  "seed": 3006,
+  "target_logging_schema": "credit-grok-target-v1",
+  "target_observation": {
+    "ever_seen": true,
+    "first_seen_after_decision": 27,
+    "observed_steps": 12,
+    "schema": "credit-grok-target-v1",
+    "seen_after_decision": true,
+    "seen_before_decision": false,
+    "seen_on_forced_step": false,
+    "target_first_seen_turn": 27
+  },
+  "task_id": "json_2.1.1/valid_unseen/look_at_obj_in_light-Bowl-None-DeskLamp-308/trial_T20190907_133919_856963/game.tw-pddl",
+  "task_type": "look_at_obj_in_light",
+  "traj_id": "s3006",
+  "turn": 19
+}

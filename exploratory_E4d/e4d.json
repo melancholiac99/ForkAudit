@@ -1,0 +1,420 @@
+{
+  "first_actions": {
+    "Agap": {
+      "in_screen_arms": 0.81796875,
+      "invalid": 0.00078125,
+      "n": 3840,
+      "same_as_factual": 0.24166666666666667
+    },
+    "Azero": {
+      "in_screen_arms": 0.8309895833333333,
+      "invalid": 0.0018229166666666667,
+      "n": 3840,
+      "same_as_factual": 0.2796875
+    },
+    "Dgap": {
+      "in_screen_arms": 0.8111979166666666,
+      "invalid": 0.0020833333333333333,
+      "n": 3840,
+      "same_as_factual": 0.20885416666666667
+    },
+    "Dzero": {
+      "in_screen_arms": 0.7984375,
+      "invalid": 0.0010416666666666667,
+      "n": 3840,
+      "same_as_factual": 0.22916666666666666
+    }
+  },
+  "lock_sha256": "b4e35f6013379200c97fd148b998f8368a308092941dac8d3bec78993e35aa73",
+  "n_games": 65,
+  "n_states": 160,
+  "per_arm": {
+    "Agap": {
+      "main": {
+        "ci95_pp": [
+          1.2072649572649574,
+          3.995993589743587
+        ],
+        "mean_pp": 2.510683760683761,
+        "n_games": 65
+      },
+      "one_step": {
+        "ci95_pp": [
+          -0.7799145299145299,
+          0.5662393162393162
+        ],
+        "mean_pp": -0.03205128205128207,
+        "n_games": 65
+      },
+      "rescue": {
+        "ci95_pp": [
+          1.420940170940171,
+          3.7393162393162394
+        ],
+        "mean_pp": 2.4786324786324787,
+        "n_games": 65
+      }
+    },
+    "Azero": {
+      "main": {
+        "ci95_pp": [
+          1.282051282051282,
+          3.718215811965809
+        ],
+        "mean_pp": 2.382478632478633,
+        "n_games": 65
+      },
+      "one_step": {
+        "ci95_pp": [
+          -1.0470085470085468,
+          0.2884615384615385
+        ],
+        "mean_pp": -0.26709401709401703,
+        "n_games": 65
+      },
+      "rescue": {
+        "ci95_pp": [
+          1.217948717948718,
+          3.1840277777777746
+        ],
+        "mean_pp": 2.1153846153846154,
+        "n_games": 65
+      }
+    },
+    "Dgap": {
+      "main": {
+        "ci95_pp": [
+          1.014957264957265,
+          4.07051282051282
+        ],
+        "mean_pp": 2.371794871794872,
+        "n_games": 65
+      },
+      "one_step": {
+        "ci95_pp": [
+          -0.608974358974359,
+          0.7051282051282051
+        ],
+        "mean_pp": 0.09615384615384616,
+        "n_games": 65
+      },
+      "rescue": {
+        "ci95_pp": [
+          0.9722222222222222,
+          4.401709401709402
+        ],
+        "mean_pp": 2.467948717948718,
+        "n_games": 65
+      }
+    },
+    "Dzero": {
+      "main": {
+        "ci95_pp": [
+          0.8974358974358976,
+          4.572649572649573
+        ],
+        "mean_pp": 2.510683760683761,
+        "n_games": 65
+      },
+      "one_step": {
+        "ci95_pp": [
+          -0.6303418803418803,
+          0.08547008547008549
+        ],
+        "mean_pp": -0.2136752136752137,
+        "n_games": 65
+      },
+      "rescue": {
+        "ci95_pp": [
+          0.7158119658119659,
+          4.3589743589743595
+        ],
+        "mean_pp": 2.2970085470085477,
+        "n_games": 65
+      }
+    }
+  },
+  "pooled": {
+    "after": {
+      "ci95_pp": [
+        1.9764957264957264,
+        5.384615384615385
+      ],
+      "mean_pp": 3.530982905982906,
+      "n_games": 65
+    },
+    "base": {
+      "ci95_pp": [
+        0.4487179487179487,
+        2.532051282051282
+      ],
+      "mean_pp": 1.324786324786325,
+      "n_games": 65
+    },
+    "full": {
+      "ci95_pp": [
+        1.8107638888888888,
+        4.989316239316239
+      ],
+      "mean_pp": 3.274572649572649,
+      "n_games": 65
+    },
+    "full_gain": {
+      "ci95_pp": [
+        0.9615384615384616,
+        3.189102564102564
+      ],
+      "mean_pp": 1.9497863247863247,
+      "n_games": 65
+    },
+    "interaction": {
+      "ci95_pp": [
+        -0.6997863247863249,
+        0.6410256410256409
+      ],
+      "mean_pp": -0.01602564102564114,
+      "n_games": 65
+    },
+    "one_step": {
+      "ci95_pp": [
+        -0.8173076923076924,
+        0.15491452991452986
+      ],
+      "mean_pp": -0.24038461538461545,
+      "n_games": 65
+    },
+    "primary": {
+      "ci95_pp": [
+        1.3514957264957268,
+        3.7126068376068377
+      ],
+      "mean_pp": 2.4465811965811968,
+      "n_games": 65
+    },
+    "rescue": {
+      "ci95_pp": [
+        1.1965811965811968,
+        3.4508547008547006
+      ],
+      "mean_pp": 2.206196581196582,
+      "n_games": 65
+    },
+    "step": {
+      "ci95_pp": [
+        0.46474358974358965,
+        1.859107905982904
+      ],
+      "mean_pp": 1.0844017094017095,
+      "n_games": 65
+    }
+  },
+  "protocol": "E4d-v1",
+  "reading": "E4d-SUPPORT",
+  "remaining_bins": {
+    "10-19": {
+      "after": {
+        "ci95_pp": [
+          -0.09057971014492752,
+          1.0869565217391302
+        ],
+        "mean_pp": 0.4528985507246377,
+        "n_games": 46
+      },
+      "n_games": 46,
+      "n_states": 47,
+      "one_step": {
+        "ci95_pp": [
+          -0.4528985507246376,
+          0.09057971014492752
+        ],
+        "mean_pp": -0.1358695652173913,
+        "n_games": 46
+      },
+      "primary": {
+        "ci95_pp": [
+          0.09057971014492752,
+          1.177536231884058
+        ],
+        "mean_pp": 0.5887681159420289,
+        "n_games": 46
+      }
+    },
+    "20-29": {
+      "after": {
+        "ci95_pp": [
+          -0.168918918918919,
+          1.9144144144144146
+        ],
+        "mean_pp": 0.8445945945945946,
+        "n_games": 37
+      },
+      "n_games": 37,
+      "n_states": 39,
+      "one_step": {
+        "ci95_pp": [
+          -0.7319819819819819,
+          0.05630630630630631
+        ],
+        "mean_pp": -0.28153153153153154,
+        "n_games": 37
+      },
+      "primary": {
+        "ci95_pp": [
+          0.33783783783783783,
+          2.027027027027027
+        ],
+        "mean_pp": 1.1261261261261262,
+        "n_games": 37
+      }
+    },
+    "30+": {
+      "after": {
+        "ci95_pp": [
+          1.711309523809524,
+          4.873511904761905
+        ],
+        "mean_pp": 3.1436011904761902,
+        "n_games": 56
+      },
+      "n_games": 56,
+      "n_states": 74,
+      "one_step": {
+        "ci95_pp": [
+          -0.78125,
+          0.5766369047619047
+        ],
+        "mean_pp": -0.01860119047619056,
+        "n_games": 56
+      },
+      "primary": {
+        "ci95_pp": [
+          1.6927083333333335,
+          4.892113095238097
+        ],
+        "mean_pp": 3.1622023809523814,
+        "n_games": 56
+      }
+    }
+  },
+  "status": "FORMAL",
+  "target_discovery": {
+    "caveat": "First target seen = first ALFWorld numbered-target mention in prefix or continuation observation. The discovery/conditional execution split is descriptive and not a causal mediation claim.",
+    "conditional": {
+      "00": {
+        "first_seen_turn_mean": 16.031071136549468,
+        "frac_seen_before_decision": 0.0875,
+        "n": 3840,
+        "seen_after_decision": 0.30755208333333334,
+        "seen_and_success": 0.010677083333333334,
+        "success": 0.010677083333333334,
+        "success_if_not_seen": 0.0,
+        "success_if_seen": 0.033524121013900246,
+        "target_seen": 0.3184895833333333,
+        "unseen_and_success": 0.0
+      },
+      "01": {
+        "first_seen_turn_mean": 19.281883194278905,
+        "frac_seen_before_decision": 0.0875,
+        "n": 7680,
+        "seen_after_decision": 0.434765625,
+        "seen_and_success": 0.026953125,
+        "success": 0.026953125,
+        "success_if_not_seen": 0.0,
+        "success_if_seen": 0.06168057210965435,
+        "target_seen": 0.43697916666666664,
+        "unseen_and_success": 0.0
+      }
+    },
+    "differences": {
+      "seen_after_decision": {
+        "ci95_pp": [
+          10.122863247863249,
+          17.131677350427346
+        ],
+        "mean_pp": 13.488247863247862,
+        "n_games": 65
+      },
+      "seen_and_success": {
+        "ci95_pp": [
+          1.1965811965811968,
+          3.4508547008547006
+        ],
+        "mean_pp": 2.206196581196581,
+        "n_games": 65
+      },
+      "success": {
+        "ci95_pp": [
+          1.1965811965811968,
+          3.4508547008547006
+        ],
+        "mean_pp": 2.206196581196581,
+        "n_games": 65
+      },
+      "target_seen": {
+        "ci95_pp": [
+          9.369391025641026,
+          16.437232905982903
+        ],
+        "mean_pp": 12.7724358974359,
+        "n_games": 65
+      },
+      "unseen_and_success": {
+        "ci95_pp": [
+          0.0,
+          0.0
+        ],
+        "mean_pp": 0.0,
+        "n_games": 65
+      }
+    },
+    "exact_success_split_pp": {
+      "found_and_succeeded": 1.6276041666666667,
+      "not_found_and_succeeded": 0.0
+    },
+    "shapley_descriptive": {
+      "conditional_execution_term_pp": 1.0635659456872741,
+      "discovery_prevalence_term_pp": 0.5640382209793924,
+      "note": "Algebraic decomposition, not causal mediation; observed conditional groups can differ",
+      "total_pp": 1.6276041666666665
+    }
+  },
+  "warning": "Z3 is 15/15 observed zeros, not proof Q=0. Rescue need not be unique to zero-trained models.",
+  "zero_vs_gap": {
+    "Azero-Agap": {
+      "main": {
+        "ci95_pp": [
+          -1.3995726495726497,
+          0.9935897435897435
+        ],
+        "mean_pp": -0.1282051282051283,
+        "n_games": 65
+      },
+      "rescue": {
+        "ci95_pp": [
+          -1.4423076923076923,
+          0.6092414529914492
+        ],
+        "mean_pp": -0.36324786324786323,
+        "n_games": 65
+      }
+    },
+    "Dzero-Dgap": {
+      "main": {
+        "ci95_pp": [
+          -0.7051282051282051,
+          1.1217948717948723
+        ],
+        "mean_pp": 0.138888888888889,
+        "n_games": 65
+      },
+      "rescue": {
+        "ci95_pp": [
+          -1.0363247863247862,
+          0.7371794871794873
+        ],
+        "mean_pp": -0.1709401709401708,
+        "n_games": 65
+      }
+    }
+  }
+}

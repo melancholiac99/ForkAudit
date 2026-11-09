@@ -1,0 +1,301 @@
+{
+  "O_groups": {
+    "0": {
+      "n_games": 38,
+      "n_states": 57,
+      "rate_positive_gap_base": 0.07017543859649122,
+      "rate_positive_gap_trained": 0.08771929824561403,
+      "stats": {
+        "discovery_gain": {
+          "ci95_pp": [
+            9.64175194931774,
+            21.367111354775826
+          ],
+          "mean_pp": 15.309454191033133,
+          "n_games": 38
+        },
+        "gap_gain": {
+          "ci95_pp": [
+            -4.057017543859649,
+            3.3456688596491038
+          ],
+          "mean_pp": -0.3289473684210524,
+          "n_games": 38
+        },
+        "mean_gain": {
+          "ci95_pp": [
+            1.621558235867446,
+            5.522721734892785
+          ],
+          "mean_pp": 3.371101364522416,
+          "n_games": 38
+        }
+      }
+    },
+    "1": {
+      "n_games": 12,
+      "n_states": 15,
+      "rate_positive_gap_base": 0.0,
+      "rate_positive_gap_trained": 0.06666666666666667,
+      "stats": {
+        "discovery_gain": {
+          "ci95_pp": [
+            4.953703703703704,
+            20.578703703703702
+          ],
+          "mean_pp": 12.44212962962963,
+          "n_games": 12
+        },
+        "gap_gain": {
+          "ci95_pp": [
+            0.0,
+            7.638888888888888
+          ],
+          "mean_pp": 3.125,
+          "n_games": 12
+        },
+        "mean_gain": {
+          "ci95_pp": [
+            0.11574074074074073,
+            2.013888888888889
+          ],
+          "mean_pp": 0.9490740740740738,
+          "n_games": 12
+        }
+      }
+    }
+  },
+  "O_prediction": {
+    "ci95_pp": [
+      -1.7992424242424243,
+      9.58335559116809
+    ],
+    "mean_pp": 3.453947368421052,
+    "n_games_O0": 38,
+    "n_games_O1": 12,
+    "n_games_total": 46
+  },
+  "arms": {
+    "Azero": {
+      "n_games": 46,
+      "n_states": 72,
+      "summaries": {
+        "discovery": {
+          "ci95_pp": [
+            30.15700483091787,
+            52.826388888888886
+          ],
+          "mean_pp": 41.46135265700483,
+          "n_games": 46
+        },
+        "heldout_gap": {
+          "ci95_pp": [
+            -0.9963768115942023,
+            5.434782608695652
+          ],
+          "mean_pp": 2.083333333333333,
+          "n_games": 46
+        },
+        "mean": {
+          "ci95_pp": [
+            1.7270531400966187,
+            6.509762479871174
+          ],
+          "mean_pp": 3.784219001610306,
+          "n_games": 46
+        },
+        "positive_heldout": {
+          "ci95_pp": [
+            4.3478260869565215,
+            21.73913043478261
+          ],
+          "mean_pp": 11.956521739130435,
+          "n_games": 46
+        },
+        "range_naive": {
+          "ci95_pp": [
+            5.434279388083736,
+            12.862318840579709
+          ],
+          "mean_pp": 8.937198067632849,
+          "n_games": 46
+        }
+      }
+    },
+    "Dzero": {
+      "n_games": 46,
+      "n_states": 72,
+      "summaries": {
+        "discovery": {
+          "ci95_pp": [
+            37.45159017713366,
+            60.11725040257648
+          ],
+          "mean_pp": 48.86070853462158,
+          "n_games": 46
+        },
+        "heldout_gap": {
+          "ci95_pp": [
+            -1.2681159420289856,
+            5.072463768115942
+          ],
+          "mean_pp": 1.8115942028985508,
+          "n_games": 46
+        },
+        "mean": {
+          "ci95_pp": [
+            1.7270531400966178,
+            6.912439613526568
+          ],
+          "mean_pp": 4.025764895330113,
+          "n_games": 46
+        },
+        "positive_heldout": {
+          "ci95_pp": [
+            3.260869565217391,
+            21.73913043478261
+          ],
+          "mean_pp": 11.956521739130435,
+          "n_games": 46
+        },
+        "range_naive": {
+          "ci95_pp": [
+            4.4685990338164245,
+            12.761674718196456
+          ],
+          "mean_pp": 8.353462157809984,
+          "n_games": 46
+        }
+      }
+    },
+    "base": {
+      "n_games": 46,
+      "n_states": 72,
+      "summaries": {
+        "discovery": {
+          "ci95_pp": [
+            20.54347826086957,
+            41.47644927536231
+          ],
+          "mean_pp": 30.688405797101453,
+          "n_games": 46
+        },
+        "heldout_gap": {
+          "ci95_pp": [
+            0.0,
+            4.076086956521739
+          ],
+          "mean_pp": 1.766304347826087,
+          "n_games": 46
+        },
+        "mean": {
+          "ci95_pp": [
+            0.24456521739130438,
+            2.0652173913043477
+          ],
+          "mean_pp": 1.0326086956521736,
+          "n_games": 46
+        },
+        "positive_heldout": {
+          "ci95_pp": [
+            0.0,
+            15.217391304347828
+          ],
+          "mean_pp": 6.521739130434782,
+          "n_games": 46
+        },
+        "range_naive": {
+          "ci95_pp": [
+            0.9510869565217392,
+            6.114130434782608
+          ],
+          "mean_pp": 3.260869565217391,
+          "n_games": 46
+        }
+      }
+    }
+  },
+  "caution": "Positive 4+4 heldout scores are noisy; they are not per-point significance detections. No observed new fork is not a refutation of the policy-dependent-credit hypothesis. Repeated checkpoint comparisons are exploratory, not independent confirmations. Primary E4d reading is unchanged.",
+  "checkpoint_comparisons": {},
+  "lock_sha256": "b4e35f6013379200c97fd148b998f8368a308092941dac8d3bec78993e35aa73",
+  "n_states": 72,
+  "pointwise": {
+    "frac_positive_gap_gain": 0.06944444444444445,
+    "n_positive_gap_gain": 5,
+    "note": "A positive pointwise heldout score is not an individual significance test"
+  },
+  "protocol": "credit-grok-armprobe-v2",
+  "reading_secondary": "UPLIFT-WITHOUT-RESOLVED-FORK",
+  "remaining_bins": {
+    "10-19": {
+      "O_counts": {
+        "0": 12,
+        "1": 5
+      },
+      "n": 17,
+      "predicted_gap_difference": {
+        "ci95_pp": [
+          0.0,
+          13.888888888888888
+        ],
+        "mean_pp": 4.166666666666666,
+        "n_games_O0": 12,
+        "n_games_O1": 5,
+        "n_games_total": 17
+      }
+    },
+    "20-29": {
+      "O_counts": {
+        "0": 17,
+        "1": 0
+      },
+      "n": 17,
+      "predicted_gap_difference": null
+    },
+    "30+": {
+      "O_counts": {
+        "0": 28,
+        "1": 10
+      },
+      "n": 38,
+      "predicted_gap_difference": {
+        "ci95_pp": [
+          -3.3333333333333335,
+          9.773164335664333
+        ],
+        "mean_pp": 2.7014652014652016,
+        "n_games_O0": 26,
+        "n_games_O1": 7,
+        "n_games_total": 32
+      }
+    }
+  },
+  "reps_per_policy": 8,
+  "requested_probe_n": 72,
+  "trained_minus_base": {
+    "discovery_gain": {
+      "ci95_pp": [
+        9.640675322061194,
+        19.637756642512073
+      ],
+      "mean_pp": 14.472624798711756,
+      "n_games": 46
+    },
+    "gap_gain": {
+      "ci95_pp": [
+        -2.8532608695652177,
+        3.1702898550724634
+      ],
+      "mean_pp": 0.1811594202898552,
+      "n_games": 46
+    },
+    "mean_gain": {
+      "ci95_pp": [
+        1.4663597020933976,
+        4.5904287439613505
+      ],
+      "mean_pp": 2.872383252818035,
+      "n_games": 46
+    }
+  }
+}
