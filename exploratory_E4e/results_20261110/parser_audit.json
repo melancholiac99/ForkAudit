@@ -1,0 +1,359 @@
+{
+  "samples": [
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/base/s3007_r1.json",
+      "sha256": "31689b83684395c9f3177931be12b91fad3a0404beff04ea9e0314f224fe20ea",
+      "task_type": "look_at_obj_in_light",
+      "won": false,
+      "milestones": {
+        "recognized": true,
+        "kind": "look",
+        "target": "bowl",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": true,
+          "completed": false
+        },
+        "evidence": {
+          "visible_ids": [
+            "bowl 1",
+            "bowl 2"
+          ],
+          "picked_ids": [
+            "bowl 1"
+          ],
+          "processed_ids": [],
+          "won": false
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s1/s3017_r0.json",
+      "sha256": "bee69fd4161febbcf090f7a418e45bf4a5a48dc7f968333827fceec769280547",
+      "task_type": "look_at_obj_in_light",
+      "won": true,
+      "milestones": {
+        "recognized": true,
+        "kind": "look",
+        "target": "pencil",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": true,
+          "completed": true
+        },
+        "evidence": {
+          "visible_ids": [
+            "pencil 3"
+          ],
+          "picked_ids": [
+            "pencil 3"
+          ],
+          "processed_ids": [],
+          "won": true
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/base/s3040_r2.json",
+      "sha256": "d2f594de70439540e7b4ad0ca22e799deb1091bc3bd7914f4603a60ada3b6ef0",
+      "task_type": "pick_and_place_simple",
+      "won": false,
+      "milestones": {
+        "recognized": true,
+        "kind": "place",
+        "target": "watch",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": false,
+          "completed": false
+        },
+        "evidence": {
+          "visible_ids": [
+            "watch 1"
+          ],
+          "picked_ids": [],
+          "processed_ids": [],
+          "won": false
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s0/s3030_r1.json",
+      "sha256": "c1d0f424a8f8fded7bef322a370568591325c15208afd02a7a3378ea22f07be8",
+      "task_type": "pick_and_place_simple",
+      "won": true,
+      "milestones": {
+        "recognized": true,
+        "kind": "place",
+        "target": "saltshaker",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": true,
+          "completed": true
+        },
+        "evidence": {
+          "visible_ids": [
+            "saltshaker 1"
+          ],
+          "picked_ids": [
+            "saltshaker 1"
+          ],
+          "processed_ids": [],
+          "won": true
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s2/s3056_r1.json",
+      "sha256": "583f0e685165910ef934bbc512fce0f036035270fc1313048e78f4c9815fa4f3",
+      "task_type": "pick_clean_then_place_in_recep",
+      "won": false,
+      "milestones": {
+        "recognized": true,
+        "kind": "clean",
+        "target": "mug",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": false,
+          "processed": false,
+          "completed": false
+        },
+        "evidence": {
+          "visible_ids": [
+            "mug 3"
+          ],
+          "picked_ids": [],
+          "processed_ids": [],
+          "won": false
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s2/s3068_r1.json",
+      "sha256": "ab2c0b14741ff9be3bc2e0fae9171dc984a5b34366c33cbf9452b0236531bd9d",
+      "task_type": "pick_clean_then_place_in_recep",
+      "won": true,
+      "milestones": {
+        "recognized": true,
+        "kind": "clean",
+        "target": "soapbar",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": true,
+          "processed": true,
+          "completed": true
+        },
+        "evidence": {
+          "visible_ids": [
+            "soapbar 1"
+          ],
+          "picked_ids": [
+            "soapbar 1"
+          ],
+          "processed_ids": [
+            "soapbar 1"
+          ],
+          "won": true
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s2/s3074_r0.json",
+      "sha256": "a1e087f1bcd02c788ecd98ea0c16c7068f6827ccbaefa690bf579a517a10d899",
+      "task_type": "pick_cool_then_place_in_recep",
+      "won": false,
+      "milestones": {
+        "recognized": true,
+        "kind": "cool",
+        "target": "bread",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": true,
+          "processed": false,
+          "completed": false
+        },
+        "evidence": {
+          "visible_ids": [
+            "bread 1",
+            "bread 2"
+          ],
+          "picked_ids": [
+            "bread 1"
+          ],
+          "processed_ids": [],
+          "won": false
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s2/s3090_r2.json",
+      "sha256": "cc45866170ca99a25b8dab0eb2aad0ea3de4c3c39b5db2746538b91454007c34",
+      "task_type": "pick_cool_then_place_in_recep",
+      "won": true,
+      "milestones": {
+        "recognized": true,
+        "kind": "cool",
+        "target": "potato",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": true,
+          "processed": true,
+          "completed": true
+        },
+        "evidence": {
+          "visible_ids": [
+            "potato 1",
+            "potato 2"
+          ],
+          "picked_ids": [
+            "potato 1"
+          ],
+          "processed_ids": [
+            "potato 1"
+          ],
+          "won": true
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s2/s3105_r1.json",
+      "sha256": "30e4450176dde02cfc5bfaa567f1ebc95979397c4bdd174c413239d6c8ffb5dd",
+      "task_type": "pick_heat_then_place_in_recep",
+      "won": false,
+      "milestones": {
+        "recognized": true,
+        "kind": "heat",
+        "target": "egg",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": true,
+          "processed": false,
+          "completed": false
+        },
+        "evidence": {
+          "visible_ids": [
+            "egg 1"
+          ],
+          "picked_ids": [
+            "egg 1"
+          ],
+          "processed_ids": [],
+          "won": false
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s2/s3116_r1.json",
+      "sha256": "9e07eb98dc3f36b1242aa33ceb46f0d9576adea19beed343ca527d568952bd3b",
+      "task_type": "pick_heat_then_place_in_recep",
+      "won": true,
+      "milestones": {
+        "recognized": true,
+        "kind": "heat",
+        "target": "tomato",
+        "required_instances": 1,
+        "stages": {
+          "found": true,
+          "picked": true,
+          "processed": true,
+          "completed": true
+        },
+        "evidence": {
+          "visible_ids": [
+            "tomato 1"
+          ],
+          "picked_ids": [
+            "tomato 1"
+          ],
+          "processed_ids": [
+            "tomato 1"
+          ],
+          "won": true
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s0/s3119_r1.json",
+      "sha256": "5bbf04c4cad15719e9369c84e3fbbe8f69159412b13b028b105bc9fba1233c8a",
+      "task_type": "pick_two_obj_and_place",
+      "won": false,
+      "milestones": {
+        "recognized": true,
+        "kind": "two",
+        "target": "cd",
+        "required_instances": 2,
+        "stages": {
+          "found": true,
+          "picked": false,
+          "completed": false
+        },
+        "evidence": {
+          "visible_ids": [
+            "cd 1",
+            "cd 2"
+          ],
+          "picked_ids": [
+            "cd 1"
+          ],
+          "processed_ids": [],
+          "won": false
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    },
+    {
+      "path": "/root/autodl-tmp/idea/exploratory_E4/data/rollout/valid_unseen/Aprime_s0/s3130_r1.json",
+      "sha256": "7011ded449d8746987e8d12143f392c532dd8f785077d3b48698caf3304ac967",
+      "task_type": "pick_two_obj_and_place",
+      "won": true,
+      "milestones": {
+        "recognized": true,
+        "kind": "two",
+        "target": "soapbar",
+        "required_instances": 2,
+        "stages": {
+          "found": true,
+          "picked": true,
+          "completed": true
+        },
+        "evidence": {
+          "visible_ids": [
+            "soapbar 1",
+            "soapbar 2"
+          ],
+          "picked_ids": [
+            "soapbar 1",
+            "soapbar 2"
+          ],
+          "processed_ids": [],
+          "won": true
+        }
+      },
+      "review": "Manually inspected raw task and pickup/release/process feedback; observed events consistent. Winning prerequisites may be inferred from environment won. No claim of exhaustive detector sensitivity."
+    }
+  ],
+  "n_samples": 12,
+  "selection": "SHA256(tag+filename), one episode per task_type/won stratum; all available strata",
+  "passed": true,
+  "additional_regression": "pick_two one pickup must not imply two found or picked",
+  "limitations": "Representative feedback audit only; failed trajectories may contain unobserved milestones."
+}

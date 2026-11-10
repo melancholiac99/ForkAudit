@@ -106,7 +106,7 @@ def put_candidates(admissible: list[str], held: Optional[str]) -> list[str]:
 
 
 def forced_release_action(held: CarryState, task: str, task_type: str, admissible: list[str]) -> Optional[str]:
-    """Conservative oracle-style intervention; never synthesizes an illegal command."""
+    """Observation-history intervention; never synthesizes an illegal command."""
     w = target_word(task)
     if task_kind(task_type) == "unknown" or not held.known or not held.item or not w or is_target(held.item, w):
         return None
@@ -145,8 +145,8 @@ def milestones(ep: dict) -> dict:
     done = bool(ep.get("steps", []) and ep["steps"][-1].get("won_after", False))
     if done:
         won = True
-    found = len(visible) >= required or bool(picked) or bool(processed) or won
-    picked_ok = len(picked) >= required or bool(processed) or won
+    found = len(visible) >= required or len(picked) >= required or len(processed) >= required or won
+    picked_ok = len(picked) >= required or len(processed) >= required or won
     steps = ["found", "picked"]
     reached = {"found": found, "picked": picked_ok}
     if kind in PROCESS_VERBS:

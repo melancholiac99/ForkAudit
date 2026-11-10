@@ -1,0 +1,44 @@
+E4e exploratory execution on credit-grok, 2026-11-10.
+Upstream a8433d49e added the stage funnel and four-arm inference audit.
+Original E4/E4b/E4c/E4d code, protocols, data and reports are not modified.
+
+Available data: 402 Base and 1,206 Aprime valid_unseen original episodes,
+read-only from /root/autodl-tmp/idea/exploratory_E4. Every input hash matches
+E4's published final artifact manifest. Three Aprime LoRA tensor hashes match
+the published archive's excluded_checkpoint_tensors manifest. Only reference
+these files; do not modify the main worktree.
+No local compatible public RL full checkpoint is present. GiGPO reference code
+is not a trained checkpoint. README section 2 is explicitly unavailable; no
+RL weights are invented/downloaded and no training is run.
+
+Before new GPU evaluation: correct the pick-two milestone bug (one pickup must
+not count as two found/picked), with a regression test. Preserve generated
+response/model_valid separately from executed action validity. Atomically save
+each completed episode so later failure does not lose earlier completed work.
+Reject resume under mismatched provenance. Add turn timing and a fixed pilot
+seed selector; these do not change actions, seeds or the 50-step cap.
+12 representative old episodes (all task-type/outcome strata) were inspected
+for observed pickup/process/release wording. Detector misses on failed episodes
+remain possible; first-missing counts are not causal recoverable budgets.
+
+Freeze the full budget before pilot results: all 134 valid_unseen games, three
+rollout repeats, four conditions, Base plus all three Aprime training seeds:
+6,432 episodes. Pilot: one SHA256-selected game per task type, one repeat,
+four conditions, Base and Aprime_s0; separate outputs, excluded from full stats.
+No effect-based sample selection, sizing or early stop. No corrective training,
+GRPO, hidden-state intervention, or new source data collection is authorized here.
+
+Single RTX 6000D, 20 CPU workers, lockstep chunk=402. Keep E4 sampling parameters,
+prompt/parser/step cap. Use BF16 and the exact registered E4d accelerated engine:
+V1 runner, batch invariance, prefix cache, async scheduling, CUDA decode graphs,
+compilation mode 0 (no Inductor). All conditions share the same engine settings.
+This new evaluation does not mix previous-device episode outputs into new arms.
+
+Full evaluation requires structural/provenance/seed/carry-rule verification,
+real-environment replay samples, task-specific funnel and paired game-level
+bootstrap intervals. Retain unrecognized tasks and report intervention coverage,
+rule triggers versus actual overrides, and observable unnecessary-release flags.
+Manual override review precedes final publication. Only publish credit-grok.
+Latest user authorization: finish, verify, upload, sync and shutdown. On any
+failure attempt repair; preserve data/logs and sync if unrecoverable, then shut
+down. Do not restart old E4d or hindsight queues.

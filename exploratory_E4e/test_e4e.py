@@ -48,6 +48,26 @@ class FakePolicy:
 
 
 class StageTests(unittest.TestCase):
+    def test_completed_episode_survives_later_batch_failure(self):
+        class FailingPool(FakePool):
+            def step(self, actions):
+                out = super().step(actions)
+                if "3000:0" in actions:
+                    obs, adm, _, _ = out["3000:0"]
+                    out["3000:0"] = (obs, adm, True, True)
+                else:
+                    raise RuntimeError("simulated later failure")
+                return out
+        with tempfile.TemporaryDirectory() as root:
+            games = [dict(seed=s, game_file="g", task_type="pick_and_place_simple") for s in [3000, 3001]]
+            with self.assertRaisesRegex(RuntimeError, "simulated later failure"):
+                R.run(games, 1, FakePolicy(), FailingPool(), root, "base", SimpleNamespace(ALFWORLD_DATA=""), {"plan": "a"})
+            completed = Path(root, "s3000_r0.json")
+            self.assertTrue(json.loads(completed.read_text())["won"])
+            self.assertFalse(Path(root, "s3001_r0.json").exists())
+            with self.assertRaisesRegex(RuntimeError, "different configuration"):
+                R.run(games[:1], 1, FakePolicy(), FakePool(), root, "base", SimpleNamespace(ALFWORLD_DATA=""), {"plan": "b"})
+
     def test_tracking_and_legal_recovery(self):
         c = S.CarryState()
         self.assertFalse(c.known)
@@ -74,6 +94,12 @@ class StageTests(unittest.TestCase):
         self.assertEqual(list(S.milestones(look)["stages"]), ["found", "picked", "completed"])
         two = dict(task="put two apple in bowl", task_type="pick_two_obj_and_place", initial_obs="apple 1", steps=[], won=False)
         self.assertFalse(S.milestones(two)["stages"]["found"])
+        two["steps"] = [dict(obs_after="You pick up the apple 1 from the table 1.")]
+        self.assertFalse(S.milestones(two)["stages"]["found"])
+        self.assertFalse(S.milestones(two)["stages"]["picked"])
+        two["steps"].append(dict(obs_after="You see apple 2 on the table 2."))
+        self.assertTrue(S.milestones(two)["stages"]["found"])
+        self.assertFalse(S.milestones(two)["stages"]["picked"])
         two["won"] = True
         self.assertTrue(all(S.milestones(two)["stages"].values()))
 

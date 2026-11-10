@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -45,8 +46,16 @@ def run(games, reps, pol, pool, out_dir, cond, alfenv, prov):
     from e4_01_rollout import seed_for
 
     os.makedirs(out_dir, exist_ok=True)
-    jobs = [(g, r) for g in games for r in range(reps)
-            if not os.path.exists(os.path.join(out_dir, f"s{g['seed']}_r{r}.json"))]
+    jobs = []
+    for g in games:
+        for r in range(reps):
+            path = Path(out_dir, f"s{g['seed']}_r{r}.json")
+            if path.exists():
+                old = json.loads(path.read_text())
+                if old.get("condition") != cond or old.get("provenance") != prov:
+                    raise RuntimeError(f"Completed output has different configuration: {path}")
+            else:
+                jobs.append((g, r))
     if not jobs:
         return
     keys = [f"{g['seed']}:{rep}" for g, rep in jobs]
@@ -63,6 +72,16 @@ def run(games, reps, pol, pool, out_dir, cond, alfenv, prov):
                                  task_type=g["task_type"], task=common.extract_task(obs),
                                  initial_obs=obs, obs=obs, adm=adm, mem=[], steps=[],
                                  carry=cs, won=bool(won), done=bool(won))
+    saved = set()
+    def save_finished(key):
+        if key in saved:
+            return
+        x = active_state[key]
+        result = {k: v for k, v in x.items() if k not in ("carry", "obs", "adm", "mem")}
+        result.update(n_turns=len(x["steps"]), condition=cond, provenance=prov)
+        E.write_json(os.path.join(out_dir, f"s{x['seed']}_r{x['rep']}.json"), result)
+        saved.add(key)
+    started = time.monotonic()
     try:
         for turn in range(1, common.MAX_STEPS + 1):
             active = [key for key in keys if not active_state[key]["done"]]
@@ -72,7 +91,9 @@ def run(games, reps, pol, pool, out_dir, cond, alfenv, prov):
                                   active_state[key]["obs"], active_state[key]["adm"],
                                   active_state[key]["carry"], cond) for key in active]
             seeds = [seed_for(active_state[key]["seed"], turn, active_state[key]["rep"]) for key in active]
+            generation_start = time.monotonic()
             model_out = pol.sample(prompts, seeds, logprobs=False)
+            generation_seconds = time.monotonic() - generation_start
             to_execute = {}
             for key, prompt, sample_seed, out in zip(active, prompts, seeds, model_out):
                 x = active_state[key]
@@ -88,8 +109,10 @@ def run(games, reps, pol, pool, out_dir, cond, alfenv, prov):
                                         overridden=forced is not None and proposed != forced,
                                         held_before=x["carry"].item if x["carry"].known else None,
                                         held_known_before=x["carry"].known,
-                                        valid=valid, fmt=fmt, sample_seed=sample_seed,
+                                        valid=True if forced is not None else valid,
+                                        model_valid=valid, fmt=fmt, response=out[0]["text"], sample_seed=sample_seed,
                                         obs_before=x["obs"], admissible=x["adm"]))
+            environment_start = time.monotonic()
             responses = pool.step(to_execute)
             for key in active:
                 x = active_state[key]
@@ -101,12 +124,15 @@ def run(games, reps, pol, pool, out_dir, cond, alfenv, prov):
                 x["mem"].append(dict(text_obs=x["obs"], action=to_execute[key]))
                 x["obs"], x["adm"] = obs, adm
                 x["won"], x["done"] = bool(won), bool(won or done)
+                if x["done"]:
+                    save_finished(key)
             print(f"[{cond}] turn={turn} active={len(active)} won={sum(active_state[k]['won'] for k in keys)}", flush=True)
+            print(json.dumps(dict(event="turn_timing", condition=cond, turn=turn, active=len(active),
+                                  generation_seconds=generation_seconds,
+                                  environment_seconds=time.monotonic()-environment_start,
+                                  elapsed_seconds=time.monotonic()-started)), flush=True)
         for key in keys:
-            x = active_state[key]
-            result = {k: v for k, v in x.items() if k not in ("carry", "obs", "adm", "mem")}
-            result.update(n_turns=len(x["steps"]), condition=cond, provenance=prov)
-            E.write_json(os.path.join(out_dir, f"s{x['seed']}_r{x['rep']}.json"), result)
+            save_finished(key)
     finally:
         pool.close(keys)
 
@@ -122,6 +148,7 @@ def main():
     p.add_argument("--workers", type=int, default=20)
     p.add_argument("--chunk", type=int, default=160)
     p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--game-seeds", type=int, nargs="+", help="Explicit fixed pilot games; full evaluation omits this")
     p.add_argument("--dry", action="store_true", help="Use E4's mock policy; still requires ALFWorld")
     p.add_argument("--out", default=str(ROOT / "exploratory_E4e" / "data" / "rollout"))
     args = p.parse_args()
@@ -130,6 +157,10 @@ def main():
     if args.reps < 1 or args.workers < 1 or args.chunk < args.reps:
         p.error("Require reps>=1, workers>=1, chunk>=reps")
     games = json.loads(Path(E.GAMES_PATH).read_text())[args.split]
+    if args.game_seeds:
+        if len(set(args.game_seeds)) != len(args.game_seeds) or not set(args.game_seeds) <= {g["seed"] for g in games}:
+            p.error("Pilot seeds must be distinct members of the requested split")
+        games = [g for g in games if g["seed"] in set(args.game_seeds)]
     if args.limit:
         games = games[:args.limit]
     # Environment workers must fork BEFORE initializing CUDA/vLLM.
@@ -144,12 +175,16 @@ def main():
             from e4_policy import LoraPolicy
             pol = LoraPolicy(model_path=args.model_path)
             pol.set_adapter(args.adapter, 1)
+            if (pol.lora is None) != (args.adapter is None):
+                raise RuntimeError("Requested adapter routing was not activated")
         try:
             for cond in args.conditions:
                 dest = os.path.join(args.out, args.split, args.policy_tag, cond)
                 prov = dict(script="exploratory_E4e/four_arm_eval.py", commit=common.git_commit(), argv=sys.argv,
                             model=args.model_path, adapter=args.adapter, condition=cond,
-                            vllm=pol.vllm_version, games_sha256=E.file_sha256(E.GAMES_PATH))
+                            vllm=pol.vllm_version, games_sha256=E.file_sha256(E.GAMES_PATH),
+                            execution_plan_sha256=os.environ.get("E4E_EXECUTION_PLAN_SHA256"),
+                            source_sha256=E.file_sha256(__file__))
                 batch_size = max(1, args.chunk // args.reps)
                 for i in range(0, len(games), batch_size):
                     run(games[i:i + batch_size], args.reps, pol, pool, dest, cond, alfenv, prov)
