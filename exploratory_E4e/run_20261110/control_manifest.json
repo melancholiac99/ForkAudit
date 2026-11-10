@@ -1,0 +1,19 @@
+{
+ "plan_sha256": "db7f31f3db43641b22cfe65ef26000a28eb9f23671a8e825464d186644c6b4ac",
+ "source": {
+  "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/run_server.py": "b56be6b4c1f905bc22c269e463b29552ae25919a4033fd09497fc13e405a7dd2",
+  "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/analyze_server.py": "5d2d5d11119423a5bce99b86333648ec0e3459f64cceb1bb6e576b5a4a61ba2a",
+  "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/EXECUTION_20261110.txt": "c3266a636e70e2900f2f0fb3fe9d9a4f8ed3f56611da4f0fafc40faa24469276"
+ },
+ "versions": {
+  "torch": "2.13.0",
+  "vllm": "0.32.0",
+  "transformers": "5.19.0",
+  "numpy": "2.3.5",
+  "textworld": "1.7.0",
+  "alfworld": "0.4.2"
+ },
+ "shutdown_authorized": true,
+ "user_request": "看credit-grok分支最新实验 帮我做一下 做完按照原来要求关机",
+ "time": 1794324408.7455795
+}
