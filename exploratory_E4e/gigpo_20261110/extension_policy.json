@@ -1,0 +1,27 @@
+{
+  "registered_at": 1794325672.4182334,
+  "user_requested": true,
+  "shutdown_only_after_gigpo": true,
+  "repository": "langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld",
+  "revision": "895c9fe1db239ae6140ffec7801a51e157292f83",
+  "split": "valid_unseen",
+  "policy_tag": "gigpo7b",
+  "conditions": [
+    "base"
+  ],
+  "reps": 3,
+  "games": 134,
+  "episodes": 402,
+  "workers": 20,
+  "adapter": null,
+  "training": false,
+  "prompt": "Unchanged ForkAudit HCAPO two-step history; not a GiGPO paper reproduction",
+  "source": {
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/run_with_gigpo.py": "1e9d5cd0e3eb231cb095921cde3f249ad13660ce20cdb8a02092cf8bed8460e3",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/download_gigpo.py": "6f837728a745871dc3dba24c229dd9e3ba9ab0f715fa0e37f715c5360c81d3fa",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/test_gigpo_extension.py": "0efc09146d75143370677e602fcd903cea6a15752522aca229e8de1df84dd546",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/GIGPO_EXTENSION_20261110.txt": "c86ee27e9df936161a4c45621a787b3b2b119503f7bcae3e01f2a2a3ec435b22",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/gigpo_20261110/hub_metadata.json": "cce59ed3217a725883329219ad77faaa3bb897a1af0e4b89bb9fc1333d30e4d4"
+  },
+  "parent_plan_sha256": "db7f31f3db43641b22cfe65ef26000a28eb9f23671a8e825464d186644c6b4ac"
+}

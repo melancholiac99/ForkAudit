@@ -1,0 +1,35 @@
+GiGPO checkpoint extension, requested 2026-11-10
+
+The original E4e four-arm queue remains unchanged. After its verification and
+publication, evaluate langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld at revision
+895c9fe1db239ae6140ffec7801a51e157292f83 as gigpo7b, valid_unseen, base only,
+134 fixed games x 3 repeats = 402 episodes, 20 environment workers, no adapter.
+No training. All original source/plan hashes and numerical engine settings remain
+frozen. run_with_gigpo.py extends orchestration without modifying frozen sources.
+
+huggingface_hub was upgraded to 2.4.0 in a separate system-site-packages venv
+/root/autodl-tmp/hf_download_env_20261110, with socksio 1.0.0 for the configured
+proxy. The active scoring environment retains huggingface_hub 2.2.0.
+The first download failed due to missing socksio; those logs are retained.
+Downloaded files are checked against pinned official Hub size and LFS SHA256
+or Git blob SHA1. The checkpoint is stored outside Git at
+/root/autodl-tmp/models/GiGPO-7B-ALFWorld.
+
+This evaluation uses ForkAudit/HCAPO's two-step history prompt and original
+sampling/parser/50-step cap. The model card supplies its own ALFWorld prompts,
+including a no-history variant. This is a compatibility and behavior check,
+NOT a reproduction of the GiGPO paper or a comparison to its reported rates.
+Cross-policy comparisons under this harness are descriptive, not causal
+estimates of RL versus DPO training effects. The original plan's unavailable
+public-RL checkpoint note describes the earlier state, now superseded by this
+explicit user-requested supplement. Old results and the original plan remain
+unchanged.
+
+Completion requires exact cohort/seed/source validation, response and feedback
+checks, an independent environment replay sample, report and raw artifact
+publication to credit-grok, and remote blob verification. Original E4e manual
+review remains required. Shutdown is extended until BOTH the original audit
+and GiGPO supplement have been verified and published. Exceptions retain logs,
+request repair and use the original bounded recovery procedure. Healthy GPU
+children survive the controller handoff; no second GPU model is started until
+they finish. No main or hindsight changes.
