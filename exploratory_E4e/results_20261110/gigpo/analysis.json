@@ -1,0 +1,247 @@
+{
+ "policy": "gigpo7b",
+ "episodes": 402,
+ "games": 134,
+ "reps": 3,
+ "success": 0.9303482587064676,
+ "funnel": {
+  "by_task_type": {
+   "look_at_obj_in_light": {
+    "episodes": 54,
+    "success": 0.9629629629629629,
+    "stages": [
+     {
+      "stage": "found",
+      "eligible": 54,
+      "passed": 53,
+      "conditional_rate": 0.9814814814814815,
+      "first_missing": 1
+     },
+     {
+      "stage": "picked",
+      "eligible": 53,
+      "passed": 52,
+      "conditional_rate": 0.9811320754716981,
+      "first_missing": 1
+     },
+     {
+      "stage": "completed",
+      "eligible": 52,
+      "passed": 52,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     }
+    ]
+   },
+   "pick_and_place_simple": {
+    "episodes": 72,
+    "success": 0.8611111111111112,
+    "stages": [
+     {
+      "stage": "found",
+      "eligible": 72,
+      "passed": 62,
+      "conditional_rate": 0.8611111111111112,
+      "first_missing": 10
+     },
+     {
+      "stage": "picked",
+      "eligible": 62,
+      "passed": 62,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     },
+     {
+      "stage": "completed",
+      "eligible": 62,
+      "passed": 62,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     }
+    ]
+   },
+   "pick_clean_then_place_in_recep": {
+    "episodes": 93,
+    "success": 0.8817204301075269,
+    "stages": [
+     {
+      "stage": "found",
+      "eligible": 93,
+      "passed": 83,
+      "conditional_rate": 0.8924731182795699,
+      "first_missing": 10
+     },
+     {
+      "stage": "picked",
+      "eligible": 83,
+      "passed": 82,
+      "conditional_rate": 0.9879518072289156,
+      "first_missing": 1
+     },
+     {
+      "stage": "processed",
+      "eligible": 82,
+      "passed": 82,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     },
+     {
+      "stage": "completed",
+      "eligible": 82,
+      "passed": 82,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     }
+    ]
+   },
+   "pick_cool_then_place_in_recep": {
+    "episodes": 63,
+    "success": 1.0,
+    "stages": [
+     {
+      "stage": "found",
+      "eligible": 63,
+      "passed": 63,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     },
+     {
+      "stage": "picked",
+      "eligible": 63,
+      "passed": 63,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     },
+     {
+      "stage": "processed",
+      "eligible": 63,
+      "passed": 63,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     },
+     {
+      "stage": "completed",
+      "eligible": 63,
+      "passed": 63,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     }
+    ]
+   },
+   "pick_heat_then_place_in_recep": {
+    "episodes": 69,
+    "success": 0.927536231884058,
+    "stages": [
+     {
+      "stage": "found",
+      "eligible": 69,
+      "passed": 65,
+      "conditional_rate": 0.9420289855072463,
+      "first_missing": 4
+     },
+     {
+      "stage": "picked",
+      "eligible": 65,
+      "passed": 64,
+      "conditional_rate": 0.9846153846153847,
+      "first_missing": 1
+     },
+     {
+      "stage": "processed",
+      "eligible": 64,
+      "passed": 64,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     },
+     {
+      "stage": "completed",
+      "eligible": 64,
+      "passed": 64,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     }
+    ]
+   },
+   "pick_two_obj_and_place": {
+    "episodes": 51,
+    "success": 1.0,
+    "stages": [
+     {
+      "stage": "found",
+      "eligible": 51,
+      "passed": 51,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     },
+     {
+      "stage": "picked",
+      "eligible": 51,
+      "passed": 51,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     },
+     {
+      "stage": "completed",
+      "eligible": 51,
+      "passed": 51,
+      "conditional_rate": 1.0,
+      "first_missing": 0
+     }
+    ]
+   }
+  },
+  "unrecognized": {},
+  "n_total": 402,
+  "n_recognized": 402,
+  "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+ },
+ "model_parse_valid_rate": 1.0,
+ "descriptive_gigpo_minus_other_pp": {
+  "base": {
+   "n_games": 134,
+   "difference_pp": 55.9701,
+   "ci95_pp": [
+    48.5075,
+    63.4328
+   ]
+  },
+  "aprime_s0": {
+   "n_games": 134,
+   "difference_pp": 45.2736,
+   "ci95_pp": [
+    38.3085,
+    51.99
+   ]
+  },
+  "aprime_s1": {
+   "n_games": 134,
+   "difference_pp": 44.0299,
+   "ci95_pp": [
+    37.0647,
+    50.995
+   ]
+  },
+  "aprime_s2": {
+   "n_games": 134,
+   "difference_pp": 46.7662,
+   "ci95_pp": [
+    39.5522,
+    53.9801
+   ]
+  }
+ },
+ "compatibility": {
+  "passed": true,
+  "architecture": [
+   "Qwen2ForCausalLM"
+  ],
+  "vocab_size": 152064,
+  "tokenizer_size": 151665,
+  "history_length": 2,
+  "prompt": "ForkAudit HCAPO, two-step observation/action history",
+  "limitation": "Different evaluation prompt/history from the GiGPO paper/model-card setup. Do not compare directly with published paper success rates. Training configurations also differ from E4 DPO models.",
+  "model_card": "https://huggingface.co/langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld",
+  "revision": "895c9fe1db239ae6140ffec7801a51e157292f83"
+ },
+ "warning": "HCAPO behavior/compatibility evaluation only; not a reproduction of the paper. Cross-policy comparisons are not causal RL-versus-DPO training effects."
+}

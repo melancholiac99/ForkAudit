@@ -1,0 +1,8 @@
+GiGPO-7B-ALFWorld under ForkAudit HCAPO (2-step history)
+134 games x 3 repeats = 402 episodes; success 93.03%
+HCAPO behavior/compatibility evaluation only; not a reproduction of the paper. Cross-policy comparisons are not causal RL-versus-DPO training effects.
+The initial E4e registration lacked local public RL weights. This explicitly requested supplement supplies that comparison; original E4e four-arm results remain unchanged.
+GiGPO minus base: +55.9701 pp, 95% game-cluster CI [48.5075, 63.4328]
+GiGPO minus aprime_s0: +45.2736 pp, 95% game-cluster CI [38.3085, 51.99]
+GiGPO minus aprime_s1: +44.0299 pp, 95% game-cluster CI [37.0647, 50.995]
+GiGPO minus aprime_s2: +46.7662 pp, 95% game-cluster CI [39.5522, 53.9801]

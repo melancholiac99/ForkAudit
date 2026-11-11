@@ -1,0 +1,25 @@
+{
+ "pid": 12371,
+ "args": [
+  "/root/miniconda3/envs/m0/bin/python",
+  "-u",
+  "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/resume_eval_20261111.py",
+  "--plan",
+  "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/gigpo_20261110/plan.json",
+  "--split",
+  "valid_unseen",
+  "--policy-tag",
+  "gigpo7b",
+  "--model-path",
+  "/root/autodl-tmp/models/GiGPO-7B-ALFWorld",
+  "--conditions",
+  "base",
+  "--reps",
+  "3",
+  "--workers",
+  "20",
+  "--chunk",
+  "402"
+ ],
+ "time": 1794380884.14264
+}

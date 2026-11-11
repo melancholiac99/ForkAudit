@@ -1,0 +1,13 @@
+{
+ "passed": true,
+ "architecture": [
+  "Qwen2ForCausalLM"
+ ],
+ "vocab_size": 152064,
+ "tokenizer_size": 151665,
+ "history_length": 2,
+ "prompt": "ForkAudit HCAPO, two-step observation/action history",
+ "limitation": "Different evaluation prompt/history from the GiGPO paper/model-card setup. Do not compare directly with published paper success rates. Training configurations also differ from E4 DPO models.",
+ "model_card": "https://huggingface.co/langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld",
+ "revision": "895c9fe1db239ae6140ffec7801a51e157292f83"
+}

@@ -1,0 +1,65 @@
+---
+license: apache-2.0
+base_model:
+- Qwen/Qwen2.5-7B-Instruct
+---
+
+<p align="center">
+    <img src="./logo-verl-agent.png" alt="logo" width="55%">
+</p>
+
+
+<p align="center">
+  <a href="https://arxiv.org/abs/2505.10978">
+    <img src="https://img.shields.io/badge/arXiv-Paper-red?style=flat-square&logo=arxiv" alt="arXiv Paper"></a>
+  &nbsp;
+  <a href="https://github.com/langfengQ/verl-agent">
+    <img src="https://img.shields.io/badge/GitHub-Project-181717?style=flat-square&logo=github" alt="GitHub Project"></a>
+  &nbsp;
+  <a href="https://huggingface.co/collections/langfeng01/verl-agent-684970e8f51babe2a6d98554">
+    <img src="https://img.shields.io/badge/HuggingFace-Models-yellow?style=flat-square&logo=huggingface" alt="HuggingFace Models"></a>
+  &nbsp;
+  <a href="https://x.com/langfengq/status/1930848580505620677">
+    <img src="https://img.shields.io/badge/Twitter-Channel-000000?style=flat-square&logo=x" alt="X Channel"></a>
+</p>
+
+
+## Quick Start
+
+To use this model, follow these three steps:
+
+1. Clone [verl-agent](https://github.com/langfengQ/verl-agent).
+2. Set [`actor_rollout_ref.model.path`](https://github.com/langfengQ/verl-agent/blob/35b3da38293993f9bf4f7873dfb3262a361e956c/examples/gigpo_trainer/run_alfworld.sh#L29) to your local path, e.g. `your/own/path/GiGPO-Qwen2.5-7B-Instruct-ALFWorld`.  
+3. Ensure [`trainer.val_before_train=True`](https://github.com/langfengQ/verl-agent/blob/35b3da38293993f9bf4f7873dfb3262a361e956c/examples/gigpo_trainer/run_alfworld.sh#L71), so evaluation runs before training.  
+
+
+For more details, please refer to the [verl-agent](https://github.com/langfengQ/verl-agent).
+
+---
+
+## Notes
+
+`GiGPO-Qwen2.5-7B-Instruct-ALFWorld` is trained using [GiGPO](https://huggingface.co/papers/2505.10978) and the following prompt:
+
+```
+ALFWORLD_TEMPLATE_NO_HIS = """
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: {current_observation}
+Your admissible actions of the current situation are: [{admissible_actions}].
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags. 
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+"""
+
+ALFWORLD_TEMPLATE = """
+You are an expert agent operating in the ALFRED Embodied Environment. Your task is to: {task_description}
+Prior to this step, you have already taken {step_count} step(s). Below are the most recent {history_length} observaitons and the corresponding actions you took: {action_history}
+You are now at step {current_step} and your current observation is: {current_observation}
+Your admissible actions of the current situation are: [{admissible_actions}].
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags. 
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+"""
+```
