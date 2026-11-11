@@ -1,0 +1,165 @@
+{
+  "request_sha256": "1d20f378867531df0a6e5fc7c0da2bdcc49ab282608d2cfac95e00c614e8d880",
+  "samples": [
+    {
+      "id": "review_000",
+      "label": "uncertain",
+      "reason": "cup 与 mug 1 的类别或别名对应未明确；反复拿放不能证明当前物体非目标。 执行 `move mug 1 to coffeemachine 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_001",
+      "label": "rule_supported",
+      "reason": "目标 cloth，最新拾取 spraybottle 1；喷瓶不是布料。 执行 `move spraybottle 1 to countertop 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_002",
+      "label": "rule_supported",
+      "reason": "目标 lettuce，最新从冰箱拾取 tomato 2；番茄不是生菜。 执行 `move tomato 2 to fridge 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_003",
+      "label": "rule_supported",
+      "reason": "目标 plate，释放后再次拾取 bowl 1；碗不是盘子。 执行 `move bowl 1 to cabinet 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_004",
+      "label": "rule_supported",
+      "reason": "目标为两只 pillow，最新拾取 box 1；箱子不是枕头。cabinet 1 合法但未证明最优。 执行 `move box 1 to cabinet 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_005",
+      "label": "rule_supported",
+      "reason": "目标 soapbottle，空手后拾取 spraybottle 2；喷瓶不同于肥皂瓶。 执行 `move spraybottle 2 to cabinet 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_006",
+      "label": "rule_supported",
+      "reason": "目标 spatula，最新拾取 spoon 1；勺子不是铲子。 执行 `move spoon 1 to sinkbasin 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_007",
+      "label": "rule_supported",
+      "reason": "目标 soapbar，最后再次拾取 soapbottle 1；肥皂瓶不是肥皂块，反复拿放不证明收益。 执行 `move soapbottle 1 to countertop 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_008",
+      "label": "uncertain",
+      "reason": "目标 cloth 与 towel 1 有语义重叠，缺少精确类别对应；原动作去 sinkbasin 也可能与清洗有关。 执行 `move towel 1 to towelholder 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_009",
+      "label": "uncertain",
+      "reason": "最新重新拾取 towel 1 的状态明确，但多次释放不消除 cloth/towel 对应歧义。 执行 `move towel 1 to towelholder 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_010",
+      "label": "rule_supported",
+      "reason": "目标 egg；反馈明确 egg 1 已放下，之后拾取 potato 1；当前土豆不是鸡蛋。 执行 `move potato 1 to microwave 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_011",
+      "label": "rule_supported",
+      "reason": "目标 apple，最新拾取 bowl 1；碗不是苹果。 执行 `move bowl 1 to countertop 3` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_012",
+      "label": "uncertain",
+      "reason": "任务 mug 与持有 cup 1 的目标类别对应未明确，不能凭字符串不同认定非目标。 执行 `move cup 1 to microwave 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_013",
+      "label": "rule_supported",
+      "reason": "目标 watch，最新从 shelf 10 拿起 box 3；盒子不是手表。 执行 `move box 3 to shelf 10` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_014",
+      "label": "uncertain",
+      "reason": "目标 clean cloth，持有 towel 1；样本未消除目标类别或别名对应的歧义。 执行 `move towel 1 to towelholder 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_015",
+      "label": "uncertain",
+      "reason": "任务 pan 与持有 pot 1 的锅具类别对应未明确，不能可靠断言 pot 必为非目标。 执行 `move pot 1 to stoveburner 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_016",
+      "label": "rule_supported",
+      "reason": "目标 watch，最新从 cabinet 2 拿起 box 1；盒子不是手表。放到 cabinet 1 合法但未证明最优。 执行 `move box 1 to cabinet 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_017",
+      "label": "rule_supported",
+      "reason": "目标 egg，最新从冰箱拿起 potato 1；土豆不是鸡蛋。 执行 `move potato 1 to fridge 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_018",
+      "label": "rule_supported",
+      "reason": "目标 apple，观察里可见 apple 1，但最后拿起的是 pan 1；锅不是苹果。 执行 `move pan 1 to countertop 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_019",
+      "label": "uncertain",
+      "reason": "任务 hot cup 与持有 mug 3 的类别或别名对应未明确，不能仅凭名字不同支持丢弃。 执行 `move mug 3 to countertop 3` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_020",
+      "label": "uncertain",
+      "reason": "目标 clean cloth 与当前 towel 1 存在目标类别对应歧义，合法放下不解决此问题。 执行 `move towel 1 to towelholder 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_021",
+      "label": "rule_supported",
+      "reason": "目标 soapbar；此前 soapbar 已放下，最新拿起 soapbottle 2；肥皂瓶不是肥皂块。 执行 `move soapbottle 2 to cabinet 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_022",
+      "label": "uncertain",
+      "reason": "先前 mug 2 已放下，现在拿起 cup 1，持有身份明确；但任务 mug 与环境 cup 的目标类别对应仍不明确。 执行 `move cup 1 to sinkbasin 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_023",
+      "label": "rule_supported",
+      "reason": "目标 vase，最新拿起 box 1；箱子不是花瓶。 执行 `move box 1 to cabinet 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_024",
+      "label": "rule_supported",
+      "reason": "目标 vase，最新拿起 box 1 后未释放；箱子不是花瓶。cabinet 1 合法但未证明最优。 执行 `move box 1 to cabinet 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_025",
+      "label": "rule_supported",
+      "reason": "目标 bowl，空手记录后拿起 plate 1；盘子不是碗。 执行 `move plate 1 to countertop 3` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_026",
+      "label": "uncertain",
+      "reason": "最新重新拿起 pot 1 的状态明确，但任务 pan 与 pot 的类别对应不明；不能仅靠词形差异判非目标。 执行 `move pot 1 to stoveburner 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_027",
+      "label": "uncertain",
+      "reason": "目标 pan，最新拿起 pot 1；样本缺少明确锅具类别对应，合法放下不证明其非目标。 执行 `move pot 1 to stoveburner 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_028",
+      "label": "rule_supported",
+      "reason": "任务为在 desklamp 下检查 book，最新拿起 alarmclock 2；闹钟不是书，开灯不改变对象不匹配。 执行 `move alarmclock 2 to desk 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_029",
+      "label": "rule_supported",
+      "reason": "目标 soapbar，此前肥皂瓶已放下，最新拿起 soapbottle 2；肥皂瓶不是肥皂块。 执行 `move soapbottle 2 to cabinet 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_030",
+      "label": "rule_supported",
+      "reason": "目标 book，空手后最新拾取 creditcard 1；信用卡不是书。 执行 `move creditcard 1 to desk 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    },
+    {
+      "id": "review_031",
+      "label": "rule_supported",
+      "reason": "目标 apple，最新从冰箱拿起 tomato 1；番茄不是苹果。 执行 `move tomato 1 to fridge 1` 在合法动作列表中，反馈确认已放下。仅核验规则前提与动作合法性，不以放下成功推断因果收益、成功率改善或策略最优性。"
+    }
+  ]
+}

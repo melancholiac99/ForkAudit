@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "repository": "langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld",
+  "revision": "895c9fe1db239ae6140ffec7801a51e157292f83",
+  "files": {
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/.gitattributes": {
+      "bytes": 1626,
+      "sha256": "da41e9a1cf7acd9f9538948bdc3423fb101e7fcee9dca4870c93e83ca3214358"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/README.md": {
+      "bytes": 3132,
+      "sha256": "bb85588cfea1c673890ef2ff14a1bea2c46b43511031c44d0ed38c64a59b5c24"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/added_tokens.json": {
+      "bytes": 605,
+      "sha256": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/config.json": {
+      "bytes": 687,
+      "sha256": "4ab50f15dedee834da37db5dab6c4b14414afd8a696486fdb74bb8cd88be702b"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/generation_config.json": {
+      "bytes": 243,
+      "sha256": "1943046f0d1219d9dfb90c8368121063818d1ecfe2d2df8f8a3c293cf7716a7f"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/logo-verl-agent.png": {
+      "bytes": 297265,
+      "sha256": "5dba9216c8e7d954367737f2abae0801b5df4cdc0c2ddf01139b2982ef5239a7"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/merges.txt": {
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/model-00001-of-00004.safetensors": {
+      "bytes": 4903327624,
+      "sha256": "dcf7194857ca5c8232596d45c25d9a6347a1bda189d08c40ac6dadf08b4f3862"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/model-00002-of-00004.safetensors": {
+      "bytes": 4914424032,
+      "sha256": "fb427a12b98387fb6d55f41a0f623108a3012a3ce4ae882bbd384ec543123036"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/model-00003-of-00004.safetensors": {
+      "bytes": 4921706904,
+      "sha256": "03854a1a1bd3f8fc2a4d2e2e37e227a948a24c5a524e4a93bb116abe496e89b0"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/model-00004-of-00004.safetensors": {
+      "bytes": 491813328,
+      "sha256": "dd72a7fe3402dde6f5c51c5a480f8c45b6be42388ba4eb7979017e395596cdfb"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/model.safetensors.index.json": {
+      "bytes": 27752,
+      "sha256": "50fce18a9380d978ad69685e047d1450dcbb3686a34bc650e4cb8e051a57ab16"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/special_tokens_map.json": {
+      "bytes": 613,
+      "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/tokenizer.json": {
+      "bytes": 11421896,
+      "sha256": "9c5ae00e602b8860cbd784ba82a8aa14e8feecec692e7076590d014d7b7fdafa"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/tokenizer_config.json": {
+      "bytes": 7336,
+      "sha256": "57fea41fa99fce34f91450643e48b3bfbb078c32c6831a3c06834f122c200510"
+    },
+    "/root/autodl-tmp/models/GiGPO-7B-ALFWorld/vocab.json": {
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "architecture": [
+    "Qwen2ForCausalLM"
+  ],
+  "time": 1794328507.0962803
+}

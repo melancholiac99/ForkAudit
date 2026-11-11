@@ -1,0 +1,69 @@
+{
+ "split": "valid_unseen",
+ "tag": "aprime_s0",
+ "condition": "hard",
+ "n": 6,
+ "success": 0.6666666666666666,
+ "per_game": {
+  "3002": [
+   1
+  ],
+  "3021": [
+   1
+  ],
+  "3059": [
+   1
+  ],
+  "3089": [
+   1
+  ],
+  "3099": [
+   0
+  ],
+  "3126": [
+   0
+  ]
+ },
+ "provenance": {
+  "script": "exploratory_E4e/four_arm_eval.py",
+  "commit": "1072c9edf106c49177c063e9f8b4b15f71c87ef3",
+  "argv": [
+   "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/four_arm_eval.py",
+   "--split",
+   "valid_unseen",
+   "--policy-tag",
+   "aprime_s0",
+   "--model-path",
+   "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+   "--conditions",
+   "base",
+   "state",
+   "hard",
+   "both",
+   "--reps",
+   "1",
+   "--workers",
+   "20",
+   "--chunk",
+   "402",
+   "--game-seeds",
+   "3002",
+   "3021",
+   "3059",
+   "3089",
+   "3099",
+   "3126",
+   "--out",
+   "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/data/pilot_20261110",
+   "--adapter",
+   "/root/autodl-tmp/idea/exploratory_E4/data/adapters/Aprime_s0"
+  ],
+  "model": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+  "adapter": "/root/autodl-tmp/idea/exploratory_E4/data/adapters/Aprime_s0",
+  "condition": "hard",
+  "vllm": "0.32.0",
+  "games_sha256": "ed523147a4e53e95b8e13969c13a6c5f450fe71fec59213e6dcb2808f101be3f",
+  "execution_plan_sha256": "db7f31f3db43641b22cfe65ef26000a28eb9f23671a8e825464d186644c6b4ac",
+  "source_sha256": "a483d5dfa602641968c2ad3f4899f14354686398c4a091940c90ac8eeb3e3a02"
+ }
+}

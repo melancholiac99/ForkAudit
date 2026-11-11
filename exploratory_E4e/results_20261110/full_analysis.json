@@ -1,0 +1,4236 @@
+{
+ "stage": "full",
+ "exploratory": true,
+ "episodes": 6432,
+ "games": 134,
+ "policies": {
+  "base": {
+   "base": {
+    "success": 0.3706467661691542,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.5925925925925926,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 37,
+        "conditional_rate": 0.6851851851851852,
+        "first_missing": 17
+       },
+       {
+        "stage": "picked",
+        "eligible": 37,
+        "passed": 35,
+        "conditional_rate": 0.9459459459459459,
+        "first_missing": 2
+       },
+       {
+        "stage": "completed",
+        "eligible": 35,
+        "passed": 32,
+        "conditional_rate": 0.9142857142857143,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.5555555555555556,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 47,
+        "conditional_rate": 0.6527777777777778,
+        "first_missing": 25
+       },
+       {
+        "stage": "picked",
+        "eligible": 47,
+        "passed": 41,
+        "conditional_rate": 0.8723404255319149,
+        "first_missing": 6
+       },
+       {
+        "stage": "completed",
+        "eligible": 41,
+        "passed": 40,
+        "conditional_rate": 0.975609756097561,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.25806451612903225,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 55,
+        "conditional_rate": 0.5913978494623656,
+        "first_missing": 38
+       },
+       {
+        "stage": "picked",
+        "eligible": 55,
+        "passed": 45,
+        "conditional_rate": 0.8181818181818182,
+        "first_missing": 10
+       },
+       {
+        "stage": "processed",
+        "eligible": 45,
+        "passed": 24,
+        "conditional_rate": 0.5333333333333333,
+        "first_missing": 21
+       },
+       {
+        "stage": "completed",
+        "eligible": 24,
+        "passed": 24,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.4444444444444444,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 41,
+        "conditional_rate": 0.6507936507936508,
+        "first_missing": 22
+       },
+       {
+        "stage": "picked",
+        "eligible": 41,
+        "passed": 37,
+        "conditional_rate": 0.9024390243902439,
+        "first_missing": 4
+       },
+       {
+        "stage": "processed",
+        "eligible": 37,
+        "passed": 29,
+        "conditional_rate": 0.7837837837837838,
+        "first_missing": 8
+       },
+       {
+        "stage": "completed",
+        "eligible": 29,
+        "passed": 28,
+        "conditional_rate": 0.9655172413793104,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.36231884057971014,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 48,
+        "conditional_rate": 0.6956521739130435,
+        "first_missing": 21
+       },
+       {
+        "stage": "picked",
+        "eligible": 48,
+        "passed": 43,
+        "conditional_rate": 0.8958333333333334,
+        "first_missing": 5
+       },
+       {
+        "stage": "processed",
+        "eligible": 43,
+        "passed": 29,
+        "conditional_rate": 0.6744186046511628,
+        "first_missing": 14
+       },
+       {
+        "stage": "completed",
+        "eligible": 29,
+        "passed": 25,
+        "conditional_rate": 0.8620689655172413,
+        "first_missing": 4
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 27,
+        "conditional_rate": 0.5294117647058824,
+        "first_missing": 24
+       },
+       {
+        "stage": "picked",
+        "eligible": 27,
+        "passed": 2,
+        "conditional_rate": 0.07407407407407407,
+        "first_missing": 25
+       },
+       {
+        "stage": "completed",
+        "eligible": 2,
+        "passed": 0,
+        "conditional_rate": 0.0,
+        "first_missing": 2
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "state": {
+    "success": 0.3756218905472637,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.5370370370370371,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 38,
+        "conditional_rate": 0.7037037037037037,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 38,
+        "passed": 34,
+        "conditional_rate": 0.8947368421052632,
+        "first_missing": 4
+       },
+       {
+        "stage": "completed",
+        "eligible": 34,
+        "passed": 29,
+        "conditional_rate": 0.8529411764705882,
+        "first_missing": 5
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.5277777777777778,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 41,
+        "conditional_rate": 0.5694444444444444,
+        "first_missing": 31
+       },
+       {
+        "stage": "picked",
+        "eligible": 41,
+        "passed": 38,
+        "conditional_rate": 0.926829268292683,
+        "first_missing": 3
+       },
+       {
+        "stage": "completed",
+        "eligible": 38,
+        "passed": 38,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.3010752688172043,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 55,
+        "conditional_rate": 0.5913978494623656,
+        "first_missing": 38
+       },
+       {
+        "stage": "picked",
+        "eligible": 55,
+        "passed": 49,
+        "conditional_rate": 0.8909090909090909,
+        "first_missing": 6
+       },
+       {
+        "stage": "processed",
+        "eligible": 49,
+        "passed": 28,
+        "conditional_rate": 0.5714285714285714,
+        "first_missing": 21
+       },
+       {
+        "stage": "completed",
+        "eligible": 28,
+        "passed": 28,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.4444444444444444,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 37,
+        "conditional_rate": 0.5873015873015873,
+        "first_missing": 26
+       },
+       {
+        "stage": "picked",
+        "eligible": 37,
+        "passed": 37,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 37,
+        "passed": 30,
+        "conditional_rate": 0.8108108108108109,
+        "first_missing": 7
+       },
+       {
+        "stage": "completed",
+        "eligible": 30,
+        "passed": 28,
+        "conditional_rate": 0.9333333333333333,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.36231884057971014,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 47,
+        "conditional_rate": 0.6811594202898551,
+        "first_missing": 22
+       },
+       {
+        "stage": "picked",
+        "eligible": 47,
+        "passed": 44,
+        "conditional_rate": 0.9361702127659575,
+        "first_missing": 3
+       },
+       {
+        "stage": "processed",
+        "eligible": 44,
+        "passed": 28,
+        "conditional_rate": 0.6363636363636364,
+        "first_missing": 16
+       },
+       {
+        "stage": "completed",
+        "eligible": 28,
+        "passed": 25,
+        "conditional_rate": 0.8928571428571429,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.058823529411764705,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 22,
+        "conditional_rate": 0.43137254901960786,
+        "first_missing": 29
+       },
+       {
+        "stage": "picked",
+        "eligible": 22,
+        "passed": 4,
+        "conditional_rate": 0.18181818181818182,
+        "first_missing": 18
+       },
+       {
+        "stage": "completed",
+        "eligible": 4,
+        "passed": 3,
+        "conditional_rate": 0.75,
+        "first_missing": 1
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "hard": {
+    "success": 0.4079601990049751,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.6296296296296297,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 38,
+        "conditional_rate": 0.7037037037037037,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 38,
+        "passed": 37,
+        "conditional_rate": 0.9736842105263158,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 37,
+        "passed": 34,
+        "conditional_rate": 0.918918918918919,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.6111111111111112,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 46,
+        "conditional_rate": 0.6388888888888888,
+        "first_missing": 26
+       },
+       {
+        "stage": "picked",
+        "eligible": 46,
+        "passed": 46,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "completed",
+        "eligible": 46,
+        "passed": 44,
+        "conditional_rate": 0.9565217391304348,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.3010752688172043,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 54,
+        "conditional_rate": 0.5806451612903226,
+        "first_missing": 39
+       },
+       {
+        "stage": "picked",
+        "eligible": 54,
+        "passed": 54,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 54,
+        "passed": 31,
+        "conditional_rate": 0.5740740740740741,
+        "first_missing": 23
+       },
+       {
+        "stage": "completed",
+        "eligible": 31,
+        "passed": 28,
+        "conditional_rate": 0.9032258064516129,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.5079365079365079,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 42,
+        "conditional_rate": 0.6666666666666666,
+        "first_missing": 21
+       },
+       {
+        "stage": "picked",
+        "eligible": 42,
+        "passed": 41,
+        "conditional_rate": 0.9761904761904762,
+        "first_missing": 1
+       },
+       {
+        "stage": "processed",
+        "eligible": 41,
+        "passed": 33,
+        "conditional_rate": 0.8048780487804879,
+        "first_missing": 8
+       },
+       {
+        "stage": "completed",
+        "eligible": 33,
+        "passed": 32,
+        "conditional_rate": 0.9696969696969697,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.37681159420289856,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 48,
+        "conditional_rate": 0.6956521739130435,
+        "first_missing": 21
+       },
+       {
+        "stage": "picked",
+        "eligible": 48,
+        "passed": 46,
+        "conditional_rate": 0.9583333333333334,
+        "first_missing": 2
+       },
+       {
+        "stage": "processed",
+        "eligible": 46,
+        "passed": 30,
+        "conditional_rate": 0.6521739130434783,
+        "first_missing": 16
+       },
+       {
+        "stage": "completed",
+        "eligible": 30,
+        "passed": 26,
+        "conditional_rate": 0.8666666666666667,
+        "first_missing": 4
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 28,
+        "conditional_rate": 0.5490196078431373,
+        "first_missing": 23
+       },
+       {
+        "stage": "picked",
+        "eligible": 28,
+        "passed": 3,
+        "conditional_rate": 0.10714285714285714,
+        "first_missing": 25
+       },
+       {
+        "stage": "completed",
+        "eligible": 3,
+        "passed": 0,
+        "conditional_rate": 0.0,
+        "first_missing": 3
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "both": {
+    "success": 0.39552238805970147,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.5740740740740741,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 37,
+        "conditional_rate": 0.6851851851851852,
+        "first_missing": 17
+       },
+       {
+        "stage": "picked",
+        "eligible": 37,
+        "passed": 35,
+        "conditional_rate": 0.9459459459459459,
+        "first_missing": 2
+       },
+       {
+        "stage": "completed",
+        "eligible": 35,
+        "passed": 31,
+        "conditional_rate": 0.8857142857142857,
+        "first_missing": 4
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.5416666666666666,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 39,
+        "conditional_rate": 0.5416666666666666,
+        "first_missing": 33
+       },
+       {
+        "stage": "picked",
+        "eligible": 39,
+        "passed": 39,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "completed",
+        "eligible": 39,
+        "passed": 39,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.34408602150537637,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 58,
+        "conditional_rate": 0.6236559139784946,
+        "first_missing": 35
+       },
+       {
+        "stage": "picked",
+        "eligible": 58,
+        "passed": 58,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 58,
+        "passed": 32,
+        "conditional_rate": 0.5517241379310345,
+        "first_missing": 26
+       },
+       {
+        "stage": "completed",
+        "eligible": 32,
+        "passed": 32,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.4603174603174603,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 39,
+        "conditional_rate": 0.6190476190476191,
+        "first_missing": 24
+       },
+       {
+        "stage": "picked",
+        "eligible": 39,
+        "passed": 39,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 39,
+        "passed": 31,
+        "conditional_rate": 0.7948717948717948,
+        "first_missing": 8
+       },
+       {
+        "stage": "completed",
+        "eligible": 31,
+        "passed": 29,
+        "conditional_rate": 0.9354838709677419,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.36231884057971014,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 47,
+        "conditional_rate": 0.6811594202898551,
+        "first_missing": 22
+       },
+       {
+        "stage": "picked",
+        "eligible": 47,
+        "passed": 47,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 47,
+        "passed": 28,
+        "conditional_rate": 0.5957446808510638,
+        "first_missing": 19
+       },
+       {
+        "stage": "completed",
+        "eligible": 28,
+        "passed": 25,
+        "conditional_rate": 0.8928571428571429,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.058823529411764705,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 22,
+        "conditional_rate": 0.43137254901960786,
+        "first_missing": 29
+       },
+       {
+        "stage": "picked",
+        "eligible": 22,
+        "passed": 4,
+        "conditional_rate": 0.18181818181818182,
+        "first_missing": 18
+       },
+       {
+        "stage": "completed",
+        "eligible": 4,
+        "passed": 3,
+        "conditional_rate": 0.75,
+        "first_missing": 1
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "paired": {
+    "state-base": {
+     "n_games": 134,
+     "difference_pp": 0.4975,
+     "ci95_pp": [
+      -3.4826,
+      4.4776
+     ]
+    },
+    "hard-base": {
+     "n_games": 134,
+     "difference_pp": 3.7313,
+     "ci95_pp": [
+      1.7413,
+      5.7214
+     ]
+    },
+    "both-base": {
+     "n_games": 134,
+     "difference_pp": 2.4876,
+     "ci95_pp": [
+      -1.2438,
+      6.2189
+     ]
+    },
+    "both-hard": {
+     "n_games": 134,
+     "difference_pp": -1.2438,
+     "ci95_pp": [
+      -5.4726,
+      2.9851
+     ]
+    },
+    "both-state": {
+     "n_games": 134,
+     "difference_pp": 1.99,
+     "ci95_pp": [
+      0.7463,
+      3.4826
+     ]
+    }
+   }
+  },
+  "aprime_s0": {
+   "base": {
+    "success": 0.47761194029850745,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8518518518518519,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 49,
+        "conditional_rate": 0.9074074074074074,
+        "first_missing": 5
+       },
+       {
+        "stage": "picked",
+        "eligible": 49,
+        "passed": 47,
+        "conditional_rate": 0.9591836734693877,
+        "first_missing": 2
+       },
+       {
+        "stage": "completed",
+        "eligible": 47,
+        "passed": 46,
+        "conditional_rate": 0.9787234042553191,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.6666666666666666,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 61,
+        "conditional_rate": 0.8472222222222222,
+        "first_missing": 11
+       },
+       {
+        "stage": "picked",
+        "eligible": 61,
+        "passed": 57,
+        "conditional_rate": 0.9344262295081968,
+        "first_missing": 4
+       },
+       {
+        "stage": "completed",
+        "eligible": 57,
+        "passed": 48,
+        "conditional_rate": 0.8421052631578947,
+        "first_missing": 9
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.45161290322580644,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 80,
+        "conditional_rate": 0.8602150537634409,
+        "first_missing": 13
+       },
+       {
+        "stage": "picked",
+        "eligible": 80,
+        "passed": 72,
+        "conditional_rate": 0.9,
+        "first_missing": 8
+       },
+       {
+        "stage": "processed",
+        "eligible": 72,
+        "passed": 49,
+        "conditional_rate": 0.6805555555555556,
+        "first_missing": 23
+       },
+       {
+        "stage": "completed",
+        "eligible": 49,
+        "passed": 42,
+        "conditional_rate": 0.8571428571428571,
+        "first_missing": 7
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.6031746031746031,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 59,
+        "conditional_rate": 0.9365079365079365,
+        "first_missing": 4
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 56,
+        "conditional_rate": 0.9491525423728814,
+        "first_missing": 3
+       },
+       {
+        "stage": "processed",
+        "eligible": 56,
+        "passed": 40,
+        "conditional_rate": 0.7142857142857143,
+        "first_missing": 16
+       },
+       {
+        "stage": "completed",
+        "eligible": 40,
+        "passed": 38,
+        "conditional_rate": 0.95,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.2318840579710145,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 59,
+        "conditional_rate": 0.855072463768116,
+        "first_missing": 10
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 55,
+        "conditional_rate": 0.9322033898305084,
+        "first_missing": 4
+       },
+       {
+        "stage": "processed",
+        "eligible": 55,
+        "passed": 22,
+        "conditional_rate": 0.4,
+        "first_missing": 33
+       },
+       {
+        "stage": "completed",
+        "eligible": 22,
+        "passed": 16,
+        "conditional_rate": 0.7272727272727273,
+        "first_missing": 6
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0392156862745098,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 43,
+        "conditional_rate": 0.8431372549019608,
+        "first_missing": 8
+       },
+       {
+        "stage": "picked",
+        "eligible": 43,
+        "passed": 4,
+        "conditional_rate": 0.09302325581395349,
+        "first_missing": 39
+       },
+       {
+        "stage": "completed",
+        "eligible": 4,
+        "passed": 2,
+        "conditional_rate": 0.5,
+        "first_missing": 2
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "state": {
+    "success": 0.5522388059701493,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8333333333333334,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 47,
+        "conditional_rate": 0.8703703703703703,
+        "first_missing": 7
+       },
+       {
+        "stage": "picked",
+        "eligible": 47,
+        "passed": 46,
+        "conditional_rate": 0.9787234042553191,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 46,
+        "passed": 45,
+        "conditional_rate": 0.9782608695652174,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.7222222222222222,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 58,
+        "conditional_rate": 0.8055555555555556,
+        "first_missing": 14
+       },
+       {
+        "stage": "picked",
+        "eligible": 58,
+        "passed": 57,
+        "conditional_rate": 0.9827586206896551,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 57,
+        "passed": 52,
+        "conditional_rate": 0.9122807017543859,
+        "first_missing": 5
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.5268817204301075,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 78,
+        "conditional_rate": 0.8387096774193549,
+        "first_missing": 15
+       },
+       {
+        "stage": "picked",
+        "eligible": 78,
+        "passed": 72,
+        "conditional_rate": 0.9230769230769231,
+        "first_missing": 6
+       },
+       {
+        "stage": "processed",
+        "eligible": 72,
+        "passed": 50,
+        "conditional_rate": 0.6944444444444444,
+        "first_missing": 22
+       },
+       {
+        "stage": "completed",
+        "eligible": 50,
+        "passed": 49,
+        "conditional_rate": 0.98,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.6666666666666666,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 58,
+        "conditional_rate": 0.9206349206349206,
+        "first_missing": 5
+       },
+       {
+        "stage": "picked",
+        "eligible": 58,
+        "passed": 55,
+        "conditional_rate": 0.9482758620689655,
+        "first_missing": 3
+       },
+       {
+        "stage": "processed",
+        "eligible": 55,
+        "passed": 44,
+        "conditional_rate": 0.8,
+        "first_missing": 11
+       },
+       {
+        "stage": "completed",
+        "eligible": 44,
+        "passed": 42,
+        "conditional_rate": 0.9545454545454546,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.43478260869565216,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 61,
+        "conditional_rate": 0.8840579710144928,
+        "first_missing": 8
+       },
+       {
+        "stage": "picked",
+        "eligible": 61,
+        "passed": 58,
+        "conditional_rate": 0.9508196721311475,
+        "first_missing": 3
+       },
+       {
+        "stage": "processed",
+        "eligible": 58,
+        "passed": 32,
+        "conditional_rate": 0.5517241379310345,
+        "first_missing": 26
+       },
+       {
+        "stage": "completed",
+        "eligible": 32,
+        "passed": 30,
+        "conditional_rate": 0.9375,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0784313725490196,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 42,
+        "conditional_rate": 0.8235294117647058,
+        "first_missing": 9
+       },
+       {
+        "stage": "picked",
+        "eligible": 42,
+        "passed": 7,
+        "conditional_rate": 0.16666666666666666,
+        "first_missing": 35
+       },
+       {
+        "stage": "completed",
+        "eligible": 7,
+        "passed": 4,
+        "conditional_rate": 0.5714285714285714,
+        "first_missing": 3
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "hard": {
+    "success": 0.5074626865671642,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8888888888888888,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 50,
+        "conditional_rate": 0.9259259259259259,
+        "first_missing": 4
+       },
+       {
+        "stage": "picked",
+        "eligible": 50,
+        "passed": 49,
+        "conditional_rate": 0.98,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 49,
+        "passed": 48,
+        "conditional_rate": 0.9795918367346939,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.6666666666666666,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 59,
+        "conditional_rate": 0.8194444444444444,
+        "first_missing": 13
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 57,
+        "conditional_rate": 0.9661016949152542,
+        "first_missing": 2
+       },
+       {
+        "stage": "completed",
+        "eligible": 57,
+        "passed": 48,
+        "conditional_rate": 0.8421052631578947,
+        "first_missing": 9
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.5268817204301075,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 80,
+        "conditional_rate": 0.8602150537634409,
+        "first_missing": 13
+       },
+       {
+        "stage": "picked",
+        "eligible": 80,
+        "passed": 79,
+        "conditional_rate": 0.9875,
+        "first_missing": 1
+       },
+       {
+        "stage": "processed",
+        "eligible": 79,
+        "passed": 56,
+        "conditional_rate": 0.7088607594936709,
+        "first_missing": 23
+       },
+       {
+        "stage": "completed",
+        "eligible": 56,
+        "passed": 49,
+        "conditional_rate": 0.875,
+        "first_missing": 7
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.6349206349206349,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 58,
+        "conditional_rate": 0.9206349206349206,
+        "first_missing": 5
+       },
+       {
+        "stage": "picked",
+        "eligible": 58,
+        "passed": 58,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 58,
+        "passed": 42,
+        "conditional_rate": 0.7241379310344828,
+        "first_missing": 16
+       },
+       {
+        "stage": "completed",
+        "eligible": 42,
+        "passed": 40,
+        "conditional_rate": 0.9523809523809523,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.2463768115942029,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 60,
+        "conditional_rate": 0.8695652173913043,
+        "first_missing": 9
+       },
+       {
+        "stage": "picked",
+        "eligible": 60,
+        "passed": 60,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 60,
+        "passed": 23,
+        "conditional_rate": 0.38333333333333336,
+        "first_missing": 37
+       },
+       {
+        "stage": "completed",
+        "eligible": 23,
+        "passed": 17,
+        "conditional_rate": 0.7391304347826086,
+        "first_missing": 6
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0392156862745098,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 43,
+        "conditional_rate": 0.8431372549019608,
+        "first_missing": 8
+       },
+       {
+        "stage": "picked",
+        "eligible": 43,
+        "passed": 4,
+        "conditional_rate": 0.09302325581395349,
+        "first_missing": 39
+       },
+       {
+        "stage": "completed",
+        "eligible": 4,
+        "passed": 2,
+        "conditional_rate": 0.5,
+        "first_missing": 2
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "both": {
+    "success": 0.5796019900497512,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8518518518518519,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 47,
+        "conditional_rate": 0.8703703703703703,
+        "first_missing": 7
+       },
+       {
+        "stage": "picked",
+        "eligible": 47,
+        "passed": 46,
+        "conditional_rate": 0.9787234042553191,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 46,
+        "passed": 46,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.7361111111111112,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 58,
+        "conditional_rate": 0.8055555555555556,
+        "first_missing": 14
+       },
+       {
+        "stage": "picked",
+        "eligible": 58,
+        "passed": 58,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "completed",
+        "eligible": 58,
+        "passed": 53,
+        "conditional_rate": 0.9137931034482759,
+        "first_missing": 5
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.5913978494623656,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 79,
+        "conditional_rate": 0.8494623655913979,
+        "first_missing": 14
+       },
+       {
+        "stage": "picked",
+        "eligible": 79,
+        "passed": 78,
+        "conditional_rate": 0.9873417721518988,
+        "first_missing": 1
+       },
+       {
+        "stage": "processed",
+        "eligible": 78,
+        "passed": 56,
+        "conditional_rate": 0.717948717948718,
+        "first_missing": 22
+       },
+       {
+        "stage": "completed",
+        "eligible": 56,
+        "passed": 55,
+        "conditional_rate": 0.9821428571428571,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.7142857142857143,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 59,
+        "conditional_rate": 0.9365079365079365,
+        "first_missing": 4
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 59,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 59,
+        "passed": 47,
+        "conditional_rate": 0.7966101694915254,
+        "first_missing": 12
+       },
+       {
+        "stage": "completed",
+        "eligible": 47,
+        "passed": 45,
+        "conditional_rate": 0.9574468085106383,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.43478260869565216,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 61,
+        "conditional_rate": 0.8840579710144928,
+        "first_missing": 8
+       },
+       {
+        "stage": "picked",
+        "eligible": 61,
+        "passed": 60,
+        "conditional_rate": 0.9836065573770492,
+        "first_missing": 1
+       },
+       {
+        "stage": "processed",
+        "eligible": 60,
+        "passed": 32,
+        "conditional_rate": 0.5333333333333333,
+        "first_missing": 28
+       },
+       {
+        "stage": "completed",
+        "eligible": 32,
+        "passed": 30,
+        "conditional_rate": 0.9375,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0784313725490196,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 42,
+        "conditional_rate": 0.8235294117647058,
+        "first_missing": 9
+       },
+       {
+        "stage": "picked",
+        "eligible": 42,
+        "passed": 7,
+        "conditional_rate": 0.16666666666666666,
+        "first_missing": 35
+       },
+       {
+        "stage": "completed",
+        "eligible": 7,
+        "passed": 4,
+        "conditional_rate": 0.5714285714285714,
+        "first_missing": 3
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "paired": {
+    "state-base": {
+     "n_games": 134,
+     "difference_pp": 7.4627,
+     "ci95_pp": [
+      2.2388,
+      12.4378
+     ]
+    },
+    "hard-base": {
+     "n_games": 134,
+     "difference_pp": 2.9851,
+     "ci95_pp": [
+      1.2438,
+      4.7264
+     ]
+    },
+    "both-base": {
+     "n_games": 134,
+     "difference_pp": 10.199,
+     "ci95_pp": [
+      5.4726,
+      14.9254
+     ]
+    },
+    "both-hard": {
+     "n_games": 134,
+     "difference_pp": 7.2139,
+     "ci95_pp": [
+      2.4876,
+      11.6915
+     ]
+    },
+    "both-state": {
+     "n_games": 134,
+     "difference_pp": 2.7363,
+     "ci95_pp": [
+      0.7463,
+      4.9751
+     ]
+    }
+   }
+  },
+  "aprime_s1": {
+   "base": {
+    "success": 0.4900497512437811,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8148148148148148,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 50,
+        "conditional_rate": 0.9259259259259259,
+        "first_missing": 4
+       },
+       {
+        "stage": "picked",
+        "eligible": 50,
+        "passed": 45,
+        "conditional_rate": 0.9,
+        "first_missing": 5
+       },
+       {
+        "stage": "completed",
+        "eligible": 45,
+        "passed": 44,
+        "conditional_rate": 0.9777777777777777,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.6527777777777778,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 56,
+        "conditional_rate": 0.7777777777777778,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 56,
+        "passed": 55,
+        "conditional_rate": 0.9821428571428571,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 55,
+        "passed": 47,
+        "conditional_rate": 0.8545454545454545,
+        "first_missing": 8
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.5483870967741935,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 77,
+        "conditional_rate": 0.8279569892473119,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 77,
+        "passed": 71,
+        "conditional_rate": 0.922077922077922,
+        "first_missing": 6
+       },
+       {
+        "stage": "processed",
+        "eligible": 71,
+        "passed": 53,
+        "conditional_rate": 0.7464788732394366,
+        "first_missing": 18
+       },
+       {
+        "stage": "completed",
+        "eligible": 53,
+        "passed": 51,
+        "conditional_rate": 0.9622641509433962,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.6349206349206349,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 59,
+        "conditional_rate": 0.9365079365079365,
+        "first_missing": 4
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 58,
+        "conditional_rate": 0.9830508474576272,
+        "first_missing": 1
+       },
+       {
+        "stage": "processed",
+        "eligible": 58,
+        "passed": 42,
+        "conditional_rate": 0.7241379310344828,
+        "first_missing": 16
+       },
+       {
+        "stage": "completed",
+        "eligible": 42,
+        "passed": 40,
+        "conditional_rate": 0.9523809523809523,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.18840579710144928,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 59,
+        "conditional_rate": 0.855072463768116,
+        "first_missing": 10
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 55,
+        "conditional_rate": 0.9322033898305084,
+        "first_missing": 4
+       },
+       {
+        "stage": "processed",
+        "eligible": 55,
+        "passed": 21,
+        "conditional_rate": 0.38181818181818183,
+        "first_missing": 34
+       },
+       {
+        "stage": "completed",
+        "eligible": 21,
+        "passed": 13,
+        "conditional_rate": 0.6190476190476191,
+        "first_missing": 8
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0392156862745098,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 41,
+        "conditional_rate": 0.803921568627451,
+        "first_missing": 10
+       },
+       {
+        "stage": "picked",
+        "eligible": 41,
+        "passed": 3,
+        "conditional_rate": 0.07317073170731707,
+        "first_missing": 38
+       },
+       {
+        "stage": "completed",
+        "eligible": 3,
+        "passed": 2,
+        "conditional_rate": 0.6666666666666666,
+        "first_missing": 1
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "state": {
+    "success": 0.5248756218905473,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8518518518518519,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 48,
+        "conditional_rate": 0.8888888888888888,
+        "first_missing": 6
+       },
+       {
+        "stage": "picked",
+        "eligible": 48,
+        "passed": 47,
+        "conditional_rate": 0.9791666666666666,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 47,
+        "passed": 46,
+        "conditional_rate": 0.9787234042553191,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.7361111111111112,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 55,
+        "conditional_rate": 0.7638888888888888,
+        "first_missing": 17
+       },
+       {
+        "stage": "picked",
+        "eligible": 55,
+        "passed": 54,
+        "conditional_rate": 0.9818181818181818,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 54,
+        "passed": 53,
+        "conditional_rate": 0.9814814814814815,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.3763440860215054,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 77,
+        "conditional_rate": 0.8279569892473119,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 77,
+        "passed": 68,
+        "conditional_rate": 0.8831168831168831,
+        "first_missing": 9
+       },
+       {
+        "stage": "processed",
+        "eligible": 68,
+        "passed": 37,
+        "conditional_rate": 0.5441176470588235,
+        "first_missing": 31
+       },
+       {
+        "stage": "completed",
+        "eligible": 37,
+        "passed": 35,
+        "conditional_rate": 0.9459459459459459,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.7142857142857143,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 59,
+        "conditional_rate": 0.9365079365079365,
+        "first_missing": 4
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 56,
+        "conditional_rate": 0.9491525423728814,
+        "first_missing": 3
+       },
+       {
+        "stage": "processed",
+        "eligible": 56,
+        "passed": 45,
+        "conditional_rate": 0.8035714285714286,
+        "first_missing": 11
+       },
+       {
+        "stage": "completed",
+        "eligible": 45,
+        "passed": 45,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.4057971014492754,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 57,
+        "conditional_rate": 0.8260869565217391,
+        "first_missing": 12
+       },
+       {
+        "stage": "picked",
+        "eligible": 57,
+        "passed": 54,
+        "conditional_rate": 0.9473684210526315,
+        "first_missing": 3
+       },
+       {
+        "stage": "processed",
+        "eligible": 54,
+        "passed": 29,
+        "conditional_rate": 0.5370370370370371,
+        "first_missing": 25
+       },
+       {
+        "stage": "completed",
+        "eligible": 29,
+        "passed": 28,
+        "conditional_rate": 0.9655172413793104,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0784313725490196,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 42,
+        "conditional_rate": 0.8235294117647058,
+        "first_missing": 9
+       },
+       {
+        "stage": "picked",
+        "eligible": 42,
+        "passed": 5,
+        "conditional_rate": 0.11904761904761904,
+        "first_missing": 37
+       },
+       {
+        "stage": "completed",
+        "eligible": 5,
+        "passed": 4,
+        "conditional_rate": 0.8,
+        "first_missing": 1
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "hard": {
+    "success": 0.5049751243781094,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8333333333333334,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 49,
+        "conditional_rate": 0.9074074074074074,
+        "first_missing": 5
+       },
+       {
+        "stage": "picked",
+        "eligible": 49,
+        "passed": 46,
+        "conditional_rate": 0.9387755102040817,
+        "first_missing": 3
+       },
+       {
+        "stage": "completed",
+        "eligible": 46,
+        "passed": 45,
+        "conditional_rate": 0.9782608695652174,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.6666666666666666,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 57,
+        "conditional_rate": 0.7916666666666666,
+        "first_missing": 15
+       },
+       {
+        "stage": "picked",
+        "eligible": 57,
+        "passed": 57,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "completed",
+        "eligible": 57,
+        "passed": 48,
+        "conditional_rate": 0.8421052631578947,
+        "first_missing": 9
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.5698924731182796,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 75,
+        "conditional_rate": 0.8064516129032258,
+        "first_missing": 18
+       },
+       {
+        "stage": "picked",
+        "eligible": 75,
+        "passed": 75,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 75,
+        "passed": 56,
+        "conditional_rate": 0.7466666666666667,
+        "first_missing": 19
+       },
+       {
+        "stage": "completed",
+        "eligible": 56,
+        "passed": 53,
+        "conditional_rate": 0.9464285714285714,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.6349206349206349,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 58,
+        "conditional_rate": 0.9206349206349206,
+        "first_missing": 5
+       },
+       {
+        "stage": "picked",
+        "eligible": 58,
+        "passed": 58,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 58,
+        "passed": 42,
+        "conditional_rate": 0.7241379310344828,
+        "first_missing": 16
+       },
+       {
+        "stage": "completed",
+        "eligible": 42,
+        "passed": 40,
+        "conditional_rate": 0.9523809523809523,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.21739130434782608,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 61,
+        "conditional_rate": 0.8840579710144928,
+        "first_missing": 8
+       },
+       {
+        "stage": "picked",
+        "eligible": 61,
+        "passed": 57,
+        "conditional_rate": 0.9344262295081968,
+        "first_missing": 4
+       },
+       {
+        "stage": "processed",
+        "eligible": 57,
+        "passed": 24,
+        "conditional_rate": 0.42105263157894735,
+        "first_missing": 33
+       },
+       {
+        "stage": "completed",
+        "eligible": 24,
+        "passed": 15,
+        "conditional_rate": 0.625,
+        "first_missing": 9
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0392156862745098,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 40,
+        "conditional_rate": 0.7843137254901961,
+        "first_missing": 11
+       },
+       {
+        "stage": "picked",
+        "eligible": 40,
+        "passed": 3,
+        "conditional_rate": 0.075,
+        "first_missing": 37
+       },
+       {
+        "stage": "completed",
+        "eligible": 3,
+        "passed": 2,
+        "conditional_rate": 0.6666666666666666,
+        "first_missing": 1
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "both": {
+    "success": 0.5472636815920398,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8518518518518519,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 48,
+        "conditional_rate": 0.8888888888888888,
+        "first_missing": 6
+       },
+       {
+        "stage": "picked",
+        "eligible": 48,
+        "passed": 47,
+        "conditional_rate": 0.9791666666666666,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 47,
+        "passed": 46,
+        "conditional_rate": 0.9787234042553191,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.7361111111111112,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 55,
+        "conditional_rate": 0.7638888888888888,
+        "first_missing": 17
+       },
+       {
+        "stage": "picked",
+        "eligible": 55,
+        "passed": 54,
+        "conditional_rate": 0.9818181818181818,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 54,
+        "passed": 53,
+        "conditional_rate": 0.9814814814814815,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.45161290322580644,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 77,
+        "conditional_rate": 0.8279569892473119,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 77,
+        "passed": 76,
+        "conditional_rate": 0.987012987012987,
+        "first_missing": 1
+       },
+       {
+        "stage": "processed",
+        "eligible": 76,
+        "passed": 45,
+        "conditional_rate": 0.5921052631578947,
+        "first_missing": 31
+       },
+       {
+        "stage": "completed",
+        "eligible": 45,
+        "passed": 42,
+        "conditional_rate": 0.9333333333333333,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.7301587301587301,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 60,
+        "conditional_rate": 0.9523809523809523,
+        "first_missing": 3
+       },
+       {
+        "stage": "picked",
+        "eligible": 60,
+        "passed": 60,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 60,
+        "passed": 46,
+        "conditional_rate": 0.7666666666666667,
+        "first_missing": 14
+       },
+       {
+        "stage": "completed",
+        "eligible": 46,
+        "passed": 46,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.42028985507246375,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 57,
+        "conditional_rate": 0.8260869565217391,
+        "first_missing": 12
+       },
+       {
+        "stage": "picked",
+        "eligible": 57,
+        "passed": 57,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 57,
+        "passed": 30,
+        "conditional_rate": 0.5263157894736842,
+        "first_missing": 27
+       },
+       {
+        "stage": "completed",
+        "eligible": 30,
+        "passed": 29,
+        "conditional_rate": 0.9666666666666667,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0784313725490196,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 42,
+        "conditional_rate": 0.8235294117647058,
+        "first_missing": 9
+       },
+       {
+        "stage": "picked",
+        "eligible": 42,
+        "passed": 5,
+        "conditional_rate": 0.11904761904761904,
+        "first_missing": 37
+       },
+       {
+        "stage": "completed",
+        "eligible": 5,
+        "passed": 4,
+        "conditional_rate": 0.8,
+        "first_missing": 1
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "paired": {
+    "state-base": {
+     "n_games": 134,
+     "difference_pp": 3.4826,
+     "ci95_pp": [
+      -1.2438,
+      8.7065
+     ]
+    },
+    "hard-base": {
+     "n_games": 134,
+     "difference_pp": 1.4925,
+     "ci95_pp": [
+      0.0,
+      2.9851
+     ]
+    },
+    "both-base": {
+     "n_games": 134,
+     "difference_pp": 5.7214,
+     "ci95_pp": [
+      0.7463,
+      10.9453
+     ]
+    },
+    "both-hard": {
+     "n_games": 134,
+     "difference_pp": 4.2289,
+     "ci95_pp": [
+      -0.4975,
+      8.9552
+     ]
+    },
+    "both-state": {
+     "n_games": 134,
+     "difference_pp": 2.2388,
+     "ci95_pp": [
+      0.4975,
+      4.4776
+     ]
+    }
+   }
+  },
+  "aprime_s2": {
+   "base": {
+    "success": 0.4626865671641791,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8148148148148148,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 49,
+        "conditional_rate": 0.9074074074074074,
+        "first_missing": 5
+       },
+       {
+        "stage": "picked",
+        "eligible": 49,
+        "passed": 45,
+        "conditional_rate": 0.9183673469387755,
+        "first_missing": 4
+       },
+       {
+        "stage": "completed",
+        "eligible": 45,
+        "passed": 44,
+        "conditional_rate": 0.9777777777777777,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.6527777777777778,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 56,
+        "conditional_rate": 0.7777777777777778,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 56,
+        "passed": 52,
+        "conditional_rate": 0.9285714285714286,
+        "first_missing": 4
+       },
+       {
+        "stage": "completed",
+        "eligible": 52,
+        "passed": 47,
+        "conditional_rate": 0.9038461538461539,
+        "first_missing": 5
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.5053763440860215,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 79,
+        "conditional_rate": 0.8494623655913979,
+        "first_missing": 14
+       },
+       {
+        "stage": "picked",
+        "eligible": 79,
+        "passed": 69,
+        "conditional_rate": 0.8734177215189873,
+        "first_missing": 10
+       },
+       {
+        "stage": "processed",
+        "eligible": 69,
+        "passed": 51,
+        "conditional_rate": 0.7391304347826086,
+        "first_missing": 18
+       },
+       {
+        "stage": "completed",
+        "eligible": 51,
+        "passed": 47,
+        "conditional_rate": 0.9215686274509803,
+        "first_missing": 4
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.5238095238095238,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 58,
+        "conditional_rate": 0.9206349206349206,
+        "first_missing": 5
+       },
+       {
+        "stage": "picked",
+        "eligible": 58,
+        "passed": 56,
+        "conditional_rate": 0.9655172413793104,
+        "first_missing": 2
+       },
+       {
+        "stage": "processed",
+        "eligible": 56,
+        "passed": 39,
+        "conditional_rate": 0.6964285714285714,
+        "first_missing": 17
+       },
+       {
+        "stage": "completed",
+        "eligible": 39,
+        "passed": 33,
+        "conditional_rate": 0.8461538461538461,
+        "first_missing": 6
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.2028985507246377,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 57,
+        "conditional_rate": 0.8260869565217391,
+        "first_missing": 12
+       },
+       {
+        "stage": "picked",
+        "eligible": 57,
+        "passed": 51,
+        "conditional_rate": 0.8947368421052632,
+        "first_missing": 6
+       },
+       {
+        "stage": "processed",
+        "eligible": 51,
+        "passed": 19,
+        "conditional_rate": 0.37254901960784315,
+        "first_missing": 32
+       },
+       {
+        "stage": "completed",
+        "eligible": 19,
+        "passed": 14,
+        "conditional_rate": 0.7368421052631579,
+        "first_missing": 5
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0196078431372549,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 42,
+        "conditional_rate": 0.8235294117647058,
+        "first_missing": 9
+       },
+       {
+        "stage": "picked",
+        "eligible": 42,
+        "passed": 5,
+        "conditional_rate": 0.11904761904761904,
+        "first_missing": 37
+       },
+       {
+        "stage": "completed",
+        "eligible": 5,
+        "passed": 1,
+        "conditional_rate": 0.2,
+        "first_missing": 4
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "state": {
+    "success": 0.5398009950248757,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.7962962962962963,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 45,
+        "conditional_rate": 0.8333333333333334,
+        "first_missing": 9
+       },
+       {
+        "stage": "picked",
+        "eligible": 45,
+        "passed": 43,
+        "conditional_rate": 0.9555555555555556,
+        "first_missing": 2
+       },
+       {
+        "stage": "completed",
+        "eligible": 43,
+        "passed": 43,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.7638888888888888,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 56,
+        "conditional_rate": 0.7777777777777778,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 56,
+        "passed": 56,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "completed",
+        "eligible": 56,
+        "passed": 55,
+        "conditional_rate": 0.9821428571428571,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.5053763440860215,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 76,
+        "conditional_rate": 0.8172043010752689,
+        "first_missing": 17
+       },
+       {
+        "stage": "picked",
+        "eligible": 76,
+        "passed": 69,
+        "conditional_rate": 0.9078947368421053,
+        "first_missing": 7
+       },
+       {
+        "stage": "processed",
+        "eligible": 69,
+        "passed": 47,
+        "conditional_rate": 0.6811594202898551,
+        "first_missing": 22
+       },
+       {
+        "stage": "completed",
+        "eligible": 47,
+        "passed": 47,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.6825396825396826,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 60,
+        "conditional_rate": 0.9523809523809523,
+        "first_missing": 3
+       },
+       {
+        "stage": "picked",
+        "eligible": 60,
+        "passed": 58,
+        "conditional_rate": 0.9666666666666667,
+        "first_missing": 2
+       },
+       {
+        "stage": "processed",
+        "eligible": 58,
+        "passed": 44,
+        "conditional_rate": 0.7586206896551724,
+        "first_missing": 14
+       },
+       {
+        "stage": "completed",
+        "eligible": 44,
+        "passed": 43,
+        "conditional_rate": 0.9772727272727273,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.391304347826087,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 59,
+        "conditional_rate": 0.855072463768116,
+        "first_missing": 10
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 51,
+        "conditional_rate": 0.864406779661017,
+        "first_missing": 8
+       },
+       {
+        "stage": "processed",
+        "eligible": 51,
+        "passed": 30,
+        "conditional_rate": 0.5882352941176471,
+        "first_missing": 21
+       },
+       {
+        "stage": "completed",
+        "eligible": 30,
+        "passed": 27,
+        "conditional_rate": 0.9,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0392156862745098,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 41,
+        "conditional_rate": 0.803921568627451,
+        "first_missing": 10
+       },
+       {
+        "stage": "picked",
+        "eligible": 41,
+        "passed": 5,
+        "conditional_rate": 0.12195121951219512,
+        "first_missing": 36
+       },
+       {
+        "stage": "completed",
+        "eligible": 5,
+        "passed": 2,
+        "conditional_rate": 0.4,
+        "first_missing": 3
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "hard": {
+    "success": 0.4925373134328358,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8518518518518519,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 47,
+        "conditional_rate": 0.8703703703703703,
+        "first_missing": 7
+       },
+       {
+        "stage": "picked",
+        "eligible": 47,
+        "passed": 47,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "completed",
+        "eligible": 47,
+        "passed": 46,
+        "conditional_rate": 0.9787234042553191,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.6805555555555556,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 56,
+        "conditional_rate": 0.7777777777777778,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 56,
+        "passed": 54,
+        "conditional_rate": 0.9642857142857143,
+        "first_missing": 2
+       },
+       {
+        "stage": "completed",
+        "eligible": 54,
+        "passed": 49,
+        "conditional_rate": 0.9074074074074074,
+        "first_missing": 5
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.5698924731182796,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 77,
+        "conditional_rate": 0.8279569892473119,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 77,
+        "passed": 77,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 77,
+        "passed": 57,
+        "conditional_rate": 0.7402597402597403,
+        "first_missing": 20
+       },
+       {
+        "stage": "completed",
+        "eligible": 57,
+        "passed": 53,
+        "conditional_rate": 0.9298245614035088,
+        "first_missing": 4
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.5396825396825397,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 57,
+        "conditional_rate": 0.9047619047619048,
+        "first_missing": 6
+       },
+       {
+        "stage": "picked",
+        "eligible": 57,
+        "passed": 57,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 57,
+        "passed": 40,
+        "conditional_rate": 0.7017543859649122,
+        "first_missing": 17
+       },
+       {
+        "stage": "completed",
+        "eligible": 40,
+        "passed": 34,
+        "conditional_rate": 0.85,
+        "first_missing": 6
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.21739130434782608,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 57,
+        "conditional_rate": 0.8260869565217391,
+        "first_missing": 12
+       },
+       {
+        "stage": "picked",
+        "eligible": 57,
+        "passed": 56,
+        "conditional_rate": 0.9824561403508771,
+        "first_missing": 1
+       },
+       {
+        "stage": "processed",
+        "eligible": 56,
+        "passed": 20,
+        "conditional_rate": 0.35714285714285715,
+        "first_missing": 36
+       },
+       {
+        "stage": "completed",
+        "eligible": 20,
+        "passed": 15,
+        "conditional_rate": 0.75,
+        "first_missing": 5
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0196078431372549,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 42,
+        "conditional_rate": 0.8235294117647058,
+        "first_missing": 9
+       },
+       {
+        "stage": "picked",
+        "eligible": 42,
+        "passed": 5,
+        "conditional_rate": 0.11904761904761904,
+        "first_missing": 37
+       },
+       {
+        "stage": "completed",
+        "eligible": 5,
+        "passed": 1,
+        "conditional_rate": 0.2,
+        "first_missing": 4
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "both": {
+    "success": 0.554726368159204,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 54,
+      "success": 0.8333333333333334,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 54,
+        "passed": 45,
+        "conditional_rate": 0.8333333333333334,
+        "first_missing": 9
+       },
+       {
+        "stage": "picked",
+        "eligible": 45,
+        "passed": 45,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "completed",
+        "eligible": 45,
+        "passed": 45,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 72,
+      "success": 0.7777777777777778,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 72,
+        "passed": 57,
+        "conditional_rate": 0.7916666666666666,
+        "first_missing": 15
+       },
+       {
+        "stage": "picked",
+        "eligible": 57,
+        "passed": 57,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "completed",
+        "eligible": 57,
+        "passed": 56,
+        "conditional_rate": 0.9824561403508771,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 93,
+      "success": 0.5268817204301075,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 93,
+        "passed": 74,
+        "conditional_rate": 0.7956989247311828,
+        "first_missing": 19
+       },
+       {
+        "stage": "picked",
+        "eligible": 74,
+        "passed": 73,
+        "conditional_rate": 0.9864864864864865,
+        "first_missing": 1
+       },
+       {
+        "stage": "processed",
+        "eligible": 73,
+        "passed": 49,
+        "conditional_rate": 0.6712328767123288,
+        "first_missing": 24
+       },
+       {
+        "stage": "completed",
+        "eligible": 49,
+        "passed": 49,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 63,
+      "success": 0.6825396825396826,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 63,
+        "passed": 59,
+        "conditional_rate": 0.9365079365079365,
+        "first_missing": 4
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 59,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 59,
+        "passed": 44,
+        "conditional_rate": 0.7457627118644068,
+        "first_missing": 15
+       },
+       {
+        "stage": "completed",
+        "eligible": 44,
+        "passed": 43,
+        "conditional_rate": 0.9772727272727273,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 69,
+      "success": 0.4057971014492754,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 69,
+        "passed": 59,
+        "conditional_rate": 0.855072463768116,
+        "first_missing": 10
+       },
+       {
+        "stage": "picked",
+        "eligible": 59,
+        "passed": 55,
+        "conditional_rate": 0.9322033898305084,
+        "first_missing": 4
+       },
+       {
+        "stage": "processed",
+        "eligible": 55,
+        "passed": 31,
+        "conditional_rate": 0.5636363636363636,
+        "first_missing": 24
+       },
+       {
+        "stage": "completed",
+        "eligible": 31,
+        "passed": 28,
+        "conditional_rate": 0.9032258064516129,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 51,
+      "success": 0.0392156862745098,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 51,
+        "passed": 41,
+        "conditional_rate": 0.803921568627451,
+        "first_missing": 10
+       },
+       {
+        "stage": "picked",
+        "eligible": 41,
+        "passed": 5,
+        "conditional_rate": 0.12195121951219512,
+        "first_missing": 36
+       },
+       {
+        "stage": "completed",
+        "eligible": 5,
+        "passed": 2,
+        "conditional_rate": 0.4,
+        "first_missing": 3
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 402,
+    "n_recognized": 402,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "paired": {
+    "state-base": {
+     "n_games": 134,
+     "difference_pp": 7.7114,
+     "ci95_pp": [
+      2.9851,
+      12.4378
+     ]
+    },
+    "hard-base": {
+     "n_games": 134,
+     "difference_pp": 2.9851,
+     "ci95_pp": [
+      1.2438,
+      4.9751
+     ]
+    },
+    "both-base": {
+     "n_games": 134,
+     "difference_pp": 9.204,
+     "ci95_pp": [
+      4.2289,
+      13.9303
+     ]
+    },
+    "both-hard": {
+     "n_games": 134,
+     "difference_pp": 6.2189,
+     "ci95_pp": [
+      1.4925,
+      10.9453
+     ]
+    },
+    "both-state": {
+     "n_games": 134,
+     "difference_pp": 1.4925,
+     "ci95_pp": [
+      0.2488,
+      3.2338
+     ]
+    }
+   }
+  },
+  "aprime_pooled": {
+   "base": {
+    "success": 0.4767827529021559,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 162,
+      "success": 0.8271604938271605,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 162,
+        "passed": 148,
+        "conditional_rate": 0.9135802469135802,
+        "first_missing": 14
+       },
+       {
+        "stage": "picked",
+        "eligible": 148,
+        "passed": 137,
+        "conditional_rate": 0.9256756756756757,
+        "first_missing": 11
+       },
+       {
+        "stage": "completed",
+        "eligible": 137,
+        "passed": 134,
+        "conditional_rate": 0.9781021897810219,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 216,
+      "success": 0.6574074074074074,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 216,
+        "passed": 173,
+        "conditional_rate": 0.8009259259259259,
+        "first_missing": 43
+       },
+       {
+        "stage": "picked",
+        "eligible": 173,
+        "passed": 164,
+        "conditional_rate": 0.9479768786127167,
+        "first_missing": 9
+       },
+       {
+        "stage": "completed",
+        "eligible": 164,
+        "passed": 142,
+        "conditional_rate": 0.8658536585365854,
+        "first_missing": 22
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 279,
+      "success": 0.5017921146953405,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 279,
+        "passed": 236,
+        "conditional_rate": 0.8458781362007168,
+        "first_missing": 43
+       },
+       {
+        "stage": "picked",
+        "eligible": 236,
+        "passed": 212,
+        "conditional_rate": 0.8983050847457628,
+        "first_missing": 24
+       },
+       {
+        "stage": "processed",
+        "eligible": 212,
+        "passed": 153,
+        "conditional_rate": 0.7216981132075472,
+        "first_missing": 59
+       },
+       {
+        "stage": "completed",
+        "eligible": 153,
+        "passed": 140,
+        "conditional_rate": 0.9150326797385621,
+        "first_missing": 13
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 189,
+      "success": 0.5873015873015873,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 189,
+        "passed": 176,
+        "conditional_rate": 0.9312169312169312,
+        "first_missing": 13
+       },
+       {
+        "stage": "picked",
+        "eligible": 176,
+        "passed": 170,
+        "conditional_rate": 0.9659090909090909,
+        "first_missing": 6
+       },
+       {
+        "stage": "processed",
+        "eligible": 170,
+        "passed": 121,
+        "conditional_rate": 0.711764705882353,
+        "first_missing": 49
+       },
+       {
+        "stage": "completed",
+        "eligible": 121,
+        "passed": 111,
+        "conditional_rate": 0.9173553719008265,
+        "first_missing": 10
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 207,
+      "success": 0.20772946859903382,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 207,
+        "passed": 175,
+        "conditional_rate": 0.8454106280193237,
+        "first_missing": 32
+       },
+       {
+        "stage": "picked",
+        "eligible": 175,
+        "passed": 161,
+        "conditional_rate": 0.92,
+        "first_missing": 14
+       },
+       {
+        "stage": "processed",
+        "eligible": 161,
+        "passed": 62,
+        "conditional_rate": 0.38509316770186336,
+        "first_missing": 99
+       },
+       {
+        "stage": "completed",
+        "eligible": 62,
+        "passed": 43,
+        "conditional_rate": 0.6935483870967742,
+        "first_missing": 19
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 153,
+      "success": 0.032679738562091505,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 153,
+        "passed": 126,
+        "conditional_rate": 0.8235294117647058,
+        "first_missing": 27
+       },
+       {
+        "stage": "picked",
+        "eligible": 126,
+        "passed": 12,
+        "conditional_rate": 0.09523809523809523,
+        "first_missing": 114
+       },
+       {
+        "stage": "completed",
+        "eligible": 12,
+        "passed": 5,
+        "conditional_rate": 0.4166666666666667,
+        "first_missing": 7
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 1206,
+    "n_recognized": 1206,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "state": {
+    "success": 0.538971807628524,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 162,
+      "success": 0.8271604938271605,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 162,
+        "passed": 140,
+        "conditional_rate": 0.8641975308641975,
+        "first_missing": 22
+       },
+       {
+        "stage": "picked",
+        "eligible": 140,
+        "passed": 136,
+        "conditional_rate": 0.9714285714285714,
+        "first_missing": 4
+       },
+       {
+        "stage": "completed",
+        "eligible": 136,
+        "passed": 134,
+        "conditional_rate": 0.9852941176470589,
+        "first_missing": 2
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 216,
+      "success": 0.7407407407407407,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 216,
+        "passed": 169,
+        "conditional_rate": 0.7824074074074074,
+        "first_missing": 47
+       },
+       {
+        "stage": "picked",
+        "eligible": 169,
+        "passed": 167,
+        "conditional_rate": 0.9881656804733728,
+        "first_missing": 2
+       },
+       {
+        "stage": "completed",
+        "eligible": 167,
+        "passed": 160,
+        "conditional_rate": 0.9580838323353293,
+        "first_missing": 7
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 279,
+      "success": 0.46953405017921146,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 279,
+        "passed": 231,
+        "conditional_rate": 0.8279569892473119,
+        "first_missing": 48
+       },
+       {
+        "stage": "picked",
+        "eligible": 231,
+        "passed": 209,
+        "conditional_rate": 0.9047619047619048,
+        "first_missing": 22
+       },
+       {
+        "stage": "processed",
+        "eligible": 209,
+        "passed": 134,
+        "conditional_rate": 0.6411483253588517,
+        "first_missing": 75
+       },
+       {
+        "stage": "completed",
+        "eligible": 134,
+        "passed": 131,
+        "conditional_rate": 0.9776119402985075,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 189,
+      "success": 0.6878306878306878,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 189,
+        "passed": 177,
+        "conditional_rate": 0.9365079365079365,
+        "first_missing": 12
+       },
+       {
+        "stage": "picked",
+        "eligible": 177,
+        "passed": 169,
+        "conditional_rate": 0.9548022598870056,
+        "first_missing": 8
+       },
+       {
+        "stage": "processed",
+        "eligible": 169,
+        "passed": 133,
+        "conditional_rate": 0.7869822485207101,
+        "first_missing": 36
+       },
+       {
+        "stage": "completed",
+        "eligible": 133,
+        "passed": 130,
+        "conditional_rate": 0.9774436090225563,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 207,
+      "success": 0.4106280193236715,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 207,
+        "passed": 177,
+        "conditional_rate": 0.855072463768116,
+        "first_missing": 30
+       },
+       {
+        "stage": "picked",
+        "eligible": 177,
+        "passed": 163,
+        "conditional_rate": 0.9209039548022598,
+        "first_missing": 14
+       },
+       {
+        "stage": "processed",
+        "eligible": 163,
+        "passed": 91,
+        "conditional_rate": 0.558282208588957,
+        "first_missing": 72
+       },
+       {
+        "stage": "completed",
+        "eligible": 91,
+        "passed": 85,
+        "conditional_rate": 0.9340659340659341,
+        "first_missing": 6
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 153,
+      "success": 0.06535947712418301,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 153,
+        "passed": 125,
+        "conditional_rate": 0.8169934640522876,
+        "first_missing": 28
+       },
+       {
+        "stage": "picked",
+        "eligible": 125,
+        "passed": 17,
+        "conditional_rate": 0.136,
+        "first_missing": 108
+       },
+       {
+        "stage": "completed",
+        "eligible": 17,
+        "passed": 10,
+        "conditional_rate": 0.5882352941176471,
+        "first_missing": 7
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 1206,
+    "n_recognized": 1206,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "hard": {
+    "success": 0.5016583747927031,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 162,
+      "success": 0.8580246913580247,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 162,
+        "passed": 146,
+        "conditional_rate": 0.9012345679012346,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 146,
+        "passed": 142,
+        "conditional_rate": 0.9726027397260274,
+        "first_missing": 4
+       },
+       {
+        "stage": "completed",
+        "eligible": 142,
+        "passed": 139,
+        "conditional_rate": 0.9788732394366197,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 216,
+      "success": 0.6712962962962963,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 216,
+        "passed": 172,
+        "conditional_rate": 0.7962962962962963,
+        "first_missing": 44
+       },
+       {
+        "stage": "picked",
+        "eligible": 172,
+        "passed": 168,
+        "conditional_rate": 0.9767441860465116,
+        "first_missing": 4
+       },
+       {
+        "stage": "completed",
+        "eligible": 168,
+        "passed": 145,
+        "conditional_rate": 0.8630952380952381,
+        "first_missing": 23
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 279,
+      "success": 0.5555555555555556,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 279,
+        "passed": 232,
+        "conditional_rate": 0.8315412186379928,
+        "first_missing": 47
+       },
+       {
+        "stage": "picked",
+        "eligible": 232,
+        "passed": 231,
+        "conditional_rate": 0.9956896551724138,
+        "first_missing": 1
+       },
+       {
+        "stage": "processed",
+        "eligible": 231,
+        "passed": 169,
+        "conditional_rate": 0.7316017316017316,
+        "first_missing": 62
+       },
+       {
+        "stage": "completed",
+        "eligible": 169,
+        "passed": 155,
+        "conditional_rate": 0.9171597633136095,
+        "first_missing": 14
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 189,
+      "success": 0.6031746031746031,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 189,
+        "passed": 173,
+        "conditional_rate": 0.9153439153439153,
+        "first_missing": 16
+       },
+       {
+        "stage": "picked",
+        "eligible": 173,
+        "passed": 173,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 173,
+        "passed": 124,
+        "conditional_rate": 0.7167630057803468,
+        "first_missing": 49
+       },
+       {
+        "stage": "completed",
+        "eligible": 124,
+        "passed": 114,
+        "conditional_rate": 0.9193548387096774,
+        "first_missing": 10
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 207,
+      "success": 0.22705314009661837,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 207,
+        "passed": 178,
+        "conditional_rate": 0.8599033816425121,
+        "first_missing": 29
+       },
+       {
+        "stage": "picked",
+        "eligible": 178,
+        "passed": 173,
+        "conditional_rate": 0.9719101123595506,
+        "first_missing": 5
+       },
+       {
+        "stage": "processed",
+        "eligible": 173,
+        "passed": 67,
+        "conditional_rate": 0.3872832369942196,
+        "first_missing": 106
+       },
+       {
+        "stage": "completed",
+        "eligible": 67,
+        "passed": 47,
+        "conditional_rate": 0.7014925373134329,
+        "first_missing": 20
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 153,
+      "success": 0.032679738562091505,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 153,
+        "passed": 125,
+        "conditional_rate": 0.8169934640522876,
+        "first_missing": 28
+       },
+       {
+        "stage": "picked",
+        "eligible": 125,
+        "passed": 12,
+        "conditional_rate": 0.096,
+        "first_missing": 113
+       },
+       {
+        "stage": "completed",
+        "eligible": 12,
+        "passed": 5,
+        "conditional_rate": 0.4166666666666667,
+        "first_missing": 7
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 1206,
+    "n_recognized": 1206,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "both": {
+    "success": 0.560530679933665,
+    "by_task_type": {
+     "look_at_obj_in_light": {
+      "episodes": 162,
+      "success": 0.845679012345679,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 162,
+        "passed": 140,
+        "conditional_rate": 0.8641975308641975,
+        "first_missing": 22
+       },
+       {
+        "stage": "picked",
+        "eligible": 140,
+        "passed": 138,
+        "conditional_rate": 0.9857142857142858,
+        "first_missing": 2
+       },
+       {
+        "stage": "completed",
+        "eligible": 138,
+        "passed": 137,
+        "conditional_rate": 0.9927536231884058,
+        "first_missing": 1
+       }
+      ]
+     },
+     "pick_and_place_simple": {
+      "episodes": 216,
+      "success": 0.75,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 216,
+        "passed": 170,
+        "conditional_rate": 0.7870370370370371,
+        "first_missing": 46
+       },
+       {
+        "stage": "picked",
+        "eligible": 170,
+        "passed": 169,
+        "conditional_rate": 0.9941176470588236,
+        "first_missing": 1
+       },
+       {
+        "stage": "completed",
+        "eligible": 169,
+        "passed": 162,
+        "conditional_rate": 0.9585798816568047,
+        "first_missing": 7
+       }
+      ]
+     },
+     "pick_clean_then_place_in_recep": {
+      "episodes": 279,
+      "success": 0.5232974910394266,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 279,
+        "passed": 230,
+        "conditional_rate": 0.8243727598566308,
+        "first_missing": 49
+       },
+       {
+        "stage": "picked",
+        "eligible": 230,
+        "passed": 227,
+        "conditional_rate": 0.9869565217391304,
+        "first_missing": 3
+       },
+       {
+        "stage": "processed",
+        "eligible": 227,
+        "passed": 150,
+        "conditional_rate": 0.6607929515418502,
+        "first_missing": 77
+       },
+       {
+        "stage": "completed",
+        "eligible": 150,
+        "passed": 146,
+        "conditional_rate": 0.9733333333333334,
+        "first_missing": 4
+       }
+      ]
+     },
+     "pick_cool_then_place_in_recep": {
+      "episodes": 189,
+      "success": 0.708994708994709,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 189,
+        "passed": 178,
+        "conditional_rate": 0.9417989417989417,
+        "first_missing": 11
+       },
+       {
+        "stage": "picked",
+        "eligible": 178,
+        "passed": 178,
+        "conditional_rate": 1.0,
+        "first_missing": 0
+       },
+       {
+        "stage": "processed",
+        "eligible": 178,
+        "passed": 137,
+        "conditional_rate": 0.7696629213483146,
+        "first_missing": 41
+       },
+       {
+        "stage": "completed",
+        "eligible": 137,
+        "passed": 134,
+        "conditional_rate": 0.9781021897810219,
+        "first_missing": 3
+       }
+      ]
+     },
+     "pick_heat_then_place_in_recep": {
+      "episodes": 207,
+      "success": 0.42028985507246375,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 207,
+        "passed": 177,
+        "conditional_rate": 0.855072463768116,
+        "first_missing": 30
+       },
+       {
+        "stage": "picked",
+        "eligible": 177,
+        "passed": 172,
+        "conditional_rate": 0.9717514124293786,
+        "first_missing": 5
+       },
+       {
+        "stage": "processed",
+        "eligible": 172,
+        "passed": 93,
+        "conditional_rate": 0.5406976744186046,
+        "first_missing": 79
+       },
+       {
+        "stage": "completed",
+        "eligible": 93,
+        "passed": 87,
+        "conditional_rate": 0.9354838709677419,
+        "first_missing": 6
+       }
+      ]
+     },
+     "pick_two_obj_and_place": {
+      "episodes": 153,
+      "success": 0.06535947712418301,
+      "stages": [
+       {
+        "stage": "found",
+        "eligible": 153,
+        "passed": 125,
+        "conditional_rate": 0.8169934640522876,
+        "first_missing": 28
+       },
+       {
+        "stage": "picked",
+        "eligible": 125,
+        "passed": 17,
+        "conditional_rate": 0.136,
+        "first_missing": 108
+       },
+       {
+        "stage": "completed",
+        "eligible": 17,
+        "passed": 10,
+        "conditional_rate": 0.5882352941176471,
+        "first_missing": 7
+       }
+      ]
+     }
+    },
+    "unrecognized": {},
+    "n_total": 1206,
+    "n_recognized": 1206,
+    "note": "first_missing = first unobserved milestone, NOT causal recoverable failures or a gain upper bound."
+   },
+   "paired": {
+    "state-base": {
+     "n_games": 134,
+     "difference_pp": 6.2189,
+     "ci95_pp": [
+      2.7363,
+      9.7844
+     ]
+    },
+    "hard-base": {
+     "n_games": 134,
+     "difference_pp": 2.4876,
+     "ci95_pp": [
+      1.3267,
+      3.8143
+     ]
+    },
+    "both-base": {
+     "n_games": 134,
+     "difference_pp": 8.3748,
+     "ci95_pp": [
+      4.9751,
+      11.9403
+     ]
+    },
+    "both-hard": {
+     "n_games": 134,
+     "difference_pp": 5.8872,
+     "ci95_pp": [
+      2.6534,
+      9.2869
+     ]
+    },
+    "both-state": {
+     "n_games": 134,
+     "difference_pp": 2.1559,
+     "ci95_pp": [
+      0.7463,
+      3.9801
+     ]
+    }
+   }
+  }
+ },
+ "intervention_audit": {
+  "base/base": {
+   "steps": 15434,
+   "known_steps": 7965,
+   "known_non_target_steps": 3069,
+   "episodes": 402,
+   "episodes_with_override": 0,
+   "observable_unnecessary_release_rate": null
+  },
+  "base/state": {
+   "steps": 15052,
+   "known_steps": 7257,
+   "known_non_target_steps": 2247,
+   "episodes": 402,
+   "episodes_with_override": 0,
+   "observable_unnecessary_release_rate": null
+  },
+  "base/hard": {
+   "steps": 15179,
+   "known_steps": 7710,
+   "known_non_target_steps": 221,
+   "episodes": 402,
+   "episodes_with_override": 100,
+   "triggered": 221,
+   "overridden": 220,
+   "observable_unnecessary_release": 0,
+   "empty_after_trigger": 221,
+   "observable_unnecessary_release_rate": 0.0
+  },
+  "base/both": {
+   "steps": 14916,
+   "known_steps": 7121,
+   "known_non_target_steps": 208,
+   "episodes": 402,
+   "episodes_with_override": 87,
+   "triggered": 208,
+   "overridden": 205,
+   "observable_unnecessary_release": 0,
+   "empty_after_trigger": 208,
+   "observable_unnecessary_release_rate": 0.0
+  },
+  "aprime_s0/base": {
+   "steps": 13981,
+   "known_steps": 8693,
+   "known_non_target_steps": 1323,
+   "episodes": 402,
+   "episodes_with_override": 0,
+   "observable_unnecessary_release_rate": null
+  },
+  "aprime_s0/state": {
+   "steps": 13051,
+   "known_steps": 8142,
+   "known_non_target_steps": 1732,
+   "episodes": 402,
+   "episodes_with_override": 0,
+   "observable_unnecessary_release_rate": null
+  },
+  "aprime_s0/hard": {
+   "steps": 13733,
+   "known_steps": 8445,
+   "known_non_target_steps": 77,
+   "episodes": 402,
+   "episodes_with_override": 43,
+   "triggered": 77,
+   "overridden": 77,
+   "observable_unnecessary_release": 0,
+   "empty_after_trigger": 77,
+   "observable_unnecessary_release_rate": 0.0
+  },
+  "aprime_s0/both": {
+   "steps": 12841,
+   "known_steps": 7932,
+   "known_non_target_steps": 110,
+   "episodes": 402,
+   "episodes_with_override": 55,
+   "triggered": 110,
+   "overridden": 110,
+   "observable_unnecessary_release": 0,
+   "empty_after_trigger": 110,
+   "observable_unnecessary_release_rate": 0.0
+  },
+  "aprime_s1/base": {
+   "steps": 13895,
+   "known_steps": 8603,
+   "known_non_target_steps": 1142,
+   "episodes": 402,
+   "episodes_with_override": 0,
+   "observable_unnecessary_release_rate": null
+  },
+  "aprime_s1/state": {
+   "steps": 13070,
+   "known_steps": 7538,
+   "known_non_target_steps": 1368,
+   "episodes": 402,
+   "episodes_with_override": 0,
+   "observable_unnecessary_release_rate": null
+  },
+  "aprime_s1/hard": {
+   "steps": 13740,
+   "known_steps": 8448,
+   "known_non_target_steps": 80,
+   "episodes": 402,
+   "episodes_with_override": 41,
+   "triggered": 80,
+   "overridden": 79,
+   "observable_unnecessary_release": 0,
+   "empty_after_trigger": 80,
+   "observable_unnecessary_release_rate": 0.0
+  },
+  "aprime_s1/both": {
+   "steps": 12882,
+   "known_steps": 7350,
+   "known_non_target_steps": 86,
+   "episodes": 402,
+   "episodes_with_override": 48,
+   "triggered": 86,
+   "overridden": 86,
+   "observable_unnecessary_release": 0,
+   "empty_after_trigger": 86,
+   "observable_unnecessary_release_rate": 0.0
+  },
+  "aprime_s2/base": {
+   "steps": 14088,
+   "known_steps": 9022,
+   "known_non_target_steps": 1516,
+   "episodes": 402,
+   "episodes_with_override": 0,
+   "observable_unnecessary_release_rate": null
+  },
+  "aprime_s2/state": {
+   "steps": 12956,
+   "known_steps": 7719,
+   "known_non_target_steps": 1449,
+   "episodes": 402,
+   "episodes_with_override": 0,
+   "observable_unnecessary_release_rate": null
+  },
+  "aprime_s2/hard": {
+   "steps": 13834,
+   "known_steps": 8768,
+   "known_non_target_steps": 96,
+   "episodes": 402,
+   "episodes_with_override": 48,
+   "triggered": 96,
+   "overridden": 96,
+   "observable_unnecessary_release": 0,
+   "empty_after_trigger": 96,
+   "observable_unnecessary_release_rate": 0.0
+  },
+  "aprime_s2/both": {
+   "steps": 12812,
+   "known_steps": 7575,
+   "known_non_target_steps": 96,
+   "episodes": 402,
+   "episodes_with_override": 50,
+   "triggered": 96,
+   "overridden": 96,
+   "observable_unnecessary_release": 0,
+   "empty_after_trigger": 96,
+   "observable_unnecessary_release_rate": 0.0
+  }
+ },
+ "limitations": [
+  "Task milestones are observed evidence, not causal recovery budgets.",
+  "Observable unnecessary-release flags do not measure whether a legal destination is strategically optimal.",
+  "Paired game-cluster bootstrap uses original E4e 2000 resamples and seed 20261110; multiple exploratory contrasts, not preregistered confirmations.",
+  "No locally available compatible public RL full checkpoint found; reference GiGPO code exists but contains no trained weights. Public RL comparison is not run."
+ ]
+}

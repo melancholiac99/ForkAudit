@@ -1,0 +1,40 @@
+E4e exploratory four-arm recovery audit
+6432 episodes / 134 fixed games / 3 rollout repeats / 4 policies
+
+base: base=37.06%, state=37.56%, hard=40.80%, both=39.55%
+  state-base: +0.4975 pp, 95% game-cluster CI [-3.4826, 4.4776]
+  hard-base: +3.7313 pp, 95% game-cluster CI [1.7413, 5.7214]
+  both-base: +2.4876 pp, 95% game-cluster CI [-1.2438, 6.2189]
+  both-hard: -1.2438 pp, 95% game-cluster CI [-5.4726, 2.9851]
+  both-state: +1.9900 pp, 95% game-cluster CI [0.7463, 3.4826]
+aprime_s0: base=47.76%, state=55.22%, hard=50.75%, both=57.96%
+  state-base: +7.4627 pp, 95% game-cluster CI [2.2388, 12.4378]
+  hard-base: +2.9851 pp, 95% game-cluster CI [1.2438, 4.7264]
+  both-base: +10.1990 pp, 95% game-cluster CI [5.4726, 14.9254]
+  both-hard: +7.2139 pp, 95% game-cluster CI [2.4876, 11.6915]
+  both-state: +2.7363 pp, 95% game-cluster CI [0.7463, 4.9751]
+aprime_s1: base=49.00%, state=52.49%, hard=50.50%, both=54.73%
+  state-base: +3.4826 pp, 95% game-cluster CI [-1.2438, 8.7065]
+  hard-base: +1.4925 pp, 95% game-cluster CI [0.0, 2.9851]
+  both-base: +5.7214 pp, 95% game-cluster CI [0.7463, 10.9453]
+  both-hard: +4.2289 pp, 95% game-cluster CI [-0.4975, 8.9552]
+  both-state: +2.2388 pp, 95% game-cluster CI [0.4975, 4.4776]
+aprime_s2: base=46.27%, state=53.98%, hard=49.25%, both=55.47%
+  state-base: +7.7114 pp, 95% game-cluster CI [2.9851, 12.4378]
+  hard-base: +2.9851 pp, 95% game-cluster CI [1.2438, 4.9751]
+  both-base: +9.2040 pp, 95% game-cluster CI [4.2289, 13.9303]
+  both-hard: +6.2189 pp, 95% game-cluster CI [1.4925, 10.9453]
+  both-state: +1.4925 pp, 95% game-cluster CI [0.2488, 3.2338]
+aprime_pooled: base=47.68%, state=53.90%, hard=50.17%, both=56.05%
+  state-base: +6.2189 pp, 95% game-cluster CI [2.7363, 9.7844]
+  hard-base: +2.4876 pp, 95% game-cluster CI [1.3267, 3.8143]
+  both-base: +8.3748 pp, 95% game-cluster CI [4.9751, 11.9403]
+  both-hard: +5.8872 pp, 95% game-cluster CI [2.6534, 9.2869]
+  both-state: +2.1559 pp, 95% game-cluster CI [0.7463, 3.9801]
+
+Task milestones are observed evidence, not causal recovery budgets.
+Observable unnecessary-release flags do not measure whether a legal destination is strategically optimal.
+Paired game-cluster bootstrap uses original E4e 2000 resamples and seed 20261110; multiple exploratory contrasts, not preregistered confirmations.
+No locally available compatible public RL full checkpoint found; reference GiGPO code exists but contains no trained weights. Public RL comparison is not run.
+
+Manual rule review: {"rule_supported": 21, "rule_contradicted": 0, "uncertain": 11}

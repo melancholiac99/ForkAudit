@@ -1,0 +1,6 @@
+{
+  "stage": "failed",
+  "pid": 3939,
+  "time": 1794325181.7473195,
+  "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/download_gigpo.py\", line 35, in <module>\n    with (R/'download.log').open('a') as log:subprocess.run(args,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=3600)\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/envs/m0/lib/python3.11/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/root/autodl-tmp/hf_download_env_20261110/bin/hf', 'download', 'langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld', '--revision', '895c9fe1db239ae6140ffec7801a51e157292f83', '--local-dir', '/root/autodl-tmp/models/GiGPO-7B-ALFWorld', '--max-workers', '4']' returned non-zero exit status 1.\n"
+}

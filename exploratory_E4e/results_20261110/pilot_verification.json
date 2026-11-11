@@ -1,0 +1,14 @@
+{
+ "passed": true,
+ "episodes": 48,
+ "analysis_sha256": "925ff8caf0ab2bd28b12957bd44ccbeb103871606514007670f2c245f8e50ba4",
+ "raw_manifest_sha256": "e4d3e68cc18f795d1a9952d18f786a145b912934a5d90111ca70ba317863ba15",
+ "checks": [
+  "fixed cohort/repeats",
+  "weights routing and frozen source/plan",
+  "sampling seeds",
+  "complete feedback chain",
+  "all carry states and legal rule applications",
+  "raw response versus model/executed actions"
+ ]
+}

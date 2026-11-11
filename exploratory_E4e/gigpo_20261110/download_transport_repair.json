@@ -1,0 +1,6 @@
+{
+  "time": 1794325734.7093205,
+  "reason": "XET repeatedly reported connection struggling with only 512 MiB partial allocation and no completed weight shards after about 9 minutes. Direct HTTP range probe returned 206 successfully.",
+  "action": "Terminate only downloader child 4172 to activate registered next attempt with HF_HUB_DISABLE_XET=1; original GPU queue untouched.",
+  "same_repository_revision": true
+}

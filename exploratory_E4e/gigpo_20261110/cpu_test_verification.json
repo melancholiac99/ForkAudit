@@ -1,0 +1,15 @@
+{
+  "time": 1794325755.3510516,
+  "passed": true,
+  "tests": 8,
+  "command": "/root/miniconda3/envs/m0/bin/python -m unittest discover -s exploratory_E4e -p test_*.py -v",
+  "source_commit": "1072c9edf",
+  "includes": [
+    "preserve completed episodes",
+    "task-specific milestones",
+    "GiGPO before shutdown",
+    "no adapter",
+    "fixed base/3 reps/20 workers",
+    "failure cannot publish success"
+  ]
+}

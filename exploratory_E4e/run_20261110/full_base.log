@@ -1,0 +1,470 @@
+(MainProcess pid=5234) INFO 11-11 00:04:11 [api_utils.py:286] non-default args: {'dtype': 'bfloat16', 'max_model_len': 6144, 'enable_prefix_caching': True, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'enable_lora': True, 'compilation_config': {'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL: 2>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 32, 64, 128, 200, 256, 320, 400, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'generation_config': 'vllm', 'async_scheduling': True, 'model': '/root/autodl-tmp/models/Qwen2.5-7B-Instruct'}
+(MainProcess pid=5234) INFO 11-11 00:04:11 [model.py:733] Resolved architecture: Qwen2ForCausalLM
+(MainProcess pid=5234) INFO 11-11 00:04:11 [model.py:2152] Using max model len 6144
+(MainProcess pid=5234) INFO 11-11 00:04:11 [scheduler.py:307] Chunked prefill is enabled with max_num_batched_tokens=16384.
+(MainProcess pid=5234) WARNING 11-11 00:04:11 [vllm.py:1727] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(MainProcess pid=5234) INFO 11-11 00:04:11 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=5234) INFO 11-11 00:04:11 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=5273) INFO 11-11 00:04:19 [core.py:133] Initializing a V1 LLM engine (v0.32.0) with config: model='/root/autodl-tmp/models/Qwen2.5-7B-Instruct', speculative_config=None, tokenizer='/root/autodl-tmp/models/Qwen2.5-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=6144, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=/root/autodl-tmp/models/Qwen2.5-7B-Instruct, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL: 2>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 32, 64, 128, 200, 256, 320, 400, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+[W1111 00:04:21.095067768 Context.cpp:597] Warning: torch.backends.cuda.preferred_blas_library is an experimental feature. If you see any error or unexpected behavior when this flag is set please file an issue on GitHub. (function operator())
+(EngineCore pid=5273) INFO 11-11 00:04:21 [parallel_state.py:1906] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_8478e71a06e44c1193554e44c237c129 backend=nccl
+(EngineCore pid=5273) INFO 11-11 00:04:21 [parallel_state.py:2350] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=5273) WARNING 11-11 00:04:21 [flashinfer.py:143] FlashInfer's precompiled kernels are missing or do not match flashinfer-python 0.7.0.post1 (flashinfer-cubin not installed, flashinfer-jit-cache not installed). FlashInfer then downloads and compiles kernels at startup, which can take several minutes, or fails to import mismatched ones. Run `vllm download-kernels` in this Python environment to install them.
+(EngineCore pid=5273) INFO 11-11 00:04:22 [topk_topp_sampler.py:124] Using FlashInfer for top-p & top-k sampling.
+(EngineCore pid=5273) INFO 11-11 00:04:22 [gpu_model_runner.py:5039] Starting to load model /root/autodl-tmp/models/Qwen2.5-7B-Instruct...
+(EngineCore pid=5273) INFO 11-11 00:04:22 [cuda.py:506] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(EngineCore pid=5273) INFO 11-11 00:04:22 [flash_attn.py:1117] Using FlashAttention version 2
+(EngineCore pid=5273) INFO 11-11 00:04:23 [base_loader.py:82] Initializing model took 0.234835 seconds
+(EngineCore pid=5273) INFO 11-11 00:04:23 [weight_utils.py:1108] Filesystem type for checkpoints: OVERLAY. Checkpoint size: 14.19 GiB. Available RAM: 64.03 GiB.
+(EngineCore pid=5273) INFO 11-11 00:04:23 [weight_utils.py:1131] Auto-prefetch is disabled because the filesystem (OVERLAY) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.21it/s]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.11it/s]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:00,  1.07it/s]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:03<00:00,  1.05it/s]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:03<00:00,  1.07it/s]
+
+(EngineCore pid=5273) INFO 11-11 00:04:26 [default_loader.py:501] Loading weights took 3.90 seconds
+(EngineCore pid=5273) INFO 11-11 00:04:27 [punica_selector.py:20] Using PunicaWrapperGPU.
+(EngineCore pid=5273) INFO 11-11 00:04:28 [gpu_model_runner.py:5149] Model loading took 14.37 GiB memory and 4.994733 seconds
+(EngineCore pid=5273) INFO 11-11 00:04:28 [utils.py:347] Using LBNHC KV cache layout.
+(EngineCore pid=5273) WARNING 11-11 00:04:31 [compilation.py:1412] CUDAGraphMode.FULL is not supported with FlashAttentionBackend backend (support: AttentionCGSupport.UNIFORM_BATCH); setting cudagraph_mode=FULL_DECODE_ONLY
+(EngineCore pid=5273) INFO 11-11 00:04:31 [gpu_model_runner.py:6369] Profiling CUDA graph memory: FULL=26 (largest=512)
+(EngineCore pid=5273) WARNING 11-11 00:04:32 [utils.py:276] Using default LoRA kernel configs
+(EngineCore pid=5273) INFO 11-11 00:04:33 [gpu_model_runner.py:6474] Estimated CUDA graph memory: 0.15 GiB total
+(EngineCore pid=5273) INFO 11-11 00:04:33 [gpu_worker.py:759] Available KV cache memory: 53.54 GiB
+(EngineCore pid=5273) INFO 11-11 00:04:33 [gpu_worker.py:774] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.8500 is equivalent to --gpu-memory-utilization=0.8482 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.8518. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=5273) INFO 11-11 00:04:33 [kv_cache_utils.py:2327] GPU KV cache size: 1,002,480 tokens, Maximum concurrency for 6,144 tokens per request: 163.16x
+(EngineCore pid=5273) INFO 11-11 00:04:33 [kernel_warmup.py:176] JIT kernel warmup starting.
+JIT kernel warmup (93 compile keys):   0%|          | 0/5 [00:00<?, ?kernel/s]JIT kernel warmup (93 compile keys):  60%|██████    | 3/5 [00:00<00:00, 27.70kernel/s, _DecoratedTritonJitKernel (40 keys)]JIT kernel warmup (93 compile keys): 100%|██████████| 5/5 [00:00<00:00, 36.46kernel/s, ComputeSlotMappingKernel (1 keys)]  
+(EngineCore pid=5273) INFO 11-11 00:04:33 [kernel_warmup.py:189] JIT kernel warmup finished in 0.29s.
+(EngineCore pid=5273) WARNING 11-11 00:04:33 [vllm.py:1727] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore pid=5273) INFO 11-11 00:04:33 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(EngineCore pid=5273) INFO 11-11 00:04:33 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=5273) INFO 11-11 00:04:33 [kernel_warmup.py:460] Using FlashInfer autotune cache file: /root/.cache/vllm/flashinfer_autotune_cache/0.7.0.post1/120f/b421488305050e5e879d983d8d16a324c52a803081302d679c6e85c02c5bb960/autotune_configs_dp0_rank0.json
+2026-11-11 00:04:33,526 - INFO - autotuner.py:1046 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+(EngineCore pid=5273) INFO 11-11 00:04:33 [kernel_warmup.py:367] Running FlashInfer autotune with 16384 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192, 16384).
+2026-11-11 00:04:33,568 - INFO - autotuner.py:1069 - flashinfer.jit: [Autotuner]: Autotuning process ends
+(EngineCore pid=5273) INFO 11-11 00:04:33 [gpu_model_runner.py:6535] Rank 0: Torch profiler disabled for CUDA graph capture
+Capturing CUDA graphs (decode, FULL):   0%|          | 0/26 [00:00<?, ?it/s]Capturing CUDA graphs (decode, FULL):   4%|▍         | 1/26 [00:00<00:03,  7.54it/s]Capturing CUDA graphs (decode, FULL):  12%|█▏        | 3/26 [00:00<00:02,  9.09it/s]Capturing CUDA graphs (decode, FULL):  19%|█▉        | 5/26 [00:00<00:02,  9.73it/s]Capturing CUDA graphs (decode, FULL):  23%|██▎       | 6/26 [00:00<00:02,  8.09it/s]Capturing CUDA graphs (decode, FULL):  31%|███       | 8/26 [00:00<00:01,  9.44it/s]Capturing CUDA graphs (decode, FULL):  35%|███▍      | 9/26 [00:00<00:01,  9.40it/s]Capturing CUDA graphs (decode, FULL):  42%|████▏     | 11/26 [00:01<00:01, 10.34it/s]Capturing CUDA graphs (decode, FULL):  50%|█████     | 13/26 [00:01<00:01, 11.13it/s]Capturing CUDA graphs (decode, FULL):  58%|█████▊    | 15/26 [00:01<00:00, 11.84it/s]Capturing CUDA graphs (decode, FULL):  65%|██████▌   | 17/26 [00:01<00:00, 10.75it/s]Capturing CUDA graphs (decode, FULL):  73%|███████▎  | 19/26 [00:01<00:00, 11.41it/s]Capturing CUDA graphs (decode, FULL):  81%|████████  | 21/26 [00:01<00:00, 11.96it/s]Capturing CUDA graphs (decode, FULL):  88%|████████▊ | 23/26 [00:02<00:00, 12.32it/s]Capturing CUDA graphs (decode, FULL):  96%|█████████▌| 25/26 [00:02<00:00, 11.66it/s]Capturing CUDA graphs (decode, FULL): 100%|██████████| 26/26 [00:02<00:00, 10.94it/s]
+(EngineCore pid=5273) INFO 11-11 00:04:37 [gpu_model_runner.py:6581] Graph capturing finished in 4 secs, took 0.13 GiB
+(EngineCore pid=5273) INFO 11-11 00:04:37 [gpu_worker.py:971] CUDA graph pool memory: 0.13 GiB (actual), 0.15 GiB (estimated), difference: 0.02 GiB (18.5%).
+(EngineCore pid=5273) INFO 11-11 00:04:37 [gpu_worker.py:1034] Free memory on device (82.59/83.05 GiB) on startup. Desired GPU memory utilization is (0.85, 70.59 GiB). Actual usage is 14.75 GiB for consumed memory (weights + non-torch), 2.3 GiB for peak activation, and 0.13 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=57193277031` (53.27 GiB) to fit into requested memory, or `--kv-cache-memory=70078316544` (65.27 GiB) to fully utilize gpu memory. Current kv cache memory in use is 53.54 GiB.
+(EngineCore pid=5273) INFO 11-11 00:04:38 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=5273) INFO 11-11 00:04:38 [core.py:402] init engine (profile, create kv cache, warmup model) took 10.36 s
+(EngineCore pid=5273) INFO 11-11 00:04:39 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=5234) INFO 11-11 00:04:39 [hf.py:648] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+[base] turn=1 active=402 won=0
+{"event": "turn_timing", "condition": "base", "turn": 1, "active": 402, "generation_seconds": 13.431648317724466, "environment_seconds": 1.3216228289529681, "elapsed_seconds": 14.758943798020482}
+[base] turn=2 active=402 won=0
+{"event": "turn_timing", "condition": "base", "turn": 2, "active": 402, "generation_seconds": 16.927761404775083, "environment_seconds": 1.4260605555027723, "elapsed_seconds": 33.11896832007915}
+[base] turn=3 active=402 won=7
+{"event": "turn_timing", "condition": "base", "turn": 3, "active": 402, "generation_seconds": 21.84502948168665, "environment_seconds": 1.3007456697523594, "elapsed_seconds": 56.2785659879446}
+[base] turn=4 active=395 won=15
+{"event": "turn_timing", "condition": "base", "turn": 4, "active": 395, "generation_seconds": 29.99076442513615, "environment_seconds": 1.3290634835138917, "elapsed_seconds": 87.60642538405955}
+[base] turn=5 active=387 won=24
+{"event": "turn_timing", "condition": "base", "turn": 5, "active": 387, "generation_seconds": 27.77123670373112, "environment_seconds": 1.2355460207909346, "elapsed_seconds": 116.62797028198838}
+[base] turn=6 active=378 won=29
+{"event": "turn_timing", "condition": "base", "turn": 6, "active": 378, "generation_seconds": 26.34705545566976, "environment_seconds": 1.228123583830893, "elapsed_seconds": 144.21740767080337}
+[base] turn=7 active=373 won=35
+{"event": "turn_timing", "condition": "base", "turn": 7, "active": 373, "generation_seconds": 27.645496330223978, "environment_seconds": 1.1897367555648088, "elapsed_seconds": 173.0723226526752}
+[base] turn=8 active=367 won=39
+{"event": "turn_timing", "condition": "base", "turn": 8, "active": 367, "generation_seconds": 30.930730930529535, "environment_seconds": 1.1785426149144769, "elapsed_seconds": 205.19720185361803}
+[base] turn=9 active=363 won=46
+{"event": "turn_timing", "condition": "base", "turn": 9, "active": 363, "generation_seconds": 29.27178317680955, "environment_seconds": 1.1975852474570274, "elapsed_seconds": 235.68764985259622}
+[base] turn=10 active=356 won=50
+{"event": "turn_timing", "condition": "base", "turn": 10, "active": 356, "generation_seconds": 28.617311913520098, "environment_seconds": 1.1989816706627607, "elapsed_seconds": 265.52309790533036}
+[base] turn=11 active=352 won=53
+{"event": "turn_timing", "condition": "base", "turn": 11, "active": 352, "generation_seconds": 28.058273303322494, "environment_seconds": 1.1420818427577615, "elapsed_seconds": 294.7434822861105}
+[base] turn=12 active=349 won=58
+{"event": "turn_timing", "condition": "base", "turn": 12, "active": 349, "generation_seconds": 29.792123132385314, "environment_seconds": 1.1454729652032256, "elapsed_seconds": 325.7016127901152}
+[base] turn=13 active=344 won=63
+{"event": "turn_timing", "condition": "base", "turn": 13, "active": 344, "generation_seconds": 32.45600674021989, "environment_seconds": 1.1234208196401596, "elapsed_seconds": 359.30025755334646}
+[base] turn=14 active=339 won=67
+{"event": "turn_timing", "condition": "base", "turn": 14, "active": 339, "generation_seconds": 28.636596685275435, "environment_seconds": 1.1912161083891988, "elapsed_seconds": 389.14682045951486}
+[base] turn=15 active=335 won=71
+{"event": "turn_timing", "condition": "base", "turn": 15, "active": 335, "generation_seconds": 27.551597960293293, "environment_seconds": 1.2258474556729198, "elapsed_seconds": 417.9365908447653}
+[base] turn=16 active=331 won=73
+{"event": "turn_timing", "condition": "base", "turn": 16, "active": 331, "generation_seconds": 26.660496396943927, "environment_seconds": 1.136086598969996, "elapsed_seconds": 445.7506598085165}
+[base] turn=17 active=329 won=85
+{"event": "turn_timing", "condition": "base", "turn": 17, "active": 329, "generation_seconds": 25.152124349027872, "environment_seconds": 1.1902406169101596, "elapsed_seconds": 472.1070738937706}
+[base] turn=18 active=317 won=90
+{"event": "turn_timing", "condition": "base", "turn": 18, "active": 317, "generation_seconds": 25.73406699951738, "environment_seconds": 1.1926333652809262, "elapsed_seconds": 499.03894470632076}
+[base] turn=19 active=312 won=94
+{"event": "turn_timing", "condition": "base", "turn": 19, "active": 312, "generation_seconds": 25.96959645859897, "environment_seconds": 1.1694452604278922, "elapsed_seconds": 526.183336103335}
+[base] turn=20 active=308 won=100
+{"event": "turn_timing", "condition": "base", "turn": 20, "active": 308, "generation_seconds": 24.810402202419937, "environment_seconds": 1.1091684699058533, "elapsed_seconds": 552.1184422029182}
+[base] turn=21 active=302 won=102
+{"event": "turn_timing", "condition": "base", "turn": 21, "active": 302, "generation_seconds": 24.646210622042418, "environment_seconds": 1.1968409111723304, "elapsed_seconds": 577.9718966837972}
+[base] turn=22 active=300 won=103
+{"event": "turn_timing", "condition": "base", "turn": 22, "active": 300, "generation_seconds": 23.73017580807209, "environment_seconds": 1.0864338539540768, "elapsed_seconds": 602.8056314568967}
+[base] turn=23 active=299 won=106
+{"event": "turn_timing", "condition": "base", "turn": 23, "active": 299, "generation_seconds": 24.99495819117874, "environment_seconds": 1.1617596419528127, "elapsed_seconds": 628.9782502064481}
+[base] turn=24 active=296 won=108
+{"event": "turn_timing", "condition": "base", "turn": 24, "active": 296, "generation_seconds": 22.957730071619153, "environment_seconds": 1.0899257129058242, "elapsed_seconds": 653.0411372296512}
+[base] turn=25 active=294 won=108
+{"event": "turn_timing", "condition": "base", "turn": 25, "active": 294, "generation_seconds": 26.46842409670353, "environment_seconds": 1.1703011887148023, "elapsed_seconds": 680.6968165244907}
+[base] turn=26 active=294 won=109
+{"event": "turn_timing", "condition": "base", "turn": 26, "active": 294, "generation_seconds": 22.918747909367085, "environment_seconds": 1.0533756837248802, "elapsed_seconds": 704.6869628224522}
+[base] turn=27 active=293 won=110
+{"event": "turn_timing", "condition": "base", "turn": 27, "active": 293, "generation_seconds": 23.11328935343772, "environment_seconds": 1.0173716209828854, "elapsed_seconds": 728.8303612442687}
+[base] turn=28 active=292 won=111
+{"event": "turn_timing", "condition": "base", "turn": 28, "active": 292, "generation_seconds": 23.535377266816795, "environment_seconds": 1.0221151635050774, "elapsed_seconds": 753.4060619473457}
+[base] turn=29 active=291 won=111
+{"event": "turn_timing", "condition": "base", "turn": 29, "active": 291, "generation_seconds": 28.444717328995466, "environment_seconds": 1.0379632832482457, "elapsed_seconds": 782.9051774833351}
+[base] turn=30 active=291 won=113
+{"event": "turn_timing", "condition": "base", "turn": 30, "active": 291, "generation_seconds": 23.961844496428967, "environment_seconds": 1.0680278558284044, "elapsed_seconds": 807.9460717281327}
+[base] turn=31 active=289 won=118
+{"event": "turn_timing", "condition": "base", "turn": 31, "active": 289, "generation_seconds": 25.16146964300424, "environment_seconds": 1.0503288442268968, "elapsed_seconds": 834.1751753706485}
+[base] turn=32 active=284 won=119
+{"event": "turn_timing", "condition": "base", "turn": 32, "active": 284, "generation_seconds": 23.406060710549355, "environment_seconds": 1.03379010502249, "elapsed_seconds": 858.6320539619774}
+[base] turn=33 active=283 won=123
+{"event": "turn_timing", "condition": "base", "turn": 33, "active": 283, "generation_seconds": 24.94267846364528, "environment_seconds": 1.1825159071013331, "elapsed_seconds": 884.7679704548791}
+[base] turn=34 active=279 won=125
+{"event": "turn_timing", "condition": "base", "turn": 34, "active": 279, "generation_seconds": 23.986837309785187, "environment_seconds": 1.1090997671708465, "elapsed_seconds": 909.8803644450381}
+[base] turn=35 active=277 won=128
+{"event": "turn_timing", "condition": "base", "turn": 35, "active": 277, "generation_seconds": 21.67146723344922, "environment_seconds": 1.0425051040947437, "elapsed_seconds": 932.6049726251513}
+[base] turn=36 active=274 won=131
+{"event": "turn_timing", "condition": "base", "turn": 36, "active": 274, "generation_seconds": 25.38722379039973, "environment_seconds": 1.0626953588798642, "elapsed_seconds": 959.0720774428919}
+[base] turn=37 active=271 won=132
+{"event": "turn_timing", "condition": "base", "turn": 37, "active": 271, "generation_seconds": 21.762997640296817, "environment_seconds": 1.1559977773576975, "elapsed_seconds": 982.0008969334885}
+[base] turn=38 active=270 won=134
+{"event": "turn_timing", "condition": "base", "turn": 38, "active": 270, "generation_seconds": 22.46029005944729, "environment_seconds": 1.0908200172707438, "elapsed_seconds": 1005.5568387852982}
+[base] turn=39 active=268 won=135
+{"event": "turn_timing", "condition": "base", "turn": 39, "active": 268, "generation_seconds": 23.06308410782367, "environment_seconds": 1.0956984600052238, "elapsed_seconds": 1029.7202243041247}
+[base] turn=40 active=267 won=139
+{"event": "turn_timing", "condition": "base", "turn": 40, "active": 267, "generation_seconds": 26.117957019247115, "environment_seconds": 1.0909403571859002, "elapsed_seconds": 1056.9357861056924}
+[base] turn=41 active=263 won=140
+{"event": "turn_timing", "condition": "base", "turn": 41, "active": 263, "generation_seconds": 25.657367105595767, "environment_seconds": 1.1068420019000769, "elapsed_seconds": 1083.711072714068}
+[base] turn=42 active=262 won=142
+{"event": "turn_timing", "condition": "base", "turn": 42, "active": 262, "generation_seconds": 22.08841356448829, "environment_seconds": 1.1501880446448922, "elapsed_seconds": 1106.9591563763097}
+[base] turn=43 active=260 won=142
+{"event": "turn_timing", "condition": "base", "turn": 43, "active": 260, "generation_seconds": 23.28956807218492, "environment_seconds": 1.0346164545044303, "elapsed_seconds": 1131.3009737618268}
+[base] turn=44 active=260 won=145
+{"event": "turn_timing", "condition": "base", "turn": 44, "active": 260, "generation_seconds": 21.406459289602935, "environment_seconds": 1.0906551526859403, "elapsed_seconds": 1153.8137766411528}
+[base] turn=45 active=257 won=146
+{"event": "turn_timing", "condition": "base", "turn": 45, "active": 257, "generation_seconds": 22.830470466054976, "environment_seconds": 1.027364089153707, "elapsed_seconds": 1177.6808646842837}
+[base] turn=46 active=256 won=146
+{"event": "turn_timing", "condition": "base", "turn": 46, "active": 256, "generation_seconds": 23.06726755388081, "environment_seconds": 0.9924751138314605, "elapsed_seconds": 1201.7501459289342}
+[base] turn=47 active=256 won=147
+{"event": "turn_timing", "condition": "base", "turn": 47, "active": 256, "generation_seconds": 22.190621943213046, "environment_seconds": 1.093123589642346, "elapsed_seconds": 1225.0439397329465}
+[base] turn=48 active=255 won=147
+{"event": "turn_timing", "condition": "base", "turn": 48, "active": 255, "generation_seconds": 22.142582397907972, "environment_seconds": 1.0059064952656627, "elapsed_seconds": 1248.2038389667869}
+[base] turn=49 active=255 won=147
+{"event": "turn_timing", "condition": "base", "turn": 49, "active": 255, "generation_seconds": 21.75959170795977, "environment_seconds": 1.0458930851891637, "elapsed_seconds": 1271.0199420731515}
+[base] turn=50 active=255 won=149
+{"event": "turn_timing", "condition": "base", "turn": 50, "active": 255, "generation_seconds": 22.23559463303536, "environment_seconds": 1.0515341022983193, "elapsed_seconds": 1294.3210096936673}
+[base/base] success=0.3706
+[state] turn=1 active=402 won=0
+{"event": "turn_timing", "condition": "state", "turn": 1, "active": 402, "generation_seconds": 13.214552082121372, "environment_seconds": 1.26369808614254, "elapsed_seconds": 14.493947876617312}
+[state] turn=2 active=402 won=0
+{"event": "turn_timing", "condition": "state", "turn": 2, "active": 402, "generation_seconds": 22.124445838853717, "environment_seconds": 1.3306663343682885, "elapsed_seconds": 37.97237934637815}
+[state] turn=3 active=402 won=6
+{"event": "turn_timing", "condition": "state", "turn": 3, "active": 402, "generation_seconds": 26.924368649721146, "environment_seconds": 1.2581923389807343, "elapsed_seconds": 66.18300496041775}
+[state] turn=4 active=396 won=14
+{"event": "turn_timing", "condition": "state", "turn": 4, "active": 396, "generation_seconds": 29.203617840074003, "environment_seconds": 1.2916172770783305, "elapsed_seconds": 96.69528464134783}
+[state] turn=5 active=388 won=26
+{"event": "turn_timing", "condition": "state", "turn": 5, "active": 388, "generation_seconds": 27.325860399752855, "environment_seconds": 1.3333872025832534, "elapsed_seconds": 125.37356605101377}
+[state] turn=6 active=376 won=30
+{"event": "turn_timing", "condition": "state", "turn": 6, "active": 376, "generation_seconds": 29.97975295316428, "environment_seconds": 1.237429952248931, "elapsed_seconds": 156.6067313682288}
+[state] turn=7 active=372 won=32
+{"event": "turn_timing", "condition": "state", "turn": 7, "active": 372, "generation_seconds": 27.551423569209874, "environment_seconds": 1.2508261958137155, "elapsed_seconds": 185.43180236779153}
+[state] turn=8 active=370 won=39
+{"event": "turn_timing", "condition": "state", "turn": 8, "active": 370, "generation_seconds": 29.95050924643874, "environment_seconds": 1.2050453871488571, "elapsed_seconds": 216.61038449313492}
+[state] turn=9 active=363 won=42
+{"event": "turn_timing", "condition": "state", "turn": 9, "active": 363, "generation_seconds": 28.143387801013887, "environment_seconds": 1.2431975277140737, "elapsed_seconds": 246.01694109663367}
+[state] turn=10 active=360 won=50
+{"event": "turn_timing", "condition": "state", "turn": 10, "active": 360, "generation_seconds": 26.56725860480219, "environment_seconds": 1.2736739926040173, "elapsed_seconds": 273.880813004449}
+[state] turn=11 active=352 won=59
+{"event": "turn_timing", "condition": "state", "turn": 11, "active": 352, "generation_seconds": 28.822097927331924, "environment_seconds": 1.3334586909040809, "elapsed_seconds": 304.0430970462039}
+[state] turn=12 active=343 won=66
+{"event": "turn_timing", "condition": "state", "turn": 12, "active": 343, "generation_seconds": 29.083956226706505, "environment_seconds": 1.1977027039974928, "elapsed_seconds": 334.3340093102306}
+[state] turn=13 active=336 won=75
+{"event": "turn_timing", "condition": "state", "turn": 13, "active": 336, "generation_seconds": 27.08130324538797, "environment_seconds": 1.1978743430227041, "elapsed_seconds": 362.6194172408432}
+[state] turn=14 active=327 won=81
+{"event": "turn_timing", "condition": "state", "turn": 14, "active": 327, "generation_seconds": 26.83420023880899, "environment_seconds": 1.1526297433301806, "elapsed_seconds": 390.6183854788542}
+[state] turn=15 active=321 won=87
+{"event": "turn_timing", "condition": "state", "turn": 15, "active": 321, "generation_seconds": 26.743901084177196, "environment_seconds": 1.1542455423623323, "elapsed_seconds": 418.5334211392328}
+[state] turn=16 active=315 won=91
+{"event": "turn_timing", "condition": "state", "turn": 16, "active": 315, "generation_seconds": 25.432451251894236, "environment_seconds": 1.1080088205635548, "elapsed_seconds": 445.0874396841973}
+[state] turn=17 active=311 won=95
+{"event": "turn_timing", "condition": "state", "turn": 17, "active": 311, "generation_seconds": 25.176656113006175, "environment_seconds": 1.0569015806540847, "elapsed_seconds": 471.33407718036324}
+[state] turn=18 active=307 won=98
+{"event": "turn_timing", "condition": "state", "turn": 18, "active": 307, "generation_seconds": 24.110629345290363, "environment_seconds": 1.0765048377215862, "elapsed_seconds": 496.5288662482053}
+[state] turn=19 active=304 won=101
+{"event": "turn_timing", "condition": "state", "turn": 19, "active": 304, "generation_seconds": 24.570820777677, "environment_seconds": 1.0749984495341778, "elapsed_seconds": 522.1946152430028}
+[state] turn=20 active=301 won=109
+{"event": "turn_timing", "condition": "state", "turn": 20, "active": 301, "generation_seconds": 24.203277999535203, "environment_seconds": 1.102286227978766, "elapsed_seconds": 547.5156253920868}
+[state] turn=21 active=293 won=111
+{"event": "turn_timing", "condition": "state", "turn": 21, "active": 293, "generation_seconds": 24.45566006563604, "environment_seconds": 1.1501511419191957, "elapsed_seconds": 573.1341084158048}
+[state] turn=22 active=291 won=111
+{"event": "turn_timing", "condition": "state", "turn": 22, "active": 291, "generation_seconds": 23.42621566168964, "environment_seconds": 1.105471252463758, "elapsed_seconds": 597.6728699197993}
+[state] turn=23 active=291 won=112
+{"event": "turn_timing", "condition": "state", "turn": 23, "active": 291, "generation_seconds": 22.58783075399697, "environment_seconds": 1.0410896623507142, "elapsed_seconds": 621.3084088992327}
+[state] turn=24 active=290 won=113
+{"event": "turn_timing", "condition": "state", "turn": 24, "active": 290, "generation_seconds": 26.61594403255731, "environment_seconds": 1.051139734685421, "elapsed_seconds": 648.9865293418989}
+[state] turn=25 active=289 won=118
+{"event": "turn_timing", "condition": "state", "turn": 25, "active": 289, "generation_seconds": 23.456245879642665, "environment_seconds": 1.0701993433758616, "elapsed_seconds": 673.5318266097456}
+[state] turn=26 active=284 won=121
+{"event": "turn_timing", "condition": "state", "turn": 26, "active": 284, "generation_seconds": 22.901635847985744, "environment_seconds": 1.2007303768768907, "elapsed_seconds": 697.649898616597}
+[state] turn=27 active=281 won=124
+{"event": "turn_timing", "condition": "state", "turn": 27, "active": 281, "generation_seconds": 26.919966363348067, "environment_seconds": 1.0304335225373507, "elapsed_seconds": 725.620584375225}
+[state] turn=28 active=278 won=127
+{"event": "turn_timing", "condition": "state", "turn": 28, "active": 278, "generation_seconds": 22.962308840826154, "environment_seconds": 1.0530737470835447, "elapsed_seconds": 749.6546774897724}
+[state] turn=29 active=275 won=131
+{"event": "turn_timing", "condition": "state", "turn": 29, "active": 275, "generation_seconds": 26.14488538261503, "environment_seconds": 0.9615512508898973, "elapsed_seconds": 776.7785674398765}
+[state] turn=30 active=271 won=134
+{"event": "turn_timing", "condition": "state", "turn": 30, "active": 271, "generation_seconds": 22.46535261720419, "environment_seconds": 0.9792633317410946, "elapsed_seconds": 800.2355112293735}
+[state] turn=31 active=268 won=135
+{"event": "turn_timing", "condition": "state", "turn": 31, "active": 268, "generation_seconds": 24.422835720703006, "environment_seconds": 0.9243415920063853, "elapsed_seconds": 825.5930161364377}
+[state] turn=32 active=267 won=136
+{"event": "turn_timing", "condition": "state", "turn": 32, "active": 267, "generation_seconds": 22.457363101653755, "environment_seconds": 0.9485946903005242, "elapsed_seconds": 849.0212716693059}
+[state] turn=33 active=266 won=136
+{"event": "turn_timing", "condition": "state", "turn": 33, "active": 266, "generation_seconds": 24.10670774243772, "environment_seconds": 1.023961334489286, "elapsed_seconds": 874.1647472092882}
+[state] turn=34 active=266 won=138
+{"event": "turn_timing", "condition": "state", "turn": 34, "active": 266, "generation_seconds": 27.402931107208133, "environment_seconds": 0.932093808427453, "elapsed_seconds": 902.5119333807379}
+[state] turn=35 active=264 won=144
+{"event": "turn_timing", "condition": "state", "turn": 35, "active": 264, "generation_seconds": 23.65115410834551, "environment_seconds": 0.904617004096508, "elapsed_seconds": 927.0802308302373}
+[state] turn=36 active=258 won=144
+{"event": "turn_timing", "condition": "state", "turn": 36, "active": 258, "generation_seconds": 25.088764540851116, "environment_seconds": 0.9114934867247939, "elapsed_seconds": 953.0978880301118}
+[state] turn=37 active=258 won=144
+{"event": "turn_timing", "condition": "state", "turn": 37, "active": 258, "generation_seconds": 21.391068599186838, "environment_seconds": 0.9020745642483234, "elapsed_seconds": 975.4106572400779}
+[state] turn=38 active=258 won=144
+{"event": "turn_timing", "condition": "state", "turn": 38, "active": 258, "generation_seconds": 23.775409095920622, "environment_seconds": 0.9171076668426394, "elapsed_seconds": 1000.1142593314871}
+[state] turn=39 active=258 won=144
+{"event": "turn_timing", "condition": "state", "turn": 39, "active": 258, "generation_seconds": 21.206550241447985, "environment_seconds": 0.998169275932014, "elapsed_seconds": 1022.330607409589}
+[state] turn=40 active=258 won=146
+{"event": "turn_timing", "condition": "state", "turn": 40, "active": 258, "generation_seconds": 23.98645699955523, "environment_seconds": 0.9348608013242483, "elapsed_seconds": 1047.257853269577}
+[state] turn=41 active=256 won=147
+{"event": "turn_timing", "condition": "state", "turn": 41, "active": 256, "generation_seconds": 26.104786715470254, "environment_seconds": 0.9576420672237873, "elapsed_seconds": 1074.3253388684243}
+[state] turn=42 active=255 won=147
+{"event": "turn_timing", "condition": "state", "turn": 42, "active": 255, "generation_seconds": 21.759796990081668, "environment_seconds": 0.9991664383560419, "elapsed_seconds": 1097.0902627948672}
+[state] turn=43 active=255 won=148
+{"event": "turn_timing", "condition": "state", "turn": 43, "active": 255, "generation_seconds": 20.884878125041723, "environment_seconds": 0.8684890465810895, "elapsed_seconds": 1118.849732379429}
+[state] turn=44 active=254 won=148
+{"event": "turn_timing", "condition": "state", "turn": 44, "active": 254, "generation_seconds": 23.167971504852176, "environment_seconds": 0.875945427455008, "elapsed_seconds": 1142.8989325799048}
+[state] turn=45 active=254 won=148
+{"event": "turn_timing", "condition": "state", "turn": 45, "active": 254, "generation_seconds": 23.514156865887344, "environment_seconds": 0.8508820878341794, "elapsed_seconds": 1167.273922602646}
+[state] turn=46 active=254 won=148
+{"event": "turn_timing", "condition": "state", "turn": 46, "active": 254, "generation_seconds": 22.14507023524493, "environment_seconds": 0.911920708604157, "elapsed_seconds": 1190.3499598298222}
+[state] turn=47 active=254 won=148
+{"event": "turn_timing", "condition": "state", "turn": 47, "active": 254, "generation_seconds": 20.69780175294727, "environment_seconds": 0.905799581669271, "elapsed_seconds": 1211.9724746691063}
+[state] turn=48 active=254 won=149
+{"event": "turn_timing", "condition": "state", "turn": 48, "active": 254, "generation_seconds": 21.842469945549965, "environment_seconds": 0.9288068395107985, "elapsed_seconds": 1234.761373763904}
+[state] turn=49 active=253 won=151
+{"event": "turn_timing", "condition": "state", "turn": 49, "active": 253, "generation_seconds": 20.58915197197348, "environment_seconds": 0.8717902284115553, "elapsed_seconds": 1256.2381203100085}
+[state] turn=50 active=251 won=151
+{"event": "turn_timing", "condition": "state", "turn": 50, "active": 251, "generation_seconds": 21.56329315714538, "environment_seconds": 0.836192206479609, "elapsed_seconds": 1278.6513108527288}
+[base/state] success=0.3756
+[hard] turn=1 active=402 won=0
+{"event": "turn_timing", "condition": "hard", "turn": 1, "active": 402, "generation_seconds": 13.468967203982174, "environment_seconds": 1.2188081098720431, "elapsed_seconds": 14.706011665984988}
+[hard] turn=2 active=402 won=0
+{"event": "turn_timing", "condition": "hard", "turn": 2, "active": 402, "generation_seconds": 17.00458556972444, "environment_seconds": 1.359371792525053, "elapsed_seconds": 33.094449020922184}
+[hard] turn=3 active=402 won=7
+{"event": "turn_timing", "condition": "hard", "turn": 3, "active": 402, "generation_seconds": 21.930881194770336, "environment_seconds": 1.2813996179029346, "elapsed_seconds": 56.330281869508326}
+[hard] turn=4 active=395 won=15
+{"event": "turn_timing", "condition": "hard", "turn": 4, "active": 395, "generation_seconds": 29.97706206329167, "environment_seconds": 1.4074618546292186, "elapsed_seconds": 87.73465869110078}
+[hard] turn=5 active=387 won=24
+{"event": "turn_timing", "condition": "hard", "turn": 5, "active": 387, "generation_seconds": 27.759466129355133, "environment_seconds": 1.241344265639782, "elapsed_seconds": 116.7657586466521}
+[hard] turn=6 active=378 won=29
+{"event": "turn_timing", "condition": "hard", "turn": 6, "active": 378, "generation_seconds": 26.352525282651186, "environment_seconds": 1.2283016741275787, "elapsed_seconds": 144.37504189647734}
+[hard] turn=7 active=373 won=35
+{"event": "turn_timing", "condition": "hard", "turn": 7, "active": 373, "generation_seconds": 27.67235474847257, "environment_seconds": 1.2577383443713188, "elapsed_seconds": 173.3320940937847}
+[hard] turn=8 active=367 won=39
+{"event": "turn_timing", "condition": "hard", "turn": 8, "active": 367, "generation_seconds": 31.042039199732244, "environment_seconds": 1.2018022537231445, "elapsed_seconds": 205.59538018889725}
+[hard] turn=9 active=363 won=46
+{"event": "turn_timing", "condition": "hard", "turn": 9, "active": 363, "generation_seconds": 29.321011777035892, "environment_seconds": 1.289826512336731, "elapsed_seconds": 236.22835578862578}
+[hard] turn=10 active=356 won=50
+{"event": "turn_timing", "condition": "hard", "turn": 10, "active": 356, "generation_seconds": 28.649283797480166, "environment_seconds": 1.2485711742192507, "elapsed_seconds": 266.1338181672618}
+[hard] turn=11 active=352 won=53
+{"event": "turn_timing", "condition": "hard", "turn": 11, "active": 352, "generation_seconds": 27.861596973612905, "environment_seconds": 1.234729828312993, "elapsed_seconds": 295.2387188337743}
+[hard] turn=12 active=349 won=58
+{"event": "turn_timing", "condition": "hard", "turn": 12, "active": 349, "generation_seconds": 29.689426109194756, "environment_seconds": 1.2074152249842882, "elapsed_seconds": 326.1433813702315}
+[hard] turn=13 active=344 won=63
+{"event": "turn_timing", "condition": "hard", "turn": 13, "active": 344, "generation_seconds": 32.3676950186491, "environment_seconds": 1.2307026134803891, "elapsed_seconds": 359.7488501975313}
+[hard] turn=14 active=339 won=67
+{"event": "turn_timing", "condition": "hard", "turn": 14, "active": 339, "generation_seconds": 28.532268942333758, "environment_seconds": 1.1918566413223743, "elapsed_seconds": 389.49717947933823}
+[hard] turn=15 active=335 won=71
+{"event": "turn_timing", "condition": "hard", "turn": 15, "active": 335, "generation_seconds": 27.504218793474138, "environment_seconds": 1.2444769833236933, "elapsed_seconds": 418.26976552512497}
+[hard] turn=16 active=331 won=73
+{"event": "turn_timing", "condition": "hard", "turn": 16, "active": 331, "generation_seconds": 26.729770216159523, "environment_seconds": 1.1296520438045263, "elapsed_seconds": 446.15330375544727}
+[hard] turn=17 active=329 won=86
+{"event": "turn_timing", "condition": "hard", "turn": 17, "active": 329, "generation_seconds": 26.085123796015978, "environment_seconds": 1.1838664785027504, "elapsed_seconds": 473.44076618086547}
+[hard] turn=18 active=316 won=91
+{"event": "turn_timing", "condition": "hard", "turn": 18, "active": 316, "generation_seconds": 25.793117405846715, "environment_seconds": 1.130677366629243, "elapsed_seconds": 500.3909708680585}
+[hard] turn=19 active=311 won=96
+{"event": "turn_timing", "condition": "hard", "turn": 19, "active": 311, "generation_seconds": 26.097628542222083, "environment_seconds": 1.0965876411646605, "elapsed_seconds": 527.6068106750026}
+[hard] turn=20 active=306 won=102
+{"event": "turn_timing", "condition": "hard", "turn": 20, "active": 306, "generation_seconds": 24.822766223922372, "environment_seconds": 1.087862697429955, "elapsed_seconds": 553.539343518205}
+[hard] turn=21 active=300 won=104
+{"event": "turn_timing", "condition": "hard", "turn": 21, "active": 300, "generation_seconds": 25.024636288173497, "environment_seconds": 1.0951806986704469, "elapsed_seconds": 579.6708933757618}
+[hard] turn=22 active=298 won=105
+{"event": "turn_timing", "condition": "hard", "turn": 22, "active": 298, "generation_seconds": 23.34637308679521, "environment_seconds": 1.0796108534559608, "elapsed_seconds": 604.113245495595}
+[hard] turn=23 active=297 won=109
+{"event": "turn_timing", "condition": "hard", "turn": 23, "active": 297, "generation_seconds": 25.045779019594193, "environment_seconds": 1.081263354048133, "elapsed_seconds": 630.2588455509394}
+[hard] turn=24 active=293 won=112
+{"event": "turn_timing", "condition": "hard", "turn": 24, "active": 293, "generation_seconds": 24.059563390910625, "environment_seconds": 1.005603595636785, "elapsed_seconds": 655.3463600566611}
+[hard] turn=25 active=290 won=112
+{"event": "turn_timing", "condition": "hard", "turn": 25, "active": 290, "generation_seconds": 26.365632575936615, "environment_seconds": 1.085922883823514, "elapsed_seconds": 682.8127456689253}
+[hard] turn=26 active=290 won=114
+{"event": "turn_timing", "condition": "hard", "turn": 26, "active": 290, "generation_seconds": 22.707095718942583, "environment_seconds": 1.0253102853894234, "elapsed_seconds": 706.5625380761921}
+[hard] turn=27 active=288 won=115
+{"event": "turn_timing", "condition": "hard", "turn": 27, "active": 288, "generation_seconds": 22.918705600313842, "environment_seconds": 0.9762890869751573, "elapsed_seconds": 730.4766333661973}
+[hard] turn=28 active=287 won=116
+{"event": "turn_timing", "condition": "hard", "turn": 28, "active": 287, "generation_seconds": 24.91729442216456, "environment_seconds": 1.0074640922248363, "elapsed_seconds": 756.4209173433483}
+[hard] turn=29 active=286 won=116
+{"event": "turn_timing", "condition": "hard", "turn": 29, "active": 286, "generation_seconds": 23.998920635320246, "environment_seconds": 1.0184662705287337, "elapsed_seconds": 781.4573905346915}
+[hard] turn=30 active=286 won=120
+{"event": "turn_timing", "condition": "hard", "turn": 30, "active": 286, "generation_seconds": 23.56658694241196, "environment_seconds": 1.0521809915080667, "elapsed_seconds": 806.0964887458831}
+[hard] turn=31 active=282 won=126
+{"event": "turn_timing", "condition": "hard", "turn": 31, "active": 282, "generation_seconds": 22.477365867234766, "environment_seconds": 1.052435927093029, "elapsed_seconds": 829.633347934112}
+[hard] turn=32 active=276 won=128
+{"event": "turn_timing", "condition": "hard", "turn": 32, "active": 276, "generation_seconds": 22.910857043229043, "environment_seconds": 1.0867519779130816, "elapsed_seconds": 853.6364850271493}
+[hard] turn=33 active=274 won=132
+{"event": "turn_timing", "condition": "hard", "turn": 33, "active": 274, "generation_seconds": 24.48171957116574, "environment_seconds": 1.0550369061529636, "elapsed_seconds": 879.1790983779356}
+[hard] turn=34 active=270 won=134
+{"event": "turn_timing", "condition": "hard", "turn": 34, "active": 270, "generation_seconds": 23.289081620052457, "environment_seconds": 1.074066961184144, "elapsed_seconds": 903.5476783672348}
+[hard] turn=35 active=268 won=138
+{"event": "turn_timing", "condition": "hard", "turn": 35, "active": 268, "generation_seconds": 23.07923881523311, "environment_seconds": 1.1185901751741767, "elapsed_seconds": 927.7515511764213}
+[hard] turn=36 active=264 won=141
+{"event": "turn_timing", "condition": "hard", "turn": 36, "active": 264, "generation_seconds": 23.987089012749493, "environment_seconds": 1.1446646582335234, "elapsed_seconds": 952.8980985498056}
+[hard] turn=37 active=261 won=142
+{"event": "turn_timing", "condition": "hard", "turn": 37, "active": 261, "generation_seconds": 22.03073583636433, "environment_seconds": 1.0188276637345552, "elapsed_seconds": 975.967394313775}
+[hard] turn=38 active=260 won=143
+{"event": "turn_timing", "condition": "hard", "turn": 38, "active": 260, "generation_seconds": 23.783685937523842, "environment_seconds": 1.0025354828685522, "elapsed_seconds": 1000.760482002981}
+[hard] turn=39 active=259 won=145
+{"event": "turn_timing", "condition": "hard", "turn": 39, "active": 259, "generation_seconds": 24.773851755075157, "environment_seconds": 0.9971816744655371, "elapsed_seconds": 1026.5508392611519}
+[hard] turn=40 active=257 won=149
+{"event": "turn_timing", "condition": "hard", "turn": 40, "active": 257, "generation_seconds": 24.93150739837438, "environment_seconds": 0.9688809514045715, "elapsed_seconds": 1052.4688162645325}
+[hard] turn=41 active=253 won=151
+{"event": "turn_timing", "condition": "hard", "turn": 41, "active": 253, "generation_seconds": 24.675564289093018, "environment_seconds": 0.9995384514331818, "elapsed_seconds": 1078.1578908944502}
+[hard] turn=42 active=251 won=154
+{"event": "turn_timing", "condition": "hard", "turn": 42, "active": 251, "generation_seconds": 20.747794829308987, "environment_seconds": 0.9744909647852182, "elapsed_seconds": 1099.8977420059964}
+[hard] turn=43 active=248 won=154
+{"event": "turn_timing", "condition": "hard", "turn": 43, "active": 248, "generation_seconds": 20.339452842250466, "environment_seconds": 1.0164500884711742, "elapsed_seconds": 1121.2714169258252}
+[hard] turn=44 active=248 won=157
+{"event": "turn_timing", "condition": "hard", "turn": 44, "active": 248, "generation_seconds": 20.326727747917175, "environment_seconds": 0.974154339171946, "elapsed_seconds": 1142.5890894820914}
+[hard] turn=45 active=245 won=158
+{"event": "turn_timing", "condition": "hard", "turn": 45, "active": 245, "generation_seconds": 27.554438744671643, "environment_seconds": 1.017109440639615, "elapsed_seconds": 1171.1769064851105}
+[hard] turn=46 active=244 won=158
+{"event": "turn_timing", "condition": "hard", "turn": 46, "active": 244, "generation_seconds": 20.785932201892138, "environment_seconds": 1.0047370688989758, "elapsed_seconds": 1192.9841016707942}
+[hard] turn=47 active=244 won=160
+{"event": "turn_timing", "condition": "hard", "turn": 47, "active": 244, "generation_seconds": 22.68149791099131, "environment_seconds": 1.0507116792723536, "elapsed_seconds": 1216.7340893801302}
+[hard] turn=48 active=242 won=161
+{"event": "turn_timing", "condition": "hard", "turn": 48, "active": 242, "generation_seconds": 21.000617216341197, "environment_seconds": 1.0468013631179929, "elapsed_seconds": 1238.7866097679362}
+[hard] turn=49 active=241 won=162
+{"event": "turn_timing", "condition": "hard", "turn": 49, "active": 241, "generation_seconds": 21.006675289943814, "environment_seconds": 1.0048426734283566, "elapsed_seconds": 1260.8036215044558}
+[hard] turn=50 active=240 won=164
+{"event": "turn_timing", "condition": "hard", "turn": 50, "active": 240, "generation_seconds": 19.270166435278952, "environment_seconds": 1.0076693147420883, "elapsed_seconds": 1281.0866091977805}
+[base/hard] success=0.4080
+[both] turn=1 active=402 won=0
+{"event": "turn_timing", "condition": "both", "turn": 1, "active": 402, "generation_seconds": 13.258639652282, "environment_seconds": 1.3146792221814394, "elapsed_seconds": 14.584333951584995}
+[both] turn=2 active=402 won=0
+{"event": "turn_timing", "condition": "both", "turn": 2, "active": 402, "generation_seconds": 22.096947957761586, "environment_seconds": 1.2688267249614, "elapsed_seconds": 37.969178290106356}
+[both] turn=3 active=402 won=6
+{"event": "turn_timing", "condition": "both", "turn": 3, "active": 402, "generation_seconds": 27.07596541661769, "environment_seconds": 1.2489319276064634, "elapsed_seconds": 66.32202706579119}
+[both] turn=4 active=396 won=14
+{"event": "turn_timing", "condition": "both", "turn": 4, "active": 396, "generation_seconds": 29.3278924273327, "environment_seconds": 1.274498132057488, "elapsed_seconds": 96.95310206804425}
+[both] turn=5 active=388 won=26
+{"event": "turn_timing", "condition": "both", "turn": 5, "active": 388, "generation_seconds": 27.33745304122567, "environment_seconds": 1.2162696151062846, "elapsed_seconds": 125.53632653411478}
+[both] turn=6 active=376 won=30
+{"event": "turn_timing", "condition": "both", "turn": 6, "active": 376, "generation_seconds": 29.950674862600863, "environment_seconds": 1.2094604736194015, "elapsed_seconds": 156.72579394932836}
+[both] turn=7 active=372 won=32
+{"event": "turn_timing", "condition": "both", "turn": 7, "active": 372, "generation_seconds": 27.432606287300587, "environment_seconds": 1.240835309959948, "elapsed_seconds": 185.426498956047}
+[both] turn=8 active=370 won=39
+{"event": "turn_timing", "condition": "both", "turn": 8, "active": 370, "generation_seconds": 30.097618984989822, "environment_seconds": 1.2032335409894586, "elapsed_seconds": 216.75688098557293}
+[both] turn=9 active=363 won=42
+{"event": "turn_timing", "condition": "both", "turn": 9, "active": 363, "generation_seconds": 27.99058777652681, "environment_seconds": 1.2623403128236532, "elapsed_seconds": 246.01968968380243}
+[both] turn=10 active=360 won=50
+{"event": "turn_timing", "condition": "both", "turn": 10, "active": 360, "generation_seconds": 26.4699894413352, "environment_seconds": 1.1442022658884525, "elapsed_seconds": 273.66340776719153}
+[both] turn=11 active=352 won=59
+{"event": "turn_timing", "condition": "both", "turn": 11, "active": 352, "generation_seconds": 28.79242084454745, "environment_seconds": 1.1763416044414043, "elapsed_seconds": 303.6509243492037}
+[both] turn=12 active=343 won=66
+{"event": "turn_timing", "condition": "both", "turn": 12, "active": 343, "generation_seconds": 27.658831615000963, "environment_seconds": 1.1275477688759565, "elapsed_seconds": 332.4581857956946}
+[both] turn=13 active=336 won=75
+{"event": "turn_timing", "condition": "both", "turn": 13, "active": 336, "generation_seconds": 25.964980115182698, "environment_seconds": 1.1740825744345784, "elapsed_seconds": 359.6161084109917}
+[both] turn=14 active=327 won=81
+{"event": "turn_timing", "condition": "both", "turn": 14, "active": 327, "generation_seconds": 26.967093183659017, "environment_seconds": 1.2150344289839268, "elapsed_seconds": 387.82343768235296}
+[both] turn=15 active=321 won=87
+{"event": "turn_timing", "condition": "both", "turn": 15, "active": 321, "generation_seconds": 26.83224188350141, "environment_seconds": 1.1454829145222902, "elapsed_seconds": 415.8136193100363}
+[both] turn=16 active=315 won=91
+{"event": "turn_timing", "condition": "both", "turn": 16, "active": 315, "generation_seconds": 25.287391809746623, "environment_seconds": 1.1081616645678878, "elapsed_seconds": 442.2183447778225}
+[both] turn=17 active=311 won=95
+{"event": "turn_timing", "condition": "both", "turn": 17, "active": 311, "generation_seconds": 25.044695775955915, "environment_seconds": 1.1958237644284964, "elapsed_seconds": 468.46810568962246}
+[both] turn=18 active=307 won=99
+{"event": "turn_timing", "condition": "both", "turn": 18, "active": 307, "generation_seconds": 28.19843878503889, "environment_seconds": 1.0840777717530727, "elapsed_seconds": 497.76106866728514}
+[both] turn=19 active=303 won=102
+{"event": "turn_timing", "condition": "both", "turn": 19, "active": 303, "generation_seconds": 24.38307588454336, "environment_seconds": 1.081449898891151, "elapsed_seconds": 523.2335773101076}
+[both] turn=20 active=300 won=110
+{"event": "turn_timing", "condition": "both", "turn": 20, "active": 300, "generation_seconds": 24.171598409302533, "environment_seconds": 1.176513678394258, "elapsed_seconds": 548.5986604522914}
+[both] turn=21 active=292 won=112
+{"event": "turn_timing", "condition": "both", "turn": 21, "active": 292, "generation_seconds": 24.008073101751506, "environment_seconds": 0.9766947235912085, "elapsed_seconds": 573.6002545086667}
+[both] turn=22 active=290 won=113
+{"event": "turn_timing", "condition": "both", "turn": 22, "active": 290, "generation_seconds": 23.400446075946093, "environment_seconds": 0.9734775191172957, "elapsed_seconds": 597.990471854806}
+[both] turn=23 active=289 won=114
+{"event": "turn_timing", "condition": "both", "turn": 23, "active": 289, "generation_seconds": 22.463193574920297, "environment_seconds": 1.0053873471915722, "elapsed_seconds": 621.4750412255526}
+[both] turn=24 active=288 won=115
+{"event": "turn_timing", "condition": "both", "turn": 24, "active": 288, "generation_seconds": 26.520570526830852, "environment_seconds": 0.9978201612830162, "elapsed_seconds": 649.0098716523498}
+[both] turn=25 active=287 won=120
+{"event": "turn_timing", "condition": "both", "turn": 25, "active": 287, "generation_seconds": 23.35745899938047, "environment_seconds": 1.0032657561823726, "elapsed_seconds": 673.3942778958008}
+[both] turn=26 active=282 won=123
+{"event": "turn_timing", "condition": "both", "turn": 26, "active": 282, "generation_seconds": 22.786524870432913, "environment_seconds": 1.000148929655552, "elapsed_seconds": 697.1965824151412}
+[both] turn=27 active=279 won=126
+{"event": "turn_timing", "condition": "both", "turn": 27, "active": 279, "generation_seconds": 26.802060129120946, "environment_seconds": 0.9486508117988706, "elapsed_seconds": 724.9655902562663}
+[both] turn=28 active=276 won=130
+{"event": "turn_timing", "condition": "both", "turn": 28, "active": 276, "generation_seconds": 22.95582424569875, "environment_seconds": 0.9337490936741233, "elapsed_seconds": 748.8713441034779}
+[both] turn=29 active=272 won=134
+{"event": "turn_timing", "condition": "both", "turn": 29, "active": 272, "generation_seconds": 25.952132404781878, "environment_seconds": 1.0577344251796603, "elapsed_seconds": 775.8912443853915}
+[both] turn=30 active=268 won=137
+{"event": "turn_timing", "condition": "both", "turn": 30, "active": 268, "generation_seconds": 22.312099032104015, "environment_seconds": 0.974907984957099, "elapsed_seconds": 799.2014586394653}
+[both] turn=31 active=265 won=138
+{"event": "turn_timing", "condition": "both", "turn": 31, "active": 265, "generation_seconds": 24.351502348668873, "environment_seconds": 0.9293580017983913, "elapsed_seconds": 824.5025883531198}
+[both] turn=32 active=264 won=139
+{"event": "turn_timing", "condition": "both", "turn": 32, "active": 264, "generation_seconds": 22.49163178820163, "environment_seconds": 0.8978705974295735, "elapsed_seconds": 847.9178075194359}
+[both] turn=33 active=263 won=139
+{"event": "turn_timing", "condition": "both", "turn": 33, "active": 263, "generation_seconds": 24.077979376539588, "environment_seconds": 0.9239184269681573, "elapsed_seconds": 872.9352963706478}
+[both] turn=34 active=263 won=141
+{"event": "turn_timing", "condition": "both", "turn": 34, "active": 263, "generation_seconds": 27.29066579323262, "environment_seconds": 0.8717604391276836, "elapsed_seconds": 901.1214330336079}
+[both] turn=35 active=261 won=149
+{"event": "turn_timing", "condition": "both", "turn": 35, "active": 261, "generation_seconds": 23.529190253466368, "environment_seconds": 0.9340831860899925, "elapsed_seconds": 925.5977844530717}
+[both] turn=36 active=253 won=149
+{"event": "turn_timing", "condition": "both", "turn": 36, "active": 253, "generation_seconds": 24.249657115899026, "environment_seconds": 0.8799510234966874, "elapsed_seconds": 950.7490110863}
+[both] turn=37 active=253 won=150
+{"event": "turn_timing", "condition": "both", "turn": 37, "active": 253, "generation_seconds": 21.9309017714113, "environment_seconds": 0.9285213248804212, "elapsed_seconds": 973.6303681209683}
+[both] turn=38 active=252 won=150
+{"event": "turn_timing", "condition": "both", "turn": 38, "active": 252, "generation_seconds": 23.067570626735687, "environment_seconds": 0.9782528802752495, "elapsed_seconds": 997.6876413747668}
+[both] turn=39 active=252 won=151
+{"event": "turn_timing", "condition": "both", "turn": 39, "active": 252, "generation_seconds": 21.194349420256913, "environment_seconds": 0.9194959858432412, "elapsed_seconds": 1019.8095461232588}
+[both] turn=40 active=251 won=153
+{"event": "turn_timing", "condition": "both", "turn": 40, "active": 251, "generation_seconds": 20.802622261457145, "environment_seconds": 0.9432724108919501, "elapsed_seconds": 1041.5621696561575}
+[both] turn=41 active=249 won=154
+{"event": "turn_timing", "condition": "both", "turn": 41, "active": 249, "generation_seconds": 25.87205195520073, "environment_seconds": 0.9467037320137024, "elapsed_seconds": 1068.395581683144}
+[both] turn=42 active=248 won=154
+{"event": "turn_timing", "condition": "both", "turn": 42, "active": 248, "generation_seconds": 21.522810949012637, "environment_seconds": 0.8920079935342073, "elapsed_seconds": 1090.8257119636983}
+[both] turn=43 active=248 won=155
+{"event": "turn_timing", "condition": "both", "turn": 43, "active": 248, "generation_seconds": 21.615290665999055, "environment_seconds": 0.8576746983453631, "elapsed_seconds": 1113.3131874324754}
+[both] turn=44 active=247 won=155
+{"event": "turn_timing", "condition": "both", "turn": 44, "active": 247, "generation_seconds": 22.819565721787512, "environment_seconds": 0.8271020269021392, "elapsed_seconds": 1136.9846039740369}
+[both] turn=45 active=247 won=155
+{"event": "turn_timing", "condition": "both", "turn": 45, "active": 247, "generation_seconds": 20.631476741284132, "environment_seconds": 0.8751455824822187, "elapsed_seconds": 1158.512682727538}
+[both] turn=46 active=247 won=155
+{"event": "turn_timing", "condition": "both", "turn": 46, "active": 247, "generation_seconds": 21.98183619324118, "environment_seconds": 0.903281063772738, "elapsed_seconds": 1181.421064350754}
+[both] turn=47 active=247 won=155
+{"event": "turn_timing", "condition": "both", "turn": 47, "active": 247, "generation_seconds": 20.556055054068565, "environment_seconds": 0.8957975599914789, "elapsed_seconds": 1202.8971737558022}
+[both] turn=48 active=247 won=156
+{"event": "turn_timing", "condition": "both", "turn": 48, "active": 247, "generation_seconds": 21.616841764189303, "environment_seconds": 0.8408926893025637, "elapsed_seconds": 1225.3766326243058}
+[both] turn=49 active=246 won=158
+{"event": "turn_timing", "condition": "both", "turn": 49, "active": 246, "generation_seconds": 20.29637949168682, "environment_seconds": 0.9250910524278879, "elapsed_seconds": 1246.6101434482262}
+[both] turn=50 active=244 won=159
+{"event": "turn_timing", "condition": "both", "turn": 50, "active": 244, "generation_seconds": 20.570227360352874, "environment_seconds": 0.8258423237130046, "elapsed_seconds": 1268.0287953745574}
+[base/both] success=0.3955
+(MainProcess pid=5234) INFO 11-11 01:32:30 [core_client.py:770] [shutdown] MPClient: start timeout=default
+(MainProcess pid=5234) INFO 11-11 01:32:30 [core_client.py:772] [shutdown] MPClient: stopping engine manager
+(MainProcess pid=5234) INFO 11-11 01:32:30 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore
+(EngineCore pid=5273) INFO 11-11 01:32:30 [core.py:1454] [shutdown] EngineCore: trigger received signal=SIGTERM
+(EngineCore pid=5273) INFO 11-11 01:32:30 [core.py:1635] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore pid=5273) INFO 11-11 01:32:30 [core.py:1666] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore pid=5273) INFO 11-11 01:32:30 [core.py:1499] [shutdown] EngineCore: exiting busy loop
+(MainProcess pid=5234) INFO 11-11 01:32:34 [core_client.py:774] [shutdown] MPClient: engine manager stopped
+(MainProcess pid=5234) INFO 11-11 01:32:34 [core_client.py:775] [shutdown] MPClient: cleaning up background resources
+(MainProcess pid=5234) INFO 11-11 01:32:34 [core_client.py:777] [shutdown] MPClient: complete

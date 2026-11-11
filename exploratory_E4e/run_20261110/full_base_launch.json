@@ -1,0 +1,30 @@
+{
+ "pid": 5234,
+ "args": [
+  "/root/miniconda3/envs/m0/bin/python",
+  "-u",
+  "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/server_eval.py",
+  "--plan",
+  "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/run_20261110/plan.json",
+  "--split",
+  "valid_unseen",
+  "--policy-tag",
+  "base",
+  "--model-path",
+  "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+  "--conditions",
+  "base",
+  "state",
+  "hard",
+  "both",
+  "--reps",
+  "3",
+  "--workers",
+  "20",
+  "--chunk",
+  "402",
+  "--out",
+  "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/data/full_20261110"
+ ],
+ "time": 1794326642.7351375
+}
