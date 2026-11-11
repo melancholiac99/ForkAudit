@@ -1,0 +1,34 @@
+Hardware recovery registered before looking at replacement-device outputs.
+The original RTX 6000D UUID 2354a55a was replaced by RTX 6000D UUID e0a146a6;
+driver remains 595.71.05. All old controllers/GPU children are absent. No error
+trace establishes why the old instance stopped; do not label this a GPU fault.
+User explicitly requested continuation on 2026-11-11.
+
+Preserve every existing E4e episode and summary byte-for-byte. Restore only
+unfinished episodes (unfinished live state was never saved). First reproduce
+all 48 original pilot episodes: 6 fixed task-type games x 4 conditions x 2
+policies. Use the identical original plan, sources, model weights, sampling,
+seed, worker count and batch-invariant engine. Store in resume_20261111/pilot.
+The compatibility gate is EXACT equality of all episode fields except audit
+provenance/hardware receipt, including every response, action, feedback, step
+count and success. Any mismatch blocks continuation and requests repair. This
+is a finite behavioral check, not proof of numerical equality for every prompt.
+No statistical threshold, TV threshold, or original protocol is modified.
+
+The frozen original plan is retained as the scientific settings reference;
+its original GPU inventory is superseded explicitly by registration.json and
+per-new-episode hardware_resume records. Original source files are not edited.
+The new evaluation entry point verifies original source hashes, replacement
+GPU UUID/inventory, environment settings and the exact pilot gate. Its run()
+body duplicates the frozen run() with only two changes: ignore Git-commit-only
+metadata differences on resume (argv and all science fields still exact), and
+record the real hardware and runner/registration hashes on each new episode.
+AST equality against those exact two transformations is CPU-tested. New records
+retain their actual Git commit; old records and summaries remain byte-identical.
+The snapshot manifest and publication audit enforce old-record preservation and
+new-record device provenance, so device provenance is never silently mixed.
+
+Resume remaining E4e full jobs, original independent verification and manual
+review, then GiGPO 402 base episodes as previously requested. Only credit-grok
+is published. Bounded repair/recovery and verified publication before shutdown
+remain authorized. No main, hindsight or older experiment changes; no training.

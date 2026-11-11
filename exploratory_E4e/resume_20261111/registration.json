@@ -1,0 +1,20 @@
+{
+  "time": 1794365541.6439571,
+  "new_gpu_inventory": "GPU-e0a146a6-8cd5-7ff1-8c48-9906f87c9190, NVIDIA RTX 6000D, 595.71.05",
+  "new_gpu_uuid": "GPU-e0a146a6-8cd5-7ff1-8c48-9906f87c9190",
+  "old_gpu_inventory": "GPU-2354a55a-2b59-d46a-6839-56dbf5798ed4, NVIDIA RTX 6000D, 595.71.05",
+  "gate_episodes": 48,
+  "gate": "exact episode equality excluding audit metadata only",
+  "source": {
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/resume_eval_20261111.py": "48de2abdc840cf4604ef8483a38ef1a199e9576036406d263f61369ebd677eb0",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/resume_queue_20261111.py": "379687ede67fccba3351f59525b9bd29b325fd5edb0f89624c4957720826b590",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/test_resume_20261111.py": "626f0c4d0bd3071912fc57f33b6fa4bc5247f1b6ccee611aa77cde87c4959f75",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/resume_20261111/REGISTRATION.txt": "496310191a4cf76510684d5f0a07ac33297a7baf7df3075c688eb9d8534d3ad8",
+    "/root/autodl-tmp/forkaudit_credit_grok/exploratory_E4e/resume_20261111/preserved_manifest.json": "47a8fe46d26bf12e6194491ce6d3c7f46afdec6e3976c00dbd859331a03f4fad"
+  },
+  "old_plan_sha256": "db7f31f3db43641b22cfe65ef26000a28eb9f23671a8e825464d186644c6b4ac",
+  "existing_episodes": 3059,
+  "existing_json_files": 3074,
+  "user_resume_authorized": true,
+  "shutdown_after_verified_publication": true
+}
