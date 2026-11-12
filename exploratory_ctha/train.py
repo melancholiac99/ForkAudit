@@ -168,7 +168,10 @@ def train(args):
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
     tok = AutoTokenizer.from_pretrained(str(args.model), local_files_only=True)
-    data = prepare_tokens(tok, rows, args.max_model_len, args.action_only)
+    # A zero-advantage rollout has no policy gradient. Keep the full source
+    # manifest for provenance, but avoid its expensive transformer forwards.
+    learnable_rows = [r for r in rows if abs(float(r["advantage"])) >= 1e-12]
+    data = prepare_tokens(tok, learnable_rows, args.max_model_len, args.action_only)
     dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
     actor = AutoModelForCausalLM.from_pretrained(
         str(args.model), local_files_only=True, dtype=dtype,
@@ -241,10 +244,11 @@ def train(args):
     if not (tmp / "adapter_model.safetensors").is_file():
         raise RuntimeError("PEFT failed to write adapter weights")
     config.update(elapsed_seconds=time.monotonic() - started,
+                  n_source_steps=len(rows), n_nonzero_advantage_steps=len(data),
                   n_training_steps=len(data), n_selected_token_positions=n_token_steps,
                   optimizer_steps=updates, token_mask="action" if args.action_only else "full_response",
                   trainable_parameters=sum(p.numel() for p in params),
-                  mean_abs_advantage=sum(abs(d["advantage"]) for d in data)/len(data),
+                  mean_abs_advantage=(sum(abs(d["advantage"]) for d in data)/len(data) if data else 0.0),
                   last_losses=losses[-20:], weights_sha256=sha256(tmp / "adapter_model.safetensors"))
     (tmp / "train_log.json").write_text(json.dumps(config, indent=2) + "\n")
     os.replace(tmp, args.out)
