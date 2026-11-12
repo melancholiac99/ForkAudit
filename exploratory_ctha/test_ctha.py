@@ -31,7 +31,7 @@ def fake_episode(game: int, rep: int, won: bool, iteration=0, action=None) -> di
                 obs_before="At a kitchen", obs_after="Nothing happens.",
                 response="<think>test</think><action>" + action + "</action>",
                 response_token_ids=[25, 14, 31], valid=True)
-    return dict(game_file=f"game-{game}", seed=1000+game, rep=rep,
+    return dict(game_file=f"game-{game}", task_type=f"type-{game%3}", seed=1000+game, rep=rep,
                 task="find an apple and put it in a fridge", won=bool(won),
                 steps=[step], iteration=iteration,
                 episode_id=f"{iteration}:{1000+game}:{rep}",
@@ -138,9 +138,13 @@ class HabitTests(unittest.TestCase):
                 (rollouts / filename).write_text(json.dumps(e))
             args = SimpleNamespace(run_dir=folder, rollouts=rollouts, iteration=0,
                                    out=folder / "round_000" / "prepared", mode="ctha",
-                                   horizon=1, ridge_alpha=5., min_mixed=2,
-                                   window=4, omega=.3, aux_clip=2.,
-                                   sign_fraction=.75, min_oof_r2=0.0, baseline="legal")
+                                   family="habit", base_advantage="grpo",
+                                   feature_window=1, train_horizon=1, aux_horizon=1,
+                                   ridge_alpha=5., min_mixed=2, min_pairs=2,
+                                   window=4, permutations=2, bootstraps=20,
+                                   min_delta=0., omega=.3, anneal_start=0,
+                                   anneal_end=4, aux_clip=2., sign_fraction=.75,
+                                   baseline="legal", gamma=1., local_weight=1.)
             first = prepare.prepare(args)
             second = prepare.prepare(args)
             self.assertEqual(first, second)
