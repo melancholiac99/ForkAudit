@@ -265,7 +265,7 @@ def make_batch(episodes: list[dict], prior: list[dict], *,
                 raise ValueError(f"Missing actual vLLM response token IDs at {ep['episode_id']}:{index}")
             a_h = per_action_score(betas[game], st["prompt"], st["action"],
                                    st["admissible"], ep["task"], baseline=baseline)
-            if mode not in ("ctha_all", "fixed") and not all_failed:
+            if mode != "ctha_all" and not all_failed:
                 a_h = 0.0
             raw.append(a_h)
             samples.append(dict(episode_id=ep["episode_id"], game_file=game,
