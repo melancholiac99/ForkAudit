@@ -1,0 +1,73 @@
+{
+  "time": 1794494364.9232178,
+  "source_commit": "abe0213b5fdb530515c80b5d3636d9274d98e7ac",
+  "gpu_inventory": "GPU-ed0e3e6a-90f2-34be-67f1-7c2125d76c9c, NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05",
+  "source": {
+    "exploratory_ctha/doctor.py": "9cd2ed5f436584688aaee7d4ddc388b0ef19e7d9f107a08e1b9be3f9e83a86f6",
+    "exploratory_ctha/features_v2.py": "477685de020e6120307d939f15ca12bd1d5f54aa027edbed7de8e1462d55dbd6",
+    "exploratory_ctha/habits.py": "861f452db07e68a15c429d25da999d5a0ff9d24722f592d1c5d3066d715dd5c1",
+    "exploratory_ctha/habits_v2.py": "85229602c120facb73ddb1fe395d34e03056b4dbbb10f035a4bd9bc18cf16a34",
+    "exploratory_ctha/p0_audit.py": "f7acbe523cb7a987e9336fb11b10d19565ce7bfb6e6b081a0e2a860540022340",
+    "exploratory_ctha/prepare.py": "e8182e644ecd20ae16539653350f4cc3d5e4f93d72ba65015819fa5eec9c50ca",
+    "exploratory_ctha/rollout.py": "1302a69a7d8d087d33d571ca7527c1bb8c399100dcea0105df709ee1038a81f1",
+    "exploratory_ctha/run.py": "7a325b5a0c0865c24ce3ad91b1b95ffcb094e7de645749ca6bdb65dcbdfd9e99",
+    "exploratory_ctha/server_queue_20261112.py": "040305e77d6b49088c66258f42e272575771bb282877f4e918a9f3ecea2ddffa",
+    "exploratory_ctha/summarize.py": "c855bc3cd4be85851878ee003aed1baed3745097d78538c97b9be2493ee8f4cf",
+    "exploratory_ctha/test_ctha.py": "1efaa0de2d1586cf9bbe25af618061a30ca1a0317e11ca1b53244d8eeffd6b73",
+    "exploratory_ctha/test_ctha_v2.py": "26209ef953fadc7edca5927899b6b2bd8bb93691ed49e93356be8a43a31f76fc",
+    "exploratory_ctha/train.py": "4eaab7cbcb4adb6dfd55dd10c97dab541001078eb2d4b292a413e1cc0ffdffce",
+    "exploratory_ctha/p1_queue_20261112.py": "e672e638221c7fe80a5f71bcad88e5e8462965152fd6aa7e4c7899439002d844",
+    "exploratory_ctha/p1_server_20261112/preserved_manifest.json": "9a05d4a4023f6b3d07b795caee6f5ce72655f06533618097e5c329d35300bbc7",
+    "exploratory_ctha/p1_server_20261112/independent_review.json": "949bcf28dbf33a45e2635144d8e9d5a628238090cd9bf8f53095f5143c7182ff"
+  },
+  "model_files": {
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/model-00002-of-00004.safetensors": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/config.json": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/generation_config.json": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/model.safetensors.index.json": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/configuration.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/tokenizer_config.json": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/model-00001-of-00004.safetensors": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/model-00004-of-00004.safetensors": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd",
+    "/root/autodl-tmp/models/Qwen2.5-7B-Instruct/model-00003-of-00004.safetensors": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5"
+  },
+  "environment": {
+    "ALFWORLD_DATA": "/root/autodl-tmp/alfworld_data",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONHASHSEED": "0",
+    "HF_HUB_OFFLINE": "1",
+    "VLLM_WORKER_MULTIPROC_METHOD": "spawn"
+  },
+  "p0": {
+    "rounds": 6,
+    "tasks_per_round": 32,
+    "reps": 4,
+    "episodes": 768,
+    "train_only": true,
+    "frozen_base": true
+  },
+  "smoke": "Exact README_V2 command; independent verification before P1",
+  "shutdown_authorized": false,
+  "stage": "P1 five arms plus P2 three ablations, README_V2 seed-0 pilots",
+  "nonzero_smoke": "Reuse all 128 episodes of fixed P0 round 000; first 2 steps only; separate engineering checkpoint never used by formal arms",
+  "formal_arms": [
+    "grpo",
+    "gigpo",
+    "fixed",
+    "ctha",
+    "progress",
+    "ungated",
+    "both",
+    "no_center"
+  ],
+  "rounds": 12,
+  "train_episodes_per_arm": 768,
+  "tune_episodes_per_arm": 480,
+  "train_horizon": 0,
+  "aux_horizon": 8,
+  "threshold": 0.8
+}
