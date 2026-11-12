@@ -64,7 +64,7 @@ def prepare(args):
         alpha=args.ridge_alpha, min_mixed=args.min_mixed,
         omega=args.omega, clip=args.aux_clip,
         sign_fraction=args.sign_fraction,
-        baseline=args.baseline,
+        min_oof_r2=args.min_oof_r2, baseline=args.baseline,
     )
     report.update(iteration=args.iteration, train_only=True, n_history_episodes=len(history),
                   n_current_games=len({ep["game_file"] for ep in cur}),
@@ -74,7 +74,8 @@ def prepare(args):
                   config=dict(mode=args.mode, horizon=args.horizon, ridge_alpha=args.ridge_alpha,
                               min_mixed=args.min_mixed, window=args.window,
                               omega=args.omega, aux_clip=args.aux_clip,
-                              sign_fraction=args.sign_fraction, baseline=args.baseline))
+                              sign_fraction=args.sign_fraction, min_oof_r2=args.min_oof_r2,
+                              baseline=args.baseline))
     output = args.out
     output.mkdir(parents=True, exist_ok=True)
     data = "\n".join(json.dumps(s, ensure_ascii=False) for s in samples) + "\n"
@@ -112,11 +113,12 @@ def parse_args():
     p.add_argument("--omega", type=float, default=0.30)
     p.add_argument("--aux-clip", type=float, default=2.)
     p.add_argument("--sign-fraction", type=float, default=0.75)
+    p.add_argument("--min-oof-r2", type=float, default=0.0)
     p.add_argument("--baseline", choices=("legal", "zero"), default="legal")
     a = p.parse_args()
     if (a.iteration < 0 or a.horizon < 1 or a.min_mixed < 1 or a.window < 0
             or a.ridge_alpha <= 0 or a.omega < 0 or a.aux_clip <= 0
-            or not 0 <= a.sign_fraction <= 1):
+            or not 0 <= a.sign_fraction <= 1 or not -1 <= a.min_oof_r2 <= 1):
         p.error("Invalid preparation parameters")
     return a
 
