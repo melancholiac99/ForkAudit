@@ -158,6 +158,41 @@ def sign_stability(episodes: list[dict], beta: np.ndarray, horizon: int,
     return beta * mask, per_fold
 
 
+
+def heldout_predictive_r2(episodes: list[dict], horizon: int, alpha: float,
+                          *, center=True, folds=4, min_mixed=8) -> tuple[float | None, dict]:
+    """R² for within-game reward contrasts on different games from coefficient fitting.
+
+    This is a *predictive* gate, not proof of causal credit or a calibrated Q.
+    Each fold fits on distinct game IDs (across ALL training iterations).
+    """
+    games = sorted({e["game_file"] for e in episodes})
+    if len(games) < 2:
+        return None, dict(reason="too_few_distinct_games")
+    actual, predicted, heldout_groups = [], [], 0
+    for k in range(folds):
+        train_ep = [e for e in episodes
+                    if int(hashlib.sha256(e["game_file"].encode()).hexdigest(), 16) % folds != k]
+        val_ep = [e for e in episodes
+                  if int(hashlib.sha256(e["game_file"].encode()).hexdigest(), 16) % folds == k]
+        if not val_ep:
+            continue
+        beta, diag = ridge(train_ep, horizon, alpha, center=center, min_mixed=min_mixed)
+        # Evaluation always uses within-game demeaning, even for no-center ablation.
+        X, y, ng = centered_design(val_ep, horizon, center=True)
+        if len(y):
+            actual.extend(y)
+            predicted.extend(X @ beta)
+            heldout_groups += ng
+    if not actual:
+        return None, dict(reason="no_mixed_heldout_groups")
+    y = np.asarray(actual, dtype=float)
+    phat = np.asarray(predicted, dtype=float)
+    base = float(np.sum(y ** 2))
+    value = 1.0 - float(np.sum((y - phat) ** 2)) / base if base > 0 else None
+    return value, dict(heldout_mixed_groups=heldout_groups, n_rows=len(y),
+                       baseline_squared_error=base, oof_r2=value)
+
 def per_action_score(beta: np.ndarray, prompt: str, action: str,
                      admissible: list[str], task: str, baseline="legal") -> float:
     val = float(beta @ observable_features(prompt, action, admissible, task))
@@ -216,7 +251,7 @@ def load_episodes(folder: Path, iteration: int) -> list[dict]:
 def make_batch(episodes: list[dict], prior: list[dict], *,
                mode="ctha", horizon=8, alpha=5.0, min_mixed=8,
                omega=0.30, clip=2.0, sign_fraction=0.75,
-               center=True, baseline="legal") -> tuple[list[dict], dict]:
+               min_oof_r2=0.0, center=True, baseline="legal") -> tuple[list[dict], dict]:
     """Produce one policy-update batch with task-held-out CTHA predictions.
 
     A held-out game never contributes its own outcome to its coefficient fit,
@@ -252,6 +287,13 @@ def make_batch(episodes: list[dict], prior: list[dict], *,
                 beta, fold_diag = sign_stability(others, beta, horizon, alpha,
                                                  center=use_center, min_mixed=min_mixed,
                                                  required_fraction=sign_fraction)
+                score, score_details = heldout_predictive_r2(
+                    others, horizon, alpha, center=use_center, min_mixed=min_mixed)
+                diag["heldout_diagnostics"] = score_details
+                diag["oof_r2"] = score
+                if score is None or score < min_oof_r2:
+                    beta = np.zeros_like(beta)
+                    diag["reason"] = "failed_out_of_game_prediction"
                 diag["active_coefficients"] = int(np.count_nonzero(beta))
         betas[game], fit_diag[game], folds[game] = beta, diag, fold_diag
     raw, samples = [], []
