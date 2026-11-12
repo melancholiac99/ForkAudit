@@ -13,7 +13,7 @@ import audit
 
 class CreditProjectionTests(unittest.TestCase):
     def test_tie_preserving_bins(self):
-        labels, count = audit.tied_bins(np.array([0, 0, 0, 1 / 3, 1 / 3, 2 / 3, 1]), 10)
+        labels, count = audit.tied_bins(np.array([0, 0, 0, 1 / 3, np.nextafter(1 / 3, 1), 2 / 3, 1]), 10)
         self.assertEqual(count, 4)
         self.assertEqual(labels[0], labels[2])
         self.assertEqual(labels[3], labels[4])
