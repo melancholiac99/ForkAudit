@@ -1,3 +1,7 @@
+> **CTHA v2 (2026-11-12):** This page documents the superseded v1 prototype.
+> For current commands, task-type-heldout tests, full-rollout gradients and the GiGPO-style baseline, read [README_V2.md](README_V2.md).
+> Do not reuse v1 run directories for v2.
+
 # CTHA: Cross-Task Habit Advantage for online Agent RL
 
 **Status (2026-11-12):** executable *experimental* implementation on the separate `credit-grok` branch, **not a validated GPU result**. GitHub Actions checks Python syntax, synthetic rollouts/advantage preparation and command construction on CPU only. Run one small server smoke before committing GPU budget. E4/E4b/E4d/E4e protocols/data are unchanged.
