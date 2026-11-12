@@ -96,7 +96,8 @@ def _habit(step, episode, *, action_only=False) -> np.ndarray:
     if not action_only:
         # Reusable context/action interactions, not task identities as standalone features.
         features += [f"obs_verb:{verb}|{w}" for w in ob_words[:20]]
-        features += [f"obs_action:{obj}|{w}" for obj in tokens[1:4]\n                     for w in ob_words[:8]]
+        features += [f"obs_action:{obj}|{w}" for obj in tokens[1:4]
+                     for w in ob_words[:8]]
         features += [f"legal_verb:{verb}|{v}" for v in
                      list(dict.fromkeys(word_tokens(a)[0] for a in legal if word_tokens(a)))[:10]]
         features += [f"history_verb:{verb}|{x[0]}" for x in hist_verbs if x]
