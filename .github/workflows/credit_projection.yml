@@ -1,0 +1,35 @@
+name: E4 credit projection audit (CPU)
+
+on:
+  push:
+    branches: [credit-grok]
+    paths:
+      - 'exploratory_credit_projection/**'
+      - '.github/workflows/credit_projection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU dependencies
+        run: python -m pip install 'numpy>=1.24,<3' 'scipy>=1.10' 'scikit-learn>=1.3'
+      - name: Unit tests
+        run: python -m unittest discover -s exploratory_credit_projection -p 'test_audit.py' -v
+      - name: Audit archived E4 replays
+        run: python exploratory_credit_projection/audit.py --source e4 --archive yes --out "${RUNNER_TEMP}/credit_projection_e4"
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: credit-projection-e4
+          path: ${{ runner.temp }}/credit_projection_e4/
+          if-no-files-found: warn
