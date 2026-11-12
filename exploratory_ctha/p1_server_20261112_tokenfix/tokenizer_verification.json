@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "real_samples": 256,
+  "prompt_ids_equal_explicit_chat_text_encoding": true,
+  "completion_ids_unchanged": true,
+  "fix": "explicit return_dict=False; no objective or sampling changes"
+}

@@ -107,7 +107,7 @@ def prepare_tokens(tokenizer, rows, max_model_len, action_only):
     for row in rows:
         pi = tokenizer.apply_chat_template(
             [{"role": "user", "content": row["prompt"]}],
-            tokenize=True, add_generation_prompt=True)
+            tokenize=True, add_generation_prompt=True, return_dict=False)
         if not isinstance(pi, list) or not pi:
             raise ValueError("Expected list of prompt token IDs")
         ids = [int(t) for t in row["response_token_ids"]]
