@@ -44,17 +44,12 @@ def write_once(path, data):
 def select_games(all_games, seed, iteration, count):
     if count > len(all_games):
         raise ValueError("tasks_per_round exceeds available train games")
-    # Deterministic epoch shuffle with no repeats until all train games are used.
-    chosen = []
-    for j in range(count):
-        pos = iteration * count + j
-        epoch, offset = divmod(pos, len(all_games))
-        order = list(all_games)
-        random.Random(seed + 99991 * epoch).shuffle(order)
-        chosen.append(order[offset])
-    if len({x["game_file"] for x in chosen}) != count:
-        raise ValueError("Duplicate game in one iteration: adjust tasks_per_round")
-    return chosen
+    # A fixed seeded permutation is cycled in contiguous batches. Each round
+    # contains distinct games, including when crossing the permutation boundary.
+    order = list(all_games)
+    random.Random(seed).shuffle(order)
+    start = iteration * count
+    return [order[(start + j) % len(order)] for j in range(count)]
 
 
 def config_for(a):
