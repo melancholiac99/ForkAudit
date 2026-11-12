@@ -54,7 +54,7 @@ def select_games(all_games, seed, iteration, count):
 
 def config_for(a):
     return dict(
-        experiment="CTHA-v2-type-heldout-online-RL",
+        experiment="CTHA-v2-type-heldout-online-RL", collect_only=a.collect_only,
         model=str(a.model.resolve()),
         init_adapter=str(a.init_adapter.resolve()) if a.init_adapter else None,
         initial_adapter_sha=sha(a.init_adapter / "adapter_model.safetensors") if a.init_adapter else None,
@@ -134,10 +134,14 @@ def main():
                    help="Optional tune-only evaluation cadence; 0 disables it")
     p.add_argument("--eval-reps", type=int, default=2)
     p.add_argument("--eval-games", type=int, default=40)
+    p.add_argument("--collect-only", action="store_true",
+                   help="P0: collect with ONE frozen policy; never train or evaluate")
     p.add_argument("--dry-run", action="store_true", help="Print commands without GPU or environment")
     a = p.parse_args()
     if a.rounds < 1 or a.reps < 2 or a.tasks_per_round < 2 or a.window < 0 or a.eval_every < 0:
         p.error("Need rounds>=1, reps>=2, tasks_per_round>=2, window>=0")
+    if a.collect_only and a.eval_every:
+        p.error("--collect-only must not run tune evaluation")
     if a.eval_every and (a.eval_reps < 1 or a.eval_games < 1):
         p.error("Invalid tune evaluation settings")
     if (a.feature_window < 1 or a.train_horizon < 0 or a.aux_horizon < 0
@@ -164,10 +168,8 @@ def main():
         selected = select_games(games["train"], a.seed, step, a.tasks_per_round)
         if not a.dry_run:
             write_once(rnd / "games.json", selected)
-        prior_adapter = a.init_adapter if step == 0 else (
-            a.run_dir / f"round_{step-1:03d}" / "adapter")
-        if step == 0 and not a.init_adapter:
-            prior_adapter = None
+        prior_adapter = (a.init_adapter if a.collect_only or step == 0 else
+                         a.run_dir / f"round_{step-1:03d}" / "adapter")
         rollout_cmd = [
             sys.executable, HERE / "rollout.py", "--split", "train", "--games", rnd / "games.json",
             "--iteration", step, "--model", a.model, "--reps", a.reps,
@@ -178,6 +180,8 @@ def main():
         if prior_adapter:
             rollout_cmd.extend(["--adapter", prior_adapter])
         call(rollout_cmd, a.dry_run)
+        if a.collect_only:
+            continue
         prep_cmd = [
             sys.executable, HERE / "prepare.py", "--run-dir", a.run_dir,
             "--rollouts", rnd / "rollouts", "--iteration", step,
@@ -222,7 +226,8 @@ def main():
                   "--workers", a.workers, "--chunk-games", a.chunk_games,
                   "--gpu-util", a.gpu_util, "--max-model-len", a.max_model_len,
                   "--max-steps", a.max_steps], a.dry_run)
-    print(json.dumps(dict(done=not a.dry_run, rounds=a.rounds, mode=a.mode,
+    print(json.dumps(dict(done=not a.dry_run, rounds=a.rounds,
+                          collect_only=a.collect_only, mode=a.mode,
                           run_dir=str(a.run_dir))), flush=True)
 
 
