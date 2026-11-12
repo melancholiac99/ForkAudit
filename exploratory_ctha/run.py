@@ -18,7 +18,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 GAMES = ROOT / "exploratory_E4" / "games.json"
-CODE_FILES = ("habits.py", "rollout.py", "prepare.py", "train.py", "run.py")
+CODE_FILES = ("habits.py", "habits_v2.py", "features_v2.py", "rollout.py", "prepare.py", "train.py", "run.py")
 
 
 def sha(path: Path):
@@ -54,15 +54,19 @@ def select_games(all_games, seed, iteration, count):
 
 def config_for(a):
     return dict(
-        experiment="CTHA-v1-sequential-on-policy",
+        experiment="CTHA-v2-type-heldout-online-RL",
         model=str(a.model.resolve()),
         init_adapter=str(a.init_adapter.resolve()) if a.init_adapter else None,
         initial_adapter_sha=sha(a.init_adapter / "adapter_model.safetensors") if a.init_adapter else None,
         seed=a.seed, mode=a.mode, tasks_per_round=a.tasks_per_round,
-        reps=a.reps, horizon=a.horizon, window=a.window,
-        ridge_alpha=a.ridge_alpha, min_mixed=a.min_mixed,
-        omega=a.omega, aux_clip=a.aux_clip, sign_fraction=a.sign_fraction,
-        min_oof_r2=a.min_oof_r2,
+        reps=a.reps, feature_window=a.feature_window, aux_horizon=a.aux_horizon,
+        train_horizon=a.train_horizon, base_advantage=a.base_advantage,
+        gamma=a.gamma, local_weight=a.local_weight, family=a.family,
+        window=a.window,
+        ridge_alpha=a.ridge_alpha, min_mixed=a.min_mixed, min_pairs=a.min_pairs,
+        permutations=a.permutations, bootstraps=a.bootstraps, min_delta=a.min_delta,
+        omega=a.omega, anneal_start=a.anneal_start, anneal_end=a.anneal_end,
+        aux_clip=a.aux_clip, sign_fraction=a.sign_fraction,
         baseline=a.baseline, temperature=a.temperature,
         max_steps=a.max_steps, max_model_len=a.max_model_len,
         workers=a.workers, chunk_games=a.chunk_games, gpu_util=a.gpu_util,
@@ -92,15 +96,26 @@ def main():
                                       "ctha_nogate", "ctha_nocenter"), default="ctha")
     p.add_argument("--tasks-per-round", type=int, default=16)
     p.add_argument("--reps", type=int, default=4)
-    p.add_argument("--horizon", type=int, default=8,
-                   help="Number of early steps used for both policy update and habit regression")
-    p.add_argument("--window", type=int, default=4)
+    p.add_argument("--feature-window", type=int, default=8,
+                   help="Only this many early steps enter habit regression")
+    p.add_argument("--train-horizon", type=int, default=0, help="0 means train all rollout steps")
+    p.add_argument("--aux-horizon", type=int, default=8, help="0 means shape all steps")
+    p.add_argument("--base-advantage", choices=("auto", "grpo", "gigpo"), default="auto")
+    p.add_argument("--family", choices=("habit", "progress", "both", "action", "manual"), default="habit")
+    p.add_argument("--gamma", type=float, default=1.0)
+    p.add_argument("--local-weight", type=float, default=1.0)
+    p.add_argument("--window", type=int, default=8)
     p.add_argument("--ridge-alpha", type=float, default=5.0)
-    p.add_argument("--min-mixed", type=int, default=8)
+    p.add_argument("--min-mixed", type=int, default=20)
+    p.add_argument("--min-pairs", type=int, default=200)
+    p.add_argument("--permutations", type=int, default=12)
+    p.add_argument("--bootstraps", type=int, default=300)
+    p.add_argument("--min-delta", type=float, default=0.0)
     p.add_argument("--omega", type=float, default=0.30)
     p.add_argument("--aux-clip", type=float, default=2.0)
     p.add_argument("--sign-fraction", type=float, default=0.75)
-    p.add_argument("--min-oof-r2", type=float, default=0.0)
+    p.add_argument("--anneal-start", type=int, default=4)
+    p.add_argument("--anneal-end", type=int, default=16)
     p.add_argument("--baseline", choices=("legal", "zero"), default="legal")
     p.add_argument("--temperature", type=float, default=0.7)
     p.add_argument("--max-steps", type=int, default=50)
@@ -125,6 +140,12 @@ def main():
         p.error("Need rounds>=1, reps>=2, tasks_per_round>=2, window>=0")
     if a.eval_every and (a.eval_reps < 1 or a.eval_games < 1):
         p.error("Invalid tune evaluation settings")
+    if (a.feature_window < 1 or a.train_horizon < 0 or a.aux_horizon < 0
+            or a.min_mixed < 1 or a.min_pairs < 1 or a.permutations < 1
+            or a.bootstraps < 1 or not 0 <= a.anneal_start < a.anneal_end):
+        p.error("Invalid CTHA v2 configuration")
+    if a.base_advantage == "auto":
+        a.base_advantage = "grpo" if a.mode == "grpo" else "gigpo"
     a.run_dir = a.run_dir.resolve()
     a.model = a.model.resolve()
     a.init_adapter = a.init_adapter.resolve() if a.init_adapter else None
@@ -161,11 +182,16 @@ def main():
             sys.executable, HERE / "prepare.py", "--run-dir", a.run_dir,
             "--rollouts", rnd / "rollouts", "--iteration", step,
             "--out", rnd / "prepared", "--mode", a.mode,
-            "--horizon", a.horizon, "--window", a.window,
+            "--family", a.family, "--base-advantage", a.base_advantage,
+            "--feature-window", a.feature_window, "--train-horizon", a.train_horizon,
+            "--aux-horizon", a.aux_horizon, "--window", a.window,
             "--ridge-alpha", a.ridge_alpha, "--min-mixed", a.min_mixed,
-            "--omega", a.omega, "--aux-clip", a.aux_clip,
-            "--sign-fraction", a.sign_fraction, "--min-oof-r2", a.min_oof_r2,
-            "--baseline", a.baseline]
+            "--min-pairs", a.min_pairs, "--permutations", a.permutations,
+            "--bootstraps", a.bootstraps, "--min-delta", a.min_delta,
+            "--omega", a.omega, "--anneal-start", a.anneal_start,
+            "--anneal-end", a.anneal_end, "--aux-clip", a.aux_clip,
+            "--sign-fraction", a.sign_fraction, "--gamma", a.gamma,
+            "--local-weight", a.local_weight, "--baseline", a.baseline]
         call(prep_cmd, a.dry_run)
         train_cmd = [
             sys.executable, HERE / "train.py",
