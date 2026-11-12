@@ -214,7 +214,7 @@ def crossfit(points, *, folds=5, alpha=10.0, mode="prompt_action"):
 
 def tied_bins(values, requested=10):
     """Never break identical measured gaps into arbitrary 'deciles'."""
-    unique, inv, counts = np.unique(values, return_inverse=True, return_counts=True)
+    unique, inv, counts = np.unique(np.round(values.astype(float), 10), return_inverse=True, return_counts=True)
     if len(unique) <= requested:
         return inv, len(unique)
     midranks = (np.cumsum(counts) - counts / 2) / counts.sum()
@@ -272,12 +272,12 @@ def _rows(points, q, predictions):
     return primary, holdout
 
 
-def grouped_spearman(rows, bootstraps=500, seed=20261112):
+def grouped_spearman(rows, bootstraps=500, seed=20261112, metric="clipped_ratio"):
     """Game-cluster CI; descriptive only, ratio has gap in denominator."""
-    if len(rows) < 3 or len({r["gap"] for r in rows}) < 2:
+    if len(rows) < 3 or len({round(r["gap"], 10) for r in rows}) < 2:
         return dict(rho=None, ci95=None, reason="Insufficient nonzero gap levels")
-    x = np.asarray([r["gap"] for r in rows])
-    y = np.asarray([r["clipped_ratio"] for r in rows])
+    x = np.round(np.asarray([r["gap"] for r in rows]), 10)
+    y = np.asarray([r[metric] for r in rows])
     if len(set(y)) < 2:
         return dict(rho=None, ci95=None, reason="Constant predictable ratio")
     observed = float(spearmanr(x, y).statistic)
@@ -331,6 +331,8 @@ def run(args):
                   gap_bins=by_bin(primary, "gap", args.bins),
                   noise_holdout_bins=by_bin(holdout, "gap", args.bins),
                   rank_association=grouped_spearman(primary, args.bootstrap),
+                  projected_difference_association=grouped_spearman(primary, args.bootstrap,
+                                                                    metric="projected_diff"),
                   folds=diag, archive_sources=sources)
     args.out.mkdir(parents=True, exist_ok=True)
     _write_csv(args.out / "points.csv", primary)
