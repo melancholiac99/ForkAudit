@@ -62,6 +62,7 @@ def config_for(a):
         reps=a.reps, horizon=a.horizon, window=a.window,
         ridge_alpha=a.ridge_alpha, min_mixed=a.min_mixed,
         omega=a.omega, aux_clip=a.aux_clip, sign_fraction=a.sign_fraction,
+        min_oof_r2=a.min_oof_r2,
         baseline=a.baseline, temperature=a.temperature,
         max_steps=a.max_steps, max_model_len=a.max_model_len,
         workers=a.workers, chunk_games=a.chunk_games, gpu_util=a.gpu_util,
@@ -99,6 +100,7 @@ def main():
     p.add_argument("--omega", type=float, default=0.30)
     p.add_argument("--aux-clip", type=float, default=2.0)
     p.add_argument("--sign-fraction", type=float, default=0.75)
+    p.add_argument("--min-oof-r2", type=float, default=0.0)
     p.add_argument("--baseline", choices=("legal", "zero"), default="legal")
     p.add_argument("--temperature", type=float, default=0.7)
     p.add_argument("--max-steps", type=int, default=50)
@@ -162,7 +164,8 @@ def main():
             "--horizon", a.horizon, "--window", a.window,
             "--ridge-alpha", a.ridge_alpha, "--min-mixed", a.min_mixed,
             "--omega", a.omega, "--aux-clip", a.aux_clip,
-            "--sign-fraction", a.sign_fraction, "--baseline", a.baseline]
+            "--sign-fraction", a.sign_fraction, "--min-oof-r2", a.min_oof_r2,
+            "--baseline", a.baseline]
         call(prep_cmd, a.dry_run)
         train_cmd = [
             sys.executable, HERE / "train.py",
