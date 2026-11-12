@@ -140,7 +140,7 @@ class HabitTests(unittest.TestCase):
                                    out=folder / "round_000" / "prepared", mode="ctha",
                                    horizon=1, ridge_alpha=5., min_mixed=2,
                                    window=4, omega=.3, aux_clip=2.,
-                                   sign_fraction=.75, baseline="legal")
+                                   sign_fraction=.75, min_oof_r2=0.0, baseline="legal")
             first = prepare.prepare(args)
             second = prepare.prepare(args)
             self.assertEqual(first, second)
