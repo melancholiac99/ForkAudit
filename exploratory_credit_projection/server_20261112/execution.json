@@ -1,0 +1,32 @@
+{
+  "recorded_at": 1794462958.6111977,
+  "source_commit": "001b7c138db7ea080407906ef68ff13549d483bb",
+  "branch": "credit-grok",
+  "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 /root/miniconda3/envs/m0/bin/python -u exploratory_credit_projection/audit.py --source e4 --archive yes --out exploratory_credit_projection/server_20261112",
+  "parameters": {
+    "source": "e4",
+    "archive": "yes",
+    "reps": 3,
+    "folds": 5,
+    "alpha": 10,
+    "bins": 10,
+    "bootstrap": 500,
+    "bootstrap_seed": 20261112
+  },
+  "python": "3.11.17 (main, Oct  1 2026, 20:17:42) [GCC 14.3.0]",
+  "versions": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.9.1"
+  },
+  "source_hashes": {
+    "exploratory_credit_projection/audit.py": "39a8c23e6d044eca081701bbb8b25cba71513dc1dda1fccf679fddc6e3c60b95",
+    "exploratory_credit_projection/test_audit.py": "036ddeb5ee4b9a2cccd933c83efd74008d4639d983b9f6778c80e0437f4aa618",
+    "exploratory_credit_projection/README.md": "8e21850544beb35013ba920e56a11644754fb0d5a5b2885dd931101ac022d003",
+    "exploratory_credit_projection/FINDINGS_20261112.md": "2abb9873119a3b7d564108ca3b0d10db6cd508b096ed16e193f029cd63ddd24e"
+  },
+  "gpu_used": false,
+  "training_performed": false,
+  "new_trajectories_collected": false,
+  "source_hash_check_enabled": true
+}

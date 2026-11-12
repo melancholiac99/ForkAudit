@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "checks": [
+    "source files unchanged",
+    "fixed cohort/counts",
+    "CSV unique IDs and valid ranges",
+    "summary bins independently recomputed",
+    "rank coefficients independently recomputed",
+    "five-fold coverage",
+    "comparison with published rounded results"
+  ],
+  "published_comparison": {
+    "MSE": {
+      "server": 0.03961,
+      "published": 0.03961,
+      "match": true
+    },
+    "mean_baseline_MSE": {
+      "server": 0.04504,
+      "published": 0.04504,
+      "match": true
+    },
+    "action_baseline_MSE": {
+      "server": 0.04312,
+      "published": 0.04312,
+      "match": true
+    },
+    "ratio_rho": {
+      "server": 0.091,
+      "published": 0.091,
+      "match": true
+    },
+    "projected_difference_rho": {
+      "server": 0.201,
+      "published": 0.201,
+      "match": true
+    },
+    "gap_bin_predictions": {
+      "server": [
+        0.005,
+        0.0141,
+        0.0337
+      ],
+      "published": [
+        0.005,
+        0.0141,
+        0.0337
+      ],
+      "match": true
+    },
+    "gap_bin_clipped_ratios": {
+      "server": [
+        0.0431,
+        0.0352,
+        0.039
+      ],
+      "published": [
+        0.0431,
+        0.0352,
+        0.039
+      ],
+      "match": true
+    },
+    "independent_holdout_gaps": {
+      "server": [
+        0.0529,
+        0.2792
+      ],
+      "published": [
+        0.0529,
+        0.2792
+      ],
+      "match": true
+    }
+  },
+  "all_published_rounded_values_match": true,
+  "artifacts": {
+    "points.csv": "bfab96a40dacd93d998e2f9ee2ddbaedd76cbc8ae27a3a4bb7611b881a990edd",
+    "run.log": "ef0d2c21e147220e7ff8ba8e70a4e27e3aeb2c88b7c47cc8b3c02c61ba0ae6c2",
+    "summary.json": "9737ca22d2ad6451f410ac811f1b460bb0c25d851b9ce6407d0dffc95005b0aa",
+    "REPORT.md": "235626a93c46a701567fff698818200804f9fabd4a64b9c447a36c09e3ab6f35",
+    "tests.log": "a1377e344fc621f3a64cf223c20f658cb21d641b7c8d6190ed263d20ffc5d2c2",
+    "replicate_holdout.csv": "b5266a0d3a1eac4e82337dab9a97ba8bdfbfc6932aa53c6231af47f3f38de4c6",
+    "execution.json": "ae6070e527a8ec8c17d6911ed15da1c6513f09ddc87f9edaf2cad168196e3f24"
+  },
+  "verifier_sha256": "aef0b563cf2bd069f1fcd1562ba4225f0034f78af65f05b35f320f1fe2ce2565"
+}

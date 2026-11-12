@@ -1,0 +1,153 @@
+{
+  "source": "e4",
+  "n_points": 6016,
+  "n_games": 308,
+  "n_arms": 5,
+  "n_replays_per_arm": 3,
+  "zero_gap_count": 4430,
+  "zero_gap_share": 0.7363696808510638,
+  "features": "student prompt + candidate action only; no hidden state or peeks",
+  "oof": {
+    "mse": 0.0396082494682858,
+    "baseline_mse": 0.04504030167566638,
+    "r2_relative_to_game_heldout_mean": 0.12060425897003535,
+    "action_only_mse": 0.043116800581196595,
+    "action_only_baseline_mse": 0.04504030167566638
+  },
+  "gap_bins": [
+    {
+      "bin": 1,
+      "n": 894,
+      "gap_min": 0.3333333333333333,
+      "gap_max": 0.33333333333333337,
+      "gap_mean": 0.3333333333333333,
+      "projected_diff_mean": 0.005044264993911622,
+      "signed_ratio_mean": 0.015132794981734865,
+      "clipped_ratio_mean": 0.04309925141950582
+    },
+    {
+      "bin": 2,
+      "n": 462,
+      "gap_min": 0.6666666666666666,
+      "gap_max": 0.6666666666666667,
+      "gap_mean": 0.6666666666666666,
+      "projected_diff_mean": 0.014098184352571314,
+      "signed_ratio_mean": 0.02114727652885697,
+      "clipped_ratio_mean": 0.03520170916113761
+    },
+    {
+      "bin": 3,
+      "n": 230,
+      "gap_min": 1.0,
+      "gap_max": 1.0,
+      "gap_mean": 1.0,
+      "projected_diff_mean": 0.03369105053336724,
+      "signed_ratio_mean": 0.03369105053336724,
+      "clipped_ratio_mean": 0.03897403690802014
+    }
+  ],
+  "noise_holdout_bins": [
+    {
+      "bin": 1,
+      "n": 2818,
+      "gap_min": 0.5,
+      "gap_max": 0.5,
+      "gap_mean": 0.5,
+      "projected_diff_mean": 0.006488566009910755,
+      "signed_ratio_mean": 0.01297713201982151,
+      "clipped_ratio_mean": 0.032898813430576816,
+      "heldout_diff_mean": 0.05287437899219304
+    },
+    {
+      "bin": 2,
+      "n": 1329,
+      "gap_min": 1.0,
+      "gap_max": 1.0,
+      "gap_mean": 1.0,
+      "projected_diff_mean": 0.020082437872684836,
+      "signed_ratio_mean": 0.020082437872684836,
+      "clipped_ratio_mean": 0.02836451632376449,
+      "heldout_diff_mean": 0.27915726109857036
+    }
+  ],
+  "rank_association": {
+    "rho": 0.09131587958318495,
+    "ci95": [
+      0.025802570138672716,
+      0.1583626183711394
+    ],
+    "n_games": 219
+  },
+  "projected_difference_association": {
+    "rho": 0.20134724318248623,
+    "ci95": [
+      0.1384904494180177,
+      0.2660631970100431
+    ],
+    "n_games": 219
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "train_games": 246,
+      "heldout_games": 62,
+      "train_points": 4812,
+      "heldout_points": 1204,
+      "vocab_size": 16042
+    },
+    {
+      "fold": 1,
+      "train_games": 247,
+      "heldout_games": 61,
+      "train_points": 4813,
+      "heldout_points": 1203,
+      "vocab_size": 16133
+    },
+    {
+      "fold": 2,
+      "train_games": 247,
+      "heldout_games": 61,
+      "train_points": 4813,
+      "heldout_points": 1203,
+      "vocab_size": 16218
+    },
+    {
+      "fold": 3,
+      "train_games": 246,
+      "heldout_games": 62,
+      "train_points": 4813,
+      "heldout_points": 1203,
+      "vocab_size": 16141
+    },
+    {
+      "fold": 4,
+      "train_games": 246,
+      "heldout_games": 62,
+      "train_points": 4813,
+      "heldout_points": 1203,
+      "vocab_size": 16079
+    }
+  ],
+  "archive_sources": [
+    {
+      "path": "exploratory_E4/results_archive/e4_nonweight_results.tar.gz.part000",
+      "sha256": "65c91803cce6f07084814511d6e26ae26a02ff962ea74fa754c559d5efce9c5b"
+    },
+    {
+      "path": "exploratory_E4/results_archive/e4_nonweight_results.tar.gz.part001",
+      "sha256": "9968036e98033f2fa0944482dc5fdebfa06d3ed482ed70c8f74381760e34fd28"
+    },
+    {
+      "path": "exploratory_E4/results_archive/e4_nonweight_results.tar.gz.part002",
+      "sha256": "e852c31545300b0af6823690c6007a209cca18d50f9e1db6582c3cbe4917ebee"
+    },
+    {
+      "path": "exploratory_E4/results_archive/e4_nonweight_results.tar.gz.part003",
+      "sha256": "7ecfb9ecac31230c47166ac59a2ffc815b127b2aa4cf7bc1aac42de8ca3cc187"
+    },
+    {
+      "path": "exploratory_E4/results_archive/e4_nonweight_results.tar.gz.part004",
+      "sha256": "104c6e60ac3e2e15d9a70a1f5c3d5b4b0ef48adff9d43489c25bdafb6cd41e61"
+    }
+  ]
+}
