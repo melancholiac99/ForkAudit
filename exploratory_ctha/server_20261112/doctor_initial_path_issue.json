@@ -1,0 +1,20 @@
+{
+  "model": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+  "model_exists": true,
+  "packages": {
+    "numpy": "2.3.5",
+    "torch": "2.13.0+cu130",
+    "transformers": "5.19.0",
+    "peft": "0.21.2",
+    "vllm": "0.32.0",
+    "alfworld": "installed",
+    "textworld": "1.7.0"
+  },
+  "cuda": {
+    "available": true,
+    "device": "NVIDIA RTX PRO 6000 Blackwell Server Edition"
+  },
+  "alfworld_game_exists": false,
+  "alfworld_sample_path": "/root/.cache/alfworld/json_2.1.1/train/pick_clean_then_place_in_recep-SoapBar-None-Cabinet-422/trial_T20190908_123321_281332/game.tw-pddl",
+  "ready": false
+}
