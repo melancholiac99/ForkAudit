@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "train_slots": 64,
+  "tune_slots": 16,
+  "train_ray_actors": 4,
+  "tune_ray_actors": 1,
+  "scope": "Real full-slot reset and look action; no model or policy update"
+}
