@@ -1,0 +1,20 @@
+{
+  "status": "FAIL_OPERATIONAL",
+  "reason": "Agent SIGSTOP of Ray TaskRunner caused keepalive watchdog timeout; job destroyed before checkpoint",
+  "optimizer_update": "Initiated; exact completed AdamW steps unverified because no checkpoint",
+  "checkpoint_recovery": "UNAVAILABLE",
+  "Learning": "INCOMPLETE",
+  "Generalization": "NOT_RUN",
+  "CTHA_online_efficacy": "NOT_TESTED",
+  "raw_response_rows": 757,
+  "processed_response_rows": 768,
+  "real_response_tokens": 104818,
+  "first_pre_update_k3": 0.002176255219943836,
+  "first_pre_update_clip": 0.016283795224925214,
+  "evidence_sha256": {
+    "ppo_batch_step_1.pkl": "176f579a0e25f7db6ee36208a52161a1dd2da30d66a3dc4bfb72b92df2843a4e",
+    "run.log": "4bf1604635567e06145a343b0bb58ffdf20723c35c3b0664c66d1d2a319ef515",
+    "raw_batch_0001.pkl": "a468fc29d1cd6fd51eb77f642a6aaba99de3e3489a87ed011ab92061feff1fe3",
+    "probabilities_step_1.npz": "29b0661181b45649a26c90e7239133788af9002d3c7568b24fe56afd3c34df09"
+  }
+}

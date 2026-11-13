@@ -61,6 +61,7 @@ def main():
     parser.add_argument('--gradient-bench-packet', type=Path)
     parser.add_argument('--logprob-micro', type=int, choices=[16, 32])
     parser.add_argument('--model-seed', type=int)
+    parser.add_argument('--bounded-cuda-graphs', action='store_true')
     args = parser.parse_args()
     assert Path(sys.prefix).resolve() == (ROOT / '.runtime/venvs/verl-agent-20bd331b').resolve()
     assert Path(args.name).name == args.name
@@ -153,6 +154,9 @@ def main():
     }
     if args.frozen_base_bf16:
         settings['+actor_rollout_ref.actor.fsdp_config.model_dtype'] = 'bf16'
+    if args.bounded_cuda_graphs:
+        assert not args.eager and args.gpus == 1
+        settings['+actor_rollout_ref.rollout.cudagraph_capture_sizes'] = [1, 2, 4, 8, 16]
     overrides = []
     for key, value in settings.items():
         rendered = json.dumps(value, separators=(',', ':')) if isinstance(value, (bool, list)) else str(value)

@@ -84,7 +84,9 @@ def install():
                 attention_mask=chosen.batch['attention_mask'][:, :width],
                 position_ids=chosen.batch['position_ids'][:, :width]),
                 meta_info=dict(do_sample=True, validate=False))
+            generation_start = time.monotonic()
             generated = self.actor_rollout_wg.generate_sequences(prompts)
+            generation_seconds = time.monotonic() - generation_start
             generated.save_to_disk(str(folder / 'fresh_eager_batch.pkl'))
             actual = self.actor_rollout_wg.compute_log_prob(generated).batch['old_log_probs']
             sample_mask = compute_response_mask(generated)
@@ -92,6 +94,8 @@ def install():
             np.savez_compressed(folder / 'fresh_eager_alignment.npz', actor=actual.float().cpu().numpy(),
                 rollout=generated.batch['rollout_log_probs'].float().cpu().numpy(), mask=sample_mask.cpu().numpy())
             result['fresh_real_context_sampling'] = scores
+            result['fresh_sampling_seconds'] = generation_seconds
+            result['fresh_generated_tokens_per_second'] = int(sample_mask.sum()) / generation_seconds
             result['passed'] &= scores['sampled_behavior_k3'] <= .02 and scores['clip_fraction'] <= .30
         (folder / 'reference_probe.json').write_text(json.dumps(result, indent=2) + '\n')
         assert result['passed'], 'Fixed-token statistical consistency gate failed'
