@@ -31,14 +31,14 @@ def train(name,raw,prepared,out,seed,adapter=None,probe=False):
  if adapter:args+=['--adapter',adapter]
  if probe:args+=['--probe']
  job(name,args)
-def compare_repeat(a,b):
+def compare_repeat(a,b,filename='repeat_verification.json'):
  rows=[]
  for p in sorted(a.glob('s*_r*.json')):
   x=load(p);y=load(b/p.name)
   fields=['response_token_ids','prompt_token_ids','sample_seed','action','obs_before','obs_after','won_after']
   exact=len(x['steps'])==len(y['steps']) and all(all(s[k]==t[k] for k in fields) for s,t in zip(x['steps'],y['steps'])) and x['won']==y['won']
   rows.append({'file':p.name,'exact':exact})
- result={'passed':all(x['exact'] for x in rows),'episodes':len(rows),'samples':rows};save(DATA/'repeat_verification.json',result)
+ result={'passed':all(x['exact'] for x in rows),'episodes':len(rows),'samples':rows};save(DATA/filename,result)
  if not result['passed']:raise RuntimeError('Frozen-policy repeat failed; quantify and repair before scaling')
 def paired(a,b):
  games={}
@@ -49,6 +49,9 @@ def paired(a,b):
  vals=np.array([np.mean(v) for _,v in sorted(games.items())]);rng=np.random.default_rng(20261113)
  boot=vals[rng.integers(0,len(vals),size=(10000,len(vals)))].mean(axis=1)
  return {'paired_change':float(vals.mean()),'ci95':np.quantile(boot,[.025,.975]).tolist(),'games':len(vals)}
+def acceptance_states(results):
+ return {'engineering':'PASS','learning':{a:('PASS_IN_PILOT' if r['train']['paired_change']>0 and r['train']['ci95'][0]>0 else 'NOT_DEMONSTRATED') for a,r in results.items()},'generalization':{a:('PASS_IN_PILOT' if r['tune']['paired_change']>0 and r['tune']['ci95'][0]>0 else 'NOT_DEMONSTRATED') for a,r in results.items()},'replication_across_training_seeds':'NOT_TESTED','ctha_training':'NOT_RUN','scope':'One training seed, fixed repeated train tasks. Positive game-cluster CI is within-pilot evidence only; execution completion is not a learning pass.'}
+
 def main():
  DATA.mkdir(exist_ok=True)
  with (DATA/'queue.lock').open('a') as lock:
@@ -57,7 +60,7 @@ def main():
    cpu=load(DATA/'cpu_validation.json');assert cpu['cold_start_gate']['passed']
    assert cpu['source_sha']==source_hashes(),'CPU checks must cover current frozen sources'
    if (DATA/'registration.json').exists():raise RuntimeError('Queue already registered; no duplicate restart')
-   immutable(DATA/'registration.json',dict(source_sha=source_hashes(),plan=load(HERE/'PLAN.json'),time=time.time(),environment={k:os.getenv(k) for k in ['CUDA_VISIBLE_DEVICES','VLLM_BATCH_INVARIANT','CUBLAS_WORKSPACE_CONFIG','OMP_NUM_THREADS','CTHA_REPEAT_REUSE_ROOT']},gpu=subprocess.check_output(['nvidia-smi','--query-gpu=uuid,name,driver_version','--format=csv,noheader'],text=True)))
+   immutable(DATA/'registration.json',dict(source_sha=source_hashes(),plan=load(HERE/'PLAN.json'),time=time.time(),environment={k:os.getenv(k) for k in ['CUDA_VISIBLE_DEVICES','VLLM_BATCH_INVARIANT','CUBLAS_WORKSPACE_CONFIG','OMP_NUM_THREADS','CTHA_REPEAT_REUSE_ROOT','CTHA_INITIAL_REUSE_ROOT']},gpu=subprocess.check_output(['nvidia-smi','--query-gpu=uuid,name,driver_version','--format=csv,noheader'],text=True)))
    g=load(ROOT/'exploratory_E4/games.json');selected=select_games(g['train'],0,0,16)
    save(DATA/'train_games.json',selected);save(DATA/'repeat_games.json',selected[:4]);save(DATA/'tune_games.json',g['tune'])
    reuse=os.environ.get('CTHA_REPEAT_REUSE_ROOT')
@@ -74,7 +77,16 @@ def main():
     collect('repeat_a',DATA/'repeat_games.json',DATA/'repeat_a',0,reps=2)
     collect('repeat_b',DATA/'repeat_games.json',DATA/'repeat_b',0,reps=2)
    compare_repeat(DATA/'repeat_a',DATA/'repeat_b')
-   collect('initial_train',DATA/'train_games.json',DATA/'initial_train',0)
+   initial_reuse=os.environ.get('CTHA_INITIAL_REUSE_ROOT')
+   if initial_reuse:
+    raw=Path(initial_reuse)/'initial_train';s=load(raw/'summary.json');prov=s['provenance']
+    assert prov['source_sha256']==sha(HERE/'collect.py') and prov['adapter_sha256'] is None
+    assert prov['batch_invariant']=='1' and prov['selected_game_ids']==[g['game_file'] for g in selected] and s['n_episodes']==64
+    save(DATA/'initial_reuse_manifest.json',{str(p):sha(p) for p in raw.glob('*.json')})
+    shutil.copytree(raw,DATA/'initial_train')
+   else:collect('initial_train',DATA/'train_games.json',DATA/'initial_train',0)
+   # Check the same 8 episodes within the 64-episode, dynamically shrinking batch.
+   compare_repeat(DATA/'repeat_a',DATA/'initial_train','cross_batch_verification.json')
    prepare('initial_prepare',DATA/'initial_train',DATA/'initial_prepared','grpo')
    train('direction_probe',DATA/'initial_train',DATA/'initial_prepared',DATA/'direction_probe',0,probe=True)
    collect('baseline_tune',DATA/'tune_games.json',DATA/'baseline_tune',0,split='tune',reps=2,namespace='eval')
@@ -92,8 +104,10 @@ def main():
       collect(f'{arm}_{i}_tune',DATA/'tune_games.json',d/'eval_tune',0,split='tune',reps=2,adapter=prior,namespace='eval')
       collect(f'{arm}_{i}_train_eval',DATA/'train_games.json',d/'eval_train',0,adapter=prior)
     results[arm]={'train':paired(DATA/'initial_train',d/'eval_train'),'tune':paired(DATA/'baseline_tune',d/'eval_tune'),'final_train':load(d/'eval_train/summary.json')['success_rate'],'final_tune':load(d/'eval_tune/summary.json')['success_rate']}
+   acceptance=acceptance_states(results)
+   save(DATA/'acceptance.json',acceptance)
    save(DATA/'analysis.json',{'baseline_train':load(DATA/'initial_train/summary.json')['success_rate'],'baseline_tune':load(DATA/'baseline_tune/summary.json')['success_rate'],'results':results,'interpretation':'Engineering pilot on repeated training tasks. Tune gains require positive paired lower confidence bound; no formal CTHA efficacy claim.'})
-   state('completed',results=results)
+   state('completed',execution_status='completed',acceptance=acceptance,results=results)
    notify(f'【CTHA v3验收结束】读取 {DATA}/analysis.json、status.json、direction_probe/direction_check.json 和各轮train_log.json。工程正确性与训练任务学习、tune收益分别解释。未重跑完整P1/P2，未关机。')
   except Exception:
    error=traceback.format_exc();(DATA/'failure.log').write_text(error);state('failed',error=error);os.sync()

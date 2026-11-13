@@ -7,6 +7,7 @@ from habits_v2 import make_batch,oof_audit
 from prepare import validate_train
 
 def prepare(folder,out,base='grpo',mode='grpo',cold_start=False,history=()):
+ if cold_start and mode=='grpo':raise ValueError('Cold start requires explicit --mode ctha; it does not activate CTHA automatically')
  summary=load(folder/'summary.json');iteration=summary['iteration']
  current=load_episodes(folder,iteration);validate_train(current,iteration)
  pool=[];pool_sources={}

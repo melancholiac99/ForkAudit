@@ -1,6 +1,7 @@
 """Regression checks and train-only cold-start feasibility, no GPU execution."""
 import collections,contextlib,json,math,subprocess,tempfile
 from unittest.mock import patch
+from pathlib import Path
 import torch,numpy as np
 from util import *
 from trainer import batches,k3
@@ -12,6 +13,7 @@ from habits_v2 import make_batch,oof_audit
 def checks():
  class CharacterTokenizer:
   def decode(self,ids,**kwargs):return ''.join(map(chr,ids))
+  def __call__(self,text,**kwargs):return {'input_ids':list(map(ord,text)),'offset_mapping':[(i,i+1) for i in range(len(text))]}
  tok=CharacterTokenizer()
  for text in ['<think>reason</think><action>go to table 1</action>','<think>reason</think>[action] go to table 1 [/action]']:
   ids=list(map(ord,text));mask=action_mask(tok,ids)

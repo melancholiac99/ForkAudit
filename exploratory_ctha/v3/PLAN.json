@@ -63,5 +63,12 @@
     "not_formal_generalization_comparison": true
   },
   "success_interpretation": "Engineering gates do not establish generalization. Report fixed-seed train success changes and game-cluster bootstrap CIs on tune. No declaration of algorithmic benefit without a positive paired lower 95% bound. A failed check is retained and stops downstream work. Repairs require a new version/output namespace, never relaxed gates or overwritten outputs.",
-  "revision": "r1: before any training, action diagnostic handles square/angle tags and fails closed; existing frozen-repeat collections reusable only if collector/config hashes match"
+  "revision": "r2 before updates: lazy canonical-offset action masks; cross-batch full-trajectory check; explicit engineering/learning/generalization statuses; v3 CPU CI.",
+  "acceptance_states": {
+    "execution": "completed independently of measured effect",
+    "engineering": "all prior guards and checkpoint chain passed",
+    "learning": "positive paired train change and game-cluster lower 95% bound >0, one-seed pilot only",
+    "generalization": "positive paired tune change and game-cluster lower 95% bound >0, one-seed pilot only",
+    "replication": "not established across training seeds"
+  }
 }

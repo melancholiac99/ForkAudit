@@ -38,11 +38,16 @@ def train(a):
   assert pi==r['prompt_token_ids']
   ids=r['response_token_ids'];lp=r['behavior_logprobs']
   assert len(ids)==len(lp) and all(math.isfinite(v) for v in lp) and len(pi)+len(ids)<=6144
-  data.append(dict(prompt_ids=pi,completion_ids=ids,old=torch.tensor(lp,dtype=torch.float32),advantage=r['advantage'],action_mask=action_mask(tok,ids)))
+  data.append(dict(prompt_ids=pi,completion_ids=ids,old=torch.tensor(lp,dtype=torch.float32),advantage=r['advantage'],action_mask=None))
  if a.probe:
   # Deterministic balanced engineering subset; not a sampled population effect.
-  pos=[i for i,x in enumerate(data) if x['advantage']>0 and x['action_mask'] is not None][:4]
-  neg=[i for i,x in enumerate(data) if x['advantage']<0 and x['action_mask'] is not None][:4]
+  pos=[];neg=[]
+  for i,x in enumerate(data):
+   bucket=pos if x['advantage']>0 else neg if x['advantage']<0 else None
+   if bucket is None or len(bucket)>=4:continue
+   x['action_mask']=action_mask(tok,x['completion_ids'])
+   if x['action_mask'] is not None:bucket.append(i)
+   if len(pos)==len(neg)==4:break
   assert len(pos)==len(neg)==4,'Probe requires four real positive and four real negative samples'
   chosen=pos+neg;data=[data[i] for i in chosen];save(a.out/'probe_indices.json',chosen)
  actor=AutoModelForCausalLM.from_pretrained(str(MODEL),local_files_only=True,dtype=torch.bfloat16,attn_implementation='sdpa').to('cuda')
@@ -62,6 +67,9 @@ def train(a):
  model.eval();errors=[];before={};started=time.time()
  # Numeric agreement measured before any updates on fixed evenly spaced samples.
  parity_ids=sorted(set(np.linspace(0,len(data)-1,min(32,len(data)),dtype=int).tolist()))
+ if not a.probe:
+  for i in parity_ids:data[i]['action_mask']=action_mask(tok,data[i]['completion_ids'])
+ save(a.out/'action_mask_coverage.json',{'diagnostic_rows':len(parity_ids),'mapped_rows':sum(data[i]['action_mask'] is not None for i in parity_ids),'all_training_rows':len(data),'mask_used_for_policy_loss':False})
  with torch.no_grad():
   for i in parity_ids:
    x=data[i];lp=selected_logprobs(model,x,.7).cpu();before[i]=lp

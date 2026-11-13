@@ -3,7 +3,7 @@ HERE=pathlib.Path(__file__).resolve().parent
 PARENT=HERE.parent
 ROOT=PARENT.parent
 MODEL=pathlib.Path('/root/autodl-tmp/models/Qwen2.5-7B-Instruct')
-DATA=pathlib.Path(os.environ.get('CTHA_RUN_ROOT','/root/autodl-tmp/ctha_v3_20261113_r1'))
+DATA=pathlib.Path(os.environ.get('CTHA_RUN_ROOT','/root/autodl-tmp/ctha_v3_20261113_r2'))
 sys.path.insert(0,str(PARENT))
 def load(p):return json.loads(pathlib.Path(p).read_text())
 def sha(p):
