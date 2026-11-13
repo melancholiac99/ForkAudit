@@ -3,7 +3,8 @@ import argparse,contextlib,json,math,os,random,time
 from pathlib import Path
 import numpy as np
 from util import *
-from train import clipped_token_loss,selected_logprobs,locate_action_mask
+from train import clipped_token_loss,selected_logprobs
+from action_mask import action_mask
 
 def batches(n,size,seed):
  order=list(range(n));random.Random(seed).shuffle(order)
@@ -37,11 +38,11 @@ def train(a):
   assert pi==r['prompt_token_ids']
   ids=r['response_token_ids'];lp=r['behavior_logprobs']
   assert len(ids)==len(lp) and all(math.isfinite(v) for v in lp) and len(pi)+len(ids)<=6144
-  data.append(dict(prompt_ids=pi,completion_ids=ids,old=torch.tensor(lp,dtype=torch.float32),advantage=r['advantage'],action_mask=locate_action_mask(tok,ids)))
+  data.append(dict(prompt_ids=pi,completion_ids=ids,old=torch.tensor(lp,dtype=torch.float32),advantage=r['advantage'],action_mask=action_mask(tok,ids)))
  if a.probe:
   # Deterministic balanced engineering subset; not a sampled population effect.
-  pos=[i for i,x in enumerate(data) if x['advantage']>0][:4]
-  neg=[i for i,x in enumerate(data) if x['advantage']<0][:4]
+  pos=[i for i,x in enumerate(data) if x['advantage']>0 and x['action_mask'] is not None][:4]
+  neg=[i for i,x in enumerate(data) if x['advantage']<0 and x['action_mask'] is not None][:4]
   assert len(pos)==len(neg)==4,'Probe requires four real positive and four real negative samples'
   chosen=pos+neg;data=[data[i] for i in chosen];save(a.out/'probe_indices.json',chosen)
  actor=AutoModelForCausalLM.from_pretrained(str(MODEL),local_files_only=True,dtype=torch.bfloat16,attn_implementation='sdpa').to('cuda')
@@ -97,8 +98,8 @@ def train(a):
  model.eval();direction=[];after_errors=[];final_clips=[]
  with torch.no_grad():
   for i in parity_ids:
-   x=data[i];lp=selected_logprobs(model,x,.7).cpu();delta=lp-before[i];mask=torch.tensor(x['action_mask'],dtype=torch.bool)
-   direction.append({'index':i,'advantage':x['advantage'],'delta_mean_response_logprob':float(delta.mean()),'delta_mean_action_logprob':float(delta[mask].mean()),'tokens':len(lp)})
+   x=data[i];lp=selected_logprobs(model,x,.7).cpu();delta=lp-before[i];mask=torch.tensor(x['action_mask'],dtype=torch.bool) if x['action_mask'] is not None else None
+   direction.append({'index':i,'advantage':x['advantage'],'delta_mean_response_logprob':float(delta.mean()),'delta_mean_action_logprob':float(delta[mask].mean()) if mask is not None else None,'tokens':len(lp)})
    after_errors.extend(k3(lp,x['old']).tolist());ratio=(lp-x['old']).exp();final_clips.extend(((ratio<.8)|(ratio>1.2)).float().tolist())
  final={'sampled_behavior_k3':float(np.mean(after_errors)),'clip_fraction':float(np.mean(final_clips))}
  save(a.out/'post_update.json',{'direction':direction,'stability':final})

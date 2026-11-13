@@ -57,11 +57,22 @@ def main():
    cpu=load(DATA/'cpu_validation.json');assert cpu['cold_start_gate']['passed']
    assert cpu['source_sha']==source_hashes(),'CPU checks must cover current frozen sources'
    if (DATA/'registration.json').exists():raise RuntimeError('Queue already registered; no duplicate restart')
-   immutable(DATA/'registration.json',dict(source_sha=source_hashes(),plan=load(HERE/'PLAN.json'),time=time.time(),environment={k:os.getenv(k) for k in ['CUDA_VISIBLE_DEVICES','VLLM_BATCH_INVARIANT','CUBLAS_WORKSPACE_CONFIG','OMP_NUM_THREADS']},gpu=subprocess.check_output(['nvidia-smi','--query-gpu=uuid,name,driver_version','--format=csv,noheader'],text=True)))
+   immutable(DATA/'registration.json',dict(source_sha=source_hashes(),plan=load(HERE/'PLAN.json'),time=time.time(),environment={k:os.getenv(k) for k in ['CUDA_VISIBLE_DEVICES','VLLM_BATCH_INVARIANT','CUBLAS_WORKSPACE_CONFIG','OMP_NUM_THREADS','CTHA_REPEAT_REUSE_ROOT']},gpu=subprocess.check_output(['nvidia-smi','--query-gpu=uuid,name,driver_version','--format=csv,noheader'],text=True)))
    g=load(ROOT/'exploratory_E4/games.json');selected=select_games(g['train'],0,0,16)
    save(DATA/'train_games.json',selected);save(DATA/'repeat_games.json',selected[:4]);save(DATA/'tune_games.json',g['tune'])
-   collect('repeat_a',DATA/'repeat_games.json',DATA/'repeat_a',0,reps=2)
-   collect('repeat_b',DATA/'repeat_games.json',DATA/'repeat_b',0,reps=2)
+   reuse=os.environ.get('CTHA_REPEAT_REUSE_ROOT')
+   if reuse:
+    previous=Path(reuse);manifest={}
+    for label in ['repeat_a','repeat_b']:
+     summary=load(previous/label/'summary.json');prov=summary['provenance']
+     assert prov['source_sha256']==sha(HERE/'collect.py') and prov['adapter_sha256'] is None
+     assert prov['batch_invariant']=='1' and prov['selected_game_ids']==[g['game_file'] for g in selected[:4]] and summary['n_episodes']==8
+     for f in (previous/label).glob('*.json'):manifest[str(f)]=sha(f)
+     shutil.copytree(previous/label,DATA/label)
+    save(DATA/'reuse_manifest.json',manifest)
+   else:
+    collect('repeat_a',DATA/'repeat_games.json',DATA/'repeat_a',0,reps=2)
+    collect('repeat_b',DATA/'repeat_games.json',DATA/'repeat_b',0,reps=2)
    compare_repeat(DATA/'repeat_a',DATA/'repeat_b')
    collect('initial_train',DATA/'train_games.json',DATA/'initial_train',0)
    prepare('initial_prepare',DATA/'initial_train',DATA/'initial_prepared','grpo')

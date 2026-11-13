@@ -1,5 +1,6 @@
 {
   "checks": {
+    "action_tags_and_fail_closed_mask": true,
     "batch_population_retained": true,
     "zero_rows_denominator": true,
     "optimizer_resume_exact": true,
@@ -197,13 +198,14 @@
     "exploratory_ctha/prepare.py": "e8182e644ecd20ae16539653350f4cc3d5e4f93d72ba65015819fa5eec9c50ca",
     "exploratory_ctha/run.py": "7a325b5a0c0865c24ce3ad91b1b95ffcb094e7de645749ca6bdb65dcbdfd9e99",
     "exploratory_ctha/train.py": "41bed74424ef77ceaf2f6ca952f8d4693fb396ca6bd2e71f9d0845818962e95b",
-    "exploratory_ctha/v3/PLAN.json": "c226f005b950f5daa93e7e2ddb7184b7f074dac86168971f7ab46571f699b32c",
-    "exploratory_ctha/v3/check_cpu.py": "babffda320e663e279fd27da291e7ad33f1a2eab4c68bc4b37e2a19bdf217d06",
+    "exploratory_ctha/v3/PLAN.json": "eba413e9ae4aededb3b1e96a72d07752c84d30ede65a0dba9cafc90735e3379b",
+    "exploratory_ctha/v3/action_mask.py": "443103cd7f7aedb74f2e42cbf4f834b3898cceccb6cdcf56340913332cf895d8",
+    "exploratory_ctha/v3/check_cpu.py": "feb8b35bb92429f38266cafc1b91e82d27742271a69ceb217be0475c2367d16c",
     "exploratory_ctha/v3/collect.py": "07d9e8977291d62fd88927636b81f022356daab6d427f4a51c194f5c1409f192",
     "exploratory_ctha/v3/prepare_v3.py": "44a66fdd720692eaf099444cbe869c5d8eaad8f7b6ad32b54fb1b4bda452c077",
-    "exploratory_ctha/v3/trainer.py": "9de3bf785e52b20e767f3ce2e7d5473e99973c959677c0f85eea2e5b00ec21e4",
-    "exploratory_ctha/v3/util.py": "6b3c89f813723d184e5a6e2d6f256b609cfb21e422f017487d4fdedaba26e76a",
-    "exploratory_ctha/v3/validate_pipeline.py": "648bf71dba0bd5e8a90cb0340fdac05c6e643981b96f36ad7cd5918cdafc92c6",
+    "exploratory_ctha/v3/trainer.py": "20c91371866422e65073d4d45b508d53b4e85e41cfa738a5779076199edc01b5",
+    "exploratory_ctha/v3/util.py": "e9d56d53977df1a3e16c18782081d2ca83dbe4d9c7e2160974fd3e96ec56ffee",
+    "exploratory_ctha/v3/validate_pipeline.py": "58b994c5239243314f21bc033fd4e980d41c78a1a49f94f88de219b3ea9ea852",
     "scripts/alfenv.py": "d01e93b44b0ed19bc61865e012553e7e536cb9a5b8a194c218233551b4b5f244",
     "scripts/common.py": "8f45b3fc35569ba210ab311a5f9d45fe85f2d3111f978e0e8f6c9eb1194cb140",
     "scripts/envpool.py": "ee79c2580a0e2b38f35b6d831c2235a584c3ecccb25a13dbcc58127037046cf3"

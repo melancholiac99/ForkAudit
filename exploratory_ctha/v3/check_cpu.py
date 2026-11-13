@@ -4,11 +4,19 @@ from unittest.mock import patch
 import torch,numpy as np
 from util import *
 from trainer import batches,k3
+from action_mask import action_mask
 from train import clipped_token_loss,selected_logprobs
 from habits import load_episodes
 from habits_v2 import make_batch,oof_audit
 
 def checks():
+ class CharacterTokenizer:
+  def decode(self,ids,**kwargs):return ''.join(map(chr,ids))
+ tok=CharacterTokenizer()
+ for text in ['<think>reason</think><action>go to table 1</action>','<think>reason</think>[action] go to table 1 [/action]']:
+  ids=list(map(ord,text));mask=action_mask(tok,ids)
+  assert ''.join(chr(t) for t,m in zip(ids,mask) if m)=='go to table 1'
+ assert action_mask(tok,list(map(ord,'no parseable action'))) is None
  # Actual batch planner retains zero-advantage positions and a fixed denominator.
  blocks=batches(131,64,0);assert sorted(sum(blocks,[]))==list(range(131));assert list(map(len,blocks))==[64,64,3]
  theta=torch.tensor(0.,requires_grad=True);old=torch.zeros(1)
@@ -25,7 +33,7 @@ def checks():
  for advantage,ratio,want in [(1,1,-1),(-1,1,1),(1,1.3,0),(-1,.7,0)]:
   p=torch.tensor(math.log(ratio),requires_grad=True);loss=clipped_token_loss(p.reshape(1),old,advantage,[True],.2);loss.backward();assert np.sign(p.grad.item())==want
  assert torch.allclose(k3(torch.tensor([-.5]),torch.tensor([-.5])),torch.zeros(1))
- return {'batch_population_retained':True,'zero_rows_denominator':True,'optimizer_resume_exact':True,'surrogate_direction_clipping':True,'reference_penalty_zero_at_reference':True}
+ return {'action_tags_and_fail_closed_mask':True,'batch_population_retained':True,'zero_rows_denominator':True,'optimizer_resume_exact':True,'surrogate_direction_clipping':True,'reference_penalty_zero_at_reference':True}
 
 if __name__=='__main__':
  from pathlib import Path
