@@ -1,0 +1,9 @@
+{
+  "run": "verl_agent_gigpo_smoke_r5",
+  "status": "FAIL_BEFORE_ROLLOUT",
+  "optimizer_updates": 0,
+  "error": "vLLM V1 XFORMERS_AVAILABLE assertion",
+  "root_cause": "xformers0.0.32.post1 ops import rejects installed FlashAttention2.8.3: requires >=2.7.1,<=2.8.2",
+  "repair": "Explicitly select vLLM FLASH_ATTN backend, retaining tested FlashAttention2.8.3/Torch2.8 ABI matching; no version check bypass",
+  "retest": "New r6 directory/configuration; earlier kernel scores are dependency checks, not r6 model parity or learning scores"
+}

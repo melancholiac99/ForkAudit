@@ -18,6 +18,11 @@ vLLM's Transformers requirement. The matching prebuilt FlashAttention 2.8.3
 wheel is an explicit revision from the README's 2.7.4.post1. No CUDA 13
 compilation against CUDA 12.8 Torch is performed.
 
+The original example's `XFORMERS` backend fails its FlashAttention version
+check with the selected matched wheel (xformers permits at most 2.8.2).
+The registered r6 configuration instead uses vLLM's `FLASH_ATTN` backend;
+r5 remains a failed startup. This is an explicit kernel configuration revision.
+
 ## Bounded execution
 
 ```bash

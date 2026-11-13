@@ -28,7 +28,7 @@ def main():
     env.update(PYTHONPATH=f'{HERE}:{source}', FORKAUDIT_VERL_TASKS=str(ROOT / '.runtime/verl-agent-setup/fixed_tasks.json'),
                FORKAUDIT_VERL_OUTPUT=str(output), FORKAUDIT_VERL_CORRECTION=args.correction,
                TENSORBOARD_DIR=str(ROOT / '.runtime/tensorboard/ctha-a100-r2' / args.name),
-               VLLM_ATTENTION_BACKEND='XFORMERS', HYDRA_FULL_ERROR='1')
+               VLLM_ATTENTION_BACKEND='FLASH_ATTN', HYDRA_FULL_ERROR='1')
     data = output / 'data'
     # Upstream uses geometry3k only as four modality/index rows; all RL observations
     # and rewards come from the real ALFWorld environments checked separately.
