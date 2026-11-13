@@ -1,0 +1,9 @@
+CTHA P1 seed-0 pilot: 5 arms x 12 rounds. P2 cancelled by user.
+Tune is development evaluation; no valid_unseen evaluation or multi-seed confirmation.
+grpo: final tune 27.50%; train env steps 30251; auxiliary samples 0
+gigpo: final tune 30.00%; train env steps 30285; auxiliary samples 0
+fixed: final tune 35.00%; train env steps 29833; auxiliary samples 2944
+ctha: final tune 27.50%; train env steps 30359; auxiliary samples 0
+progress: final tune 33.75%; train env steps 30109; auxiliary samples 0
+Train environment steps to tune success >=80%: {"grpo": null, "gigpo": null, "fixed": null, "ctha": null, "progress": null} (null = not reached within budget).
+Raw P0/P1 episodes included in verified split gzip archive. Model tensors retained locally, checksums published. No thresholds changed.

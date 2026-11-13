@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "arms": {
+    "grpo": {
+      "rounds": 12,
+      "train_episodes": 768,
+      "tune_episodes": 480,
+      "train_env_steps": 30251,
+      "optimizer_steps": 1155,
+      "aux_samples": 0,
+      "last_tune_success": 0.275
+    },
+    "gigpo": {
+      "rounds": 12,
+      "train_episodes": 768,
+      "tune_episodes": 480,
+      "train_env_steps": 30285,
+      "optimizer_steps": 1158,
+      "aux_samples": 0,
+      "last_tune_success": 0.3
+    },
+    "fixed": {
+      "rounds": 12,
+      "train_episodes": 768,
+      "tune_episodes": 480,
+      "train_env_steps": 29833,
+      "optimizer_steps": 1480,
+      "aux_samples": 2944,
+      "last_tune_success": 0.35
+    },
+    "ctha": {
+      "rounds": 12,
+      "train_episodes": 768,
+      "tune_episodes": 480,
+      "train_env_steps": 30359,
+      "optimizer_steps": 1180,
+      "aux_samples": 0,
+      "last_tune_success": 0.275
+    },
+    "progress": {
+      "rounds": 12,
+      "train_episodes": 768,
+      "tune_episodes": 480,
+      "train_env_steps": 30109,
+      "optimizer_steps": 1199,
+      "aux_samples": 0,
+      "last_tune_success": 0.3375
+    }
+  },
+  "old_files_preserved": 799,
+  "p2_not_run": true,
+  "single_seed_pilot": true
+}

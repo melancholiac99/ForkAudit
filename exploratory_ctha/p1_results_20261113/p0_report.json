@@ -1,0 +1,481 @@
+{
+  "source": "train-only",
+  "n_episodes": 768,
+  "n_games": 192,
+  "n_task_types": 6,
+  "feature_window": 8,
+  "methods": {
+    "manual": {
+      "family": "manual",
+      "total_mixed_groups": 63,
+      "total_pairs": 210,
+      "heldout_types": [
+        "look_at_obj_in_light",
+        "pick_and_place_simple",
+        "pick_clean_then_place_in_recep",
+        "pick_cool_then_place_in_recep",
+        "pick_heat_then_place_in_recep",
+        "pick_two_obj_and_place"
+      ],
+      "n_types": 6,
+      "permutations": 12,
+      "bootstraps": 300,
+      "min_pairs": 200,
+      "min_mixed": 20,
+      "passed": true,
+      "reason": "passed",
+      "accuracy": 0.6357142857142857,
+      "null_accuracy": 0.5123015873015874,
+      "delta": 0.12341269841269831,
+      "ci95": [
+        0.03872792430077412,
+        0.20445818189685014
+      ],
+      "heldout_games": 63,
+      "heldout_pairs": 210,
+      "folds": [
+        {
+          "task_type": "look_at_obj_in_light",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 50,
+            "pairs": 164,
+            "fit_mse": 0.1987097691174207
+          },
+          "heldout_pairs": 46
+        },
+        {
+          "task_type": "pick_and_place_simple",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 58,
+            "pairs": 195,
+            "fit_mse": 0.20216599420241463
+          },
+          "heldout_pairs": 15
+        },
+        {
+          "task_type": "pick_clean_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 166,
+            "fit_mse": 0.20615030617851554
+          },
+          "heldout_pairs": 44
+        },
+        {
+          "task_type": "pick_cool_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 47,
+            "pairs": 156,
+            "fit_mse": 0.19528284056676778
+          },
+          "heldout_pairs": 54
+        },
+        {
+          "task_type": "pick_heat_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 163,
+            "fit_mse": 0.1986727640072463
+          },
+          "heldout_pairs": 47
+        },
+        {
+          "task_type": "pick_two_obj_and_place",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 62,
+            "pairs": 206,
+            "fit_mse": 0.1989239963154325
+          },
+          "heldout_pairs": 4
+        }
+      ]
+    },
+    "action": {
+      "family": "action",
+      "total_mixed_groups": 63,
+      "total_pairs": 210,
+      "heldout_types": [
+        "look_at_obj_in_light",
+        "pick_and_place_simple",
+        "pick_clean_then_place_in_recep",
+        "pick_cool_then_place_in_recep",
+        "pick_heat_then_place_in_recep",
+        "pick_two_obj_and_place"
+      ],
+      "n_types": 6,
+      "permutations": 12,
+      "bootstraps": 300,
+      "min_pairs": 200,
+      "min_mixed": 20,
+      "passed": false,
+      "reason": "not_above_shuffle",
+      "accuracy": 0.5333333333333333,
+      "null_accuracy": 0.5190476190476191,
+      "delta": 0.014285714285714235,
+      "ci95": [
+        -0.09532867494824018,
+        0.09207400169223737
+      ],
+      "heldout_games": 63,
+      "heldout_pairs": 210,
+      "folds": [
+        {
+          "task_type": "look_at_obj_in_light",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 50,
+            "pairs": 164,
+            "fit_mse": 0.19967635245348578
+          },
+          "heldout_pairs": 46
+        },
+        {
+          "task_type": "pick_and_place_simple",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 58,
+            "pairs": 195,
+            "fit_mse": 0.20362104622937888
+          },
+          "heldout_pairs": 15
+        },
+        {
+          "task_type": "pick_clean_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 166,
+            "fit_mse": 0.2053108358893436
+          },
+          "heldout_pairs": 44
+        },
+        {
+          "task_type": "pick_cool_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 47,
+            "pairs": 156,
+            "fit_mse": 0.19965214536784356
+          },
+          "heldout_pairs": 54
+        },
+        {
+          "task_type": "pick_heat_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 163,
+            "fit_mse": 0.19691986835972985
+          },
+          "heldout_pairs": 47
+        },
+        {
+          "task_type": "pick_two_obj_and_place",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 62,
+            "pairs": 206,
+            "fit_mse": 0.2004602390567873
+          },
+          "heldout_pairs": 4
+        }
+      ]
+    },
+    "habit": {
+      "family": "habit",
+      "total_mixed_groups": 63,
+      "total_pairs": 210,
+      "heldout_types": [
+        "look_at_obj_in_light",
+        "pick_and_place_simple",
+        "pick_clean_then_place_in_recep",
+        "pick_cool_then_place_in_recep",
+        "pick_heat_then_place_in_recep",
+        "pick_two_obj_and_place"
+      ],
+      "n_types": 6,
+      "permutations": 12,
+      "bootstraps": 300,
+      "min_pairs": 200,
+      "min_mixed": 20,
+      "passed": true,
+      "reason": "passed",
+      "accuracy": 0.6238095238095238,
+      "null_accuracy": 0.5222222222222221,
+      "delta": 0.10158730158730167,
+      "ci95": [
+        0.019407206119162648,
+        0.16931402439024387
+      ],
+      "heldout_games": 63,
+      "heldout_pairs": 210,
+      "folds": [
+        {
+          "task_type": "look_at_obj_in_light",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 50,
+            "pairs": 164,
+            "fit_mse": 0.19222439915981568
+          },
+          "heldout_pairs": 46
+        },
+        {
+          "task_type": "pick_and_place_simple",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 58,
+            "pairs": 195,
+            "fit_mse": 0.1913604488723824
+          },
+          "heldout_pairs": 15
+        },
+        {
+          "task_type": "pick_clean_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 166,
+            "fit_mse": 0.1956697534908235
+          },
+          "heldout_pairs": 44
+        },
+        {
+          "task_type": "pick_cool_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 47,
+            "pairs": 156,
+            "fit_mse": 0.1850941055174818
+          },
+          "heldout_pairs": 54
+        },
+        {
+          "task_type": "pick_heat_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 163,
+            "fit_mse": 0.18185522676305216
+          },
+          "heldout_pairs": 47
+        },
+        {
+          "task_type": "pick_two_obj_and_place",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 62,
+            "pairs": 206,
+            "fit_mse": 0.18876795181576295
+          },
+          "heldout_pairs": 4
+        }
+      ]
+    },
+    "progress": {
+      "family": "progress",
+      "total_mixed_groups": 63,
+      "total_pairs": 210,
+      "heldout_types": [
+        "look_at_obj_in_light",
+        "pick_and_place_simple",
+        "pick_clean_then_place_in_recep",
+        "pick_cool_then_place_in_recep",
+        "pick_heat_then_place_in_recep",
+        "pick_two_obj_and_place"
+      ],
+      "n_types": 6,
+      "permutations": 12,
+      "bootstraps": 300,
+      "min_pairs": 200,
+      "min_mixed": 20,
+      "passed": true,
+      "reason": "passed",
+      "accuracy": 0.6095238095238096,
+      "null_accuracy": 0.5273809523809523,
+      "delta": 0.0821428571428573,
+      "ci95": [
+        0.008602346278317154,
+        0.14297506738544474
+      ],
+      "heldout_games": 63,
+      "heldout_pairs": 210,
+      "folds": [
+        {
+          "task_type": "look_at_obj_in_light",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 50,
+            "pairs": 164,
+            "fit_mse": 0.19431554672449905
+          },
+          "heldout_pairs": 46
+        },
+        {
+          "task_type": "pick_and_place_simple",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 58,
+            "pairs": 195,
+            "fit_mse": 0.19960111182971307
+          },
+          "heldout_pairs": 15
+        },
+        {
+          "task_type": "pick_clean_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 166,
+            "fit_mse": 0.20440301664571406
+          },
+          "heldout_pairs": 44
+        },
+        {
+          "task_type": "pick_cool_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 47,
+            "pairs": 156,
+            "fit_mse": 0.19240846404789674
+          },
+          "heldout_pairs": 54
+        },
+        {
+          "task_type": "pick_heat_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 163,
+            "fit_mse": 0.1945751138290464
+          },
+          "heldout_pairs": 47
+        },
+        {
+          "task_type": "pick_two_obj_and_place",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 62,
+            "pairs": 206,
+            "fit_mse": 0.1958173810226797
+          },
+          "heldout_pairs": 4
+        }
+      ]
+    },
+    "both": {
+      "family": "both",
+      "total_mixed_groups": 63,
+      "total_pairs": 210,
+      "heldout_types": [
+        "look_at_obj_in_light",
+        "pick_and_place_simple",
+        "pick_clean_then_place_in_recep",
+        "pick_cool_then_place_in_recep",
+        "pick_heat_then_place_in_recep",
+        "pick_two_obj_and_place"
+      ],
+      "n_types": 6,
+      "permutations": 12,
+      "bootstraps": 300,
+      "min_pairs": 200,
+      "min_mixed": 20,
+      "passed": true,
+      "reason": "passed",
+      "accuracy": 0.6190476190476191,
+      "null_accuracy": 0.523015873015873,
+      "delta": 0.09603174603174602,
+      "ci95": [
+        0.011873526112141404,
+        0.16344771241830064
+      ],
+      "heldout_games": 63,
+      "heldout_pairs": 210,
+      "folds": [
+        {
+          "task_type": "look_at_obj_in_light",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 50,
+            "pairs": 164,
+            "fit_mse": 0.1872042110894074
+          },
+          "heldout_pairs": 46
+        },
+        {
+          "task_type": "pick_and_place_simple",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 58,
+            "pairs": 195,
+            "fit_mse": 0.1875205564604698
+          },
+          "heldout_pairs": 15
+        },
+        {
+          "task_type": "pick_clean_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 166,
+            "fit_mse": 0.19261058801676975
+          },
+          "heldout_pairs": 44
+        },
+        {
+          "task_type": "pick_cool_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 47,
+            "pairs": 156,
+            "fit_mse": 0.17867030006476028
+          },
+          "heldout_pairs": 54
+        },
+        {
+          "task_type": "pick_heat_then_place_in_recep",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 49,
+            "pairs": 163,
+            "fit_mse": 0.17795232674136063
+          },
+          "heldout_pairs": 47
+        },
+        {
+          "task_type": "pick_two_obj_and_place",
+          "fitted": {
+            "active": true,
+            "mixed_groups": 62,
+            "pairs": 206,
+            "fit_mse": 0.18458880117201656
+          },
+          "heldout_pairs": 4
+        }
+      ]
+    }
+  },
+  "both_minus_progress": {
+    "delta": 0.009523809523809525,
+    "ci95": [
+      -0.07292340730951513,
+      0.09524235523747557
+    ],
+    "games": 63,
+    "pairs": 210,
+    "accuracy_a": 0.6190476190476191,
+    "accuracy_b": 0.6095238095238096
+  },
+  "caveats": [
+    "The metric is out-of-task-type, within-game success/failure ranking, not causal credit.",
+    "Progress features must be compared before claiming habit-only gain.",
+    "Permuted training outcomes remain group-centered; heldout outcomes are never permuted.",
+    "If the CI includes zero or mixed pairs are scarce, report inconclusive, not a discovery."
+  ]
+}
