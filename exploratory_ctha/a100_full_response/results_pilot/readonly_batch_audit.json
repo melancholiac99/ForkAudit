@@ -1,0 +1,20 @@
+{
+  "grpo": {
+    "rows": 2462,
+    "zero_advantage_rows": 1934,
+    "base": "grpo",
+    "local_weight": 1.0,
+    "n_repeated_anchors": 0,
+    "n_local_nonzero": 0
+  },
+  "gigpo": {
+    "rows": 2462,
+    "zero_advantage_rows": 1934,
+    "base": "gigpo",
+    "local_weight": 1.0,
+    "n_repeated_anchors": 339,
+    "n_local_nonzero": 383
+  },
+  "grpo_matches_R2_exactly": true,
+  "source_frozen": true
+}

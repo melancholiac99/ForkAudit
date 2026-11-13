@@ -1,0 +1,13 @@
+{
+  "stage": "running",
+  "time": 1794553642.717227,
+  "pid": 128875,
+  "job": "base_fixed_train_eval",
+  "gpu": 0,
+  "snapshot_utc": "2026-11-13T07:10:44.418787+00:00",
+  "Engineering": "PASS under new R3 protocol",
+  "Learning": "NOT_RUN: baseline fixed-training-task evaluation is in progress; no pilot optimizer updates yet",
+  "Generalization": "NOT_RUN",
+  "CTHA_online_efficacy": "NOT_TESTED",
+  "live_output_path": "/root/ForkAudit/.runtime/runs/ctha_a100_baseline_rl_r1"
+}
