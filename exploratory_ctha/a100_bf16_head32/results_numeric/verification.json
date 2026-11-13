@@ -1,0 +1,19 @@
+{
+  "mean_abs": 0.017886216172183594,
+  "p99_abs": 0.26691824674606296,
+  "max_abs": 0.6022422909736633,
+  "sampled_behavior_k3": 0.001314541653563786,
+  "clip_fraction": 0.015251652262328419,
+  "token_ESS_fraction": 0.9975590635647176,
+  "tokens": 1967,
+  "hf_seconds": 1.6723140350004542,
+  "hf_peak_allocated_gib": 16.258434295654297,
+  "original_probability_gate_passed": false,
+  "ratio_stability_passed": true,
+  "passed": false,
+  "adopted": false,
+  "optimizer_updates": 0,
+  "Engineering": "FAIL",
+  "Learning": "NOT_RUN",
+  "CTHA_online_efficacy": "NOT_TESTED"
+}

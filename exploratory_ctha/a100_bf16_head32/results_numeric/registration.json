@@ -1,0 +1,56 @@
+{
+  "time": 1794559486.1578805,
+  "plan": {
+    "version": "a100-bf16-head32-r1",
+    "authorization": "User requested trying contemporary training/rollout consistency solution; isolated diagnostic only, no deployment to active pilot.",
+    "scope": "BF16 backbone + FP32 output head, logits and softmax; unchanged Full-response PPO using actual behavior probabilities (bypass). No additional IS weight, TIS, MIS, rejection masks or reward changes.",
+    "gates": {
+      "mean_abs": 0.01,
+      "p99_abs": 0.05,
+      "max_abs": 0.25,
+      "sampled_behavior_k3": 0.02,
+      "clip_fraction": 0.3
+    },
+    "numeric_samples": "Same sixteen real reference prompt texts, freshly generated BF16-head32 responses, fixed seeds20261113+i. No synthetic prompts or old behavior records passed off as new.",
+    "precision": {
+      "weights": "bfloat16 backbone",
+      "hf_head": "float32 weight projection, autocast off, cast head input to FP32",
+      "vllm_head": "Native hf_overrides head_dtype=float32",
+      "torch_tf32": false,
+      "sampling": "temperature0.7 top_p1 top_k-1 min_p0 penalties1/0/0, processed_logprobs"
+    },
+    "steps": "Original probability gates remain blocking. If passing, fresh environment responses and eight balanced actual-advantage samples/four updates plus checkpoint/updated parity. On numeric failure stop and preserve; no threshold changes.",
+    "device": "GPU0 after current collection exits; existing controller paused, GPU1 collection may complete independently. Resume old controller in finally.",
+    "cost_bound_seconds": 600,
+    "adoption": false,
+    "old_results": "R2 FAIL and R3 FP32 PASS unchanged; current four-task learning arms remain FP32 with original checkpoints."
+  },
+  "source_sha256": "7a96fcbe79e3433a91a86bb83bcc2315ae71e5d872c0a0131fa0955e9b05f590",
+  "plan_sha256": "4850701958f5a55a973f35d16b24f6300385c12677e8fc842beeadfd2017b7aa",
+  "input_sha256": "d7392f210681a2331bdabcb391873a16397ccd957750f4c20cbe79967008c2ee",
+  "hardware": [
+    {
+      "index": "0",
+      "uuid": "GPU-b611310b-130b-dc7a-580e-de5869ece3e7",
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_mib": "81920",
+      "driver": "595.84"
+    },
+    {
+      "index": "1",
+      "uuid": "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a",
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_mib": "81920",
+      "driver": "595.84"
+    }
+  ],
+  "visible_devices": "1",
+  "vllm_logits_processor_sha256": "35cf8235cb529ba2d37358fe9b9e5a29f40b5c3cbcc9e6750c8480c51bd7da83",
+  "packages": {
+    "torch": "2.13.0",
+    "vllm": "0.32.0",
+    "transformers": "5.19.0",
+    "peft": "0.21.2",
+    "triton": "3.7.1"
+  }
+}

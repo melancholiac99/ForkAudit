@@ -1,0 +1,34 @@
+{
+  "version": "a100-bf16-bypass-r2",
+  "authorization": "User explicitly approved a NEW four-step BF16 bypass-PPO validation protocol, with per-token logprob error diagnostic only. Original BF16 FAIL remains FAIL.",
+  "scope": "Four-task fresh on-policy trajectory collection for eight-response/four-update engineering probe only. Unchanged Full-response PPO + base-reference KL0.01; no additional IS weight, TIS/MIS, rejection mask, reward change or automatic pilot deployment.",
+  "gates": {
+    "mean_abs": 0.01,
+    "p99_abs": 0.05,
+    "max_abs": 0.25,
+    "sampled_behavior_k3": 0.02,
+    "clip_fraction": 0.3
+  },
+  "numeric_samples": "Same sixteen real reference prompt texts, freshly generated BF16-head32 responses, fixed seeds20261113+i. No synthetic prompts or old behavior records passed off as new.",
+  "precision": {
+    "weights": "bfloat16 backbone",
+    "hf_head": "float32 weight projection, autocast off, cast head input to FP32",
+    "vllm_head": "Native hf_overrides head_dtype=float32",
+    "torch_tf32": false,
+    "sampling": "temperature0.7 top_p1 top_k-1 min_p0 penalties1/0/0, processed_logprobs"
+  },
+  "steps": "Fresh16 episodes on same four tasks; real GRPO advantages; first four positive and negative action-mappable responses; four steps; actual LoRA/AdamW restore; fresh updated-native-LoRA sampled ratio stability; independent verification.",
+  "device": "GPU1 with existing GiGPO worker paused; GPU0 existing GRPO continues. No new cards. Always resume old worker/controller.",
+  "cost_bound_seconds": 600,
+  "adoption": false,
+  "old_results": "R2 FAIL and R3 FP32 PASS unchanged; current four-task learning arms remain FP32 with original checkpoints.",
+  "admission": "Original raw logprob thresholds are reported, NOT blocking under this newly authorized protocol. Both before/after updates: sampled_behavior_k3<=0.02, clip_fraction<=0.30, finite loss/gradients; balanced signed full-response direction blocks. Action-span diagnostic only (R3).",
+  "updated_parity": "Raw logprob errors diagnostic; updated sampled behavior k3<=.02 and clip<=.30 required before any deployment recommendation.",
+  "states": {
+    "BF16_limited_probe": "PASS/FAIL/INCOMPLETE under new protocol only",
+    "Original_strict_BF16": "FAIL retained",
+    "Engineering": "INCOMPLETE until cross-device/cross-batch and wider validation",
+    "Learning": "NOT_RUN",
+    "CTHA_online_efficacy": "NOT_TESTED"
+  }
+}
