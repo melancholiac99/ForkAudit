@@ -22,6 +22,11 @@ def main():
 
 
 def setup_worker():
+    # GPU rank processes need only the native actor/rollout engine. Importing
+    # trainer/env adapters in their pre-start hook can initialize CUDA before
+    # Ray finishes applying the per-actor device visibility assignment.
+    if os.environ.get('RANK') is not None:
+        return
     import fixed_tasks
     import correction
     fixed_tasks.install()

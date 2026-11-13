@@ -1,0 +1,20 @@
+{
+  "run": "verl_agent_gigpo_smoke_r3",
+  "status": "FAIL_BEFORE_ROLLOUT",
+  "optimizer_updates": 0,
+  "error": "ncclInvalidUsage: Duplicate GPU detected: rank1 and rank0 both on CUDA device80",
+  "setup_hook_revision": "Do not import trainer/environment adapters in GPU RANK worker setup hook; they are needed only by orchestration workers",
+  "ray_device_probe": [
+    {
+      "rank": "0",
+      "visible": "0",
+      "uuid": "b611310b-130b-dc7a-580e-de5869ece3e7"
+    },
+    {
+      "rank": "1",
+      "visible": "1",
+      "uuid": "de4c1820-8c98-2448-4687-ae7c5bd4037a"
+    }
+  ],
+  "full_model_retest": "PENDING; the tiny Ray probe does not itself prove FSDP model initialization works"
+}
