@@ -1,0 +1,10 @@
+{
+  "stage": "stopped_by_user_for_shutdown",
+  "time": 1794545969.3850672,
+  "last_job": "initial_train",
+  "reason": "User requests immediate shutdown; engineering acceptance will be performed on another server with two A100s",
+  "engineering": "INCOMPLETE",
+  "learning": "NOT_RUN",
+  "shutdown_authorized": true,
+  "preserve_existing_data": true
+}

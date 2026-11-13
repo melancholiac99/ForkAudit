@@ -1,0 +1,9 @@
+CTHA migration handoff: stopped by user for shutdown; acceptance INCOMPLETE.
+
+Completed: CPU preflight and portable regressions; real-response fast-kernel bridge (8 replies/868 tokens, exact token IDs and sampled logprobs, original probability gate passed); full original and accelerated repeated rollouts (8 episodes/400 environment steps each), exact repeated response/action/environment comparison passed.
+
+Stopped while collecting the 64-episode cross-batch engineering data. No direction-probe model updates have run. Cross-batch verification, gradient-direction/stability, actual optimizer checkpoint restore and updated-adapter parity are NOT COMPLETE. Learning and generalization experiments NOT RUN. Do not label engineering acceptance PASS.
+
+Target: independent engineering acceptance on two A100 GPUs, new hardware registration/output directory, same gates; inspect capacities and software compatibility first. Preserve these 6000D results as reference, never silently substitute them for A100 on-policy data. The controllers and watchdog on this server were stopped by explicit user instruction before shutdown.
+
+Latest source: credit-grok 51aaa3e89; exploratory_ctha/v3_fp32_fast and v3_engineering_fast_20261113. Existing controllers include old-server adoption paths and must be adapted explicitly for the A100 server.
