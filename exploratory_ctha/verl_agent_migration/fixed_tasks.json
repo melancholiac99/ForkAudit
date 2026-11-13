@@ -1,0 +1,42 @@
+{
+  "tasks": [
+    {
+      "seed": 1150,
+      "game_file": "json_2.1.1/train/pick_clean_then_place_in_recep-DishSponge-None-Cabinet-414/trial_T20190909_061538_357779/game.tw-pddl",
+      "task_type": "pick_clean_then_place_in_recep",
+      "game_sha256": "22800bf8b84c2091ab0c8b64429c7e1b85b5151ff8ad150d8e38d06715408312",
+      "native_path": "/root/ForkAudit/.runtime/verl-agent-assets/json_2.1.1/train/pick_clean_then_place_in_recep-DishSponge-None-Cabinet-414/trial_T20190909_061538_357779/game.tw-pddl",
+      "source_path": "/root/ForkAudit/.runtime/alfworld/json_2.1.1/train/pick_clean_then_place_in_recep-DishSponge-None-Cabinet-414/trial_T20190909_061538_357779/game.tw-pddl",
+      "sha256": "22800bf8b84c2091ab0c8b64429c7e1b85b5151ff8ad150d8e38d06715408312"
+    },
+    {
+      "seed": 1004,
+      "game_file": "json_2.1.1/train/pick_clean_then_place_in_recep-Bowl-None-Fridge-4/trial_T20190909_024009_792841/game.tw-pddl",
+      "task_type": "pick_clean_then_place_in_recep",
+      "game_sha256": "f8673cf54d15833be4de51e276eb9abce52371a0ff7ab144fe08f579089a73af",
+      "native_path": "/root/ForkAudit/.runtime/verl-agent-assets/json_2.1.1/train/pick_clean_then_place_in_recep-Bowl-None-Fridge-4/trial_T20190909_024009_792841/game.tw-pddl",
+      "source_path": "/root/ForkAudit/.runtime/alfworld/json_2.1.1/train/pick_clean_then_place_in_recep-Bowl-None-Fridge-4/trial_T20190909_024009_792841/game.tw-pddl",
+      "sha256": "f8673cf54d15833be4de51e276eb9abce52371a0ff7ab144fe08f579089a73af"
+    },
+    {
+      "seed": 1065,
+      "game_file": "json_2.1.1/train/look_at_obj_in_light-Pillow-None-DeskLamp-323/trial_T20190908_053135_013146/game.tw-pddl",
+      "task_type": "look_at_obj_in_light",
+      "game_sha256": "954f55b48534a220e9060b72e48d3a9327c84123fd339ffb4bc27fe28205f060",
+      "native_path": "/root/ForkAudit/.runtime/verl-agent-assets/json_2.1.1/train/look_at_obj_in_light-Pillow-None-DeskLamp-323/trial_T20190908_053135_013146/game.tw-pddl",
+      "source_path": "/root/ForkAudit/.runtime/alfworld/json_2.1.1/train/look_at_obj_in_light-Pillow-None-DeskLamp-323/trial_T20190908_053135_013146/game.tw-pddl",
+      "sha256": "954f55b48534a220e9060b72e48d3a9327c84123fd339ffb4bc27fe28205f060"
+    },
+    {
+      "seed": 1028,
+      "game_file": "json_2.1.1/train/pick_heat_then_place_in_recep-Mug-None-SideTable-3/trial_T20190908_231853_151753/game.tw-pddl",
+      "task_type": "pick_heat_then_place_in_recep",
+      "game_sha256": "1548ee761693c954eefa233a32167ec5c8ac8cd86afbc409cba17d39cc4e2f6e",
+      "native_path": "/root/ForkAudit/.runtime/verl-agent-assets/json_2.1.1/train/pick_heat_then_place_in_recep-Mug-None-SideTable-3/trial_T20190908_231853_151753/game.tw-pddl",
+      "source_path": "/root/ForkAudit/.runtime/alfworld/json_2.1.1/train/pick_heat_then_place_in_recep-Mug-None-SideTable-3/trial_T20190908_231853_151753/game.tw-pddl",
+      "sha256": "1548ee761693c954eefa233a32167ec5c8ac8cd86afbc409cba17d39cc4e2f6e"
+    }
+  ],
+  "selection": "Previously approved four TRAIN tasks, selected on old base outcomes",
+  "eval_role": "Fixed training-task evaluation only; set native env.alfworld.eval_dataset=train"
+}

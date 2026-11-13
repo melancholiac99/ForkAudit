@@ -1,0 +1,58 @@
+{
+  "versions": {
+    "torch": "2.8.0",
+    "vllm": "0.11.0",
+    "flash-attn": "2.8.3",
+    "transformers": "4.57.3",
+    "ray": "2.50.0",
+    "triton": "3.4.0",
+    "peft": "0.17.1",
+    "tensordict": "0.10.0",
+    "alfworld": "0.4.2",
+    "textworld": "1.7.0",
+    "decord": "0.6.0"
+  },
+  "sha256": {
+    "env/requirements-verl-agent.txt": "a64667e5dc8fe2f86258e0c4db158786b314ec7be7f7c2c1dcf3c05ecd51a236",
+    ".runtime/verl-agent-setup/flash_attn-2.8.3+cu12torch2.8cxx11abiTRUE-cp312-cp312-linux_x86_64.whl": "f25da18657a87fc83dc1bfb8b7751b82246e9db355510226b674fd437c34b5fb",
+    ".runtime/external/verl-agent-20bd331.tar.gz": "b0f21c04b029982ecbb2fbb06de3d19ca14462c25bc8762adb9d37f160cca820"
+  },
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "dependency_check": "One uv pip check platform-tag warning for decord 0.6.0; native import passes, text ALFWorld does not use video decoding",
+  "gpu_matmul_nccl": [
+    {
+      "rank": 0,
+      "gpu": "b611310b-130b-dc7a-580e-de5869ece3e7",
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_bytes": 85094825984,
+      "collective": true,
+      "bf16_matmul_equal": true,
+      "torch": "2.8.0+cu128",
+      "cuda": "12.8"
+    },
+    {
+      "rank": 1,
+      "gpu": "de4c1820-8c98-2448-4687-ae7c5bd4037a",
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_bytes": 85094825984,
+      "collective": true,
+      "bf16_matmul_equal": true,
+      "torch": "2.8.0+cu128",
+      "cuda": "12.8"
+    }
+  ],
+  "cpu_tests": "5 passed",
+  "real_alfworld_tasks": "4 reset/parser/step passed",
+  "engineering": "INCOMPLETE",
+  "learning": "NOT_RUN",
+  "generalization": "NOT_RUN",
+  "ctha_online_efficacy": "NOT_TESTED",
+  "hydra_configuration": "PASS after external launcher uses absolute upstream config directory",
+  "setup_revisions": [
+    "r1 data preparation failed in offline mode before model loading or optimizer updates; logs preserved",
+    "r2 native data preprocessing fetched actual Geometry3K modality/index records; RL games remain real ALFWorld",
+    "External launch hook uses absolute upstream config directory because archive config is not an importable Python package",
+    "Upstream sources unmodified; compatibility hook layout assertion and idempotence tests pass"
+  ],
+  "next_stage": "One native GiGPO update, new run namespace, native recomputed PPO anchor plus full batch mismatch diagnostics; no CTHA"
+}
