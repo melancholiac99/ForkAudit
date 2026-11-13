@@ -23,9 +23,17 @@ jobs:
       - name: Install CPU analysis dependency
         run: python -m pip install 'numpy>=1.24,<3'
       - name: Compile online RL code
-        run: python -m py_compile exploratory_ctha/*.py
+        run: python -m compileall -q exploratory_ctha
       - name: Synthetic end-to-end preparation and isolation tests
         run: python -m unittest discover -s exploratory_ctha -p 'test_ctha*.py' -v
+      - name: Install CPU PyTorch for v3 optimizer regressions
+        run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: v3 portable CPU tests (no server data or model)
+        env:
+          CUDA_VISIBLE_DEVICES: ''
+          OMP_NUM_THREADS: '1'
+          OPENBLAS_NUM_THREADS: '1'
+        run: python -m unittest discover -s exploratory_ctha/v3 -p 'test_v3.py' -v
       - name: Check run driver command construction (no GPU)
         run: python exploratory_ctha/run.py --dry-run --model /tmp/nonexistent-model --run-dir /tmp/ctha-dry --rounds 2 --tasks-per-round 4 --reps 2 --feature-window 2 --train-horizon 0 --aux-horizon 2 --eval-every 1 --eval-games 3
       - name: Check frozen-policy P0 collect-only CLI
