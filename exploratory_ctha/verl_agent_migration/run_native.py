@@ -42,7 +42,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--name', required=True)
     parser.add_argument('--algorithm', choices=['gigpo', 'grpo'], default='gigpo')
-    parser.add_argument('--updates', type=int, choices=[1, 4], default=1)
+    parser.add_argument('--updates', type=int, choices=[1, 4, 12], default=1)
     parser.add_argument('--correction', choices=['native', 'bypass_ppo_clip'], default='native')
     parser.add_argument('--prepare-only', action='store_true')
     parser.add_argument('--gpus', type=int, choices=[1, 2], default=2)
@@ -64,6 +64,9 @@ def main():
     parser.add_argument('--bounded-cuda-graphs', action='store_true')
     parser.add_argument('--rollout-session', action='store_true')
     parser.add_argument('--session-benchmark', action='store_true')
+    parser.add_argument('--p1-campaign', type=Path)
+    parser.add_argument('--p1-arm', choices=['grpo', 'gigpo', 'gigpo_ctha'])
+    parser.add_argument('--restore-checkpoint-only', action='store_true')
     args = parser.parse_args()
     assert Path(sys.prefix).resolve() == (ROOT / '.runtime/venvs/verl-agent-20bd331b').resolve()
     assert Path(args.name).name == args.name
@@ -71,6 +74,9 @@ def main():
     output.mkdir(parents=True, exist_ok=False)
     source = Path(os.environ['VERL_AGENT_SOURCE'])
     env = os.environ.copy()
+    env.pop('FORKAUDIT_P1_CAMPAIGN', None)
+    env.pop('FORKAUDIT_P1_ARM', None)
+    env.pop('FORKAUDIT_RESTORE_ONLY', None)
     env.pop('FORKAUDIT_REFERENCE_PACKET', None)
     env.pop('FORKAUDIT_GRADIENT_BENCH_PACKET', None)
     env.pop('FORKAUDIT_MODEL_SEED', None)
@@ -92,6 +98,18 @@ def main():
                FORKAUDIT_VERL_OUTPUT=str(output), FORKAUDIT_VERL_CORRECTION=args.correction,
                TENSORBOARD_DIR=str(ROOT / '.runtime/tensorboard/ctha-a100-r2' / args.name),
                VLLM_ATTENTION_BACKEND='FLASH_ATTN', HYDRA_FULL_ERROR='1')
+    if args.p1_campaign:
+        assert args.p1_arm and args.updates == 12 and args.gpus == 1
+        assert args.frozen_base_bf16 and args.rollout_session and args.bounded_cuda_graphs
+        assert args.correction == 'bypass_ppo_clip' and args.model_seed == 0
+        assert not (args.resume_from or args.val_only or args.reference_packet)
+        assert args.algorithm == ('grpo' if args.p1_arm == 'grpo' else 'gigpo')
+        env['FORKAUDIT_P1_CAMPAIGN'] = str(args.p1_campaign.resolve())
+        env['FORKAUDIT_P1_ARM'] = args.p1_arm
+        env['PYTHONPATH'] = f'{HERE.parent / "verl_agent_p1"}:' + env['PYTHONPATH']
+    if args.restore_checkpoint_only:
+        assert args.resume_from and args.val_only and args.gpus == 1 and not args.p1_campaign
+        env['FORKAUDIT_RESTORE_ONLY'] = '1'
     env['RAY_TMPDIR'] = '/tmp/fa_' + hashlib.sha256(args.name.encode()).hexdigest()[:10]
     if args.reference_packet:
         assert args.val_only and args.resume_from and args.gpus == 1
@@ -104,7 +122,8 @@ def main():
     # and rewards come from the real ALFWorld environments checked separately.
     prep_env = dict(env, HF_HUB_OFFLINE='0', HF_DATASETS_OFFLINE='0')
     subprocess.run([sys.executable, '-m', 'examples.data_preprocess.prepare', '--mode', 'text',
-        '--train_data_size', '4', '--val_data_size', '4', '--local_dir', str(data)],
+        '--train_data_size', '16' if args.p1_campaign else '4',
+        '--val_data_size', '80' if args.p1_campaign else '4', '--local_dir', str(data)],
         env=prep_env, cwd=source, check=True)
     settings = {
         'algorithm.adv_estimator': args.algorithm,
@@ -126,7 +145,7 @@ def main():
         'actor_rollout_ref.actor.fsdp_config.optimizer_offload': False,
         'actor_rollout_ref.actor.use_invalid_action_penalty': True,
         'actor_rollout_ref.actor.invalid_action_penalty_coef': .1,
-        'actor_rollout_ref.rollout.name': args.probe_backend if args.reference_packet else 'vllm',
+        'actor_rollout_ref.rollout.name': 'hf' if args.restore_checkpoint_only else (args.probe_backend if args.reference_packet else 'vllm'),
         'actor_rollout_ref.rollout.load_format': 'safetensors',
         'actor_rollout_ref.rollout.layered_summon': False,
         'actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu': args.logprob_micro or args.micro_batch,
@@ -164,6 +183,20 @@ def main():
     }
     if args.frozen_base_bf16:
         settings['+actor_rollout_ref.actor.fsdp_config.model_dtype'] = 'bf16'
+    if args.p1_campaign:
+        settings.update({
+            'data.train_batch_size': 16, 'data.val_batch_size': 16,
+            'actor_rollout_ref.rollout.temperature': .7,
+            'actor_rollout_ref.rollout.top_p': 1.,
+            'actor_rollout_ref.rollout.top_k': -1,
+            '+actor_rollout_ref.rollout.engine_kwargs.vllm.logprobs_mode': 'processed_logprobs',
+            'actor_rollout_ref.rollout.val_kwargs.temperature': .7,
+            'actor_rollout_ref.rollout.val_kwargs.do_sample': True,
+            'actor_rollout_ref.rollout.val_kwargs.top_p': 1.,
+            'actor_rollout_ref.rollout.val_kwargs.top_k': -1,
+            'trainer.save_freq': 2, 'trainer.test_freq': 2,
+            'trainer.max_actor_ckpt_to_keep': 1,
+        })
     if args.bounded_cuda_graphs:
         assert not args.eager and args.gpus == 1
         settings['+actor_rollout_ref.rollout.cudagraph_capture_sizes'] = [1, 2, 4, 8, 16]
@@ -176,6 +209,11 @@ def main():
                    upstream='20bd331bdbc9026a5668e11362178e10ab7400c8', settings=settings)
     payload['source_sha256'] = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
         for p in [*sorted(HERE.glob('*.py')), *sorted(HERE.glob('*PLAN.json')), ROOT / 'env/requirements-verl-agent.txt', ROOT / 'env/verl_agent.sh']}
+    if args.p1_campaign:
+        extra = list((HERE.parent / 'verl_agent_p1').glob('*.py')) + [HERE.parent / 'verl_agent_p1/PLAN.json']
+        extra += [HERE.parent / name for name in ['habits.py', 'habits_v2.py', 'features_v2.py', 'prepare.py', 'run.py']]
+        payload['source_sha256'].update({str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in extra})
+        payload['campaign_registration_sha256'] = hashlib.sha256((args.p1_campaign / 'registration.json').read_bytes()).hexdigest()
     payload['python_development_header_sha256'] = hashlib.sha256(Path('/usr/include/python3.12/Python.h').read_bytes()).hexdigest()
     stop, monitor, hardware = start_memory_monitor(output, [args.device] if args.device is not None else list(range(args.gpus)))
     payload['hardware'] = hardware

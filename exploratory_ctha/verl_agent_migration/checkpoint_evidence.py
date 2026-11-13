@@ -96,6 +96,14 @@ def install():
             record['initial_trainable_sha256'] = digest({
                 name: p for name, p in self.model.named_parameters() if p.requires_grad})
         Path(os.environ['FORKAUDIT_VERL_OUTPUT'], f'precision_rank_{self.rank}.json').write_text(json.dumps(record, indent=2))
+        if os.environ.get('FORKAUDIT_P1_CAMPAIGN'):
+            reference = Path(os.environ['FORKAUDIT_P1_CAMPAIGN']) / 'initial_trainable_sha256.json'
+            initial = record['initial_trainable_sha256']
+            if reference.exists():
+                assert json.loads(reference.read_text())['sha256'] == initial, 'P1 initial LoRA differs across arms'
+            else:
+                with reference.open('x') as stream:
+                    json.dump(dict(sha256=initial, arm=os.environ['FORKAUDIT_P1_ARM']), stream)
 
     @functools.wraps(original_save)
     def save(self, local_path, *args, **kwargs):
@@ -103,6 +111,13 @@ def install():
         if local_path:
             record = fingerprint(self)
             Path(local_path, f'live_fingerprint_rank_{self.rank}.json').write_text(json.dumps(record, indent=2))
+            if os.environ.get('FORKAUDIT_P1_CAMPAIGN'):
+                folder = Path(os.environ['FORKAUDIT_VERL_OUTPUT']) / 'checkpoint_evidence'
+                folder.mkdir(exist_ok=True)
+                with (folder / f'{Path(local_path).parent.name}_rank_{self.rank}.json').open('x') as stream:
+                    json.dump(dict(path=str(local_path), live=record,
+                        files={p.name: p.stat().st_size for p in Path(local_path).rglob('*') if p.is_file()},
+                        retention='Only latest full checkpoint retained per arm'), stream, indent=2)
         return result
 
     @functools.wraps(original_load)

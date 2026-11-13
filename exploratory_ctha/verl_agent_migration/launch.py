@@ -30,9 +30,21 @@ def setup_worker():
     import fixed_tasks
     import correction
     fixed_tasks.install()
+    if os.environ.get('FORKAUDIT_P1_CAMPAIGN'):
+        import native_p1
+        native_p1.install()
     correction.install()
     import reference_probe
     reference_probe.install()
+    if os.environ.get('FORKAUDIT_RESTORE_ONLY'):
+        from verl.trainer.ppo.ray_trainer import RayPPOTrainer
+        def restore_only(self):
+            import json
+            assert self.config.trainer.val_only
+            evidence = Path(os.environ['FORKAUDIT_VERL_OUTPUT']) / 'restore_rank_0.json'
+            assert json.loads(evidence.read_text())['passed']
+            return {'p1/native_checkpoint_restore_passed': 1.}
+        RayPPOTrainer._validate = restore_only
     if os.environ.get('FORKAUDIT_ROLLOUT_SESSION'):
         from rollout_session import install_collector
         install_collector()

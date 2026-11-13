@@ -88,7 +88,11 @@ def after_update(trainer, batch, actor_metrics):
     except AssertionError:
         trainer._save_checkpoint()  # Preserve actual failing weights/moments; never continue.
         raise
-    return {'forkaudit/post_update/' + k: v for k, v in stats.items() if v is not None}
+    logged = {'forkaudit/post_update/' + k: v for k, v in stats.items() if v is not None}
+    if os.environ.get('FORKAUDIT_P1_CAMPAIGN'):
+        from native_p1 import training_metrics
+        logged.update(training_metrics(batch, trainer.global_steps))
+    return logged
 
 
 def install():
@@ -159,7 +163,8 @@ def install():
             np.savez_compressed(output / f'validation_alignment_{index:04d}.npz',
                 actor=actor.float().cpu().numpy(), rollout=rollout.float().cpu().numpy(), mask=response_mask.cpu().numpy())
             (output / f'validation_alignment_{index:04d}.json').write_text(json.dumps(dict(
-                interpretation='Raw model-score alignment on greedy outputs; not importance sampling of the degenerate greedy behavior policy', **stats), indent=2))
+                interpretation=('Actual stochastic sampler/HF alignment on Tune responses' if gen_batch.meta_info.get('do_sample') else
+                    'Raw model-score alignment on greedy outputs; not importance sampling of the degenerate greedy behavior policy'), **stats), indent=2))
             assert stats['sampled_behavior_k3'] <= .02 and stats['clip_fraction'] <= .30, 'Updated raw model-score alignment gate failed'
         return result
 

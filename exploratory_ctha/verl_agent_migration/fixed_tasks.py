@@ -9,6 +9,10 @@ def manifest():
 
 
 def install():
+    if os.environ.get('FORKAUDIT_P1_CAMPAIGN'):
+        from native_p1 import install_tasks
+        install_tasks()
+        return
     import agent_system.environments.env_package.alfworld.envs as module
     if getattr(module.AlfworldWorker, '_forkaudit_fixed', False):
         return
