@@ -1,0 +1,11 @@
+{
+  "trainable_lora_dtype": "torch.float32",
+  "trainable_numel": 161480704,
+  "frozen_numel_by_dtype": {
+    "torch.bfloat16": 7615616512
+  },
+  "buffer_numel_by_dtype": {
+    "torch.bfloat16": 64
+  },
+  "gpu_uuid": "b611310b-130b-dc7a-580e-de5869ece3e7"
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/root/ForkAudit/.runtime/runs/verl_agent_bypass_single_gpu_r9/checkpoints/global_step_1/actor/model_world_size_1_rank_0.pt",
+    "bytes": 15877806655,
+    "sha256": "d4b158da6e99632737a6a8b5984c3c60b02b1496ace3e620fd77fa4526ee37cb"
+  },
+  {
+    "path": "/root/ForkAudit/.runtime/runs/verl_agent_bypass_single_gpu_r9/checkpoints/global_step_1/actor/optim_world_size_1_rank_0.pt",
+    "bytes": 1292193435,
+    "sha256": "2d2840be13a8b442b02512918ddc6d05169b5ed41dddb1d26a04c3f5730d4337"
+  },
+  {
+    "path": "/root/ForkAudit/.runtime/runs/verl_agent_bypass_single_gpu_r9/checkpoints/global_step_1/actor/extra_state_world_size_1_rank_0.pt",
+    "bytes": 15077,
+    "sha256": "c59578455fbebec111a29f37f70ec504a035315f4186ec3bb0ff95a397d5ba60"
+  },
+  {
+    "path": "/root/ForkAudit/.runtime/runs/verl_agent_bypass_single_gpu_r9/checkpoints/global_step_1/actor/lora_adapter/adapter_model.safetensors",
+    "bytes": 645975672,
+    "sha256": "bab7a6649ddc00d91793177ff35317e262b754799af7670228d3fa8c0af25195"
+  }
+]

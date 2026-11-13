@@ -1,0 +1,51 @@
+{
+  "version": "native-statistical-consistency-20261113",
+  "authorization": "User explicitly selected statistical consistency instead of exact token/trajectory reproduction",
+  "frozen_gates": {
+    "k3_max": 0.02,
+    "clip_fraction_max": 0.3,
+    "ESS": "Report token/response ESS and extreme ratios without a newly invented threshold",
+    "raw_logprob_absolute_error": "Diagnostic only"
+  },
+  "evidence_already_completed": {
+    "real_training_batch": "R9 four fixed tasks x four trajectories;771 original response rows",
+    "before_and_after_update": "Both sampled behavior k3/clip gates passed",
+    "full_response_direction": "Actual full-batch positive advantage mean logprob increases and negative mean decreases; not original eight-response probe",
+    "native_checkpoint_restore": "GPU1 live weights/AdamW/scheduler hashes match GPU0;392 optimizer state entries,step4",
+    "exact_trace_reproduction": "NOT_REPRODUCED; retain original R9/restore records and first divergences separately"
+  },
+  "new_probe": {
+    "kind": "Fixed real-token numerical replay, no new trajectories/rewards/updates",
+    "source_packet": ".runtime/runs/verl_agent_bypass_single_gpu_r9/validation_batch_0001.pkl",
+    "reference": ".runtime/runs/verl_agent_bypass_single_gpu_r9/validation_alignment_0001.npz",
+    "checkpoint": ".runtime/runs/verl_agent_bypass_single_gpu_r9/checkpoints/global_step_1",
+    "device": 1,
+    "request_batch_sizes": [
+      32,
+      16,
+      8,
+      1
+    ],
+    "implementation": "Native actor plus eager vLLM, GPU1; HF scoring chunk32/16/8/1, native actor training micro16",
+    "comparisons": [
+      "Versus GPU0 HF scores for the identical tokens",
+      "Versus original vLLM raw model scores for identical tokens"
+    ],
+    "interpretation": "Raw score statistical consistency; not importance sampling of a greedy behavior distribution",
+    "gradient_benchmark": "32 longest unique real PPO response records. Native loss/backward/clipping, AdamW.step disabled; verify exact trainable/optimizer hashes unchanged; reload checkpoint to restore scheduler.",
+    "fresh_sampling": "Eight real contexts, two per fixed task; actual eager-vLLM sampling plus HF score check. No new environment transitions/rewards/learning.",
+    "sampler_config": {
+      "enforce_eager": true,
+      "logical_trajectories": 16,
+      "max_num_seqs": 16,
+      "gpu_memory_utilization": 0.5,
+      "actor_micro": 16,
+      "score_micro_max": 32,
+      "ppo_global_mini": 256,
+      "ray_cpus": 12
+    }
+  },
+  "baseline_budget": "After statistical admission and a configuration with memory headroom: fresh original model,GRPO/GiGPO each4 rounds,4 tasks x4 trajectories; no CTHA or extra rounds",
+  "no_retrospective_pass": "Old exact trajectory result remains not reproduced; R2 failures unchanged",
+  "limits": "No exact stochastic generator-RNG recovery or generalization claim; full old CTHA checklist not retroactively completed"
+}

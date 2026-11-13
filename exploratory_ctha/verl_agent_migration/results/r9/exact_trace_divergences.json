@@ -1,0 +1,58 @@
+[
+  {
+    "task_index": 0,
+    "original_steps": 50,
+    "restored_steps": 50,
+    "first_mismatch": "output",
+    "step": 2,
+    "token_position": 70,
+    "a_token": " use",
+    "b_token": " first",
+    "a_logprob": -1.2625641822814941,
+    "b_logprob": -1.1746537685394287,
+    "a_context": "sponge and then put it in a cabinet. I should use the 'take dishsponge 1 from countertop",
+    "b_context": "sponge and then put it in a cabinet. I should first take the dishsponge from the countertop.\n</"
+  },
+  {
+    "task_index": 1,
+    "original_steps": 50,
+    "restored_steps": 50,
+    "first_mismatch": "output",
+    "step": 3,
+    "token_position": 112,
+    "a_token": ".\n",
+    "b_token": " or",
+    "a_logprob": -0.6345126032829285,
+    "b_logprob": -0.7463055849075317,
+    "a_context": " to open cabinet 1, so the bowl might be there.\n4. I should examine cabinet 1 to see if",
+    "b_context": " to open cabinet 1, so the bowl might be there or in cabinet 2.\n4. The action \"open"
+  },
+  {
+    "task_index": 2,
+    "original_steps": 50,
+    "restored_steps": 50,
+    "first_mismatch": "output",
+    "step": 0,
+    "token_position": 23,
+    "a_token": " the",
+    "b_token": " a",
+    "a_logprob": -0.6222158074378967,
+    "b_logprob": -0.739456832408905,
+    "a_context": " pillow under the desklamp, I need to first find the desklamp and then find the pillow. The most",
+    "b_context": " pillow under the desklamp, I need to first find a desklamp and a pillow. Desklamps are"
+  },
+  {
+    "task_index": 3,
+    "original_steps": 11,
+    "restored_steps": 50,
+    "first_mismatch": "output",
+    "step": 0,
+    "token_position": 31,
+    "a_token": ".\n",
+    "b_token": ".",
+    "a_logprob": -0.940955638885498,
+    "b_logprob": -1.0190095901489258,
+    "a_context": " I need to follow these steps:\n1. Find a mug.\n2. Heat the mug.\n3. Put the heated",
+    "b_context": " I need to follow these steps:\n1. Find a mug. Mugs are likely to be in cabinets or on countertops"
+  }
+]

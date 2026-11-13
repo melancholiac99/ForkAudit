@@ -102,6 +102,28 @@ def install():
 
     cls.__init__, cls.save_checkpoint, cls.load_checkpoint = initialize, save, load
     cls._forkaudit_evidence = True
+    if os.environ.get('FORKAUDIT_GRADIENT_BENCH_PACKET'):
+        from verl.workers.actor.dp_actor import DataParallelPPOActor
+        original_update = DataParallelPPOActor.update_policy
+
+        @functools.wraps(original_update)
+        def no_update(self, data):
+            # Only the explicitly registered val-only memory benchmark enables this.
+            trainable = lambda: {name: p for name, p in self.actor_module.named_parameters() if p.requires_grad}
+            before = dict(weights=digest(trainable()), optimizer=digest(self.actor_optimizer.state_dict()))
+            step = self.actor_optimizer.step
+            try:
+                self.actor_optimizer.step = lambda *args, **kwargs: None
+                result = original_update(self, data)
+            finally:
+                self.actor_optimizer.step = step
+            after = dict(weights=digest(trainable()), optimizer=digest(self.actor_optimizer.state_dict()))
+            assert before == after, 'Memory benchmark changed trainable weights or optimizer state'
+            Path(os.environ['FORKAUDIT_VERL_OUTPUT'], 'gradient_benchmark_no_update.json').write_text(json.dumps(
+                dict(passed=True, before=before, after=after, optimizer_updates=0), indent=2))
+            return result
+
+        DataParallelPPOActor.update_policy = no_update
 
 
 install()

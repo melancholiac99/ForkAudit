@@ -1,0 +1,921 @@
+{
+  "run": "verl_agent_bypass_single_gpu_r9",
+  "configuration_sha256": "6dd8e61f5e71d320dfa251cb9d34d06ef8d7013d3e96c5cc50657b5eaceb3fed",
+  "native_one_iteration_pipeline": "PASS",
+  "Engineering": "INCOMPLETE",
+  "Learning": "NOT_RUN",
+  "Generalization": "NOT_RUN",
+  "CTHA_online_efficacy": "NOT_TESTED",
+  "interpretation": "Engineering iteration only. Full-model cross-GPU/batch reproducibility, post-update alignment and actual native checkpoint recovery remain unverified.",
+  "importance_ratio": "HF actor / actual sampler; inherited k3 is a diagnostic, not exact distribution KL. Response product ESS differs from geometric length-normalized ESS.",
+  "probability_checks": [
+    {
+      "step": 1,
+      "phase": "pre_update",
+      "reported_equals_independent": true,
+      "gates_passed": true,
+      "token_count": 111323,
+      "response_count": 800,
+      "sampled_behavior_k3": 0.00215499815100439,
+      "clip_fraction": 0.017193212543679205,
+      "token_ESS_fraction": 0.9961147624335945,
+      "response_ESS_fraction": 0.5240339419826564,
+      "token_ratio_min": 0.07962412731130238,
+      "token_ratio_max": 4.128279550212998,
+      "response_log_ratio_min": -4.085865531440277,
+      "response_log_ratio_max": 2.373382338797981,
+      "long_response_count": 7,
+      "token_ratio_p01": 0.8162701088569572,
+      "token_ratio_p50": 1.0,
+      "token_ratio_p99": 1.1996272010464637,
+      "token_ratio_p999": 1.4539814680514658,
+      "long_sampled_k3": 0.0014591183732887542,
+      "long_clip_fraction": 0.012118018967334035,
+      "long_token_ESS_fraction": 0.9968672199075032,
+      "raw_logprob_error_mean": 0.027365511706770266,
+      "raw_logprob_error_p99": 0.236653299331665,
+      "raw_logprob_error_max": 2.5304381251335144,
+      "sampled_KL_rollout_to_actor_k1": 0.001718882085258745,
+      "opposite_orientation_k3": 0.001897294545799428,
+      "response_geometric_ratio_ESS_fraction": 0.9999687100302557,
+      "token_ESS_absolute": 110890.48369839505,
+      "response_ESS_absolute": 419.2271535861251,
+      "longest_response_tokens": 309,
+      "unique_original_response_rows": {
+        "token_count": 106965,
+        "response_count": 771,
+        "sampled_behavior_k3": 0.0020728690938199455,
+        "clip_fraction": 0.01722058617304726,
+        "token_ESS_fraction": 0.9961594721353834,
+        "response_ESS_fraction": 0.5500907801692754,
+        "token_ratio_min": 0.07962412731130238,
+        "token_ratio_max": 4.128279550212998,
+        "response_log_ratio_min": -4.085865531440277,
+        "response_log_ratio_max": 2.373382338797981,
+        "long_response_count": 7,
+        "token_ratio_p01": 0.8163333232953234,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.1996480443106798,
+        "token_ratio_p999": 1.4533646229537533,
+        "long_sampled_k3": 0.0014591183732887542,
+        "long_clip_fraction": 0.012118018967334035,
+        "long_token_ESS_fraction": 0.9968672199075032,
+        "raw_logprob_error_mean": 0.02731332448670808,
+        "raw_logprob_error_p99": 0.23683026313781755,
+        "raw_logprob_error_max": 2.5304381251335144,
+        "sampled_KL_rollout_to_actor_k1": 0.0016684340538732831,
+        "opposite_orientation_k3": 0.0018727992016886609,
+        "response_geometric_ratio_ESS_fraction": 0.9999692148298785,
+        "token_ESS_absolute": 106554.19793696128,
+        "response_ESS_absolute": 424.11999151051134,
+        "longest_response_tokens": 309
+      },
+      "evidence": "/root/ForkAudit/.runtime/runs/verl_agent_bypass_single_gpu_r9/probabilities_step_1.npz",
+      "sha256": "4f6f24b5838cd87981649c42daf529cb469603ecd633a46f11c7b1a9b406da5e"
+    },
+    {
+      "step": 1,
+      "phase": "post_update",
+      "reported_equals_independent": true,
+      "gates_passed": true,
+      "token_count": 111323,
+      "response_count": 800,
+      "sampled_behavior_k3": 0.0020069677770918077,
+      "clip_fraction": 0.01713931532567394,
+      "token_ESS_fraction": 0.9960841744666116,
+      "response_ESS_fraction": 0.6067079605460611,
+      "token_ratio_min": 0.04886519616194792,
+      "token_ratio_max": 4.851691198525884,
+      "response_log_ratio_min": -3.6720759522345716,
+      "response_log_ratio_max": 2.0262747455997854,
+      "long_response_count": 7,
+      "token_ratio_p01": 0.8169501272553042,
+      "token_ratio_p50": 1.0,
+      "token_ratio_p99": 1.1983968466916122,
+      "token_ratio_p999": 1.4472077845037583,
+      "long_sampled_k3": 0.0012300625405847693,
+      "long_clip_fraction": 0.011064278187565859,
+      "long_token_ESS_fraction": 0.9974876842480869,
+      "raw_logprob_error_mean": 0.027146863871078362,
+      "raw_logprob_error_p99": 0.23647243499755852,
+      "raw_logprob_error_max": 3.0186898708343506,
+      "sampled_KL_rollout_to_actor_k1": 0.0015865514148685415,
+      "opposite_orientation_k3": 0.0018376403832745189,
+      "response_geometric_ratio_ESS_fraction": 0.9999701839212839,
+      "token_ESS_absolute": 110887.0785541466,
+      "response_ESS_absolute": 485.3663684368489,
+      "longest_response_tokens": 309,
+      "unique_original_response_rows": {
+        "token_count": 106965,
+        "response_count": 771,
+        "sampled_behavior_k3": 0.0020075002033576477,
+        "clip_fraction": 0.017127097648763613,
+        "token_ESS_fraction": 0.9962116353916232,
+        "response_ESS_fraction": 0.6201224036565783,
+        "token_ratio_min": 0.04886519616194792,
+        "token_ratio_max": 4.851691198525884,
+        "response_log_ratio_min": -3.6720759522345716,
+        "response_log_ratio_max": 2.0262747455997854,
+        "long_response_count": 7,
+        "token_ratio_p01": 0.8168972130847629,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.1985502877235787,
+        "token_ratio_p999": 1.4433563379222156,
+        "long_sampled_k3": 0.0012300625405847693,
+        "long_clip_fraction": 0.011064278187565859,
+        "long_token_ESS_fraction": 0.9974876842480869,
+        "raw_logprob_error_mean": 0.02711238942745195,
+        "raw_logprob_error_p99": 0.23611181259155276,
+        "raw_logprob_error_max": 3.0186898708343506,
+        "sampled_KL_rollout_to_actor_k1": 0.0015706428905861718,
+        "opposite_orientation_k3": 0.001818096085174169,
+        "response_geometric_ratio_ESS_fraction": 0.9999704664140625,
+        "token_ESS_absolute": 106559.77757966497,
+        "response_ESS_absolute": 478.1143732192219,
+        "longest_response_tokens": 309
+      },
+      "evidence": "/root/ForkAudit/.runtime/runs/verl_agent_bypass_single_gpu_r9/probabilities_post_update_step_1.npz",
+      "sha256": "014abcb8e57bd8c12e4c287e9d9d81b637685a667c48068968a4f0627d994c95"
+    }
+  ],
+  "optimizer_steps": "No native checkpoint in one-iteration smoke; outer trainer iteration is not an AdamW step count.",
+  "tensorboard": {
+    "global_seqlen/min": [
+      {
+        "step": 1,
+        "value": 480103.0,
+        "wall_time": 1794569210.2341924
+      }
+    ],
+    "global_seqlen/max": [
+      {
+        "step": 1,
+        "value": 480103.0,
+        "wall_time": 1794569210.2343142
+      }
+    ],
+    "global_seqlen/minmax_diff": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.2343302
+      }
+    ],
+    "global_seqlen/balanced_min": [
+      {
+        "step": 1,
+        "value": 480103.0,
+        "wall_time": 1794569210.2343423
+      }
+    ],
+    "global_seqlen/balanced_max": [
+      {
+        "step": 1,
+        "value": 480103.0,
+        "wall_time": 1794569210.2343514
+      }
+    ],
+    "global_seqlen/mean": [
+      {
+        "step": 1,
+        "value": 480103.0,
+        "wall_time": 1794569210.2343626
+      }
+    ],
+    "actor/entropy_loss": [
+      {
+        "step": 1,
+        "value": 0.616045355796814,
+        "wall_time": 1794569210.2343721
+      }
+    ],
+    "training/rollout_probs_diff_max": [
+      {
+        "step": 1,
+        "value": 0.7304044365882874,
+        "wall_time": 1794569210.234381
+      }
+    ],
+    "training/rollout_probs_diff_mean": [
+      {
+        "step": 1,
+        "value": 0.009061851538717747,
+        "wall_time": 1794569210.23439
+      }
+    ],
+    "training/rollout_probs_diff_std": [
+      {
+        "step": 1,
+        "value": 0.016440991312265396,
+        "wall_time": 1794569210.2344003
+      }
+    ],
+    "forkaudit/mismatch/token_count": [
+      {
+        "step": 1,
+        "value": 111323.0,
+        "wall_time": 1794569210.234408
+      }
+    ],
+    "forkaudit/mismatch/response_count": [
+      {
+        "step": 1,
+        "value": 800.0,
+        "wall_time": 1794569210.2346957
+      }
+    ],
+    "forkaudit/mismatch/sampled_behavior_k3": [
+      {
+        "step": 1,
+        "value": 0.0021549982484430075,
+        "wall_time": 1794569210.2352965
+      }
+    ],
+    "forkaudit/mismatch/clip_fraction": [
+      {
+        "step": 1,
+        "value": 0.01719321310520172,
+        "wall_time": 1794569210.235396
+      }
+    ],
+    "forkaudit/mismatch/token_ESS_fraction": [
+      {
+        "step": 1,
+        "value": 0.9961147904396057,
+        "wall_time": 1794569210.2354703
+      }
+    ],
+    "forkaudit/mismatch/response_ESS_fraction": [
+      {
+        "step": 1,
+        "value": 0.5240339636802673,
+        "wall_time": 1794569210.23554
+      }
+    ],
+    "forkaudit/mismatch/token_ratio_min": [
+      {
+        "step": 1,
+        "value": 0.07962412387132645,
+        "wall_time": 1794569210.2356043
+      }
+    ],
+    "forkaudit/mismatch/token_ratio_max": [
+      {
+        "step": 1,
+        "value": 4.128279685974121,
+        "wall_time": 1794569210.2356672
+      }
+    ],
+    "forkaudit/mismatch/response_log_ratio_min": [
+      {
+        "step": 1,
+        "value": -4.085865497589111,
+        "wall_time": 1794569210.235733
+      }
+    ],
+    "forkaudit/mismatch/response_log_ratio_max": [
+      {
+        "step": 1,
+        "value": 2.373382329940796,
+        "wall_time": 1794569210.2358205
+      }
+    ],
+    "forkaudit/mismatch/long_response_count": [
+      {
+        "step": 1,
+        "value": 7.0,
+        "wall_time": 1794569210.2359
+      }
+    ],
+    "forkaudit/mismatch/token_ratio_p01": [
+      {
+        "step": 1,
+        "value": 0.816270112991333,
+        "wall_time": 1794569210.2359664
+      }
+    ],
+    "forkaudit/mismatch/token_ratio_p50": [
+      {
+        "step": 1,
+        "value": 1.0,
+        "wall_time": 1794569210.2360415
+      }
+    ],
+    "forkaudit/mismatch/token_ratio_p99": [
+      {
+        "step": 1,
+        "value": 1.199627161026001,
+        "wall_time": 1794569210.236109
+      }
+    ],
+    "forkaudit/mismatch/token_ratio_p999": [
+      {
+        "step": 1,
+        "value": 1.4539815187454224,
+        "wall_time": 1794569210.2361753
+      }
+    ],
+    "forkaudit/mismatch/long_sampled_k3": [
+      {
+        "step": 1,
+        "value": 0.0014591183280572295,
+        "wall_time": 1794569210.2362401
+      }
+    ],
+    "forkaudit/mismatch/long_clip_fraction": [
+      {
+        "step": 1,
+        "value": 0.012118019163608551,
+        "wall_time": 1794569210.236307
+      }
+    ],
+    "forkaudit/mismatch/long_token_ESS_fraction": [
+      {
+        "step": 1,
+        "value": 0.9968672394752502,
+        "wall_time": 1794569210.236372
+      }
+    ],
+    "episode/valid_action_ratio": [
+      {
+        "step": 1,
+        "value": 0.44624999165534973,
+        "wall_time": 1794569210.236439
+      }
+    ],
+    "actor/pg_loss": [
+      {
+        "step": 1,
+        "value": -0.03151411563158035,
+        "wall_time": 1794569210.2365084
+      }
+    ],
+    "actor/pg_clipfrac": [
+      {
+        "step": 1,
+        "value": 0.007952066138386726,
+        "wall_time": 1794569210.236575
+      }
+    ],
+    "actor/ppo_kl": [
+      {
+        "step": 1,
+        "value": 0.0016184098785743117,
+        "wall_time": 1794569210.23664
+      }
+    ],
+    "actor/pg_clipfrac_lower": [
+      {
+        "step": 1,
+        "value": 1.824389437388163e-05,
+        "wall_time": 1794569210.236705
+      }
+    ],
+    "actor/grad_norm": [
+      {
+        "step": 1,
+        "value": 0.2847059965133667,
+        "wall_time": 1794569210.236781
+      }
+    ],
+    "perf/mfu/actor": [
+      {
+        "step": 1,
+        "value": 0.573276937007904,
+        "wall_time": 1794569210.2368765
+      }
+    ],
+    "perf/max_memory_allocated_gb": [
+      {
+        "step": 1,
+        "value": 84.68406677246094,
+        "wall_time": 1794569210.2369587
+      }
+    ],
+    "perf/max_memory_reserved_gb": [
+      {
+        "step": 1,
+        "value": 115.498046875,
+        "wall_time": 1794569210.2370262
+      }
+    ],
+    "perf/cpu_memory_used_gb": [
+      {
+        "step": 1,
+        "value": 51.2352409362793,
+        "wall_time": 1794569210.2370934
+      }
+    ],
+    "actor/lr": [
+      {
+        "step": 1,
+        "value": 3.000000106112566e-06,
+        "wall_time": 1794569210.237163
+      }
+    ],
+    "forkaudit/post_update/token_count": [
+      {
+        "step": 1,
+        "value": 111323.0,
+        "wall_time": 1794569210.2372262
+      }
+    ],
+    "forkaudit/post_update/response_count": [
+      {
+        "step": 1,
+        "value": 800.0,
+        "wall_time": 1794569210.2372887
+      }
+    ],
+    "forkaudit/post_update/sampled_behavior_k3": [
+      {
+        "step": 1,
+        "value": 0.0020069677848368883,
+        "wall_time": 1794569210.237351
+      }
+    ],
+    "forkaudit/post_update/clip_fraction": [
+      {
+        "step": 1,
+        "value": 0.017139315605163574,
+        "wall_time": 1794569210.2374094
+      }
+    ],
+    "forkaudit/post_update/token_ESS_fraction": [
+      {
+        "step": 1,
+        "value": 0.9960841536521912,
+        "wall_time": 1794569210.2374728
+      }
+    ],
+    "forkaudit/post_update/response_ESS_fraction": [
+      {
+        "step": 1,
+        "value": 0.6067079901695251,
+        "wall_time": 1794569210.237534
+      }
+    ],
+    "forkaudit/post_update/token_ratio_min": [
+      {
+        "step": 1,
+        "value": 0.048865195363759995,
+        "wall_time": 1794569210.237594
+      }
+    ],
+    "forkaudit/post_update/token_ratio_max": [
+      {
+        "step": 1,
+        "value": 4.851691246032715,
+        "wall_time": 1794569210.2376564
+      }
+    ],
+    "forkaudit/post_update/response_log_ratio_min": [
+      {
+        "step": 1,
+        "value": -3.6720759868621826,
+        "wall_time": 1794569210.2377195
+      }
+    ],
+    "forkaudit/post_update/response_log_ratio_max": [
+      {
+        "step": 1,
+        "value": 2.0262746810913086,
+        "wall_time": 1794569210.2377882
+      }
+    ],
+    "forkaudit/post_update/long_response_count": [
+      {
+        "step": 1,
+        "value": 7.0,
+        "wall_time": 1794569210.2378623
+      }
+    ],
+    "forkaudit/post_update/token_ratio_p01": [
+      {
+        "step": 1,
+        "value": 0.8169501423835754,
+        "wall_time": 1794569210.2379284
+      }
+    ],
+    "forkaudit/post_update/token_ratio_p50": [
+      {
+        "step": 1,
+        "value": 1.0,
+        "wall_time": 1794569210.2379992
+      }
+    ],
+    "forkaudit/post_update/token_ratio_p99": [
+      {
+        "step": 1,
+        "value": 1.1983968019485474,
+        "wall_time": 1794569210.2380686
+      }
+    ],
+    "forkaudit/post_update/token_ratio_p999": [
+      {
+        "step": 1,
+        "value": 1.4472078084945679,
+        "wall_time": 1794569210.2381368
+      }
+    ],
+    "forkaudit/post_update/long_sampled_k3": [
+      {
+        "step": 1,
+        "value": 0.00123006256762892,
+        "wall_time": 1794569210.2382073
+      }
+    ],
+    "forkaudit/post_update/long_clip_fraction": [
+      {
+        "step": 1,
+        "value": 0.011064277961850166,
+        "wall_time": 1794569210.238277
+      }
+    ],
+    "forkaudit/post_update/long_token_ESS_fraction": [
+      {
+        "step": 1,
+        "value": 0.9974876642227173,
+        "wall_time": 1794569210.2383559
+      }
+    ],
+    "val/text/test_score": [
+      {
+        "step": 1,
+        "value": 0.6832298040390015,
+        "wall_time": 1794569210.2384331
+      }
+    ],
+    "val/text/tool_call_count/mean": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.2385035
+      }
+    ],
+    "val/success_rate": [
+      {
+        "step": 1,
+        "value": 0.25,
+        "wall_time": 1794569210.2385733
+      }
+    ],
+    "val/pick_clean_then_place_in_recep_success_rate": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.2386405
+      }
+    ],
+    "val/look_at_obj_in_light_success_rate": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.2387083
+      }
+    ],
+    "val/pick_heat_then_place_in_recep_success_rate": [
+      {
+        "step": 1,
+        "value": 1.0,
+        "wall_time": 1794569210.2387865
+      }
+    ],
+    "training/global_step": [
+      {
+        "step": 1,
+        "value": 1.0,
+        "wall_time": 1794569210.2388675
+      }
+    ],
+    "training/epoch": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.2389371
+      }
+    ],
+    "critic/score/mean": [
+      {
+        "step": 1,
+        "value": 0.2071249634027481,
+        "wall_time": 1794569210.2390049
+      }
+    ],
+    "critic/score/max": [
+      {
+        "step": 1,
+        "value": 10.0,
+        "wall_time": 1794569210.239074
+      }
+    ],
+    "critic/score/min": [
+      {
+        "step": 1,
+        "value": -0.10000000149011612,
+        "wall_time": 1794569210.2391455
+      }
+    ],
+    "critic/rewards/mean": [
+      {
+        "step": 1,
+        "value": 0.2071249634027481,
+        "wall_time": 1794569210.2392108
+      }
+    ],
+    "critic/rewards/max": [
+      {
+        "step": 1,
+        "value": 10.0,
+        "wall_time": 1794569210.239284
+      }
+    ],
+    "critic/rewards/min": [
+      {
+        "step": 1,
+        "value": -0.10000000149011612,
+        "wall_time": 1794569210.239345
+      }
+    ],
+    "critic/advantages/mean": [
+      {
+        "step": 1,
+        "value": 0.024853425100445747,
+        "wall_time": 1794569210.2394133
+      }
+    ],
+    "critic/advantages/max": [
+      {
+        "step": 1,
+        "value": 8.477880477905273,
+        "wall_time": 1794569210.2395532
+      }
+    ],
+    "critic/advantages/min": [
+      {
+        "step": 1,
+        "value": -3.3277480602264404,
+        "wall_time": 1794569210.2396429
+      }
+    ],
+    "critic/returns/mean": [
+      {
+        "step": 1,
+        "value": 0.024853425100445747,
+        "wall_time": 1794569210.2397053
+      }
+    ],
+    "critic/returns/max": [
+      {
+        "step": 1,
+        "value": 8.477880477905273,
+        "wall_time": 1794569210.2397628
+      }
+    ],
+    "critic/returns/min": [
+      {
+        "step": 1,
+        "value": -3.3277480602264404,
+        "wall_time": 1794569210.2398496
+      }
+    ],
+    "response_length/mean": [
+      {
+        "step": 1,
+        "value": 139.15374755859375,
+        "wall_time": 1794569210.2399096
+      }
+    ],
+    "response_length/max": [
+      {
+        "step": 1,
+        "value": 309.0,
+        "wall_time": 1794569210.2399654
+      }
+    ],
+    "response_length/min": [
+      {
+        "step": 1,
+        "value": 58.0,
+        "wall_time": 1794569210.2400215
+      }
+    ],
+    "response_length/clip_ratio": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.2400844
+      }
+    ],
+    "prompt_length/mean": [
+      {
+        "step": 1,
+        "value": 460.9750061035156,
+        "wall_time": 1794569210.2401564
+      }
+    ],
+    "prompt_length/max": [
+      {
+        "step": 1,
+        "value": 888.0,
+        "wall_time": 1794569210.2402184
+      }
+    ],
+    "prompt_length/min": [
+      {
+        "step": 1,
+        "value": 375.0,
+        "wall_time": 1794569210.2402756
+      }
+    ],
+    "prompt_length/clip_ratio": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.240333
+      }
+    ],
+    "episode/reward/mean": [
+      {
+        "step": 1,
+        "value": 0.625,
+        "wall_time": 1794569210.2403886
+      }
+    ],
+    "episode/reward/max": [
+      {
+        "step": 1,
+        "value": 10.0,
+        "wall_time": 1794569210.240444
+      }
+    ],
+    "episode/reward/min": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.240499
+      }
+    ],
+    "episode/length/mean": [
+      {
+        "step": 1,
+        "value": 48.1875,
+        "wall_time": 1794569210.2405558
+      }
+    ],
+    "episode/length/max": [
+      {
+        "step": 1,
+        "value": 50.0,
+        "wall_time": 1794569210.240611
+      }
+    ],
+    "episode/length/min": [
+      {
+        "step": 1,
+        "value": 21.0,
+        "wall_time": 1794569210.2406662
+      }
+    ],
+    "episode/tool_call_count/mean": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.240723
+      }
+    ],
+    "episode/success_rate": [
+      {
+        "step": 1,
+        "value": 0.0625,
+        "wall_time": 1794569210.2407875
+      }
+    ],
+    "episode/pick_clean_then_place_in_recep_success_rate": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.240854
+      }
+    ],
+    "episode/look_at_obj_in_light_success_rate": [
+      {
+        "step": 1,
+        "value": 0.25,
+        "wall_time": 1794569210.2409112
+      }
+    ],
+    "episode/pick_heat_then_place_in_recep_success_rate": [
+      {
+        "step": 1,
+        "value": 0.0,
+        "wall_time": 1794569210.2409685
+      }
+    ],
+    "timing_s/gen": [
+      {
+        "step": 1,
+        "value": 318.8957824707031,
+        "wall_time": 1794569210.2410247
+      }
+    ],
+    "timing_s/reward": [
+      {
+        "step": 1,
+        "value": 0.20851172506809235,
+        "wall_time": 1794569210.2410796
+      }
+    ],
+    "timing_s/old_log_prob": [
+      {
+        "step": 1,
+        "value": 40.73316955566406,
+        "wall_time": 1794569210.241135
+      }
+    ],
+    "timing_s/adv": [
+      {
+        "step": 1,
+        "value": 0.11953786760568619,
+        "wall_time": 1794569210.2411904
+      }
+    ],
+    "timing_s/update_actor": [
+      {
+        "step": 1,
+        "value": 124.98129272460938,
+        "wall_time": 1794569210.2412455
+      }
+    ],
+    "timing_s/dump_rollout_generations": [
+      {
+        "step": 1,
+        "value": 0.24121323227882385,
+        "wall_time": 1794569210.2412999
+      }
+    ],
+    "timing_s/testing": [
+      {
+        "step": 1,
+        "value": 267.02825927734375,
+        "wall_time": 1794569210.2413568
+      }
+    ],
+    "timing_s/save_checkpoint": [
+      {
+        "step": 1,
+        "value": 55.882957458496094,
+        "wall_time": 1794569210.241412
+      }
+    ],
+    "timing_s/step": [
+      {
+        "step": 1,
+        "value": 848.1678466796875,
+        "wall_time": 1794569210.2414715
+      }
+    ],
+    "timing_per_token_ms/adv": [
+      {
+        "step": 1,
+        "value": 0.00024898379342630506,
+        "wall_time": 1794569210.2415307
+      }
+    ],
+    "timing_per_token_ms/update_actor": [
+      {
+        "step": 1,
+        "value": 0.26032182574272156,
+        "wall_time": 1794569210.2415903
+      }
+    ],
+    "timing_per_token_ms/gen": [
+      {
+        "step": 1,
+        "value": 2.8645992279052734,
+        "wall_time": 1794569210.2416453
+      }
+    ],
+    "perf/total_num_tokens": [
+      {
+        "step": 1,
+        "value": 480103.0,
+        "wall_time": 1794569210.2417097
+      }
+    ],
+    "perf/time_per_step": [
+      {
+        "step": 1,
+        "value": 848.1678466796875,
+        "wall_time": 1794569210.241771
+      }
+    ],
+    "perf/throughput": [
+      {
+        "step": 1,
+        "value": 566.047119140625,
+        "wall_time": 1794569210.2418566
+      }
+    ]
+  }
+}

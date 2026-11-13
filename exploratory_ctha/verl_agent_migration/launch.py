@@ -31,6 +31,8 @@ def setup_worker():
     import correction
     fixed_tasks.install()
     correction.install()
+    import reference_probe
+    reference_probe.install()
 
 
 if __name__ == '__main__':

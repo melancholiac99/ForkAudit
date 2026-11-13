@@ -1,0 +1,18 @@
+{
+  "interpretation": "Raw model-score alignment on greedy outputs; not importance sampling of the degenerate greedy behavior policy",
+  "token_count": 20130,
+  "response_count": 161,
+  "sampled_behavior_k3": 0.000693533319473003,
+  "clip_fraction": 0.003278688524590164,
+  "token_ESS_fraction": 0.9986813079765448,
+  "response_ESS_fraction": 0.7989211767520561,
+  "token_ratio_min": 0.5904311076346633,
+  "token_ratio_max": 1.3255218494544632,
+  "response_log_ratio_min": -1.5734808117347185,
+  "response_log_ratio_max": 1.4316173290817034,
+  "long_response_count": 0,
+  "token_ratio_p01": 0.8825035870011998,
+  "token_ratio_p50": 1.0,
+  "token_ratio_p99": 1.1141070726450797,
+  "token_ratio_p999": 1.2255534167905984
+}

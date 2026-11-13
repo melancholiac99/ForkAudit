@@ -53,6 +53,13 @@ def main():
     parser.add_argument('--val-only', action='store_true')
     parser.add_argument('--final-eval', action='store_true')
     parser.add_argument('--max-num-seqs', type=int, choices=[1, 16], default=16)
+    parser.add_argument('--reference-packet', type=Path)
+    parser.add_argument('--eager', action='store_true')
+    parser.add_argument('--micro-batch', type=int, choices=[16, 32], default=32)
+    parser.add_argument('--ray-cpus', type=int, choices=[8, 12, 16, 24], default=24)
+    parser.add_argument('--probe-backend', choices=['hf', 'vllm'], default='hf')
+    parser.add_argument('--gradient-bench-packet', type=Path)
+    parser.add_argument('--logprob-micro', type=int, choices=[16, 32])
     args = parser.parse_args()
     assert Path(sys.prefix).resolve() == (ROOT / '.runtime/venvs/verl-agent-20bd331b').resolve()
     assert Path(args.name).name == args.name
@@ -60,6 +67,8 @@ def main():
     output.mkdir(parents=True, exist_ok=False)
     source = Path(os.environ['VERL_AGENT_SOURCE'])
     env = os.environ.copy()
+    env.pop('FORKAUDIT_REFERENCE_PACKET', None)
+    env.pop('FORKAUDIT_GRADIENT_BENCH_PACKET', None)
     if args.device is not None:
         assert args.gpus == 1
         env['CUDA_VISIBLE_DEVICES'] = str(args.device)
@@ -68,6 +77,12 @@ def main():
                TENSORBOARD_DIR=str(ROOT / '.runtime/tensorboard/ctha-a100-r2' / args.name),
                VLLM_ATTENTION_BACKEND='FLASH_ATTN', HYDRA_FULL_ERROR='1')
     env['RAY_TMPDIR'] = '/tmp/fa_' + hashlib.sha256(args.name.encode()).hexdigest()[:10]
+    if args.reference_packet:
+        assert args.val_only and args.resume_from and args.gpus == 1
+        env['FORKAUDIT_REFERENCE_PACKET'] = str(args.reference_packet.resolve())
+    if args.gradient_bench_packet:
+        assert args.reference_packet and args.val_only and args.resume_from
+        env['FORKAUDIT_GRADIENT_BENCH_PACKET'] = str(args.gradient_bench_packet.resolve())
     data = output / 'data'
     # Upstream uses geometry3k only as four modality/index rows; all RL observations
     # and rewards come from the real ALFWorld environments checked separately.
@@ -89,21 +104,21 @@ def main():
         'actor_rollout_ref.model.enable_gradient_checkpointing': True,
         'actor_rollout_ref.actor.optim.lr': 3e-6,
         'actor_rollout_ref.actor.ppo_mini_batch_size': 256,
-        'actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu': 32,
+        'actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu': args.micro_batch,
         'actor_rollout_ref.actor.use_kl_loss': False,
         'actor_rollout_ref.actor.fsdp_config.param_offload': False,
         'actor_rollout_ref.actor.fsdp_config.optimizer_offload': False,
         'actor_rollout_ref.actor.use_invalid_action_penalty': True,
         'actor_rollout_ref.actor.invalid_action_penalty_coef': .1,
-        'actor_rollout_ref.rollout.name': 'vllm',
+        'actor_rollout_ref.rollout.name': args.probe_backend if args.reference_packet else 'vllm',
         'actor_rollout_ref.rollout.load_format': 'safetensors',
         'actor_rollout_ref.rollout.layered_summon': False,
-        'actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu': 32,
+        'actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu': args.logprob_micro or args.micro_batch,
         'actor_rollout_ref.rollout.tensor_model_parallel_size': args.gpus,
         'actor_rollout_ref.rollout.max_num_seqs': args.max_num_seqs,
         'actor_rollout_ref.rollout.gpu_memory_utilization': .5 if args.gpus == 1 else .6,
         'actor_rollout_ref.rollout.enable_chunked_prefill': False,
-        'actor_rollout_ref.rollout.enforce_eager': False,
+        'actor_rollout_ref.rollout.enforce_eager': args.eager,
         'actor_rollout_ref.rollout.free_cache_engine': False,
         'actor_rollout_ref.rollout.val_kwargs.temperature': .4,
         'actor_rollout_ref.rollout.val_kwargs.do_sample': False,
@@ -126,7 +141,7 @@ def main():
         'trainer.default_local_dir': str(output / 'checkpoints'),
         'trainer.rollout_data_dir': str(output / 'rollouts'),
         'trainer.validation_data_dir': str(output / 'validation'),
-        'ray_init.num_cpus': 24, '+ray_init.object_store_memory': 2147483648,
+        'ray_init.num_cpus': args.ray_cpus, '+ray_init.object_store_memory': 2147483648,
         '+ray_init.dashboard_port': 0,
         '+ray_init.runtime_env.worker_process_setup_hook': 'launch.setup_worker',
         'hydra.run.dir': str(output / 'hydra'),
