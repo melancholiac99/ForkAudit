@@ -1,0 +1,24 @@
+{
+  "exact_token_ids": true,
+  "max_behavior_logprob_difference": 0.0,
+  "requests": 8,
+  "tokens": 868,
+  "passed_original_parity_gate": true,
+  "parity": {
+    "dtype": "float32_both_engines",
+    "mean_abs": 8.815381232563397e-06,
+    "p99_abs": 8.797407150268558e-05,
+    "max_abs": 0.00019788742065429688,
+    "tokens": 868,
+    "policy_updates": 0,
+    "reward_labels_used": false,
+    "passed_original_parity_gate": true
+  },
+  "generation_seconds": 19.3248367998749,
+  "baseline_generation_seconds_approx_from_logs": 41,
+  "approx_sample_speedup": 2.121622056868569,
+  "baseline_sha256": "4400771bf69aa22cc7ff5b3c25d5926fe6661c5d7e817e57de6f7baa08df60a3",
+  "accelerated_sha256": "4400771bf69aa22cc7ff5b3c25d5926fe6661c5d7e817e57de6f7baa08df60a3",
+  "no_model_updates": true,
+  "no_reward_labels": true
+}

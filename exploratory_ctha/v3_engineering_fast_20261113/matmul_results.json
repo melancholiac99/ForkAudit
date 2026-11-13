@@ -1,0 +1,132 @@
+[
+  {
+    "shape": [
+      8,
+      3584,
+      3584
+    ],
+    "milliseconds": {
+      "baseline": 0.6556384086608886,
+      "16": 0.13286080360412597,
+      "32": 0.16770240068435668
+    },
+    "agreement": {
+      "baseline": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "16": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "32": {
+        "exact": true,
+        "max_abs": 0.0
+      }
+    }
+  },
+  {
+    "shape": [
+      8,
+      18944,
+      3584
+    ],
+    "milliseconds": {
+      "baseline": 3.5765247344970703,
+      "16": 0.9941311836242676,
+      "32": 1.1712512016296386
+    },
+    "agreement": {
+      "baseline": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "16": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "32": {
+        "exact": true,
+        "max_abs": 0.0
+      }
+    }
+  },
+  {
+    "shape": [
+      64,
+      3584,
+      3584
+    ],
+    "milliseconds": {
+      "baseline": 0.6557248115539551,
+      "16": 0.13699840307235717,
+      "32": 0.17077120542526245
+    },
+    "agreement": {
+      "baseline": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "16": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "32": {
+        "exact": true,
+        "max_abs": 0.0
+      }
+    }
+  },
+  {
+    "shape": [
+      64,
+      18944,
+      3584
+    ],
+    "milliseconds": {
+      "baseline": 3.5608863830566406,
+      "16": 0.9870976448059082,
+      "32": 1.1889792442321778
+    },
+    "agreement": {
+      "baseline": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "16": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "32": {
+        "exact": true,
+        "max_abs": 0.0
+      }
+    }
+  },
+  {
+    "shape": [
+      512,
+      3584,
+      3584
+    ],
+    "milliseconds": {
+      "baseline": 0.6508895874023437,
+      "16": 0.6211647987365723,
+      "32": 0.4853216171264648
+    },
+    "agreement": {
+      "baseline": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "16": {
+        "exact": true,
+        "max_abs": 0.0
+      },
+      "32": {
+        "exact": true,
+        "max_abs": 0.0
+      }
+    }
+  }
+]
