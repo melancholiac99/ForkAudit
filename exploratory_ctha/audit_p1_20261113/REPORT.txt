@@ -1,0 +1,22 @@
+CTHA P1 implementation audit — 2026-11-13
+Scope: read-only scientific code and recorded data review plus CPU checks. No new GPU work, training, threshold changes, or old-result changes.
+
+Findings, in priority order:
+1. train.py:207 creates a new AdamW per rollout iteration. run.py:191-216 passes only prior adapter weights, not optimizer state; train.py:243-255 saves adapter and log only. The run therefore resumes parameters but loses first/second moments and Adam step counter at every round boundary. CPU counterexample confirms a different next update. This is a confirmed implementation behavior; its contribution to flat learning has not been isolated.
+2. train.py:173 filters zero-advantage rows before minibatch construction (212-227). This changes normalization and optimizer step schedule; it is not equivalent to skipping zero-gradient forwards in unchanged minibatches. CPU example: one nonzero plus seven zero rows has gradient -0.125 with denominator 8, versus -1 after filtering. This is not a claim of 8x actual Adam parameter movement. Formal data: GRPO 9184/30251 steps learnable, GiGPO 9224/30285; Fixed 11808/29833 and 1480 updates vs GiGPO 1158. Comparing methods therefore also changes the number of updates. The intended training/batch normalization semantics should be specified before a new experiment.
+3. rollout.py:66-67 requests logprobs=False; e4_policy.py:37 emits logprobs=None. train.py:197-202 recomputes old logprobs in HF instead of retaining actual vLLM behavior logprobs. Token/temperature/weight provenance checks do not establish numerical agreement between engines. This is a validation gap, not proof of a numerical mismatch. A future small GPU parity test should measure it without altering historical scores.
+4. Existing first-round records show incomplete reproducibility before any training: same initial model, no adapter, identical provenance/prompts/seeds. Versus GRPO, GiGPO differs on 29/64 first replies (8 first actions), CTHA 29/64 (5 actions), Fixed 3/64, Progress 2/64. Sources of runtime nondeterminism remain unisolated. This weakens strict paired interpretations; it does not prove a faulty reward gradient or a hardware fault.
+5. run.py:217-228 only evaluates after training, changes sampling seeds with evaluation iteration, and has no step-zero checkpoint evaluation. train.py records losses and update counts but no probability-ratio distributions, clip fractions, gradient norms, or measured KL. Changes across evaluation rounds mix policy changes and sampling variation. PPO clipping is not a hard constraint on parameter changes/KL, despite the trainer module comment. Absent diagnostics cannot establish updates were safely sized.
+6. prepare.py:69 uses only current plus previous 8 iterations; habits_v2.py:133 gates on >=200 pairs. All CTHA/Progress rounds remain below the count threshold (max 152/171); no predictive gate test or auxiliary gradient is activated. This is separate from baseline learning.
+
+Checks passed:
+- Existing 23 CPU tests.
+- Five focused CPU checks: surrogate sign, clipped flat regions, causal token alignment, zero-filter non-equivalence, optimizer-reset non-equivalence.
+- Recorded adapter chain and data hashes previously verified for all 60 training rounds; parameters changed and updates were executed.
+- Train/tune game sets disjoint; 40 tune games cover all six task types.
+- Both engines construct a user-only chat template with generation prompt; training consumes recorded completion IDs and matching temperature. No obvious prompt-role/temperature mismatch found by code review. Cross-engine probability parity remains untested.
+
+Interpretation:
+The experiment executed, but baseline learning validation is incomplete. These findings do not identify a unique cause of flat performance and do not establish CTHA ineffective. No fixes were silently applied. Priorities before new full training: define/preserve optimizer state and batch semantics, record behavior logprobs and update diagnostics, check engine parity and first-round reproducibility, then run a separately registered small baseline learning test including step-zero evaluation.
+
+Artifacts: audit_cpu.py reproduces CPU checks and recorded-data statistics; audit.json contains source hashes and full evidence. The small mock examples are engineering tests, not experiment outcomes.

@@ -1,0 +1,1243 @@
+{
+  "cpu_only": true,
+  "no_training_or_old_results_modified": true,
+  "checks": {
+    "surrogate_gradient_direction": "passed: positive advantage raises sampled logprob; negative lowers it",
+    "ppo_clip_flat_regions": "passed",
+    "causal_token_alignment": "passed on CPU with deterministic mock logits",
+    "zero_filter_counterexample": {
+      "one_nonzero_plus_seven_zero_rows_gradient": -0.125,
+      "filter_then_normalize_gradient": -1.0,
+      "factor": 8.0,
+      "interpretation": "not equivalent compute-only optimization; actual multi-minibatch Adam effect is not this simple scalar"
+    },
+    "optimizer_reset_counterexample": {
+      "continuous_final_parameter": -0.34184355575574205,
+      "reset_at_round_boundary_final_parameter": -0.1999999979999993,
+      "interpretation": "same incoming parameters and next gradient, different update due to lost moments/step counter"
+    }
+  },
+  "arms": {
+    "grpo": {
+      "rounds": [
+        {
+          "round": "round_000",
+          "steps": 2508,
+          "nonzero_steps": 669,
+          "updates": 84,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_001",
+          "steps": 2459,
+          "nonzero_steps": 903,
+          "updates": 113,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_002",
+          "steps": 2513,
+          "nonzero_steps": 739,
+          "updates": 93,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_003",
+          "steps": 2544,
+          "nonzero_steps": 537,
+          "updates": 68,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_004",
+          "steps": 2396,
+          "nonzero_steps": 643,
+          "updates": 81,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_005",
+          "steps": 2219,
+          "nonzero_steps": 722,
+          "updates": 91,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_006",
+          "steps": 2938,
+          "nonzero_steps": 1138,
+          "updates": 143,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_007",
+          "steps": 2422,
+          "nonzero_steps": 838,
+          "updates": 105,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_008",
+          "steps": 2199,
+          "nonzero_steps": 674,
+          "updates": 85,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_009",
+          "steps": 2757,
+          "nonzero_steps": 281,
+          "updates": 36,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_010",
+          "steps": 2623,
+          "nonzero_steps": 1006,
+          "updates": 126,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_011",
+          "steps": 2673,
+          "nonzero_steps": 1034,
+          "updates": 130,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        }
+      ],
+      "steps": 30251,
+      "nonzero_steps": 9184,
+      "updates": 1155
+    },
+    "gigpo": {
+      "rounds": [
+        {
+          "round": "round_000",
+          "steps": 2460,
+          "nonzero_steps": 807,
+          "updates": 101,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_001",
+          "steps": 2512,
+          "nonzero_steps": 852,
+          "updates": 107,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_002",
+          "steps": 2456,
+          "nonzero_steps": 754,
+          "updates": 95,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_003",
+          "steps": 2709,
+          "nonzero_steps": 852,
+          "updates": 107,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_004",
+          "steps": 2430,
+          "nonzero_steps": 536,
+          "updates": 67,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_005",
+          "steps": 2406,
+          "nonzero_steps": 1009,
+          "updates": 127,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_006",
+          "steps": 2613,
+          "nonzero_steps": 1213,
+          "updates": 152,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_007",
+          "steps": 2566,
+          "nonzero_steps": 648,
+          "updates": 81,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_008",
+          "steps": 2233,
+          "nonzero_steps": 679,
+          "updates": 85,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_009",
+          "steps": 2558,
+          "nonzero_steps": 452,
+          "updates": 57,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_010",
+          "steps": 2623,
+          "nonzero_steps": 545,
+          "updates": 69,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_011",
+          "steps": 2719,
+          "nonzero_steps": 877,
+          "updates": 110,
+          "aux_samples": 0,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        }
+      ],
+      "steps": 30285,
+      "nonzero_steps": 9224,
+      "updates": 1158
+    },
+    "fixed": {
+      "rounds": [
+        {
+          "round": "round_000",
+          "steps": 2481,
+          "nonzero_steps": 959,
+          "updates": 120,
+          "aux_samples": 256,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_001",
+          "steps": 2417,
+          "nonzero_steps": 1061,
+          "updates": 133,
+          "aux_samples": 224,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_002",
+          "steps": 2560,
+          "nonzero_steps": 844,
+          "updates": 106,
+          "aux_samples": 288,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_003",
+          "steps": 2559,
+          "nonzero_steps": 866,
+          "updates": 109,
+          "aux_samples": 288,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_004",
+          "steps": 2306,
+          "nonzero_steps": 1088,
+          "updates": 136,
+          "aux_samples": 192,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_005",
+          "steps": 2242,
+          "nonzero_steps": 728,
+          "updates": 91,
+          "aux_samples": 192,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_006",
+          "steps": 2666,
+          "nonzero_steps": 1132,
+          "updates": 142,
+          "aux_samples": 256,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_007",
+          "steps": 2454,
+          "nonzero_steps": 1084,
+          "updates": 136,
+          "aux_samples": 224,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_008",
+          "steps": 2338,
+          "nonzero_steps": 1022,
+          "updates": 128,
+          "aux_samples": 224,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_009",
+          "steps": 2697,
+          "nonzero_steps": 951,
+          "updates": 119,
+          "aux_samples": 320,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_010",
+          "steps": 2433,
+          "nonzero_steps": 1158,
+          "updates": 145,
+          "aux_samples": 192,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        },
+        {
+          "round": "round_011",
+          "steps": 2680,
+          "nonzero_steps": 915,
+          "updates": 115,
+          "aux_samples": 288,
+          "gate": {
+            "passed": false,
+            "reason": "no_learned_credit"
+          }
+        }
+      ],
+      "steps": 29833,
+      "nonzero_steps": 11808,
+      "updates": 1480
+    },
+    "ctha": {
+      "rounds": [
+        {
+          "round": "round_000",
+          "steps": 2439,
+          "nonzero_steps": 983,
+          "updates": 123,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 7,
+            "total_pairs": 21,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_001",
+          "steps": 2299,
+          "nonzero_steps": 739,
+          "updates": 93,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 13,
+            "total_pairs": 42,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_002",
+          "steps": 2603,
+          "nonzero_steps": 581,
+          "updates": 73,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 17,
+            "total_pairs": 57,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_003",
+          "steps": 2552,
+          "nonzero_steps": 600,
+          "updates": 75,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 21,
+            "total_pairs": 69,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_004",
+          "steps": 2435,
+          "nonzero_steps": 520,
+          "updates": 65,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 25,
+            "total_pairs": 81,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_005",
+          "steps": 2342,
+          "nonzero_steps": 1051,
+          "updates": 132,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 32,
+            "total_pairs": 104,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_006",
+          "steps": 2795,
+          "nonzero_steps": 1102,
+          "updates": 138,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 39,
+            "total_pairs": 127,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_007",
+          "steps": 2447,
+          "nonzero_steps": 491,
+          "updates": 62,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 42,
+            "total_pairs": 138,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_008",
+          "steps": 2288,
+          "nonzero_steps": 698,
+          "updates": 88,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 46,
+            "total_pairs": 152,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_009",
+          "steps": 2536,
+          "nonzero_steps": 791,
+          "updates": 99,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 44,
+            "total_pairs": 149,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_010",
+          "steps": 2830,
+          "nonzero_steps": 808,
+          "updates": 101,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 43,
+            "total_pairs": 145,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_011",
+          "steps": 2793,
+          "nonzero_steps": 1041,
+          "updates": 131,
+          "aux_samples": 0,
+          "gate": {
+            "family": "habit",
+            "total_mixed_groups": 45,
+            "total_pairs": 151,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        }
+      ],
+      "steps": 30359,
+      "nonzero_steps": 9405,
+      "updates": 1180
+    },
+    "progress": {
+      "rounds": [
+        {
+          "round": "round_000",
+          "steps": 2369,
+          "nonzero_steps": 1309,
+          "updates": 164,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 8,
+            "total_pairs": 27,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_001",
+          "steps": 2356,
+          "nonzero_steps": 1263,
+          "updates": 158,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 18,
+            "total_pairs": 58,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_002",
+          "steps": 2694,
+          "nonzero_steps": 964,
+          "updates": 121,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 24,
+            "total_pairs": 79,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_003",
+          "steps": 2528,
+          "nonzero_steps": 545,
+          "updates": 69,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 28,
+            "total_pairs": 91,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_004",
+          "steps": 2360,
+          "nonzero_steps": 748,
+          "updates": 94,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 33,
+            "total_pairs": 108,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_005",
+          "steps": 2302,
+          "nonzero_steps": 480,
+          "updates": 60,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 37,
+            "total_pairs": 121,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_006",
+          "steps": 2684,
+          "nonzero_steps": 882,
+          "updates": 111,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 43,
+            "total_pairs": 141,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_007",
+          "steps": 2526,
+          "nonzero_steps": 523,
+          "updates": 66,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 46,
+            "total_pairs": 152,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_008",
+          "steps": 2272,
+          "nonzero_steps": 787,
+          "updates": 99,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 52,
+            "total_pairs": 171,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_009",
+          "steps": 2657,
+          "nonzero_steps": 594,
+          "updates": 75,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 48,
+            "total_pairs": 156,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_010",
+          "steps": 2659,
+          "nonzero_steps": 570,
+          "updates": 72,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 42,
+            "total_pairs": 141,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        },
+        {
+          "round": "round_011",
+          "steps": 2702,
+          "nonzero_steps": 873,
+          "updates": 110,
+          "aux_samples": 0,
+          "gate": {
+            "family": "progress",
+            "total_mixed_groups": 42,
+            "total_pairs": 139,
+            "heldout_types": [
+              "look_at_obj_in_light",
+              "pick_and_place_simple",
+              "pick_clean_then_place_in_recep",
+              "pick_cool_then_place_in_recep",
+              "pick_heat_then_place_in_recep",
+              "pick_two_obj_and_place"
+            ],
+            "n_types": 6,
+            "permutations": 12,
+            "bootstraps": 300,
+            "min_pairs": 200,
+            "min_mixed": 20,
+            "passed": false,
+            "reason": "warmup_or_insufficient_task_types",
+            "accuracy": null,
+            "null_accuracy": null,
+            "delta": null,
+            "ci95": null
+          }
+        }
+      ],
+      "steps": 30109,
+      "nonzero_steps": 9538,
+      "updates": 1199
+    }
+  },
+  "same_base_first_round_vs_grpo": {
+    "gigpo": {
+      "episodes": 64,
+      "different_first_reply": 29,
+      "different_first_action": 8,
+      "different_final_outcome": 13
+    },
+    "fixed": {
+      "episodes": 64,
+      "different_first_reply": 3,
+      "different_first_action": 1,
+      "different_final_outcome": 8
+    },
+    "ctha": {
+      "episodes": 64,
+      "different_first_reply": 29,
+      "different_first_action": 5,
+      "different_final_outcome": 14
+    },
+    "progress": {
+      "episodes": 64,
+      "different_first_reply": 2,
+      "different_first_action": 1,
+      "different_final_outcome": 16
+    }
+  },
+  "tune_task_types": {
+    "pick_heat_then_place_in_recep": 6,
+    "look_at_obj_in_light": 7,
+    "pick_cool_then_place_in_recep": 7,
+    "pick_two_obj_and_place": 6,
+    "pick_and_place_simple": 7,
+    "pick_clean_then_place_in_recep": 7
+  },
+  "source_sha256": {
+    "train.py": "41bed74424ef77ceaf2f6ca952f8d4693fb396ca6bd2e71f9d0845818962e95b",
+    "run.py": "7a325b5a0c0865c24ce3ad91b1b95ffcb094e7de645749ca6bdb65dcbdfd9e99",
+    "rollout.py": "1302a69a7d8d087d33d571ca7527c1bb8c399100dcea0105df709ee1038a81f1",
+    "prepare.py": "e8182e644ecd20ae16539653350f4cc3d5e4f93d72ba65015819fa5eec9c50ca",
+    "habits_v2.py": "85229602c120facb73ddb1fe395d34e03056b4dbbb10f035a4bd9bc18cf16a34"
+  },
+  "limits": [
+    "No new GPU forward or model update was performed.",
+    "No unique cause of flat learning is established.",
+    "Recomputed HF old logprobs are not directly checked against actual vLLM sampling logprobs, which were not recorded."
+  ]
+}

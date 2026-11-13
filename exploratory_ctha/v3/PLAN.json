@@ -1,0 +1,16 @@
+{
+  "version": "ctha-v3-engineering-validation-20261113",
+  "scope": "Repair and bounded learning validation, not a new full P1 or P2",
+  "old_results_immutable": true,
+  "shutdown": "Previous shutdown controller cancelled for this new active task; no automatic shutdown during validation",
+  "correction": "The old CTHA window had at most 46 mixed groups and 152 actual pairs; Progress 52 groups and 171 pairs. The design was not mathematically impossible for every possible rollout, but failed to activate on all actual rounds.",
+  "gate": {"min_mixed":20,"min_pairs":200,"permutations":12,"bootstraps":300,"min_delta":0.0,"sign_fraction":0.75},
+  "cold_start": "P0 frozen train-only trajectories, namespaced iteration IDs, leave-task-type-out predictions. Prior P0 gate success is known and cannot be called new independent evidence. Report current-policy gate separately.",
+  "optimizer": {"lr":0.00001,"accum":64,"epochs":1,"clip":0.2,"grad_clip":1.0,"kl_coef":0.01,"persistent_state":true,"reference":"frozen original base via adapter disabling","batch_population":"all response steps including zero advantage; same denominator and optimizer schedule"},
+  "parity_gate": {"mean_absolute_sampled_logprob_error_max":0.01,"p99_absolute_sampled_logprob_error_max":0.05,"max_absolute_sampled_logprob_error_max":0.25},
+  "stability": {"sampled_behavior_k3_stop":0.02,"clip_fraction_stop":0.3,"finite_required":true,"adaptive_thresholds":false},
+  "stages": ["CPU regression and offline gate feasibility", "same frozen base repeated generation with exact prompts/seeds and stored processed sampling logprobs", "HF vs vLLM logprob parity", "bounded positive/negative update direction on actual saved samples", "step-zero tune evaluation on all 40 games x 2 fixed seeds", "four rounds each of GRPO and GiGPO style on fixed first 16 train games x 4 reps, shared initial rollout", "evaluate training-task learning and paired tune change; no enlargement if not demonstrated"],
+  "engineering_direction_probe": {"responses":8,"balanced_positive_negative":true,"steps":4,"must_improve_signed_full_response_logprob":true,"action_span_report_separately":true,"not_a_policy_success_claim":true},
+  "pilot": {"rounds":4,"tasks":16,"reps":4,"eval_every":2,"eval_games":40,"eval_reps":2,"train_games_repeated_intentionally_for_learning_check":true,"not_formal_generalization_comparison":true},
+  "success_interpretation": "Engineering gates do not establish generalization. Report fixed-seed train success changes and game-cluster bootstrap CIs on tune. No declaration of algorithmic benefit without a positive paired lower 95% bound. A failed check is retained and stops downstream work. Repairs require a new version/output namespace, never relaxed gates or overwritten outputs."
+}
