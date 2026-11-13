@@ -1,0 +1,10 @@
+{
+  "run": "verl_agent_gigpo_smoke_r4",
+  "status": "FAIL_BEFORE_ROLLOUT",
+  "optimizer_updates": 0,
+  "ray_cuda_mapping": "FIXED: observed GPU processes231046/231239 on distinct UUIDs; FSDP initialization passed",
+  "error": "Triton/Inductor compile failed: Python.h missing from /usr/include/python3.12",
+  "repair": "Installed python3.12-dev/libpython3.12-dev3.12.3-1ubuntu0.17 and required zlib/expat headers; no Python3.11 or prior Conda packages changed",
+  "cleanup": "Failed Ray worker processes released both GPUs; old custom controller remains paused",
+  "retest": "r5 with new registered source/header fingerprint; kernel runtime preflight required"
+}

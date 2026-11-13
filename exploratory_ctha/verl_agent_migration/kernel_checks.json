@@ -1,0 +1,14 @@
+[
+  {
+    "gpu": "b611310b-130b-dc7a-580e-de5869ece3e7",
+    "triton_inductor": true,
+    "flash_attention": true,
+    "flash_max_abs_error": 0.006001710891723633
+  },
+  {
+    "gpu": "de4c1820-8c98-2448-4687-ae7c5bd4037a",
+    "triton_inductor": true,
+    "flash_attention": true,
+    "flash_max_abs_error": 0.006001710891723633
+  }
+]

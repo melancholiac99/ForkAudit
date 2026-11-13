@@ -93,6 +93,7 @@ def main():
                    upstream='20bd331bdbc9026a5668e11362178e10ab7400c8', settings=settings)
     payload['source_sha256'] = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
         for p in [*sorted(HERE.glob('*.py')), HERE / 'PLAN.json', ROOT / 'env/requirements-verl-agent.txt', ROOT / 'env/verl_agent.sh']}
+    payload['python_development_header_sha256'] = hashlib.sha256(Path('/usr/include/python3.12/Python.h').read_bytes()).hexdigest()
     fingerprint = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
     payload['configuration_sha256'] = fingerprint
     (output / 'registration.json').write_text(json.dumps(payload, indent=2) + '\n')
