@@ -1,0 +1,72 @@
+{
+  "optimizer": {
+    "lr": 1e-05,
+    "accum": 64,
+    "epochs": 1,
+    "clip": 0.2,
+    "grad_clip": 1.0,
+    "kl_coef": 0.01,
+    "persistent_state": true,
+    "reference": "frozen original base via adapter disabling",
+    "batch_population": "all response steps including zero advantage; same denominator and optimizer schedule"
+  },
+  "parity_gate": {
+    "mean_absolute_sampled_logprob_error_max": 0.01,
+    "p99_absolute_sampled_logprob_error_max": 0.05,
+    "max_absolute_sampled_logprob_error_max": 0.25
+  },
+  "stability": {
+    "sampled_behavior_k3_stop": 0.02,
+    "clip_fraction_stop": 0.3,
+    "finite_required": true,
+    "adaptive_thresholds": false
+  },
+  "version": "a100-full-response-r3-20261113",
+  "authorization": "User explicitly preserves full-response PPO loss and makes action-span direction non-blocking under a NEW acceptance protocol. R2 remains FAIL.",
+  "parent": "exploratory_ctha/a100_validation/PLAN.json",
+  "r2_status": "FAIL; immutable",
+  "sample_selection": "Original first four positive and first four negative mappable responses, unchanged. No NLL eligibility threshold; prior repair proposal superseded without execution.",
+  "direction_gate": {
+    "full_response": "positive mean >0 and negative mean <0 required",
+    "action_span": "report mean, per-response values and sign flags; NEVER blocks this new protocol",
+    "loss_mask": "all response tokens, unchanged"
+  },
+  "engineering": {
+    "responses": 8,
+    "optimizer_steps": 4,
+    "reuse": "Hash-verified R2 frozen-base A100 trajectories and repeat/cross-batch evidence; no old 6000D behavioral data. New probe output and checkpoint; no R2 reclassification.",
+    "checkpoint": "Live-state/disk equality plus actual CPU restore and fixed-gradient next-step equality; not an online second round.",
+    "updated_parity": "Unmerged PEFT vs FP32 merged vLLM and HF merged-vs-unmerged checked with original gates."
+  },
+  "pilot": {
+    "arms": [
+      "grpo",
+      "gigpo"
+    ],
+    "rounds": 4,
+    "tasks": 16,
+    "reps": 4,
+    "max_steps": 50,
+    "seed": 0,
+    "fixed_tasks": true,
+    "task_source": "Exactly R2 train_games.json; held fixed for all four rounds.",
+    "initialization": "Fresh original base per arm, never engineering probe adapter.",
+    "round_zero_cache": "May share exactly registered same-config original-base R2 rollout cache; explicitly hash-verified.",
+    "evaluation": "Same 16 TRAIN tasks x4 held-fixed eval namespace seeds; baseline and final per arm. No Tune, valid_seen or valid_unseen.",
+    "primary": "Paired per-game final minus base fixed-eval success; report 95% game-cluster bootstrap CI using seed20261113,10000 draws. Confirmed basic learning only if delta>0 and lower CI>0; otherwise not demonstrated. No hyperparameter/round extensions based on outcome.",
+    "ctha": false,
+    "p0": false,
+    "reward": "Unchanged terminal binary success. GRPO standardized task returns; GiGPO-style exact-observation anchor mean-normalized episode+local returns.",
+    "logical_batch": "All response steps including zero advantage; accum64, one epoch unchanged.",
+    "limits": "One training seed; training-task learning only, no generalization/algorithm superiority claim."
+  },
+  "gpu_plan": "Two independent single-GPU arms, no DDP/TP. Serialize host full-model loads/merges. Engineering dependencies must pass first.",
+  "publication": "credit-grok only; weights/optimizer stay local with SHA256. Publish new protocol before learning updates.",
+  "shutdown": "No shutdown during this active task. User now prioritizes basic RL before CTHA; earlier five-arm P1 authorization is superseded.",
+  "states": {
+    "Engineering": "PASS/FAIL/INCOMPLETE under this new protocol only",
+    "Learning": "NOT_RUN/DEMONSTRATED/NOT_DEMONSTRATED/INCOMPLETE",
+    "Generalization": "NOT_RUN",
+    "CTHA_online_efficacy": "NOT_TESTED"
+  }
+}

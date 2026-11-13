@@ -2,8 +2,10 @@ import hashlib,json,os,pathlib,sys
 HERE=pathlib.Path(__file__).resolve().parent
 PARENT=HERE.parent
 ROOT=PARENT.parent
-MODEL=pathlib.Path('/root/autodl-tmp/models/Qwen2.5-7B-Instruct')
+MODEL=pathlib.Path(os.environ.get('M0_MODEL','/root/autodl-tmp/models/Qwen2.5-7B-Instruct'))
 DATA=pathlib.Path(os.environ.get('CTHA_RUN_ROOT','/root/autodl-tmp/ctha_v3_20261113_r2'))
+P0_ROOT=pathlib.Path(os.environ.get('CTHA_P0_ROOT','/root/autodl-tmp/ctha_v2/p0_base'))
+LEGACY_ROUND=pathlib.Path(os.environ.get('CTHA_LEGACY_ROUND','/root/autodl-tmp/ctha_v2_tokenfix/ctha_s0/round_000/rollouts'))
 sys.path.insert(0,str(PARENT))
 def load(p):return json.loads(pathlib.Path(p).read_text())
 def sha(p):

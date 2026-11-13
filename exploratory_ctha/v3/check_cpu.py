@@ -1,5 +1,6 @@
 """Regression checks and train-only cold-start feasibility, no GPU execution."""
-import collections,contextlib,json,math,subprocess,tempfile
+import argparse,collections,contextlib,json,math,subprocess,tempfile
+from pathlib import Path
 from unittest.mock import patch
 from pathlib import Path
 import torch,numpy as np
@@ -38,15 +39,22 @@ def checks():
  return {'action_tags_and_fail_closed_mask':True,'batch_population_retained':True,'zero_rows_denominator':True,'optimizer_resume_exact':True,'surrogate_direction_clipping':True,'reference_penalty_zero_at_reference':True}
 
 if __name__=='__main__':
- from pathlib import Path
- DATA.mkdir(exist_ok=True)
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--synthetic-only',action='store_true',help='Only engineering regressions; never writes cpu_validation.json or authorizes the GPU queue')
+ args=parser.parse_args()
+ DATA.mkdir(parents=True,exist_ok=True)
+ if args.synthetic_only:
+  result={'checks':checks(),'scope':'Synthetic engineering checks only; cold-start feasibility NOT validated','source_sha':source_hashes()}
+  save(DATA/'synthetic_cpu.json',result);print(json.dumps(result,indent=2));raise SystemExit(0)
+ if not P0_ROOT.is_dir() or not LEGACY_ROUND.is_dir():
+  raise FileNotFoundError(f'Import original raw trajectories first: CTHA_P0_ROOT={P0_ROOT}, CTHA_LEGACY_ROUND={LEGACY_ROUND}')
  results=checks();pool=[]
- for i,d in enumerate(sorted(Path('/root/autodl-tmp/ctha_v2/p0_base').glob('round_*'))):
+ for i,d in enumerate(sorted(P0_ROOT.glob('round_*'))):
   pool+=load_episodes(d/'rollouts',-1000+i)
  train_games={x['game_file'] for x in load(ROOT/'exploratory_E4/games.json')['train']}
  assert len(pool)==768 and all(e['game_file'] in train_games and e['provenance']['adapter_sha256'] is None for e in pool)
  gate=oof_audit(pool,family='habit',min_mixed=20,min_pairs=200,permutations=12,bootstraps=300)
- cur=load_episodes(Path('/root/autodl-tmp/ctha_v2_tokenfix/ctha_s0/round_000/rollouts'),0)
+ cur=load_episodes(LEGACY_ROUND,0)
  rows,report=make_batch(cur,pool,mode='ctha',base='gigpo',family='habit',min_mixed=20,min_pairs=200,permutations=12,bootstraps=300,feature_window=8,train_horizon=0,aux_horizon=8,sign_fraction=.75)
  p=subprocess.run([sys.executable,'-m','unittest','discover','-s',str(PARENT),'-p','test_ctha*.py','-q'],cwd=ROOT,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
  (DATA/'legacy_tests.log').write_text(p.stdout);assert p.returncode==0

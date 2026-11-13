@@ -1,0 +1,12 @@
+# Match the recorded CTHA P1 environment; full resolved versions are frozen locally.
+vllm==0.32.0
+torch==2.13.0
+transformers==5.19.0
+peft==0.21.2
+numpy==2.3.5
+alfworld==0.4.2
+textworld==1.7.0
+scipy
+scikit-learn
+pandas
+pyarrow

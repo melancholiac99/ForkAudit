@@ -12,7 +12,7 @@ def prepare(folder,out,base='grpo',mode='grpo',cold_start=False,history=()):
  current=load_episodes(folder,iteration);validate_train(current,iteration)
  pool=[];pool_sources={}
  if cold_start:
-  for i,d in enumerate(sorted(Path('/root/autodl-tmp/ctha_v2/p0_base').glob('round_*'))):
+  for i,d in enumerate(sorted(P0_ROOT.glob('round_*'))):
    episodes=load_episodes(d/'rollouts',-1000+i)
    assert all(e['provenance']['split']=='train' and e['provenance']['adapter_sha256'] is None for e in episodes)
    pool.extend(episodes)

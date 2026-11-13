@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 from util import *
 from run import select_games
-PYTHON='/root/miniconda3/envs/m0/bin/python'
+PYTHON=sys.executable
 
 def state(stage,**kw):save(DATA/'status.json',dict(stage=stage,pid=os.getpid(),time=time.time(),**kw));print(stage,kw,flush=True)
 def notify(msg):
@@ -60,7 +60,7 @@ def main():
    cpu=load(DATA/'cpu_validation.json');assert cpu['cold_start_gate']['passed']
    assert cpu['source_sha']==source_hashes(),'CPU checks must cover current frozen sources'
    if (DATA/'registration.json').exists():raise RuntimeError('Queue already registered; no duplicate restart')
-   immutable(DATA/'registration.json',dict(source_sha=source_hashes(),plan=load(HERE/'PLAN.json'),time=time.time(),environment={k:os.getenv(k) for k in ['CUDA_VISIBLE_DEVICES','VLLM_BATCH_INVARIANT','CUBLAS_WORKSPACE_CONFIG','OMP_NUM_THREADS','CTHA_REPEAT_REUSE_ROOT','CTHA_INITIAL_REUSE_ROOT']},gpu=subprocess.check_output(['nvidia-smi','--query-gpu=uuid,name,driver_version','--format=csv,noheader'],text=True)))
+   immutable(DATA/'registration.json',dict(source_sha=source_hashes(),plan=load(HERE/'PLAN.json'),time=time.time(),environment={k:os.getenv(k) for k in ['CUDA_VISIBLE_DEVICES','VLLM_BATCH_INVARIANT','CUBLAS_WORKSPACE_CONFIG','OMP_NUM_THREADS','CTHA_REPEAT_REUSE_ROOT','CTHA_INITIAL_REUSE_ROOT','M0_MODEL','ALFWORLD_DATA','CTHA_P0_ROOT','CTHA_LEGACY_ROUND','CTHA_RUN_ROOT']},gpu=subprocess.check_output(['nvidia-smi','--query-gpu=uuid,name,driver_version','--format=csv,noheader'],text=True)))
    g=load(ROOT/'exploratory_E4/games.json');selected=select_games(g['train'],0,0,16)
    save(DATA/'train_games.json',selected);save(DATA/'repeat_games.json',selected[:4]);save(DATA/'tune_games.json',g['tune'])
    reuse=os.environ.get('CTHA_REPEAT_REUSE_ROOT')

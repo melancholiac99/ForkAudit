@@ -1,0 +1,20 @@
+# Source from bash: source env/a100.sh
+FORKAUDIT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+export PATH="$FORKAUDIT_ROOT/.runtime/conda/bin:$PATH"
+export M0_MODEL="${M0_MODEL:-$FORKAUDIT_ROOT/.runtime/models/Qwen2.5-7B-Instruct}"
+export ALFWORLD_DATA="${ALFWORLD_DATA:-$FORKAUDIT_ROOT/.runtime/alfworld}"
+export HF_HOME="${HF_HOME:-$FORKAUDIT_ROOT/.runtime/cache/huggingface}"
+export VLLM_CACHE_ROOT="${VLLM_CACHE_ROOT:-$FORKAUDIT_ROOT/.runtime/cache/vllm}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$FORKAUDIT_ROOT/.runtime/cache}"
+export TORCH_HOME="${TORCH_HOME:-$FORKAUDIT_ROOT/.runtime/cache/torch}"
+export TORCH_EXTENSIONS_DIR="${TORCH_EXTENSIONS_DIR:-$FORKAUDIT_ROOT/.runtime/cache/torch-extensions}"
+export TORCHINDUCTOR_CACHE_DIR="${TORCHINDUCTOR_CACHE_DIR:-$FORKAUDIT_ROOT/.runtime/cache/inductor}"
+export TRITON_CACHE_DIR="${TRITON_CACHE_DIR:-$FORKAUDIT_ROOT/.runtime/cache/triton}"
+export NUMBA_CACHE_DIR="${NUMBA_CACHE_DIR:-$FORKAUDIT_ROOT/.runtime/cache/numba}"
+export CTHA_P0_ROOT="${CTHA_P0_ROOT:-$FORKAUDIT_ROOT/.runtime/imports/p0_base}"
+export CTHA_LEGACY_ROUND="${CTHA_LEGACY_ROUND:-$FORKAUDIT_ROOT/.runtime/imports/ctha_s0/round_000/rollouts}"
+export CTHA_RUN_ROOT="${CTHA_RUN_ROOT:-$FORKAUDIT_ROOT/.runtime/runs/ctha_v3_a100_r1}"
+export OMP_NUM_THREADS=8
+export TOKENIZERS_PARALLELISM=false
+export VLLM_BATCH_INVARIANT=1
+export CUBLAS_WORKSPACE_CONFIG=:4096:8

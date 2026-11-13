@@ -1,0 +1,35 @@
+{
+  "version": "ctha-a100-engineering-20261113-r2",
+  "upstream": "51aaa3e89cb048f9643fa29e6ec648db5f5ca2ba",
+  "scope": "A100 engineering acceptance only; user explicitly authorized publication to credit-grok and poweroff after verification and upload",
+  "legacy_implementations": "v3_fp32_fast and v3_engineering_fast_20261113 remain byte-identical to upstream; a separate launcher supplies local paths and records every override",
+  "revision_history": "r1 retained rejected BF16 numeric evidence and the W&B duplicate-field export error. r2 repairs table export, records selected-device memory, and uses new candidate/output fingerprints; original numeric gates and objectives unchanged.",
+  "kernel_invariants": {"matrix_k_tile": 32, "triton_f32_default": "tf32x3", "torch_tf32": false, "hf_autocast": false},
+  "reference_prompts": {
+    "source": "Verified E4 archived train/base episodes; first four r0 files in archive order, turns 1,5,10,20 clipped to the episode length",
+    "use": "Prompt text only for numeric/performance comparison. Old responses, logprobs, rewards and advantages are never used as new A100 training data.",
+    "requests": 16,
+    "seed_base": 20261113,
+    "max_tokens": 512,
+    "warmup_batches": 1,
+    "timed_batches": 1
+  },
+  "candidates": [
+    {"name": "bf16", "dtype": "bfloat16", "worker": "native", "max_num_seqs": 64, "gpu_memory_utilization": 0.70},
+    {"name": "fp32_native", "dtype": "float32", "worker": "native", "max_num_seqs": 64, "gpu_memory_utilization": 0.70},
+    {"name": "fp32_small_stage1", "dtype": "float32", "worker": "a100", "stages": 1, "small_m": 16, "large_m": 32, "warps": 4, "max_num_seqs": 64, "gpu_memory_utilization": 0.70},
+    {"name": "fp32_a100_stage2", "dtype": "float32", "worker": "a100", "stages": 2, "small_m": 32, "large_m": 64, "warps": 4, "max_num_seqs": 64, "gpu_memory_utilization": 0.70}
+  ],
+  "candidate_order": "First identical BF16 runs on both GPUs, then independent FP32 candidates. Evaluate all candidates before selection.",
+  "selection": "Highest measured generated tokens/second among candidates passing original HF/vLLM numeric gates. Freeze config and fingerprint before collecting engineering trajectories. A later failed gate requires a new revision/output directory; never mix candidate scores.",
+  "parity_gate": {"mean_absolute_sampled_logprob_error_max": 0.01, "p99_absolute_sampled_logprob_error_max": 0.05, "max_absolute_sampled_logprob_error_max": 0.25},
+  "stability": {"sampled_behavior_k3_stop": 0.02, "clip_fraction_stop": 0.30, "finite_required": true},
+  "engineering": {"repeat_tasks": 4, "repeat_reps": 2, "large_tasks": 16, "large_reps": 4, "max_steps": 50, "temperature": 0.7, "max_model_len": 6144, "probe_responses": 8, "positive_responses": 4, "negative_responses": 4, "optimizer_steps": 4},
+  "optimizer": {"lr": 0.00001, "accum": 64, "epochs": 1, "clip": 0.2, "grad_clip": 1.0, "kl_coef": 0.01, "persistent_state": true, "reference": "frozen original base via adapter disabling", "batch_population": "all response steps including zero advantage; same denominator and optimizer schedule"},
+  "cpu_cold_start": "Verify the original P0/P1 archive and re-run the unchanged original offline gate on 768 P0 train episodes plus the original CTHA round-0 episodes. Never substitute synthetic data. Raw files arrived and passed manifest verification during preparation, before final configuration freeze.",
+  "device_plan": "Independent single-GPU candidates and repeated collections. No DDP or tensor parallelism. One GPU for the four-step probe; dependent updated-policy sampling starts only after a verified checkpoint.",
+  "telemetry": "W&B project ForkAudit, engineering group. Log four optimizer steps and candidate throughput/parity tables; offline files are retained until authentication permits sync. Never log checkpoint tensors.",
+  "states": {"Engineering": "PASS / FAIL / INCOMPLETE", "Learning": "NOT_RUN", "Generalization": "NOT_RUN", "CTHA online efficacy": "NOT_TESTED"},
+  "excluded": ["Tune evaluation", "four-round GRPO/GiGPO pilots", "full P1/P2", "formal CTHA online training", "algorithmic efficacy claims"],
+  "publication": "Only credit-grok; preserve old results; retain model/optimizer binaries locally with hashes; verify remote commit and sync before authorized poweroff"
+}

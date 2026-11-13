@@ -1,0 +1,41 @@
+{
+  "status": "AWAITING_USER_CONFIRMATION",
+  "version": "ctha-a100-engineering-r3-proposed",
+  "reason": "Original first-fit action tokens are nearly saturated; original r2 strict action-direction check failed while full-response directions, numeric parity and stability passed.",
+  "protocol_code_difference": "v3_fp32_fast/PLAN.json says action_span_report_separately=true; trainer.py requires both response and action means to have the desired signs. R2 followed the stricter trainer gate and remains FAIL.",
+  "change": "Engineering diagnostic eligibility only: action mask must map and pre-update sampled mean action NLL must be >=0.01. Take first four positive and first four negative rows in original deterministic order. Do not select using post-update changes.",
+  "proposed_indices": [
+    181,
+    185,
+    406,
+    416,
+    14,
+    25,
+    34,
+    60
+  ],
+  "original_indices": [
+    150,
+    151,
+    152,
+    153,
+    0,
+    2,
+    3,
+    4
+  ],
+  "unchanged": [
+    "8 responses, four positive and four negative",
+    "4 optimizer steps",
+    "reward-derived advantages",
+    "full-response clipped PPO loss",
+    "lr=1e-5, KL=.01, gradient clip=1",
+    "original probability, stability and BOTH direction gates",
+    "frozen A100 FP32 stage-2 sampler, tasks and seeds"
+  ],
+  "reuse": "Existing verified A100 frozen-base 16x4 trajectories may be reused byte-identically; no 6000D actor tokens or old updated adapter. Record source/data hashes and a new acceptance-protocol fingerprint in a fresh r3 output directory.",
+  "limits": "Post-failure engineering protocol amendment, not a blind replication. Retain r2 failure. One preregistered diagnostic retry only; no changing the floor or trying many subsets after seeing the new update outcome. A nonsaturated action is not guaranteed to improve under a shared-parameter full-response objective.",
+  "p1_gate": "No P1 until independent Engineering PASS under the explicitly approved revision.",
+  "prepared_samples_sha256": "534d794cfcddaffdc63c33a66ae346fdad80831de8313e979b74e1b9c5107a17",
+  "prepared_at": 1794551226.2649338
+}

@@ -1755,3 +1755,38 @@ first-action generation. Hardware/runtime failures wake the agent for best-effor
 Final shutdown waits for separate remote artifact verification of hindsight and credit-grok. Failures
 are repaired when possible; if unrecoverable preserve results/logs, sync, then shut down. Earlier
 hindsight-only shutdown permission is superseded by this combined completion condition.
+
+
+## D-066 — Isolated A100 engineering acceptance and numeric configuration selection — 2026-11-13
+
+The researcher authorized syncing `credit-grok` (baseline `51aaa3e89`), using two A100 80GB cards for engineering acceptance only, publishing necessary evidence only to `credit-grok`, and shutting down after independent verification, remote publication and sync. No Tune evaluation, four-round learning pilots, formal CTHA training, full P1/P2 or efficacy claim is authorized by this run.
+
+A separate `exploratory_ctha/a100_validation/` entry point wraps the unchanged upstream FP32 implementations. Old controllers and results are preserved. Local paths are supplied explicitly; no old process takeover or automatic legacy-controller launch occurs. Both GPUs use independent single-device processes. Versions match the recorded core stack: torch 2.13.0/cu130, vLLM 0.32.0, Triton 3.7.1.
+
+Numeric/performance selection uses sixteen fixed real prompt texts from the first four archived E4 train/base r0 episodes, turns 1/5/10/20 clipped to episode length. Old response tokens, logprobs, rewards and advantages are excluded. Every candidate generates fresh A100 responses with identical prompts and fixed seeds. Candidate directories record precision, kernel, GPU UUID, throughput, memory and the original numeric gates; the fastest passing configuration is frozen before any engineering rollout or update. All engineering trajectories are then freshly collected from the fixed sixteen training tasks under that single configuration. Candidate samples never enter training.
+
+The original P0/P1 archive arrived during preparation; both parts and all 7,467 members match the published manifest. The original 768-episode P0 and 64-episode CTHA round-zero offline check is reproduced, used only as its known feasibility check. Fresh A100 probe samples use ordinary GRPO reward contrasts, not the historical auxiliary records.
+
+BF16 gives identical responses and scores on both A100s but fails real-sample HF/vLLM gates (mean 0.02260185, P99 0.30488761, max 0.69436336); it is excluded from updates. An initial W&B table field collision affected export after numeric files had been saved. Original results/logs remain in r1; the recording fix and all subsequent candidates use r2 and new source/config fingerprints. No numerical, optimizer, stability or direction thresholds are relaxed.
+
+W&B tracks engineering-only metrics and four optimizer steps, with local JSONL/CSV and offline runs if login is unavailable. Checkpoint tensors remain local with hashes. Full result states must separately report Engineering PASS/FAIL/INCOMPLETE, Learning NOT_RUN, Generalization NOT_RUN and CTHA online efficacy NOT_TESTED. Actual AdamW next-step equality on CPU is an engineering restore test, not a second online RL round.
+
+
+## D-067 — P1 reauthorized after A100 engineering acceptance — 2026-11-13
+
+The researcher explicitly requested: “工程验收要是通过了就直接做p1训练把”. This supersedes the interim shutdown immediately after engineering. Current engineering source/configuration remains frozen and its report still describes only engineering; P1 has a separate protocol, controller and output namespace under `exploratory_ctha/a100_p1/`. Entry requires independent Engineering PASS. No engineering probe adapter is an initialization for a learning arm.
+
+Use the existing P1 scientific comparison and budget: five arms (GRPO, GiGPO-style, fixed bonus, CTHA habit, progress-only), seed 0, twelve rounds, sixteen train games and four episodes per round, full-trajectory base updates and first-eight-step auxiliary window. Retain the original feature/ridge/gate/annealing parameters. The validated v3 numerical/optimizer implementation is applied uniformly: FP32/TF32x3 sampling, FP32 HF forwards, original-base KL 0.01, persistent AdamW and 64-row accumulation. These differ from the old v2 implementation and are reported as a new run, not an exact reproduction. No P2 or valid_unseen evaluation is added.
+
+The first 64 frozen-base A100 trajectories may be shared as an explicitly verified round-zero cache across arms, since base policy, tasks, seeds and sampling configuration coincide exactly. Known original P0 episodes are used only for the cross-task auxiliary predictor, with historical and current-policy gate results separately reported; their old probabilities never enter actor updates. Tune evaluations are development measurements only, and zero auxiliary activation means CTHA was not tested.
+
+Publish the new P1 protocol and code before any new P1 updates. Two independent single-GPU arms may run concurrently, with CPU full-model loading/merge serialized for host RAM safety. TensorBoard remains active. Stop and preserve evidence on original numerical/stability gate failures rather than silently adjusting hyperparameters.
+
+
+## D-068 — New full-response acceptance and bounded baseline RL only — 2026-11-13
+
+The user explicitly authorized a NEW engineering protocol: preserve Full-response PPO and the current loss; action-span direction is a non-blocking diagnostic. R2 remains FAIL under its original strict code. No retrospective reclassification, sample selection changes or NLL floor are applied; the earlier pending eligibility proposal is superseded without execution. All original probability, finite-gradient, sampled-behavior k3 <=0.02 and clip fraction <=0.30 gates remain blocking. A new source/output namespace records the protocol difference and repeats the original eight-response four-update probe, actual LoRA/AdamW save/restore, KL and updated merge/HF/vLLM checks.
+
+After independent acceptance, run exactly four rounds EACH of GRPO and GiGPO-style, fixed original sixteen train games x four trajectories, seed0. This supersedes D-067 five-arm/twelve-round P1. Start both arms from the original base; no engineering probe adapter. The hash-verified frozen-base R2 round-zero cache may be shared because tasks, seeds, model and numerical config coincide. No P0, CTHA, fixed bonus, progress arm, Tune or unseen evaluation. Use an independent fixed eval seed namespace on the same sixteen training tasks x four trajectories at baseline/final, with seeds held constant across arms/checkpoints. Record paired game-cluster bootstrap delta/CI (10,000 draws, seed20261113). Positive delta and lower95%CI>0 supports bounded basic learning only; otherwise report not demonstrated. Never extend rounds or tune after observing results.
+
+Full-response per-token PPO + original-base KL0.01, LoRA rank16, AdamW lr1e-5, accum64, one epoch, all rows including zero advantages are unchanged. Record sampled k3 as an estimator, not exact distribution KL. Two cards run independent arms; serialize CPU full-model loads/merges due to 62GiB host RAM. CTHA introduction requires later work after basic RL evidence; it is not automatically started. Keep TensorBoard on port6006 and publish to credit-grok only; no shutdown during active checks/training.
