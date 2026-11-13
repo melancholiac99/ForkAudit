@@ -1,0 +1,61 @@
+{
+  "time": 1794560046.1925957,
+  "source_sha256": {
+    "exploratory_ctha/a100_bf16_bypass/run_validation.py": "301b6d762ad3e91667b11a109aae2f3c60d6dec63def743c30e10b4b46659ef2",
+    "exploratory_ctha/a100_bf16_bypass/trainer.py": "32096dbdaac01d6e69f07ade1f01f0f924190ec5a65a235ee773106e68bf6d03",
+    "exploratory_ctha/a100_bf16_bypass/probe.py": "6c0706861e49ba462a2f64650b8f3cd201df6b82af407bb0bf99a3fe243d23a8",
+    "exploratory_ctha/a100_bf16_bypass/bf16_precision.py": "bc3ebb1aaee0a77059014082ec1bc41bd6aa3c60d2522ead9b7ae8197acf3e6b",
+    "exploratory_ctha/a100_bf16_bypass/PLAN.json": "0636c48cd36d619985f15d41e1b3790f84b905adbee6f7b2b5b7d20cc194dbdd",
+    "exploratory_ctha/a100_full_response/trainer.py": "086b869ce4c3d3f7cf89037be7e8cd026e963b0c03a81572515095efb49cadf3",
+    "exploratory_ctha/a100_full_response/checkpoint_live.py": "78a52260afe10096bb11e64af9582a0598e2da6026166433a453610b6f756f71",
+    "exploratory_ctha/a100_full_response/direction_policy.py": "48dd3677bc56c1bac9fc7f1974d62b4be6fa5dbbe5323ce7b2c9c481610f0939",
+    "exploratory_ctha/train.py": "41bed74424ef77ceaf2f6ca952f8d4693fb396ca6bd2e71f9d0845818962e95b",
+    "exploratory_ctha/habits_v2.py": "85229602c120facb73ddb1fe395d34e03056b4dbbb10f035a4bd9bc18cf16a34",
+    "exploratory_ctha/habits.py": "861f452db07e68a15c429d25da999d5a0ff9d24722f592d1c5d3066d715dd5c1",
+    "exploratory_ctha/v3_fp32_fast/collect.py": "ca50c939617849d22165ce48af6274a37088453a26c6385931e270cd7d52a553",
+    "exploratory_ctha/v3_fp32_fast/PLAN.json": "e3b4f98c5df58bf059a2306d619c964d58bd18e7e066767ebe168224a137b34e",
+    "exploratory_ctha/v3_engineering_fast_20261113/check_checkpoint.py": "af45a44d3e48e182b995287ab408c0c7072c9bde5d30150b24e17f3a20e6bb81",
+    "scripts/common.py": "8f45b3fc35569ba210ab311a5f9d45fe85f2d3111f978e0e8f6c9eb1194cb140",
+    "scripts/alfenv.py": "d01e93b44b0ed19bc61865e012553e7e536cb9a5b8a194c218233551b4b5f244",
+    "scripts/envpool.py": "ee79c2580a0e2b38f35b6d831c2235a584c3ecccb25a13dbcc58127037046cf3"
+  },
+  "inventory": [
+    {
+      "index": "0",
+      "uuid": "GPU-b611310b-130b-dc7a-580e-de5869ece3e7",
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_mib": "81920",
+      "driver": "595.84"
+    },
+    {
+      "index": "1",
+      "uuid": "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a",
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_mib": "81920",
+      "driver": "595.84"
+    }
+  ],
+  "optimizer": {
+    "lr": 1e-05,
+    "accum": 64,
+    "epochs": 1,
+    "clip": 0.2,
+    "grad_clip": 1.0,
+    "kl_coef": 0.01,
+    "persistent_state": true,
+    "reference": "frozen original base via adapter disabling",
+    "batch_population": "all response steps including zero advantage; same denominator and optimizer schedule"
+  },
+  "packages": {
+    "torch": "2.13.0",
+    "vllm": "0.32.0",
+    "triton": "3.7.1",
+    "transformers": "5.19.0",
+    "peft": "0.21.2",
+    "alfworld": "0.4.2",
+    "textworld": "1.7.0"
+  },
+  "model_manifest_sha256": "a1a48cac9183681dec6384a3c998c0ef452668a67a52a7b82286f173f3a3aa04",
+  "selected_games_sha256": "3fbea565f6d45802f4c9ce35be2da22fcf7ab3656671268210fab1543258bf05",
+  "probe": "Eight real balanced advantage responses, four updates, original gates; no learning arm"
+}
