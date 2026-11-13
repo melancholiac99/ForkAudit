@@ -1,0 +1,80 @@
+{
+  "optimizer": {
+    "lr": 1e-05,
+    "accum": 64,
+    "epochs": 1,
+    "clip": 0.2,
+    "grad_clip": 1.0,
+    "kl_coef": 0.01,
+    "persistent_state": true,
+    "reference": "frozen original base via adapter disabling",
+    "batch_population": "all response steps including zero advantage; same denominator and optimizer schedule"
+  },
+  "parity_gate": {
+    "mean_absolute_sampled_logprob_error_max": 0.01,
+    "p99_absolute_sampled_logprob_error_max": 0.05,
+    "max_absolute_sampled_logprob_error_max": 0.25
+  },
+  "stability": {
+    "sampled_behavior_k3_stop": 0.02,
+    "clip_fraction_stop": 0.3,
+    "finite_required": true,
+    "adaptive_thresholds": false
+  },
+  "version": "a100-small-baseline-r1-20261113",
+  "authorization": "User explicitly approved four fixed tasks x four trajectories, two arms x four rounds after cost pause.",
+  "parent": "exploratory_ctha/a100_validation/PLAN.json",
+  "r2_status": "FAIL; immutable",
+  "sample_selection": "Original first four positive and first four negative mappable responses, unchanged. No NLL eligibility threshold; prior repair proposal superseded without execution.",
+  "direction_gate": {
+    "full_response": "positive mean >0 and negative mean <0 required",
+    "action_span": "report mean, per-response values and sign flags; NEVER blocks this new protocol",
+    "loss_mask": "all response tokens, unchanged"
+  },
+  "engineering": {
+    "responses": 8,
+    "optimizer_steps": 4,
+    "reuse": "Hash-verified R2 frozen-base A100 trajectories and repeat/cross-batch evidence; no old 6000D behavioral data. New probe output and checkpoint; no R2 reclassification.",
+    "checkpoint": "Live-state/disk equality plus actual CPU restore and fixed-gradient next-step equality; not an online second round.",
+    "updated_parity": "Unmerged PEFT vs FP32 merged vLLM and HF merged-vs-unmerged checked with original gates."
+  },
+  "pilot": {
+    "arms": [
+      "grpo",
+      "gigpo"
+    ],
+    "rounds": 4,
+    "tasks": 4,
+    "reps": 4,
+    "max_steps": 50,
+    "seed": 0,
+    "fixed_tasks": true,
+    "task_source": "Original three mixed-success base-cache tasks plus an all-success control, selected on original-base outcomes; enriched diagnostic only.",
+    "initialization": "Fresh original base per arm, never engineering probe adapter.",
+    "round_zero_cache": "Exact byte-preserved four-task subset of registered A100 original-base cache. Derive summary explicitly; retain original provenance and hashes.",
+    "evaluation": "Same four TRAIN tasks x4 fixed eval-namespace seeds, original-base and final. Reuse the exact subset of completed base eval; no new base sampling.",
+    "primary": "Per-game paired final minus base; 10000 bootstrap draws seed20261113, only four selected clusters. Descriptive diagnostic; no generalization/superiority claim.",
+    "ctha": false,
+    "p0": false,
+    "reward": "Unchanged terminal binary success. GRPO standardized task returns; GiGPO-style exact-observation anchor mean-normalized episode+local returns.",
+    "logical_batch": "All response rows of the newly approved four-task population, including zero advantage, accum64 and one epoch unchanged.",
+    "limits": "One training seed; training-task learning only, no generalization/algorithm superiority claim.",
+    "task_seeds": [
+      1004,
+      1028,
+      1150,
+      1065
+    ]
+  },
+  "gpu_plan": "GRPO GPU0, GiGPO GPU1, independent single-card processes. No additional cards or DDP.",
+  "publication": "credit-grok only; weights/optimizer stay local with SHA256. Publish new protocol before learning updates.",
+  "shutdown": "No automatic shutdown. Stop after four rounds or a numerical/stability failure; no extension and no CTHA start.",
+  "states": {
+    "Engineering": "PASS/FAIL/INCOMPLETE under this new protocol only",
+    "Learning": "NOT_RUN/DEMONSTRATED/NOT_DEMONSTRATED/INCOMPLETE",
+    "Generalization": "NOT_RUN",
+    "CTHA_online_efficacy": "NOT_TESTED"
+  },
+  "supersedes": "16-task pilot stopped during reference scoring, zero optimizer updates. Prior engineering evidence retained.",
+  "cost_scope": "User approved reduced task budget; no new hardware purchase. Hourly rate is unknown; do not invent monetary estimates."
+}
