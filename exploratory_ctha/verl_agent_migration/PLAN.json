@@ -1,5 +1,5 @@
 {
-  "version": "verl-agent-migration-r7-20261113",
+  "version": "verl-agent-migration-r8-20261113",
   "upstream": {
     "repo": "langfengQ/verl-agent",
     "commit": "20bd331bdbc9026a5668e11362178e10ab7400c8",
@@ -36,7 +36,8 @@
     "official_script_train_groups": 16,
     "official_script_epochs": 150,
     "paper_reproduction": false,
-    "update_unit": "outer rollout/update iteration; report internal AdamW minibatch steps separately"
+    "update_unit": "outer rollout/update iteration; report internal AdamW minibatch steps separately",
+    "first_smoke_evaluation": "Not run: engineering smoke only; training-task SR logged from real16 rollout trajectories. Four-iteration baseline evaluation unchanged."
   },
   "native_parameters": {
     "model": "Original Qwen2.5-7B-Instruct; no old LoRA checkpoint",
@@ -67,7 +68,7 @@
     "topology": "PHB, no NVLink shown; benchmark rather than assume speedup",
     "no_added_cards": true,
     "attention_backend": "FLASH_ATTN; explicit revision after r5 XFORMERS/FlashAttention version check failure",
-    "weight_transfer": "Native safetensors preload plus layered LoRA summon; avoids initial two full host base copies"
+    "weight_transfer": "Native safetensors preload plus non-layered LoRA gather; retain FP32 base master/BF16 computation, avoid full base CPU sync and r7 per-layer cache flushes"
   },
   "stages": [
     "Resolve/install isolated upstream-compatible dependencies",

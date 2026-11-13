@@ -27,6 +27,10 @@ On this 62 GiB host, r6's initial full-base synchronization exceeded Ray's
 host-memory limit. The r7 configuration uses the native `load_format=safetensors`
 and `layered_summon=True` options: vLLM loads the identical frozen base directly,
 then only LoRA tensors are synchronized. No Ray memory guard is disabled.
+R7's first layered gather proved too expensive and was stopped before rollout.
+R8 retains direct safetensors loading but uses native non-layered LoRA gather.
+Its one-iteration engineering smoke omits before/final evaluation; the four-round
+baseline still evaluates the four fixed training tasks before/final.
 
 ## Bounded execution
 
