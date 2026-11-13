@@ -1,0 +1,30 @@
+test_all_failed_without_success_signal_learns_nothing (test_ctha.HabitTests.test_all_failed_without_success_signal_learns_nothing) ... ok
+test_centered_ridge_learns_negative_wrong_take (test_ctha.HabitTests.test_centered_ridge_learns_negative_wrong_take) ... ok
+test_disk_prepare_and_reproducibility (test_ctha.HabitTests.test_disk_prepare_and_reproducibility) ... {"iteration": 0, "base": "grpo", "mode": "ctha", "family": "habit", "n_samples": 40, "n_current": 40, "n_history": 0, "gate": "passed", "gate_pass": true, "n_aux": 4, "all_failed": 1, "omega": 0.3}
+Verified existing preparation: /tmp/tmplrufz2tn/round_000/prepared/samples.jsonl
+ok
+test_games_selection_has_no_duplicates_across_epoch_boundary (test_ctha.HabitTests.test_games_selection_has_no_duplicates_across_epoch_boundary) ... ok
+test_grouping_by_iteration_avoids_mixed_policies (test_ctha.HabitTests.test_grouping_by_iteration_avoids_mixed_policies) ... ok
+test_grpo_zero_for_all_failed (test_ctha.HabitTests.test_grpo_zero_for_all_failed) ... ok
+test_habit_gate_and_nonfail_groups (test_ctha.HabitTests.test_habit_gate_and_nonfail_groups) ... ok
+test_no_focal_game_leakage_to_habit_coefficients (test_ctha.HabitTests.test_no_focal_game_leakage_to_habit_coefficients) ... ok
+test_prepare_rejects_validation_as_training (test_ctha.HabitTests.test_prepare_rejects_validation_as_training) ... ok
+test_sampling_seeds_are_disjoint (test_ctha.HabitTests.test_sampling_seeds_are_disjoint) ... ok
+test_student_visible_features_and_goal_matching (test_ctha.HabitTests.test_student_visible_features_and_goal_matching) ... ok
+test_train_refuses_offpolicy_adapter (test_ctha.HabitTests.test_train_refuses_offpolicy_adapter) ... ok
+test_no_future_outcome_in_generic_or_progress_features (test_ctha_v2.TestFeatures.test_no_future_outcome_in_generic_or_progress_features) ... ok
+test_prefix_is_mean_rate_and_not_episode_length (test_ctha_v2.TestFeatures.test_prefix_is_mean_rate_and_not_episode_length) ... ok
+test_progress_is_separable_and_dimensions_stable (test_ctha_v2.TestFeatures.test_progress_is_separable_and_dimensions_stable) ... ok
+test_all_failed_task_has_no_base_advantage (test_ctha_v2.TestOnlineAdvantage.test_all_failed_task_has_no_base_advantage) ... ok
+test_annealing_is_nonnegative_and_monotone (test_ctha_v2.TestOnlineAdvantage.test_annealing_is_nonnegative_and_monotone) ... ok
+test_full_rollout_updates_and_prefix_only_aux (test_ctha_v2.TestOnlineAdvantage.test_full_rollout_updates_and_prefix_only_aux) ... ok
+test_gigpo_anchor_groups_are_task_local (test_ctha_v2.TestOnlineAdvantage.test_gigpo_anchor_groups_are_task_local) ... ok
+test_gate_rejects_no_mixed_or_no_task_types (test_ctha_v2.TestStatisticalGate.test_gate_rejects_no_mixed_or_no_task_types) ... ok
+test_permutation_control_and_holdout_training_sanity (test_ctha_v2.TestStatisticalGate.test_permutation_control_and_holdout_training_sanity) ... ok
+test_progress_comparison_reports_pair_accuracy (test_ctha_v2.TestStatisticalGate.test_progress_comparison_reports_pair_accuracy) ... ok
+test_task_type_is_excluded_from_its_own_beta (test_ctha_v2.TestStatisticalGate.test_task_type_is_excluded_from_its_own_beta) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.739s
+
+OK

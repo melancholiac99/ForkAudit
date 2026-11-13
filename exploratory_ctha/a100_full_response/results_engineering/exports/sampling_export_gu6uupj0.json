@@ -1,0 +1,19 @@
+{
+  "adapter": "/root/ForkAudit/.runtime/runs/ctha_a100_full_response_r3/direction_probe",
+  "adapter_sha256": "9452adf9b44fb84ee6f1a3ef1eb76f9445ee6af15cde464f697e3578fd25c6b3",
+  "dtype": "float32",
+  "created": 1794553507.3037372,
+  "temporary_path": "/root/ForkAudit/.runtime/runs/ctha_a100_full_response_r3/sampling_export_gu6uupj0",
+  "weights": {
+    "model-00001-of-00009.safetensors": "154114701324787157d446b6f495a7760000ee7f2816e708d75284ad6b745d12",
+    "model-00008-of-00009.safetensors": "e5f59ee88302051930e5eb0bd13758e3af56eacdd0be8aa1a850f3f5f3b30489",
+    "model-00005-of-00009.safetensors": "c665e405d29d033a0d35b28a6f4280809321ba8cd3ec7bcf503cbd0f21371f33",
+    "model-00004-of-00009.safetensors": "2395af4fef2786016c9b788a9f3d1345d7615aaea4c7ac4563f42d10f1f4736f",
+    "model-00003-of-00009.safetensors": "ad59655adf72e831eb2ed9ae952d6263ecf8ff3d59110a8a86e6238594f743ea",
+    "model-00007-of-00009.safetensors": "9fe7f441b039c70e4a396cb78cbc18374544a5004a76e3472b0581f2b3fa4e53",
+    "model-00002-of-00009.safetensors": "c387ca03f9e255b4abf5e624cb092ea5d931f40425da3bee1834c534e9a5d9ea",
+    "model-00006-of-00009.safetensors": "dd50b15818fa9c2df77e75633467c1806c0cb3c3ce359441818669cb77d0e4e2",
+    "model-00009-of-00009.safetensors": "586e09f9970584d2b46d55669ac662f1889dd58184930d3daecb85ff910e4053"
+  },
+  "cleanup": "collector deletes only this export after successful engine shutdown; failed exports retained for inspection"
+}

@@ -1,0 +1,64 @@
+{
+  "direction": [
+    {
+      "index": 0,
+      "advantage": 1.732046807578115,
+      "delta_mean_response_logprob": 0.0488312728703022,
+      "delta_mean_action_logprob": 1.9868213740892315e-08,
+      "tokens": 75
+    },
+    {
+      "index": 1,
+      "advantage": 1.732046807578115,
+      "delta_mean_response_logprob": 0.056143827736377716,
+      "delta_mean_action_logprob": 0.0,
+      "tokens": 115
+    },
+    {
+      "index": 2,
+      "advantage": 1.732046807578115,
+      "delta_mean_response_logprob": 0.09158370643854141,
+      "delta_mean_action_logprob": -7.152357284212485e-07,
+      "tokens": 99
+    },
+    {
+      "index": 3,
+      "advantage": 1.732046807578115,
+      "delta_mean_response_logprob": 0.04637308046221733,
+      "delta_mean_action_logprob": -7.152543446409254e-08,
+      "tokens": 149
+    },
+    {
+      "index": 4,
+      "advantage": -0.5773489358593717,
+      "delta_mean_response_logprob": -0.04106081649661064,
+      "delta_mean_action_logprob": 0.00022864884522277862,
+      "tokens": 66
+    },
+    {
+      "index": 5,
+      "advantage": -0.5773489358593717,
+      "delta_mean_response_logprob": -0.05099239945411682,
+      "delta_mean_action_logprob": 0.0,
+      "tokens": 97
+    },
+    {
+      "index": 6,
+      "advantage": -0.5773489358593717,
+      "delta_mean_response_logprob": -0.04300597682595253,
+      "delta_mean_action_logprob": 0.0,
+      "tokens": 123
+    },
+    {
+      "index": 7,
+      "advantage": -0.5773489358593717,
+      "delta_mean_response_logprob": -0.042837101966142654,
+      "delta_mean_action_logprob": 0.0,
+      "tokens": 109
+    }
+  ],
+  "stability": {
+    "sampled_behavior_k3": 0.01415804532968125,
+    "clip_fraction": 0.09723889555822329
+  }
+}
