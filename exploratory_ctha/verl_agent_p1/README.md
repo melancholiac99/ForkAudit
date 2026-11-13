@@ -24,20 +24,20 @@ source env/verl_agent.sh
 python -m unittest discover -s exploratory_ctha/verl_agent_p1 -p 'test_*.py' -v
 python exploratory_ctha/verl_agent_p1/check_environment.py
 python exploratory_ctha/verl_agent_p1/prepare_campaign.py \
-  --out .runtime/runs/verl_p1_full_r2
+  --out .runtime/runs/verl_p1_full_r3
 # Publish the registered source/protocol and write verified publication.json first.
 python exploratory_ctha/verl_agent_p1/run_campaign.py \
-  --campaign .runtime/runs/verl_p1_full_r2
+  --campaign .runtime/runs/verl_p1_full_r3
 ```
 
-The queue serializes arms because this host has62.8GiB RAM. Generation concurrency
+The queue serializes arms because this host has62.8GiB RAM. Native environment slots are pooled into4 TRAIN and1 Tune Ray processes (16 slots each), preserving slot order, seeds, actions, rewards and terminal masks. Generation concurrency
 16 does not change64 logical training trajectories. Checkpoints are saved every2
 rounds; only the latest complete checkpoint per arm is retained to fit disk.
 Prior checkpoint inventories and live fingerprints survive retention. Final
 native restore and independent NumPy probability/outcome audits are queued.
 Any gate/error stops the queue without an automatic restart or protocol change.
 
-TensorBoard uses the existing6006 server, under `verl_p1_full_r2_*`; primary Tune
+TensorBoard uses the existing6006 server, under `verl_p1_full_r3_*`; primary Tune
 success is `p1/tune_success_episode_mean`, not native response-weighted values.
 `episode_metrics.jsonl`, `applied_auxiliary_step_*.json`, `ctha_*.json`, saved real
 probability arrays and per-episode records support independent review. Native

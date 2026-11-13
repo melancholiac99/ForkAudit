@@ -1,0 +1,7 @@
+{
+  "status": "STOPPED_BEFORE_ROLLOUT",
+  "optimizer_updates": 0,
+  "reason": "80 heavyweight environment actors caused42GiB host use and7.9GiB swap before model initialization completed",
+  "stop": "SIGTERM launch driver, no SIGSTOP",
+  "repair": "Pool16 native environments per actor,4 TRAIN actors and1 Tune actor; unchanged64 logical training trajectories"
+}

@@ -38,7 +38,26 @@ def main():
                     checks.append(dict(seed=seed,reset=counter,game_file=expected['game_file'],passed=True))
             finally:
                 worker.env.close()
-    (HERE/'environment_checks.json').write_text(json.dumps(dict(passed=True,checks=checks,scope='Real environment routing only, no model sampling'),indent=2)+'\n')
+        from environment_pool import LocalBatch
+        seeds = [0,0,15,1000,1001]
+        separate = [module.AlfworldWorker(cfg,seed,base) for seed in seeds]
+        pooled = LocalBatch(module.AlfworldWorker,cfg,seeds,base)
+        try:
+            for iteration in range(2):
+                expected = [worker.reset() for worker in separate]
+                actual = pooled.reset()
+                assert actual == expected, 'Pooling changed a real reset observation/info'
+                for action in ['look','inventory','look']:
+                    expected = [worker.step(action) for worker in separate]
+                    actual = pooled.step([action]*len(seeds))
+                    assert actual == expected, 'Pooling changed real observations/rewards/dones/info'
+        finally:
+            pooled.close()
+            for worker in separate:
+                worker.env.close()
+    (HERE/'environment_checks_r3.json').write_text(json.dumps(dict(passed=True,checks=checks,
+        pooling_equivalence=dict(slots=5,resets_per_slot=2,steps_per_reset=3,exact_observation_reward_done_info=True),
+        scope='Real environment routing/pooling only, no model sampling'),indent=2)+'\n')
     print(json.dumps(dict(passed=True,resets=len(checks))))
 
 

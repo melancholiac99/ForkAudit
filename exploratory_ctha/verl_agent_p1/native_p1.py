@@ -68,6 +68,8 @@ def install_tasks():
             return super().reset()
 
     module.AlfworldWorker = ScheduledWorker
+    from environment_pool import install_pool
+    install_pool()
 
 
 def episodes_from_batch(data, tokenizer, iteration, split):

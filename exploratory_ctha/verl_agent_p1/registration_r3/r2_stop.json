@@ -1,0 +1,10 @@
+{
+  "reason": "Host memory pressure from80 heavyweight environment actors before first policy update",
+  "memory_used_gib": 42,
+  "swap_used_gib": 7.9,
+  "driver_pid": 347782,
+  "time": 1794577772.2399375,
+  "optimizer_updates": 0,
+  "raw_training_batches": 0,
+  "action": "SIGTERM launch driver; never SIGSTOP Ray actors"
+}

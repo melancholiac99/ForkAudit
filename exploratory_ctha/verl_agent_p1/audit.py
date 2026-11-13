@@ -81,6 +81,10 @@ def audit_arm(run):
 def compare(campaign):
     runs=read(campaign/'run_names.json')
     reports={arm:read(ROOT/'.runtime/runs'/name/'full_p1_audit.json') for arm,name in runs.items()}
+    for arm, name in runs.items():
+        restored=read(ROOT/'.runtime/runs'/name/'final_restore_verified.json')
+        assert restored['passed'] and restored['actual']==reports[arm]['checkpoint_live']
+        reports[arm]['Engineering']='PASS; native P1 gates and final checkpoint recovery'
     assert len({r['precision']['initial_trainable_sha256'] for r in reports.values()})==1
     output={}
     for arm,reference in [('gigpo','grpo'),('gigpo_ctha','gigpo')]:
