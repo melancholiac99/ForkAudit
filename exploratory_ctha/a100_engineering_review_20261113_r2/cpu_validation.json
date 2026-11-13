@@ -1,0 +1,224 @@
+{
+  "checks": {
+    "action_tags_and_fail_closed_mask": true,
+    "batch_population_retained": true,
+    "zero_rows_denominator": true,
+    "optimizer_resume_exact": true,
+    "surrogate_direction_clipping": true,
+    "reference_penalty_zero_at_reference": true
+  },
+  "cold_start_gate": {
+    "family": "habit",
+    "total_mixed_groups": 63,
+    "total_pairs": 210,
+    "heldout_types": [
+      "look_at_obj_in_light",
+      "pick_and_place_simple",
+      "pick_clean_then_place_in_recep",
+      "pick_cool_then_place_in_recep",
+      "pick_heat_then_place_in_recep",
+      "pick_two_obj_and_place"
+    ],
+    "n_types": 6,
+    "permutations": 12,
+    "bootstraps": 300,
+    "min_pairs": 200,
+    "min_mixed": 20,
+    "passed": true,
+    "reason": "passed",
+    "accuracy": 0.6238095238095238,
+    "null_accuracy": 0.5222222222222221,
+    "delta": 0.10158730158730167,
+    "ci95": [
+      0.019407206119162648,
+      0.16931402439024387
+    ],
+    "heldout_games": 63,
+    "heldout_pairs": 210,
+    "folds": [
+      {
+        "task_type": "look_at_obj_in_light",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 50,
+          "pairs": 164,
+          "fit_mse": 0.19222439915981568
+        },
+        "heldout_pairs": 46
+      },
+      {
+        "task_type": "pick_and_place_simple",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 58,
+          "pairs": 195,
+          "fit_mse": 0.1913604488723824
+        },
+        "heldout_pairs": 15
+      },
+      {
+        "task_type": "pick_clean_then_place_in_recep",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 49,
+          "pairs": 166,
+          "fit_mse": 0.1956697534908235
+        },
+        "heldout_pairs": 44
+      },
+      {
+        "task_type": "pick_cool_then_place_in_recep",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 47,
+          "pairs": 156,
+          "fit_mse": 0.1850941055174818
+        },
+        "heldout_pairs": 54
+      },
+      {
+        "task_type": "pick_heat_then_place_in_recep",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 49,
+          "pairs": 163,
+          "fit_mse": 0.18185522676305216
+        },
+        "heldout_pairs": 47
+      },
+      {
+        "task_type": "pick_two_obj_and_place",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 62,
+          "pairs": 206,
+          "fit_mse": 0.18876795181576295
+        },
+        "heldout_pairs": 4
+      }
+    ]
+  },
+  "offline_nonzero_aux_samples": 192,
+  "offline_combined_pool_gate": {
+    "family": "habit",
+    "total_mixed_groups": 70,
+    "total_pairs": 231,
+    "heldout_types": [
+      "look_at_obj_in_light",
+      "pick_and_place_simple",
+      "pick_clean_then_place_in_recep",
+      "pick_cool_then_place_in_recep",
+      "pick_heat_then_place_in_recep",
+      "pick_two_obj_and_place"
+    ],
+    "n_types": 6,
+    "permutations": 12,
+    "bootstraps": 300,
+    "min_pairs": 200,
+    "min_mixed": 20,
+    "passed": true,
+    "reason": "passed",
+    "accuracy": 0.6147186147186147,
+    "null_accuracy": 0.5227272727272728,
+    "delta": 0.09199134199134185,
+    "ci95": [
+      0.011144760614272815,
+      0.1690924266777791
+    ],
+    "heldout_games": 67,
+    "heldout_pairs": 231,
+    "folds": [
+      {
+        "task_type": "look_at_obj_in_light",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 55,
+          "pairs": 179,
+          "fit_mse": 0.1908203894431997
+        },
+        "heldout_pairs": 52
+      },
+      {
+        "task_type": "pick_and_place_simple",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 64,
+          "pairs": 213,
+          "fit_mse": 0.18920105066665208
+        },
+        "heldout_pairs": 18
+      },
+      {
+        "task_type": "pick_clean_then_place_in_recep",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 53,
+          "pairs": 178,
+          "fit_mse": 0.19357223881896637
+        },
+        "heldout_pairs": 53
+      },
+      {
+        "task_type": "pick_cool_then_place_in_recep",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 53,
+          "pairs": 174,
+          "fit_mse": 0.1828953614050371
+        },
+        "heldout_pairs": 57
+      },
+      {
+        "task_type": "pick_heat_then_place_in_recep",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 56,
+          "pairs": 184,
+          "fit_mse": 0.18058580373930957
+        },
+        "heldout_pairs": 47
+      },
+      {
+        "task_type": "pick_two_obj_and_place",
+        "fitted": {
+          "active": true,
+          "mixed_groups": 69,
+          "pairs": 227,
+          "fit_mse": 0.1870499442271697
+        },
+        "heldout_pairs": 4
+      }
+    ]
+  },
+  "p0_episodes": 768,
+  "legacy_round_episodes": 64,
+  "import_verification_sha256": "9fc46f41e95585a709c3acad46073e6f9fb0e5b1130df67a52d3f7536f8fe569",
+  "original_checker_sha256": "23f7e47bd4da84cfa3648f87b348a4563a2618b800ba3673616be5643361e134",
+  "a100_wrapper_sha256": "b6df5aaeb7448d44c5b240f253b2750848466194d3ead6f76e2d77ec42bab600",
+  "source_sha": {
+    "exploratory_ctha/features_v2.py": "477685de020e6120307d939f15ca12bd1d5f54aa027edbed7de8e1462d55dbd6",
+    "exploratory_ctha/habits.py": "861f452db07e68a15c429d25da999d5a0ff9d24722f592d1c5d3066d715dd5c1",
+    "exploratory_ctha/habits_v2.py": "85229602c120facb73ddb1fe395d34e03056b4dbbb10f035a4bd9bc18cf16a34",
+    "exploratory_ctha/prepare.py": "e8182e644ecd20ae16539653350f4cc3d5e4f93d72ba65015819fa5eec9c50ca",
+    "exploratory_ctha/run.py": "7a325b5a0c0865c24ce3ad91b1b95ffcb094e7de645749ca6bdb65dcbdfd9e99",
+    "exploratory_ctha/train.py": "41bed74424ef77ceaf2f6ca952f8d4693fb396ca6bd2e71f9d0845818962e95b",
+    "exploratory_ctha/v3_fp32_fast/PLAN.json": "e3b4f98c5df58bf059a2306d619c964d58bd18e7e066767ebe168224a137b34e",
+    "exploratory_ctha/v3_fp32_fast/action_mask.py": "bb4035fbcae04417752cc5f5bae0054bb88873f3d7461cf35d22dcf6ba189e02",
+    "exploratory_ctha/v3_fp32_fast/adapter_parity.py": "25b267d87f82ccb533382cb656819ef0c210d217a5eb496b347e470205b1df9a",
+    "exploratory_ctha/v3_fp32_fast/check_cpu.py": "23f7e47bd4da84cfa3648f87b348a4563a2618b800ba3673616be5643361e134",
+    "exploratory_ctha/v3_fp32_fast/collect.py": "ca50c939617849d22165ce48af6274a37088453a26c6385931e270cd7d52a553",
+    "exploratory_ctha/v3_fp32_fast/fp32_worker.py": "83de5692cd1562dcc928425b165e6a1ee23604257eb432e1b44888d7933a3e4f",
+    "exploratory_ctha/v3_fp32_fast/merged_policy.py": "88f82f9bdec4fbc0c69c3202aa8012f688b40962a4da91ebbd3bb8582838364a",
+    "exploratory_ctha/v3_fp32_fast/precision.py": "679c92a2b353c56aa73d026c9b1aaa7a3ef1cc5a6af7bbae517aa31ff5c0e5a8",
+    "exploratory_ctha/v3_fp32_fast/prepare_v3.py": "2bfb2cdb3680bf7fad6343ed07d3ee8c371e2aeeb5792167667f59d2f5f7c9f4",
+    "exploratory_ctha/v3_fp32_fast/test_precision.py": "3277c176e621fa3ae6c6d35525fac4ca132b77f0595467123f81a9f268ff661c",
+    "exploratory_ctha/v3_fp32_fast/test_v3.py": "010a22da6e4ad973052a331ba202c892658b931b097a8b08206e2fe530827d66",
+    "exploratory_ctha/v3_fp32_fast/trainer.py": "bb5f0cb16bb30f282bc92cec8bcb5b8703d3a92c53458f01921005804b6a3519",
+    "exploratory_ctha/v3_fp32_fast/util.py": "b3bb201815b4b767f8c7b1247a3dad4f01de77ba0ec3f5be09fa2ec911eade10",
+    "exploratory_ctha/v3_fp32_fast/validate_pipeline.py": "c56ac22396471500cc1883088c0127a55e2f387fbd4e4ca7ef589a29dd374238",
+    "scripts/alfenv.py": "d01e93b44b0ed19bc61865e012553e7e536cb9a5b8a194c218233551b4b5f244",
+    "scripts/common.py": "8f45b3fc35569ba210ab311a5f9d45fe85f2d3111f978e0e8f6c9eb1194cb140",
+    "scripts/envpool.py": "ee79c2580a0e2b38f35b6d831c2235a584c3ecccb25a13dbcc58127037046cf3"
+  },
+  "interpretation": "Original P0 data reused only for the original offline feasibility check. Not A100 on-policy training data or independent efficacy evidence."
+}

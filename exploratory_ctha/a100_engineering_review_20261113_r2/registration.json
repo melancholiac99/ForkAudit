@@ -1,0 +1,197 @@
+{
+  "time": 1794547820.9597337,
+  "scope": {
+    "version": "ctha-a100-engineering-20261113-r2",
+    "upstream": "51aaa3e89cb048f9643fa29e6ec648db5f5ca2ba",
+    "scope": "A100 engineering acceptance only; user explicitly authorized publication to credit-grok and poweroff after verification and upload",
+    "legacy_implementations": "v3_fp32_fast and v3_engineering_fast_20261113 remain byte-identical to upstream; a separate launcher supplies local paths and records every override",
+    "revision_history": "r1 retained rejected BF16 numeric evidence and the W&B duplicate-field export error. r2 repairs table export, records selected-device memory, and uses new candidate/output fingerprints; original numeric gates and objectives unchanged.",
+    "kernel_invariants": {
+      "matrix_k_tile": 32,
+      "triton_f32_default": "tf32x3",
+      "torch_tf32": false,
+      "hf_autocast": false
+    },
+    "reference_prompts": {
+      "source": "Verified E4 archived train/base episodes; first four r0 files in archive order, turns 1,5,10,20 clipped to the episode length",
+      "use": "Prompt text only for numeric/performance comparison. Old responses, logprobs, rewards and advantages are never used as new A100 training data.",
+      "requests": 16,
+      "seed_base": 20261113,
+      "max_tokens": 512,
+      "warmup_batches": 1,
+      "timed_batches": 1
+    },
+    "candidates": [
+      {
+        "name": "bf16",
+        "dtype": "bfloat16",
+        "worker": "native",
+        "max_num_seqs": 64,
+        "gpu_memory_utilization": 0.7
+      },
+      {
+        "name": "fp32_native",
+        "dtype": "float32",
+        "worker": "native",
+        "max_num_seqs": 64,
+        "gpu_memory_utilization": 0.7
+      },
+      {
+        "name": "fp32_small_stage1",
+        "dtype": "float32",
+        "worker": "a100",
+        "stages": 1,
+        "small_m": 16,
+        "large_m": 32,
+        "warps": 4,
+        "max_num_seqs": 64,
+        "gpu_memory_utilization": 0.7
+      },
+      {
+        "name": "fp32_a100_stage2",
+        "dtype": "float32",
+        "worker": "a100",
+        "stages": 2,
+        "small_m": 32,
+        "large_m": 64,
+        "warps": 4,
+        "max_num_seqs": 64,
+        "gpu_memory_utilization": 0.7
+      }
+    ],
+    "candidate_order": "First identical BF16 runs on both GPUs, then independent FP32 candidates. Evaluate all candidates before selection.",
+    "selection": "Highest measured generated tokens/second among candidates passing original HF/vLLM numeric gates. Freeze config and fingerprint before collecting engineering trajectories. A later failed gate requires a new revision/output directory; never mix candidate scores.",
+    "parity_gate": {
+      "mean_absolute_sampled_logprob_error_max": 0.01,
+      "p99_absolute_sampled_logprob_error_max": 0.05,
+      "max_absolute_sampled_logprob_error_max": 0.25
+    },
+    "stability": {
+      "sampled_behavior_k3_stop": 0.02,
+      "clip_fraction_stop": 0.3,
+      "finite_required": true
+    },
+    "engineering": {
+      "repeat_tasks": 4,
+      "repeat_reps": 2,
+      "large_tasks": 16,
+      "large_reps": 4,
+      "max_steps": 50,
+      "temperature": 0.7,
+      "max_model_len": 6144,
+      "probe_responses": 8,
+      "positive_responses": 4,
+      "negative_responses": 4,
+      "optimizer_steps": 4
+    },
+    "optimizer": {
+      "lr": 1e-05,
+      "accum": 64,
+      "epochs": 1,
+      "clip": 0.2,
+      "grad_clip": 1.0,
+      "kl_coef": 0.01,
+      "persistent_state": true,
+      "reference": "frozen original base via adapter disabling",
+      "batch_population": "all response steps including zero advantage; same denominator and optimizer schedule"
+    },
+    "cpu_cold_start": "Verify the original P0/P1 archive and re-run the unchanged original offline gate on 768 P0 train episodes plus the original CTHA round-0 episodes. Never substitute synthetic data. Raw files arrived and passed manifest verification during preparation, before final configuration freeze.",
+    "device_plan": "Independent single-GPU candidates and repeated collections. No DDP or tensor parallelism. One GPU for the four-step probe; dependent updated-policy sampling starts only after a verified checkpoint.",
+    "telemetry": "W&B project ForkAudit, engineering group. Log four optimizer steps and candidate throughput/parity tables; offline files are retained until authentication permits sync. Never log checkpoint tensors.",
+    "states": {
+      "Engineering": "PASS / FAIL / INCOMPLETE",
+      "Learning": "NOT_RUN",
+      "Generalization": "NOT_RUN",
+      "CTHA online efficacy": "NOT_TESTED"
+    },
+    "excluded": [
+      "Tune evaluation",
+      "four-round GRPO/GiGPO pilots",
+      "full P1/P2",
+      "formal CTHA online training",
+      "algorithmic efficacy claims"
+    ],
+    "publication": "Only credit-grok; preserve old results; retain model/optimizer binaries locally with hashes; verify remote commit and sync before authorized poweroff"
+  },
+  "hardware": [
+    {
+      "index": "0",
+      "uuid": "GPU-b611310b-130b-dc7a-580e-de5869ece3e7",
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_mib": "81920",
+      "driver": "595.84"
+    },
+    {
+      "index": "1",
+      "uuid": "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a",
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_mib": "81920",
+      "driver": "595.84"
+    }
+  ],
+  "config": {
+    "name": "fp32_a100_stage2",
+    "dtype": "float32",
+    "worker": "a100",
+    "stages": 2,
+    "small_m": 32,
+    "large_m": 64,
+    "warps": 4,
+    "max_num_seqs": 64,
+    "gpu_memory_utilization": 0.7,
+    "recording_revision": 2
+  },
+  "config_fingerprint": "0d2052b510570f64fb854038cadf990e0c32d12727c2011a8f762259f42fb453",
+  "source_sha256": {
+    "exploratory_ctha/a100_validation/PLAN.json": "8506edb6880db1b95ff68deac22e825b2457a4836b2d74558643336547c36f02",
+    "exploratory_ctha/a100_validation/a100_common.py": "a1b9e4b55b4f66d77ca6f79ef2862e0a5782cb33d4a1a52d199e5b670de42fb9",
+    "exploratory_ctha/a100_validation/backend.py": "6e6604c6d76ce86a0e640adfe19e605c60f3eac535dcb520c56264c82d0a9096",
+    "exploratory_ctha/a100_validation/benchmark.py": "563cfd143ba01bb979e58d6149de5710102d066d25bac789c0e0a24108dedbe0",
+    "exploratory_ctha/a100_validation/cold_start.py": "b6df5aaeb7448d44c5b240f253b2750848466194d3ead6f76e2d77ec42bab600",
+    "exploratory_ctha/a100_validation/run.py": "51d9d59291a00bc21d96b007a49165537a88466dd48558a59ae0f1b3c1c023b5",
+    "exploratory_ctha/a100_validation/telemetry.py": "4e75bcfb5f36c3129e79a863bd1fc9356b4ffd4d3e750a994762a1dc1abf64c2",
+    "exploratory_ctha/a100_validation/verify.py": "335cb43773ea3ff874c5abeca1936e9eba19007ca2ffe5a1cef2279ef62f7799",
+    "exploratory_ctha/a100_validation/worker.py": "8b32ba44b15b67c03d190d315d6c66389d38ebf7489668105109e3f2c74369d5",
+    "exploratory_ctha/features_v2.py": "477685de020e6120307d939f15ca12bd1d5f54aa027edbed7de8e1462d55dbd6",
+    "exploratory_ctha/habits.py": "861f452db07e68a15c429d25da999d5a0ff9d24722f592d1c5d3066d715dd5c1",
+    "exploratory_ctha/habits_v2.py": "85229602c120facb73ddb1fe395d34e03056b4dbbb10f035a4bd9bc18cf16a34",
+    "exploratory_ctha/prepare.py": "e8182e644ecd20ae16539653350f4cc3d5e4f93d72ba65015819fa5eec9c50ca",
+    "exploratory_ctha/run.py": "7a325b5a0c0865c24ce3ad91b1b95ffcb094e7de645749ca6bdb65dcbdfd9e99",
+    "exploratory_ctha/train.py": "41bed74424ef77ceaf2f6ca952f8d4693fb396ca6bd2e71f9d0845818962e95b",
+    "exploratory_ctha/v3_fp32_fast/PLAN.json": "e3b4f98c5df58bf059a2306d619c964d58bd18e7e066767ebe168224a137b34e",
+    "exploratory_ctha/v3_fp32_fast/action_mask.py": "bb4035fbcae04417752cc5f5bae0054bb88873f3d7461cf35d22dcf6ba189e02",
+    "exploratory_ctha/v3_fp32_fast/adapter_parity.py": "25b267d87f82ccb533382cb656819ef0c210d217a5eb496b347e470205b1df9a",
+    "exploratory_ctha/v3_fp32_fast/check_cpu.py": "23f7e47bd4da84cfa3648f87b348a4563a2618b800ba3673616be5643361e134",
+    "exploratory_ctha/v3_fp32_fast/collect.py": "ca50c939617849d22165ce48af6274a37088453a26c6385931e270cd7d52a553",
+    "exploratory_ctha/v3_fp32_fast/fp32_worker.py": "83de5692cd1562dcc928425b165e6a1ee23604257eb432e1b44888d7933a3e4f",
+    "exploratory_ctha/v3_fp32_fast/merged_policy.py": "88f82f9bdec4fbc0c69c3202aa8012f688b40962a4da91ebbd3bb8582838364a",
+    "exploratory_ctha/v3_fp32_fast/precision.py": "679c92a2b353c56aa73d026c9b1aaa7a3ef1cc5a6af7bbae517aa31ff5c0e5a8",
+    "exploratory_ctha/v3_fp32_fast/prepare_v3.py": "2bfb2cdb3680bf7fad6343ed07d3ee8c371e2aeeb5792167667f59d2f5f7c9f4",
+    "exploratory_ctha/v3_fp32_fast/test_precision.py": "3277c176e621fa3ae6c6d35525fac4ca132b77f0595467123f81a9f268ff661c",
+    "exploratory_ctha/v3_fp32_fast/test_v3.py": "010a22da6e4ad973052a331ba202c892658b931b097a8b08206e2fe530827d66",
+    "exploratory_ctha/v3_fp32_fast/trainer.py": "bb5f0cb16bb30f282bc92cec8bcb5b8703d3a92c53458f01921005804b6a3519",
+    "exploratory_ctha/v3_fp32_fast/util.py": "b3bb201815b4b767f8c7b1247a3dad4f01de77ba0ec3f5be09fa2ec911eade10",
+    "exploratory_ctha/v3_fp32_fast/validate_pipeline.py": "c56ac22396471500cc1883088c0127a55e2f387fbd4e4ca7ef589a29dd374238",
+    "scripts/alfenv.py": "d01e93b44b0ed19bc61865e012553e7e536cb9a5b8a194c218233551b4b5f244",
+    "scripts/common.py": "8f45b3fc35569ba210ab311a5f9d45fe85f2d3111f978e0e8f6c9eb1194cb140",
+    "scripts/envpool.py": "ee79c2580a0e2b38f35b6d831c2235a584c3ecccb25a13dbcc58127037046cf3"
+  },
+  "model_path": "/root/ForkAudit/.runtime/models/Qwen2.5-7B-Instruct",
+  "model_manifest_sha256": "a1a48cac9183681dec6384a3c998c0ef452668a67a52a7b82286f173f3a3aa04",
+  "games_sha256": "ed523147a4e53e95b8e13969c13a6c5f450fe71fec59213e6dcb2808f101be3f",
+  "train_games_sha256": "7a79ef0eee67cfcc75ab33f0a32ec4873ceddb628a29b33c91dd346c710c9604",
+  "cpu_evidence_origin": "/root/ForkAudit/.runtime/runs/ctha_a100_eng_20261113_r1/cpu_validation.json",
+  "cpu_evidence_sha256": "b387175041ca32b82df3fb89a483896fcffa382edb527c5511d443137fcaafa4",
+  "repository_commit": "51aaa3e89cb048f9643fa29e6ec648db5f5ca2ba",
+  "packages": {
+    "torch": "2.13.0",
+    "vllm": "0.32.0",
+    "triton": "3.7.1",
+    "transformers": "5.19.0",
+    "peft": "0.21.2",
+    "numpy": "2.3.5",
+    "alfworld": "0.4.2",
+    "textworld": "1.7.0",
+    "wandb": "0.31.0"
+  }
+}

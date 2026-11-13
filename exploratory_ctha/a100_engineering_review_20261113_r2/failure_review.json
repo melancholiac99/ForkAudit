@@ -1,0 +1,36 @@
+{
+  "Engineering": "FAIL",
+  "Learning": "NOT_RUN",
+  "Generalization": "NOT_RUN",
+  "CTHA_online_efficacy": "NOT_TESTED",
+  "P1": "NOT_STARTED",
+  "checks": {
+    "cpu_regressions": "PASS (23+5+7+7 tests)",
+    "historical_cold_start": "PASS (768 P0, 64 old CTHA episodes; 192 nonzero offline auxiliary rows)",
+    "cross_gpu_repeated_trajectories": true,
+    "cross_batch_repeated_trajectories": true,
+    "base_sampled_logprob_parity": {
+      "mean_abs": 8.741707029347619e-06,
+      "p99_abs": 0.00010187149047851552,
+      "max_abs": 0.00017631053924560547,
+      "samples": 8,
+      "tokens": 833,
+      "passed": true
+    },
+    "four_optimizer_steps_completed": 4,
+    "direction": {
+      "positive_delta_mean_response_logprob": 0.060732971876859665,
+      "positive_delta_mean_action_logprob": -1.9172323728611218e-07,
+      "negative_delta_mean_response_logprob": -0.04447407368570566,
+      "negative_delta_mean_action_logprob": 5.7162211305694655e-05,
+      "passed": false
+    },
+    "post_update_stability": {
+      "sampled_behavior_k3": 0.01415804532968125,
+      "clip_fraction": 0.09723889555822329
+    },
+    "actual_checkpoint_restore": "NOT_RUN: original gate aborted before checkpoint save",
+    "updated_adapter_parity": "NOT_RUN: dependency did not pass"
+  },
+  "decision": "Original failed gate retained; no silent gate relaxation, P1 start or shutdown. Proposed diagnostic sample-eligibility revision awaits user confirmation."
+}

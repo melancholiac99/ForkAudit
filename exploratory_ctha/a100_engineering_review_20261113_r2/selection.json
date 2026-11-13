@@ -1,0 +1,223 @@
+{
+  "candidates": [
+    {
+      "candidate": "fp32_native",
+      "path": "/root/ForkAudit/.runtime/runs/ctha_a100_eng_20261113_r2/candidates/fp32_native_gpu0",
+      "config": {
+        "name": "fp32_native",
+        "dtype": "float32",
+        "worker": "native",
+        "max_num_seqs": 64,
+        "gpu_memory_utilization": 0.7,
+        "recording_revision": 2
+      },
+      "parity": {
+        "mean_abs": 9.75016432273184e-06,
+        "p99_abs": 0.0001070928573608398,
+        "max_abs": 0.0002689361572265625,
+        "tokens": 2042,
+        "hf_seconds": 8.58589022399974,
+        "hf_peak_allocated_bytes": 31237968896,
+        "hf_peak_reserved_bytes": 32652656640,
+        "passed": true
+      },
+      "performance": {
+        "generation_seconds": 47.31470996099961,
+        "load_seconds": 31.016886573999727,
+        "tokens": 2042,
+        "requests": 16,
+        "warmup_timed_token_repeat": true,
+        "process_memory_at_generation_end": "76094, GPU-b611310b-130b-dc7a-580e-de5869ece3e7, 416\n76235, GPU-b611310b-130b-dc7a-580e-de5869ece3e7, 56890\n",
+        "torch_main_process_peak_bytes": 0,
+        "memory_note": "vLLM engine runs in a child; nvidia-smi process memory is recorded separately from PyTorch parent peak",
+        "tokens_per_second": 43.15782558285092,
+        "device_peak_used_mib": {
+          "GPU-b611310b-130b-dc7a-580e-de5869ece3e7": 57334,
+          "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a": 57334
+        },
+        "selected_gpu_uuid": "GPU-b611310b-130b-dc7a-580e-de5869ece3e7",
+        "selected_gpu_peak_used_mib": 57334
+      }
+    },
+    {
+      "candidate": "fp32_small_stage1",
+      "path": "/root/ForkAudit/.runtime/runs/ctha_a100_eng_20261113_r2/candidates/fp32_small_stage1_gpu0",
+      "config": {
+        "name": "fp32_small_stage1",
+        "dtype": "float32",
+        "worker": "a100",
+        "stages": 1,
+        "small_m": 16,
+        "large_m": 32,
+        "warps": 4,
+        "max_num_seqs": 64,
+        "gpu_memory_utilization": 0.7,
+        "recording_revision": 2
+      },
+      "parity": {
+        "mean_abs": 9.75016432273184e-06,
+        "p99_abs": 0.0001070928573608398,
+        "max_abs": 0.0002689361572265625,
+        "tokens": 2042,
+        "hf_seconds": 8.597215279999546,
+        "hf_peak_allocated_bytes": 31237968896,
+        "hf_peak_reserved_bytes": 32652656640,
+        "passed": true
+      },
+      "performance": {
+        "generation_seconds": 14.85074340400024,
+        "load_seconds": 33.1638388829997,
+        "tokens": 2042,
+        "requests": 16,
+        "warmup_timed_token_repeat": true,
+        "process_memory_at_generation_end": "80037, GPU-b611310b-130b-dc7a-580e-de5869ece3e7, 416\n80184, GPU-b611310b-130b-dc7a-580e-de5869ece3e7, 56890\n",
+        "torch_main_process_peak_bytes": 0,
+        "memory_note": "vLLM engine runs in a child; nvidia-smi process memory is recorded separately from PyTorch parent peak",
+        "tokens_per_second": 137.50153406124846,
+        "device_peak_used_mib": {
+          "GPU-b611310b-130b-dc7a-580e-de5869ece3e7": 57334,
+          "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a": 57334
+        },
+        "selected_gpu_uuid": "GPU-b611310b-130b-dc7a-580e-de5869ece3e7",
+        "selected_gpu_peak_used_mib": 57334
+      }
+    },
+    {
+      "candidate": "fp32_small_stage1",
+      "path": "/root/ForkAudit/.runtime/runs/ctha_a100_eng_20261113_r2/candidates/fp32_small_stage1_gpu1",
+      "config": {
+        "name": "fp32_small_stage1",
+        "dtype": "float32",
+        "worker": "a100",
+        "stages": 1,
+        "small_m": 16,
+        "large_m": 32,
+        "warps": 4,
+        "max_num_seqs": 64,
+        "gpu_memory_utilization": 0.7,
+        "recording_revision": 2
+      },
+      "parity": {
+        "mean_abs": 9.75016432273184e-06,
+        "p99_abs": 0.0001070928573608398,
+        "max_abs": 0.0002689361572265625,
+        "tokens": 2042,
+        "hf_seconds": 8.572598624999955,
+        "hf_peak_allocated_bytes": 31237968896,
+        "hf_peak_reserved_bytes": 32652656640,
+        "passed": true
+      },
+      "performance": {
+        "generation_seconds": 14.83124910999959,
+        "load_seconds": 33.268261242000335,
+        "tokens": 2042,
+        "requests": 16,
+        "warmup_timed_token_repeat": true,
+        "process_memory_at_generation_end": "76235, GPU-b611310b-130b-dc7a-580e-de5869ece3e7, 56890\n76097, GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a, 416\n76248, GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a, 56890\n",
+        "torch_main_process_peak_bytes": 0,
+        "memory_note": "vLLM engine runs in a child; nvidia-smi process memory is recorded separately from PyTorch parent peak",
+        "tokens_per_second": 137.6822670063059,
+        "device_peak_used_mib": {
+          "GPU-b611310b-130b-dc7a-580e-de5869ece3e7": 56913,
+          "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a": 57334
+        },
+        "selected_gpu_uuid": "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a",
+        "selected_gpu_peak_used_mib": 57334
+      }
+    },
+    {
+      "candidate": "fp32_a100_stage2",
+      "path": "/root/ForkAudit/.runtime/runs/ctha_a100_eng_20261113_r2/candidates/fp32_a100_stage2_gpu0",
+      "config": {
+        "name": "fp32_a100_stage2",
+        "dtype": "float32",
+        "worker": "a100",
+        "stages": 2,
+        "small_m": 32,
+        "large_m": 64,
+        "warps": 4,
+        "max_num_seqs": 64,
+        "gpu_memory_utilization": 0.7,
+        "recording_revision": 2
+      },
+      "parity": {
+        "mean_abs": 9.75016432273184e-06,
+        "p99_abs": 0.0001070928573608398,
+        "max_abs": 0.0002689361572265625,
+        "tokens": 2042,
+        "hf_seconds": 8.623229154,
+        "hf_peak_allocated_bytes": 31237968896,
+        "hf_peak_reserved_bytes": 32652656640,
+        "passed": true
+      },
+      "performance": {
+        "generation_seconds": 12.123777391000658,
+        "load_seconds": 30.538483252999868,
+        "tokens": 2042,
+        "requests": 16,
+        "warmup_timed_token_repeat": true,
+        "process_memory_at_generation_end": "82823, GPU-b611310b-130b-dc7a-580e-de5869ece3e7, 416\n82925, GPU-b611310b-130b-dc7a-580e-de5869ece3e7, 56890\n",
+        "torch_main_process_peak_bytes": 0,
+        "memory_note": "vLLM engine runs in a child; nvidia-smi process memory is recorded separately from PyTorch parent peak",
+        "tokens_per_second": 168.42935449439656,
+        "device_peak_used_mib": {
+          "GPU-b611310b-130b-dc7a-580e-de5869ece3e7": 57334,
+          "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a": 14
+        },
+        "selected_gpu_uuid": "GPU-b611310b-130b-dc7a-580e-de5869ece3e7",
+        "selected_gpu_peak_used_mib": 57334
+      }
+    },
+    {
+      "candidate": "fp32_a100_stage2",
+      "path": "/root/ForkAudit/.runtime/runs/ctha_a100_eng_20261113_r2/candidates/fp32_a100_stage2_gpu1",
+      "config": {
+        "name": "fp32_a100_stage2",
+        "dtype": "float32",
+        "worker": "a100",
+        "stages": 2,
+        "small_m": 32,
+        "large_m": 64,
+        "warps": 4,
+        "max_num_seqs": 64,
+        "gpu_memory_utilization": 0.7,
+        "recording_revision": 2
+      },
+      "parity": {
+        "mean_abs": 9.75016432273184e-06,
+        "p99_abs": 0.0001070928573608398,
+        "max_abs": 0.0002689361572265625,
+        "tokens": 2042,
+        "hf_seconds": 8.5815105949996,
+        "hf_peak_allocated_bytes": 31237968896,
+        "hf_peak_reserved_bytes": 32652656640,
+        "passed": true
+      },
+      "performance": {
+        "generation_seconds": 12.1223866119999,
+        "load_seconds": 31.819076535000022,
+        "tokens": 2042,
+        "requests": 16,
+        "warmup_timed_token_repeat": true,
+        "process_memory_at_generation_end": "80037, GPU-b611310b-130b-dc7a-580e-de5869ece3e7, 416\n80184, GPU-b611310b-130b-dc7a-580e-de5869ece3e7, 56890\n80038, GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a, 416\n80193, GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a, 56890\n",
+        "torch_main_process_peak_bytes": 0,
+        "memory_note": "vLLM engine runs in a child; nvidia-smi process memory is recorded separately from PyTorch parent peak",
+        "tokens_per_second": 168.4486780827987,
+        "device_peak_used_mib": {
+          "GPU-b611310b-130b-dc7a-580e-de5869ece3e7": 57334,
+          "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a": 57334
+        },
+        "selected_gpu_uuid": "GPU-de4c1820-8c98-2448-4687-ae7c5bd4037a",
+        "selected_gpu_peak_used_mib": 57334
+      }
+    }
+  ],
+  "mean_speed_by_config": {
+    "fp32_native": 43.15782558285092,
+    "fp32_small_stage1": 137.59190053377716,
+    "fp32_a100_stage2": 168.43901628859763
+  },
+  "selected": "fp32_a100_stage2",
+  "cross_gpu_exact": true,
+  "scoring_rule": "Highest mean generated tokens/s among passing candidate measurements"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "fp32_a100_stage2",
+  "dtype": "float32",
+  "worker": "a100",
+  "stages": 2,
+  "small_m": 32,
+  "large_m": 64,
+  "warps": 4,
+  "max_num_seqs": 64,
+  "gpu_memory_utilization": 0.7,
+  "recording_revision": 2
+}

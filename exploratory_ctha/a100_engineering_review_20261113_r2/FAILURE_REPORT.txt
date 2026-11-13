@@ -1,0 +1,10 @@
+CTHA A100 engineering r2
+Engineering: FAIL
+Learning: NOT_RUN
+Generalization: NOT_RUN
+CTHA online efficacy: NOT_TESTED
+P1: NOT_STARTED
+
+CPU, repeated/cross-batch trajectories, base probability parity, finite gradients and original stability gates passed. Four engineering optimizer steps executed.
+Full-response directions passed; strict action-span directions failed. The original gate stopped before saving an accepted checkpoint, so checkpoint restore and updated-policy parity did not run.
+Original records are retained. A diagnostic eligibility amendment is proposed in exploratory_ctha/a100_validation_repair/PROPOSAL.json and requires user confirmation.
