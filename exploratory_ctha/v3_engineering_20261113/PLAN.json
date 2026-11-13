@@ -1,0 +1,11 @@
+{
+  "version": "ctha-v3-engineering-only-20261113",
+  "authorization": "User explicitly requested engineering acceptance only, verify and publish to credit-grok then shutdown",
+  "parent": "exploratory_ctha/v3_fp32/PLAN.json",
+  "precision_or_threshold_changes": false,
+  "reuse": "Adopt only currently healthy FP32 repeat_a after all eight episodes and summary are complete; verify source fingerprint and hash files. No BF16 training records reused.",
+  "stages": ["Existing frozen-source CPU checks", "Complete and repeat 4 tasks x 2 rollouts", "Cross-batch comparison against 16 tasks x 4 rollouts", "Original balanced eight-response, four-step direction probe and stability checks", "Restore actual saved LoRA and AdamW checkpoint on CPU, compare moments/counters and deterministic next-step equality", "GPU merged sampling export vs unmerged updated PEFT logprob parity", "Independent engineering verification, publish evidence to credit-grok, then shutdown"],
+  "excluded": ["Step-zero Tune evaluation", "Four-round GRPO and GiGPO learning pilots", "Learning/generalization efficacy claims", "Full P1/P2", "A100 experiments"],
+  "checkpoint_test_limit": "CPU checkpoint restore and next-step equality uses fixed engineering gradients. This is not a second on-policy RL round or a learning claim.",
+  "failure": "Keep all results/logs and wake assistant for repair; never relax existing gates. No success claim if any gate fails."
+}
