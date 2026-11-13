@@ -68,6 +68,16 @@ def fingerprint(manager):
 
 
 def install():
+    # external_lib is imported by init_model before HF/PEFT construction, after
+    # Ray has assigned the device. Freeze LoRA initialization for fresh baselines.
+    if 'FORKAUDIT_MODEL_SEED' in os.environ:
+        import random
+        import numpy as np
+        seed = int(os.environ['FORKAUDIT_MODEL_SEED'])
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
     from verl.utils.checkpoint.fsdp_checkpoint_manager import FSDPCheckpointManager as cls
     if getattr(cls, '_forkaudit_evidence', False):
         return
@@ -78,6 +88,10 @@ def install():
         original_init(self, *args, **kwargs)
         record = precision(self.model)
         record['gpu_uuid'] = str(torch.cuda.get_device_properties(torch.cuda.current_device()).uuid)
+        if 'FORKAUDIT_MODEL_SEED' in os.environ:
+            record['model_initialization_seed'] = int(os.environ['FORKAUDIT_MODEL_SEED'])
+            record['initial_trainable_sha256'] = digest({
+                name: p for name, p in self.model.named_parameters() if p.requires_grad})
         Path(os.environ['FORKAUDIT_VERL_OUTPUT'], f'precision_rank_{self.rank}.json').write_text(json.dumps(record, indent=2))
 
     @functools.wraps(original_save)

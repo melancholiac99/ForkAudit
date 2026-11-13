@@ -60,6 +60,7 @@ def main():
     parser.add_argument('--probe-backend', choices=['hf', 'vllm'], default='hf')
     parser.add_argument('--gradient-bench-packet', type=Path)
     parser.add_argument('--logprob-micro', type=int, choices=[16, 32])
+    parser.add_argument('--model-seed', type=int)
     args = parser.parse_args()
     assert Path(sys.prefix).resolve() == (ROOT / '.runtime/venvs/verl-agent-20bd331b').resolve()
     assert Path(args.name).name == args.name
@@ -69,6 +70,10 @@ def main():
     env = os.environ.copy()
     env.pop('FORKAUDIT_REFERENCE_PACKET', None)
     env.pop('FORKAUDIT_GRADIENT_BENCH_PACKET', None)
+    env.pop('FORKAUDIT_MODEL_SEED', None)
+    if args.model_seed is not None:
+        assert args.frozen_base_bf16, 'Seed hook requires registered external_lib'
+        env['FORKAUDIT_MODEL_SEED'] = str(args.model_seed)
     if args.device is not None:
         assert args.gpus == 1
         env['CUDA_VISIBLE_DEVICES'] = str(args.device)
@@ -164,6 +169,14 @@ def main():
     fingerprint = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
     payload['configuration_sha256'] = fingerprint
     (output / 'registration.json').write_text(json.dumps(payload, indent=2) + '\n')
+    # Keep executable sources matching this registration even if later work
+    # adds another candidate. Never overwrite a previous run directory.
+    for relative, expected in payload['source_sha256'].items():
+        content = (ROOT / relative).read_bytes()
+        assert hashlib.sha256(content).hexdigest() == expected
+        snapshot = output / 'registered_source' / relative
+        snapshot.parent.mkdir(parents=True, exist_ok=True)
+        snapshot.write_bytes(content)
     print(json.dumps(dict(directory=str(output), fingerprint=fingerprint)), flush=True)
     if args.prepare_only:
         stop.set(); monitor.join()

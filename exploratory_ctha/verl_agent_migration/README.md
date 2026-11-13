@@ -90,3 +90,27 @@ records raw HF/vLLM score alignment, distinct from behavior importance ratios.
 Inference-generator RNG and exact stochastic cross-batch reproduction are not
 established by weight/state hashes. R8's full-batch report and original source
 snapshot remain under `results/r8/`; its scores are not mixed into R9.
+
+## Statistical admission and bounded learning pilot
+
+`STATISTICAL_PLAN.json` records the explicitly authorized statistical criterion.
+R10 independently passes fixed-token GPU/batch checks and eager sampling;
+`results/r10/REPORT.md` states its scope and limits. Exact greedy trajectories
+remain different and are reported separately. R9 engineering weights are never
+used to initialize learning.
+
+`BASELINE_PLAN.json` freezes four outer rounds per native GRPO/GiGPO arm,
+with four fixed training tasks×four trajectories, from the original model:
+
+```bash
+python exploratory_ctha/verl_agent_migration/run_native.py \
+  --name UNIQUE_GRPO_BASELINE --algorithm grpo --updates 4 \
+  --gpus 1 --device 0 --frozen-base-bf16 --correction bypass_ppo_clip \
+  --eager --micro-batch 16 --logprob-micro 16 --ray-cpus 12 --model-seed 0
+```
+
+Use GPU1 and `--algorithm gigpo` for the other arm only when actual host memory
+permits independent engines. `--model-seed` seeds initialization before HF/PEFT;
+initial LoRA hashes must match across arms. Every registration snapshots its
+sources. Per-round pre/post numerical gates remain blocking. There is no CTHA,
+extra training round or heldout/generalization evaluation in this pilot.
