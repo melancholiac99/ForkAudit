@@ -1,0 +1,64 @@
+{
+  "results": [
+    {
+      "microbatch": 1,
+      "performance": {
+        "seconds": 14.773660566999752,
+        "responses_per_second": 0.5415042510093792,
+        "peak_allocated_gib": 29.997891902923584,
+        "peak_reserved_gib": 31.09375
+      },
+      "speedup": 1.0,
+      "mean_abs": 0.0,
+      "p99_abs": 0.0,
+      "max_abs": 0.0,
+      "max_loss_difference": 0.0,
+      "gradient_relative_l2": 0.0,
+      "gradient_max_abs": 0.0,
+      "optimizer_updates": 0,
+      "gradient_sha256": "f60d37b2d8ede032639828b3706c70794ccb993bd8281930bfd22522a7070b9d",
+      "passed": true
+    },
+    {
+      "microbatch": 2,
+      "performance": {
+        "seconds": 14.45428025000001,
+        "responses_per_second": 0.5534692742656622,
+        "peak_allocated_gib": 31.530930519104004,
+        "peak_reserved_gib": 34.361328125
+      },
+      "speedup": 1.022095899033073,
+      "mean_abs": 7.061550057696353e-06,
+      "p99_abs": 7.980823516845697e-05,
+      "max_abs": 0.0001628398895263672,
+      "max_loss_difference": 1.0728836059570312e-06,
+      "gradient_relative_l2": 0.00020941233649629908,
+      "gradient_max_abs": 4.84054908156395e-06,
+      "optimizer_updates": 0,
+      "gradient_sha256": "09a6791076f1921e21c932bf7bed98c3a49f0aa735f82fbbf490e4613bf1aa48",
+      "passed": true
+    },
+    {
+      "microbatch": 4,
+      "performance": {
+        "seconds": 14.273577326999657,
+        "responses_per_second": 0.5604761733323388,
+        "peak_allocated_gib": 33.821762561798096,
+        "peak_reserved_gib": 37.68359375
+      },
+      "speedup": 1.0350355925878614,
+      "mean_abs": 7.67956574412235e-06,
+      "p99_abs": 8.117675781249987e-05,
+      "max_abs": 0.00014507770538330078,
+      "max_loss_difference": 1.5497207641601562e-06,
+      "gradient_relative_l2": 0.00028684230348953774,
+      "gradient_max_abs": 6.593530997633934e-06,
+      "optimizer_updates": 0,
+      "gradient_sha256": "acd3f9f85b6979ceea256817ad8489bf59f050e1cccf602dd912561b16cefb2f",
+      "passed": true
+    }
+  ],
+  "optimizer_updates": 0,
+  "adopted": false,
+  "limitation": "Eight real responses only; requires fresh engineering protocol/fingerprint before any deployment."
+}

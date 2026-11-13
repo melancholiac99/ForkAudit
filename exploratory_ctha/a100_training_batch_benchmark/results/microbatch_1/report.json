@@ -1,0 +1,19 @@
+{
+  "microbatch": 1,
+  "performance": {
+    "seconds": 14.773660566999752,
+    "responses_per_second": 0.5415042510093792,
+    "peak_allocated_gib": 29.997891902923584,
+    "peak_reserved_gib": 31.09375
+  },
+  "speedup": 1.0,
+  "mean_abs": 0.0,
+  "p99_abs": 0.0,
+  "max_abs": 0.0,
+  "max_loss_difference": 0.0,
+  "gradient_relative_l2": 0.0,
+  "gradient_max_abs": 0.0,
+  "optimizer_updates": 0,
+  "gradient_sha256": "f60d37b2d8ede032639828b3706c70794ccb993bd8281930bfd22522a7070b9d",
+  "passed": true
+}

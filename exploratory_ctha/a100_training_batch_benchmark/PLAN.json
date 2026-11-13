@@ -1,0 +1,24 @@
+{
+  "version": "a100-training-microbatch-benchmark-r1",
+  "scope": "Real-sample compute-only performance/numerical benchmark, no optimizer updates, no adoption before new engineering validation",
+  "source_samples": ".runtime/runs/ctha_a100_full_response_r3/initial_prepared/samples.jsonl, original eight probe_indices",
+  "model": "Original base plus actual saved R3 engineering LoRA (diagnostic only; never initialization for baseline learning)",
+  "candidates": [
+    1,
+    2,
+    4
+  ],
+  "precision": "FP32 HF SDPA, autocast off, TF32 off, existing checkpointing",
+  "objective": "Unchanged per-response mean Full-response clipped PPO + original-base sampled k3 KL0.01; same all-row denominator. Microbatch sum / eight benchmark rows; no optimizer step.",
+  "probability_gate": {
+    "mean_abs": 0.01,
+    "p99_abs": 0.05,
+    "max_abs": 0.25
+  },
+  "loss_absolute_difference_max": 0.0001,
+  "gradient_relative_l2_max": 0.001,
+  "gradient_max_absolute_difference_max": 0.0001,
+  "device": "GPU1 while unchanged baseline eval runs GPU0",
+  "failure": "Retain candidate outputs; do not deploy failed candidate or adjust thresholds after observation",
+  "scientific_changes": false
+}

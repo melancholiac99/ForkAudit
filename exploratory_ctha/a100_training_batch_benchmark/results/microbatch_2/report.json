@@ -1,0 +1,19 @@
+{
+  "microbatch": 2,
+  "performance": {
+    "seconds": 14.45428025000001,
+    "responses_per_second": 0.5534692742656622,
+    "peak_allocated_gib": 31.530930519104004,
+    "peak_reserved_gib": 34.361328125
+  },
+  "speedup": 1.022095899033073,
+  "mean_abs": 7.061550057696353e-06,
+  "p99_abs": 7.980823516845697e-05,
+  "max_abs": 0.0001628398895263672,
+  "max_loss_difference": 1.0728836059570312e-06,
+  "gradient_relative_l2": 0.00020941233649629908,
+  "gradient_max_abs": 4.84054908156395e-06,
+  "optimizer_updates": 0,
+  "gradient_sha256": "09a6791076f1921e21c932bf7bed98c3a49f0aa735f82fbbf490e4613bf1aa48",
+  "passed": true
+}
