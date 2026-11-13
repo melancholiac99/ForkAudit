@@ -1,0 +1,89 @@
+{
+  "format": "Concatenate part text stripping whitespace, base64-decode, then gzip/tar extract; verify inner MANIFEST.json",
+  "archive_sha256": "8e58faa1badfe1765a2d3d512ec25a166bfda1f9eb6f8176bd32429d0ed39b96",
+  "archive_bytes": 959685,
+  "parts": [
+    {
+      "path": "evidence.b64.part000.txt",
+      "sha256": "bee6c23f75bf44494a57841b934115ebc8ff38829bbdd9ff90256fdb9d6ea750"
+    },
+    {
+      "path": "evidence.b64.part001.txt",
+      "sha256": "edf24b64a95ce0f1f512bf531fda3b6c6b03212e7b5de3f8b071f96348e41f3d"
+    },
+    {
+      "path": "evidence.b64.part002.txt",
+      "sha256": "f75a6dc4a9849fa52a365a67039c1ddd1ceb7680394783b6f5cb8f5594ebe72a"
+    },
+    {
+      "path": "evidence.b64.part003.txt",
+      "sha256": "7f8c0a5879ba408d78918c38d65daaecaeb8c5e5688492a8a954e075356de50b"
+    },
+    {
+      "path": "evidence.b64.part004.txt",
+      "sha256": "8064ab222cf0ddba04b235a460288937efc1d89c26773078730adc3d07d756f9"
+    },
+    {
+      "path": "evidence.b64.part005.txt",
+      "sha256": "7f7eefad982977650a1517e7d249269fc70504a69ac0c901b538011573fc3b93"
+    },
+    {
+      "path": "evidence.b64.part006.txt",
+      "sha256": "50e1e1bce03a409c2b066bf8b8b1f3876aca17cd5c72df969151d6a57660fd78"
+    },
+    {
+      "path": "evidence.b64.part007.txt",
+      "sha256": "996bf6c91cd15bac39b7203238d7f97c3fad78359c8a609bec0d626644b2a08b"
+    },
+    {
+      "path": "evidence.b64.part008.txt",
+      "sha256": "3a12899a1256d19abead5b0e25a3ddf7221a9ae1285cb6a7bc86384d15cd2569"
+    },
+    {
+      "path": "evidence.b64.part009.txt",
+      "sha256": "645476e419edbe154e4a871521254839871f8ac5018a61de4e81b35bd290e8e0"
+    },
+    {
+      "path": "evidence.b64.part010.txt",
+      "sha256": "a31e26a4c14c8f2c53bdf4807be807d5e1ad8339392ccd764ff150b12cdce08f"
+    },
+    {
+      "path": "evidence.b64.part011.txt",
+      "sha256": "9aa72e909b41832daf00feaa69ccb61f95d326179b8ff9df79bc618541245c7c"
+    },
+    {
+      "path": "evidence.b64.part012.txt",
+      "sha256": "ffbd60d1d377e9b74a5ecf200c2fc8c9ef53443160d789ee80787b6f6a406ad1"
+    },
+    {
+      "path": "evidence.b64.part013.txt",
+      "sha256": "f2d8593badc45b2d18a2d257a4beac73d258880c4e0402b8be3d8cb66fdfdf96"
+    },
+    {
+      "path": "evidence.b64.part014.txt",
+      "sha256": "1dc1b4cfe76db8641c1afa8143500d5239b4b35e5d38e0cd43fa1b61da8266fe"
+    },
+    {
+      "path": "evidence.b64.part015.txt",
+      "sha256": "082415813497b4e008cb527b842cd5af306a5d3f97039a3ad0a7d05c38878fcd"
+    },
+    {
+      "path": "evidence.b64.part016.txt",
+      "sha256": "1fb0093893a9f6c72831af7e0f84a41a019d0fc74e1bf562a09a7b2d04b6a412"
+    },
+    {
+      "path": "evidence.b64.part017.txt",
+      "sha256": "2a25140080ce395e2805fde6c606c729f70318f306218c92f71b189350b66da9"
+    },
+    {
+      "path": "evidence.b64.part018.txt",
+      "sha256": "2379915824cf7ff090daa0304481f94f225e5371bc1571e34de6ad1681430db5"
+    },
+    {
+      "path": "evidence.b64.part019.txt",
+      "sha256": "9fa98a006b330fc430d852d549500c279c7825e18532610176214df18c18de94"
+    }
+  ],
+  "limitations": "Decoded display texts plus probability arrays; exact full DataProto/token IDs were not exported by the native dump. No exact token replay or actual checkpoint recovery claim.",
+  "contains_model_or_optimizer_binaries": false
+}

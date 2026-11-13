@@ -1,0 +1,11 @@
+{
+  "samples": 578,
+  "window_seconds": 30,
+  "scope": "GPU0 process wall-stack sampling during rollout, not whole-iteration GPU kernel time",
+  "fractions": {
+    "gather_and_wake": 0.436,
+    "generation": 0.464,
+    "sleep": 0.088,
+    "other": 0.012
+  }
+}
