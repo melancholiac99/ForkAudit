@@ -59,7 +59,7 @@ def main():
         target = args.out/'registered_source'/relative
         target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(ROOT/relative,target)
-    registration = dict(protocol='native-full-p1-r1', source_sha256=hashes,
+    registration = dict(protocol=plan['version'], source_sha256=hashes,
         tasks_sha256=sha(args.out/'tasks.json'), plan_sha256=sha(args.out/'PLAN.json'),
         model={str(p.relative_to(ROOT)):sha(p) for p in sorted((ROOT/'.runtime/models/Qwen2.5-7B-Instruct').glob('*.safetensors'))},
         p0={str(p.relative_to(ROOT)):sha(p) for p in sorted((ROOT/'.runtime/imports/p0_base').glob('round_*/rollouts/s*_r*.json'))},

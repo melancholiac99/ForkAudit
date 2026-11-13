@@ -24,7 +24,7 @@ def main():
     assert read(folder/'publication.json')['verified_remote_head']
     assert {str(p.relative_to(ROOT)):sha(p) for p in source_paths()}==registration['source_sha256']
     assert sha(folder/'tasks.json')==registration['tasks_sha256']
-    names={arm:f'verl_p1_full_r1_{arm}' for arm in read(folder/'PLAN.json')['arms']}
+    names={arm:f'{folder.name}_{arm}' for arm in read(folder/'PLAN.json')['arms']}
     write(folder/'run_names.json',names)
     runner=ROOT/'exploratory_ctha/verl_agent_migration/run_native.py'
     def status(**values):

@@ -1,0 +1,8 @@
+{
+  "status": "FAIL_STARTUP",
+  "optimizer_updates": 0,
+  "gpu_model_loaded": false,
+  "error": "Local queue.py shadowed stdlib queue; pyarrow could not import Queue",
+  "run": ".runtime/runs/verl_p1_full_r1",
+  "repair": "Rename entrypoint run_campaign.py, use fresh campaign r2; scientific protocol unchanged"
+}

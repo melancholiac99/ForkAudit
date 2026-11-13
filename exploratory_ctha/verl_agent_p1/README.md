@@ -24,10 +24,10 @@ source env/verl_agent.sh
 python -m unittest discover -s exploratory_ctha/verl_agent_p1 -p 'test_*.py' -v
 python exploratory_ctha/verl_agent_p1/check_environment.py
 python exploratory_ctha/verl_agent_p1/prepare_campaign.py \
-  --out .runtime/runs/verl_p1_full_r1
+  --out .runtime/runs/verl_p1_full_r2
 # Publish the registered source/protocol and write verified publication.json first.
-python exploratory_ctha/verl_agent_p1/queue.py \
-  --campaign .runtime/runs/verl_p1_full_r1
+python exploratory_ctha/verl_agent_p1/run_campaign.py \
+  --campaign .runtime/runs/verl_p1_full_r2
 ```
 
 The queue serializes arms because this host has62.8GiB RAM. Generation concurrency
@@ -37,7 +37,7 @@ Prior checkpoint inventories and live fingerprints survive retention. Final
 native restore and independent NumPy probability/outcome audits are queued.
 Any gate/error stops the queue without an automatic restart or protocol change.
 
-TensorBoard uses the existing6006 server, under `verl_p1_full_r1_*`; primary Tune
+TensorBoard uses the existing6006 server, under `verl_p1_full_r2_*`; primary Tune
 success is `p1/tune_success_episode_mean`, not native response-weighted values.
 `episode_metrics.jsonl`, `applied_auxiliary_step_*.json`, `ctha_*.json`, saved real
 probability arrays and per-episode records support independent review. Native

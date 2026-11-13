@@ -1,5 +1,5 @@
 {
-  "version": "native-verl-agent-full-p1-r1",
+  "version": "native-verl-agent-full-p1-r2",
   "authorization": "User explicitly requested full P1, not the previous four-task/four-round pilot; compare GRPO, GiGPO, GiGPO+CTHA from the identical original model.",
   "arms": [
     "grpo",
@@ -93,5 +93,6 @@
   "execution": "Serialize independent TP1 arms on this62.8GiB host. Logical64 training trajectories remain intact; generation concurrency16 only. Stop affected arm/campaign on integrity or numerical failure; no SIGSTOP, no silent restart or changed thresholds.",
   "differences_from_old_full_p1": "Same12x16x4 budget and40x2 Tune evaluation schedule, three requested arms instead of five. Native verl-agent prompts/reward/GiGPO and lr3e-6/rank64/entropy0.001/no reference KL replace the old custom trainer. Hence a new protocol, not a direct reproduction of old P1. Temperature0.7 follows full P1, changed from R14/R15 temperature1 probe and subject to unchanged full-batch gates.",
   "reporting": "Per-round per-task train/Tune outcomes, episode-weighted success, paired game bootstrap intervals, environment/response tokens, phase timing, gate and auxiliary activation counts including post-normalization and token-weighted fractions. Report steps to80% Tune or not reached. One seed/development Tune is not heldout generalization. If CTHA never activates, mark its efficacy NOT_TESTED.",
-  "publication": "Register code/protocol on credit-grok before policy updates; preserve historical results. No automatic shutdown while full P1 is active."
+  "publication": "Register code/protocol on credit-grok before policy updates; preserve historical results. No automatic shutdown while full P1 is active.",
+  "startup_revision": "R1 failed during data preprocessing because queue.py shadowed Python stdlib queue. No GPU model loaded and no optimizer updates. Rename entrypoint run_campaign.py; preserve r1 evidence and identical scientific protocol."
 }
