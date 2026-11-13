@@ -1,0 +1,67 @@
+{
+  "scope": "Static code plus real saved-batch accounting; no training or GPU speedup measurement",
+  "batches": [
+    {
+      "run": "verl_agent_bypass_single_gpu_r9",
+      "packet": "raw_batch_0001",
+      "rows": 771,
+      "nonpadding_tokens": 462363,
+      "response_tokens": 106965,
+      "prompt_fraction": 0.7686557964196962,
+      "all_positions_per_response_position": 4.322563455335858,
+      "max_contiguous_micro16_tokens": 11100,
+      "estimated_bf16_logits_gib": 3.1439781188964844,
+      "packet_sha256": "1add6a312dc134bc57ebe7c60df70d78ca2a4fcac0fdd2d5b2b29c243e759398"
+    },
+    {
+      "run": "verl_agent_bypass_single_gpu_r9",
+      "packet": "ppo_batch_step_1",
+      "rows": 800,
+      "nonpadding_tokens": 480103,
+      "response_tokens": 111323,
+      "prompt_fraction": 0.7681268394490349,
+      "all_positions_per_response_position": 4.312702675996874,
+      "max_contiguous_micro16_tokens": 11100,
+      "estimated_bf16_logits_gib": 3.1439781188964844,
+      "packet_sha256": "c55ab3031596eb201158600fad5af17d75118f550faa99c49009d506d3dcfb39"
+    },
+    {
+      "run": "verl_agent_grpo_four_rounds_r11",
+      "packet": "raw_batch_0001",
+      "rows": 757,
+      "nonpadding_tokens": 451550,
+      "response_tokens": 104818,
+      "prompt_fraction": 0.7678706677001439,
+      "all_positions_per_response_position": 4.307943292182641,
+      "max_contiguous_micro16_tokens": 10833,
+      "estimated_bf16_logits_gib": 3.068352699279785,
+      "packet_sha256": "28a6dbed488943c7e41ffe7721d488b8868cc750fd96507de8e77bc17491ad6e"
+    },
+    {
+      "run": "verl_agent_grpo_four_rounds_r11",
+      "packet": "ppo_batch_step_1",
+      "rows": 768,
+      "nonpadding_tokens": 458266,
+      "response_tokens": 106302,
+      "prompt_fraction": 0.7680342857641632,
+      "all_positions_per_response_position": 4.310981919437076,
+      "max_contiguous_micro16_tokens": 10833,
+      "estimated_bf16_logits_gib": 3.068352699279785,
+      "packet_sha256": "bd4d5acbd92f315c9d647d991ffeec5fc9d4ea25b5a7075f9e68bfc62930992e"
+    }
+  ],
+  "frozen_base_parameters": 7615616512,
+  "estimated_base_bf16_gib": 14.18519115447998,
+  "estimated_base_50_sleep_wake_roundtrips_tib": 1.3852725736796856,
+  "estimate_limits": "Parameter-payload estimate, not measured PCIe traffic; excludes adapter/buffer allocation and transfer overhead. Logits estimate is one BF16 tensor, not actual peak VRAM. Prompt positions still require transformer computation.",
+  "source_sha256": {
+    ".runtime/external/verl-agent-20bd331b/verl/workers/sharding_manager/fsdp_vllm.py": "d96e95942a2dd59de9c7e4289649aa23b7e2e4d061864dfdcf1498165cfa492b",
+    ".runtime/external/verl-agent-20bd331b/verl/workers/fsdp_workers.py": "f3ab11f38ac0886f4c8964601d1fd469adb93b35a2482b431dff078e9a1d1312",
+    ".runtime/external/verl-agent-20bd331b/verl/workers/actor/dp_actor.py": "38cdd5545a62aeb8e17364ec24b245f4cc449aedce99d9b78f1e4be497504918",
+    ".runtime/external/verl-agent-20bd331b/agent_system/multi_turn_rollout/rollout_loop.py": "5488502c788a841266bb1e5e04b5c6c9d4e01e871962e83aa86cd4a1cf1858f0",
+    ".runtime/venvs/verl-agent-20bd331b/lib/python3.12/site-packages/vllm/device_allocator/cumem.py": "aef71f5640d466bf9452b551ab3c5f70d9e9858f38105aae4907cac1941e0542",
+    ".runtime/venvs/verl-agent-20bd331b/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py": "e06833e8a5247dea488f067078b9f64e1284ca9c97b248b279852b046e815256",
+    ".runtime/venvs/verl-agent-20bd331b/lib/python3.12/site-packages/vllm/lora/worker_manager.py": "faa80702dd418c9230da6d04f1671098ba38b1777b0deb23452acf6ae86d1eaf",
+    ".runtime/venvs/verl-agent-20bd331b/lib/python3.12/site-packages/vllm/v1/core/kv_cache_utils.py": "0824beae09a3a8faeb54e8e0605d1661045e34a33a2026de537e6849a4c78ee4"
+  }
+}
