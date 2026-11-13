@@ -23,6 +23,11 @@ check with the selected matched wheel (xformers permits at most 2.8.2).
 The registered r6 configuration instead uses vLLM's `FLASH_ATTN` backend;
 r5 remains a failed startup. This is an explicit kernel configuration revision.
 
+On this 62 GiB host, r6's initial full-base synchronization exceeded Ray's
+host-memory limit. The r7 configuration uses the native `load_format=safetensors`
+and `layered_summon=True` options: vLLM loads the identical frozen base directly,
+then only LoRA tensors are synchronized. No Ray memory guard is disabled.
+
 ## Bounded execution
 
 ```bash

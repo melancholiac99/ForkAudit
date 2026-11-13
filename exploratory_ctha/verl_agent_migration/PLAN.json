@@ -1,5 +1,5 @@
 {
-  "version": "verl-agent-migration-r6-20261113",
+  "version": "verl-agent-migration-r7-20261113",
   "upstream": {
     "repo": "langfengQ/verl-agent",
     "commit": "20bd331bdbc9026a5668e11362178e10ab7400c8",
@@ -66,7 +66,8 @@
     "rollout_tp": 2,
     "topology": "PHB, no NVLink shown; benchmark rather than assume speedup",
     "no_added_cards": true,
-    "attention_backend": "FLASH_ATTN; explicit revision after r5 XFORMERS/FlashAttention version check failure"
+    "attention_backend": "FLASH_ATTN; explicit revision after r5 XFORMERS/FlashAttention version check failure",
+    "weight_transfer": "Native safetensors preload plus layered LoRA summon; avoids initial two full host base copies"
   },
   "stages": [
     "Resolve/install isolated upstream-compatible dependencies",

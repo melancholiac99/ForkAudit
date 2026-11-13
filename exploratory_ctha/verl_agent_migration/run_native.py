@@ -56,6 +56,8 @@ def main():
         'actor_rollout_ref.actor.use_invalid_action_penalty': True,
         'actor_rollout_ref.actor.invalid_action_penalty_coef': .1,
         'actor_rollout_ref.rollout.name': 'vllm',
+        'actor_rollout_ref.rollout.load_format': 'safetensors',
+        'actor_rollout_ref.rollout.layered_summon': True,
         'actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu': 32,
         'actor_rollout_ref.rollout.tensor_model_parallel_size': 2,
         'actor_rollout_ref.rollout.gpu_memory_utilization': .6,

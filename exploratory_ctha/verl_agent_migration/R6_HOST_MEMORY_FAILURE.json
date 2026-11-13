@@ -1,0 +1,16 @@
+{
+  "run": "verl_agent_gigpo_smoke_r6",
+  "status": "FAIL_BEFORE_INITIAL_EVALUATION",
+  "optimizer_updates": 0,
+  "error": "Ray host-memory protection: 61.58GB/62.78GB used above0.95 threshold; GPU rank processes24.44GB/23.72GB",
+  "observed_gpu_peak_mib": {
+    "0": 66200,
+    "1": 66174
+  },
+  "root_cause": "Initial dummy-model full base synchronization creates two host copies",
+  "repair": "Use native rollout.load_format=safetensors and rollout.layered_summon=True; load identical base directly and synchronize LoRA only",
+  "numerical_precision_change": false,
+  "logical_batch_change": false,
+  "ray_guard_disabled": false,
+  "next_run": "verl_agent_gigpo_smoke_r7"
+}
