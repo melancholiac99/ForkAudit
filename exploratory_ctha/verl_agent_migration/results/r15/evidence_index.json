@@ -1,0 +1,24 @@
+{
+  "format": "Concatenate whitespace-stripped base64 parts, decode gzip/tar; verify MANIFEST.json. No model/optimizer/pickle binaries.",
+  "archive_sha256": "0d40f58b6cd0ae70d40fc033da20df006afeb6b1187d2b1c8d24ed6239d492a3",
+  "archive_bytes": 189600,
+  "parts": [
+    {
+      "path": "evidence.b64.part000.txt",
+      "sha256": "c440abe5880d44ad79e2f946b8235e523bda65b7f4644234236b47e412b6aa19"
+    },
+    {
+      "path": "evidence.b64.part001.txt",
+      "sha256": "f096f5d80dc0cd2561a98edc28857f74a9c7a786dde124a7af1ac646d1dbadd2"
+    },
+    {
+      "path": "evidence.b64.part002.txt",
+      "sha256": "e056345b63e18c07743c5c823f9acb1a1979df0da786d7106eb5a797d807ee64"
+    },
+    {
+      "path": "evidence.b64.part003.txt",
+      "sha256": "ffdf62d43650ef9e47c26157d52025e6f5368c8fb3acbcc27f88394e80c3824e"
+    }
+  ],
+  "files": 37
+}

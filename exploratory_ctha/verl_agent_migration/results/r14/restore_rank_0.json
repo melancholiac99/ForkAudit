@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "source": "/root/ForkAudit/.runtime/runs/verl_agent_bypass_single_gpu_r9/checkpoints/global_step_1/actor",
+  "actual": {
+    "trainable_lora_dtype": "torch.float32",
+    "trainable_numel": 161480704,
+    "frozen_numel_by_dtype": {
+      "torch.bfloat16": 7615616512
+    },
+    "weights_sha256": "a367ebfb90fdd775d8eb0d61d1287db3ade6fbb2e35a6e346a933740316ccfd6",
+    "optimizer_sha256": "31b7391f78d60cc2621c7a63f75956edbea5cdf5de08f1f40f2c0dc028c2ac2f",
+    "scheduler_sha256": "08efbcc4f6f3bd260b8b77eabcf5b7c79ecabce8a1dbb122a98384d7d8e4878f",
+    "adamw_steps_unique": [
+      4.0
+    ],
+    "optimizer_state_entries": 392
+  },
+  "limitation": "Inference generator RNG and next online rollout equivalence are not established by state hashes"
+}

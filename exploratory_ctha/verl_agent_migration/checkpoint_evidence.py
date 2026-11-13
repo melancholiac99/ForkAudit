@@ -68,6 +68,9 @@ def fingerprint(manager):
 
 
 def install():
+    if os.environ.get('FORKAUDIT_ROLLOUT_SESSION'):
+        from rollout_session import install_worker
+        install_worker()
     # external_lib is imported by init_model before HF/PEFT construction, after
     # Ray has assigned the device. Freeze LoRA initialization for fresh baselines.
     if 'FORKAUDIT_MODEL_SEED' in os.environ:

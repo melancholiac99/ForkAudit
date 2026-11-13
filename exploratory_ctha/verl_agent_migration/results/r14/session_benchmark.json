@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "optimizer_updates": 0,
+  "environment_transitions": 0,
+  "blocks": [
+    {
+      "mode": "legacy",
+      "seconds": 35.510196891002124,
+      "tokens": 12343,
+      "tokens_per_second": 347.5903002702746,
+      "manager_enters": 6,
+      "manager_exits": 6,
+      "sync_wake_host_seconds": 9.458964984005434,
+      "sleep_cleanup_host_seconds": 5.860921084000438,
+      "raw_model_score_checks": {
+        "token_count": 12343,
+        "response_count": 96,
+        "sampled_behavior_k3": 0.000745917532651656,
+        "clip_fraction": 0.002997650490156364,
+        "token_ESS_fraction": 0.9986018468453878,
+        "response_ESS_fraction": 0.8496909151524824,
+        "token_ratio_min": 0.6039922561847499,
+        "token_ratio_max": 1.4198017837328751,
+        "response_log_ratio_min": -1.4037680496432756,
+        "response_log_ratio_max": 0.620768874184904,
+        "long_response_count": 0,
+        "token_ratio_p01": 0.8766097678440694,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.111955181085854,
+        "token_ratio_p999": 1.226525318784773
+      }
+    },
+    {
+      "mode": "session",
+      "seconds": 23.03532121000171,
+      "tokens": 12558,
+      "tokens_per_second": 545.1627908946822,
+      "manager_enters": 1,
+      "manager_exits": 1,
+      "sync_wake_host_seconds": 1.4734842270045192,
+      "sleep_cleanup_host_seconds": 0.9789065440054401,
+      "raw_model_score_checks": {
+        "token_count": 12558,
+        "response_count": 96,
+        "sampled_behavior_k3": 0.000770389105256685,
+        "clip_fraction": 0.003742634177416786,
+        "token_ESS_fraction": 0.9985486642522554,
+        "response_ESS_fraction": 0.8611833330207634,
+        "token_ratio_min": 0.6039922561847499,
+        "token_ratio_max": 1.3821427905970787,
+        "response_log_ratio_min": -1.4867378365646289,
+        "response_log_ratio_max": 0.620768874184904,
+        "long_response_count": 0,
+        "token_ratio_p01": 0.8753735286102989,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.1154674970844054,
+        "token_ratio_p999": 1.243042299697226
+      }
+    },
+    {
+      "mode": "session",
+      "seconds": 22.208529370996985,
+      "tokens": 12502,
+      "tokens_per_second": 562.9368694861383,
+      "manager_enters": 1,
+      "manager_exits": 1,
+      "sync_wake_host_seconds": 1.5214285780020873,
+      "sleep_cleanup_host_seconds": 0.9625182480012882,
+      "raw_model_score_checks": {
+        "token_count": 12502,
+        "response_count": 96,
+        "sampled_behavior_k3": 0.0007431459864256917,
+        "clip_fraction": 0.0035194368900975845,
+        "token_ESS_fraction": 0.998585559725454,
+        "response_ESS_fraction": 0.8659480870529526,
+        "token_ratio_min": 0.6039922561847499,
+        "token_ratio_max": 1.4198017837328751,
+        "response_log_ratio_min": -1.1797237687434148,
+        "response_log_ratio_max": 0.620768874184904,
+        "long_response_count": 0,
+        "token_ratio_p01": 0.878043655741509,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.1175940180126143,
+        "token_ratio_p999": 1.2436251832776961
+      }
+    },
+    {
+      "mode": "legacy",
+      "seconds": 34.9810964290009,
+      "tokens": 12411,
+      "tokens_per_second": 354.79162367565823,
+      "manager_enters": 6,
+      "manager_exits": 6,
+      "sync_wake_host_seconds": 9.109574239992071,
+      "sleep_cleanup_host_seconds": 5.875559840002097,
+      "raw_model_score_checks": {
+        "token_count": 12411,
+        "response_count": 96,
+        "sampled_behavior_k3": 0.0007664469415854027,
+        "clip_fraction": 0.0036258158085569255,
+        "token_ESS_fraction": 0.9985590229268223,
+        "response_ESS_fraction": 0.8636529934447759,
+        "token_ratio_min": 0.6039922561847499,
+        "token_ratio_max": 1.3821427905970787,
+        "response_log_ratio_min": -1.2016800463355821,
+        "response_log_ratio_max": 0.5606826547675823,
+        "long_response_count": 0,
+        "token_ratio_p01": 0.8755533275288092,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.116088303824053,
+        "token_ratio_p999": 1.2348573939523955
+      }
+    }
+  ],
+  "sampled_checks": [
+    {
+      "mode": "legacy",
+      "token_count": 1820,
+      "response_count": 16,
+      "sampled_behavior_k3": 0.0014057376349814507,
+      "clip_fraction": 0.014835164835164835,
+      "token_ESS_fraction": 0.9972596121695121,
+      "response_ESS_fraction": 0.8318064853867827,
+      "token_ratio_min": 0.6830742756668056,
+      "token_ratio_max": 1.4219915807375958,
+      "response_log_ratio_min": -1.1822745832499848,
+      "response_log_ratio_max": 0.404464969260637,
+      "long_response_count": 0,
+      "token_ratio_p01": 0.8123457075028883,
+      "token_ratio_p50": 1.0,
+      "token_ratio_p99": 1.1695227867628362,
+      "token_ratio_p999": 1.3630443696325567
+    },
+    {
+      "mode": "session",
+      "token_count": 1794,
+      "response_count": 16,
+      "sampled_behavior_k3": 0.002050373706211879,
+      "clip_fraction": 0.01839464882943144,
+      "token_ESS_fraction": 0.9962209653580845,
+      "response_ESS_fraction": 0.5285674931550418,
+      "token_ratio_min": 0.3833159545456318,
+      "token_ratio_max": 1.6806448449319724,
+      "response_log_ratio_min": -1.7492378346188602,
+      "response_log_ratio_max": 1.544947175980326,
+      "long_response_count": 0,
+      "token_ratio_p01": 0.8192709231222443,
+      "token_ratio_p50": 1.0,
+      "token_ratio_p99": 1.212908303746081,
+      "token_ratio_p999": 1.6009058820597144
+    }
+  ],
+  "exact_greedy_responses_equal": false,
+  "native_full_response_loss_before": -0.49719682335853577,
+  "native_full_response_loss_after": -0.49719682335853577,
+  "weights_optimizer_scheduler_equal": true,
+  "live_state": {
+    "trainable_lora_dtype": "torch.float32",
+    "trainable_numel": 161480704,
+    "frozen_numel_by_dtype": {
+      "torch.bfloat16": 7615616512
+    },
+    "weights_sha256": "a367ebfb90fdd775d8eb0d61d1287db3ade6fbb2e35a6e346a933740316ccfd6",
+    "optimizer_sha256": "31b7391f78d60cc2621c7a63f75956edbea5cdf5de08f1f40f2c0dc028c2ac2f",
+    "scheduler_sha256": "08efbcc4f6f3bd260b8b77eabcf5b7c79ecabce8a1dbb122a98384d7d8e4878f",
+    "adamw_steps_unique": [
+      4.0
+    ],
+    "optimizer_state_entries": 392
+  },
+  "median_wall_speedup": 1.5580303713054793,
+  "limitation": "Fixed real prompt tape; no ALFWorld transitions or learning. Host timing sections include native blocking transfers but are not CUDA kernel timings."
+}

@@ -62,6 +62,8 @@ def main():
     parser.add_argument('--logprob-micro', type=int, choices=[16, 32])
     parser.add_argument('--model-seed', type=int)
     parser.add_argument('--bounded-cuda-graphs', action='store_true')
+    parser.add_argument('--rollout-session', action='store_true')
+    parser.add_argument('--session-benchmark', action='store_true')
     args = parser.parse_args()
     assert Path(sys.prefix).resolve() == (ROOT / '.runtime/venvs/verl-agent-20bd331b').resolve()
     assert Path(args.name).name == args.name
@@ -72,6 +74,14 @@ def main():
     env.pop('FORKAUDIT_REFERENCE_PACKET', None)
     env.pop('FORKAUDIT_GRADIENT_BENCH_PACKET', None)
     env.pop('FORKAUDIT_MODEL_SEED', None)
+    env.pop('FORKAUDIT_ROLLOUT_SESSION', None)
+    env.pop('FORKAUDIT_SESSION_BENCHMARK', None)
+    if args.rollout_session or args.session_benchmark:
+        assert args.gpus == 1 and args.frozen_base_bf16
+        env['FORKAUDIT_ROLLOUT_SESSION'] = '1'
+    if args.session_benchmark:
+        assert args.reference_packet and args.val_only and args.resume_from
+        env['FORKAUDIT_SESSION_BENCHMARK'] = '1'
     if args.model_seed is not None:
         assert args.frozen_base_bf16, 'Seed hook requires registered external_lib'
         env['FORKAUDIT_MODEL_SEED'] = str(args.model_seed)

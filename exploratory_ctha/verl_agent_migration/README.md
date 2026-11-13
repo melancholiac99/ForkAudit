@@ -114,3 +114,18 @@ permits independent engines. `--model-seed` seeds initialization before HF/PEFT;
 initial LoRA hashes must match across arms. Every registration snapshots its
 sources. Per-round pre/post numerical gates remain blocking. There is no CTHA,
 extra training round or heldout/generalization evaluation in this pilot.
+
+## Opt-in rollout sessions
+
+`--rollout-session` keeps the native inference engine resident across one
+`vanilla_multi_turn_loop`, then closes it in `finally` before HF scoring or
+updates. It supports the registered TP1/no-parameter-offload profile only.
+Native LoRA synchronization, RNG save/restore and model-mode transitions are
+retained at session boundaries. Open or poisoned sessions block scoring,
+updates and checkpoint operations. The default retains native per-call switching.
+
+`--session-benchmark` is a val-only, frozen-checkpoint paired request-tape test
+(legacy/session/session/legacy). It saves generation timing, transition counts,
+raw probabilities, response equality, fixed-data PPO+entropy loss equality and
+live checkpoint-state fingerprints. It performs no optimizer update or ALFWorld
+transition. Use a new output directory; never splice its samples into training.

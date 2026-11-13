@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "scope": "Native four-task val-only ALFWorld rollout; not a training throughput comparison",
+  "session": {
+    "seconds": 129.18144971899892,
+    "completed": true,
+    "manager_enters": 1,
+    "manager_exits": 1,
+    "final_state": {
+      "open": false,
+      "resident": false,
+      "poisoned": false,
+      "enters": 1,
+      "exits": 1,
+      "enter_seconds": 2.045705769000051,
+      "exit_seconds": 1.0356598159996793
+    }
+  },
+  "probability_checks": {
+    "token_count": 21578,
+    "response_count": 176,
+    "sampled_behavior_k3": 0.0006734785414046116,
+    "clip_fraction": 0.0027342663824265457,
+    "token_ESS_fraction": 0.9987100681242814,
+    "response_ESS_fraction": 0.8377899576569607,
+    "token_ratio_min": 0.5783644023380045,
+    "token_ratio_max": 1.7192294510338209,
+    "response_log_ratio_min": -1.7224622047977007,
+    "response_log_ratio_max": 0.8778519338522699,
+    "long_response_count": 2,
+    "token_ratio_p01": 0.8829890243042648,
+    "token_ratio_p50": 1.0,
+    "token_ratio_p99": 1.116383321736137,
+    "token_ratio_p999": 1.2085816891269456,
+    "long_sampled_k3": 0.0005016393236504115,
+    "long_clip_fraction": 0.0034129692832764505,
+    "long_token_ESS_fraction": 0.9990051777748625
+  },
+  "diagnostics": {
+    "raw_logprob_error_mean": 0.016676966019805464,
+    "raw_logprob_error_p99": 0.14032978415489197,
+    "raw_logprob_error_max": 0.547551155090332,
+    "sampled_KL_rollout_to_actor_k1": 0.0017112513679612398,
+    "opposite_orientation_k3": 0.0006541683743761473,
+    "response_geometric_ratio_ESS_fraction": 0.9999848779302669,
+    "token_ESS_absolute": 21550.165849985744,
+    "response_ESS_absolute": 147.4510325476251,
+    "longest_response_tokens": 300
+  },
+  "interpretation": "Raw model-score alignment on greedy outputs; not importance sampling of the degenerate greedy behavior policy",
+  "evidence_sha256": "cf23cbe147a695b90210dc29ba1b1efc6c10fe11a87906007ac86ec249bc6445",
+  "restored_state": {
+    "trainable_lora_dtype": "torch.float32",
+    "trainable_numel": 161480704,
+    "frozen_numel_by_dtype": {
+      "torch.bfloat16": 7615616512
+    },
+    "weights_sha256": "a367ebfb90fdd775d8eb0d61d1287db3ade6fbb2e35a6e346a933740316ccfd6",
+    "optimizer_sha256": "31b7391f78d60cc2621c7a63f75956edbea5cdf5de08f1f40f2c0dc028c2ac2f",
+    "scheduler_sha256": "08efbcc4f6f3bd260b8b77eabcf5b7c79ecabce8a1dbb122a98384d7d8e4878f",
+    "adamw_steps_unique": [
+      4.0
+    ],
+    "optimizer_state_entries": 392
+  },
+  "peak_nvml_mib": 58692.9375,
+  "Learning": "NOT_RUN",
+  "Generalization": "NOT_RUN",
+  "CTHA_online_efficacy": "NOT_TESTED"
+}

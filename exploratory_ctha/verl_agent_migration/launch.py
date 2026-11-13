@@ -33,6 +33,12 @@ def setup_worker():
     correction.install()
     import reference_probe
     reference_probe.install()
+    if os.environ.get('FORKAUDIT_ROLLOUT_SESSION'):
+        from rollout_session import install_collector
+        install_collector()
+    if os.environ.get('FORKAUDIT_SESSION_BENCHMARK'):
+        import session_benchmark
+        session_benchmark.install()
 
 
 if __name__ == '__main__':

@@ -1,0 +1,20 @@
+test_bf16_trainable_master_rejected (test_checkpoint_evidence.StateEvidenceTests.test_bf16_trainable_master_rejected) ... ok
+test_momentum_and_step_restore (test_checkpoint_evidence.StateEvidenceTests.test_momentum_and_step_restore) ... ok
+test_actual_anchor_once_without_weight (test_compat.CorrectionTests.test_actual_anchor_once_without_weight) ... ok
+test_extreme_ratio_stops_before_update (test_compat.CorrectionTests.test_extreme_ratio_stops_before_update) ... ok
+test_identity_and_padding (test_compat.CorrectionTests.test_identity_and_padding) ... ok
+test_long_reply_and_sequence_ess (test_compat.CorrectionTests.test_long_reply_and_sequence_ess) ... ok
+test_upstream_hook_and_idempotence (test_compat.CorrectionTests.test_upstream_hook_and_idempotence) ... /root/ForkAudit/.runtime/venvs/verl-agent-20bd331b/lib/python3.12/site-packages/ray/util/state/util.py:55: DeprecationWarning: Ray state API is no longer experimental. Please import from `ray.util.state`. instead. Importing from `ray.experimental` will be deprecated in future releases. 
+  warnings.warn(
+ok
+test_collector_exception_ends_remote_session (test_rollout_session.CollectorCleanupTests.test_collector_exception_ends_remote_session) ... ok
+test_exception_cleanup (test_rollout_session.SessionTests.test_exception_cleanup) ... ok
+test_failed_cleanup_blocks_updates (test_rollout_session.SessionTests.test_failed_cleanup_blocks_updates) ... ok
+test_legacy_every_call (test_rollout_session.SessionTests.test_legacy_every_call) ... ok
+test_many_turns_one_transition_and_update_guard (test_rollout_session.SessionTests.test_many_turns_one_transition_and_update_guard) ... ok
+test_nested_and_empty_session (test_rollout_session.SessionTests.test_nested_and_empty_session) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.299s
+
+OK

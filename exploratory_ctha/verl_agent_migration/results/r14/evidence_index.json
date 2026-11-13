@@ -1,0 +1,48 @@
+{
+  "format": "Concatenate whitespace-stripped base64 parts, decode gzip/tar; verify MANIFEST.json. NPZ arrays only, no model/optimizer/pickle binaries.",
+  "archive_sha256": "91614f8818307fac3da5d3fd5ed65b49784d3c6278bd45b4e1648a1e8c3880e4",
+  "archive_bytes": 445974,
+  "parts": [
+    {
+      "path": "evidence.b64.part000.txt",
+      "sha256": "606e4479453c7b913d1336ba8ece9ac65360f16012582fd5cadb4029bb4130d5"
+    },
+    {
+      "path": "evidence.b64.part001.txt",
+      "sha256": "d0064c48b62c6cbbb9ddedea9d7aea6c3e5fd641bf03a653a95f31ebec101f82"
+    },
+    {
+      "path": "evidence.b64.part002.txt",
+      "sha256": "c34cd47a83c6ea0586fcbd199af19f8691f98d87196cd3b51879de57d5aeb131"
+    },
+    {
+      "path": "evidence.b64.part003.txt",
+      "sha256": "2e15961dfaf66f87b209d88dd4b887f5c2fbdaf56843abfdc4a5f07e015f8e42"
+    },
+    {
+      "path": "evidence.b64.part004.txt",
+      "sha256": "5654bab2e110280d493da39285cd85e1d7bee0c2760159b93d5529f84e8511ce"
+    },
+    {
+      "path": "evidence.b64.part005.txt",
+      "sha256": "2c82a4946cb2422bf8a31a728c31de983243fa38fb31668bb74b3cf61d3862c0"
+    },
+    {
+      "path": "evidence.b64.part006.txt",
+      "sha256": "d219db2ebb392d9225a99190f455c0814bac882291bd447d2b5325bcac813a83"
+    },
+    {
+      "path": "evidence.b64.part007.txt",
+      "sha256": "866426147c28dd1cb09fe1325a8534cd2b49ead67b7719ee3f00c0906f1f4ade"
+    },
+    {
+      "path": "evidence.b64.part008.txt",
+      "sha256": "be61ba4e8c0fdce193a429c9b07e958fe6fc6de4b22ba59f54e64ba2e3067ecf"
+    },
+    {
+      "path": "evidence.b64.part009.txt",
+      "sha256": "dff0f41434b5947c211881e7c6b6f55f14a6f7d32178fb5b3ce01518563dbb7a"
+    }
+  ],
+  "files": 37
+}
