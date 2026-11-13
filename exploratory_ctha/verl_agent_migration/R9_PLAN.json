@@ -1,0 +1,93 @@
+{
+  "version": "native-single-card-bypass-r9-20261113",
+  "stage": "Engineering candidate, not four-round learning baseline",
+  "upstream": "langfengQ/verl-agent@20bd331bdbc9026a5668e11362178e10ab7400c8",
+  "authorization": "Native framework migration and full-batch mismatch/checkpoint validation before the bounded two-arm learning pilot",
+  "hardware": {
+    "gpus": 1,
+    "device": 0,
+    "rollout_tp": 1,
+    "DDP": false,
+    "capacity_gb": 80,
+    "other_device": "Available for independent checks; not tensor parallel"
+  },
+  "precision": {
+    "frozen_base": "Native fsdp_config.model_dtype=bf16; includes native buffer handling, not assumed numerically equivalent to r8",
+    "trainable_lora_master": "FP32 asserted before first rollout/update",
+    "AdamW_moments": "FP32 asserted at save/restore",
+    "compute": "Native BF16 mixed precision",
+    "CPU_test": "Tiny construction/state-dtype check only; not 7B numerical or performance evidence"
+  },
+  "unchanged_native_science": {
+    "tasks": [
+      1004,
+      1028,
+      1150,
+      1065
+    ],
+    "groups": 4,
+    "trajectories_per_group": 4,
+    "max_environment_steps": 50,
+    "max_prompt": 2048,
+    "max_response": 512,
+    "temperature": 1,
+    "top_p": 1,
+    "lora_rank": 64,
+    "lora_alpha": 64,
+    "lr": 3e-06,
+    "gamma": 0.95,
+    "reference_kl": false,
+    "entropy": 0.001,
+    "invalid_action_penalty": 0.1,
+    "terminal_success_reward": 10,
+    "ppo_logical_mini_batch": 256,
+    "micro_batch_per_gpu": 32
+  },
+  "compute_revision": {
+    "max_num_seqs": 16,
+    "gpu_memory_utilization": 0.5,
+    "direct_safetensors": true,
+    "layered_summon": false,
+    "purpose": "Use one A100 per native arm rather than TP2; avoid unused1024-sequence graph capacity; changes no logical trajectory count"
+  },
+  "loss": {
+    "mode": "Native Full-response PPO with actual sampler denominator (bypass_ppo_clip)",
+    "extra_IS_weights": false,
+    "rejection": false
+  },
+  "guards": {
+    "pre_and_post_full_batch_behavior_k3_max": 0.02,
+    "pre_and_post_clip_fraction_max": 0.3,
+    "gradients": "Finite required",
+    "raw_logprob_error": "Diagnostic only under authorized BF16 protocol",
+    "ESS": "Full processed batch and unique real rows, diagnostic; no new posthoc ESS threshold"
+  },
+  "budget": {
+    "outer_iterations": 1,
+    "internal_AdamW_steps": "Count from actual initialized optimizer state; not assumed one",
+    "before_eval": false,
+    "final_eval": "Four fixed TRAIN tasks, greedy one each, for subsequent checkpoint/cross-device comparison; not learning inference"
+  },
+  "evidence": {
+    "exact_raw_DataProto": true,
+    "exact_PPO_DataProto_before_update": true,
+    "stable_original_row_ids": true,
+    "probability_arrays_pre_and_post": true,
+    "memory": "NVML sampled every0.2s; report observed physical peak and interval",
+    "checkpoint": "Native full model/LoRA/AdamW/scheduler save; binaries local only, file hashes reported",
+    "restore": "Separate val-only run on other A100; live parameter/optimizer/scheduler fingerprints must match saved state",
+    "updated_alignment": "HF/raw vLLM model-score alignment on greedy updated-model validation outputs; not importance ratios of a greedy policy"
+  },
+  "pending_limits": [
+    "Original eight-response four-step strict direction probe not claimed",
+    "Cross-GPU/batch full-model reproduction still requires actual comparison; tiny matrix checks do not close it",
+    "Inference-generator RNG / second online-round equivalence not established by checkpoint state hashes"
+  ],
+  "isolation": "Fresh original base; never initialize from custom FP32/BF16 or r8 trained parameters; candidate scores remain separate",
+  "status": {
+    "Engineering": "INCOMPLETE",
+    "Learning": "NOT_RUN",
+    "Generalization": "NOT_RUN",
+    "CTHA_online_efficacy": "NOT_TESTED"
+  }
+}

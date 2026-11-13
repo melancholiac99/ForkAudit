@@ -61,12 +61,18 @@ def main():
     if (run / 'mismatch.jsonl').exists():
         for line in (run / 'mismatch.jsonl').read_text().splitlines():
             reported = json.loads(line)
-            path = run / f"probabilities_step_{reported['step']}.npz"
+            phase = reported.get('phase', 'pre_update')
+            suffix = f"step_{reported['step']}" if phase == 'pre_update' else f"{phase}_step_{reported['step']}"
+            path = run / f'probabilities_{suffix}.npz'
             with np.load(path) as values:
                 actual, extra = recompute(values['actor'], values['rollout'], values['mask'])
+                if 'row_ids' in values and values['row_ids'].size:
+                    _, indices = np.unique(values['row_ids'], return_index=True)
+                    unique, unique_extra = recompute(values['actor'][indices], values['rollout'][indices], values['mask'][indices])
+                    extra['unique_original_response_rows'] = dict(**unique, **unique_extra)
             for key, value in actual.items():
                 assert math.isclose(reported[key], value, rel_tol=1e-9, abs_tol=1e-10), (key, reported[key], value)
-            rows.append(dict(step=reported['step'], reported_equals_independent=True,
+            rows.append(dict(step=reported['step'], phase=phase, reported_equals_independent=True,
                 gates_passed=actual['sampled_behavior_k3'] <= .02 and actual['clip_fraction'] <= .30,
                 **actual, **extra, evidence=str(path), sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
     logdir = ROOT / '.runtime/tensorboard/ctha-a100-r2' / run.name

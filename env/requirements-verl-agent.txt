@@ -894,3 +894,6 @@ yarl==1.25.1
     # via aiohttp
 zipp==4.1.2
     # via importlib-metadata
+
+# NVML physical-memory observation for the native single-card candidate
+nvidia-ml-py==13.615.71

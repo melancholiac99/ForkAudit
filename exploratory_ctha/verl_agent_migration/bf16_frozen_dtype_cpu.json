@@ -1,0 +1,7 @@
+{
+  "test": "Tiny CPU model construction and optimizer-state dtype check only; not ALFWorld or 7B performance",
+  "frozen_dtype": "bfloat16",
+  "trainable_lora_dtype": "float32",
+  "AdamW_moments": "float32",
+  "passed": true
+}

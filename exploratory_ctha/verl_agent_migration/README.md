@@ -66,3 +66,27 @@ Official reward (10 × success), invalid-action penalty, gamma, XML prompt,
 entropy and rank differ from the former engine. Do not attribute comparisons
 solely to precision. TensorBoard writes under
 `.runtime/tensorboard/ctha-a100-r2/<run-name>` (existing port 6006).
+
+## Single-card candidate (R9)
+
+`R9_PLAN.json` registers a separate engineering candidate with native BF16
+frozen base, asserted FP32 LoRA/AdamW, TP1 and sixteen maximum active sequences.
+It starts from the original model, uses the bypass denominator once, preserves
+exact DataProto/token data and row IDs, and checks full-batch stability before
+and after the update. `checkpoint_evidence.py`, loaded through the native
+`model.external_lib` setting after device assignment, observes native checkpoint
+save/load and checks live parameter/optimizer/scheduler hashes.
+
+```bash
+python exploratory_ctha/verl_agent_migration/run_native.py \
+  --name UNIQUE_SINGLE_CARD_RUN --gpus 1 --device 0 --frozen-base-bf16 \
+  --correction bypass_ppo_clip --save-checkpoint --final-eval
+```
+
+This runs one engineering iteration. Checkpoint binaries remain local. A
+separate `--resume-from .../global_step_1 --val-only` run tests restoration;
+these flags do not authorize extra learning iterations. Greedy validation
+records raw HF/vLLM score alignment, distinct from behavior importance ratios.
+Inference-generator RNG and exact stochastic cross-batch reproduction are not
+established by weight/state hashes. R8's full-batch report and original source
+snapshot remain under `results/r8/`; its scores are not mixed into R9.
