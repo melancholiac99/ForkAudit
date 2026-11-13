@@ -1,0 +1,25 @@
+{
+  "version": "a100-bf16-head32-r1",
+  "authorization": "User requested trying contemporary training/rollout consistency solution; isolated diagnostic only, no deployment to active pilot.",
+  "scope": "BF16 backbone + FP32 output head, logits and softmax; unchanged Full-response PPO using actual behavior probabilities (bypass). No additional IS weight, TIS, MIS, rejection masks or reward changes.",
+  "gates": {
+    "mean_abs": 0.01,
+    "p99_abs": 0.05,
+    "max_abs": 0.25,
+    "sampled_behavior_k3": 0.02,
+    "clip_fraction": 0.3
+  },
+  "numeric_samples": "Same sixteen real reference prompt texts, freshly generated BF16-head32 responses, fixed seeds20261113+i. No synthetic prompts or old behavior records passed off as new.",
+  "precision": {
+    "weights": "bfloat16 backbone",
+    "hf_head": "float32 weight projection, autocast off, cast head input to FP32",
+    "vllm_head": "Native hf_overrides head_dtype=float32",
+    "torch_tf32": false,
+    "sampling": "temperature0.7 top_p1 top_k-1 min_p0 penalties1/0/0, processed_logprobs"
+  },
+  "steps": "Original probability gates remain blocking. If passing, fresh environment responses and eight balanced actual-advantage samples/four updates plus checkpoint/updated parity. On numeric failure stop and preserve; no threshold changes.",
+  "device": "GPU0 after current collection exits; existing controller paused, GPU1 collection may complete independently. Resume old controller in finally.",
+  "cost_bound_seconds": 600,
+  "adoption": false,
+  "old_results": "R2 FAIL and R3 FP32 PASS unchanged; current four-task learning arms remain FP32 with original checkpoints."
+}
