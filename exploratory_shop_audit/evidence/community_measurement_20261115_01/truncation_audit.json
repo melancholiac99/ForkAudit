@@ -1,0 +1,19 @@
+{
+  "decisions": 3438,
+  "truncated_decisions": 3,
+  "truncated_decision_fraction": 0.0008726003490401396,
+  "episodes": 800,
+  "truncated_episodes": 3,
+  "removed_tokens": 7659,
+  "max_input_tokens": 8146,
+  "generation_truncations": 0,
+  "removed_pairs_with_product_evidence": 3,
+  "all_historical_products_lost_requirement_proxy_count": 62,
+  "unique_lost_episode_product_requirement_pairs": 62,
+  "replay": {
+    "decisions": 3258,
+    "truncated_decisions": 5,
+    "removed_tokens": 11457,
+    "max_input_tokens": 7385
+  }
+}

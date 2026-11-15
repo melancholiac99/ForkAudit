@@ -1,32 +1,12 @@
 {
-  "formal_collection": "PAUSED_BY_USER",
-  "selected_formal_environment": null,
-  "reason": "Original reward data lineage unresolved; community Reward v3 changes scientific contract. Research choice pending.",
-  "original": {
-    "commit": "475837e7a51737c44c0a9f79f9459be1e79060fa",
-    "admitted": false,
-    "query_recovered": false,
-    "old_snapshots": "QUARANTINED"
-  },
-  "community": {
-    "commit": "13d2b636c0725d4e0c738b8c2eb1eb3b7592bae5",
-    "environment": "v2.1",
-    "reward": "v3",
-    "scripted_episodes": 3,
-    "independent_prefix_checks": 12,
-    "all_equal": true,
-    "upstream_tests_passed": 43,
-    "parser_failures": 570,
-    "formal_admitted": false
-  },
-  "gpu_hours": 0,
-  "policy_requests": 0,
-  "artifacts": {
-    "exploratory_shop_audit/runs/community_smoke_20261115_01/registration.json": "a2f89fd6cd3599be5f1ede19a8350d19161ba135d82f968eadae658287f1b609",
-    "exploratory_shop_audit/runs/community_smoke_20261115_01/episodes_manifest.json": "f418d1e4456d20214d2cf49fa8e8a13354738d07f9011a8e6730d6e66005c403",
-    "exploratory_shop_audit/runs/community_smoke_20261115_01/independent_replay.json": "96e11d20400a8a24729704b8fe5363c332f4c0e78ee45e47fc861df41cdc01b3",
-    "exploratory_shop_audit/runs/community_smoke_20261115_01/result.json": "4f8fa46656a45b947d90941b8cb8ddf7390e3c39a47e0b85866c7f86acfa539d",
-    "exploratory_shop_audit/runs/community_smoke_20261115_01/upstream_tests.log": "4e579312efec9c3ed965e6d793b81a35a90bda0ef83a2a4f19b2ef5c3014c183",
-    "exploratory_shop_audit/runs/source_review_20261115_01/source_review.json": "3dde9fe61b73f932fa865949fe5246f48e33496c0281d375d1477561ee82eb97"
-  }
+  "status": "MEASUREMENT_AND_ANALYSIS_COMPLETE",
+  "selected_environment": "community-v2.1-reward-v3",
+  "community_commit": "13d2b636c0725d4e0c738b8c2eb1eb3b7592bae5",
+  "pilot_episodes": 40,
+  "formal_episodes": 800,
+  "fork_states": 60,
+  "defined_fork_states": 35,
+  "gpu_hours": 0.33697187046416627,
+  "policy_training": false,
+  "report": "evidence/community_measurement_20261115_01/REPORT.md"
 }

@@ -1,0 +1,101 @@
+{
+  "run_directory": "/root/ForkAudit/exploratory_shop_audit/runs/community_measurement_20261115_01",
+  "exports": [
+    {
+      "path": "REPORT.md",
+      "source_sha256": "418c591a5e1409901b54fab123b9e6cb2ca5d585c8417e1ae90f8567ae460a55",
+      "export_sha256": "418c591a5e1409901b54fab123b9e6cb2ca5d585c8417e1ae90f8567ae460a55"
+    },
+    {
+      "path": "metrics.json",
+      "source_sha256": "61f8e744a6ab85a6edd211fdd7f2924861f10788aa3a02750958008e31571cfd",
+      "export_sha256": "13d86e9b733890899e1bc9deceaa90ac5711a56ddf4997c6f227b1f0821b15a8"
+    },
+    {
+      "path": "summary.csv",
+      "source_sha256": "e9e6cbea9f1ca60c9684c707bbb5684d388373d2479e57b334ef9ba93c7acb3b",
+      "export_sha256": "e9e6cbea9f1ca60c9684c707bbb5684d388373d2479e57b334ef9ba93c7acb3b"
+    },
+    {
+      "path": "costs.json",
+      "source_sha256": "ca4a1d4130c4dc6bed75a0fa40a6ecbc736bc7dba27f7f2f8d89f25914c35714",
+      "export_sha256": "ca4a1d4130c4dc6bed75a0fa40a6ecbc736bc7dba27f7f2f8d89f25914c35714"
+    },
+    {
+      "path": "truncation_audit.json",
+      "source_sha256": "e0c1d8195ff8b495237b5ea45eff4bca4b328ce65ccb9eb08f628895b3131d2e",
+      "export_sha256": "e0c1d8195ff8b495237b5ea45eff4bca4b328ce65ccb9eb08f628895b3131d2e"
+    },
+    {
+      "path": "truncation_lost_evidence.jsonl",
+      "source_sha256": "4dea539aae0ca18ec502732126c4c3fcfcc5e35c1374505ef8baec3fc0f005e2",
+      "export_sha256": "4dea539aae0ca18ec502732126c4c3fcfcc5e35c1374505ef8baec3fc0f005e2"
+    },
+    {
+      "path": "saved_data_validation.json",
+      "source_sha256": "79c5c2179b6e48fb87cce5d40b0dcadfff35e1f72d3e6fb3b48a322f9dd416a2",
+      "export_sha256": "79c5c2179b6e48fb87cce5d40b0dcadfff35e1f72d3e6fb3b48a322f9dd416a2"
+    },
+    {
+      "path": "cpu_acceptance.json",
+      "source_sha256": "1d379be8e5dd2ce1ce170cd5dc905bad99bb64c77c666b1e7a5d00a825cafb0a",
+      "export_sha256": "1d379be8e5dd2ce1ce170cd5dc905bad99bb64c77c666b1e7a5d00a825cafb0a"
+    },
+    {
+      "path": "pilot_acceptance.json",
+      "source_sha256": "07d0880a9f618af3c7303c013842d1f179d38d564a5f5179bd0714cb26952896",
+      "export_sha256": "07d0880a9f618af3c7303c013842d1f179d38d564a5f5179bd0714cb26952896"
+    },
+    {
+      "path": "r_star_native_checks.jsonl",
+      "source_sha256": "4c4107803547b14448cf91c3300db21692902d9fe93d0daa3a38a5f56305b661",
+      "export_sha256": "4c4107803547b14448cf91c3300db21692902d9fe93d0daa3a38a5f56305b661"
+    },
+    {
+      "path": "visibility_manual_review.jsonl",
+      "source_sha256": "9457a6904ff62916e316df2f22e010fcb689dc1065eb205e309bb5bb7e9a6a86",
+      "export_sha256": "9457a6904ff62916e316df2f22e010fcb689dc1065eb205e309bb5bb7e9a6a86"
+    },
+    {
+      "path": "tier_freeze.json",
+      "source_sha256": "12cb2301856f3ee92bf8bb0f7bd4f76b5d5914a3588665c804106024d9a6fdfe",
+      "export_sha256": "12cb2301856f3ee92bf8bb0f7bd4f76b5d5914a3588665c804106024d9a6fdfe"
+    },
+    {
+      "path": "freeze.json",
+      "source_sha256": "8475da010cee51c35fb3a7f6f21f913d0695e66090ac036c68458a0e75c1694f",
+      "export_sha256": "8475da010cee51c35fb3a7f6f21f913d0695e66090ac036c68458a0e75c1694f"
+    },
+    {
+      "path": "config_resolved.json",
+      "source_sha256": "56fcefa430a4776dfa25cfec6947f0996bb4d2bbc8cb6591c4ce699ad6e38e51",
+      "export_sha256": "56fcefa430a4776dfa25cfec6947f0996bb4d2bbc8cb6591c4ce699ad6e38e51"
+    },
+    {
+      "path": "adapter_tests.log",
+      "source_sha256": "fdb195f8c1e437de95e47c6bb0b84f2bd050e789ff90f77458e0a35b12298988",
+      "export_sha256": "fdb195f8c1e437de95e47c6bb0b84f2bd050e789ff90f77458e0a35b12298988"
+    },
+    {
+      "path": "analysis_environment.txt",
+      "source_sha256": "a561b096e73e8e7062fc24007d7421d6f1fd73515a357641653d9cebfd8009c4",
+      "export_sha256": "a561b096e73e8e7062fc24007d7421d6f1fd73515a357641653d9cebfd8009c4"
+    },
+    {
+      "path": "gpu_sessions.jsonl",
+      "source_sha256": "17a0f12430d0f805600019389e1eca57d6f529755720d30e0b86a002ba1b947b",
+      "export_sha256": "17a0f12430d0f805600019389e1eca57d6f529755720d30e0b86a002ba1b947b"
+    },
+    {
+      "path": "errors.jsonl",
+      "source_sha256": "3fdb81cdd69d58c3b221f3f4c671f669b8d073494272176f1b595c4e6313a334",
+      "export_sha256": "3fdb81cdd69d58c3b221f3f4c671f669b8d073494272176f1b595c4e6313a334"
+    },
+    {
+      "path": "collection_complete.json",
+      "source_sha256": "0bdba1932d5d1b4b6f21c6c70db7570a6929c39ec1a22de2ce78feb46038a530",
+      "export_sha256": "0bdba1932d5d1b4b6f21c6c70db7570a6929c39ec1a22de2ce78feb46038a530"
+    }
+  ],
+  "normalization": "metrics.json minified; JSON values unchanged; other listed exports byte-identical"
+}
