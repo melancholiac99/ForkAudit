@@ -1,0 +1,32 @@
+test_all_failed_is_not_no_reward_difference (test_analysis.AnalysisTests.test_all_failed_is_not_no_reward_difference) ... ok
+test_no_purchase_and_no_stop_not_zero (test_analysis.AnalysisTests.test_no_purchase_and_no_stop_not_zero) ... ok
+test_options_last_mapping_and_partial_choices (test_analysis.AnalysisTests.test_options_last_mapping_and_partial_choices) ... ok
+test_product_specific_visibility (test_analysis.AnalysisTests.test_product_specific_visibility) ... ok
+test_task_weighting_not_row_weighting (test_analysis.AnalysisTests.test_task_weighting_not_row_weighting) ... ok
+test_cross_process_reads_are_explicitly_not_engine_validation (test_preflight.PreflightTests.test_cross_process_reads_are_explicitly_not_engine_validation) ... ok
+test_native_functions_are_extracted_without_import_side_effects (test_preflight.PreflightTests.test_native_functions_are_extracted_without_import_side_effects) ... ok
+test_sampling_is_outcome_blind_group_disjoint_and_train_only (test_preflight.PreflightTests.test_sampling_is_outcome_blind_group_disjoint_and_train_only) ... ok
+test_seed_stable_in_fresh_processes_with_different_python_hash_seeds (test_preflight.PreflightTests.test_seed_stable_in_fresh_processes_with_different_python_hash_seeds) ... ok
+test_snapshot_cannot_be_overwritten_and_detects_tampering (test_preflight.PreflightTests.test_snapshot_cannot_be_overwritten_and_detects_tampering) ... ok
+test_strata_quota_and_unknown (test_preflight.PreflightTests.test_strata_quota_and_unknown) ... ok
+test_tags_fail_closed (test_preflight.PreflightTests.test_tags_fail_closed) ... ok
+test_axis_completeness_is_not_goal_correctness (test_review.ReviewTests.test_axis_completeness_is_not_goal_correctness) ... ok
+test_dedicated_prompt_drops_policy_instructions_but_keeps_history (test_review.ReviewTests.test_dedicated_prompt_drops_policy_instructions_but_keeps_history) ... ok
+test_invalid_zero_does_not_win_valid_diagnostic (test_review.ReviewTests.test_invalid_zero_does_not_win_valid_diagnostic) ... ok
+test_landmark_never_reads_current_action_or_future (test_review.ReviewTests.test_landmark_never_reads_current_action_or_future) ... ok
+test_missing_valid_max_is_na (test_review.ReviewTests.test_missing_valid_max_is_na) ... ok
+test_banks_and_drafts_have_independent_stable_streams (test_runtime.RuntimeTests.test_banks_and_drafts_have_independent_stable_streams) ... ok
+test_brackets_and_unicode (test_runtime.RuntimeTests.test_brackets_and_unicode) ... ok
+test_current_observation_cannot_be_silently_cut (test_runtime.RuntimeTests.test_current_observation_cannot_be_silently_cut) ... ok
+test_generation_parser_keeps_invalid_requests (test_runtime.RuntimeTests.test_generation_parser_keeps_invalid_requests) ... ok
+test_truncation_drops_complete_pairs (test_runtime.RuntimeTests.test_truncation_drops_complete_pairs) ... ok
+test_all_ordered_pairs (test_statistics.StatisticsTests.test_all_ordered_pairs) ... ok
+test_deterministic_signal (test_statistics.StatisticsTests.test_deterministic_signal) ... ok
+test_dual_funnel_negative_rewards (test_statistics.StatisticsTests.test_dual_funnel_negative_rewards) ... ok
+test_negative_signal_is_preserved (test_statistics.StatisticsTests.test_negative_signal_is_preserved) ... ok
+test_signal_plus_independent_noise (test_statistics.StatisticsTests.test_signal_plus_independent_noise) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.623s
+
+OK

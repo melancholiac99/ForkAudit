@@ -2,7 +2,7 @@
   "experiment": "exploratory_shop_audit",
   "protocol_date": "2026-11-15",
   "protocol_version": "复核修订版",
-  "status": "MEASUREMENT_COMPLETE",
+  "status": "REVIEW_REVISION_COMPLETE_TRAINING_PAUSED",
   "formal_collection_enabled": false,
   "environment_selected": "shopsimulator-community-v2.1-reward-v3",
   "previous_snapshots_status": "QUARANTINED_EMPTY_QUERY_NOT_FOR_COLLECTION",
@@ -134,5 +134,16 @@
   "merge_main": false,
   "amendment": "COMMUNITY_AMENDMENT.md",
   "reward_diagnostic": "no_budget_gate",
-  "reward_primary": "shopsimulator-reward-v3"
+  "reward_primary": "shopsimulator-reward-v3",
+  "latest_revision": "review_revision_20261115_01",
+  "review_revision": {
+    "parent_commit": "847b16734fa3fc670b953f114c81b0840204f690",
+    "base_episodes_retained": 800,
+    "new_policy_episodes": 0,
+    "new_replay_outcomes": 0,
+    "judge_states": 35,
+    "judge_requests": 70,
+    "training_paused": true,
+    "registration": "REVIEW_REVISION.md"
+  }
 }

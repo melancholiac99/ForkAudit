@@ -1,12 +1,16 @@
 {
-  "status": "MEASUREMENT_AND_ANALYSIS_COMPLETE",
+  "status": "REVIEW_REVISION_COMPLETE_TRAINING_PAUSED",
   "selected_environment": "community-v2.1-reward-v3",
   "community_commit": "13d2b636c0725d4e0c738b8c2eb1eb3b7592bae5",
   "pilot_episodes": 40,
   "formal_episodes": 800,
   "fork_states": 60,
   "defined_fork_states": 35,
-  "gpu_hours": 0.33697187046416627,
+  "gpu_hours": 0.34892373633861096,
   "policy_training": false,
-  "report": "evidence/community_measurement_20261115_01/REPORT.md"
+  "report": "evidence/review_revision_20261115_01/REPORT.md",
+  "training_paused": true,
+  "original_report": "evidence/community_measurement_20261115_01/REPORT.md",
+  "new_sf_requests": 70,
+  "new_sf_invalid": 0
 }

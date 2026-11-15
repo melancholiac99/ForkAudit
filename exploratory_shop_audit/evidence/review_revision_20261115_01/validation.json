@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "parent_artifact_hashes_unchanged": true,
+  "base_episodes_retained": 800,
+  "new_policy_episodes": 0,
+  "new_replay_outcomes": 0,
+  "fixed_comparable_states": 35,
+  "new_judge_generations": 70,
+  "new_judge_invalid_outputs": 0,
+  "same_candidate_order_and_seeds": true,
+  "same_non_system_context_and_feedback": true,
+  "no_background_input_fields": true,
+  "native_stop_and_reliability_points_preserved": true,
+  "cpu_tests": 27,
+  "costs": {
+    "inherited_gpu_hours": 0.33697187046416627,
+    "additional_gpu_hours": 0.01195186587444469,
+    "total_gpu_hours": 0.34892373633861096,
+    "limit": 16
+  }
+}

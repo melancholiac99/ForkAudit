@@ -8,6 +8,7 @@ from exploratory_shop_audit.data import stable_seed, write_once
 from exploratory_shop_audit.env_worker import parse_action_fixed
 from exploratory_shop_audit.run_pilot import assert_same, public_state
 from exploratory_shop_audit.runtime import append, make_input, parse_generation, read_rows, utc
+from exploratory_shop_audit.judge_prompt import build_choice_messages
 
 PAGES = ['search_home', 'search_results', 'product_detail']
 
@@ -222,12 +223,7 @@ def judge_state(run, model, tokenizer, point, candidates):
     for condition in ['S', 'F']:
         if (point['state_id'], condition) in existing:
             continue
-        prompt = '请根据以上决策前上下文，选择最能满足购物要求的一个动作。仅输出候选编号（整数），不要解释。\n'
-        for i, candidate in enumerate(order, 1):
-            prompt += f'候选{i}: {candidate["action"]}\n'
-            if condition == 'F':
-                prompt += '执行一步后的正常观察：\n' + candidate['clean_feedback'] + '\n'
-        messages = list(point['input']['messages']) + [{'role': 'user', 'content': prompt}]
+        messages = build_choice_messages(point['input']['messages'], order, condition)
         ids = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True)
         request = {'state_id': point['state_id'], 'condition': condition, 'messages': messages,
                    'token_ids': ids, 'seed': stable_seed(20261115, point['state_id'], 'judge', condition),

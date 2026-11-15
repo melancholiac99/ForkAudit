@@ -1,5 +1,7 @@
 # 购物环境探索测量：2026-11-15 社区版执行协议
 
+复核后追加诊断及35×2 S/F完整重测按[REVIEW_REVISION.md](REVIEW_REVISION.md)执行，结果见[修订报告](evidence/review_revision_20261115_01/REPORT.md)。原冻结口径、阈值与父产物保留；以下首轮协议不因复核结果追溯修改。当前暂停训练。
+
 本文件登记研究者本轮交接的执行约束；实施细节与偏离记录于 DECISIONS.md。本文件现按采集前登记的 COMMUNITY_AMENDMENT.md 合并社区版口径；最初交接文本保存在 ORIGINAL_PROTOCOL.md，阶段冻结原文与脚本哈希保存在运行证据中。未指定的实现细节不得改变下述科学口径。此实验独立于 main 的 HotpotQA、Sokoban E5，不替代确认性复现。
 
 ## 1. 目的、阶段与预算
