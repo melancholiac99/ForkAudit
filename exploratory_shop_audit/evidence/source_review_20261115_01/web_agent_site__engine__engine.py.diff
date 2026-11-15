@@ -1,0 +1,124 @@
+--- original/web_agent_site/engine/engine.py
++++ community/web_agent_site/engine/engine.py
+@@ -4,13 +4,18 @@
+ import re
+ import json
+ import random
++from functools import lru_cache
+ from collections import defaultdict
+ from ast import literal_eval
+ from tqdm import tqdm
+ from flask import render_template_string
+ from rich import print
+-from pyserini.search.lucene import LuceneSearcher
+ from web_agent_site.utils import BASE_DIR
++from web_agent_site.engine.search import (
++    MultiFieldBM25Searcher,
++    normalize_query,
++    sha256_file,
++)
+ 
+ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+ 
+@@ -48,6 +53,8 @@
+             keywords=kwargs['keywords'],
+             page=kwargs['page'],
+             total=kwargs['total'],
++            total_pages=kwargs.get('total_pages'),
++            normalized_query=kwargs.get('normalized_query'),
+             instruction_text=kwargs['instruction_text'],
+         )
+     elif action_name == 'click' and action_arg == END_BUTTON:
+@@ -158,13 +165,18 @@
+     else:
+         keywords = ' '.join(keywords)
+         hits = search_engine.search(keywords, k=SEARCH_RETURN_N)
+-        docs = [search_engine.doc(hit.docid) for hit in hits]
+-        top_n_asins = [json.loads(doc.raw())['id'] for doc in docs]
++        if hits and hasattr(hits[0], "asin"):
++            top_n_asins = [hit.asin for hit in hits]
++        else:
++            docs = [search_engine.doc(hit.docid) for hit in hits]
++            top_n_asins = [json.loads(doc.raw())['id'] for doc in docs]
+         top_n_products = [product_item_dict[asin] for asin in top_n_asins if asin in product_item_dict]
+     return top_n_products
+ 
+ 
+ def get_product_per_page(top_n_products, page):
++    if not isinstance(page, int) or page < 1:
++        raise ValueError("page must be a positive integer")
+     return top_n_products[(page - 1) * PRODUCT_WINDOW:page * PRODUCT_WINDOW]
+ 
+ 
+@@ -175,27 +187,33 @@
+         pricing = product['pricing']
+         if not pricing:
+             price = 100.0
+-        elif len(pricing) == 1:
++        elif len(pricing) >= 1:
+             price = pricing[0]
+-        else:
+-            price = random.uniform(*pricing[:2])
+         product_prices[asin] = price
+     return product_prices
+ 
+ 
+-def init_search_engine(num_products=None):
+-    if num_products == 100:
+-        indexes = 'indexes_100'
+-    elif num_products == 1000:
+-        indexes = 'indexes_1k'
+-    elif num_products == 100000:
+-        indexes = 'indexes_100k'
+-    elif num_products is None:
+-        indexes = 'indexes'
+-    else:
+-        raise NotImplementedError(f'num_products being {num_products} is not supported yet.')
+-    search_engine = LuceneSearcher(os.path.join(BASE_DIR, f'../search_engine/{indexes}'))
+-    return search_engine
++@lru_cache(maxsize=4)
++def _product_file_sha256(filepath):
++    return sha256_file(filepath)
++
++
++def init_search_engine(num_products=None, product_filepath=None):
++    if num_products is not None:
++        raise ValueError("the current environment requires the complete frozen product corpus")
++    index_path = os.environ.get(
++        "SHOP_SEARCH_INDEX",
++        os.path.join(BASE_DIR, "../search_engine/products.sqlite3"),
++    )
++    expected_sha = (
++        _product_file_sha256(os.path.abspath(product_filepath))
++        if product_filepath
++        else None
++    )
++    return MultiFieldBM25Searcher(
++        index_path,
++        expected_product_sha256=expected_sha,
++    )
+ 
+ 
+ def clean_product_keys(products):
+@@ -221,10 +239,10 @@
+ def load_products(filepath, num_products=None, human_goals=True):
+     with open(filepath) as f:
+         products = json.load(f)
+-    
++
+     print('Products loaded.')
+     products = clean_product_keys(products)
+-    
++
+     all_reviews = dict()
+     all_ratings = dict()
+ 
+@@ -309,7 +327,7 @@
+         products[i]['Attributes'] = products[i]['attribute']
+         products[i]['instruction_text'] = p['instructions'][0]['instruction']
+         products[i]['instruction_attributes'] = p['instructions'][0]['attributes']
+-    
++
+         products[i]['MainImage'] = p['images'][0]
+         products[i]['query'] = p['query'].lower().strip()
+         products[i]['user_persona'] = p.get('user_persona', None)

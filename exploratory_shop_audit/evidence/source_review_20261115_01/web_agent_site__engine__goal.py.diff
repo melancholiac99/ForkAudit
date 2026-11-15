@@ -1,0 +1,114 @@
+--- original/web_agent_site/engine/goal.py
++++ community/web_agent_site/engine/goal.py
+@@ -1,16 +1,34 @@
+ """
+ Functions for specifying goals and reward calculations.
+ """
+-import random
+-import spacy
+ from collections import defaultdict
+ from rich import print
+-from thefuzz import fuzz
+ from web_agent_site.engine.normalize import normalize_color
++from web_agent_site.engine.constraints import (
++    explicit_budget_from_instruction,
++)
++from web_agent_site.engine.reward_features import (
++    compile_reward_features,
++)
+ import math
+ import pdb
+ 
+-nlp = spacy.load("zh_core_web_sm")
++_NLP = None
++
++
++def _nlp():
++    global _NLP
++    if _NLP is None:
++        import spacy
++
++        _NLP = spacy.load("zh_core_web_sm")
++    return _NLP
++
++
++def _fuzzy_ratio(left, right):
++    from thefuzz import fuzz
++
++    return fuzz.token_set_ratio(left, right)
+ 
+ def get_price_range_above(price, count=4):
+     """
+@@ -58,18 +76,19 @@
+                 #continue
+             else:
+                 goal_instructions.append(product['instruction'])
+-            attributes = item['instruction_attributes']
++            attributes = product.get('attributes', [])
+             if len(attributes) == 0:
+                 cnt_3 += 1
+                 continue
+ 
+             if product_prices is not None:
+-                price = product_prices[asin]
+-                price_range = get_price_range_above(price)
+-                if len(price_range) >= 2:
+-                    _, price_upper = sorted(random.sample(price_range, 2))
+-                else:
+-                    price_upper = 10000000
++                # Reward v3 must not invent an unstated budget from the Gold
++                # product. Price availability remains a hard verifiability
++                # requirement, but an upper bound exists only when the user
++                # instruction states one.
++                price_upper = explicit_budget_from_instruction(
++                    product["instruction"]
++                )
+             else:
+                 price_upper = 10000000
+ 
+@@ -89,7 +108,7 @@
+                 instruction_text = product['instruction_sample']
+             else:
+                 instruction_text = product['instruction']
+-            goals.append({
++            goal = {
+                 'asin': asin,
+                 'category': item['category'],
+                 'query': item['query'],
+@@ -101,7 +120,9 @@
+                 'goal_options': product['instruction_options'],
+                 'user_persona': user_persona,
+                 'reason_key': reason_key,
+-            })
++            }
++            goal.update(compile_reward_features(product, item))
++            goals.append(goal)
+             for att in attributes:
+                 cnt_atts[att] += 1
+             # goals += product_goals
+@@ -124,6 +145,7 @@
+     purchased_type = purchased_product['title']
+     desired_type = goal['name']
+ 
++    nlp = _nlp()
+     purchased_type_parse = nlp(purchased_type)
+     desired_type_parse = nlp(desired_type)
+ 
+@@ -162,7 +184,7 @@
+         matched = False
+         # Check whether goal attribute found in purchased product attribute list
+         for p_attr in purchased_attrs:
+-            score = fuzz.token_set_ratio(p_attr, g_attr)
++            score = _fuzzy_ratio(p_attr, g_attr)
+             if score > 85:
+                 num_attr_matches += 1
+                 matched = True
+@@ -195,7 +217,7 @@
+     num_option_matches = 0
+     for g_option in goal_options:
+         for p_option in purchased_options:
+-            score = fuzz.token_set_ratio(p_option, g_option)
++            score = _fuzzy_ratio(p_option, g_option)
+             if score > 85:
+                 num_option_matches += 1
+                 break
