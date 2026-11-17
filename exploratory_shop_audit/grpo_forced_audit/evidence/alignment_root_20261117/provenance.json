@@ -1,0 +1,22 @@
+{
+  "source_parent_commit": "2ebe77286c7870a49977fecf20d59a7655ba6508",
+  "versions": {
+    "torch": "2.8.0",
+    "transformers": "4.57.3",
+    "peft": "0.17.1",
+    "vllm": "0.11.0",
+    "flash-attn": "2.8.3"
+  },
+  "base_dtype_header_example": {
+    "file": "model-00001-of-00004.safetensors",
+    "key": "model.embed_tokens.weight",
+    "dtype": "BF16"
+  },
+  "sha256": {
+    "root_gpu.json": "2a7534b11edfd6b38a90a12eef322168b2abec9cec3dbb3db77c032dd25964f1",
+    "root_cpu_fp32.json": "5d4046dd8a928e173bbaa757a75949c7bca2238a1278d117116d24e11794626b",
+    "root_gpu_residual_fp32.json": "b4ce510132c7a13bbef56f6f1d409ed508aa9f5fab7a9553796aff4533ba146d",
+    "root_summary.json": "bbfecc7063144688464d3cde7adc5829b9e2e4bbfdfffee52bf3e65504acd6ea",
+    "alignment_root_cause.py": "abbbc0f409f46bb8c6b778e94dce057cc86ac2a7512ea869430918adcc52c4cf"
+  }
+}

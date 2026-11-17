@@ -1,0 +1,104 @@
+{
+  "rows": {
+    "508": {
+      "token": "闪",
+      "root_gpu/full_sequence_target_projection": 0.03251934424042702,
+      "root_gpu/prefix_target_projection": 0.03251934424042702,
+      "root_gpu/cached_one_token_decode": 0.03251935541629791,
+      "root_gpu/sdpa_prefix": 0.022977318614721298,
+      "root_gpu/sdpa_math_prefix": 0.972650945186615,
+      "root_gpu/bf16_lora_prefix": 0.03251934424042702,
+      "root_gpu/chunked_fp32_attention_prefix": 0.01618829369544983,
+      "root_cpu_fp32/full_sequence_target_projection": 0.6847666501998901,
+      "root_cpu_fp32/prefix_target_projection": 0.6847666501998901,
+      "root_cpu_fp32/cached_one_token_decode": 0.6847254633903503,
+      "root_gpu_residual_fp32/full_sequence_target_projection": 0.03251933306455612,
+      "root_gpu_residual_fp32/prefix_target_projection": 0.03251933306455612,
+      "root_gpu_residual_fp32/cached_one_token_decode": 0.02297729253768921,
+      "root_gpu_residual_fp32/sdpa_prefix": 0.9456846117973328,
+      "root_gpu_residual_fp32/sdpa_math_prefix": 0.03251923248171806,
+      "root_gpu_residual_fp32/chunked_fp32_attention_prefix": 0.954154372215271,
+      "root_gpu_residual_fp32/bf16_lora_prefix": 0.03251933306455612,
+      "archived_sampler": 0.9864193728675266,
+      "fresh_vllm": 0.9106322817659577
+    },
+    "432": {
+      "token": " ",
+      "root_gpu/full_sequence_target_projection": 0.32856693863868713,
+      "root_gpu/prefix_target_projection": 0.32856693863868713,
+      "root_gpu/cached_one_token_decode": 0.3285808861255646,
+      "root_gpu/sdpa_prefix": 0.671201765537262,
+      "root_gpu/sdpa_math_prefix": 0.49988433718681335,
+      "root_gpu/bf16_lora_prefix": 0.32856693863868713,
+      "root_gpu/chunked_fp32_attention_prefix": 0.4999190866947174,
+      "root_cpu_fp32/full_sequence_target_projection": 0.48359039425849915,
+      "root_cpu_fp32/prefix_target_projection": 0.48359039425849915,
+      "root_cpu_fp32/cached_one_token_decode": 0.4835979640483856,
+      "archived_sampler": 0.6712256155432702,
+      "fresh_vllm": 0.4999032104739791
+    },
+    "327": {
+      "token": " finish",
+      "root_gpu/full_sequence_target_projection": 0.1229947879910469,
+      "root_gpu/prefix_target_projection": 0.1229947879910469,
+      "root_gpu/cached_one_token_decode": 0.10499273985624313,
+      "root_gpu/sdpa_prefix": 0.22268220782279968,
+      "root_gpu/sdpa_math_prefix": {
+        "error": "diagnostic_memory_limit"
+      },
+      "root_gpu/chunked_fp32_attention_prefix": 0.19330447912216187,
+      "root_gpu/bf16_lora_prefix": 0.1229947879910469,
+      "root_cpu_fp32/full_sequence_target_projection": 0.3513052761554718,
+      "root_cpu_fp32/prefix_target_projection": 0.3513035178184509,
+      "root_cpu_fp32/cached_one_token_decode": 0.3513113558292389,
+      "archived_sampler": 0.58830418652734,
+      "fresh_vllm": 0.04583500554129807
+    },
+    "95": {
+      "token": " �",
+      "archived_sampler": 0.6972070237650306,
+      "fresh_vllm": 0.44920674191288895
+    },
+    "298": {
+      "token": " buy",
+      "archived_sampler": 0.8562555439687549,
+      "fresh_vllm": 0.9863077997134456
+    },
+    "304": {
+      "token": " finish",
+      "archived_sampler": 0.6307835440251565,
+      "fresh_vllm": 0.8563381510262429
+    },
+    "450": {
+      "token": " ",
+      "archived_sampler": 0.6712256155432702,
+      "fresh_vllm": 0.4999032104739791
+    },
+    "463": {
+      "token": " ",
+      "archived_sampler": 0.6712256155432702,
+      "fresh_vllm": 0.4999032104739791
+    },
+    "428": {
+      "token": " ",
+      "archived_sampler": 0.6712256155432702,
+      "fresh_vllm": 0.4999032104739791
+    },
+    "444": {
+      "token": "+",
+      "archived_sampler": 0.328592553425365,
+      "fresh_vllm": 0.4999032104739791
+    },
+    "459": {
+      "token": "+",
+      "archived_sampler": 0.328592553425365,
+      "fresh_vllm": 0.4999032104739791
+    },
+    "320": {
+      "token": "buy",
+      "archived_sampler": 0.8250963762723844,
+      "fresh_vllm": 0.5855723066972751
+    }
+  },
+  "note": "Three selected outlier positions, not a representative population sample. CPU FP32 is a higher-precision reference, not a proof of exact arithmetic."
+}
