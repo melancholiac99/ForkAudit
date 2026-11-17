@@ -57,8 +57,15 @@ def prepare(run):
     return request
 
 
+def attempt_path(run):
+    selection = run / 'recovery_0042/selected_attempt.json'
+    name = read(selection)['name'] if selection.exists() else 'attempt_01'
+    assert name in ['attempt_01', 'attempt_02']
+    return run / 'recovery_0042' / name
+
+
 def prepare_workspace(run, request):
-    target = run / 'recovery_0042/attempt_01'
+    target = attempt_path(run)
     if target.exists():
         return target
     target.mkdir(parents=True)
@@ -108,8 +115,7 @@ def install():
         return result
 
     def balance(self, batch, metrics, logging_prefix='global_seqlen'):
-        if 'reconstruction_update' not in batch.meta_info:
-            return original_balance(self, batch, metrics, logging_prefix)
+        assert 'reconstruction_update' in batch.meta_info, 'Recovery padding hook was bypassed'
         assert self.actor_rollout_wg.world_size == 4
         step = batch.meta_info['reconstruction_update']
         recorded = read(Path(request['decision_files'][str(step)]))
@@ -130,8 +136,16 @@ def install():
         original_after(step, metrics)
 
     ray_trainer.adjust_batch = adjust
+    # native.install compiles fit into a copied globals dictionary. Updating
+    # the module alone does not change the function actually executing fit.
+    replace_fit_adjust(ray_trainer.RayPPOTrainer.fit, original_adjust, adjust)
     ray_trainer.RayPPOTrainer._balance_batch = balance
     native.after_update = after
+
+
+def replace_fit_adjust(fit, original, replacement):
+    assert fit.__globals__['adjust_batch'] is original
+    fit.__globals__['adjust_batch'] = replacement
 
 
 def promote(run, attempt):
@@ -162,7 +176,7 @@ def resume(run):
     if read(run / 'recovery_0042/status.json')['status'] == 'complete':
         from .campaign import main
         return main()
-    assert not (run / 'recovery_0042/attempt_01/weight_updates.jsonl').exists(), 'Inspect any previous attempt before repeating reconstruction'
+    assert not (attempt_path(run) / 'weight_updates.jsonl').exists(), 'Inspect any previous attempt before repeating reconstruction'
     attempt = prepare_workspace(run, request)
     cfg = settings(attempt, updates=42, resume=run / 'training/checkpoints/global_step_40')
     cfg['trainer.test_freq'] = 0

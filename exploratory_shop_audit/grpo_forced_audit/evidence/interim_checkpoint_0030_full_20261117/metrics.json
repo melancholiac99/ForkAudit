@@ -1,0 +1,4443 @@
+{
+  "request": {
+    "accounting": "Substage GPU occupation is included in the enclosing campaign stage; do not sum twice.",
+    "boundary_update": 40,
+    "checkpoint": "/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/training/checkpoints/global_step_30/actor/lora_adapter",
+    "checkpoint_update": 30,
+    "code_sha256": {
+      "__init__.py": "ca6d678a37cb32622704340835bb2358fc5e155ea71622ea57d7a3c4c36b4006",
+      "alignment_diagnostic.py": "c7511a819dfae14bf7f1a50c5e76a0a3c49ae036f296e17aa2d1e098cb5ecbcf",
+      "alignment_metrics.py": "ad4377d558f34fa5b25228b468d6cbc121cc6ad88538cac9fb0daefeeef6d86d",
+      "alignment_root_cause.py": "abbbc0f409f46bb8c6b778e94dce057cc86ac2a7512ea869430918adcc52c4cf",
+      "alignment_sampler_check.py": "d48663f2fce49af0d6ad3d4523978ebfe0d0a32bf2bbfd5fc3095a6f890c85e7",
+      "analysis.py": "14fbd033dad78dc95abde57c4103bf9692eb5fd3b2a13954223a62c625d192c1",
+      "analyze_alignment.py": "b39a4c3704a838709cd3c7b3bdfc79076009bff383815d9e6d62f60865782c40",
+      "analyze_alignment_root.py": "2624bf20f31ffed1ae165b1662b4d50100966819bc11689aa0c8e9580e1af946",
+      "audit.py": "71d74b9ac7d4ae8564c919ed49122f73c11e97434d867af263d82c9881d8d80f",
+      "budget.py": "3f9aa629b4765498ecc79a85f14813f22b7ea60f3be2af90ff3e49286ec65996",
+      "campaign.py": "e8cf97310864b667283a86da7ac03bbd7cc321b88f7abc1a5bbacaf6920b4575",
+      "check_parallel_restore.py": "cb36629d648a4aff6e214ae74a0fc21754c7d7e0f587aad798feebd43631037a",
+      "checks.py": "25046e4abcfb3a75ef7a6cb84bf1be7f89c4cff1969725da546013bbbeb90eeb",
+      "cli.py": "14134e7408550868822ad7d30da68c696aaa2afdc65608637613c6da4f12b6c3",
+      "common.py": "34036a93f9223752acabde0eb40816c33002df40423c84cc83408edf3693b1e3",
+      "cpu.py": "69e01d7a4b824f340335041ff3fb7b464b096c2e083c3ad1c2fca0a17f1a00ac",
+      "cuda_health.py": "e2bffe046a4a5935681c289dc63fb8746d86c5e1d4335097404c2fa8fca08151",
+      "export_checkpoint_report.py": "c6154cc57e06952c86ae65f05b0e05ed03953d5212778708273a60c593d2e4ab",
+      "inference_worker.py": "e978bf3499ce6b9acf2acb7226d22e1833b2d083a25417a4af77b3db2ac4d00e",
+      "interface.py": "541dbe681dfaa680e659edf1a68fafb19cb3b3ce03d5cf081a18e63856dc7d3c",
+      "launch.py": "0c70a51d96060c815282035d440b0095cdc5c0b683daa212b804c99594a81ba4",
+      "native.py": "7071a71e95f78bca0b8c35daf342ce84fbe19886a349e9e92d15376909bbcbdc",
+      "native_cache.py": "b55352bf16f8b3c3f8229e802109e3f59509bf24fc50f00c3945707cef8838a1",
+      "parallel.py": "3fba2e9ed895d8b9f0f6d0cf6a25233bf29839592e0afaa96f2a81f4b73e6e5a",
+      "parallel_benchmark.py": "61f7f5961edf33e2d0a020d358c8adb54b4dc75e607bed9eb023d114d67b3165",
+      "priority_evaluation.py": "f173e069758fc81e9431d22ce5e17a4cd2c9d4e132735944db5d4e15408caa18",
+      "provenance.py": "71bf4a6e2fa6a98687cdafefb68bd6b447eef4c8be02db8393220b1b4ff63d07",
+      "repair_incident.py": "f1ffa14014f56f7b35b1624f9b2b9e622c92ab2ee786caca691be2f59d127c60",
+      "report.py": "4970c8cc4ee590803e8293dac03dd7e7d3ac927396c32bfad284f43af2fbfb1e",
+      "resume_four_gpu.py": "720e4f64eaf0d863ebd1e9b87f3618ea793db6c1e9a981894e3a3a79cd3f2c44",
+      "rollout.py": "5949ff46d3f8e7e95c5ff38061cb038b92d90a4e83789328ddbed57ce86828a1",
+      "screen_parallel.py": "10e8c4a98591ee96d4d25616671d23b5728ba18bc4cb7a4aeeb3e4fcc6e20fcd",
+      "tensorboard_monitor.py": "b8a834c865daa0a325d6a9f30f887e6a5243c6433860e592e5799e7479fad7bd",
+      "test_alignment_metrics.py": "b38a39ca7df8df03b20fda0c3b5efddd1697e53e33bc1fbcbddc55028eb6547e",
+      "test_alignment_root.py": "771f94dd858f33a23aaa5fbf68415d2790218c2bc4f9e88ab310cd2271ad3cef",
+      "test_experiment.py": "b952a50cc882930f87242ee57873ab3c6dc1a6a0afa52cd900ba7521cde7e486",
+      "test_priority_evaluation.py": "f8ef4f91195401d2763c9857b541f76e9d0e44fb1415f315d513d1906ba83bf3",
+      "test_watchdog.py": "ae26cec0e2ffe31f0172b32c4aedee4354e867ca5f0764c761d44ad27967b023",
+      "train.py": "58bf45bf56502ce6063b7bfffb6879ecfbc3aeb4e492a2d4190bf185abed1a1e",
+      "watchdog.py": "bc38ecd9216af150ff6238d96b39a319c4bbcbaf5ef720a717880a6480cbabd7",
+      "worker.py": "35ca37b5c92aa6ce1328b6f799c6d06bc2be577d10af17cafb05e16847a01344",
+      "worker_hooks.py": "fe623061c551ba8019ec8733c446a400744bda379c57db501de6d44257904166"
+    },
+    "frozen_sha256": {
+      "/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/PROTOCOL.md": "925de8856e4e86685d31d34a51fa676fe4482dc9988a240e38b0ec9217274228",
+      "/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/snapshots/goals_frozen.json": "a84d41231414858f524855905abdca83168a976377cd8159f850a03b0a35acb9",
+      "/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/snapshots/product_prices_frozen.json": "e0bdd502fd48b889c4e87307269987fc4028d3bf6ccbe263f69139e7b6faa5f1",
+      "/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/splits.json": "237f7420b3f4fa687895de48ce3c3d6bd4b62b1b588674382b853fcdc1895a63",
+      "/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/training/checkpoints/global_step_30/actor/lora_adapter/adapter_config.json": "5254b9b095cb2862ed9bc46a0cb084ef8bd7a095bc4e38584a1737505be85b95",
+      "/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/training/checkpoints/global_step_30/actor/lora_adapter/adapter_model.safetensors": "0b5d2dac6f12b0afdec4ca8966aa1197b95627a24d07b19ce616bc56d96f6b8a"
+    },
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "greedy_repeats": 1,
+    "interface": "shop-exact-actions-invalid-feedback-v1",
+    "label": "interim_checkpoint_0030",
+    "master_seed": 20261117,
+    "reason": "Researcher requested full evaluation before continuing training.",
+    "resume": "Preserve the boundary checkpoint including optimizer/RNG/dataloader; then follow the existing campaign.",
+    "sample_repeats": 4,
+    "scope": "Interim validation, not final held-out testing or the final campaign verdict.",
+    "seed_rule": "Existing jobs/Runner trajectory IDs; base and interim have independent sampling streams.",
+    "tasks": [
+      "goal:13124",
+      "goal:20498",
+      "goal:7690",
+      "goal:6067",
+      "goal:6688",
+      "goal:15515",
+      "goal:4148",
+      "goal:10640",
+      "goal:10699",
+      "goal:21052",
+      "goal:22250",
+      "goal:4417",
+      "goal:12126",
+      "goal:11762",
+      "goal:4032",
+      "goal:16665",
+      "goal:20877",
+      "goal:17072",
+      "goal:12457",
+      "goal:1631",
+      "goal:19849",
+      "goal:16729",
+      "goal:4738",
+      "goal:14364",
+      "goal:6672",
+      "goal:7153",
+      "goal:5597",
+      "goal:11798",
+      "goal:12801",
+      "goal:7636",
+      "goal:7460",
+      "goal:11269",
+      "goal:9893",
+      "goal:18429",
+      "goal:5785",
+      "goal:19512",
+      "goal:8875",
+      "goal:8881",
+      "goal:21693",
+      "goal:14560",
+      "goal:9301",
+      "goal:3876",
+      "goal:21457",
+      "goal:11839",
+      "goal:8858",
+      "goal:19141",
+      "goal:1991",
+      "goal:3068",
+      "goal:14352",
+      "goal:10373",
+      "goal:4790",
+      "goal:6470",
+      "goal:19469",
+      "goal:21624",
+      "goal:6226",
+      "goal:20634",
+      "goal:17596",
+      "goal:13710",
+      "goal:14682",
+      "goal:19046",
+      "goal:17463",
+      "goal:8252",
+      "goal:5187",
+      "goal:14283",
+      "goal:6418",
+      "goal:20607",
+      "goal:13033",
+      "goal:20438",
+      "goal:16831",
+      "goal:6636",
+      "goal:9153",
+      "goal:23058",
+      "goal:14949",
+      "goal:14594",
+      "goal:7770",
+      "goal:23218",
+      "goal:8916",
+      "goal:15254",
+      "goal:4764",
+      "goal:11185",
+      "goal:12770",
+      "goal:11965",
+      "goal:10082",
+      "goal:11110",
+      "goal:2455",
+      "goal:3746",
+      "goal:18112",
+      "goal:16001",
+      "goal:9618",
+      "goal:16317",
+      "goal:5455",
+      "goal:10232",
+      "goal:10618",
+      "goal:5304",
+      "goal:8957",
+      "goal:12293",
+      "goal:16349",
+      "goal:9627",
+      "goal:11907",
+      "goal:4655",
+      "goal:21914",
+      "goal:12517",
+      "goal:23056",
+      "goal:5124",
+      "goal:20961",
+      "goal:18948",
+      "goal:9117",
+      "goal:11776",
+      "goal:10725",
+      "goal:22154",
+      "goal:11008",
+      "goal:10277",
+      "goal:11764",
+      "goal:19361",
+      "goal:20002",
+      "goal:16709",
+      "goal:11717",
+      "goal:6128",
+      "goal:17706",
+      "goal:9133",
+      "goal:7030",
+      "goal:10118",
+      "goal:18009",
+      "goal:2642",
+      "goal:16383",
+      "goal:22898",
+      "goal:16238",
+      "goal:12816",
+      "goal:14274",
+      "goal:5086",
+      "goal:4931",
+      "goal:8094",
+      "goal:3522",
+      "goal:15927",
+      "goal:19877",
+      "goal:23314",
+      "goal:5069",
+      "goal:16105",
+      "goal:11553",
+      "goal:15103",
+      "goal:14495",
+      "goal:12258",
+      "goal:3684",
+      "goal:9328",
+      "goal:4975",
+      "goal:17345",
+      "goal:3697",
+      "goal:10738",
+      "goal:3105",
+      "goal:7584",
+      "goal:5371",
+      "goal:15686",
+      "goal:13589",
+      "goal:9648",
+      "goal:21179",
+      "goal:13299",
+      "goal:20029",
+      "goal:15573",
+      "goal:14887",
+      "goal:6569",
+      "goal:9495",
+      "goal:16450",
+      "goal:8809",
+      "goal:13720",
+      "goal:17687",
+      "goal:12856",
+      "goal:16917",
+      "goal:7841",
+      "goal:6874",
+      "goal:11683",
+      "goal:12950",
+      "goal:12849",
+      "goal:15586",
+      "goal:16078",
+      "goal:6909",
+      "goal:16276",
+      "goal:5402",
+      "goal:16818",
+      "goal:22636",
+      "goal:10580",
+      "goal:6760",
+      "goal:21028",
+      "goal:3651",
+      "goal:2692",
+      "goal:11055",
+      "goal:21986",
+      "goal:7591",
+      "goal:11711",
+      "goal:18370",
+      "goal:14102",
+      "goal:18238",
+      "goal:19496",
+      "goal:20792",
+      "goal:18737",
+      "goal:12051",
+      "goal:18739",
+      "goal:10532",
+      "goal:18730",
+      "goal:1819",
+      "goal:15589"
+    ],
+    "time": "2026-11-17T13:38:29.542791+00:00"
+  },
+  "evaluation": {
+    "base_greedy": {
+      "all_unweighted": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.4395302197802198,
+            "interval": [
+              0.34251582245879125,
+              0.5315981999771062
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.56,
+            "interval": [
+              0.495,
+              0.63
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.96,
+            "interval": [
+              0.93,
+              0.985
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.115,
+            "interval": [
+              4.025,
+              4.21
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.005,
+            "interval": [
+              1.0,
+              1.015
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.97,
+            "interval": [
+              0.945,
+              0.99
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.93,
+            "interval": [
+              0.89,
+              0.965
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.03467061891961085,
+            "interval": [
+              0.011179915514592935,
+              0.06461241519457242
+            ],
+            "n_tasks": 186,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.2300365992654299,
+            "interval": [
+              0.16302602751191464,
+              0.3095999913225215
+            ],
+            "n_tasks": 186,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 186,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.23472265301902398,
+            "interval": [
+              0.17402359904880066,
+              0.301754161497105
+            ],
+            "n_tasks": 186,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.4647592522844539,
+            "interval": [
+              0.35457219300496773,
+              0.573985109662403
+            ],
+            "n_tasks": 186,
+            "level": 0.975
+          }
+        },
+        "tasks": 200,
+        "episodes": 200,
+        "funnel_episodes": 186,
+        "termination_counts": {
+          "partial_alternative_purchase": 51,
+          "reward_unverifiable": 6,
+          "gold_purchase": 112,
+          "wrong_purchase": 23,
+          "repeat_loop": 8
+        },
+        "funnel_exclusions": {
+          "actual_reward_invalid": 6,
+          "no_purchase": 8
+        },
+        "illegal_action_rate": 0.03645200486026731
+      },
+      "easy": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.556411858974359,
+            "interval": [
+              0.43036870993589743,
+              0.6777394230769229
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.63,
+            "interval": [
+              0.53,
+              0.72
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.98,
+            "interval": [
+              0.95,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.04,
+            "interval": [
+              3.92,
+              4.18
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.01,
+            "interval": [
+              1.0,
+              1.03
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.98,
+            "interval": [
+              0.95,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.96,
+            "interval": [
+              0.92,
+              0.99
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.02380099826388889,
+            "interval": [
+              0.0,
+              0.06028578016493036
+            ],
+            "n_tasks": 96,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.15994466145833333,
+            "interval": [
+              0.07409939236111111,
+              0.26626844618055556
+            ],
+            "n_tasks": 96,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 96,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.22311698717948722,
+            "interval": [
+              0.14355706630608978,
+              0.3101378455528846
+            ],
+            "n_tasks": 96,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.3830616486378206,
+            "interval": [
+              0.25569310375767895,
+              0.5236243979951256
+            ],
+            "n_tasks": 96,
+            "level": 0.975
+          }
+        },
+        "tasks": 100,
+        "episodes": 100,
+        "funnel_episodes": 96,
+        "termination_counts": {
+          "partial_alternative_purchase": 24,
+          "gold_purchase": 63,
+          "wrong_purchase": 9,
+          "repeat_loop": 2,
+          "reward_unverifiable": 2
+        },
+        "funnel_exclusions": {
+          "no_purchase": 2,
+          "actual_reward_invalid": 2
+        },
+        "illegal_action_rate": 0.019801980198019802
+      },
+      "hard": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.32264858058608054,
+            "interval": [
+              0.1760966059981685,
+              0.46391371050824165
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.49,
+            "interval": [
+              0.4,
+              0.59
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.94,
+            "interval": [
+              0.89,
+              0.98
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.19,
+            "interval": [
+              4.07,
+              4.31
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.96,
+            "interval": [
+              0.92,
+              0.99
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.9,
+            "interval": [
+              0.84,
+              0.95
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.046264880952380946,
+            "interval": [
+              0.010625,
+              0.0935691964285714
+            ],
+            "n_tasks": 90,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.304801332926333,
+            "interval": [
+              0.18775363120675626,
+              0.4285930059523809
+            ],
+            "n_tasks": 90,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 90,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.24710202991452992,
+            "interval": [
+              0.1469857104700855,
+              0.3528171741452992
+            ],
+            "n_tasks": 90,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.5519033628408628,
+            "interval": [
+              0.39692710559116806,
+              0.7238382316468253
+            ],
+            "n_tasks": 90,
+            "level": 0.975
+          }
+        },
+        "tasks": 100,
+        "episodes": 100,
+        "funnel_episodes": 90,
+        "termination_counts": {
+          "partial_alternative_purchase": 27,
+          "reward_unverifiable": 4,
+          "gold_purchase": 49,
+          "wrong_purchase": 14,
+          "repeat_loop": 6
+        },
+        "funnel_exclusions": {
+          "actual_reward_invalid": 4,
+          "no_purchase": 6
+        },
+        "illegal_action_rate": 0.05250596658711217
+      },
+      "H_spec": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.4241823400958017,
+            "interval": [
+              0.2588506401451113,
+              0.5824021159129331
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5230769230769231,
+            "interval": [
+              0.4,
+              0.6461538461538462
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.9538461538461539,
+            "interval": [
+              0.9076923076923077,
+              1.0
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.2153846153846155,
+            "interval": [
+              4.091923076923077,
+              4.3538461538461535
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.9538461538461539,
+            "interval": [
+              0.8923076923076924,
+              1.0
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.9076923076923077,
+            "interval": [
+              0.8307692307692308,
+              0.9692307692307692
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 59,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.24229178307568136,
+            "interval": [
+              0.11537643765133175,
+              0.3805786983143974
+            ],
+            "n_tasks": 59,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 59,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.2573378422425032,
+            "interval": [
+              0.14704214879400265,
+              0.3726485088005214
+            ],
+            "n_tasks": 59,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.4996296253181847,
+            "interval": [
+              0.31946538432436217,
+              0.6769971591350035
+            ],
+            "n_tasks": 59,
+            "level": 0.975
+          }
+        },
+        "tasks": 65,
+        "episodes": 65,
+        "funnel_episodes": 59,
+        "termination_counts": {
+          "partial_alternative_purchase": 20,
+          "reward_unverifiable": 3,
+          "gold_purchase": 34,
+          "wrong_purchase": 5,
+          "repeat_loop": 3
+        },
+        "funnel_exclusions": {
+          "actual_reward_invalid": 3,
+          "no_purchase": 3
+        },
+        "illegal_action_rate": 0.040145985401459854
+      },
+      "H_click": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.2045865221088435,
+            "interval": [
+              -0.08569355867346938,
+              0.4960467155612243
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.4642857142857143,
+            "interval": [
+              0.2857142857142857,
+              0.6428571428571429
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.8928571428571429,
+            "interval": [
+              0.7857142857142857,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.107142857142857,
+            "interval": [
+              3.857142857142857,
+              4.392857142857143
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.9642857142857143,
+            "interval": [
+              0.8928571428571429,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.8571428571428571,
+            "interval": [
+              0.7142857142857143,
+              0.9642857142857143
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.04270833333333333,
+            "interval": [
+              0.0,
+              0.128125
+            ],
+            "n_tasks": 24,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.3662636408730158,
+            "interval": [
+              0.12217881944444446,
+              0.6400277467757933
+            ],
+            "n_tasks": 24,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 24,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.27109374999999997,
+            "interval": [
+              0.07708333333333334,
+              0.5395833333333333
+            ],
+            "n_tasks": 24,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.6373573908730159,
+            "interval": [
+              0.28129472036210323,
+              1.020126488095238
+            ],
+            "n_tasks": 24,
+            "level": 0.975
+          }
+        },
+        "tasks": 28,
+        "episodes": 28,
+        "funnel_episodes": 24,
+        "termination_counts": {
+          "partial_alternative_purchase": 5,
+          "wrong_purchase": 6,
+          "gold_purchase": 13,
+          "repeat_loop": 3,
+          "reward_unverifiable": 1
+        },
+        "funnel_exclusions": {
+          "no_purchase": 3,
+          "actual_reward_invalid": 1
+        },
+        "illegal_action_rate": 0.09565217391304348
+      },
+      "H_search": {
+        "metrics": {
+          "reward": {
+            "estimate": -0.3470833333333333,
+            "interval": [
+              -0.85,
+              0.39291666666666664
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.2,
+            "interval": [
+              0.0,
+              0.6
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.2,
+            "interval": [
+              4.0,
+              4.6
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.6277678571428572,
+            "interval": [
+              0.19125,
+              1.0642857142857143
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.6093154761904762,
+            "interval": [
+              0.20457217261904828,
+              0.9849404761904761
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.11000000000000001,
+            "interval": [
+              0.0,
+              0.33
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.7193154761904761,
+            "interval": [
+              0.14428906250000015,
+              1.4134821428571427
+            ],
+            "n_tasks": 5,
+            "level": 0.975
+          }
+        },
+        "tasks": 5,
+        "episodes": 5,
+        "funnel_episodes": 5,
+        "termination_counts": {
+          "partial_alternative_purchase": 1,
+          "wrong_purchase": 3,
+          "gold_purchase": 1
+        },
+        "funnel_exclusions": {},
+        "illegal_action_rate": 0.0
+      },
+      "H_unknown": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.35,
+            "interval": [
+              -0.3,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5,
+            "interval": [
+              0.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.5,
+            "interval": [
+              4.0,
+              5.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.65,
+            "interval": [
+              0.0,
+              1.3
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.65,
+            "interval": [
+              0.0,
+              1.3
+            ],
+            "n_tasks": 2,
+            "level": 0.975
+          }
+        },
+        "tasks": 2,
+        "episodes": 2,
+        "funnel_episodes": 2,
+        "termination_counts": {
+          "partial_alternative_purchase": 1,
+          "gold_purchase": 1
+        },
+        "funnel_exclusions": {},
+        "illegal_action_rate": 0.0
+      },
+      "population_weights": {
+        "easy": 0.19822872545244513,
+        "hard": 0.8017712745475549
+      },
+      "weighted_all": {
+        "reward": {
+          "estimate": 0.3689871773185741,
+          "ci95": [
+            0.24697513564626558,
+            0.48058141406050553
+          ]
+        },
+        "strict_success": {
+          "estimate": 0.5177520215633423,
+          "ci95": [
+            0.44153725452445125,
+            0.59784058529072
+          ]
+        },
+        "purchase": {
+          "estimate": 0.9479291490180978,
+          "ci95": [
+            0.9117578167115903,
+            0.9819822872545244
+          ]
+        },
+        "length": {
+          "estimate": 4.160265691182134,
+          "ci95": [
+            4.062068636888718,
+            4.260270119368502
+          ]
+        }
+      }
+    },
+    "base_sample": {
+      "all_unweighted": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.4154791237408425,
+            "interval": [
+              0.3283333628448375,
+              0.4921806896391367
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.54625,
+            "interval": [
+              0.4837187500000001,
+              0.6025312499999999
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.91375,
+            "interval": [
+              0.88625,
+              0.93875
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.24625,
+            "interval": [
+              4.1575,
+              4.3425
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.01125,
+            "interval": [
+              1.00375,
+              1.02125
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.00875,
+            "interval": [
+              1.00375,
+              1.01625
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.96875,
+            "interval": [
+              0.94375,
+              0.9875
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.8825,
+            "interval": [
+              0.84875,
+              0.91375
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.04035943223443223,
+            "interval": [
+              0.018096354166666672,
+              0.06739573794261293
+            ],
+            "n_tasks": 195,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.20939355227215806,
+            "interval": [
+              0.1493400765400465,
+              0.27368025048869393
+            ],
+            "n_tasks": 195,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0008520299145299145,
+            "interval": [
+              0.0,
+              0.0025560897435897433
+            ],
+            "n_tasks": 195,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.23291788228687266,
+            "interval": [
+              0.17501649690787316,
+              0.29382488948128965
+            ],
+            "n_tasks": 195,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.44231143455903066,
+            "interval": [
+              0.35310420042030616,
+              0.5398315869493754
+            ],
+            "n_tasks": 195,
+            "level": 0.975
+          }
+        },
+        "tasks": 200,
+        "episodes": 800,
+        "funnel_episodes": 706,
+        "termination_counts": {
+          "partial_alternative_purchase": 188,
+          "early_abstain": 21,
+          "gold_purchase": 437,
+          "wrong_purchase": 81,
+          "repeat_loop": 48,
+          "reward_unverifiable": 25
+        },
+        "funnel_exclusions": {
+          "no_purchase": 69,
+          "actual_reward_invalid": 25
+        },
+        "illegal_action_rate": 0.06858993229319989
+      },
+      "easy": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.5467027243589744,
+            "interval": [
+              0.4323624599358974,
+              0.6562447916666667
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.635,
+            "interval": [
+              0.5475,
+              0.7225
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.9425,
+            "interval": [
+              0.91,
+              0.97
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.115,
+            "interval": [
+              3.9925,
+              4.2375
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0075,
+            "interval": [
+              1.0,
+              1.02
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0025,
+            "interval": [
+              1.0,
+              1.0075
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.98,
+            "interval": [
+              0.9525,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.9225,
+            "interval": [
+              0.8825,
+              0.9575
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.024968112244897964,
+            "interval": [
+              0.0027901785714285715,
+              0.056938509778911545
+            ],
+            "n_tasks": 98,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.14712335655416012,
+            "interval": [
+              0.06378806600765308,
+              0.24191515608647304
+            ],
+            "n_tasks": 98,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 98,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.20680701367085297,
+            "interval": [
+              0.13712460344714808,
+              0.2872471924466902
+            ],
+            "n_tasks": 98,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.35393037022501306,
+            "interval": [
+              0.23116755431138802,
+              0.4839543575843801
+            ],
+            "n_tasks": 98,
+            "level": 0.975
+          }
+        },
+        "tasks": 100,
+        "episodes": 400,
+        "funnel_episodes": 369,
+        "termination_counts": {
+          "partial_alternative_purchase": 84,
+          "gold_purchase": 254,
+          "wrong_purchase": 31,
+          "repeat_loop": 22,
+          "early_abstain": 1,
+          "reward_unverifiable": 8
+        },
+        "funnel_exclusions": {
+          "no_purchase": 23,
+          "actual_reward_invalid": 8
+        },
+        "illegal_action_rate": 0.05710814094775213
+      },
+      "hard": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.2842555231227107,
+            "interval": [
+              0.16165295508527938,
+              0.3960267191792582
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.4575,
+            "interval": [
+              0.375,
+              0.54
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.885,
+            "interval": [
+              0.8449375000000001,
+              0.9225
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.3775,
+            "interval": [
+              4.25,
+              4.5125625
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.015,
+            "interval": [
+              1.0025,
+              1.0300624999999997
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.015,
+            "interval": [
+              1.005,
+              1.0275
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.9575,
+            "interval": [
+              0.915,
+              0.99
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.8425,
+            "interval": [
+              0.7924375000000001,
+              0.8925
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.05590942562592046,
+            "interval": [
+              0.019190560567010326,
+              0.10005292709867451
+            ],
+            "n_tasks": 97,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.2723057087707539,
+            "interval": [
+              0.1891707234766594,
+              0.3547890889045448
+            ],
+            "n_tasks": 97,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0017128436426116838,
+            "interval": [
+              0.0,
+              0.0051385309278350515
+            ],
+            "n_tasks": 97,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.25929793511542865,
+            "interval": [
+              0.1808448285297714,
+              0.3532410026144925
+            ],
+            "n_tasks": 97,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.5316036438861826,
+            "interval": [
+              0.3931314916089602,
+              0.664411302930049
+            ],
+            "n_tasks": 97,
+            "level": 0.975
+          }
+        },
+        "tasks": 100,
+        "episodes": 400,
+        "funnel_episodes": 337,
+        "termination_counts": {
+          "partial_alternative_purchase": 104,
+          "early_abstain": 20,
+          "gold_purchase": 183,
+          "wrong_purchase": 50,
+          "repeat_loop": 26,
+          "reward_unverifiable": 17
+        },
+        "funnel_exclusions": {
+          "no_purchase": 46,
+          "actual_reward_invalid": 17
+        },
+        "illegal_action_rate": 0.07938320959451742
+      },
+      "H_spec": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.39915997464074393,
+            "interval": [
+              0.26113753103867293,
+              0.5329045857988165
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5153846153846153,
+            "interval": [
+              0.4076923076923077,
+              0.6115384615384616
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.8730769230769231,
+            "interval": [
+              0.8153846153846154,
+              0.9230769230769231
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.434615384615385,
+            "interval": [
+              4.273076923076923,
+              4.611634615384615
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0153846153846153,
+            "interval": [
+              1.0,
+              1.0346153846153847
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0115384615384615,
+            "interval": [
+              1.0,
+              1.0269230769230768
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.9538461538461539,
+            "interval": [
+              0.9038461538461539,
+              0.9923076923076923
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.8269230769230769,
+            "interval": [
+              0.7576923076923077,
+              0.8884615384615384
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 63,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.16359563055991627,
+            "interval": [
+              0.07856412663890346,
+              0.25993344907407406
+            ],
+            "n_tasks": 63,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 63,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.2646513787138787,
+            "interval": [
+              0.15675479179385432,
+              0.38352293828856315
+            ],
+            "n_tasks": 63,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.42824700927379505,
+            "interval": [
+              0.28451780331523635,
+              0.5859637517533722
+            ],
+            "n_tasks": 63,
+            "level": 0.975
+          }
+        },
+        "tasks": 65,
+        "episodes": 260,
+        "funnel_episodes": 215,
+        "termination_counts": {
+          "gold_purchase": 134,
+          "partial_alternative_purchase": 67,
+          "repeat_loop": 20,
+          "early_abstain": 13,
+          "reward_unverifiable": 12,
+          "wrong_purchase": 14
+        },
+        "funnel_exclusions": {
+          "no_purchase": 33,
+          "actual_reward_invalid": 12
+        },
+        "illegal_action_rate": 0.08499566348655681
+      },
+      "H_click": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.12274332810047096,
+            "interval": [
+              -0.0986985120069662,
+              0.3429630738262852
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.375,
+            "interval": [
+              0.23214285714285715,
+              0.5178571428571429
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.9107142857142857,
+            "interval": [
+              0.8482142857142857,
+              0.9642857142857143
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.214285714285714,
+            "interval": [
+              4.0,
+              4.455357142857143
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0178571428571428,
+            "interval": [
+              1.0,
+              1.0446428571428572
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0178571428571428,
+            "interval": [
+              1.0,
+              1.0446428571428572
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.9642857142857143,
+            "interval": [
+              0.8928571428571429,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.875,
+            "interval": [
+              0.7857142857142857,
+              0.9464285714285714
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.09505208333333333,
+            "interval": [
+              0.02248263888888889,
+              0.1789677372685185
+            ],
+            "n_tasks": 27,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.455173374400805,
+            "interval": [
+              0.29391534833158095,
+              0.6311145601922509
+            ],
+            "n_tasks": 27,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 27,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.2769756301440329,
+            "interval": [
+              0.12239032761059673,
+              0.4622424768518516
+            ],
+            "n_tasks": 27,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.7321490045448379,
+            "interval": [
+              0.48236674711284094,
+              0.9863011877204588
+            ],
+            "n_tasks": 27,
+            "level": 0.975
+          }
+        },
+        "tasks": 28,
+        "episodes": 112,
+        "funnel_episodes": 98,
+        "termination_counts": {
+          "partial_alternative_purchase": 30,
+          "early_abstain": 4,
+          "wrong_purchase": 26,
+          "gold_purchase": 42,
+          "repeat_loop": 6,
+          "reward_unverifiable": 4
+        },
+        "funnel_exclusions": {
+          "no_purchase": 10,
+          "actual_reward_invalid": 4
+        },
+        "illegal_action_rate": 0.07203389830508475
+      },
+      "H_search": {
+        "metrics": {
+          "reward": {
+            "estimate": -0.34633184523809524,
+            "interval": [
+              -0.6802678571428571,
+              0.08085565476190477
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.15,
+            "interval": [
+              0.0,
+              0.35
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.85,
+            "interval": [
+              0.65,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.5,
+            "interval": [
+              4.05,
+              5.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.05,
+            "interval": [
+              1.0,
+              1.15
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.85,
+            "interval": [
+              0.65,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.5713616071428571,
+            "interval": [
+              0.16921875000000003,
+              0.9735044642857142
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.5034895833333334,
+            "interval": [
+              0.15411458333333336,
+              0.95875
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.033229166666666664,
+            "interval": [
+              0.0,
+              0.0996875
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.20010416666666667,
+            "interval": [
+              0.033229166666666664,
+              0.390625
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.70359375,
+            "interval": [
+              0.3390625,
+              1.3076562500000002
+            ],
+            "n_tasks": 5,
+            "level": 0.975
+          }
+        },
+        "tasks": 5,
+        "episodes": 20,
+        "funnel_episodes": 17,
+        "termination_counts": {
+          "partial_alternative_purchase": 4,
+          "wrong_purchase": 10,
+          "gold_purchase": 3,
+          "early_abstain": 3
+        },
+        "funnel_exclusions": {
+          "no_purchase": 3
+        },
+        "illegal_action_rate": 0.07777777777777778
+      },
+      "H_unknown": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.3875,
+            "interval": [
+              -0.22499999999999998,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5,
+            "interval": [
+              0.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.5,
+            "interval": [
+              4.0,
+              5.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.875,
+            "interval": [
+              0.75,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.875,
+            "interval": [
+              0.75,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.65,
+            "interval": [
+              0.0,
+              1.3
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.65,
+            "interval": [
+              0.0,
+              1.3
+            ],
+            "n_tasks": 2,
+            "level": 0.975
+          }
+        },
+        "tasks": 2,
+        "episodes": 8,
+        "funnel_episodes": 7,
+        "termination_counts": {
+          "partial_alternative_purchase": 3,
+          "reward_unverifiable": 1,
+          "gold_purchase": 4
+        },
+        "funnel_exclusions": {
+          "actual_reward_invalid": 1
+        },
+        "illegal_action_rate": 0.0
+      },
+      "population_weights": {
+        "easy": 0.19822872545244513,
+        "hard": 0.8017712745475549
+      },
+      "weighted_all": {
+        "reward": {
+          "estimate": 0.33628009732233666,
+          "ci95": [
+            0.24122711617607923,
+            0.4307979089288613
+          ]
+        },
+        "strict_success": {
+          "estimate": 0.49268559876780904,
+          "ci95": [
+            0.4265077060069311,
+            0.5611999903735079
+          ]
+        },
+        "purchase": {
+          "estimate": 0.8963981517135157,
+          "ci95": [
+            0.8628621726992685,
+            0.9284247208317291
+          ]
+        },
+        "length": {
+          "estimate": 4.325464959568734,
+          "ci95": [
+            4.219724860415865,
+            4.438109087408549
+          ]
+        }
+      }
+    },
+    "interim_checkpoint_0030_greedy": {
+      "all_unweighted": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.5060116185897435,
+            "interval": [
+              0.41133777257898346,
+              0.5960734103136446
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.61,
+            "interval": [
+              0.54,
+              0.68
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.98,
+            "interval": [
+              0.96,
+              0.995
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.11,
+            "interval": [
+              4.035,
+              4.195
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.005,
+            "interval": [
+              1.0,
+              1.015
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.975,
+            "interval": [
+              0.95,
+              0.995
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.955,
+            "interval": [
+              0.92,
+              0.98
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.034512902019446526,
+            "interval": [
+              0.010732984293193717,
+              0.06440716739902767
+            ],
+            "n_tasks": 191,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.21901399756439027,
+            "interval": [
+              0.1477256587353528,
+              0.2989521529136222
+            ],
+            "n_tasks": 191,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 191,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.20300543697140555,
+            "interval": [
+              0.14436923160826956,
+              0.2668004933548127
+            ],
+            "n_tasks": 191,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.4220194345357958,
+            "interval": [
+              0.3230415920521451,
+              0.536142521002939
+            ],
+            "n_tasks": 191,
+            "level": 0.975
+          }
+        },
+        "tasks": 200,
+        "episodes": 200,
+        "funnel_episodes": 191,
+        "termination_counts": {
+          "partial_alternative_purchase": 47,
+          "reward_unverifiable": 5,
+          "gold_purchase": 122,
+          "wrong_purchase": 22,
+          "repeat_loop": 4
+        },
+        "funnel_exclusions": {
+          "actual_reward_invalid": 5,
+          "no_purchase": 4
+        },
+        "illegal_action_rate": 0.0170316301703163
+      },
+      "easy": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.6064014423076923,
+            "interval": [
+              0.48609995993589744,
+              0.7240714543269231
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.68,
+            "interval": [
+              0.59,
+              0.77
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.98,
+            "interval": [
+              0.95,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.05,
+            "interval": [
+              3.94,
+              4.18
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.01,
+            "interval": [
+              1.0,
+              1.03
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.98,
+            "interval": [
+              0.95,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.96,
+            "interval": [
+              0.92,
+              0.99
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.012646484375000001,
+            "interval": [
+              0.0,
+              0.037939453125
+            ],
+            "n_tasks": 96,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.15994466145833333,
+            "interval": [
+              0.07316894531250005,
+              0.25933702256944446
+            ],
+            "n_tasks": 96,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 96,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.1821990184294872,
+            "interval": [
+              0.10964161408253206,
+              0.26279854016426274
+            ],
+            "n_tasks": 96,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.3421436798878206,
+            "interval": [
+              0.21916712573450856,
+              0.47636386447482637
+            ],
+            "n_tasks": 96,
+            "level": 0.975
+          }
+        },
+        "tasks": 100,
+        "episodes": 100,
+        "funnel_episodes": 96,
+        "termination_counts": {
+          "partial_alternative_purchase": 19,
+          "gold_purchase": 68,
+          "wrong_purchase": 9,
+          "repeat_loop": 2,
+          "reward_unverifiable": 2
+        },
+        "funnel_exclusions": {
+          "no_purchase": 2,
+          "actual_reward_invalid": 2
+        },
+        "illegal_action_rate": 0.009876543209876543
+      },
+      "hard": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.40562179487179484,
+            "interval": [
+              0.26039030448717954,
+              0.5309389322916666
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.54,
+            "interval": [
+              0.44,
+              0.64
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.98,
+            "interval": [
+              0.95,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.17,
+            "interval": [
+              4.07,
+              4.28
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.97,
+            "interval": [
+              0.93,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.95,
+            "interval": [
+              0.91,
+              0.99
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.05660949248120301,
+            "interval": [
+              0.011099624060150375,
+              0.10901967810150369
+            ],
+            "n_tasks": 95,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.27870511615577404,
+            "interval": [
+              0.17367416588345866,
+              0.40075430161943304
+            ],
+            "n_tasks": 95,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 95,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.22403087044534414,
+            "interval": [
+              0.1327466472672065,
+              0.31965776821862346
+            ],
+            "n_tasks": 95,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.5027359866011182,
+            "interval": [
+              0.3540580989733951,
+              0.669965089255591
+            ],
+            "n_tasks": 95,
+            "level": 0.975
+          }
+        },
+        "tasks": 100,
+        "episodes": 100,
+        "funnel_episodes": 95,
+        "termination_counts": {
+          "partial_alternative_purchase": 28,
+          "reward_unverifiable": 3,
+          "gold_purchase": 54,
+          "wrong_purchase": 13,
+          "repeat_loop": 2
+        },
+        "funnel_exclusions": {
+          "actual_reward_invalid": 3,
+          "no_purchase": 2
+        },
+        "illegal_action_rate": 0.023980815347721823
+      },
+      "H_spec": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.4896631093265708,
+            "interval": [
+              0.3301656892786701,
+              0.6394301343688362
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5692307692307692,
+            "interval": [
+              0.4461538461538462,
+              0.6923076923076923
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.9846153846153847,
+            "interval": [
+              0.9538461538461539,
+              1.0
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.2,
+            "interval": [
+              4.076923076923077,
+              4.323076923076923
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.9538461538461539,
+            "interval": [
+              0.8923076923076924,
+              1.0
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.9384615384615385,
+            "interval": [
+              0.8769230769230769,
+              0.9846153846153847
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 61,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.23434779018795415,
+            "interval": [
+              0.11124341334894616,
+              0.37473090434156003
+            ],
+            "n_tasks": 61,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 61,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.23322430643127368,
+            "interval": [
+              0.12298402033417402,
+              0.35456691361916753
+            ],
+            "n_tasks": 61,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.4675720966192278,
+            "interval": [
+              0.29503896398171503,
+              0.6602393548647391
+            ],
+            "n_tasks": 61,
+            "level": 0.975
+          }
+        },
+        "tasks": 65,
+        "episodes": 65,
+        "funnel_episodes": 61,
+        "termination_counts": {
+          "reward_unverifiable": 3,
+          "partial_alternative_purchase": 19,
+          "gold_purchase": 37,
+          "wrong_purchase": 5,
+          "repeat_loop": 1
+        },
+        "funnel_exclusions": {
+          "actual_reward_invalid": 3,
+          "no_purchase": 1
+        },
+        "illegal_action_rate": 0.018315018315018316
+      },
+      "H_click": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.3204985119047619,
+            "interval": [
+              0.02712007068452392,
+              0.6184281994047616
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5357142857142857,
+            "interval": [
+              0.35714285714285715,
+              0.7142857142857143
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.9642857142857143,
+            "interval": [
+              0.8928571428571429,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.071428571428571,
+            "interval": [
+              3.892857142857143,
+              4.285714285714286
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.9642857142857143,
+            "interval": [
+              0.8928571428571429,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.08292824074074075,
+            "interval": [
+              0.0,
+              0.21782407407407406
+            ],
+            "n_tasks": 27,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.3196566358024691,
+            "interval": [
+              0.10711805555555556,
+              0.5867848186728394
+            ],
+            "n_tasks": 27,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 27,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.2409722222222222,
+            "interval": [
+              0.06851851851851852,
+              0.4511574074074074
+            ],
+            "n_tasks": 27,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.5606288580246913,
+            "interval": [
+              0.24564043209876546,
+              0.9294275655864203
+            ],
+            "n_tasks": 27,
+            "level": 0.975
+          }
+        },
+        "tasks": 28,
+        "episodes": 28,
+        "funnel_episodes": 27,
+        "termination_counts": {
+          "partial_alternative_purchase": 6,
+          "wrong_purchase": 6,
+          "gold_purchase": 15,
+          "repeat_loop": 1
+        },
+        "funnel_exclusions": {
+          "no_purchase": 1
+        },
+        "illegal_action_rate": 0.043859649122807015
+      },
+      "H_search": {
+        "metrics": {
+          "reward": {
+            "estimate": -0.18797619047619044,
+            "interval": [
+              -0.7170833333333333,
+              0.4191071428571428
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.2,
+            "interval": [
+              0.0,
+              0.6
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.2,
+            "interval": [
+              4.0,
+              4.6
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.6277678571428572,
+            "interval": [
+              0.19125,
+              1.0642857142857143
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.4502083333333333,
+            "interval": [
+              0.04583333333333334,
+              0.9243750000000001
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.11000000000000001,
+            "interval": [
+              0.0,
+              0.33
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.5602083333333333,
+            "interval": [
+              0.0,
+              1.2549479166666688
+            ],
+            "n_tasks": 5,
+            "level": 0.975
+          }
+        },
+        "tasks": 5,
+        "episodes": 5,
+        "funnel_episodes": 5,
+        "termination_counts": {
+          "partial_alternative_purchase": 2,
+          "wrong_purchase": 2,
+          "gold_purchase": 1
+        },
+        "funnel_exclusions": {},
+        "illegal_action_rate": 0.0
+      },
+      "H_unknown": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.35,
+            "interval": [
+              -0.3,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5,
+            "interval": [
+              0.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.5,
+            "interval": [
+              4.0,
+              5.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.65,
+            "interval": [
+              0.0,
+              1.3
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.65,
+            "interval": [
+              0.0,
+              1.3
+            ],
+            "n_tasks": 2,
+            "level": 0.975
+          }
+        },
+        "tasks": 2,
+        "episodes": 2,
+        "funnel_episodes": 2,
+        "termination_counts": {
+          "partial_alternative_purchase": 1,
+          "gold_purchase": 1
+        },
+        "funnel_exclusions": {},
+        "illegal_action_rate": 0.0
+      },
+      "population_weights": {
+        "easy": 0.19822872545244513,
+        "hard": 0.8017712745475549
+      },
+      "weighted_all": {
+        "reward": {
+          "estimate": 0.44542208847980413,
+          "ci95": [
+            0.3329212937005937,
+            0.5525740519521809
+          ]
+        },
+        "strict_success": {
+          "estimate": 0.5677520215633424,
+          "ci95": [
+            0.48386715440893335,
+            0.6418051597997689
+          ]
+        },
+        "purchase": {
+          "estimate": 0.98,
+          "ci95": [
+            0.9539645745090489,
+            0.9980177127454756
+          ]
+        },
+        "length": {
+          "estimate": 4.146212552945706,
+          "ci95": [
+            4.06612398921833,
+            4.232161628802465
+          ]
+        }
+      }
+    },
+    "interim_checkpoint_0030_sample": {
+      "all_unweighted": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.49263154618818683,
+            "interval": [
+              0.40427367019373855,
+              0.5752116010616986
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.605,
+            "interval": [
+              0.5425,
+              0.6650312499999999
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.9725,
+            "interval": [
+              0.9575,
+              0.985
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.15375,
+            "interval": [
+              4.0725,
+              4.235
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.01125,
+            "interval": [
+              1.0025,
+              1.02125
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0025,
+            "interval": [
+              0.9975,
+              1.0075
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.97375,
+            "interval": [
+              0.955,
+              0.99125
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.94625,
+            "interval": [
+              0.9225,
+              0.96875
+            ],
+            "n_tasks": 200,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.030735999757045673,
+            "interval": [
+              0.010075069090136068,
+              0.05619792615706997
+            ],
+            "n_tasks": 196,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.21912623122165537,
+            "interval": [
+              0.15324822655996925,
+              0.2900704712330789
+            ],
+            "n_tasks": 196,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 196,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.2137295474508485,
+            "interval": [
+              0.16195017713472754,
+              0.26810762270653454
+            ],
+            "n_tasks": 196,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.4328557786725038,
+            "interval": [
+              0.3363999860600577,
+              0.5317373428255373
+            ],
+            "n_tasks": 196,
+            "level": 0.975
+          }
+        },
+        "tasks": 200,
+        "episodes": 800,
+        "funnel_episodes": 757,
+        "termination_counts": {
+          "partial_alternative_purchase": 181,
+          "gold_purchase": 484,
+          "wrong_purchase": 92,
+          "repeat_loop": 21,
+          "reward_unverifiable": 21,
+          "early_abstain": 1
+        },
+        "funnel_exclusions": {
+          "no_purchase": 22,
+          "actual_reward_invalid": 21
+        },
+        "illegal_action_rate": 0.023472765573277158
+      },
+      "easy": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.6241802884615385,
+            "interval": [
+              0.5117408253205129,
+              0.7243201372195512
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.6925,
+            "interval": [
+              0.61,
+              0.77
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.985,
+            "interval": [
+              0.9725,
+              0.995
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.08,
+            "interval": [
+              3.98,
+              4.19
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0075,
+            "interval": [
+              1.0,
+              1.02
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.9825,
+            "interval": [
+              0.9575,
+              1.0
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.9675,
+            "interval": [
+              0.94,
+              0.9875
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.016719276094276096,
+            "interval": [
+              0.0,
+              0.047453703703703706
+            ],
+            "n_tasks": 99,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.1573958738021238,
+            "interval": [
+              0.07410387933825434,
+              0.25091678503787873
+            ],
+            "n_tasks": 99,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 99,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.1686979976042476,
+            "interval": [
+              0.10641282111985235,
+              0.24272776341135713
+            ],
+            "n_tasks": 99,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.3260938714063714,
+            "interval": [
+              0.21265666733440175,
+              0.44294632776078086
+            ],
+            "n_tasks": 99,
+            "level": 0.975
+          }
+        },
+        "tasks": 100,
+        "episodes": 400,
+        "funnel_episodes": 387,
+        "termination_counts": {
+          "partial_alternative_purchase": 77,
+          "gold_purchase": 277,
+          "wrong_purchase": 33,
+          "repeat_loop": 6,
+          "reward_unverifiable": 7
+        },
+        "funnel_exclusions": {
+          "no_purchase": 6,
+          "actual_reward_invalid": 7
+        },
+        "illegal_action_rate": 0.014705882352941176
+      },
+      "hard": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.36108280391483527,
+            "interval": [
+              0.23488214071085164,
+              0.4837621734060212
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5175,
+            "interval": [
+              0.4324375000000001,
+              0.6000624999999996
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.96,
+            "interval": [
+              0.9325,
+              0.9825
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.2275,
+            "interval": [
+              4.115,
+              4.3475
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.015,
+            "interval": [
+              1.0025,
+              1.0325
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.005,
+            "interval": [
+              0.995,
+              1.015
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.965,
+            "interval": [
+              0.93,
+              0.99
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.925,
+            "interval": [
+              0.8825,
+              0.96
+            ],
+            "n_tasks": 100,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.045041728031418746,
+            "interval": [
+              0.010870765832106038,
+              0.08491176899239074
+            ],
+            "n_tasks": 97,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.2821293795158164,
+            "interval": [
+              0.19252067249671154,
+              0.3778926545113317
+            ],
+            "n_tasks": 97,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 97,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.25968958286129684,
+            "interval": [
+              0.1809648859874375,
+              0.34515675399736284
+            ],
+            "n_tasks": 97,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.5418189623771131,
+            "interval": [
+              0.41002583969894296,
+              0.6816368668391762
+            ],
+            "n_tasks": 97,
+            "level": 0.975
+          }
+        },
+        "tasks": 100,
+        "episodes": 400,
+        "funnel_episodes": 370,
+        "termination_counts": {
+          "partial_alternative_purchase": 104,
+          "gold_purchase": 207,
+          "wrong_purchase": 59,
+          "repeat_loop": 15,
+          "reward_unverifiable": 14,
+          "early_abstain": 1
+        },
+        "funnel_exclusions": {
+          "no_purchase": 16,
+          "actual_reward_invalid": 14
+        },
+        "illegal_action_rate": 0.0319337670017741
+      },
+      "H_spec": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.449479210693153,
+            "interval": [
+              0.3166330326324317,
+              0.5825594016360242
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5576923076923077,
+            "interval": [
+              0.4576923076923077,
+              0.6615384615384615
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.9576923076923077,
+            "interval": [
+              0.9153846153846154,
+              0.9884615384615385
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.2615384615384615,
+            "interval": [
+              4.123076923076923,
+              4.4192307692307695
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0153846153846153,
+            "interval": [
+              1.0,
+              1.0346153846153847
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0038461538461538,
+            "interval": [
+              0.9923076923076923,
+              1.0153846153846153
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.9615384615384616,
+            "interval": [
+              0.9153846153846154,
+              1.0
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.9192307692307692,
+            "interval": [
+              0.8576923076923076,
+              0.9692307692307692
+            ],
+            "n_tasks": 65,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.013508064516129032,
+            "interval": [
+              0.0,
+              0.036113911290322584
+            ],
+            "n_tasks": 62,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.20949622314289654,
+            "interval": [
+              0.11096711189516131,
+              0.31285610355985854
+            ],
+            "n_tasks": 62,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 62,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.2631543803418804,
+            "interval": [
+              0.16246561433777917,
+              0.3747208221326164
+            ],
+            "n_tasks": 62,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.47265060348477683,
+            "interval": [
+              0.31593880200640534,
+              0.6207050255062478
+            ],
+            "n_tasks": 62,
+            "level": 0.975
+          }
+        },
+        "tasks": 65,
+        "episodes": 260,
+        "funnel_episodes": 239,
+        "termination_counts": {
+          "partial_alternative_purchase": 71,
+          "gold_purchase": 145,
+          "wrong_purchase": 23,
+          "repeat_loop": 11,
+          "reward_unverifiable": 10
+        },
+        "funnel_exclusions": {
+          "no_purchase": 11,
+          "actual_reward_invalid": 10
+        },
+        "illegal_action_rate": 0.0315884476534296
+      },
+      "H_click": {
+        "metrics": {
+          "reward": {
+            "estimate": 0.2982561383928571,
+            "interval": [
+              0.03330810546875006,
+              0.5550673130580357
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.5,
+            "interval": [
+              0.3392857142857143,
+              0.6696428571428571
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.9732142857142857,
+            "interval": [
+              0.9375,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.080357142857143,
+            "interval": [
+              3.892857142857143,
+              4.321428571428571
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.9821428571428571,
+            "interval": [
+              0.9464285714285714,
+              1.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.9553571428571429,
+            "interval": [
+              0.9107142857142857,
+              0.9910714285714286
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.02745535714285714,
+            "interval": [
+              0.0,
+              0.08236607142857143
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.364643787202381,
+            "interval": [
+              0.16958798363095243,
+              0.5745255533854166
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.2650948660714286,
+            "interval": [
+              0.11359654017857146,
+              0.4438818359374997
+            ],
+            "n_tasks": 28,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.6297386532738095,
+            "interval": [
+              0.33312633696056554,
+              0.9311987885974703
+            ],
+            "n_tasks": 28,
+            "level": 0.975
+          }
+        },
+        "tasks": 28,
+        "episodes": 112,
+        "funnel_episodes": 107,
+        "termination_counts": {
+          "partial_alternative_purchase": 26,
+          "gold_purchase": 56,
+          "wrong_purchase": 25,
+          "repeat_loop": 3,
+          "reward_unverifiable": 2
+        },
+        "funnel_exclusions": {
+          "no_purchase": 3,
+          "actual_reward_invalid": 2
+        },
+        "illegal_action_rate": 0.03938730853391685
+      },
+      "H_search": {
+        "metrics": {
+          "reward": {
+            "estimate": -0.2393080357142857,
+            "interval": [
+              -0.7529017857142857,
+              0.4141964285714286
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.25,
+            "interval": [
+              0.0,
+              0.65
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 0.9,
+            "interval": [
+              0.8,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.45,
+            "interval": [
+              3.9,
+              5.1
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.1,
+            "interval": [
+              1.0,
+              1.3
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.05,
+            "interval": [
+              1.0,
+              1.15
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.9,
+            "interval": [
+              0.8,
+              1.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.5525595238095239,
+            "interval": [
+              0.15041666666666667,
+              0.935059523809524
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 0.38855158730158734,
+            "interval": [
+              0.09035714285714286,
+              0.8604265873015873
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.29033234126984125,
+            "interval": [
+              0.03977678571428571,
+              0.540887896825397
+            ],
+            "n_tasks": 5,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 0.6788839285714287,
+            "interval": [
+              0.13013392857142855,
+              1.3707589285714286
+            ],
+            "n_tasks": 5,
+            "level": 0.975
+          }
+        },
+        "tasks": 5,
+        "episodes": 20,
+        "funnel_episodes": 18,
+        "termination_counts": {
+          "wrong_purchase": 10,
+          "gold_purchase": 5,
+          "repeat_loop": 1,
+          "early_abstain": 1,
+          "partial_alternative_purchase": 3
+        },
+        "funnel_exclusions": {
+          "no_purchase": 2
+        },
+        "illegal_action_rate": 0.0
+      },
+      "H_unknown": {
+        "metrics": {
+          "reward": {
+            "estimate": -0.13124999999999998,
+            "interval": [
+              -0.3,
+              0.037500000000000006
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "strict_success": {
+            "estimate": 0.125,
+            "interval": [
+              0.0,
+              0.25
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "purchase": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "length": {
+            "estimate": 4.625,
+            "interval": [
+              4.0,
+              5.25
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "searches": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "opened_products": {
+            "estimate": 1.0,
+            "interval": [
+              1.0,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "valid_rate": {
+            "estimate": 0.75,
+            "interval": [
+              0.5,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "funnel_coverage": {
+            "estimate": 0.75,
+            "interval": [
+              0.5,
+              1.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_search": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_click": {
+            "estimate": 1.1125,
+            "interval": [
+              0.925,
+              1.3
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_stop": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_spec": {
+            "estimate": 0.0,
+            "interval": [
+              0.0,
+              0.0
+            ],
+            "n_tasks": 2,
+            "level": 0.95
+          },
+          "L_click_plus_spec": {
+            "estimate": 1.1125,
+            "interval": [
+              0.925,
+              1.3
+            ],
+            "n_tasks": 2,
+            "level": 0.975
+          }
+        },
+        "tasks": 2,
+        "episodes": 8,
+        "funnel_episodes": 6,
+        "termination_counts": {
+          "partial_alternative_purchase": 4,
+          "wrong_purchase": 1,
+          "gold_purchase": 1,
+          "reward_unverifiable": 2
+        },
+        "funnel_exclusions": {
+          "actual_reward_invalid": 2
+        },
+        "illegal_action_rate": 0.02702702702702703
+      },
+      "population_weights": {
+        "easy": 0.19822872545244513,
+        "hard": 0.8017712745475549
+      },
+      "weighted_all": {
+        "reward": {
+          "estimate": 0.4132362829462726,
+          "ci95": [
+            0.3059054392047905,
+            0.5186191932862426
+          ]
+        },
+        "strict_success": {
+          "estimate": 0.552190026954178,
+          "ci95": [
+            0.4811972227570274,
+            0.6248978099730458
+          ]
+        },
+        "purchase": {
+          "estimate": 0.9649557181363112,
+          "ci95": [
+            0.9434025798998846,
+            0.9829734308817867
+          ]
+        },
+        "length": {
+          "estimate": 4.198261262995764,
+          "ci95": [
+            4.1040446236041594,
+            4.289482330573739
+          ]
+        }
+      }
+    }
+  },
+  "paired_task_changes": {
+    "greedy": {
+      "all_unweighted": {
+        "reward": {
+          "estimate": 0.06648139880952382,
+          "interval": [
+            0.03318030133928572,
+            0.10388749069940474
+          ],
+          "n_tasks": 200,
+          "level": 0.95
+        },
+        "strict_success": {
+          "estimate": 0.05,
+          "interval": [
+            0.02,
+            0.085
+          ],
+          "n_tasks": 200,
+          "level": 0.95
+        },
+        "purchase": {
+          "estimate": 0.02,
+          "interval": [
+            0.005,
+            0.04
+          ],
+          "n_tasks": 200,
+          "level": 0.95
+        },
+        "length": {
+          "estimate": -0.005,
+          "interval": [
+            -0.055,
+            0.045
+          ],
+          "n_tasks": 200,
+          "level": 0.95
+        }
+      },
+      "easy": {
+        "reward": {
+          "estimate": 0.04998958333333334,
+          "interval": [
+            0.012767968750000004,
+            0.095625
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "strict_success": {
+          "estimate": 0.05,
+          "interval": [
+            0.01,
+            0.09
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "purchase": {
+          "estimate": 0.0,
+          "interval": [
+            0.0,
+            0.0
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "length": {
+          "estimate": 0.01,
+          "interval": [
+            -0.06,
+            0.08
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        }
+      },
+      "hard": {
+        "reward": {
+          "estimate": 0.08297321428571429,
+          "interval": [
+            0.029671316964285724,
+            0.15044012276785712
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "strict_success": {
+          "estimate": 0.05,
+          "interval": [
+            0.01,
+            0.1
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "purchase": {
+          "estimate": 0.04,
+          "interval": [
+            0.01,
+            0.08
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "length": {
+          "estimate": -0.02,
+          "interval": [
+            -0.1,
+            0.05
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        }
+      }
+    },
+    "sample": {
+      "all_unweighted": {
+        "reward": {
+          "estimate": 0.07715242244734431,
+          "interval": [
+            0.033477235720009164,
+            0.11926498451093179
+          ],
+          "n_tasks": 200,
+          "level": 0.95
+        },
+        "strict_success": {
+          "estimate": 0.05875,
+          "interval": [
+            0.02875,
+            0.08878124999999983
+          ],
+          "n_tasks": 200,
+          "level": 0.95
+        },
+        "purchase": {
+          "estimate": 0.05875,
+          "interval": [
+            0.03625,
+            0.08375
+          ],
+          "n_tasks": 200,
+          "level": 0.95
+        },
+        "length": {
+          "estimate": -0.0925,
+          "interval": [
+            -0.17128124999999997,
+            -0.01871875000000017
+          ],
+          "n_tasks": 200,
+          "level": 0.95
+        }
+      },
+      "easy": {
+        "reward": {
+          "estimate": 0.07747756410256411,
+          "interval": [
+            0.02308751502403847,
+            0.13063505608974355
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "strict_success": {
+          "estimate": 0.0575,
+          "interval": [
+            0.0225,
+            0.0975
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "purchase": {
+          "estimate": 0.0425,
+          "interval": [
+            0.01493750000000011,
+            0.07256249999999966
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "length": {
+          "estimate": -0.035,
+          "interval": [
+            -0.135,
+            0.05006249999999966
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        }
+      },
+      "hard": {
+        "reward": {
+          "estimate": 0.07682728079212454,
+          "interval": [
+            0.012130967047275655,
+            0.14077706616300362
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "strict_success": {
+          "estimate": 0.06,
+          "interval": [
+            0.0125,
+            0.1075
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "purchase": {
+          "estimate": 0.075,
+          "interval": [
+            0.0425,
+            0.11
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        },
+        "length": {
+          "estimate": -0.15,
+          "interval": [
+            -0.265,
+            -0.03
+          ],
+          "n_tasks": 100,
+          "level": 0.95
+        }
+      }
+    }
+  },
+  "final_campaign_evaluation": false,
+  "time": "2026-11-17T14:24:43.835625+00:00"
+}

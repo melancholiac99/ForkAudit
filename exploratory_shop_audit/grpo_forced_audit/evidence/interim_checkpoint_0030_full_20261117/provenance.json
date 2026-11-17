@@ -1,0 +1,35 @@
+{
+  "run_id": "shop_grpo_forced_20261117_01",
+  "input_sha256": {
+    "priority_evaluation/metrics.json": "5940e7af21a98b89f8fd4e7b1e48849aaef9ad724c67416ac84c9f3937bd70f9",
+    "priority_evaluation/request.json": "7f2d9b14d5e846fc6ec3fca0cf1d039912dc1d6f1716d0c239e4a69b89b07906",
+    "priority_evaluation/events.jsonl": "09b51203ac3e82f303bdf8997f7261b41cdb0f5e27a71e0c19b4ec9092b8f42f",
+    "splits.json": "237f7420b3f4fa687895de48ce3c3d6bd4b62b1b588674382b853fcdc1895a63",
+    "full_configuration_maxima.jsonl": "b47c4673d8460f675139650449b9ad5708904ee4f751d692d5e84398de881050",
+    "evaluation/base/greedy/episodes.jsonl": "d31bb2308885219c2af5e7a7ecd0c601a2adc490b234ac6605909a5074a938f8",
+    "evaluation/base/greedy/steps.jsonl": "5458fafca56305ab8c38446ba90d874f23d76c3157e5fcbf0c6984a779a96f01",
+    "evaluation/base/sample/episodes.jsonl": "92333a6c89ccec2fadc4f64be073c6f18f738e4d59708fa354840109e5f8c8a5",
+    "evaluation/base/sample/steps.jsonl": "71c7264972336a50b52efb8b95f875640927c5ad6c52ed171f77a17cf94d07b3",
+    "evaluation/interim_checkpoint_0030/greedy/episodes.jsonl": "f87cfb0b6d5a7daf3e902071181979cd17f794d49c37d66561ea97b14e657cd8",
+    "evaluation/interim_checkpoint_0030/greedy/steps.jsonl": "d0c08cedc7488edc8fc828e7406d1e5b947c609cbd11396f9cd6a745dad14423",
+    "evaluation/interim_checkpoint_0030/sample/episodes.jsonl": "c54aba0c503b7c7c26ac0ef66d8e53b06057378ecf9d947fa2c4d82c82523a76",
+    "evaluation/interim_checkpoint_0030/sample/steps.jsonl": "885f839be98d1db5bd10f6656f894b594621c060d794073b7c3aa18376686091"
+  },
+  "generator_sha256": "6ca90873324ad816041b638089912e6be8a36860ff8c26ab91d6d038cf3ef70a",
+  "completion": {
+    "status": "complete",
+    "time": "2026-11-17T14:24:43.945580+00:00",
+    "pid": 66921,
+    "parent_stage": "train_0050",
+    "session_id": "81cba2991eab4000920aef1372f9e3ce",
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "checkpoint_update": 30,
+    "substage": "complete"
+  },
+  "raw_records": "Retained on server; aggregates are exported without per-trajectory records."
+}

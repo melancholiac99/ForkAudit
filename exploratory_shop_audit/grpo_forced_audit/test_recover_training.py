@@ -4,10 +4,20 @@ import tempfile
 import unittest
 
 from .common import save
-from .recover_training import replay_indices, promote
+from .recover_training import replay_indices, promote, replace_fit_adjust
 
 
 class RecoveryTests(unittest.TestCase):
+    def test_replaces_the_compiled_fit_scope_not_only_module_scope(self):
+        original = lambda: 'old'
+        replacement = lambda: 'new'
+        scope = {'adjust_batch': original}
+        exec('def fit(): return adjust_batch()', scope)
+        replace_fit_adjust(scope['fit'], original, replacement)
+        self.assertEqual(scope['fit'](), 'new')
+        with self.assertRaises(AssertionError):
+            replace_fit_adjust(scope['fit'], original, replacement)
+
     def rows(self, n):
         return [{'trajectory_id': f't:{i}', 'task_id': f'task:{i}', 'step': 0} for i in range(n)]
 
