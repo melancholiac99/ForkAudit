@@ -1,0 +1,9 @@
+[Unit]
+Description=Check shopping experiment every minute
+[Timer]
+OnBootSec=120
+OnUnitInactiveSec=60
+AccuracySec=5
+Unit=forkaudit-shop-watchdog.service
+[Install]
+WantedBy=timers.target

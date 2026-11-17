@@ -1,0 +1,10 @@
+[Unit]
+Description=Check shopping experiment health and queue confirmed incidents
+After=network-online.target
+[Service]
+Type=oneshot
+WorkingDirectory=/root/ForkAudit-shop-20261117
+Environment=PYTHONPATH=/root/ForkAudit-shop-20261117
+Environment=OPENBLAS_NUM_THREADS=1
+ExecStart=/root/ForkAudit/.runtime/shop-review-venv/bin/python -m exploratory_shop_audit.grpo_forced_audit.watchdog
+TimeoutStartSec=90

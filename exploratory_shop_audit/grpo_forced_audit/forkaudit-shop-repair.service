@@ -1,0 +1,13 @@
+[Unit]
+Description=User-authorized Codex diagnosis of a confirmed shopping incident
+After=network-online.target
+[Service]
+Type=simple
+WorkingDirectory=/root/ForkAudit-shop-20261117
+Environment=PYTHONPATH=/root/ForkAudit-shop-20261117
+Environment=OPENBLAS_NUM_THREADS=1
+Environment=PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/root/ForkAudit/.runtime/shop-review-venv/bin/python -m exploratory_shop_audit.grpo_forced_audit.repair_incident
+Restart=no
+RuntimeMaxSec=45min
+TimeoutStopSec=30
