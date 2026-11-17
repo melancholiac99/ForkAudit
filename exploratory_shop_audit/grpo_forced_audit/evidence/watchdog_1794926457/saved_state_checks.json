@@ -1,0 +1,46 @@
+{
+  "latest_complete_checkpoint": 40,
+  "latest_completed_update": 42,
+  "uncheckpointed_completed_updates": [
+    41,
+    42
+  ],
+  "update43": "sampling complete; failed before response_mask/reward/logprob/advantage/optimizer",
+  "four_rank_save_and_prior_restore_fingerprints_equal": true,
+  "optimizer_and_scheduler_cpu_hashes_match": true,
+  "dataloader_loadable": true,
+  "cached_samples": [
+    {
+      "update": 41,
+      "rows": 542,
+      "episodes": 128,
+      "padding_to_16": 2,
+      "cache": "native_batch_cache/train_0040_sample_686be4e6e2613436f69abb9cd7d132271a8ae80ebc9e47816f31c5ea54b47c0d.pkl",
+      "tokens_match": true,
+      "all_episodes_terminal": true
+    },
+    {
+      "update": 42,
+      "rows": 577,
+      "episodes": 128,
+      "padding_to_16": 15,
+      "cache": "native_batch_cache/train_0041_sample_4194a9975bb1de96eb2ba72963cc31c54cb2428fdb155d84f456237df4a504ea.pkl",
+      "tokens_match": true,
+      "all_episodes_terminal": true
+    },
+    {
+      "update": 43,
+      "rows": 560,
+      "episodes": 128,
+      "padding_to_16": 0,
+      "cache": "native_batch_cache/train_0042_sample_e3e36d17467ab7ececccf1523b6799dc51d452cfa36004795f1d187c61432743.pkl",
+      "tokens_match": true,
+      "all_episodes_terminal": true
+    }
+  ],
+  "weight_update_chain_intact": true,
+  "training_restart": false,
+  "recovery_blocker": "No checkpoint of updates 41/42; exact optimizer replay equivalence has not been established. Do not silently roll back to 40.",
+  "failed_phase_gpu_hours": 2.4982053213649325,
+  "total_recorded_gpu_hours": 30.1288037769662
+}

@@ -1,0 +1,195 @@
+{
+  "training/checkpoints/global_step_40/actor/added_tokens.json": {
+    "bytes": 605,
+    "inode": 11950758,
+    "sha256": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b"
+  },
+  "training/checkpoints/global_step_40/actor/chat_template.jinja": {
+    "bytes": 2507,
+    "inode": 11950755,
+    "sha256": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f"
+  },
+  "training/checkpoints/global_step_40/actor/config.json": {
+    "bytes": 1318,
+    "inode": 11950754,
+    "sha256": "12e3e78f1e22219947034aef55db59bfbf63f1cd66ca0bb1927ba19a9b13e599"
+  },
+  "training/checkpoints/global_step_40/actor/extra_state_world_size_4_rank_0.pt": {
+    "bytes": 15077,
+    "inode": 11950752,
+    "sha256": "2d9a3d16381f1eb3fede2b79422be79847402cd2a09b67cdc7028bfa69b14f47"
+  },
+  "training/checkpoints/global_step_40/actor/extra_state_world_size_4_rank_1.pt": {
+    "bytes": 15077,
+    "inode": 11950747,
+    "sha256": "e5f3e8ab222e3f01c679097021f3dc8798dc299036121e96817eb4126839410b"
+  },
+  "training/checkpoints/global_step_40/actor/extra_state_world_size_4_rank_2.pt": {
+    "bytes": 15077,
+    "inode": 11950749,
+    "sha256": "1edbf453a4b16bee8bb66ebe5d5f92fa76ee0fde9c8091e1690275a3bf50b724"
+  },
+  "training/checkpoints/global_step_40/actor/extra_state_world_size_4_rank_3.pt": {
+    "bytes": 15077,
+    "inode": 11950748,
+    "sha256": "ac09c6b9a24ab927c756f3917abc82c730ecd788635da13a82fd1653debefc10"
+  },
+  "training/checkpoints/global_step_40/actor/generation_config.json": {
+    "bytes": 243,
+    "inode": 11950753,
+    "sha256": "6e601fa6272091c9e8feec4fde270ce6b26405a7db834bc3a12f865fd2a26f29"
+  },
+  "training/checkpoints/global_step_40/actor/live_fingerprint_rank_0.json": {
+    "bytes": 487,
+    "inode": 11950766,
+    "sha256": "d90f0cd72f9f9ccb0c99e1f4f2a9b2198b4c05deef1be41fc62a29811dcafe1e"
+  },
+  "training/checkpoints/global_step_40/actor/live_fingerprint_rank_1.json": {
+    "bytes": 487,
+    "inode": 11950763,
+    "sha256": "d90f0cd72f9f9ccb0c99e1f4f2a9b2198b4c05deef1be41fc62a29811dcafe1e"
+  },
+  "training/checkpoints/global_step_40/actor/live_fingerprint_rank_2.json": {
+    "bytes": 487,
+    "inode": 11950764,
+    "sha256": "d90f0cd72f9f9ccb0c99e1f4f2a9b2198b4c05deef1be41fc62a29811dcafe1e"
+  },
+  "training/checkpoints/global_step_40/actor/live_fingerprint_rank_3.json": {
+    "bytes": 487,
+    "inode": 11950765,
+    "sha256": "d90f0cd72f9f9ccb0c99e1f4f2a9b2198b4c05deef1be41fc62a29811dcafe1e"
+  },
+  "training/checkpoints/global_step_40/actor/lora_adapter/adapter_config.json": {
+    "bytes": 1141,
+    "inode": 11950769,
+    "sha256": "800677eca1a193e14d248a584fcc84c9a943a69b203fe7184607aa69ea502c89"
+  },
+  "training/checkpoints/global_step_40/actor/lora_adapter/adapter_model.safetensors": {
+    "bytes": 645975672,
+    "inode": 11950768,
+    "sha256": "c2f7fb5e1cfcffe88a098e413c3dfc76bd2135bac075d2582dbc7db6c5703f48"
+  },
+  "training/checkpoints/global_step_40/actor/merges.txt": {
+    "bytes": 1671853,
+    "inode": 11950760,
+    "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+  },
+  "training/checkpoints/global_step_40/actor/model_world_size_4_rank_0.pt": {
+    "bytes": 15877806655,
+    "inode": 11950750,
+    "sha256": "cef426b04d1ce8f245a46fdc194d1d3ac0cd5f41a0712dc9d569fc82763d476f"
+  },
+  "training/checkpoints/global_step_40/actor/model_world_size_4_rank_1.pt": {
+    "bytes": 15877806655,
+    "inode": 11950750,
+    "sha256": "cef426b04d1ce8f245a46fdc194d1d3ac0cd5f41a0712dc9d569fc82763d476f"
+  },
+  "training/checkpoints/global_step_40/actor/model_world_size_4_rank_2.pt": {
+    "bytes": 15877806655,
+    "inode": 11950750,
+    "sha256": "cef426b04d1ce8f245a46fdc194d1d3ac0cd5f41a0712dc9d569fc82763d476f"
+  },
+  "training/checkpoints/global_step_40/actor/model_world_size_4_rank_3.pt": {
+    "bytes": 15877806655,
+    "inode": 11950750,
+    "sha256": "cef426b04d1ce8f245a46fdc194d1d3ac0cd5f41a0712dc9d569fc82763d476f"
+  },
+  "training/checkpoints/global_step_40/actor/optim_world_size_4_rank_0.pt": {
+    "bytes": 1292193435,
+    "inode": 11950751,
+    "sha256": "08a456b6fcfcd3f12b9ce9c7fd5cdf823e5807742971976a66772bd8440035d2"
+  },
+  "training/checkpoints/global_step_40/actor/optim_world_size_4_rank_1.pt": {
+    "bytes": 1292193435,
+    "inode": 11950751,
+    "sha256": "08a456b6fcfcd3f12b9ce9c7fd5cdf823e5807742971976a66772bd8440035d2"
+  },
+  "training/checkpoints/global_step_40/actor/optim_world_size_4_rank_2.pt": {
+    "bytes": 1292193435,
+    "inode": 11950751,
+    "sha256": "08a456b6fcfcd3f12b9ce9c7fd5cdf823e5807742971976a66772bd8440035d2"
+  },
+  "training/checkpoints/global_step_40/actor/optim_world_size_4_rank_3.pt": {
+    "bytes": 1292193435,
+    "inode": 11950751,
+    "sha256": "08a456b6fcfcd3f12b9ce9c7fd5cdf823e5807742971976a66772bd8440035d2"
+  },
+  "training/checkpoints/global_step_40/actor/replicated_checkpoint.json": {
+    "bytes": 196,
+    "inode": 11950762,
+    "sha256": "e656489737ec20e003e343c60625722b2ea47d5dafde8e13d24b757a623a78ca"
+  },
+  "training/checkpoints/global_step_40/actor/special_tokens_map.json": {
+    "bytes": 613,
+    "inode": 11950757,
+    "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd"
+  },
+  "training/checkpoints/global_step_40/actor/tokenizer.json": {
+    "bytes": 11421896,
+    "inode": 11950761,
+    "sha256": "9c5ae00e602b8860cbd784ba82a8aa14e8feecec692e7076590d014d7b7fdafa"
+  },
+  "training/checkpoints/global_step_40/actor/tokenizer_config.json": {
+    "bytes": 4686,
+    "inode": 11950756,
+    "sha256": "0a04a9d7d4a62b28482bdfe726c122756de85714fb64166ace92ae75b8f57614"
+  },
+  "training/checkpoints/global_step_40/actor/vocab.json": {
+    "bytes": 2776833,
+    "inode": 11950759,
+    "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "training/checkpoints/global_step_40/data.pt": {
+    "bytes": 1947,
+    "inode": 11950770,
+    "sha256": "0cc01032ee186b692688b6de92820350ce9917ed4f9edb1ccb3be81e3067e033"
+  },
+  "native_batch_cache/train_0040_sample_686be4e6e2613436f69abb9cd7d132271a8ae80ebc9e47816f31c5ea54b47c0d.pkl": {
+    "bytes": 156502996,
+    "sha256": "f36356a933323799437c54b2401135c37bfd8cd2cd68c8c9e609028b81e5620a"
+  },
+  "rollouts/train_0040_sample_episodes.jsonl": {
+    "bytes": 948300,
+    "sha256": "788fdb4dc6a4a8368eb088639e621ec692a85d76ae56abfafc6e748cdc4bbe0b"
+  },
+  "rollouts/train_0040_sample_steps.jsonl": {
+    "bytes": 23572552,
+    "sha256": "5f748c477d42be472bcb4c104c955a52a324f7068986e4cf7b97f1c77213be4e"
+  },
+  "rollouts/train_0040_sample_tokens.jsonl": {
+    "bytes": 124972,
+    "sha256": "85a551185e997b3a925fb6ec5d5d5cc1d987d64cca408eab9d7350d9bd3d1a55"
+  },
+  "native_batch_cache/train_0041_sample_4194a9975bb1de96eb2ba72963cc31c54cb2428fdb155d84f456237df4a504ea.pkl": {
+    "bytes": 166701237,
+    "sha256": "3b256f68a7e70fa4e229821ddc3905c50ed85276b532e90580cba464a5db0f82"
+  },
+  "rollouts/train_0041_sample_episodes.jsonl": {
+    "bytes": 947986,
+    "sha256": "e94044d9acecff587bc8ddbeea4849c64a3a726c86c2082da1a4c1b034400195"
+  },
+  "rollouts/train_0041_sample_steps.jsonl": {
+    "bytes": 25519107,
+    "sha256": "4e586b89dfe9b470005494ef8f8f4fe0132a5b52d41f96089173fcb2208b7650"
+  },
+  "rollouts/train_0041_sample_tokens.jsonl": {
+    "bytes": 129595,
+    "sha256": "24614286937f37e9c374070db16163c8ac6748e33509b3d7ee7407640231d0e9"
+  },
+  "native_batch_cache/train_0042_sample_e3e36d17467ab7ececccf1523b6799dc51d452cfa36004795f1d187c61432743.pkl": {
+    "bytes": 161669368,
+    "sha256": "51dc896019f7b85b445f6e1540249375bd09597a76860d60eea719eef70df296"
+  },
+  "rollouts/train_0042_sample_episodes.jsonl": {
+    "bytes": 1012758,
+    "sha256": "fe58d9fd961962dbefb5de05668faf27af72e49b62245662e33815c3ee635683"
+  },
+  "rollouts/train_0042_sample_steps.jsonl": {
+    "bytes": 24551038,
+    "sha256": "9127c038fbd1e2ed7170e53aee247785d1b7533cb1844c584166f601775c2fa8"
+  },
+  "rollouts/train_0042_sample_tokens.jsonl": {
+    "bytes": 128493,
+    "sha256": "c890d013d38eda0f6c901cec16fe466592ad1300420973699d3b4cfcd9757ffd"
+  }
+}

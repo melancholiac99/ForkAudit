@@ -1,0 +1,91 @@
+NEEDS_USER — incident 1794926457
+
+The implementation defect is repaired and CPU-tested, but training is NOT resumed.
+Updates 41 and 42 completed after the latest full checkpoint (40); their model and
+optimizer states were not checkpointed. WATCHDOG.md explicitly says: "For partial
+updates/checkpoint uncertainty, stop with NEEDS_USER instead of resetting from an
+older checkpoint blindly." Exact reconstruction of these updates has not been
+established, so restarting the ordinary supervisor would be an unverified rollback.
+
+Incident and safe transition
+- Source commit: c874f157d71b252546862937a4afe79be910b35b.
+- Confirmed service failed, MainPID=0, no GPU compute processes before editing.
+  The original train_0050 process exited at 2026-11-17 14:39:32 UTC; systemd recorded
+  failure at 14:39:38 UTC. No service stop/start/restart or live-code transition was
+  performed. The supervisor still reports failed/MainPID=0 after the repair.
+- Initial incident, service/GPU evidence, launch configuration, exception log,
+  training log, completed-update logs, checkpoint receipts and cost ledger were
+  copied into initial/ and initial_state.json. Original run files are retained.
+
+Root cause and change
+- In pinned verl DataProto.__getstate__, serialization assigns a consolidated,
+  locked TensorDict back to self.batch. The experiment's save_batch serialized
+  the live batch, inadvertently preventing subsequent trainer field insertion.
+- A direct CPU reproduction changed is_locked False -> True and raised the same
+  RuntimeError when adding response_mask.
+- The first two batches after checkpoint40 contained 542 and 577 rows. Native
+  adjust_batch added 2 and 15 duplicate rows, making a new mutable container and
+  hiding the defect. Update43 contained 560 rows, divisible by 16: adjust_batch
+  returned the original locked object and failed at response_mask assignment,
+  before logprob, advantage or optimizer work for update43.
+- native_cache.py now serializes a separate DataProto with a shallow TensorDict
+  container. Tensor storage is shared during the synchronous save; sampling data,
+  values, RNG, ordering, masks, losses and native padding rules are unchanged.
+- No science configuration, reward, seed, task split, optimizer, model, candidate,
+  threshold or scope change. No upstream library or unrelated experiment edit.
+
+Validation
+- Pinned environment, CUDA_VISIBLE_DEVICES='', OPENBLAS_NUM_THREADS=1,
+  PYTHONPATH=$PWD:$PWD/.runtime/external/verl-agent-20bd331b:
+  .runtime/venvs/verl-agent-20bd331b/bin/python -m unittest discover
+    -s exploratory_shop_audit/grpo_forced_audit -t . -p 'test_*.py' -v
+  Result: all 39 tests passed, including the new cache regression (16, 17 and
+  560 rows), current/restored field insertion, exact tensor/metadata preservation,
+  torch/NumPy RNG preservation, native padding equality and saved-file isolation.
+- python3 -m py_compile on the modified module and new test; git diff --check passed.
+- An initial broad run in shop-review-venv failed imports because that CPU-only
+  environment lacks torch (including an existing test_alignment_root import).
+  The new test now skips when its required pinned framework is unavailable;
+  the complete authoritative run above uses the installed pinned environment.
+  Initial test failure output is preserved in cpu_tests.txt.
+- Read-only inspect_saved_state.py verified checkpoint40's complete file inventory
+  and SHA256s, four equal save fingerprints and four matching prior live restore
+  receipts. CPU-loaded optimizer and scheduler hashes match the saved fingerprints;
+  dataloader state loads. This repair did not reload a GPU model or prove new live
+  weight equivalence. Full checkpoint files were hashed, not modified.
+- The first state-check script hit an assumption about the old single-rank weight
+  log schema; it was corrected to require cross-rank equality for updates41/42.
+  The failed and successful checker logs are both retained.
+- All three saved sampling batches have 128 unique terminal episodes each, complete
+  contiguous steps, and exact prompt/response token agreement between raw records
+  and cached tensors. No partial sampling or missing tokens were found.
+- Completed training metrics are exactly updates1..42 and the 42 weight-update
+  fingerprints form an intact chain. Both latest updates report finite, equal
+  four-rank weights. There is no checkpoint41/42 or update43 advantage completion.
+
+Recovery boundary and required decision
+- Latest verified complete on-disk checkpoint: global_step_40. The next saved
+  batches are train_0040, train_0041 and train_0042 (updates41,42,43 respectively).
+- It is unsafe to treat complete samples as a complete optimizer checkpoint.
+  Ordinary replay would recompute native random padding and the optimizer work
+  for updates41/42; this has not been shown to reproduce their recorded weights.
+  The saved alignment decision order and weight fingerprints are available to
+  constrain a separately reviewed reconstruction attempt, but are not proof of
+  equality by themselves. No claim of irrecoverable data loss is made.
+- NEEDS_USER: decide/authorize a recovery procedure for the two already-executed,
+  uncheckpointed updates. A concrete conservative path is to reconstruct them
+  from checkpoint40 and the original cached samples in an isolated recovery run,
+  retain original padded row identities/order, verify each resulting weight hash
+  against the original record, and stop on mismatch before continuing update43.
+  No reset, replay or fresh generation was attempted here. All 384 sampled
+  episodes remain available; none were resampled, overwritten or selected out.
+
+Accounting and evidence
+- Failed train_0050 phase: 2.4982053213649325 GPU-hours, already in cost_ledger.jsonl.
+- Total recorded completed GPU occupancy: 30.1288037769662 GPU-hours; no active leases.
+- This repair used CPU only and added zero model GPU-hours. Cap remains removed;
+  accounting and the monitor are unchanged. No raw record/weight was deleted.
+- saved_state_checks.json, artifact_sha256.json, pinned_cpu_tests.txt,
+  inspect_saved_state.py, patch.diff and initial/ contain the supporting evidence.
+  Large initial snapshots remain local; compact reports and manifests accompany
+  the source fix. Existing unrelated working-tree changes were preserved.

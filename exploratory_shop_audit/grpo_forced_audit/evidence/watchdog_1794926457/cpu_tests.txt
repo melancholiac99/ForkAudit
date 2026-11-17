@@ -1,0 +1,71 @@
+test_capture_preserves_inputs_and_excludes_padding_duplicates (exploratory_shop_audit.grpo_forced_audit.test_alignment_metrics.AlignmentTests.test_capture_preserves_inputs_and_excludes_padding_duplicates) ... ok
+test_clipping_directions (exploratory_shop_audit.grpo_forced_audit.test_alignment_metrics.AlignmentTests.test_clipping_directions) ... ok
+test_empty_and_nonfinite (exploratory_shop_audit.grpo_forced_audit.test_alignment_metrics.AlignmentTests.test_empty_and_nonfinite) ... ok
+test_identical (exploratory_shop_audit.grpo_forced_audit.test_alignment_metrics.AlignmentTests.test_identical) ... ok
+test_mask_and_trajectory_aggregation (exploratory_shop_audit.grpo_forced_audit.test_alignment_metrics.AlignmentTests.test_mask_and_trajectory_aggregation) ... ok
+exploratory_shop_audit.grpo_forced_audit.test_alignment_root (unittest.loader._FailedTest.exploratory_shop_audit.grpo_forced_audit.test_alignment_root) ... ERROR
+test_collision_does_not_create_unreachable_complete_configuration (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_collision_does_not_create_unreachable_complete_configuration) ... ok
+test_complete_native_configurations_exclude_missing_axis (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_complete_native_configurations_exclude_missing_axis) ... ok
+test_concurrent_gpu_budget_counts_active_devices (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_concurrent_gpu_budget_counts_active_devices) ... ok
+test_dp_checkpoint_migration_is_idempotent_and_shares_storage (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_dp_checkpoint_migration_is_idempotent_and_shares_storage) ... ok
+test_dp_preserves_microgroups_global_minis_and_tail (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_dp_preserves_microgroups_global_minis_and_tail) ... ok
+test_empty_ci_is_na_not_zero (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_empty_ci_is_na_not_zero) ... ok
+test_exact_action_whitespace_and_brackets (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_exact_action_whitespace_and_brackets) ... ok
+test_forced_results_keep_original_illegal_and_visible_top5 (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_forced_results_keep_original_illegal_and_visible_top5) ... ok
+test_full_checkpoint_retention_keeps_adapters_and_latest_two (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_full_checkpoint_retention_keeps_adapters_and_latest_two) ... ok
+test_native_resume_identity_preserves_eight_repeats (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_native_resume_identity_preserves_eight_repeats) ... ok
+test_no_signal_reliability_is_na (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_no_signal_reliability_is_na) ... ok
+test_product_reserves_buy_and_round_robin (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_product_reserves_buy_and_round_robin) ... ok
+test_recover_legacy_ledger_without_session_id (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_recover_legacy_ledger_without_session_id) ... ok
+test_route_does_not_read_session_or_query_as_page (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_route_does_not_read_session_or_query_as_page) ... ok
+test_uncapped_requires_explicit_researcher_record (exploratory_shop_audit.grpo_forced_audit.test_experiment.ExperimentTests.test_uncapped_requires_explicit_researcher_record) ... ok
+exploratory_shop_audit.grpo_forced_audit.test_native_cache (unittest.loader._FailedTest.exploratory_shop_audit.grpo_forced_audit.test_native_cache) ... ERROR
+test_complete_outputs_reject_duplicates_and_wrong_checkpoint (exploratory_shop_audit.grpo_forced_audit.test_priority_evaluation.PriorityEvaluationTests.test_complete_outputs_reject_duplicates_and_wrong_checkpoint) ... ok
+test_device_environment_is_restored_after_failure (exploratory_shop_audit.grpo_forced_audit.test_priority_evaluation.PriorityEvaluationTests.test_device_environment_is_restored_after_failure) ... ok
+test_failure_stays_pending_and_completion_is_one_shot (exploratory_shop_audit.grpo_forced_audit.test_priority_evaluation.PriorityEvaluationTests.test_failure_stays_pending_and_completion_is_one_shot) ... ok
+test_missing_steps_rejected (exploratory_shop_audit.grpo_forced_audit.test_priority_evaluation.PriorityEvaluationTests.test_missing_steps_rejected) ... ok
+test_refuses_changed_input_or_wrong_gpu_lease (exploratory_shop_audit.grpo_forced_audit.test_priority_evaluation.PriorityEvaluationTests.test_refuses_changed_input_or_wrong_gpu_lease) ... ok
+test_request_is_idempotent_and_frozen (exploratory_shop_audit.grpo_forced_audit.test_priority_evaluation.PriorityEvaluationTests.test_request_is_idempotent_and_frozen) ... ok
+test_requires_finished_stage_and_optimizer (exploratory_shop_audit.grpo_forced_audit.test_priority_evaluation.PriorityEvaluationTests.test_requires_finished_stage_and_optimizer) ... ok
+test_confirm_deduplicate_and_rearm (exploratory_shop_audit.grpo_forced_audit.test_watchdog.WatchdogTests.test_confirm_deduplicate_and_rearm) ... ok
+test_cooldown_and_disable (exploratory_shop_audit.grpo_forced_audit.test_watchdog.WatchdogTests.test_cooldown_and_disable) ... ok
+test_dispatch_once_and_existing_pending (exploratory_shop_audit.grpo_forced_audit.test_watchdog.WatchdogTests.test_dispatch_once_and_existing_pending) ... ok
+test_healthy_and_completed (exploratory_shop_audit.grpo_forced_audit.test_watchdog.WatchdogTests.test_healthy_and_completed) ... ok
+test_interrupted_repair_is_not_repeated (exploratory_shop_audit.grpo_forced_audit.test_watchdog.WatchdogTests.test_interrupted_repair_is_not_repeated) ... ok
+test_thresholds_and_idle_gpus (exploratory_shop_audit.grpo_forced_audit.test_watchdog.WatchdogTests.test_thresholds_and_idle_gpus) ... ok
+test_tool_timeout_becomes_evidence (exploratory_shop_audit.grpo_forced_audit.test_watchdog.WatchdogTests.test_tool_timeout_becomes_evidence) ... ok
+
+======================================================================
+ERROR: exploratory_shop_audit.grpo_forced_audit.test_alignment_root (unittest.loader._FailedTest.exploratory_shop_audit.grpo_forced_audit.test_alignment_root)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: exploratory_shop_audit.grpo_forced_audit.test_alignment_root
+Traceback (most recent call last):
+  File "/root/ForkAudit/.runtime/conda/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/ForkAudit/.runtime/conda/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/root/ForkAudit-shop-20261117/exploratory_shop_audit/grpo_forced_audit/test_alignment_root.py", line 3, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: exploratory_shop_audit.grpo_forced_audit.test_native_cache (unittest.loader._FailedTest.exploratory_shop_audit.grpo_forced_audit.test_native_cache)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: exploratory_shop_audit.grpo_forced_audit.test_native_cache
+Traceback (most recent call last):
+  File "/root/ForkAudit/.runtime/conda/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/ForkAudit/.runtime/conda/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/root/ForkAudit-shop-20261117/exploratory_shop_audit/grpo_forced_audit/test_native_cache.py", line 8, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.235s
+
+FAILED (errors=2)

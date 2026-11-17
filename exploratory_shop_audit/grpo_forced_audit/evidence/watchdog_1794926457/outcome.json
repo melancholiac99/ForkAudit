@@ -1,0 +1,13 @@
+{
+  "incident": "1794926457",
+  "status": "NEEDS_USER",
+  "code_fix_tested": true,
+  "resumed": false,
+  "latest_complete_checkpoint": 40,
+  "uncheckpointed_updates": [
+    41,
+    42
+  ],
+  "reason": "Unverified reconstruction of already executed updates; WATCHDOG.md requires stop before rollback.",
+  "service": "MainPID=0\nActiveState=failed\n"
+}

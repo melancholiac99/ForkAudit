@@ -19,7 +19,13 @@ def save_batch(data,gen_batch,envs,is_train):
     path=envs._shop_batch_cache
     path.parent.mkdir(parents=True,exist_ok=True)
     tmp=path.with_suffix('.tmp')
-    data.save_to_disk(str(tmp));tmp.replace(path)
+    # DataProto.__getstate__ replaces its batch with a consolidated, locked
+    # TensorDict. Serialize a separate container so caching cannot lock the
+    # live batch before the trainer adds response_mask (even without padding).
+    # Share tensor storage; this synchronous write changes no tensor values.
+    snapshot=type(data)(batch=data.batch.clone(recurse=False),
+                        non_tensor_batch=data.non_tensor_batch,meta_info=data.meta_info)
+    snapshot.save_to_disk(str(tmp));tmp.replace(path)
 
 
 def restore_batch(collector,gen_batch,envs,is_train):

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/root/ForkAudit-shop-20261117/exploratory_shop_audit/grpo_forced_audit/evidence/watchdog_1794926457/inspect_saved_state.py", line 57, in <module>
+    assert len(weights) == 42 and all(r['all_ranks_equal'] and r['finite'] for r in weights)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/ForkAudit-shop-20261117/exploratory_shop_audit/grpo_forced_audit/evidence/watchdog_1794926457/inspect_saved_state.py", line 57, in <genexpr>
+    assert len(weights) == 42 and all(r['all_ranks_equal'] and r['finite'] for r in weights)
+                                      ~^^^^^^^^^^^^^^^^^^^
+KeyError: 'all_ranks_equal'

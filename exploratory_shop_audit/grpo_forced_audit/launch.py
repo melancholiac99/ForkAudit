@@ -10,6 +10,8 @@ def setup_worker():
     install()
     from exploratory_shop_audit.grpo_forced_audit.parallel import install_collector
     install_collector()
+    from exploratory_shop_audit.grpo_forced_audit.recover_training import install as install_recovery
+    install_recovery()
 
 
 def main():

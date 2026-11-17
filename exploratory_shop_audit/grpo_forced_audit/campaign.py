@@ -63,7 +63,7 @@ def main():
     budget=read(run/'budget_freeze.json') if (run/'budget_freeze.json').exists() else freeze_budget(run)
     gpu_stage(run,'audit_base','audit',['--count',str(budget['E0_tasks'])])
     final=latest
-    for update in range(final+10,budget['max_updates']+1,10):
+    for update in range((final//10+1)*10,budget['max_updates']+1,10):
         if not uncapped(run) and spent(run)+budget['final_evaluation_reserve_hours']+max(.5,budget['audit_hours_per_task_conservative']*budget['E1_tasks']*1.25)>=24:break
         launch(run,update,checkpoint(run,final))
         final=update

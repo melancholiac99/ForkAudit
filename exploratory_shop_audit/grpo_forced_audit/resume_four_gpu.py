@@ -39,6 +39,9 @@ def main():
     kernel=subprocess.check_output(['dmesg'],text=True)
     assert 'BUG: kernel NULL pointer dereference' not in kernel and 'reboot is needed' not in kernel, 'Kernel fault after CUDA teardown'
     save(run/'post_reboot_health.json',{'time':utc(),'passed':True,'hmm_disabled':True,'cuda_nccl_process_exit_checked':True})
+    if (run/'recovery_0042/request.json').exists() and read(run/'recovery_0042/status.json')['status']!='complete':
+        from .recover_training import resume
+        return resume(run)
     existing=[int(p.name.split('_')[-1]) for p in (run/'training/checkpoints').glob('global_step_*') if checkpoint_complete(run,int(p.name.split('_')[-1]))]
     latest=max(existing)
     if latest<2:launch(run,2,checkpoint(run,latest));latest=2
