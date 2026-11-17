@@ -83,6 +83,10 @@ def launch(run,updates=100,resume=None,limit_hours=13):
         SHOP_COMPLETED_UPDATES=str(int(resume.name.split('_')[-1])) if resume else '0')
     for name in ['FORKAUDIT_P1_CAMPAIGN','FORKAUDIT_P1_ARM','FORKAUDIT_REFERENCE_PACKET','FORKAUDIT_GRADIENT_BENCH_PACKET']:
         env.pop(name,None)
+    authorization=run/'recovery_0042/continuation_authorization.json'
+    if resume and resume.name=='global_step_40' and authorization.exists():
+        assert read(authorization)['researcher_approved'] and read(authorization)['canonical_logs_prepared']
+        env.update(SHOP_RECONSTRUCT_UPDATES='1',SHOP_RECONSTRUCTION_REQUEST=str(run/'recovery_0042/continued_replay_request.json'))
     args=[f'{k}='+('null' if v is None else json.dumps(v,separators=(',',':')) if isinstance(v,(list,bool)) else str(v)) for k,v in cfg.items()]
     save(run/f'train_launch_{updates:04d}.json',{'settings':cfg,'command':[str(GPU_PYTHON),'-m',__package__+'.launch',*args],
         'source_sha256':{p.name:digest_file(p) for p in HERE.glob('*.py')},'framework_commit':'20bd331bdbc9026a5668e11362178e10ab7400c8'})

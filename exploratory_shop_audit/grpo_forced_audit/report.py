@@ -79,6 +79,9 @@ def final_report(run):
         'gpu_hours':spent(run),'training_healthy':healthy,'checkpoint_restore_verified':restored,'platform':platform(run),
         'evaluation':summaries,'training_updates':max([r['update'] for r in read_rows(run/'training_metrics.jsonl')],default=0),
         'source':read(run/'registration.json'),'cleaning':read(run/'cleaning_summary.json')}
+    recovery=run/'recovery_0042/continuation_authorization.json'
+    if recovery.exists():
+        result['checkpoint_recovery']=read(recovery)
     if 'final_sample' in summaries:
         result['D_decision']=decision_d(summaries['final_sample'],healthy,result['platform'])
     if 'base_sample' in summaries and 'final_sample' in summaries:
@@ -128,5 +131,7 @@ def final_report(run):
         '下一步：'+result['next_step'],'','旧800条仅按通过清洗的任务复算，见historical_reanalysis；不是新接口基线。完整逐题、漏斗覆盖、总体表现和配对变化见metrics.json。',
             '信度高不构成停止回放的理由；基础E0不能替代训练后E1。尚未找到准确的ALFWorld学生可见份额实现，不以文本代理替代。',
             '本轮到此停止，不自动启动新信用方法、SFT、S/F、换环境或扩预算。']
+    if recovery.exists():
+        lines+=['','恢复限制：原41/42更新未保存完整状态，精确重建哈希未通过。研究者明确授权从checkpoint40续训；原记录保存在recovery_0042/pre_continuation_archive，当前日志记录恢复后轨迹。41–43复用原缓存，42/43的生成策略属于故障前谱系；保留原行为概率，不宣称逐位同轨或严格on-policy恢复。']
     (run/'REPORT.md').write_text('\n'.join(lines)+'\n')
     return result

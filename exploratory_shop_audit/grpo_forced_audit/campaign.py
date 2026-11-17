@@ -61,7 +61,10 @@ def main():
     if latest<10:launch(run,10,checkpoint(run,latest),limit_hours=4);latest=10
     assert read(run/'training/restore_rank_0.json')['passed']
     budget=read(run/'budget_freeze.json') if (run/'budget_freeze.json').exists() else freeze_budget(run)
-    gpu_stage(run,'audit_base','audit',['--count',str(budget['E0_tasks'])])
+    audited={r['task_id'] for r in read_rows(run/'audit_base/natural/episodes.jsonl')}
+    required={t['task_id'] for t in read(run/'splits.json')['E0'][:budget['E0_tasks']]}
+    if not (run/'audit_base/metrics.json').exists() or not required.issubset(audited):
+        gpu_stage(run,'audit_base','audit',['--count',str(budget['E0_tasks'])])
     final=latest
     for update in range((final//10+1)*10,budget['max_updates']+1,10):
         if not uncapped(run) and spent(run)+budget['final_evaluation_reserve_hours']+max(.5,budget['audit_hours_per_task_conservative']*budget['E1_tasks']*1.25)>=24:break

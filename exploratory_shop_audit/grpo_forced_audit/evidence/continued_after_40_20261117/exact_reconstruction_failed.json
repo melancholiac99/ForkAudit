@@ -1,0 +1,82 @@
+{
+  "update": 41,
+  "passed": false,
+  "observed": {
+    "rank": 0,
+    "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+    "after": "85eea4a8d25a3e87f47aeccbb655f78f0c85a01d6593e113d6597d6dc127f7f4",
+    "changed": true,
+    "finite": true,
+    "world_size": 4,
+    "all_ranks_equal": true,
+    "ranks": [
+      {
+        "rank": 0,
+        "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+        "after": "85eea4a8d25a3e87f47aeccbb655f78f0c85a01d6593e113d6597d6dc127f7f4",
+        "changed": true,
+        "finite": true
+      },
+      {
+        "rank": 1,
+        "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+        "after": "85eea4a8d25a3e87f47aeccbb655f78f0c85a01d6593e113d6597d6dc127f7f4",
+        "changed": true,
+        "finite": true
+      },
+      {
+        "rank": 2,
+        "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+        "after": "85eea4a8d25a3e87f47aeccbb655f78f0c85a01d6593e113d6597d6dc127f7f4",
+        "changed": true,
+        "finite": true
+      },
+      {
+        "rank": 3,
+        "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+        "after": "85eea4a8d25a3e87f47aeccbb655f78f0c85a01d6593e113d6597d6dc127f7f4",
+        "changed": true,
+        "finite": true
+      }
+    ]
+  },
+  "expected": {
+    "after": "be87b29aff3e4616a8b2e3b4b5e5bfee34cc3f3336b3fc55aad27761bc2573a2",
+    "all_ranks_equal": true,
+    "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+    "changed": true,
+    "finite": true,
+    "rank": 0,
+    "ranks": [
+      {
+        "after": "be87b29aff3e4616a8b2e3b4b5e5bfee34cc3f3336b3fc55aad27761bc2573a2",
+        "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+        "changed": true,
+        "finite": true,
+        "rank": 0
+      },
+      {
+        "after": "be87b29aff3e4616a8b2e3b4b5e5bfee34cc3f3336b3fc55aad27761bc2573a2",
+        "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+        "changed": true,
+        "finite": true,
+        "rank": 1
+      },
+      {
+        "after": "be87b29aff3e4616a8b2e3b4b5e5bfee34cc3f3336b3fc55aad27761bc2573a2",
+        "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+        "changed": true,
+        "finite": true,
+        "rank": 2
+      },
+      {
+        "after": "be87b29aff3e4616a8b2e3b4b5e5bfee34cc3f3336b3fc55aad27761bc2573a2",
+        "before": "03032f12e62999d5629be583025c294e9abf01bf8b16336edde36aa8ab488014",
+        "changed": true,
+        "finite": true,
+        "rank": 3
+      }
+    ],
+    "world_size": 4
+  }
+}

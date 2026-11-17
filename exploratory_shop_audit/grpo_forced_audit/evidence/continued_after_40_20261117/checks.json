@@ -1,0 +1,32 @@
+{
+  "update41_pre_update_arrays": {
+    "responses": {
+      "exact": true,
+      "max_absolute_difference": 0.0
+    },
+    "mask": {
+      "exact": true,
+      "max_absolute_difference": 0.0
+    },
+    "advantages": {
+      "exact": true,
+      "max_absolute_difference": 0.0
+    },
+    "actor": {
+      "exact": true,
+      "max_absolute_difference": 0.0
+    },
+    "behavior": {
+      "exact": true,
+      "max_absolute_difference": 0.0
+    }
+  },
+  "cpu_tests_passed": 45,
+  "same_original_update41_after_weights": false,
+  "continuation_status": "Started; new optimizer updates not yet confirmed at export",
+  "input_sha256": {
+    "request": "0d6bfe18c390ba29b4e80147a61df71f73e7c09d8997e924df21908a09baddba",
+    "archive_manifest": "5bebbfd7951e155f6f93d6a82bfafba5c316edb99c700a156d744ae3e6fbc7b7",
+    "continuation_authorization": "f5cf4f3be42f96ad9713aa384fa1a5990cdf059d8b904824787afbdaedc461e4"
+  }
+}

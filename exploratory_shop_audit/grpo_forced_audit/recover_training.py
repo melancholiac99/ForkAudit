@@ -94,7 +94,8 @@ def install():
     import torch
     from verl.trainer.ppo import ray_trainer
     from . import native
-    request = read(Path(os.environ['SHOP_GRPO_RUN']) / 'reconstruction.json')
+    request = read(Path(os.environ.get('SHOP_RECONSTRUCTION_REQUEST', str(Path(os.environ['SHOP_GRPO_RUN']) / 'reconstruction.json'))))
+    documented_resume = request.get('researcher_approved_non_bitwise_resume') is True
     if getattr(ray_trainer, '_shop_reconstruction', False):
         return
     ray_trainer._shop_reconstruction = True
@@ -103,6 +104,8 @@ def install():
 
     def adjust(config, data, mode='copy'):
         step = int(os.environ['SHOP_COMPLETED_UPDATES']) + 1
+        if documented_resume and step > 42:
+            return original_adjust(config, data, mode)
         assert step in [41, 42], 'Reconstruction must not generate/update beyond frozen steps'
         original_adjust(config, data, mode)  # retain the native driver RNG draw
         path = Path(request['decision_files'][str(step)])
@@ -115,6 +118,8 @@ def install():
         return result
 
     def balance(self, batch, metrics, logging_prefix='global_seqlen'):
+        if documented_resume and int(os.environ['SHOP_COMPLETED_UPDATES']) >= 42:
+            return original_balance(self, batch, metrics, logging_prefix)
         assert 'reconstruction_update' in batch.meta_info, 'Recovery padding hook was bypassed'
         assert self.actor_rollout_wg.world_size == 4
         step = batch.meta_info['reconstruction_update']
@@ -127,12 +132,21 @@ def install():
     original_after = native.after_update
 
     def after(step, metrics):
+        if documented_resume and step > 42:
+            return original_after(step, metrics)
         run = Path(os.environ['SHOP_GRPO_RUN'])
         observed = read_rows(run / 'weight_updates.jsonl')[-1]
         expected = request['expected_weights'][str(step)]
         passed = observed['all_ranks_equal'] and all(observed[k] == expected[k] for k in ['before', 'after'])
-        save(run / f'verified_update_{step}.json', {'update': step, 'passed': passed, 'observed': observed, 'expected': expected})
-        assert passed, f'Weight reconstruction mismatch at update {step}; main run unchanged'
+        output = run / 'recovery_0042/continued_checks' if documented_resume else run
+        save(output / f'verified_update_{step}.json', {'update': step, 'passed': passed,
+             'authorized_non_bitwise_resume': documented_resume, 'observed': observed, 'expected': expected})
+        if documented_resume:
+            assert observed['all_ranks_equal'] and observed['finite']
+            if step == 41:
+                assert observed['before'] == expected['before'], 'Resume must start at the exact checkpoint40 weights'
+        else:
+            assert passed, f'Weight reconstruction mismatch at update {step}; main run unchanged'
         original_after(step, metrics)
 
     ray_trainer.adjust_batch = adjust
@@ -199,6 +213,60 @@ def resume(run):
         raise
     from .campaign import main
     main()
+
+
+def prepare_authorized_continuation(run):
+    """Archive failed-tail history before the explicitly approved checkpoint reset."""
+    folder = run / 'recovery_0042'
+    authorization = folder / 'continuation_authorization.json'
+    assert not authorization.exists(), 'Do not reset a continuation that has already started'
+    assert read(folder / 'attempt_02/verified_update_41.json')['passed'] is False
+    assert not list((run / 'active_gpu_sessions').glob('*.json'))
+    assert [r['update'] for r in read_rows(run / 'training_metrics.jsonl')] == list(range(1, 43))
+    archive = folder / 'pre_continuation_archive'
+    assert not archive.exists()
+    archive.mkdir()
+    manifest = {}
+    for name in ['training_metrics.jsonl', 'weight_updates.jsonl', 'training_signal.jsonl',
+                 'advantage_checks.jsonl', 'alignment_live/metrics.jsonl']:
+        path = run / name
+        if not path.exists():
+            continue
+        rows = read_rows(path)
+        kept = rows[:40] if name == 'weight_updates.jsonl' else [r for r in rows if r['update'] <= 40]
+        destination = archive / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        manifest[name] = {'sha256': digest_file(path), 'archived_path': str(destination),
+                          'original_rows': len(rows), 'retained_canonical_rows': len(kept)}
+        path.rename(destination)
+        for row in kept:
+            append(path, row)
+        assert digest_file(destination) == manifest[name]['sha256']
+    request = read(folder / 'request.json')
+    for step in [41, 42]:
+        for path in (run / 'alignment_live').glob(f'step_{step:04d}_*'):
+            dest = archive / 'alignment_live' / path.name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            manifest[str(path.relative_to(run))] = {'sha256': digest_file(path), 'archived_path': str(dest)}
+            path.rename(dest)
+        path = run / f'training/rollouts/{step}.jsonl'
+        if path.exists():
+            dest = archive / 'training/rollouts' / path.name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            manifest[str(path.relative_to(run))] = {'sha256': digest_file(path), 'archived_path': str(dest)}
+            path.rename(dest)
+        request['decision_files'][str(step)] = str(archive / 'alignment_live' / Path(request['decision_files'][str(step)]).name)
+    request.update(researcher_approved_non_bitwise_resume=True,
+                   authorization_text='从第40步恢复并继续训练（推荐）', authorization_time=utc(),
+                   mismatch_action='Retain and report mismatch; researcher approved restarting from checkpoint40 with saved batches.',
+                   method='Documented checkpoint resume with original cached samples and original padding/order for 41/42; no claim of exact original-state reconstruction.')
+    save(folder / 'continued_replay_request.json', request)
+    save(archive / 'manifest.json', manifest)
+    save(authorization, {'researcher_approved': True, 'time': utc(), 'from_update': 40,
+         'canonical_logs_prepared': True, 'archived_completed_updates': [41, 42],
+         'original_samples_preserved': True, 'reuse_cached_sampling_updates': [41, 42, 43],
+         'non_bitwise_resume': True, 'archive': str(archive),
+         'note': 'Updates41/42 are replayed from checkpoint40, not duplicated on top of checkpoint42. Original generation evidence for all three batches is retained; later two batches originated from the pre-failure model lineage.'})
 
 
 if __name__ == '__main__':

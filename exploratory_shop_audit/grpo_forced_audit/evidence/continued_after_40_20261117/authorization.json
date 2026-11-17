@@ -1,0 +1,19 @@
+{
+  "researcher_approved": true,
+  "time": "2026-11-17T15:34:06.965195+00:00",
+  "from_update": 40,
+  "canonical_logs_prepared": true,
+  "archived_completed_updates": [
+    41,
+    42
+  ],
+  "original_samples_preserved": true,
+  "reuse_cached_sampling_updates": [
+    41,
+    42,
+    43
+  ],
+  "non_bitwise_resume": true,
+  "archive": "/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/recovery_0042/pre_continuation_archive",
+  "note": "Updates41/42 are replayed from checkpoint40, not duplicated on top of checkpoint42. Original generation evidence for all three batches is retained; later two batches originated from the pre-failure model lineage."
+}
