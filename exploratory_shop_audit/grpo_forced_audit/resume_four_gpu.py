@@ -12,7 +12,7 @@ def recover_leases(run):
     import psutil
     boot=psutil.boot_time()
     with accounting_lock(run):
-        ended={r['session_id'] for r in read_rows(run/'cost_ledger.jsonl') if r['event']=='end'}
+        ended={r['session_id'] for r in read_rows(run/'cost_ledger.jsonl') if r['event']=='end' and r.get('session_id')}
         for path in (run/'active_gpu_sessions').glob('*.json'):
             row=read(path)
             assert row['started_unix']<boot, 'A current-boot GPU owner exists; do not steal its lease'

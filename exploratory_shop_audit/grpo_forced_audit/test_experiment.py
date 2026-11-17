@@ -8,6 +8,20 @@ from exploratory_shop_audit.env_worker import parse_action_fixed
 
 
 class ExperimentTests(unittest.TestCase):
+    def test_recover_legacy_ledger_without_session_id(self):
+        import tempfile
+        from pathlib import Path
+        from .common import append,save,read_rows
+        from .resume_four_gpu import recover_leases
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'active_gpu_sessions').mkdir()
+            append(root/'cost_ledger.jsonl',{'event':'end','gpu_hours':1})
+            save(root/'active_gpu_sessions/old.json',{'session_id':'old','stage':'test','started_unix':100,'gpu_ids':[0,1,2,3],'gpu_count':4})
+            with patch('psutil.boot_time',return_value=200):
+                recover_leases(root);recover_leases(root)
+            self.assertEqual(len(read_rows(root/'cost_ledger.jsonl')),2)
+            self.assertTrue((root/'recovered_gpu_sessions/old.json').exists())
+
     def test_route_does_not_read_session_or_query_as_page(self):
         from .interface import route_page_name
         for route in ['item_page','item_sub_page','search_results','done']:
