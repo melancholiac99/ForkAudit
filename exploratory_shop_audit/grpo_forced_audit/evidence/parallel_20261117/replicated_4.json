@@ -1,0 +1,272 @@
+{
+  "world_size": 4,
+  "strategy": "replicated",
+  "ranks": [
+    {
+      "rank": 0,
+      "world_size": 4,
+      "strategy": "replicated",
+      "initialization_seconds": 77.22989683200012,
+      "timings_seconds": {
+        "actor_logprob": 4.866991755000072,
+        "reference_logprob": 2.5178710400000455,
+        "backward_and_clip": 20.4278491150003
+      },
+      "peak_allocated_gib": 34.11341857910156,
+      "optimizer_updates": 0,
+      "weights_unchanged": true,
+      "gradient_hashes": [
+        "5e8e4064919f2b6df96e5688186ed3aef4cd86fe37681479a6967ec4ec7ac753"
+      ],
+      "selected_indices": [
+        463,
+        356,
+        104,
+        169,
+        59,
+        379,
+        540,
+        476,
+        473,
+        391,
+        98,
+        550,
+        418,
+        446,
+        450,
+        182
+      ],
+      "total_global_rows": 64,
+      "global_microbatch_rows": 16,
+      "global_minibatch_rows": 64,
+      "metrics": {
+        "actor/kl_loss": 0.0025798403657972813,
+        "actor/kl_coef": 0.01,
+        "actor/pg_loss": 0.11030300112906843,
+        "actor/pg_clipfrac": 0.0,
+        "actor/ppo_kl": 0.0,
+        "actor/pg_clipfrac_lower": 0.0,
+        "actor/grad_norm": 1.8167506456375122
+      },
+      "sampler_trainer_mismatch": {
+        "token_count": 230,
+        "response_count": 16,
+        "sampled_behavior_k3": 0.02768551779069228,
+        "clip_fraction": 0.04782608695652174,
+        "token_ESS_fraction": 0.9898679160576299,
+        "response_ESS_fraction": 0.8799223136838115,
+        "token_ratio_min": 0.1201832547208938,
+        "token_ratio_max": 1.5877947073259422,
+        "response_log_ratio_min": -1.70909623657667,
+        "response_log_ratio_max": 0.4816932324345444,
+        "long_response_count": 0,
+        "token_ratio_p01": 0.6318695462911587,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.3451626925590363,
+        "token_ratio_p999": 1.53997887237165
+      }
+    },
+    {
+      "rank": 1,
+      "world_size": 4,
+      "strategy": "replicated",
+      "initialization_seconds": 77.12079700100003,
+      "timings_seconds": {
+        "actor_logprob": 4.988853388999814,
+        "reference_logprob": 2.6495765150002626,
+        "backward_and_clip": 20.145096346000173
+      },
+      "peak_allocated_gib": 35.22810697555542,
+      "optimizer_updates": 0,
+      "weights_unchanged": true,
+      "gradient_hashes": [
+        "5e8e4064919f2b6df96e5688186ed3aef4cd86fe37681479a6967ec4ec7ac753"
+      ],
+      "selected_indices": [
+        304,
+        551,
+        308,
+        37,
+        318,
+        200,
+        93,
+        520,
+        401,
+        75,
+        185,
+        449,
+        316,
+        279,
+        320,
+        22
+      ],
+      "total_global_rows": 64,
+      "global_microbatch_rows": 16,
+      "global_minibatch_rows": 64,
+      "metrics": {
+        "actor/kl_loss": 0.0018476871773600578,
+        "actor/kl_coef": 0.01,
+        "actor/pg_loss": 0.18757418915629387,
+        "actor/pg_clipfrac": 0.0,
+        "actor/ppo_kl": 0.0,
+        "actor/pg_clipfrac_lower": 0.0,
+        "actor/grad_norm": 1.8167506456375122
+      },
+      "sampler_trainer_mismatch": {
+        "token_count": 251,
+        "response_count": 16,
+        "sampled_behavior_k3": 0.002033624352130785,
+        "clip_fraction": 0.01593625498007968,
+        "token_ESS_fraction": 0.9964471430372994,
+        "response_ESS_fraction": 0.9644911473231654,
+        "token_ratio_min": 0.5152806893165809,
+        "token_ratio_max": 1.521365965758968,
+        "response_log_ratio_min": -0.5113298318829038,
+        "response_log_ratio_max": 0.45430783923984563,
+        "long_response_count": 0,
+        "token_ratio_p01": 0.8958774816123449,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.129779900988594,
+        "token_ratio_p999": 1.5135619521890247
+      }
+    },
+    {
+      "rank": 2,
+      "world_size": 4,
+      "strategy": "replicated",
+      "initialization_seconds": 77.4852482010001,
+      "timings_seconds": {
+        "actor_logprob": 7.313297549000254,
+        "reference_logprob": 2.8378227319999496,
+        "backward_and_clip": 17.628450749999956
+      },
+      "peak_allocated_gib": 37.04527521133423,
+      "optimizer_updates": 0,
+      "weights_unchanged": true,
+      "gradient_hashes": [
+        "5e8e4064919f2b6df96e5688186ed3aef4cd86fe37681479a6967ec4ec7ac753"
+      ],
+      "selected_indices": [
+        284,
+        431,
+        447,
+        18,
+        56,
+        133,
+        549,
+        192,
+        123,
+        490,
+        197,
+        514,
+        218,
+        441,
+        157,
+        341
+      ],
+      "total_global_rows": 64,
+      "global_microbatch_rows": 16,
+      "global_minibatch_rows": 64,
+      "metrics": {
+        "actor/kl_loss": 0.009086184203624725,
+        "actor/kl_coef": 0.01,
+        "actor/pg_loss": 0.14385603740811348,
+        "actor/pg_clipfrac": 0.0,
+        "actor/ppo_kl": 0.0,
+        "actor/pg_clipfrac_lower": 0.0,
+        "actor/grad_norm": 1.8167506456375122
+      },
+      "sampler_trainer_mismatch": {
+        "token_count": 248,
+        "response_count": 16,
+        "sampled_behavior_k3": 0.018287023105604452,
+        "clip_fraction": 0.020161290322580645,
+        "token_ESS_fraction": 0.9938428219698905,
+        "response_ESS_fraction": 0.916072562053858,
+        "token_ratio_min": 0.14861768396358047,
+        "token_ratio_max": 1.2968461258951036,
+        "response_log_ratio_min": -1.922375629100351,
+        "response_log_ratio_max": 0.29237067692324104,
+        "long_response_count": 0,
+        "token_ratio_p01": 0.7302993765534084,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.1647407628179547,
+        "token_ratio_p999": 1.2755934697890843
+      }
+    },
+    {
+      "rank": 3,
+      "world_size": 4,
+      "strategy": "replicated",
+      "initialization_seconds": 77.52685900799997,
+      "timings_seconds": {
+        "actor_logprob": 7.544283369999903,
+        "reference_logprob": 3.2427561909998985,
+        "backward_and_clip": 17.003553366000233
+      },
+      "peak_allocated_gib": 41.54022407531738,
+      "optimizer_updates": 0,
+      "weights_unchanged": true,
+      "gradient_hashes": [
+        "5e8e4064919f2b6df96e5688186ed3aef4cd86fe37681479a6967ec4ec7ac753"
+      ],
+      "selected_indices": [
+        362,
+        499,
+        209,
+        285,
+        269,
+        500,
+        122,
+        106,
+        482,
+        171,
+        127,
+        205,
+        219,
+        158,
+        227,
+        221
+      ],
+      "total_global_rows": 64,
+      "global_microbatch_rows": 16,
+      "global_minibatch_rows": 64,
+      "metrics": {
+        "actor/kl_loss": 0.0007137904758565128,
+        "actor/kl_coef": 0.01,
+        "actor/pg_loss": -0.19325809739530087,
+        "actor/pg_clipfrac": 0.0,
+        "actor/ppo_kl": 0.0,
+        "actor/pg_clipfrac_lower": 0.0,
+        "actor/grad_norm": 1.8167506456375122
+      },
+      "sampler_trainer_mismatch": {
+        "token_count": 310,
+        "response_count": 16,
+        "sampled_behavior_k3": 0.0021232788670049445,
+        "clip_fraction": 0.025806451612903226,
+        "token_ESS_fraction": 0.9959647830506331,
+        "response_ESS_fraction": 0.9399385799775918,
+        "token_ratio_min": 0.5896408628999513,
+        "token_ratio_max": 1.7489899681464094,
+        "response_log_ratio_min": -0.620879431873,
+        "response_log_ratio_max": 0.5585878726560551,
+        "long_response_count": 0,
+        "token_ratio_p01": 0.7209661798859868,
+        "token_ratio_p50": 1.0,
+        "token_ratio_p99": 1.1127182076511373,
+        "token_ratio_p999": 1.6051764646434676
+      }
+    }
+  ],
+  "seconds": {
+    "actor_logprob": 7.544283369999903,
+    "reference_logprob": 3.2427561909998985,
+    "backward_and_clip": 20.4278491150003
+  },
+  "total_compute_seconds": 31.2148886760001,
+  "compute_gpu_seconds": 124.8595547040004,
+  "gradient_sync_verified": true,
+  "checkpoint_state_verified": true,
+  "optimizer_updates": 0
+}

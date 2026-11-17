@@ -1,0 +1,49 @@
+{
+  "rows": [
+    {
+      "world_size": 1,
+      "seconds": {
+        "actor_logprob": 17.21955896999998,
+        "reference_logprob": 11.233895569000197,
+        "backward_and_clip": 49.71455702000003
+      },
+      "total_compute_seconds": 78.1680115590002,
+      "compute_gpu_seconds": 78.1680115590002,
+      "gradient_sync_verified": true,
+      "checkpoint_state_verified": true,
+      "optimizer_updates": 0
+    },
+    {
+      "world_size": 2,
+      "seconds": {
+        "actor_logprob": 10.771259208000174,
+        "reference_logprob": 5.846854174999862,
+        "backward_and_clip": 30.759854541000095
+      },
+      "total_compute_seconds": 47.37796792400013,
+      "compute_gpu_seconds": 94.75593584800026,
+      "gradient_sync_verified": true,
+      "checkpoint_state_verified": true,
+      "optimizer_updates": 0
+    },
+    {
+      "world_size": 4,
+      "seconds": {
+        "actor_logprob": 7.544283369999903,
+        "reference_logprob": 3.2427561909998985,
+        "backward_and_clip": 20.4278491150003
+      },
+      "total_compute_seconds": 31.2148886760001,
+      "compute_gpu_seconds": 124.8595547040004,
+      "gradient_sync_verified": true,
+      "checkpoint_state_verified": true,
+      "optimizer_updates": 0
+    }
+  ],
+  "selected_world_size": 4,
+  "gpu": "4 x NVIDIA A100-SXM4-80GB",
+  "topology": "PHB between all pairs; P2P reads supported",
+  "method": "Same 64 saved response rows, length-stratified deterministic sampling; same checkpoint1, global mini64/micro4, full-batch GRPO advantages, optimizer.step disabled",
+  "limitation": "One measured training compute batch per topology; excludes initialization, generation, validation and checkpoints. Not a full-training 2.5x claim.",
+  "source_sha256": "61f7f5961edf33e2d0a020d358c8adb54b4dc75e607bed9eb023d114d67b3165"
+}
