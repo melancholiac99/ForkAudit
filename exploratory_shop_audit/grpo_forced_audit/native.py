@@ -127,6 +127,8 @@ def install():
         append(run_dir()/'advantage_checks.jsonl',{'update':int(os.environ.get('SHOP_COMPLETED_UPDATES','0'))+1,
             'finite':True,'response_only_mask':True,'nonzero_fraction':float((out.batch['advantages'][mask.bool()]!=0).float().mean()),
             'rows':len(out),'native_cross_step_normalization':True})
+        from .alignment_metrics import capture
+        capture(out,run_dir(),int(os.environ.get('SHOP_COMPLETED_UPDATES','0'))+1)
         return out
     ray_trainer.compute_advantage=advantage
     old_validate=ray_trainer.RayPPOTrainer._validate

@@ -56,6 +56,14 @@ def metric_points(run):
                 yield f'eval/{decode}/{group}/{metric}',int(step),stats.get('estimate')
         for metric,stats in summary.get('weighted_all',{}).items():
             yield f'eval/{decode}/population_weighted/{metric}',int(step),stats.get('estimate') if stats else None
+    alignment_attempts=defaultdict(int)
+    for row in rows(run/'alignment_live/metrics.jsonl'):
+        step=int(row['update']);alignment_attempts[step]+=1
+        prefix='alignment/' if alignment_attempts[step]==1 else f'alignment/attempt_{alignment_attempts[step]}/'
+        for name in ['mean_abs_probability_difference','token_ratio_outside_08_12',
+                     'token_ess_fraction','response_ess_fraction','trajectory_ess_fraction',
+                     'behavior_to_actor_k3_sample_estimate','nonzero_advantage_ratio_outside_08_12']:
+            yield prefix+name,step,row.get(name)
 
 
 class Exporter:
