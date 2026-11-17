@@ -79,6 +79,20 @@ def install_worker():
     from torch.distributed.fsdp import ShardingStrategy
     from verl.workers import fsdp_workers
     fsdp_workers.get_sharding_strategy = lambda mesh: ShardingStrategy.NO_SHARD
+    worker = fsdp_workers.ActorRolloutRefWorker
+    if not getattr(worker, '_shop_no_shard_cleanup', False):
+        # Upstream manually frees sharded full parameters after logprob. A
+        # replicated NO_SHARD handle owns persistent full parameters instead.
+        for name, model in [('compute_log_prob', 'self.actor.actor_module'),
+                            ('compute_ref_log_prob', 'self.ref_policy.actor_module')]:
+            source = textwrap.dedent(inspect.getsource(getattr(worker, name)))
+            anchor = f'if self.world_size > 1 and fsdp_version({model}) == 1:'
+            assert source.count(anchor) == 1
+            source = source.replace(anchor, anchor[:-1] + f' and {model}._handle.uses_sharded_strategy:')
+            scope = dict(fsdp_workers.__dict__)
+            exec(compile(source, '<shop_no_shard_logprob_cleanup>', 'exec'), scope)
+            setattr(worker, name, scope[name])
+        worker._shop_no_shard_cleanup = True
     from verl.utils.checkpoint.fsdp_checkpoint_manager import FSDPCheckpointManager as cls
     if getattr(cls, '_shop_replicated_checkpoint', False):
         return
@@ -147,3 +161,18 @@ def prepare_restore(source, world):
         'source_world_size': 1, 'target_world_size': world,
         'note': 'Identical full tensors/optimizer/scheduler; initial RNG cloned, future decision seeds remain per request.'}, indent=2))
     return source
+
+
+def prune_full_checkpoints(run, keep=2):
+    """Enforce native keep-two retention across separately launched phases."""
+    from .common import save, utc
+    folders=sorted((Path(run)/'training/checkpoints').glob('global_step_*'),key=lambda p:int(p.name.split('_')[-1]))
+    complete=[p for p in folders if (p/'actor/live_fingerprint_rank_0.json').exists()
+              and (p/'actor/lora_adapter/adapter_model.safetensors').exists()
+              and list((p/'actor').glob('model_world_size_*_rank_0.pt'))]
+    for folder in complete[:-keep]:
+        actor=folder/'actor'
+        files=[p for kind in ['model','optim','extra_state'] for p in actor.glob(f'{kind}_world_size_*_rank_*.pt')]
+        save(folder/'full_checkpoint_retention.json',{'time':utc(),'reason':'Configured max_actor_ckpt_to_keep=2 across process restarts',
+            'removed_files':[p.name for p in files],'retained':'LoRA adapter, fingerprints, dataloader state and all measurements'})
+        for path in files:path.unlink()

@@ -87,3 +87,5 @@ def launch(run,updates=100,resume=None,limit_hours=13):
     save(run/f'train_launch_{updates:04d}.json',{'settings':cfg,'command':[str(GPU_PYTHON),'-m',__package__+'.launch',*args],
         'source_sha256':{p.name:digest_file(p) for p in HERE.glob('*.py')},'framework_commit':'20bd331bdbc9026a5668e11362178e10ab7400c8'})
     execute(run,f'train_{updates:04d}',[GPU_PYTHON,'-m',__package__+'.launch',*args],env,limit_hours)
+    from .parallel import prune_full_checkpoints
+    prune_full_checkpoints(run,keep=2)

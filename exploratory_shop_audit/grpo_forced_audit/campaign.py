@@ -20,7 +20,7 @@ def checkpoint(run,n):return run/'training/checkpoints'/f'global_step_{n}'
 
 def checkpoint_complete(run,n):
     folder=checkpoint(run,n)/'actor'
-    return all((folder/p).exists() for p in ['live_fingerprint_rank_0.json','lora_adapter/adapter_model.safetensors','lora_adapter/adapter_config.json'])
+    return all((folder/p).exists() for p in ['live_fingerprint_rank_0.json','lora_adapter/adapter_model.safetensors','lora_adapter/adapter_config.json']) and all(list(folder.glob(f'{kind}_world_size_*_rank_0.pt')) for kind in ['model','optim','extra_state'])
 
 
 def freeze_budget(run):

@@ -1,0 +1,14 @@
+[Unit]
+Description=Export shopping experiment metrics to TensorBoard
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/ForkAudit-shop-20261117
+Environment=CUDA_VISIBLE_DEVICES=
+Environment=PYTHONPATH=/root/ForkAudit-shop-20261117
+ExecStart=/root/ForkAudit/.runtime/venvs/verl-agent-20bd331b/bin/python -m exploratory_shop_audit.grpo_forced_audit.tensorboard_monitor
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

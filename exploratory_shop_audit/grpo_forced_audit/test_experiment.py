@@ -56,6 +56,20 @@ class ExperimentTests(unittest.TestCase):
             save(root/'resource_authorization.json',{'gpu_hour_limit':None});self.assertFalse(uncapped(root))
             save(root/'resource_authorization.json',{'gpu_hour_limit':None,'researcher_authorized':True});self.assertTrue(uncapped(root))
 
+    def test_full_checkpoint_retention_keeps_adapters_and_latest_two(self):
+        import tempfile
+        from pathlib import Path
+        from .parallel import prune_full_checkpoints
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            for n in [1,2,10]:
+                actor=root/f'training/checkpoints/global_step_{n}/actor';(actor/'lora_adapter').mkdir(parents=True)
+                for name in ['live_fingerprint_rank_0.json','model_world_size_4_rank_0.pt','optim_world_size_4_rank_0.pt','extra_state_world_size_4_rank_0.pt','lora_adapter/adapter_model.safetensors']:(actor/name).write_bytes(b'data')
+            prune_full_checkpoints(root)
+            self.assertFalse((root/'training/checkpoints/global_step_1/actor/model_world_size_4_rank_0.pt').exists())
+            self.assertTrue((root/'training/checkpoints/global_step_1/actor/lora_adapter/adapter_model.safetensors').exists())
+            for n in [2,10]:self.assertTrue((root/f'training/checkpoints/global_step_{n}/actor/model_world_size_4_rank_0.pt').exists())
+
     def test_exact_action_whitespace_and_brackets(self):
         value='a  [b]  c'
         self.assertEqual(parse_action_fixed(f'click[{value}]'),('click',value))

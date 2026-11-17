@@ -1,0 +1,19 @@
+[Unit]
+Description=Resume the authorized shopping GRPO experiment after GPU health checks
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/ForkAudit-shop-20261117
+Environment=PYTHONPATH=/root/ForkAudit-shop-20261117
+Environment=OPENBLAS_NUM_THREADS=1
+Environment=OMP_NUM_THREADS=2
+ExecStart=/root/ForkAudit/.runtime/shop-review-venv/bin/python -m exploratory_shop_audit.grpo_forced_audit.resume_four_gpu
+Restart=no
+TimeoutStopSec=60
+StandardOutput=append:/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/post_reboot_resume.log
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

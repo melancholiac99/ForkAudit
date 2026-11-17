@@ -41,8 +41,13 @@ def metric_points(run):
         yield 'signal/same_score_group_fraction',step,row['same_score_groups']/row['tasks']
         yield 'signal/mean_group_reward_std',step,sum(row['group_std'])/len(row['group_std'])
         yield 'signal/episodes',step,row['episodes']
+    attempts=defaultdict(int)
     for row in rows(run/'advantage_checks.jsonl'):
-        yield 'signal/nonzero_advantage_fraction',int(row['update']),row['nonzero_fraction']
+        step=int(row['update']);attempts[step]+=1
+        # A resumed, uncommitted update may use different native DP padding.
+        # Keep the old diagnostic immutable and expose each retry separately.
+        prefix='signal/' if attempts[step]==1 else f'signal/attempt_{attempts[step]}/'
+        yield prefix+'nonzero_advantage_fraction',step,row['nonzero_fraction']
     for path in sorted((run/'evaluation').glob('checkpoint_*.json')):
         _,step,decode=path.stem.split('_')
         summary=read(path)

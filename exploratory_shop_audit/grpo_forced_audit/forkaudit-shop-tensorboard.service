@@ -1,0 +1,14 @@
+[Unit]
+Description=Shopping experiment TensorBoard on loopback
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/ForkAudit-shop-20261117
+Environment=CUDA_VISIBLE_DEVICES=
+ExecStart=/root/ForkAudit/.runtime/venvs/verl-agent-20bd331b/bin/python -m tensorboard.main --logdir /root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/tensorboard --host 127.0.0.1 --port 6006 --reload_interval 5 --load_fast=false
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
