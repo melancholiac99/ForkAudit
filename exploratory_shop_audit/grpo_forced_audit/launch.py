@@ -13,6 +13,8 @@ def setup_worker():
 
 
 def main():
+    from .priority_evaluation import run_pending
+    run_pending(os.environ.get('SHOP_GRPO_RUN'))
     setup_worker()
     import hydra
     from verl.trainer.main_ppo import run_ppo

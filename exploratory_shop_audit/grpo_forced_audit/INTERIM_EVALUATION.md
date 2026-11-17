@@ -1,0 +1,13 @@
+# 第30步完整中途评测
+
+研究者于2026-11-17选择“先做完整评测，保留训练续跑状态”。请求时第30步是最新完整检查点，训练已运行至第35步。为避免丢失未保存更新，让当前train_0040完成验证与完整保存，再在下一GPU阶段初始化模型之前执行此请求。若原平台期规则结束训练，则在最终评测入口执行同一请求。
+
+固定验证集V的200题，基础模型和第30步LoRA各执行每题4条温度0.7轨迹及1条贪心轨迹，总计2000条。沿用原接口、输入、35步上限、奖励、jobs/Runner种子规则和四个TP1副本。基础模型使用原定base标签，其结果供最终比较复用；第30步用interim_checkpoint_0030标签独立保存，不覆盖终点final。两模型采样流独立，配对统计按任务进行。此集是开发验证集，不称最终留出测试；重复评测也不是独立确认性实验。
+
+评测完成后沿既有campaign从第40步检查点继续，或执行已经由既有平台期规则决定的终点流程；本请求不改变平台期规则、学习率、优势、训练批量、奖励或后续方法。已有BF16训推差异仍是解释限制，不因评测而宣布解决。
+
+入口为priority_evaluation.py，launch.main在Ray/训练器初始化前检查请求，rollout.main在终点评测前检查请求。当前运行进程不注入新代码，不发中断信号。请求保存在运行目录priority_evaluation/request.json，冻结任务、适配器/数据哈希及代码来源。必须看到train_0040成功退出记录和模型、优化器、RNG、dataloader保存文件，且外层持有四GPU租约，才执行。
+
+priority_evaluation/status.json区分queued/running/failed/complete及base/interim/analysis子阶段。外层live_status仍可能显示train_0050或evaluate_base；这是租约拥有者，不表示子阶段正在更新参数。events.jsonl记录各子阶段实际时间，已包含于外层cost_ledger，禁止重复相加。所有逐轨迹记录保留在evaluation，缺失记录按已有轨迹ID恢复，不选择最优重试；完整性检查拒绝重复ID、缺步、错误checkpoint和接口。
+
+CPU验证：python -m unittest exploratory_shop_audit.grpo_forced_audit.test_priority_evaluation exploratory_shop_audit.grpo_forced_audit.test_experiment exploratory_shop_audit.grpo_forced_audit.test_watchdog -v。测试只验证编排与记录完整性，不证明模型评测已经完成。

@@ -137,6 +137,9 @@ def evaluate(run,checkpoint,label,repeats=4):
 def main():
     p=argparse.ArgumentParser();p.add_argument('command',choices=['pilot','evaluate']);p.add_argument('--run',type=Path,default=DEFAULT_RUN);p.add_argument('--checkpoint',default='base');p.add_argument('--label',default='base');p.add_argument('--repeats',type=int,default=4);a=p.parse_args()
     if a.command=='pilot':pilot(a.run)
-    else:evaluate(a.run,a.checkpoint,a.label,a.repeats)
+    else:
+        from .priority_evaluation import run_pending
+        run_pending(a.run)
+        evaluate(a.run,a.checkpoint,a.label,a.repeats)
 
 if __name__=='__main__':main()
