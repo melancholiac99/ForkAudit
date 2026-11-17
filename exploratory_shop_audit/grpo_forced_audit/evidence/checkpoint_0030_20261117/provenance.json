@@ -1,0 +1,23 @@
+{
+  "input_sha256": {
+    "evaluation/checkpoint_0000_greedy.json": "b5f6bf6f793f04c5d8ad2136566caf6a92fb8fc62961fb76129d86ab07b9fe89",
+    "evaluation/checkpoint_0000_sample.json": "854f84a468f8fa696cdd1c1e5b28631af0c6c417ae7302e425e8741ddf04c5eb",
+    "evaluation/checkpoint_0010_greedy.json": "62ad4484801deef256057944ce39d1181cc116f7e2ccedf9bc7384fca7e08bef",
+    "evaluation/checkpoint_0010_sample.json": "760421c38be77aaf30f4b34459b63ef1de4a5957c6b5ff38d1495e16698cd270",
+    "evaluation/checkpoint_0020_greedy.json": "93a860f01aebd29b24175a196d25571d95ccca40282cb2649fbe1c5f370907ef",
+    "evaluation/checkpoint_0020_sample.json": "b885fbf57e6e7ddaecf472188af32ff238166306b3168f259b3c9f4226b156cc",
+    "evaluation/checkpoint_0030_greedy.json": "4fead1e1d3022f5ec0ec034fa1afc8ef256bf8dabacae4bc7f82ff13f9afac8d",
+    "evaluation/checkpoint_0030_sample.json": "59e7c04d8b2407aa14fd3982ebb12e87b082e0acb50229c86b8ff0bc6f00662d"
+  },
+  "generator_sha256": "c6154cc57e06952c86ae65f05b0e05ed03953d5212778708273a60c593d2e4ab",
+  "run_id": "shop_grpo_forced_20261117_01",
+  "registration": {
+    "gpu_hours_limit": 24,
+    "historical_parent": "/root/ForkAudit/exploratory_shop_audit/runs/community_measurement_20261115_01",
+    "interface": "shop-exact-actions-invalid-feedback-v1",
+    "master_seed": 20261117,
+    "protocol_sha256": "925de8856e4e86685d31d34a51fa676fe4482dc9988a240e38b0ec9217274228",
+    "run_id": "shop_grpo_forced_20261117_01",
+    "source_commit": "e9263ff695043aac36ebd07c1d6aa75193f2dd20"
+  }
+}
