@@ -1,0 +1,57 @@
+{
+  "exported_at": "2026-11-18T08:42:35.902033+00:00",
+  "completion_gate_reasons": [],
+  "completion": {
+    "status": "complete",
+    "time": "2026-11-18T08:17:17.149249+00:00",
+    "gpu_hours": 97.76467336237431,
+    "training_updates": 100,
+    "no_next_experiment": true
+  },
+  "final_checkpoint": {
+    "update": 100,
+    "path": "/root/ForkAudit/.runtime/runs/shop_grpo_forced_20261117_01/training/checkpoints/global_step_100/actor/lora_adapter",
+    "sha256": "8d9247ff10d2a9a77b675c7c6716eb24dcf51e840a8342ba05a0736e9893d0ce"
+  },
+  "duplicate_update_record_counts": {
+    "51": 2,
+    "91": 2,
+    "92": 2
+  },
+  "cost_verified": false,
+  "negative_cost_entries": [
+    {
+      "stage": "train_0060",
+      "session_id": "aff04eb6535e45d2898ff27e67adb9ea",
+      "time": "2026-11-18T03:59:09.071458+00:00",
+      "gpu_hours": -28.74898842997021
+    },
+    {
+      "stage": "train_0100",
+      "session_id": "f5fda6d7f0db456e9cded6ab70530d09",
+      "time": "2026-11-18T07:36:10.266176+00:00",
+      "gpu_hours": -28.802307155662113
+    }
+  ],
+  "cost_note": "Raw wall-clock ledger retained; negative durations show clock jumps. The recorded total is not verified GPU occupancy. No guessed correction is applied.",
+  "counts": {
+    "base_greedy": 200,
+    "base_sample": 800,
+    "final_greedy": 200,
+    "final_sample": 800,
+    "audit_base": {
+      "states.jsonl": 399,
+      "candidates.jsonl": 2076,
+      "natural/episodes.jsonl": 200,
+      "bank_a/episodes.jsonl": 5631,
+      "bank_b/episodes.jsonl": 5631
+    },
+    "audit_post": {
+      "states.jsonl": 100,
+      "candidates.jsonl": 532,
+      "natural/episodes.jsonl": 50,
+      "bank_a/episodes.jsonl": 1446,
+      "bank_b/episodes.jsonl": 1446
+    }
+  }
+}
