@@ -1,6 +1,5 @@
 """Prepare de-identified diagnostic tables after all gated stages have stopped."""
 import csv
-import itertools
 from pathlib import Path
 
 from .s21_store import RUN, ARMS
@@ -44,6 +43,13 @@ def build():
     if chosen['selected_multiplier'] is not None:
         smoke=read(RUN/'new_smoke_report.json');add(smoke,'rerun')
         (dest/'new_smoke_report.json').write_bytes((RUN/'new_smoke_report.json').read_bytes())
+        save(dest/'frozen_optimizer.json',dict(optimizer='AdamW',lr=chosen['learning_rate'],warmup_steps=0,
+            lr_schedule='constant',weight_decay=0.,betas=[.9,.999],eps=1e-8,clip_global_gradient_norm=1.,
+            epochs_per_outer_update=1,batch_width=64,optimizer_steps='ceil(record_count/64)',
+            partition='fixed-seed shuffle, then nearly equal size, no tail minibatch',
+            record_weight='1 / (#tasks * #trajectories in task * #response positions in trajectory), per valid token',
+            minibatch_loss='sum of global token-weighted KL over included rows times N/m',
+            smoke_steps=5,smoke_rows_per_step=grid['batches'],arms=list(ARMS),applies_to=['D','E']))
         k=str(chosen['selected_multiplier'])
         matched={a:{n:smoke['endpoints'][a][k][n] for n in ('grid_final_adapter_match','grid_final_logits_match')} for a in ARMS}
     table(dest/'step_size_diagnostics.tsv',cells)
