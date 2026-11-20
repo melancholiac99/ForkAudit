@@ -1,0 +1,4213 @@
+{
+  "checkpoints": {
+    "0": "B shared by all arms",
+    "10": [
+      "R",
+      "R-beta",
+      "P",
+      "P-shuffled"
+    ],
+    "B_at_10": "same frozen policy, same seeds as B at zero"
+  },
+  "summary": {
+    "B/T_opd_eval/sample": {
+      "reward": 0.15217884329212447,
+      "all_requirements": 0.39375,
+      "strict": 0.39375,
+      "length": 4.3725,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 20,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 148,
+        "gold_purchase": 315,
+        "repeat_loop": 94,
+        "partial_alternative_purchase": 202,
+        "reward_unverifiable": 20,
+        "early_abstain": 21
+      },
+      "legal_rate": 0.8925100057175529,
+      "action_counts": {
+        "search": 813,
+        "open_listed_product": 812,
+        "select_visible_option": 773,
+        "buy": 685,
+        "illegal": 376,
+        "other_legal": 21,
+        "other_click": 18
+      },
+      "funnel_episode_rate": {
+        "search": 0.99875,
+        "open_listed_product": 0.99625,
+        "select_visible_option": 0.87625,
+        "buy": 0.85625
+      },
+      "decision_token_count": 23317,
+      "decision_entropy": 0.04205702458641067,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20178,
+          "entropy": 0.1724612203690664
+        },
+        "click": {
+          "tokens": 14902,
+          "entropy": 0.05232885958694009
+        },
+        "option": {
+          "tokens": 8415,
+          "entropy": 0.023866782735205736
+        }
+      }
+    },
+    "B/T_opd_eval/greedy": {
+      "reward": 0.17698193681318672,
+      "all_requirements": 0.41,
+      "strict": 0.41,
+      "length": 4.24,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 43,
+        "gold_purchase": 82,
+        "repeat_loop": 15,
+        "partial_alternative_purchase": 52,
+        "reward_unverifiable": 6,
+        "early_abstain": 2
+      },
+      "legal_rate": 0.9292452830188679,
+      "action_counts": {
+        "search": 201,
+        "open_listed_product": 203,
+        "select_visible_option": 196,
+        "buy": 183,
+        "illegal": 60,
+        "other_click": 3,
+        "other_legal": 2
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.91,
+        "buy": 0.915
+      },
+      "decision_token_count": 5658,
+      "decision_entropy": 0.040288334816249737,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4904,
+          "entropy": 0.16765367776394013
+        },
+        "click": {
+          "tokens": 3540,
+          "entropy": 0.05255916252906866
+        },
+        "option": {
+          "tokens": 2118,
+          "entropy": 0.019779019375560876
+        }
+      }
+    },
+    "B/V/sample": {
+      "reward": 0.37953639394459693,
+      "all_requirements": 0.52375,
+      "strict": 0.52375,
+      "length": 4.2275,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 419,
+        "early_abstain": 17,
+        "partial_alternative_purchase": 196,
+        "repeat_loop": 53,
+        "wrong_purchase": 93,
+        "reward_unverifiable": 22
+      },
+      "legal_rate": 0.9281490242460083,
+      "action_counts": {
+        "search": 809,
+        "open_listed_product": 808,
+        "select_visible_option": 758,
+        "buy": 730,
+        "illegal": 243,
+        "other_legal": 17,
+        "other_click": 17
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84875,
+        "buy": 0.9125
+      },
+      "decision_token_count": 20943,
+      "decision_entropy": 0.04134450704278995,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20331,
+          "entropy": 0.17597897552348674
+        },
+        "click": {
+          "tokens": 13377,
+          "entropy": 0.05367837353817262
+        },
+        "option": {
+          "tokens": 7566,
+          "entropy": 0.01953772246590203
+        }
+      }
+    },
+    "B/V/greedy": {
+      "reward": 0.4444714400183151,
+      "all_requirements": 0.56,
+      "strict": 0.56,
+      "length": 4.08,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 112,
+        "partial_alternative_purchase": 51,
+        "repeat_loop": 7,
+        "wrong_purchase": 22,
+        "reward_unverifiable": 6,
+        "early_abstain": 2
+      },
+      "legal_rate": 0.9607843137254902,
+      "action_counts": {
+        "search": 200,
+        "open_listed_product": 200,
+        "select_visible_option": 190,
+        "buy": 191,
+        "illegal": 32,
+        "other_click": 1,
+        "other_legal": 2
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.865,
+        "buy": 0.955
+      },
+      "decision_token_count": 5203,
+      "decision_entropy": 0.03737217393351668,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 5063,
+          "entropy": 0.16806192195060324
+        },
+        "click": {
+          "tokens": 3346,
+          "entropy": 0.047776199869808376
+        },
+        "option": {
+          "tokens": 1857,
+          "entropy": 0.018625878412336278
+        }
+      }
+    },
+    "B/V_seen/sample": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "B/V_seen/greedy": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "B/V_unseen/sample": {
+      "reward": 0.37953639394459693,
+      "all_requirements": 0.52375,
+      "strict": 0.52375,
+      "length": 4.2275,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 419,
+        "early_abstain": 17,
+        "partial_alternative_purchase": 196,
+        "repeat_loop": 53,
+        "wrong_purchase": 93,
+        "reward_unverifiable": 22
+      },
+      "legal_rate": 0.9281490242460083,
+      "action_counts": {
+        "search": 809,
+        "open_listed_product": 808,
+        "select_visible_option": 758,
+        "buy": 730,
+        "illegal": 243,
+        "other_legal": 17,
+        "other_click": 17
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84875,
+        "buy": 0.9125
+      },
+      "decision_token_count": 20943,
+      "decision_entropy": 0.04134450704278995,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20331,
+          "entropy": 0.17597897552348674
+        },
+        "click": {
+          "tokens": 13377,
+          "entropy": 0.05367837353817262
+        },
+        "option": {
+          "tokens": 7566,
+          "entropy": 0.01953772246590203
+        }
+      }
+    },
+    "B/V_unseen/greedy": {
+      "reward": 0.4444714400183151,
+      "all_requirements": 0.56,
+      "strict": 0.56,
+      "length": 4.08,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 112,
+        "partial_alternative_purchase": 51,
+        "repeat_loop": 7,
+        "wrong_purchase": 22,
+        "reward_unverifiable": 6,
+        "early_abstain": 2
+      },
+      "legal_rate": 0.9607843137254902,
+      "action_counts": {
+        "search": 200,
+        "open_listed_product": 200,
+        "select_visible_option": 190,
+        "buy": 191,
+        "illegal": 32,
+        "other_click": 1,
+        "other_legal": 2
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.865,
+        "buy": 0.955
+      },
+      "decision_token_count": 5203,
+      "decision_entropy": 0.03737217393351668,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 5063,
+          "entropy": 0.16806192195060324
+        },
+        "click": {
+          "tokens": 3346,
+          "entropy": 0.047776199869808376
+        },
+        "option": {
+          "tokens": 1857,
+          "entropy": 0.018625878412336278
+        }
+      }
+    },
+    "R/T_opd_eval/sample": {
+      "reward": 0.15267595653044858,
+      "all_requirements": 0.3925,
+      "strict": 0.3925,
+      "length": 4.38125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 157,
+        "gold_purchase": 314,
+        "repeat_loop": 82,
+        "partial_alternative_purchase": 207,
+        "reward_unverifiable": 22,
+        "early_abstain": 18
+      },
+      "legal_rate": 0.8987161198288159,
+      "action_counts": {
+        "search": 816,
+        "open_listed_product": 817,
+        "select_visible_option": 778,
+        "buy": 700,
+        "illegal": 355,
+        "other_legal": 18,
+        "other_click": 21
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 0.99625,
+        "select_visible_option": 0.88,
+        "buy": 0.875
+      },
+      "decision_token_count": 23898,
+      "decision_entropy": 0.04734452712833741,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 19601,
+          "entropy": 0.18104199400847631
+        },
+        "click": {
+          "tokens": 15496,
+          "entropy": 0.05833469138529327
+        },
+        "option": {
+          "tokens": 8402,
+          "entropy": 0.02707511683010032
+        }
+      }
+    },
+    "R/T_opd_eval/greedy": {
+      "reward": 0.189635096153846,
+      "all_requirements": 0.415,
+      "strict": 0.415,
+      "length": 4.27,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 41,
+        "gold_purchase": 83,
+        "repeat_loop": 16,
+        "partial_alternative_purchase": 53,
+        "reward_unverifiable": 6,
+        "early_abstain": 1
+      },
+      "legal_rate": 0.9332552693208431,
+      "action_counts": {
+        "search": 204,
+        "open_listed_product": 206,
+        "select_visible_option": 196,
+        "buy": 183,
+        "illegal": 57,
+        "other_click": 7,
+        "other_legal": 1
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.905,
+        "buy": 0.915
+      },
+      "decision_token_count": 5973,
+      "decision_entropy": 0.043651395358070104,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4775,
+          "entropy": 0.17005316066431228
+        },
+        "click": {
+          "tokens": 3810,
+          "entropy": 0.05628461688851484
+        },
+        "option": {
+          "tokens": 2163,
+          "entropy": 0.021398702787106427
+        }
+      }
+    },
+    "R/V/sample": {
+      "reward": 0.3975258413461538,
+      "all_requirements": 0.53625,
+      "strict": 0.53625,
+      "length": 4.24125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 429,
+        "partial_alternative_purchase": 195,
+        "repeat_loop": 55,
+        "early_abstain": 14,
+        "wrong_purchase": 85,
+        "reward_unverifiable": 22
+      },
+      "legal_rate": 0.9301503094606542,
+      "action_counts": {
+        "search": 812,
+        "open_listed_product": 813,
+        "select_visible_option": 755,
+        "buy": 731,
+        "illegal": 237,
+        "other_click": 31,
+        "other_legal": 14
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84625,
+        "buy": 0.91375
+      },
+      "decision_token_count": 21048,
+      "decision_entropy": 0.04448225005811336,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 19876,
+          "entropy": 0.182612341477804
+        },
+        "click": {
+          "tokens": 13564,
+          "entropy": 0.058149524248274076
+        },
+        "option": {
+          "tokens": 7484,
+          "entropy": 0.019711685237784674
+        }
+      }
+    },
+    "R/V/greedy": {
+      "reward": 0.41715112751831507,
+      "all_requirements": 0.555,
+      "strict": 0.555,
+      "length": 4.14,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 111,
+        "partial_alternative_purchase": 47,
+        "wrong_purchase": 23,
+        "repeat_loop": 12,
+        "early_abstain": 2,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.9468599033816425,
+      "action_counts": {
+        "search": 202,
+        "open_listed_product": 202,
+        "select_visible_option": 189,
+        "buy": 186,
+        "illegal": 44,
+        "other_legal": 2,
+        "other_click": 3
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.855,
+        "buy": 0.93
+      },
+      "decision_token_count": 5431,
+      "decision_entropy": 0.04028781321122846,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4960,
+          "entropy": 0.17579602040441653
+        },
+        "click": {
+          "tokens": 3569,
+          "entropy": 0.05144029857784901
+        },
+        "option": {
+          "tokens": 1862,
+          "entropy": 0.01891121800528392
+        }
+      }
+    },
+    "R/V_seen/sample": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "R/V_seen/greedy": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "R/V_unseen/sample": {
+      "reward": 0.3975258413461538,
+      "all_requirements": 0.53625,
+      "strict": 0.53625,
+      "length": 4.24125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 429,
+        "partial_alternative_purchase": 195,
+        "repeat_loop": 55,
+        "early_abstain": 14,
+        "wrong_purchase": 85,
+        "reward_unverifiable": 22
+      },
+      "legal_rate": 0.9301503094606542,
+      "action_counts": {
+        "search": 812,
+        "open_listed_product": 813,
+        "select_visible_option": 755,
+        "buy": 731,
+        "illegal": 237,
+        "other_click": 31,
+        "other_legal": 14
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84625,
+        "buy": 0.91375
+      },
+      "decision_token_count": 21048,
+      "decision_entropy": 0.04448225005811336,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 19876,
+          "entropy": 0.182612341477804
+        },
+        "click": {
+          "tokens": 13564,
+          "entropy": 0.058149524248274076
+        },
+        "option": {
+          "tokens": 7484,
+          "entropy": 0.019711685237784674
+        }
+      }
+    },
+    "R/V_unseen/greedy": {
+      "reward": 0.41715112751831507,
+      "all_requirements": 0.555,
+      "strict": 0.555,
+      "length": 4.14,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 111,
+        "partial_alternative_purchase": 47,
+        "wrong_purchase": 23,
+        "repeat_loop": 12,
+        "early_abstain": 2,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.9468599033816425,
+      "action_counts": {
+        "search": 202,
+        "open_listed_product": 202,
+        "select_visible_option": 189,
+        "buy": 186,
+        "illegal": 44,
+        "other_legal": 2,
+        "other_click": 3
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.855,
+        "buy": 0.93
+      },
+      "decision_token_count": 5431,
+      "decision_entropy": 0.04028781321122846,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4960,
+          "entropy": 0.17579602040441653
+        },
+        "click": {
+          "tokens": 3569,
+          "entropy": 0.05144029857784901
+        },
+        "option": {
+          "tokens": 1862,
+          "entropy": 0.01891121800528392
+        }
+      }
+    },
+    "R-beta/T_opd_eval/sample": {
+      "reward": 0.16285804644574167,
+      "all_requirements": 0.40375,
+      "strict": 0.40375,
+      "length": 4.39625,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97125,
+      "invalid_rewards": 23,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 159,
+        "gold_purchase": 323,
+        "repeat_loop": 83,
+        "partial_alternative_purchase": 198,
+        "reward_unverifiable": 23,
+        "early_abstain": 14
+      },
+      "legal_rate": 0.903611032129656,
+      "action_counts": {
+        "search": 821,
+        "open_listed_product": 822,
+        "select_visible_option": 788,
+        "other_click": 30,
+        "buy": 703,
+        "illegal": 339,
+        "other_legal": 14
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 0.99875,
+        "select_visible_option": 0.88625,
+        "buy": 0.87875
+      },
+      "decision_token_count": 23335,
+      "decision_entropy": 0.04537520679061334,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 19920,
+          "entropy": 0.17469122838568485
+        },
+        "click": {
+          "tokens": 14891,
+          "entropy": 0.05663174808591094
+        },
+        "option": {
+          "tokens": 8444,
+          "entropy": 0.02552428821786623
+        }
+      }
+    },
+    "R-beta/T_opd_eval/greedy": {
+      "reward": 0.21895291895604393,
+      "all_requirements": 0.44,
+      "strict": 0.44,
+      "length": 4.21,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.985,
+      "invalid_rewards": 3,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 42,
+        "gold_purchase": 88,
+        "repeat_loop": 14,
+        "partial_alternative_purchase": 51,
+        "reward_unverifiable": 3,
+        "early_abstain": 2
+      },
+      "legal_rate": 0.9382422802850356,
+      "action_counts": {
+        "search": 202,
+        "open_listed_product": 203,
+        "select_visible_option": 195,
+        "buy": 184,
+        "illegal": 52,
+        "other_click": 4,
+        "other_legal": 2
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.9,
+        "buy": 0.92
+      },
+      "decision_token_count": 5548,
+      "decision_entropy": 0.044755942873952764,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4835,
+          "entropy": 0.16766618987041323
+        },
+        "click": {
+          "tokens": 3464,
+          "entropy": 0.05830896971016913
+        },
+        "option": {
+          "tokens": 2084,
+          "entropy": 0.02222826295041463
+        }
+      }
+    },
+    "R-beta/V/sample": {
+      "reward": 0.4211256367330584,
+      "all_requirements": 0.55125,
+      "strict": 0.55125,
+      "length": 4.25125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 441,
+        "repeat_loop": 46,
+        "partial_alternative_purchase": 196,
+        "wrong_purchase": 88,
+        "early_abstain": 7,
+        "reward_unverifiable": 22
+      },
+      "legal_rate": 0.9361952366950896,
+      "action_counts": {
+        "search": 812,
+        "open_listed_product": 812,
+        "select_visible_option": 773,
+        "buy": 747,
+        "illegal": 217,
+        "other_click": 33,
+        "other_legal": 7
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.85625,
+        "buy": 0.93375
+      },
+      "decision_token_count": 20935,
+      "decision_entropy": 0.04312019286201776,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20090,
+          "entropy": 0.1767099623453697
+        },
+        "click": {
+          "tokens": 13248,
+          "entropy": 0.056835297636367986
+        },
+        "option": {
+          "tokens": 7687,
+          "entropy": 0.01948318127744746
+        }
+      }
+    },
+    "R-beta/V/greedy": {
+      "reward": 0.45524968521062276,
+      "all_requirements": 0.58,
+      "strict": 0.58,
+      "length": 4.125,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 116,
+        "repeat_loop": 8,
+        "partial_alternative_purchase": 46,
+        "wrong_purchase": 23,
+        "early_abstain": 2,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.953939393939394,
+      "action_counts": {
+        "search": 200,
+        "open_listed_product": 200,
+        "select_visible_option": 194,
+        "buy": 190,
+        "illegal": 38,
+        "other_legal": 2,
+        "other_click": 1
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.87,
+        "buy": 0.95
+      },
+      "decision_token_count": 5306,
+      "decision_entropy": 0.03939913851744613,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4946,
+          "entropy": 0.16829347970376052
+        },
+        "click": {
+          "tokens": 3400,
+          "entropy": 0.05145737611583027
+        },
+        "option": {
+          "tokens": 1906,
+          "entropy": 0.017889165886540524
+        }
+      }
+    },
+    "R-beta/V_seen/sample": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "R-beta/V_seen/greedy": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "R-beta/V_unseen/sample": {
+      "reward": 0.4211256367330584,
+      "all_requirements": 0.55125,
+      "strict": 0.55125,
+      "length": 4.25125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 441,
+        "repeat_loop": 46,
+        "partial_alternative_purchase": 196,
+        "wrong_purchase": 88,
+        "early_abstain": 7,
+        "reward_unverifiable": 22
+      },
+      "legal_rate": 0.9361952366950896,
+      "action_counts": {
+        "search": 812,
+        "open_listed_product": 812,
+        "select_visible_option": 773,
+        "buy": 747,
+        "illegal": 217,
+        "other_click": 33,
+        "other_legal": 7
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.85625,
+        "buy": 0.93375
+      },
+      "decision_token_count": 20935,
+      "decision_entropy": 0.04312019286201776,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20090,
+          "entropy": 0.1767099623453697
+        },
+        "click": {
+          "tokens": 13248,
+          "entropy": 0.056835297636367986
+        },
+        "option": {
+          "tokens": 7687,
+          "entropy": 0.01948318127744746
+        }
+      }
+    },
+    "R-beta/V_unseen/greedy": {
+      "reward": 0.45524968521062276,
+      "all_requirements": 0.58,
+      "strict": 0.58,
+      "length": 4.125,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 116,
+        "repeat_loop": 8,
+        "partial_alternative_purchase": 46,
+        "wrong_purchase": 23,
+        "early_abstain": 2,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.953939393939394,
+      "action_counts": {
+        "search": 200,
+        "open_listed_product": 200,
+        "select_visible_option": 194,
+        "buy": 190,
+        "illegal": 38,
+        "other_legal": 2,
+        "other_click": 1
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.87,
+        "buy": 0.95
+      },
+      "decision_token_count": 5306,
+      "decision_entropy": 0.03939913851744613,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4946,
+          "entropy": 0.16829347970376052
+        },
+        "click": {
+          "tokens": 3400,
+          "entropy": 0.05145737611583027
+        },
+        "option": {
+          "tokens": 1906,
+          "entropy": 0.017889165886540524
+        }
+      }
+    },
+    "P/T_opd_eval/sample": {
+      "reward": 0.20036989468864472,
+      "all_requirements": 0.425,
+      "strict": 0.425,
+      "length": 4.29875,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97875,
+      "invalid_rewards": 17,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 159,
+        "gold_purchase": 340,
+        "repeat_loop": 66,
+        "partial_alternative_purchase": 210,
+        "reward_unverifiable": 17,
+        "early_abstain": 8
+      },
+      "legal_rate": 0.9261413201512068,
+      "action_counts": {
+        "search": 815,
+        "open_listed_product": 820,
+        "select_visible_option": 794,
+        "buy": 726,
+        "illegal": 254,
+        "other_legal": 8,
+        "other_click": 22
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.89375,
+        "buy": 0.9075
+      },
+      "decision_token_count": 22867,
+      "decision_entropy": 0.04842836800531253,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 19058,
+          "entropy": 0.17799455112882728
+        },
+        "click": {
+          "tokens": 14414,
+          "entropy": 0.062491474477664045
+        },
+        "option": {
+          "tokens": 8453,
+          "entropy": 0.02444805134939453
+        }
+      }
+    },
+    "P/T_opd_eval/greedy": {
+      "reward": 0.22766714743589742,
+      "all_requirements": 0.45,
+      "strict": 0.45,
+      "length": 4.165,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.985,
+      "invalid_rewards": 3,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 45,
+        "gold_purchase": 90,
+        "repeat_loop": 10,
+        "partial_alternative_purchase": 51,
+        "reward_unverifiable": 3,
+        "early_abstain": 1
+      },
+      "legal_rate": 0.9543817527010804,
+      "action_counts": {
+        "search": 201,
+        "open_listed_product": 202,
+        "select_visible_option": 200,
+        "buy": 189,
+        "illegal": 38,
+        "other_click": 2,
+        "other_legal": 1
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.915,
+        "buy": 0.945
+      },
+      "decision_token_count": 5513,
+      "decision_entropy": 0.04933378363438094,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4651,
+          "entropy": 0.17333893747761228
+        },
+        "click": {
+          "tokens": 3349,
+          "entropy": 0.06723518786682223
+        },
+        "option": {
+          "tokens": 2164,
+          "entropy": 0.021629623387409667
+        }
+      }
+    },
+    "P/V/sample": {
+      "reward": 0.42609963083791214,
+      "all_requirements": 0.56125,
+      "strict": 0.56125,
+      "length": 4.27,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97375,
+      "invalid_rewards": 21,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 449,
+        "partial_alternative_purchase": 182,
+        "repeat_loop": 53,
+        "early_abstain": 11,
+        "wrong_purchase": 84,
+        "reward_unverifiable": 21
+      },
+      "legal_rate": 0.9370608899297423,
+      "action_counts": {
+        "search": 817,
+        "open_listed_product": 818,
+        "select_visible_option": 782,
+        "buy": 736,
+        "illegal": 215,
+        "other_click": 37,
+        "other_legal": 11
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.8625,
+        "buy": 0.92
+      },
+      "decision_token_count": 21157,
+      "decision_entropy": 0.04565005731061077,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 19761,
+          "entropy": 0.1770750416339911
+        },
+        "click": {
+          "tokens": 13415,
+          "entropy": 0.06027590177794517
+        },
+        "option": {
+          "tokens": 7742,
+          "entropy": 0.020307031796623274
+        }
+      }
+    },
+    "P/V/greedy": {
+      "reward": 0.4708422332875458,
+      "all_requirements": 0.595,
+      "strict": 0.595,
+      "length": 4.13,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 119,
+        "partial_alternative_purchase": 44,
+        "wrong_purchase": 23,
+        "repeat_loop": 9,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.9648910411622276,
+      "action_counts": {
+        "search": 202,
+        "open_listed_product": 202,
+        "select_visible_option": 199,
+        "buy": 191,
+        "illegal": 29,
+        "other_click": 3
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.88,
+        "buy": 0.955
+      },
+      "decision_token_count": 5253,
+      "decision_entropy": 0.042803067369975564,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4851,
+          "entropy": 0.16974222279738646
+        },
+        "click": {
+          "tokens": 3329,
+          "entropy": 0.057045646309750744
+        },
+        "option": {
+          "tokens": 1924,
+          "entropy": 0.018159852562017346
+        }
+      }
+    },
+    "P/V_seen/sample": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "P/V_seen/greedy": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "P/V_unseen/sample": {
+      "reward": 0.42609963083791214,
+      "all_requirements": 0.56125,
+      "strict": 0.56125,
+      "length": 4.27,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97375,
+      "invalid_rewards": 21,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 449,
+        "partial_alternative_purchase": 182,
+        "repeat_loop": 53,
+        "early_abstain": 11,
+        "wrong_purchase": 84,
+        "reward_unverifiable": 21
+      },
+      "legal_rate": 0.9370608899297423,
+      "action_counts": {
+        "search": 817,
+        "open_listed_product": 818,
+        "select_visible_option": 782,
+        "buy": 736,
+        "illegal": 215,
+        "other_click": 37,
+        "other_legal": 11
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.8625,
+        "buy": 0.92
+      },
+      "decision_token_count": 21157,
+      "decision_entropy": 0.04565005731061077,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 19761,
+          "entropy": 0.1770750416339911
+        },
+        "click": {
+          "tokens": 13415,
+          "entropy": 0.06027590177794517
+        },
+        "option": {
+          "tokens": 7742,
+          "entropy": 0.020307031796623274
+        }
+      }
+    },
+    "P/V_unseen/greedy": {
+      "reward": 0.4708422332875458,
+      "all_requirements": 0.595,
+      "strict": 0.595,
+      "length": 4.13,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 119,
+        "partial_alternative_purchase": 44,
+        "wrong_purchase": 23,
+        "repeat_loop": 9,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.9648910411622276,
+      "action_counts": {
+        "search": 202,
+        "open_listed_product": 202,
+        "select_visible_option": 199,
+        "buy": 191,
+        "illegal": 29,
+        "other_click": 3
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.88,
+        "buy": 0.955
+      },
+      "decision_token_count": 5253,
+      "decision_entropy": 0.042803067369975564,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4851,
+          "entropy": 0.16974222279738646
+        },
+        "click": {
+          "tokens": 3329,
+          "entropy": 0.057045646309750744
+        },
+        "option": {
+          "tokens": 1924,
+          "entropy": 0.018159852562017346
+        }
+      }
+    },
+    "P-shuffled/T_opd_eval/sample": {
+      "reward": 0.08962639652014653,
+      "all_requirements": 0.35875,
+      "strict": 0.35875,
+      "length": 4.53375,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 144,
+        "gold_purchase": 287,
+        "repeat_loop": 123,
+        "partial_alternative_purchase": 179,
+        "reward_unverifiable": 22,
+        "early_abstain": 45
+      },
+      "legal_rate": 0.8538737248414667,
+      "action_counts": {
+        "search": 812,
+        "open_listed_product": 820,
+        "select_visible_option": 763,
+        "buy": 632,
+        "illegal": 530,
+        "other_legal": 45,
+        "other_click": 25
+      },
+      "funnel_episode_rate": {
+        "search": 0.99875,
+        "open_listed_product": 0.9975,
+        "select_visible_option": 0.8675,
+        "buy": 0.79
+      },
+      "decision_token_count": 23665,
+      "decision_entropy": 0.03610016486048625,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20169,
+          "entropy": 0.17468765158263086
+        },
+        "click": {
+          "tokens": 15251,
+          "entropy": 0.04297204070005163
+        },
+        "option": {
+          "tokens": 8414,
+          "entropy": 0.02364437945173753
+        }
+      }
+    },
+    "P-shuffled/T_opd_eval/greedy": {
+      "reward": 0.13917235576923065,
+      "all_requirements": 0.38,
+      "strict": 0.38,
+      "length": 4.375,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.96,
+      "invalid_rewards": 8,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 39,
+        "gold_purchase": 76,
+        "repeat_loop": 21,
+        "partial_alternative_purchase": 49,
+        "reward_unverifiable": 8,
+        "early_abstain": 7
+      },
+      "legal_rate": 0.8982857142857142,
+      "action_counts": {
+        "search": 204,
+        "open_listed_product": 205,
+        "select_visible_option": 192,
+        "buy": 172,
+        "illegal": 89,
+        "other_legal": 7,
+        "other_click": 6
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.885,
+        "buy": 0.86
+      },
+      "decision_token_count": 5977,
+      "decision_entropy": 0.03383257991690434,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4953,
+          "entropy": 0.1720949619651453
+        },
+        "click": {
+          "tokens": 3869,
+          "entropy": 0.04124663217617689
+        },
+        "option": {
+          "tokens": 2108,
+          "entropy": 0.020224909997015587
+        }
+      }
+    },
+    "P-shuffled/V/sample": {
+      "reward": 0.3281053614354395,
+      "all_requirements": 0.49,
+      "strict": 0.49,
+      "length": 4.32125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 24,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 392,
+        "repeat_loop": 82,
+        "early_abstain": 23,
+        "partial_alternative_purchase": 195,
+        "wrong_purchase": 84,
+        "reward_unverifiable": 24
+      },
+      "legal_rate": 0.898756146948221,
+      "action_counts": {
+        "search": 811,
+        "open_listed_product": 816,
+        "select_visible_option": 738,
+        "illegal": 350,
+        "buy": 695,
+        "other_legal": 23,
+        "other_click": 24
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.83125,
+        "buy": 0.86875
+      },
+      "decision_token_count": 21389,
+      "decision_entropy": 0.0354412434848603,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20410,
+          "entropy": 0.17519553585711187
+        },
+        "click": {
+          "tokens": 13902,
+          "entropy": 0.04530592708577184
+        },
+        "option": {
+          "tokens": 7487,
+          "entropy": 0.01712431662231559
+        }
+      }
+    },
+    "P-shuffled/V/greedy": {
+      "reward": 0.38522744963369965,
+      "all_requirements": 0.525,
+      "strict": 0.525,
+      "length": 4.205,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "early_abstain": 6,
+        "repeat_loop": 15,
+        "partial_alternative_purchase": 48,
+        "wrong_purchase": 20,
+        "gold_purchase": 105,
+        "reward_unverifiable": 6
+      },
+      "legal_rate": 0.9227110582639715,
+      "action_counts": {
+        "search": 201,
+        "open_listed_product": 202,
+        "select_visible_option": 184,
+        "illegal": 65,
+        "other_legal": 6,
+        "buy": 179,
+        "other_click": 4
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84,
+        "buy": 0.895
+      },
+      "decision_token_count": 5534,
+      "decision_entropy": 0.033186388816093725,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 5059,
+          "entropy": 0.16727240400532511
+        },
+        "click": {
+          "tokens": 3704,
+          "entropy": 0.04131021068655157
+        },
+        "option": {
+          "tokens": 1830,
+          "entropy": 0.016743418210533142
+        }
+      }
+    },
+    "P-shuffled/V_seen/sample": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "P-shuffled/V_seen/greedy": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "P-shuffled/V_unseen/sample": {
+      "reward": 0.3281053614354395,
+      "all_requirements": 0.49,
+      "strict": 0.49,
+      "length": 4.32125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 24,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 392,
+        "repeat_loop": 82,
+        "early_abstain": 23,
+        "partial_alternative_purchase": 195,
+        "wrong_purchase": 84,
+        "reward_unverifiable": 24
+      },
+      "legal_rate": 0.898756146948221,
+      "action_counts": {
+        "search": 811,
+        "open_listed_product": 816,
+        "select_visible_option": 738,
+        "illegal": 350,
+        "buy": 695,
+        "other_legal": 23,
+        "other_click": 24
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.83125,
+        "buy": 0.86875
+      },
+      "decision_token_count": 21389,
+      "decision_entropy": 0.0354412434848603,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20410,
+          "entropy": 0.17519553585711187
+        },
+        "click": {
+          "tokens": 13902,
+          "entropy": 0.04530592708577184
+        },
+        "option": {
+          "tokens": 7487,
+          "entropy": 0.01712431662231559
+        }
+      }
+    },
+    "P-shuffled/V_unseen/greedy": {
+      "reward": 0.38522744963369965,
+      "all_requirements": 0.525,
+      "strict": 0.525,
+      "length": 4.205,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "early_abstain": 6,
+        "repeat_loop": 15,
+        "partial_alternative_purchase": 48,
+        "wrong_purchase": 20,
+        "gold_purchase": 105,
+        "reward_unverifiable": 6
+      },
+      "legal_rate": 0.9227110582639715,
+      "action_counts": {
+        "search": 201,
+        "open_listed_product": 202,
+        "select_visible_option": 184,
+        "illegal": 65,
+        "other_legal": 6,
+        "buy": 179,
+        "other_click": 4
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84,
+        "buy": 0.895
+      },
+      "decision_token_count": 5534,
+      "decision_entropy": 0.033186388816093725,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 5059,
+          "entropy": 0.16727240400532511
+        },
+        "click": {
+          "tokens": 3704,
+          "entropy": 0.04131021068655157
+        },
+        "option": {
+          "tokens": 1830,
+          "entropy": 0.016743418210533142
+        }
+      }
+    }
+  },
+  "paired": {
+    "P-R-beta/sample/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.03751184824290295,
+          "ci95": [
+            0.012774529819139195,
+            0.06286957750257555
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.02125,
+          "ci95": [
+            0.005,
+            0.0375
+          ]
+        },
+        "strict": {
+          "estimate": 0.02125,
+          "ci95": [
+            0.005,
+            0.0375
+          ]
+        },
+        "length": {
+          "estimate": -0.0975,
+          "ci95": [
+            -0.175,
+            -0.02375
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.004973994104853476,
+          "ci95": [
+            -0.01636582764566163,
+            0.0259818112551511
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.005,
+            0.02625
+          ]
+        },
+        "strict": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.005,
+            0.02625
+          ]
+        },
+        "length": {
+          "estimate": 0.01875,
+          "ci95": [
+            -0.0375,
+            0.08
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.03253785413804947,
+          "ci95": [
+            -0.00039375307635072527,
+            0.06542372247381524
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.011250000000000001,
+          "ci95": [
+            -0.01125,
+            0.03375
+          ]
+        },
+        "strict": {
+          "estimate": 0.011250000000000001,
+          "ci95": [
+            -0.01125,
+            0.03375
+          ]
+        },
+        "length": {
+          "estimate": -0.11625,
+          "ci95": [
+            -0.21375,
+            -0.02375
+          ]
+        }
+      }
+    },
+    "P-R-beta/sample/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.03751184824290295,
+          "ci95": [
+            0.013722938505179718,
+            0.06275869940118478
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.02125,
+          "ci95": [
+            0.00625,
+            0.0375
+          ]
+        },
+        "strict": {
+          "estimate": 0.02125,
+          "ci95": [
+            0.00625,
+            0.0375
+          ]
+        },
+        "length": {
+          "estimate": -0.0975,
+          "ci95": [
+            -0.17375,
+            -0.025
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.004973994104853476,
+          "ci95": [
+            -0.016649180653331045,
+            0.025809560833047168
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.005,
+            0.025
+          ]
+        },
+        "strict": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.005,
+            0.025
+          ]
+        },
+        "length": {
+          "estimate": 0.01875,
+          "ci95": [
+            -0.03625,
+            0.08
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.03253785413804947,
+          "ci95": [
+            0.0015299653195112134,
+            0.06585289066077153
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.011250000000000001,
+          "ci95": [
+            -0.010000000000000002,
+            0.03375
+          ]
+        },
+        "strict": {
+          "estimate": 0.011250000000000001,
+          "ci95": [
+            -0.010000000000000002,
+            0.03375
+          ]
+        },
+        "length": {
+          "estimate": -0.11625,
+          "ci95": [
+            -0.2125,
+            -0.025
+          ]
+        }
+      }
+    },
+    "P-P-shuffled/sample/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.11074349816849813,
+          "ci95": [
+            0.07206657122825091,
+            0.15027766934237635
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.06625,
+          "ci95": [
+            0.0425,
+            0.09125
+          ]
+        },
+        "strict": {
+          "estimate": 0.06625,
+          "ci95": [
+            0.0425,
+            0.09125
+          ]
+        },
+        "length": {
+          "estimate": -0.235,
+          "ci95": [
+            -0.3275,
+            -0.14375
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.0979942694024725,
+          "ci95": [
+            0.06799891737494278,
+            0.12912222269917584
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.07125,
+          "ci95": [
+            0.05,
+            0.09375
+          ]
+        },
+        "strict": {
+          "estimate": 0.07125,
+          "ci95": [
+            0.05,
+            0.09375
+          ]
+        },
+        "length": {
+          "estimate": -0.05125,
+          "ci95": [
+            -0.13375,
+            0.0375
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.012749228766025633,
+          "ci95": [
+            -0.03675882730225503,
+            0.06265238681891026
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.0049999999999999906,
+          "ci95": [
+            -0.03874999999999999,
+            0.027499999999999997
+          ]
+        },
+        "strict": {
+          "estimate": -0.0049999999999999906,
+          "ci95": [
+            -0.03874999999999999,
+            0.027499999999999997
+          ]
+        },
+        "length": {
+          "estimate": -0.18375,
+          "ci95": [
+            -0.31125,
+            -0.060000000000000005
+          ]
+        }
+      }
+    },
+    "P-P-shuffled/sample/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.11074349816849813,
+          "ci95": [
+            0.07295518565418958,
+            0.1500731002461081
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.06625,
+          "ci95": [
+            0.0425,
+            0.09
+          ]
+        },
+        "strict": {
+          "estimate": 0.06625,
+          "ci95": [
+            0.0425,
+            0.09
+          ]
+        },
+        "length": {
+          "estimate": -0.235,
+          "ci95": [
+            -0.33,
+            -0.14375
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.0979942694024725,
+          "ci95": [
+            0.06818244924021293,
+            0.1294776728479853
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.07125,
+          "ci95": [
+            0.05,
+            0.09375
+          ]
+        },
+        "strict": {
+          "estimate": 0.07125,
+          "ci95": [
+            0.05,
+            0.09375
+          ]
+        },
+        "length": {
+          "estimate": -0.05125,
+          "ci95": [
+            -0.135,
+            0.03625
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.012749228766025633,
+          "ci95": [
+            -0.03699732872596149,
+            0.06323401360033197
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.0049999999999999906,
+          "ci95": [
+            -0.037500000000000006,
+            0.027500000000000004
+          ]
+        },
+        "strict": {
+          "estimate": -0.0049999999999999906,
+          "ci95": [
+            -0.037500000000000006,
+            0.027500000000000004
+          ]
+        },
+        "length": {
+          "estimate": -0.18375,
+          "ci95": [
+            -0.31253125,
+            -0.05875
+          ]
+        }
+      }
+    },
+    "P-R/sample/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.04769393815819597,
+          "ci95": [
+            0.023175844225761213,
+            0.0728115440240098
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0325,
+          "ci95": [
+            0.01625,
+            0.05
+          ]
+        },
+        "strict": {
+          "estimate": 0.0325,
+          "ci95": [
+            0.01625,
+            0.05
+          ]
+        },
+        "length": {
+          "estimate": -0.0825,
+          "ci95": [
+            -0.14128124999999997,
+            -0.025
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.028573789491758247,
+          "ci95": [
+            0.00936996372767857,
+            0.04808570731026788
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.025,
+          "ci95": [
+            0.01125,
+            0.04
+          ]
+        },
+        "strict": {
+          "estimate": 0.025,
+          "ci95": [
+            0.01125,
+            0.04
+          ]
+        },
+        "length": {
+          "estimate": 0.02875,
+          "ci95": [
+            -0.025,
+            0.08625
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.01912014866643772,
+          "ci95": [
+            -0.012899654089400175,
+            0.05153671143472412
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0075,
+          "ci95": [
+            -0.015,
+            0.03
+          ]
+        },
+        "strict": {
+          "estimate": 0.0075,
+          "ci95": [
+            -0.015,
+            0.03
+          ]
+        },
+        "length": {
+          "estimate": -0.11125,
+          "ci95": [
+            -0.19375,
+            -0.03125
+          ]
+        }
+      }
+    },
+    "P-R/sample/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.04769393815819597,
+          "ci95": [
+            0.023871729463570288,
+            0.07319262375157393
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0325,
+          "ci95": [
+            0.01625,
+            0.05
+          ]
+        },
+        "strict": {
+          "estimate": 0.0325,
+          "ci95": [
+            0.01625,
+            0.05
+          ]
+        },
+        "length": {
+          "estimate": -0.0825,
+          "ci95": [
+            -0.1425,
+            -0.02375
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.028573789491758247,
+          "ci95": [
+            0.008752011253720236,
+            0.04859099183693911
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.025,
+          "ci95": [
+            0.01125,
+            0.04
+          ]
+        },
+        "strict": {
+          "estimate": 0.025,
+          "ci95": [
+            0.01125,
+            0.04
+          ]
+        },
+        "length": {
+          "estimate": 0.02875,
+          "ci95": [
+            -0.025,
+            0.085
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.01912014866643772,
+          "ci95": [
+            -0.012434160031049682,
+            0.05067486961280905
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0075,
+          "ci95": [
+            -0.015,
+            0.03
+          ]
+        },
+        "strict": {
+          "estimate": 0.0075,
+          "ci95": [
+            -0.015,
+            0.03
+          ]
+        },
+        "length": {
+          "estimate": -0.11125,
+          "ci95": [
+            -0.1925,
+            -0.028749999999999998
+          ]
+        }
+      }
+    },
+    "R-B/sample/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.0004971132383241733,
+          "ci95": [
+            -0.022580595112894918,
+            0.023365249399038446
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.00125,
+          "ci95": [
+            -0.01625,
+            0.01375
+          ]
+        },
+        "strict": {
+          "estimate": -0.00125,
+          "ci95": [
+            -0.01625,
+            0.01375
+          ]
+        },
+        "length": {
+          "estimate": 0.00875,
+          "ci95": [
+            -0.05375,
+            0.0725
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.017989447401556776,
+          "ci95": [
+            -0.0039822347899496355,
+            0.04064815830328525
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0125,
+          "ci95": [
+            -0.00125,
+            0.0275
+          ]
+        },
+        "strict": {
+          "estimate": 0.0125,
+          "ci95": [
+            -0.00125,
+            0.0275
+          ]
+        },
+        "length": {
+          "estimate": 0.01375,
+          "ci95": [
+            -0.0325,
+            0.065
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.017492334163232603,
+          "ci95": [
+            -0.04946147764995421,
+            0.014659162964314302
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.01375,
+          "ci95": [
+            -0.035,
+            0.00625
+          ]
+        },
+        "strict": {
+          "estimate": -0.01375,
+          "ci95": [
+            -0.035,
+            0.00625
+          ]
+        },
+        "length": {
+          "estimate": -0.004999999999999999,
+          "ci95": [
+            -0.08375,
+            0.07375000000000001
+          ]
+        }
+      }
+    },
+    "R-B/sample/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.0004971132383241733,
+          "ci95": [
+            -0.022326372463799215,
+            0.02322526819697229
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.00125,
+          "ci95": [
+            -0.01625,
+            0.01375
+          ]
+        },
+        "strict": {
+          "estimate": -0.00125,
+          "ci95": [
+            -0.01625,
+            0.01375
+          ]
+        },
+        "length": {
+          "estimate": 0.00875,
+          "ci95": [
+            -0.05375,
+            0.07125
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.017989447401556776,
+          "ci95": [
+            -0.004108084542410715,
+            0.04026784372853709
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0125,
+          "ci95": [
+            -0.00125,
+            0.02625
+          ]
+        },
+        "strict": {
+          "estimate": 0.0125,
+          "ci95": [
+            -0.00125,
+            0.02625
+          ]
+        },
+        "length": {
+          "estimate": 0.01375,
+          "ci95": [
+            -0.0325,
+            0.06253124999999954
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.017492334163232603,
+          "ci95": [
+            -0.04949979073660714,
+            0.014494770293183344
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.01375,
+          "ci95": [
+            -0.034999999999999996,
+            0.00625
+          ]
+        },
+        "strict": {
+          "estimate": -0.01375,
+          "ci95": [
+            -0.034999999999999996,
+            0.00625
+          ]
+        },
+        "length": {
+          "estimate": -0.004999999999999999,
+          "ci95": [
+            -0.085,
+            0.07375
+          ]
+        }
+      }
+    },
+    "R-beta-B/sample/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.010679203153617223,
+          "ci95": [
+            -0.010499978859031587,
+            0.03142749416924221
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.0025,
+            0.02375
+          ]
+        },
+        "strict": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.0025,
+            0.02375
+          ]
+        },
+        "length": {
+          "estimate": 0.02375,
+          "ci95": [
+            -0.0325,
+            0.08875
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.041589242788461524,
+          "ci95": [
+            0.02115708383413462,
+            0.06205350310496795
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0275,
+          "ci95": [
+            0.01375,
+            0.04125
+          ]
+        },
+        "strict": {
+          "estimate": 0.0275,
+          "ci95": [
+            0.01375,
+            0.04125
+          ]
+        },
+        "length": {
+          "estimate": 0.02375,
+          "ci95": [
+            -0.025,
+            0.07875
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.030910039634844302,
+          "ci95": [
+            -0.060062627024668046,
+            -0.0017948610097584712
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.0175,
+          "ci95": [
+            -0.036250000000000004,
+            0.0012500000000000011
+          ]
+        },
+        "strict": {
+          "estimate": -0.0175,
+          "ci95": [
+            -0.036250000000000004,
+            0.0012500000000000011
+          ]
+        },
+        "length": {
+          "estimate": 0.0,
+          "ci95": [
+            -0.0775,
+            0.08249999999999999
+          ]
+        }
+      }
+    },
+    "R-beta-B/sample/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.010679203153617223,
+          "ci95": [
+            -0.011085860340831042,
+            0.03185062381953983
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.00375,
+            0.02375
+          ]
+        },
+        "strict": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.00375,
+            0.02375
+          ]
+        },
+        "length": {
+          "estimate": 0.02375,
+          "ci95": [
+            -0.03375,
+            0.09003124999999954
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.041589242788461524,
+          "ci95": [
+            0.021391814403044863,
+            0.0621451447315705
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0275,
+          "ci95": [
+            0.01375,
+            0.04125
+          ]
+        },
+        "strict": {
+          "estimate": 0.0275,
+          "ci95": [
+            0.01375,
+            0.04125
+          ]
+        },
+        "length": {
+          "estimate": 0.02375,
+          "ci95": [
+            -0.023781249999999973,
+            0.07875
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.030910039634844302,
+          "ci95": [
+            -0.059862904110863084,
+            -0.0009962376409397872
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.0175,
+          "ci95": [
+            -0.0375,
+            0.0012500000000000011
+          ]
+        },
+        "strict": {
+          "estimate": -0.0175,
+          "ci95": [
+            -0.0375,
+            0.0012500000000000011
+          ]
+        },
+        "length": {
+          "estimate": 0.0,
+          "ci95": [
+            -0.08124999999999999,
+            0.08249999999999999
+          ]
+        }
+      }
+    },
+    "P-B/sample/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.048191051396520156,
+          "ci95": [
+            0.019388310618418038,
+            0.07781756063272666
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.03125,
+          "ci95": [
+            0.01375,
+            0.05
+          ]
+        },
+        "strict": {
+          "estimate": 0.03125,
+          "ci95": [
+            0.01375,
+            0.05
+          ]
+        },
+        "length": {
+          "estimate": -0.07375,
+          "ci95": [
+            -0.14125,
+            -0.00625
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.04656323689331503,
+          "ci95": [
+            0.023886330092433603,
+            0.069445954419929
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0375,
+          "ci95": [
+            0.02125,
+            0.055
+          ]
+        },
+        "strict": {
+          "estimate": 0.0375,
+          "ci95": [
+            0.02125,
+            0.055
+          ]
+        },
+        "length": {
+          "estimate": 0.0425,
+          "ci95": [
+            -0.02,
+            0.1125
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.0016278145032051286,
+          "ci95": [
+            -0.03572067010788689,
+            0.03884564807263049
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.006249999999999999,
+          "ci95": [
+            -0.03125,
+            0.018750000000000003
+          ]
+        },
+        "strict": {
+          "estimate": -0.006249999999999999,
+          "ci95": [
+            -0.03125,
+            0.018750000000000003
+          ]
+        },
+        "length": {
+          "estimate": -0.11624999999999999,
+          "ci95": [
+            -0.215,
+            -0.023750000000000004
+          ]
+        }
+      }
+    },
+    "P-B/sample/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.048191051396520156,
+          "ci95": [
+            0.01945360798706502,
+            0.07742101988181088
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.03125,
+          "ci95": [
+            0.01375,
+            0.05
+          ]
+        },
+        "strict": {
+          "estimate": 0.03125,
+          "ci95": [
+            0.01375,
+            0.05
+          ]
+        },
+        "length": {
+          "estimate": -0.07375,
+          "ci95": [
+            -0.1425,
+            -0.00625
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.04656323689331503,
+          "ci95": [
+            0.024441706194196423,
+            0.06974737258184523
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0375,
+          "ci95": [
+            0.02125,
+            0.055
+          ]
+        },
+        "strict": {
+          "estimate": 0.0375,
+          "ci95": [
+            0.02125,
+            0.055
+          ]
+        },
+        "length": {
+          "estimate": 0.0425,
+          "ci95": [
+            -0.02,
+            0.11
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.0016278145032051286,
+          "ci95": [
+            -0.03497384218320742,
+            0.038149276699862636
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.006249999999999999,
+          "ci95": [
+            -0.03125,
+            0.01875
+          ]
+        },
+        "strict": {
+          "estimate": -0.006249999999999999,
+          "ci95": [
+            -0.03125,
+            0.01875
+          ]
+        },
+        "length": {
+          "estimate": -0.11624999999999999,
+          "ci95": [
+            -0.21375,
+            -0.0225
+          ]
+        }
+      }
+    },
+    "P-shuffled-B/sample/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": -0.06255244677197802,
+          "ci95": [
+            -0.09063639895260987,
+            -0.03539009336366758
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.035,
+          "ci95": [
+            -0.05375,
+            -0.0175
+          ]
+        },
+        "strict": {
+          "estimate": -0.035,
+          "ci95": [
+            -0.05375,
+            -0.0175
+          ]
+        },
+        "length": {
+          "estimate": 0.16125,
+          "ci95": [
+            0.0975,
+            0.2275
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": -0.0514310325091575,
+          "ci95": [
+            -0.0778350085136218,
+            -0.025549249871222528
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.03375,
+          "ci95": [
+            -0.05125,
+            -0.01625
+          ]
+        },
+        "strict": {
+          "estimate": -0.03375,
+          "ci95": [
+            -0.05125,
+            -0.01625
+          ]
+        },
+        "length": {
+          "estimate": 0.09375,
+          "ci95": [
+            0.04121875000000003,
+            0.15
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.011121414262820518,
+          "ci95": [
+            -0.04921601097470237,
+            0.02667076962425593
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.0012500000000000011,
+          "ci95": [
+            -0.026250000000000002,
+            0.02375
+          ]
+        },
+        "strict": {
+          "estimate": -0.0012500000000000011,
+          "ci95": [
+            -0.026250000000000002,
+            0.02375
+          ]
+        },
+        "length": {
+          "estimate": 0.0675,
+          "ci95": [
+            -0.018750000000000003,
+            0.15125
+          ]
+        }
+      }
+    },
+    "P-shuffled-B/sample/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": -0.06255244677197802,
+          "ci95": [
+            -0.09016213577438184,
+            -0.03550894230769231
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.035,
+          "ci95": [
+            -0.0525,
+            -0.0175
+          ]
+        },
+        "strict": {
+          "estimate": -0.035,
+          "ci95": [
+            -0.0525,
+            -0.0175
+          ]
+        },
+        "length": {
+          "estimate": 0.16125,
+          "ci95": [
+            0.0975,
+            0.2275
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": -0.0514310325091575,
+          "ci95": [
+            -0.07851624098557693,
+            -0.026268076422275667
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.03375,
+          "ci95": [
+            -0.05125,
+            -0.01625
+          ]
+        },
+        "strict": {
+          "estimate": -0.03375,
+          "ci95": [
+            -0.05125,
+            -0.01625
+          ]
+        },
+        "length": {
+          "estimate": 0.09375,
+          "ci95": [
+            0.04,
+            0.14878124999999953
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.011121414262820518,
+          "ci95": [
+            -0.04959010616987179,
+            0.026868145497081
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.0012500000000000011,
+          "ci95": [
+            -0.02625,
+            0.023749999999999997
+          ]
+        },
+        "strict": {
+          "estimate": -0.0012500000000000011,
+          "ci95": [
+            -0.02625,
+            0.023749999999999997
+          ]
+        },
+        "length": {
+          "estimate": 0.0675,
+          "ci95": [
+            -0.01625,
+            0.15250000000000002
+          ]
+        }
+      }
+    },
+    "P-R-beta/greedy/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.008714228479853483,
+          "ci95": [
+            -0.03313867616758241,
+            0.05135133785485347
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.015,
+            0.04
+          ]
+        },
+        "strict": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.015,
+            0.04
+          ]
+        },
+        "length": {
+          "estimate": -0.045,
+          "ci95": [
+            -0.085,
+            -0.01
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.015592548076923078,
+          "ci95": [
+            -0.021165204326923075,
+            0.05487391826923076
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.015,
+          "ci95": [
+            -0.01,
+            0.04
+          ]
+        },
+        "strict": {
+          "estimate": 0.015,
+          "ci95": [
+            -0.01,
+            0.04
+          ]
+        },
+        "length": {
+          "estimate": 0.005,
+          "ci95": [
+            -0.06,
+            0.09
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.006878319597069596,
+          "ci95": [
+            -0.06408652987637363,
+            0.04935263135302199
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.004999999999999999,
+          "ci95": [
+            -0.045,
+            0.030000000000000002
+          ]
+        },
+        "strict": {
+          "estimate": -0.004999999999999999,
+          "ci95": [
+            -0.045,
+            0.030000000000000002
+          ]
+        },
+        "length": {
+          "estimate": -0.049999999999999996,
+          "ci95": [
+            -0.14,
+            0.025
+          ]
+        }
+      }
+    },
+    "P-R-beta/greedy/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.008714228479853483,
+          "ci95": [
+            -0.03344224473443224,
+            0.050891460622710605
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.015,
+            0.04
+          ]
+        },
+        "strict": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.015,
+            0.04
+          ]
+        },
+        "length": {
+          "estimate": -0.045,
+          "ci95": [
+            -0.085,
+            -0.01
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.015592548076923078,
+          "ci95": [
+            -0.02176144831730769,
+            0.055757271634615385
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.015,
+          "ci95": [
+            -0.01,
+            0.04
+          ]
+        },
+        "strict": {
+          "estimate": 0.015,
+          "ci95": [
+            -0.01,
+            0.04
+          ]
+        },
+        "length": {
+          "estimate": 0.005,
+          "ci95": [
+            -0.06,
+            0.09
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.006878319597069596,
+          "ci95": [
+            -0.06419374141483516,
+            0.05046916924221612
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.004999999999999999,
+          "ci95": [
+            -0.045,
+            0.034999999999999996
+          ]
+        },
+        "strict": {
+          "estimate": -0.004999999999999999,
+          "ci95": [
+            -0.045,
+            0.034999999999999996
+          ]
+        },
+        "length": {
+          "estimate": -0.049999999999999996,
+          "ci95": [
+            -0.14500000000000002,
+            0.025
+          ]
+        }
+      }
+    },
+    "P-P-shuffled/greedy/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.08849479166666668,
+          "ci95": [
+            0.031284134615384616,
+            0.14942994791666667
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.07,
+          "ci95": [
+            0.03,
+            0.115
+          ]
+        },
+        "strict": {
+          "estimate": 0.07,
+          "ci95": [
+            0.03,
+            0.115
+          ]
+        },
+        "length": {
+          "estimate": -0.21,
+          "ci95": [
+            -0.33,
+            -0.11
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.08561478365384614,
+          "ci95": [
+            0.030817623197115385,
+            0.14558320312499998
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.07,
+          "ci95": [
+            0.035,
+            0.11
+          ]
+        },
+        "strict": {
+          "estimate": 0.07,
+          "ci95": [
+            0.035,
+            0.11
+          ]
+        },
+        "length": {
+          "estimate": -0.075,
+          "ci95": [
+            -0.19,
+            0.04
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.0028800080128205396,
+          "ci95": [
+            -0.07989890324519229,
+            0.08319139122596142
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0,
+          "ci95": [
+            -0.055,
+            0.055
+          ]
+        },
+        "strict": {
+          "estimate": 0.0,
+          "ci95": [
+            -0.055,
+            0.055
+          ]
+        },
+        "length": {
+          "estimate": -0.135,
+          "ci95": [
+            -0.29500000000000004,
+            0.01999999999999999
+          ]
+        }
+      }
+    },
+    "P-P-shuffled/greedy/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.08849479166666668,
+          "ci95": [
+            0.03236099759615385,
+            0.1504251302083333
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.07,
+          "ci95": [
+            0.03,
+            0.11
+          ]
+        },
+        "strict": {
+          "estimate": 0.07,
+          "ci95": [
+            0.03,
+            0.11
+          ]
+        },
+        "length": {
+          "estimate": -0.21,
+          "ci95": [
+            -0.335,
+            -0.11
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.08561478365384614,
+          "ci95": [
+            0.030428320312499993,
+            0.14410351562499996
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.07,
+          "ci95": [
+            0.035,
+            0.11
+          ]
+        },
+        "strict": {
+          "estimate": 0.07,
+          "ci95": [
+            0.035,
+            0.11
+          ]
+        },
+        "length": {
+          "estimate": -0.075,
+          "ci95": [
+            -0.19,
+            0.035
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.0028800080128205396,
+          "ci95": [
+            -0.08034812199519231,
+            0.08405132211538459
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0,
+          "ci95": [
+            -0.055,
+            0.055
+          ]
+        },
+        "strict": {
+          "estimate": 0.0,
+          "ci95": [
+            -0.055,
+            0.055
+          ]
+        },
+        "length": {
+          "estimate": -0.135,
+          "ci95": [
+            -0.3,
+            0.020000000000000018
+          ]
+        }
+      }
+    },
+    "P-R/greedy/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.038032051282051296,
+          "ci95": [
+            -0.010351954555860805,
+            0.08923537660256403
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.035,
+          "ci95": [
+            0.005,
+            0.07
+          ]
+        },
+        "strict": {
+          "estimate": 0.035,
+          "ci95": [
+            0.005,
+            0.07
+          ]
+        },
+        "length": {
+          "estimate": -0.105,
+          "ci95": [
+            -0.24,
+            -0.01
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.05369110576923077,
+          "ci95": [
+            0.015656250000000003,
+            0.09666884014423073
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.04,
+          "ci95": [
+            0.015,
+            0.07
+          ]
+        },
+        "strict": {
+          "estimate": 0.04,
+          "ci95": [
+            0.015,
+            0.07
+          ]
+        },
+        "length": {
+          "estimate": -0.01,
+          "ci95": [
+            -0.055,
+            0.035
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.015659054487179476,
+          "ci95": [
+            -0.08105772951007326,
+            0.048653089228479864
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.0049999999999999975,
+          "ci95": [
+            -0.045000000000000005,
+            0.035
+          ]
+        },
+        "strict": {
+          "estimate": -0.0049999999999999975,
+          "ci95": [
+            -0.045000000000000005,
+            0.035
+          ]
+        },
+        "length": {
+          "estimate": -0.095,
+          "ci95": [
+            -0.24,
+            0.010000000000000002
+          ]
+        }
+      }
+    },
+    "P-R/greedy/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.038032051282051296,
+          "ci95": [
+            -0.009675145947802197,
+            0.08860489354395606
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.035,
+          "ci95": [
+            0.005,
+            0.07
+          ]
+        },
+        "strict": {
+          "estimate": 0.035,
+          "ci95": [
+            0.005,
+            0.07
+          ]
+        },
+        "length": {
+          "estimate": -0.105,
+          "ci95": [
+            -0.25,
+            -0.01
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.05369110576923077,
+          "ci95": [
+            0.01701484375,
+            0.0975666766826923
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.04,
+          "ci95": [
+            0.015,
+            0.07
+          ]
+        },
+        "strict": {
+          "estimate": 0.04,
+          "ci95": [
+            0.015,
+            0.07
+          ]
+        },
+        "length": {
+          "estimate": -0.01,
+          "ci95": [
+            -0.055,
+            0.035
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": -0.015659054487179476,
+          "ci95": [
+            -0.08046768973214287,
+            0.047574281707875414
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.0049999999999999975,
+          "ci95": [
+            -0.045000000000000005,
+            0.035
+          ]
+        },
+        "strict": {
+          "estimate": -0.0049999999999999975,
+          "ci95": [
+            -0.045000000000000005,
+            0.035
+          ]
+        },
+        "length": {
+          "estimate": -0.095,
+          "ci95": [
+            -0.24000000000000002,
+            0.010000000000000002
+          ]
+        }
+      }
+    },
+    "R-B/greedy/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.012653159340659349,
+          "ci95": [
+            -0.02132764423076923,
+            0.047223883928571395
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.005,
+          "ci95": [
+            -0.02,
+            0.03
+          ]
+        },
+        "strict": {
+          "estimate": 0.005,
+          "ci95": [
+            -0.02,
+            0.03
+          ]
+        },
+        "length": {
+          "estimate": 0.03,
+          "ci95": [
+            -0.065,
+            0.165
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": -0.027320312500000003,
+          "ci95": [
+            -0.06771992187499999,
+            0.010312695312499998
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.005,
+          "ci95": [
+            -0.03,
+            0.02
+          ]
+        },
+        "strict": {
+          "estimate": -0.005,
+          "ci95": [
+            -0.03,
+            0.02
+          ]
+        },
+        "length": {
+          "estimate": 0.06,
+          "ci95": [
+            -0.01,
+            0.145
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.03997347184065935,
+          "ci95": [
+            -0.010876955271291209,
+            0.09443798076923077
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.025,
+            0.049999999999999996
+          ]
+        },
+        "strict": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.025,
+            0.049999999999999996
+          ]
+        },
+        "length": {
+          "estimate": -0.03,
+          "ci95": [
+            -0.16,
+            0.125
+          ]
+        }
+      }
+    },
+    "R-B/greedy/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.012653159340659349,
+          "ci95": [
+            -0.021928670157967033,
+            0.04849188701923076
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.005,
+          "ci95": [
+            -0.02,
+            0.03
+          ]
+        },
+        "strict": {
+          "estimate": 0.005,
+          "ci95": [
+            -0.02,
+            0.03
+          ]
+        },
+        "length": {
+          "estimate": 0.03,
+          "ci95": [
+            -0.065,
+            0.17
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": -0.027320312500000003,
+          "ci95": [
+            -0.06802363281250001,
+            0.009258203124999998
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.005,
+          "ci95": [
+            -0.03,
+            0.02
+          ]
+        },
+        "strict": {
+          "estimate": -0.005,
+          "ci95": [
+            -0.03,
+            0.02
+          ]
+        },
+        "length": {
+          "estimate": 0.06,
+          "ci95": [
+            -0.01,
+            0.145
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.03997347184065935,
+          "ci95": [
+            -0.012268805803571427,
+            0.09408982872596153
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.025,
+            0.045000000000000005
+          ]
+        },
+        "strict": {
+          "estimate": 0.01,
+          "ci95": [
+            -0.025,
+            0.045000000000000005
+          ]
+        },
+        "length": {
+          "estimate": -0.03,
+          "ci95": [
+            -0.16,
+            0.125
+          ]
+        }
+      }
+    },
+    "R-beta-B/greedy/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.04197098214285715,
+          "ci95": [
+            -0.003138560267857141,
+            0.0910981026785714
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.03,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "strict": {
+          "estimate": 0.03,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "length": {
+          "estimate": -0.03,
+          "ci95": [
+            -0.09,
+            0.025
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.010778245192307691,
+          "ci95": [
+            -0.01721101262019231,
+            0.0398400390625
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.02,
+          "ci95": [
+            0.0,
+            0.045
+          ]
+        },
+        "strict": {
+          "estimate": 0.02,
+          "ci95": [
+            0.0,
+            0.045
+          ]
+        },
+        "length": {
+          "estimate": 0.045,
+          "ci95": [
+            0.0,
+            0.09
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.031192736950549457,
+          "ci95": [
+            -0.023671649639423073,
+            0.08773917410714285
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.009999999999999998,
+          "ci95": [
+            -0.03,
+            0.049999999999999996
+          ]
+        },
+        "strict": {
+          "estimate": 0.009999999999999998,
+          "ci95": [
+            -0.03,
+            0.049999999999999996
+          ]
+        },
+        "length": {
+          "estimate": -0.075,
+          "ci95": [
+            -0.15,
+            -0.004999999999999999
+          ]
+        }
+      }
+    },
+    "R-beta-B/greedy/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.04197098214285715,
+          "ci95": [
+            -0.003057645089285716,
+            0.09061992187499997
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.03,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "strict": {
+          "estimate": 0.03,
+          "ci95": [
+            0.0,
+            0.06
+          ]
+        },
+        "length": {
+          "estimate": -0.03,
+          "ci95": [
+            -0.09,
+            0.025
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.010778245192307691,
+          "ci95": [
+            -0.017855739182692308,
+            0.04031762319711538
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.02,
+          "ci95": [
+            -0.005,
+            0.045
+          ]
+        },
+        "strict": {
+          "estimate": 0.02,
+          "ci95": [
+            -0.005,
+            0.045
+          ]
+        },
+        "length": {
+          "estimate": 0.045,
+          "ci95": [
+            0.005,
+            0.09
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.031192736950549457,
+          "ci95": [
+            -0.023161847527472534,
+            0.08736313315590653
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.009999999999999998,
+          "ci95": [
+            -0.03,
+            0.05
+          ]
+        },
+        "strict": {
+          "estimate": 0.009999999999999998,
+          "ci95": [
+            -0.03,
+            0.05
+          ]
+        },
+        "length": {
+          "estimate": -0.075,
+          "ci95": [
+            -0.15,
+            -0.004999999999999999
+          ]
+        }
+      }
+    },
+    "P-B/greedy/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.05068521062271063,
+          "ci95": [
+            -0.00025229080815017857,
+            0.1043624427655677
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.04,
+          "ci95": [
+            0.01,
+            0.075
+          ]
+        },
+        "strict": {
+          "estimate": 0.04,
+          "ci95": [
+            0.01,
+            0.075
+          ]
+        },
+        "length": {
+          "estimate": -0.075,
+          "ci95": [
+            -0.135,
+            -0.02
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.02637079326923077,
+          "ci95": [
+            -0.012719441105769226,
+            0.06791367187500001
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.035,
+          "ci95": [
+            0.01,
+            0.065
+          ]
+        },
+        "strict": {
+          "estimate": 0.035,
+          "ci95": [
+            0.01,
+            0.065
+          ]
+        },
+        "length": {
+          "estimate": 0.05,
+          "ci95": [
+            -0.02,
+            0.135
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.024314417353479858,
+          "ci95": [
+            -0.04159783653846154,
+            0.09073725961538459
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0049999999999999975,
+          "ci95": [
+            -0.04,
+            0.05
+          ]
+        },
+        "strict": {
+          "estimate": 0.0049999999999999975,
+          "ci95": [
+            -0.04,
+            0.05
+          ]
+        },
+        "length": {
+          "estimate": -0.125,
+          "ci95": [
+            -0.22999999999999998,
+            -0.030000000000000002
+          ]
+        }
+      }
+    },
+    "P-B/greedy/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": 0.05068521062271063,
+          "ci95": [
+            -0.0013173005380036614,
+            0.10590011160714283
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.04,
+          "ci95": [
+            0.01,
+            0.075
+          ]
+        },
+        "strict": {
+          "estimate": 0.04,
+          "ci95": [
+            0.01,
+            0.075
+          ]
+        },
+        "length": {
+          "estimate": -0.075,
+          "ci95": [
+            -0.135,
+            -0.02
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": 0.02637079326923077,
+          "ci95": [
+            -0.013259179687499999,
+            0.06771864483173076
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.035,
+          "ci95": [
+            0.01,
+            0.065
+          ]
+        },
+        "strict": {
+          "estimate": 0.035,
+          "ci95": [
+            0.01,
+            0.065
+          ]
+        },
+        "length": {
+          "estimate": 0.05,
+          "ci95": [
+            -0.02,
+            0.14
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.024314417353479858,
+          "ci95": [
+            -0.040835091861263724,
+            0.0921737630208333
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0049999999999999975,
+          "ci95": [
+            -0.039999999999999994,
+            0.05
+          ]
+        },
+        "strict": {
+          "estimate": 0.0049999999999999975,
+          "ci95": [
+            -0.039999999999999994,
+            0.05
+          ]
+        },
+        "length": {
+          "estimate": -0.125,
+          "ci95": [
+            -0.235,
+            -0.034999999999999996
+          ]
+        }
+      }
+    },
+    "P-shuffled-B/greedy/task": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": -0.037809581043956035,
+          "ci95": [
+            -0.08660755923763737,
+            0.007604296874999983
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.03,
+          "ci95": [
+            -0.06,
+            0.0
+          ]
+        },
+        "strict": {
+          "estimate": -0.03,
+          "ci95": [
+            -0.06,
+            0.0
+          ]
+        },
+        "length": {
+          "estimate": 0.135,
+          "ci95": [
+            0.05,
+            0.245
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": -0.0592439903846154,
+          "ci95": [
+            -0.1072096153846154,
+            -0.015142427884615412
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.035,
+          "ci95": [
+            -0.06512499999999989,
+            -0.005
+          ]
+        },
+        "strict": {
+          "estimate": -0.035,
+          "ci95": [
+            -0.06512499999999989,
+            -0.005
+          ]
+        },
+        "length": {
+          "estimate": 0.125,
+          "ci95": [
+            0.05,
+            0.215
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.021434409340659363,
+          "ci95": [
+            -0.044018775755494496,
+            0.08799972098214287
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0050000000000000044,
+          "ci95": [
+            -0.04,
+            0.049999999999999996
+          ]
+        },
+        "strict": {
+          "estimate": 0.0050000000000000044,
+          "ci95": [
+            -0.04,
+            0.049999999999999996
+          ]
+        },
+        "length": {
+          "estimate": 0.010000000000000009,
+          "ci95": [
+            -0.11000000000000001,
+            0.14500000000000002
+          ]
+        }
+      }
+    },
+    "P-shuffled-B/greedy/asin": {
+      "T_opd_eval": {
+        "reward": {
+          "estimate": -0.037809581043956035,
+          "ci95": [
+            -0.08575189732142856,
+            0.008212555803571416
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.03,
+          "ci95": [
+            -0.06,
+            0.0
+          ]
+        },
+        "strict": {
+          "estimate": -0.03,
+          "ci95": [
+            -0.06,
+            0.0
+          ]
+        },
+        "length": {
+          "estimate": 0.135,
+          "ci95": [
+            0.05,
+            0.245
+          ]
+        }
+      },
+      "V": {
+        "reward": {
+          "estimate": -0.0592439903846154,
+          "ci95": [
+            -0.10739110576923076,
+            -0.015154687500000022
+          ]
+        },
+        "all_requirements": {
+          "estimate": -0.035,
+          "ci95": [
+            -0.07,
+            -0.005
+          ]
+        },
+        "strict": {
+          "estimate": -0.035,
+          "ci95": [
+            -0.07,
+            -0.005
+          ]
+        },
+        "length": {
+          "estimate": 0.125,
+          "ci95": [
+            0.05,
+            0.215
+          ]
+        }
+      },
+      "difference_of_gaps": {
+        "reward": {
+          "estimate": 0.021434409340659363,
+          "ci95": [
+            -0.04359068080357144,
+            0.08779945484203297
+          ]
+        },
+        "all_requirements": {
+          "estimate": 0.0050000000000000044,
+          "ci95": [
+            -0.04,
+            0.049999999999999996
+          ]
+        },
+        "strict": {
+          "estimate": 0.0050000000000000044,
+          "ci95": [
+            -0.04,
+            0.049999999999999996
+          ]
+        },
+        "length": {
+          "estimate": 0.010000000000000009,
+          "ci95": [
+            -0.12,
+            0.145
+          ]
+        }
+      }
+    }
+  },
+  "gaps": {
+    "B/sample": {
+      "reward": -0.22735755065247246,
+      "strict": -0.13000000000000006,
+      "all_requirements": -0.13000000000000006
+    },
+    "R/sample": {
+      "reward": -0.24484988481570524,
+      "strict": -0.14375,
+      "all_requirements": -0.14375
+    },
+    "R-beta/sample": {
+      "reward": -0.2582675902873167,
+      "strict": -0.14750000000000002,
+      "all_requirements": -0.14750000000000002
+    },
+    "P/sample": {
+      "reward": -0.22572973614926742,
+      "strict": -0.13625000000000004,
+      "all_requirements": -0.13625000000000004
+    },
+    "P-shuffled/sample": {
+      "reward": -0.23847896491529297,
+      "strict": -0.13124999999999998,
+      "all_requirements": -0.13124999999999998
+    },
+    "B/greedy": {
+      "reward": -0.26748950320512843,
+      "strict": -0.15000000000000008,
+      "all_requirements": -0.15000000000000008
+    },
+    "R/greedy": {
+      "reward": -0.22751603136446907,
+      "strict": -0.14000000000000007,
+      "all_requirements": -0.14000000000000007
+    },
+    "R-beta/greedy": {
+      "reward": -0.23629676625457882,
+      "strict": -0.13999999999999996,
+      "all_requirements": -0.13999999999999996
+    },
+    "P/greedy": {
+      "reward": -0.2431750858516484,
+      "strict": -0.14499999999999996,
+      "all_requirements": -0.14499999999999996
+    },
+    "P-shuffled/greedy": {
+      "reward": -0.246055093864469,
+      "strict": -0.14500000000000002,
+      "all_requirements": -0.14500000000000002
+    }
+  },
+  "independent_pool_bootstrap": true,
+  "entropy": "full native vocabulary at temperature 1; token-weighted on click and option",
+  "manifest_sha256": "2b9d3f8cbf33b77089509a75ee3d7ff1159156603334d84e34675c79cbc4814f"
+}
