@@ -1,0 +1,208 @@
+{
+  "placeholder_sample": {
+    "episodes": 200,
+    "steps": {
+      "search": 202,
+      "open_listed_product": 202,
+      "buy": 184,
+      "select_visible_option": 206,
+      "illegal": 65,
+      "other_legal": 3,
+      "other_click": 3
+    },
+    "episodes_with_action": {
+      "search": 200,
+      "open_listed_product": 199,
+      "buy": 184,
+      "select_visible_option": 175,
+      "illegal": 26,
+      "other_legal": 3,
+      "other_click": 3
+    }
+  },
+  "none_sample": {
+    "episodes": 200,
+    "steps": {
+      "search": 207,
+      "open_listed_product": 205,
+      "select_visible_option": 207,
+      "buy": 181,
+      "illegal": 61,
+      "other_legal": 6,
+      "other_click": 8
+    },
+    "episodes_with_action": {
+      "search": 200,
+      "open_listed_product": 200,
+      "select_visible_option": 174,
+      "buy": 181,
+      "illegal": 29,
+      "other_legal": 6,
+      "other_click": 6
+    }
+  },
+  "none_greedy": {
+    "episodes": 100,
+    "steps": {
+      "search": 100,
+      "open_listed_product": 100,
+      "select_visible_option": 100,
+      "buy": 93,
+      "illegal": 20,
+      "other_legal": 2
+    },
+    "episodes_with_action": {
+      "search": 100,
+      "open_listed_product": 100,
+      "select_visible_option": 87,
+      "buy": 93,
+      "illegal": 9,
+      "other_legal": 2
+    }
+  },
+  "full_sample": {
+    "episodes": 200,
+    "steps": {
+      "search": 207,
+      "open_listed_product": 206,
+      "select_visible_option": 195,
+      "buy": 175,
+      "illegal": 81,
+      "other_legal": 4,
+      "other_click": 9
+    },
+    "episodes_with_action": {
+      "search": 200,
+      "open_listed_product": 199,
+      "select_visible_option": 176,
+      "buy": 175,
+      "illegal": 35,
+      "other_legal": 4,
+      "other_click": 3
+    }
+  },
+  "product_sample": {
+    "episodes": 200,
+    "steps": {
+      "search": 204,
+      "open_listed_product": 204,
+      "select_visible_option": 183,
+      "buy": 177,
+      "illegal": 100,
+      "other_click": 6,
+      "other_legal": 1
+    },
+    "episodes_with_action": {
+      "search": 200,
+      "open_listed_product": 199,
+      "select_visible_option": 168,
+      "buy": 177,
+      "illegal": 41,
+      "other_click": 4,
+      "other_legal": 1
+    }
+  },
+  "evidence_sample": {
+    "episodes": 200,
+    "steps": {
+      "search": 208,
+      "open_listed_product": 206,
+      "select_visible_option": 206,
+      "buy": 177,
+      "illegal": 76,
+      "other_legal": 7,
+      "other_click": 11
+    },
+    "episodes_with_action": {
+      "search": 200,
+      "open_listed_product": 200,
+      "select_visible_option": 174,
+      "buy": 177,
+      "illegal": 36,
+      "other_legal": 7,
+      "other_click": 6
+    }
+  },
+  "evidence_greedy": {
+    "episodes": 100,
+    "steps": {
+      "search": 100,
+      "open_listed_product": 100,
+      "select_visible_option": 99,
+      "buy": 93,
+      "illegal": 20,
+      "other_legal": 3
+    },
+    "episodes_with_action": {
+      "search": 100,
+      "open_listed_product": 100,
+      "select_visible_option": 85,
+      "buy": 93,
+      "illegal": 11,
+      "other_legal": 3
+    }
+  },
+  "placeholder_greedy": {
+    "episodes": 100,
+    "steps": {
+      "search": 103,
+      "open_listed_product": 103,
+      "select_visible_option": 106,
+      "buy": 96,
+      "illegal": 14,
+      "other_click": 3,
+      "other_legal": 1
+    },
+    "episodes_with_action": {
+      "search": 100,
+      "open_listed_product": 100,
+      "select_visible_option": 89,
+      "buy": 96,
+      "illegal": 7,
+      "other_click": 2,
+      "other_legal": 1
+    }
+  },
+  "full_greedy": {
+    "episodes": 100,
+    "steps": {
+      "search": 103,
+      "open_listed_product": 104,
+      "select_visible_option": 108,
+      "buy": 94,
+      "illegal": 22,
+      "other_click": 5,
+      "other_legal": 1
+    },
+    "episodes_with_action": {
+      "search": 100,
+      "open_listed_product": 100,
+      "select_visible_option": 91,
+      "buy": 94,
+      "illegal": 12,
+      "other_click": 2,
+      "other_legal": 1
+    }
+  },
+  "product_greedy": {
+    "episodes": 100,
+    "steps": {
+      "search": 102,
+      "open_listed_product": 101,
+      "select_visible_option": 97,
+      "buy": 93,
+      "illegal": 31,
+      "other_click": 2,
+      "other_legal": 1
+    },
+    "episodes_with_action": {
+      "search": 100,
+      "open_listed_product": 100,
+      "select_visible_option": 85,
+      "buy": 93,
+      "illegal": 16,
+      "other_click": 2,
+      "other_legal": 1
+    }
+  }
+}

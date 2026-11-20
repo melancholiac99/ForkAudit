@@ -1,0 +1,433 @@
+{
+  "student_packet_exposures": {
+    "none": {
+      "counts": {
+        "available": 1290
+      },
+      "total": 1290,
+      "overflow_rate": 0.0,
+      "overflow_given_available_page": 0.0
+    },
+    "full": {
+      "counts": {
+        "available": 1290
+      },
+      "total": 1290,
+      "overflow_rate": 0.0,
+      "overflow_given_available_page": 0.0
+    },
+    "product": {
+      "counts": {
+        "available": 1290
+      },
+      "total": 1290,
+      "overflow_rate": 0.0,
+      "overflow_given_available_page": 0.0
+    },
+    "evidence": {
+      "counts": {
+        "PACKET_UNAVAILABLE": 983,
+        "available": 307
+      },
+      "total": 1290,
+      "overflow_rate": 0.0,
+      "overflow_given_available_page": 0.0
+    },
+    "placeholder": {
+      "counts": {
+        "available": 1290
+      },
+      "total": 1290,
+      "overflow_rate": 0.0,
+      "overflow_given_available_page": 0.0
+    },
+    "placeholder_product": {
+      "counts": {
+        "available": 1290
+      },
+      "total": 1290,
+      "overflow_rate": 0.0,
+      "overflow_given_available_page": 0.0
+    },
+    "placeholder_evidence": {
+      "counts": {
+        "PACKET_UNAVAILABLE": 983,
+        "available": 307
+      },
+      "total": 1290,
+      "overflow_rate": 0.0,
+      "overflow_given_available_page": 0.0
+    }
+  },
+  "paired_packet_minus_placeholder_token_length": {
+    "full": {
+      "n": 1290,
+      "mean": 24.230232558139534,
+      "median": 22.0,
+      "p10_p90": [
+        15.0,
+        36.0
+      ]
+    },
+    "product": {
+      "n": 1290,
+      "mean": 59.07829457364341,
+      "median": 56.0,
+      "p10_p90": [
+        45.0,
+        75.0
+      ]
+    },
+    "evidence": {
+      "n": 307,
+      "mean": 57.28664495114006,
+      "median": 59.0,
+      "p10_p90": [
+        52.0,
+        59.0
+      ]
+    }
+  },
+  "kl_fraction_above_1em5_by_position": {
+    "none/search_home/search": {
+      "positions": 7523,
+      "fraction": 0.0
+    },
+    "none/search_home/format": {
+      "positions": 1219,
+      "fraction": 0.0
+    },
+    "full/search_home/search": {
+      "positions": 7523,
+      "fraction": 0.6404359962780806
+    },
+    "full/search_home/format": {
+      "positions": 1219,
+      "fraction": 0.8408531583264971
+    },
+    "product/search_home/search": {
+      "positions": 7523,
+      "fraction": 0.6777881164429084
+    },
+    "product/search_home/format": {
+      "positions": 1219,
+      "fraction": 0.8556193601312552
+    },
+    "placeholder/search_home/search": {
+      "positions": 7523,
+      "fraction": 0.5447294962116177
+    },
+    "placeholder/search_home/format": {
+      "positions": 1219,
+      "fraction": 0.7571780147662018
+    },
+    "placeholder_product/search_home/search": {
+      "positions": 7523,
+      "fraction": 0.552705037883823
+    },
+    "placeholder_product/search_home/format": {
+      "positions": 1219,
+      "fraction": 0.7990155865463495
+    },
+    "none/search_results/format": {
+      "positions": 1228,
+      "fraction": 0.0
+    },
+    "none/search_results/click": {
+      "positions": 3659,
+      "fraction": 0.0
+    },
+    "full/search_results/format": {
+      "positions": 1228,
+      "fraction": 0.4177524429967427
+    },
+    "full/search_results/click": {
+      "positions": 3659,
+      "fraction": 0.17983055479639246
+    },
+    "product/search_results/format": {
+      "positions": 1228,
+      "fraction": 0.44299674267100975
+    },
+    "product/search_results/click": {
+      "positions": 3659,
+      "fraction": 0.1970483738726428
+    },
+    "evidence/search_results/format": {
+      "positions": 1228,
+      "fraction": 0.36482084690553745
+    },
+    "evidence/search_results/click": {
+      "positions": 3659,
+      "fraction": 0.09975403115605357
+    },
+    "placeholder/search_results/format": {
+      "positions": 1228,
+      "fraction": 0.3990228013029316
+    },
+    "placeholder/search_results/click": {
+      "positions": 3659,
+      "fraction": 0.08991527739819623
+    },
+    "placeholder_product/search_results/format": {
+      "positions": 1228,
+      "fraction": 0.38436482084690554
+    },
+    "placeholder_product/search_results/click": {
+      "positions": 3659,
+      "fraction": 0.09319486198414867
+    },
+    "placeholder_evidence/search_results/format": {
+      "positions": 1228,
+      "fraction": 0.3330618892508143
+    },
+    "placeholder_evidence/search_results/click": {
+      "positions": 3659,
+      "fraction": 0.0852691992347636
+    },
+    "none/product_detail/option": {
+      "positions": 2462,
+      "fraction": 0.0
+    },
+    "none/product_detail/format": {
+      "positions": 2445,
+      "fraction": 0.0
+    },
+    "full/product_detail/option": {
+      "positions": 2462,
+      "fraction": 0.2420796100731113
+    },
+    "full/product_detail/format": {
+      "positions": 2445,
+      "fraction": 0.5456032719836401
+    },
+    "product/product_detail/option": {
+      "positions": 2462,
+      "fraction": 0.24004874086108854
+    },
+    "product/product_detail/format": {
+      "positions": 2445,
+      "fraction": 0.5766871165644172
+    },
+    "placeholder/product_detail/option": {
+      "positions": 2462,
+      "fraction": 0.14581640942323315
+    },
+    "placeholder/product_detail/format": {
+      "positions": 2445,
+      "fraction": 0.4261758691206544
+    },
+    "placeholder_product/product_detail/option": {
+      "positions": 2462,
+      "fraction": 0.15272136474411047
+    },
+    "placeholder_product/product_detail/format": {
+      "positions": 2445,
+      "fraction": 0.43558282208588955
+    },
+    "none/product_detail/click": {
+      "positions": 1515,
+      "fraction": 0.0
+    },
+    "full/product_detail/click": {
+      "positions": 1515,
+      "fraction": 0.38679867986798677
+    },
+    "product/product_detail/click": {
+      "positions": 1515,
+      "fraction": 0.38943894389438943
+    },
+    "placeholder/product_detail/click": {
+      "positions": 1515,
+      "fraction": 0.3174917491749175
+    },
+    "placeholder_product/product_detail/click": {
+      "positions": 1515,
+      "fraction": 0.3254125412541254
+    },
+    "none/product_detail/unknown": {
+      "positions": 143,
+      "fraction": 0.0
+    },
+    "full/product_detail/unknown": {
+      "positions": 143,
+      "fraction": 0.7832167832167832
+    },
+    "product/product_detail/unknown": {
+      "positions": 143,
+      "fraction": 0.7972027972027972
+    },
+    "placeholder/product_detail/unknown": {
+      "positions": 143,
+      "fraction": 0.6993006993006993
+    },
+    "placeholder_product/product_detail/unknown": {
+      "positions": 143,
+      "fraction": 0.7412587412587412
+    }
+  },
+  "candidate_centered_content_delta": {
+    "full/search_home/search": {
+      "n": 60184,
+      "mean": 0.14352966393823668,
+      "median": 8.955597877502441e-05,
+      "p10_p90": [
+        -1.4999941132962704,
+        1.846606358885765
+      ]
+    },
+    "full/search_home/format": {
+      "n": 9752,
+      "mean": -0.07195172473133156,
+      "median": -8.04660430731019e-06,
+      "p10_p90": [
+        -1.8747830033302306,
+        1.6874899923801423
+      ]
+    },
+    "product/search_home/search": {
+      "n": 60184,
+      "mean": 0.027457692247648217,
+      "median": -2.0013260382256703e-08,
+      "p10_p90": [
+        -2.373096466064453,
+        2.3924163520336195
+      ]
+    },
+    "product/search_home/format": {
+      "n": 9752,
+      "mean": -0.08475794990782806,
+      "median": -2.392111582594225e-06,
+      "p10_p90": [
+        -1.935141286253929,
+        1.8749913044273854
+      ]
+    },
+    "full/search_results/format": {
+      "n": 9824,
+      "mean": -0.6748826343661007,
+      "median": -0.3124997094273567,
+      "p10_p90": [
+        -3.0958677381277084,
+        0.8749928027391434
+      ]
+    },
+    "full/search_results/click": {
+      "n": 29272,
+      "mean": -0.2929746126508376,
+      "median": -0.4999999925494194,
+      "p10_p90": [
+        -3.8125,
+        4.312500953674316
+      ]
+    },
+    "product/search_results/format": {
+      "n": 9824,
+      "mean": -0.6716731163143876,
+      "median": -0.37492299791210826,
+      "p10_p90": [
+        -3.218167543411255,
+        0.9406860601156983
+      ]
+    },
+    "product/search_results/click": {
+      "n": 29272,
+      "mean": -0.3133582009869877,
+      "median": -0.6875,
+      "p10_p90": [
+        -4.249503648281097,
+        5.250000476837158
+      ]
+    },
+    "evidence/search_results/format": {
+      "n": 9824,
+      "mean": 0.03088564332196591,
+      "median": 0.0,
+      "p10_p90": [
+        -0.7486830651760101,
+        0.8075378268957175
+      ]
+    },
+    "evidence/search_results/click": {
+      "n": 29272,
+      "mean": 0.11557617883066185,
+      "median": 1.2097920887299551e-07,
+      "p10_p90": [
+        -0.625,
+        0.875
+      ]
+    },
+    "full/product_detail/option": {
+      "n": 19696,
+      "mean": -0.02821896334892306,
+      "median": 0.0,
+      "p10_p90": [
+        -1.9977237582206726,
+        1.6875006011792468
+      ]
+    },
+    "full/product_detail/format": {
+      "n": 19560,
+      "mean": 0.05324728255592831,
+      "median": 4.331398031354183e-05,
+      "p10_p90": [
+        -1.375000238418579,
+        1.625001997790605
+      ]
+    },
+    "product/product_detail/option": {
+      "n": 19696,
+      "mean": -0.011138685549859527,
+      "median": 0.0,
+      "p10_p90": [
+        -1.937499761581421,
+        1.7499999850988388
+      ]
+    },
+    "product/product_detail/format": {
+      "n": 19560,
+      "mean": 0.11570752376389708,
+      "median": 7.581323461636202e-05,
+      "p10_p90": [
+        -1.4374987006187439,
+        1.8749986320734024
+      ]
+    },
+    "full/product_detail/click": {
+      "n": 12120,
+      "mean": -0.04121216590668049,
+      "median": -1.5527454744201918e-07,
+      "p10_p90": [
+        -1.124999685585499,
+        0.9375000604231384
+      ]
+    },
+    "product/product_detail/click": {
+      "n": 12120,
+      "mean": -0.08266018339073933,
+      "median": -1.4462114208413368e-06,
+      "p10_p90": [
+        -1.2499983236193657,
+        0.9999963730573654
+      ]
+    },
+    "full/product_detail/unknown": {
+      "n": 1144,
+      "mean": 0.04451409647075731,
+      "median": 0.002151105807570275,
+      "p10_p90": [
+        -1.1164686009287834,
+        1.3588674336671833
+      ]
+    },
+    "product/product_detail/unknown": {
+      "n": 1144,
+      "mean": 0.08655125583293481,
+      "median": 0.023673653602600098,
+      "p10_p90": [
+        -1.1139648109674454,
+        1.367399890720845
+      ]
+    }
+  }
+}

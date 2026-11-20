@@ -1,0 +1,504 @@
+{
+  "none_sample": {
+    "n": 200,
+    "reward": {
+      "n": 200,
+      "mean": 0.2491969551282051,
+      "q10_q50_q90": [
+        -0.85,
+        0.14343750000000002,
+        1.0
+      ]
+    },
+    "all_requirements": 0.435,
+    "strict": 0.435,
+    "reward_types": {
+      "wrong_purchase": 33,
+      "partial_alternative_purchase": 51,
+      "gold_purchase": 87,
+      "reward_unverifiable": 10,
+      "early_abstain": 6,
+      "repeat_loop": 13
+    },
+    "valid_actions": 0.9302857142857143,
+    "steps": 875,
+    "packet_status": {
+      "available": 875
+    },
+    "pages": {
+      "search_home": 207,
+      "search_results": 207,
+      "product_detail": 461
+    },
+    "actions": {
+      "search": 207,
+      "click": 633,
+      "buy_now": 10,
+      "finish": 6,
+      "buy now": 10,
+      "Buy Now": 7,
+      "back to search": 2
+    },
+    "all_requirements_vs_none": {
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "clusters": 100
+    }
+  },
+  "none_greedy": {
+    "n": 100,
+    "reward": {
+      "n": 100,
+      "mean": 0.263847516025641,
+      "q10_q50_q90": [
+        -0.85,
+        0.14343750000000002,
+        1.0
+      ]
+    },
+    "all_requirements": 0.43,
+    "strict": 0.43,
+    "reward_types": {
+      "wrong_purchase": 16,
+      "partial_alternative_purchase": 28,
+      "reward_unverifiable": 6,
+      "gold_purchase": 43,
+      "repeat_loop": 5,
+      "early_abstain": 2
+    },
+    "valid_actions": 0.9518072289156626,
+    "steps": 415,
+    "packet_status": {
+      "available": 415
+    },
+    "pages": {
+      "search_home": 100,
+      "search_results": 100,
+      "product_detail": 215
+    },
+    "actions": {
+      "search": 100,
+      "click": 309,
+      "buy now": 1,
+      "finish": 2,
+      "buy_now": 3
+    },
+    "all_requirements_vs_none": {
+      "estimate": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "clusters": 100
+    }
+  },
+  "full_sample": {
+    "n": 200,
+    "reward": {
+      "n": 200,
+      "mean": 0.5490025526556777,
+      "q10_q50_q90": [
+        -0.65,
+        1.0,
+        1.0
+      ]
+    },
+    "all_requirements": 0.64,
+    "strict": 0.64,
+    "reward_types": {
+      "gold_purchase": 128,
+      "repeat_loop": 21,
+      "early_abstain": 4,
+      "partial_alternative_purchase": 32,
+      "reward_unverifiable": 8,
+      "wrong_purchase": 7
+    },
+    "valid_actions": 0.9076396807297605,
+    "steps": 877,
+    "packet_status": {
+      "available": 875,
+      "CONTEXT_OVERFLOW": 2
+    },
+    "pages": {
+      "search_home": 207,
+      "search_results": 209,
+      "product_detail": 461
+    },
+    "actions": {
+      "search": 207,
+      "click": 642,
+      "buy now": 7,
+      "finish": 4,
+      "buy_now": 12,
+      "Buy Now": 5
+    },
+    "all_requirements_vs_none": {
+      "estimate": 0.205,
+      "ci95": [
+        0.12,
+        0.295
+      ],
+      "clusters": 100
+    },
+    "all_requirements_vs_placeholder": {
+      "estimate": 0.22,
+      "ci95": [
+        0.135,
+        0.305
+      ],
+      "clusters": 100
+    }
+  },
+  "full_greedy": {
+    "n": 100,
+    "reward": {
+      "n": 100,
+      "mean": 0.6884682692307692,
+      "q10_q50_q90": [
+        -0.305,
+        1.0,
+        1.0
+      ]
+    },
+    "all_requirements": 0.75,
+    "strict": 0.75,
+    "reward_types": {
+      "gold_purchase": 75,
+      "reward_unverifiable": 5,
+      "partial_alternative_purchase": 10,
+      "repeat_loop": 5,
+      "wrong_purchase": 4,
+      "early_abstain": 1
+    },
+    "valid_actions": 0.9496567505720824,
+    "steps": 437,
+    "packet_status": {
+      "available": 436,
+      "CONTEXT_OVERFLOW": 1
+    },
+    "pages": {
+      "search_home": 103,
+      "search_results": 104,
+      "product_detail": 230
+    },
+    "actions": {
+      "search": 103,
+      "click": 329,
+      "buy now": 3,
+      "finish": 1,
+      "Buy Now": 1
+    },
+    "all_requirements_vs_none": {
+      "estimate": 0.32,
+      "ci95": [
+        0.22,
+        0.42
+      ],
+      "clusters": 100
+    },
+    "all_requirements_vs_placeholder": {
+      "estimate": 0.32,
+      "ci95": [
+        0.22,
+        0.42
+      ],
+      "clusters": 100
+    }
+  },
+  "product_sample": {
+    "n": 200,
+    "reward": {
+      "n": 200,
+      "mean": 0.5456409455128205,
+      "q10_q50_q90": [
+        -0.65,
+        1.0,
+        1.0
+      ]
+    },
+    "all_requirements": 0.63,
+    "strict": 0.63,
+    "reward_types": {
+      "gold_purchase": 126,
+      "partial_alternative_purchase": 33,
+      "repeat_loop": 22,
+      "reward_unverifiable": 11,
+      "wrong_purchase": 7,
+      "early_abstain": 1
+    },
+    "valid_actions": 0.8857142857142857,
+    "steps": 875,
+    "packet_status": {
+      "available": 875
+    },
+    "pages": {
+      "search_home": 204,
+      "search_results": 210,
+      "product_detail": 461
+    },
+    "actions": {
+      "search": 204,
+      "click": 640,
+      "Buy Now": 12,
+      "buy_now": 4,
+      "buy now": 5,
+      "back to search": 4,
+      "next >": 2,
+      "action: buy_now": 3,
+      "finish": 1
+    },
+    "all_requirements_vs_none": {
+      "estimate": 0.195,
+      "ci95": [
+        0.1,
+        0.29
+      ],
+      "clusters": 100
+    }
+  },
+  "product_greedy": {
+    "n": 100,
+    "reward": {
+      "n": 100,
+      "mean": 0.6425922275641025,
+      "q10_q50_q90": [
+        -0.22265624999999994,
+        1.0,
+        1.0
+      ]
+    },
+    "all_requirements": 0.69,
+    "strict": 0.69,
+    "reward_types": {
+      "gold_purchase": 69,
+      "reward_unverifiable": 5,
+      "partial_alternative_purchase": 17,
+      "repeat_loop": 6,
+      "wrong_purchase": 2,
+      "early_abstain": 1
+    },
+    "valid_actions": 0.927400468384075,
+    "steps": 427,
+    "packet_status": {
+      "available": 427
+    },
+    "pages": {
+      "search_home": 102,
+      "search_results": 104,
+      "product_detail": 221
+    },
+    "actions": {
+      "search": 102,
+      "click": 319,
+      "Buy Now": 4,
+      "buy now": 1,
+      "finish": 1
+    },
+    "all_requirements_vs_none": {
+      "estimate": 0.26,
+      "ci95": [
+        0.15,
+        0.37
+      ],
+      "clusters": 100
+    }
+  },
+  "evidence_sample": {
+    "n": 200,
+    "reward": {
+      "n": 200,
+      "mean": 0.22858758012820515,
+      "q10_q50_q90": [
+        -0.85,
+        0.12307692307692308,
+        1.0
+      ]
+    },
+    "all_requirements": 0.42,
+    "strict": 0.42,
+    "reward_types": {
+      "wrong_purchase": 32,
+      "partial_alternative_purchase": 53,
+      "gold_purchase": 84,
+      "repeat_loop": 16,
+      "reward_unverifiable": 8,
+      "early_abstain": 7
+    },
+    "valid_actions": 0.9147025813692481,
+    "steps": 891,
+    "packet_status": {
+      "PACKET_UNAVAILABLE": 681,
+      "available": 210
+    },
+    "pages": {
+      "search_home": 208,
+      "search_results": 210,
+      "product_detail": 472,
+      "information_subpage": 1
+    },
+    "actions": {
+      "search": 208,
+      "click": 639,
+      "buy_now": 14,
+      "finish": 7,
+      "buy now": 13,
+      "back_to_search": 2,
+      "Buy Now": 6,
+      "back to search": 2
+    },
+    "all_requirements_vs_none": {
+      "estimate": -0.015,
+      "ci95": [
+        -0.05,
+        0.02
+      ],
+      "clusters": 100
+    }
+  },
+  "evidence_greedy": {
+    "n": 100,
+    "reward": {
+      "n": 100,
+      "mean": 0.2501878205128205,
+      "q10_q50_q90": [
+        -0.85,
+        0.13153846153846155,
+        1.0
+      ]
+    },
+    "all_requirements": 0.41,
+    "strict": 0.41,
+    "reward_types": {
+      "wrong_purchase": 16,
+      "partial_alternative_purchase": 30,
+      "gold_purchase": 41,
+      "reward_unverifiable": 6,
+      "repeat_loop": 4,
+      "early_abstain": 3
+    },
+    "valid_actions": 0.9518072289156626,
+    "steps": 415,
+    "packet_status": {
+      "PACKET_UNAVAILABLE": 314,
+      "available": 101
+    },
+    "pages": {
+      "search_home": 100,
+      "search_results": 101,
+      "product_detail": 214
+    },
+    "actions": {
+      "search": 100,
+      "click": 307,
+      "buy_now": 4,
+      "finish": 3,
+      "buy now": 1
+    },
+    "all_requirements_vs_none": {
+      "estimate": -0.02,
+      "ci95": [
+        -0.06,
+        0.02
+      ],
+      "clusters": 100
+    }
+  },
+  "placeholder_sample": {
+    "n": 200,
+    "reward": {
+      "n": 200,
+      "mean": 0.1945994391025641,
+      "q10_q50_q90": [
+        -0.85,
+        0.14,
+        1.0
+      ]
+    },
+    "all_requirements": 0.42,
+    "strict": 0.42,
+    "reward_types": {
+      "wrong_purchase": 44,
+      "partial_alternative_purchase": 48,
+      "reward_unverifiable": 8,
+      "gold_purchase": 84,
+      "early_abstain": 3,
+      "repeat_loop": 13
+    },
+    "valid_actions": 0.9248554913294798,
+    "steps": 865,
+    "packet_status": {
+      "available": 865
+    },
+    "pages": {
+      "search_home": 202,
+      "search_results": 205,
+      "product_detail": 458
+    },
+    "actions": {
+      "search": 202,
+      "click": 641,
+      "buy_now": 5,
+      "finish": 3,
+      "Buy Now": 8,
+      "buy now": 6
+    },
+    "all_requirements_vs_none": {
+      "estimate": -0.015,
+      "ci95": [
+        -0.065,
+        0.03
+      ],
+      "clusters": 100
+    }
+  },
+  "placeholder_greedy": {
+    "n": 100,
+    "reward": {
+      "n": 100,
+      "mean": 0.22484727564102563,
+      "q10_q50_q90": [
+        -0.85,
+        0.14,
+        1.0
+      ]
+    },
+    "all_requirements": 0.43,
+    "strict": 0.43,
+    "reward_types": {
+      "wrong_purchase": 23,
+      "partial_alternative_purchase": 25,
+      "gold_purchase": 43,
+      "reward_unverifiable": 5,
+      "repeat_loop": 3,
+      "early_abstain": 1
+    },
+    "valid_actions": 0.9671361502347418,
+    "steps": 426,
+    "packet_status": {
+      "available": 426
+    },
+    "pages": {
+      "search_home": 103,
+      "search_results": 103,
+      "product_detail": 220
+    },
+    "actions": {
+      "search": 103,
+      "click": 318,
+      "buy_now": 2,
+      "buy now": 2,
+      "finish": 1
+    },
+    "all_requirements_vs_none": {
+      "estimate": 0.0,
+      "ci95": [
+        -0.07,
+        0.07
+      ],
+      "clusters": 100
+    }
+  }
+}

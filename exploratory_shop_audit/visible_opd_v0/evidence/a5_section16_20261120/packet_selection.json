@@ -1,0 +1,125 @@
+{
+  "status": "PRIVILEGE_NOT_USEFUL",
+  "selected": null,
+  "decisions": {
+    "full": {
+      "status": "negative",
+      "behavior_gate": "improved",
+      "positions": 7632,
+      "tasks": 100,
+      "shifted_tasks": 99,
+      "hits": 660,
+      "lift": {
+        "estimate": 0.205,
+        "ci95": [
+          0.12,
+          0.295
+        ],
+        "clusters": 100
+      }
+    },
+    "product": {
+      "status": "negative",
+      "behavior_gate": "improved",
+      "positions": 7633,
+      "tasks": 100,
+      "shifted_tasks": 99,
+      "hits": 644,
+      "lift": {
+        "estimate": 0.195,
+        "ci95": [
+          0.1,
+          0.29
+        ],
+        "clusters": 100
+      }
+    },
+    "evidence": {
+      "status": "negative",
+      "behavior_gate": "no_improvement",
+      "positions": 3659,
+      "tasks": 100,
+      "shifted_tasks": 36,
+      "hits": 94,
+      "lift": {
+        "estimate": -0.015,
+        "ci95": [
+          -0.05,
+          0.02
+        ],
+        "clusters": 100
+      }
+    }
+  },
+  "templates": {
+    "fields": {
+      "full": [
+        [
+          "商品编号",
+          "goal.asin",
+          "no"
+        ],
+        [
+          "规格",
+          "goal.goal_options",
+          "partial"
+        ],
+        [
+          "价格上限",
+          "goal.price_upper",
+          "partial"
+        ]
+      ],
+      "product": [
+        [
+          "商品编号",
+          "goal.asin",
+          "no"
+        ],
+        [
+          "规格",
+          "goal.goal_options",
+          "partial"
+        ],
+        [
+          "价格上限",
+          "goal.price_upper",
+          "partial"
+        ],
+        [
+          "商品名称",
+          "catalog.title",
+          "partial"
+        ],
+        [
+          "属性",
+          "catalog.attribute",
+          "partial"
+        ]
+      ],
+      "evidence": [
+        [
+          "按展示顺序的首个规格轴",
+          "catalog.customization_options keys for current public.products",
+          "partial"
+        ]
+      ]
+    },
+    "match": {
+      "full": "placeholder",
+      "product": "placeholder_product",
+      "evidence": "placeholder_evidence"
+    },
+    "template_source_sha": "29f37697514f1ceeb7e393f64519541b212ee57cc0d0f7995af492f658afbd7e",
+    "tokenizer": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "chat_template_sha": "2e2d2512cfe46af53dc1eed45368ecaab26ac4461c480e6b69fe571cf0ceaa75",
+    "position": "user message index 2",
+    "token_cap": {
+      "evidence": 1024,
+      "placeholder_evidence": 1024,
+      "others": 192
+    },
+    "field_counts": "per exposure recorded in steps and score_inputs"
+  },
+  "pre_hash": "94cb5cfa8663b56e597f995cefdb0f555540e45238603854769fffb84fd53284"
+}
