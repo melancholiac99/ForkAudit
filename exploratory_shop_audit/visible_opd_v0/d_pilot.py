@@ -1,5 +1,7 @@
 """Lockstep stage-D driver, with independently restartable stage/arm outputs."""
 import fcntl
+import gzip
+import hashlib
 import os
 import shutil
 import subprocess
@@ -35,11 +37,26 @@ def pilot():
                 print(utc(),k,stage,flush=True)
                 launch(stage,k)
             if k>1:
+                for a in ARMS:
+                    src=folder(k,a)
+                    for rep,sha in enumerate(read(src/'collection.json')['rollout_sha256']):
+                        tape=src/f'rollout_{rep}.jsonl'
+                        packed=tape.with_suffix('.jsonl.gz')
+                        if tape.exists():
+                            temp=packed.with_suffix('.pending')
+                            with tape.open('rb') as inf, gzip.open(temp,'wb',compresslevel=3) as out:
+                                shutil.copyfileobj(inf,out)
+                            with gzip.open(temp,'rb') as inf:
+                                assert hashlib.file_digest(inf,'sha256').hexdigest()==sha
+                            temp.replace(packed)
+                            tape.unlink()
                 # Discard only superseded, temporary Adam moments after a verified replacement.
                 for a in ARMS:
+                    previous=state_dir(k-1,a)/'adam.pt'
+                    if not previous.exists():continue
                     new=state_dir(k,a)/'adam.pt'
                     assert digest_file(new)==read(folder(k,a)/'optimizer.json')['adam_sha256']
-                    (state_dir(k-1,a)/'adam.pt').unlink(missing_ok=True)
+                    previous.unlink()
         save(RUN/'training_complete.json',dict(updates=10,arms=list(ARMS),time=utc()))
 
 if __name__=='__main__':pilot()
