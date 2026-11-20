@@ -9,10 +9,10 @@ from exploratory_shop_audit.runtime import make_input,parse_generation
 PARENT=ROOT/'.runtime/runs/shop_visible_opd_v04_s16_20261120'
 RUN=ROOT/'.runtime/runs/shop_visible_opd_content_b_20261120'
 
-def batch(runner,tasks,goals,path):
+def batch(runner,tasks,goals,path,rep=0,stream='T_cal'):
     active=[]
     for task in tasks:
-        i=task['goal_index'];key=f'cal_{i}'
+        i=task['goal_index'];key=f'{stream}_{i}_{rep}'
         active.append((i,key,[],runner.engine.call(cmd='open',key=key,goal_index=i)))
     while active:
         requests=[];rows=[]
@@ -23,9 +23,9 @@ def batch(runner,tasks,goals,path):
                 fields,why=packet(mode,pub,{},goals[i] if mode=='full' else None)
                 ids,why,_,_=render(runner.tokenizer,native,fields,why)
                 views[mode]=ids;reasons[mode]=why
-            seed=stable_seed(20261120,'T_cal',i,0,len(h))
+            seed=stable_seed(20261120,stream,i,rep,len(h))
             args=[a for a in pub['actions'] if str(a).lower() in s['available']['clickables'] and str(a).lower()!='search']
-            rows.append(dict(goal=i,rep=0,step=len(h),page=pub['page_type'],views=views,na=reasons,
+            rows.append(dict(goal=i,rep=rep,step=len(h),page=pub['page_type'],views=views,na=reasons,
                              legal_clicks=args,products=[p['asin'] for p in pub.get('products',[])],seed=seed))
             requests.append(dict(token_ids=views['none'],temperature=.7,seed=seed))
         keep=[]
