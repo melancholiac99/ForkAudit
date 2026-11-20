@@ -13,22 +13,38 @@ def main():
     with contextlib.redirect_stdout(sys.stderr):
         from vllm import LLM,SamplingParams
         from vllm.lora.request import LoRARequest
+        options={}
+        tape=None
+        if 'OPD_ENTROPY_TAPE' in os.environ:
+            import numpy as np
+            from exploratory_shop_audit.visible_opd_v0.d_entropy import NativeEntropy
+            tape=np.memmap(os.environ['OPD_ENTROPY_TAPE'],dtype='float32',mode='w+',shape=(64,512))
+            options['logits_processors']=[NativeEntropy]
         model=LLM(model=a.model,tokenizer=a.model,dtype='bfloat16',tensor_parallel_size=1,max_model_len=8704,
             gpu_memory_utilization=.7,max_num_seqs=16,enable_prefix_caching=True,seed=20261117,
-            enable_lora=bool(a.adapter),max_lora_rank=64,disable_log_stats=True)
+            enable_lora=bool(a.adapter),max_lora_rank=64,disable_log_stats=True,**options)
     adapter=LoRARequest('frozen_checkpoint',1,a.adapter) if a.adapter else None
     rpc.write(json.dumps({'ready':True})+'\n')
     for line in sys.stdin:
         req=json.loads(line)
         if req.get('cmd')=='quit':return
         try:
-            rows=req['requests'];params=[SamplingParams(temperature=r.get('temperature',.7),top_p=1,max_tokens=512,seed=r['seed']) for r in rows]
+            rows=req['requests']
+            if tape is not None:
+                assert len(rows)<=len(tape)
+                tape[:len(rows)]=np.nan
+            params=[SamplingParams(temperature=r.get('temperature',.7),top_p=1,max_tokens=512,seed=r['seed'],
+                    extra_args={'entropy_slot':i} if tape is not None else None) for i,r in enumerate(rows)]
             with contextlib.redirect_stdout(sys.stderr):
                 outputs=model.generate([{'prompt_token_ids':r['token_ids']} for r in rows],params,lora_request=adapter,use_tqdm=False)
             results=[]
             for row,out in zip(rows,outputs):
                 assert list(out.prompt_token_ids)==row['token_ids'];reply=out.outputs[0]
                 results.append({'text':reply.text,'token_ids':list(reply.token_ids),'finish_reason':reply.finish_reason})
+                if tape is not None:
+                    entropy=tape[len(results)-1,:len(reply.token_ids)]
+                    assert np.isfinite(entropy).all() and (entropy>=0).all(), 'missing native token entropy'
+                    results[-1]['entropy']=entropy.tolist()
             response={'ok':True,'result':results}
         except Exception:response={'ok':False,'error':traceback.format_exc()}
         rpc.write(json.dumps(response,ensure_ascii=False)+'\n')

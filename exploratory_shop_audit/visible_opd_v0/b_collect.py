@@ -9,7 +9,7 @@ from exploratory_shop_audit.runtime import make_input,parse_generation
 PARENT=ROOT/'.runtime/runs/shop_visible_opd_v04_s16_20261120'
 RUN=ROOT/'.runtime/runs/shop_visible_opd_content_b_20261120'
 
-def batch(runner,tasks,goals,path,rep=0,stream='T_cal'):
+def batch(runner,tasks,goals,path,rep=0,stream='T_cal',include_legal=False):
     active=[]
     for task in tasks:
         i=task['goal_index'];key=f'cal_{i}' if stream=='T_cal' else f'{stream}_{i}_{rep}'
@@ -34,6 +34,7 @@ def batch(runner,tasks,goals,path,rep=0,stream='T_cal'):
             result=runner.engine.call(cmd='step',key=key,action=action)
             row.update(response=out['token_ids'],classes=categories(runner.tokenizer,out['token_ids'],s['public']),
                        action=action,done=result['status']['done'])
+            if include_legal:row["legal"]=result["legal"]
             append(path,row)
             if row['done']:runner.engine.call(cmd='close',key=key)
             else:
