@@ -20,6 +20,9 @@ def score(model,row):
 
 def run(mode):
     os.umask(0o077)
+    os.environ['CUBLAS_WORKSPACE_CONFIG']=':4096:8'
+    os.environ['NCCL_ALGO']='Ring'
+    torch.use_deterministic_algorithms(True)
     rank=int(os.environ['LOCAL_RANK'])
     torch.cuda.set_device(rank)
     dist.init_process_group('nccl',device_id=torch.device('cuda',rank))
