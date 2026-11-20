@@ -72,7 +72,12 @@ def audit():
                 a,b=cid.index(seq[0][t]),cid.index(seq[j][t]);sm=feat['s'][t];d=feat['d'][t]
                 p=net(feat['h'][t:t+1].cuda(),e[feat['ids'][t:t+1].cuda()],feat['q'][t:t+1].cuda())[0].cpu()
                 k=scales[feat['classes'][t]]['b']
-                strict.append((g,dict(student=float(sm[a]-sm[b]),content=float((sm+d)[a]-(sm+d)[b]),projected=float((sm+k*p)[a]-(sm+k*p)[b]))))
+                student=float(sm[a]-sm[b])
+                direct=float(d[a]-d[b])
+                projected=float((sm+k*p)[a]-(sm+k*p)[b])
+                strict.append((g,dict(student=student,raw_margin_sel_minus_ph=direct,
+                                     excess_R=direct-student,content=student+direct,
+                                     projected=projected,excess_P=projected-student)))
     def aggregate(rs):
         if not rs:return dict(status='INSUFFICIENT_PAIRS',pairs=0)
         c=Cluster(np.array([r[0] for r in rs]))

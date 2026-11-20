@@ -8,7 +8,7 @@ from .b_metrics import Cluster
 from exploratory_shop_audit.grpo_forced_audit.common import read,save,append
 
 def ridge():
-    start=time.monotonic();_,_,points=load_data();split=read(PARENT/'asin_split_manifest.json')
+    start=time.monotonic();_,meta,points=load_data();split=read(PARENT/'asin_split_manifest.json')
     folds={r['goal_index']:split['cal_folds'][r['asin']] for r in split['T_cal']}
     xx=[];yy=[];gg=[];ff=[];pg=[];pos=[];probs=[]
     for k,v in enumerate(points):
@@ -56,6 +56,6 @@ def ridge():
         result[name]=dict(actions=int(v.sum()),states=len(set(pos[v])),tasks=c.n,mse=mse,zero_mse=base,relative_gain=float(1-mse/base) if base else None,
                           gain_ci=c.estimate(zero-err))
     out=RUN/'reports';out.mkdir(exist_ok=True)
-    save(out/'capacity_action_ridge_report.json',dict(scope='read-only full rank; last hidden after last action token; train-fold standardized features',target='length-normalized sel minus matched placeholder; student-relative centered',regularization_by_fold=chosen,groups=result,singleton_states_excluded=sum(len(p['actions'])<2 for p in points)))
+    save(out/'capacity_action_ridge_report.json',dict(scope='read-only full rank; last hidden after last action token; train-fold standardized features',target='length-normalized sel minus matched placeholder; student-relative centered',regularization_by_fold=chosen,groups=result,total_native_states=len(set(zip(meta['goal'],meta['step']))),zero_candidate_states=len(set(zip(meta['goal'],meta['step'])))-len(points),singleton_states_excluded=sum(len(p['actions'])==1 for p in points)))
     append(RUN/'b_cost.jsonl',dict(stage='action_ridge',gpu_hours=(time.monotonic()-start)/3600))
 if __name__=='__main__':ridge()
