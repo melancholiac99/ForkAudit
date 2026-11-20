@@ -7,7 +7,24 @@ from .b_fit import load_data
 from .b_metrics import Cluster
 from exploratory_shop_audit.grpo_forced_audit.common import read,save,append
 
-def ridge():
+def expanded_grid(n_train, score):
+    grid = [n_train * scale for scale in (.001, .01, .1, 1., 10., 100.)]
+    losses = {}
+    for expansion in range(4):
+        missing = [alpha for alpha in grid if alpha not in losses]
+        losses.update(score(missing))
+        alpha = min(grid, key=losses.__getitem__)
+        boundary = alpha in (grid[0], grid[-1])
+        if not boundary or expansion == 3:
+            return dict(alpha=alpha, at_boundary=boundary, expansions=expansion,
+                        n_train=n_train, grid=grid, inner_mse={str(k):v for k,v in losses.items()})
+        if alpha == grid[-1]:
+            grid = grid[1:] + [10 * grid[-1]]
+        else:
+            grid = [grid[0] / 10] + grid[:-1]
+
+
+def ridge(section19=False):
     start=time.monotonic();_,meta,points=load_data();split=read(PARENT/'asin_split_manifest.json')
     folds={r['goal_index']:split['cal_folds'][r['asin']] for r in split['T_cal']}
     xx=[];yy=[];gg=[];ff=[];pg=[];pos=[];probs=[]
@@ -16,7 +33,8 @@ def ridge():
         if n<2:continue
         q=v['action_none'].softmax(0);d=v['action_full']-v['action_placeholder'];y=d-(d*q).sum()
         xx.append(v['action_h']);yy.append(y);probs.extend(q.tolist());gg.extend([v['goal']]*n);ff.extend([folds[v['goal']]]*n);pg.extend([v['page']]*n);pos.extend([k]*n)
-    x=torch.cat(xx).cuda().double();y=torch.cat(yy).cuda().double()
+    device='cpu' if section19 else 'cuda'
+    x=torch.cat(xx).to(device=device,dtype=torch.float64);y=torch.cat(yy).to(device=device,dtype=torch.float64)
     goal=np.array(gg);fold=np.array(ff);page=np.array(pg);pos=np.array(pos);q=np.array(probs)
     def centered(values,ids):
         # Each row set is a union of whole states.
@@ -40,14 +58,20 @@ def ridge():
     grid=[.1,1.,10.,100.];oof=np.zeros(len(y));chosen=[]
     truth=y.cpu().numpy()
     for outer in range(4):
-        losses={l:[] for l in grid}
-        for inner in range(4):
-            if inner==outer:continue
-            v=fold==inner
-            preds=fit((fold!=inner)&(fold!=outer),v,grid)
-            clusters=Cluster(goal[v])
-            for l in grid:losses[l].extend(clusters.agg((truth[v]-preds[l])**2))
-        l=min(grid,key=lambda l:np.mean(losses[l]));chosen.append(l)
+        def evaluate(alphas):
+            losses={l:[] for l in alphas}
+            for inner in range(4):
+                if inner==outer:continue
+                v=fold==inner
+                preds=fit((fold!=inner)&(fold!=outer),v,alphas)
+                clusters=Cluster(goal[v])
+                for l in alphas:losses[l].extend(clusters.agg((truth[v]-preds[l])**2))
+            return {l:float(np.mean(values)) for l,values in losses.items()}
+        if section19:
+            selection=expanded_grid(int((fold!=outer).sum()),evaluate)
+            l=selection['alpha'];chosen.append(dict(fold=outer,**selection))
+        else:
+            scores=evaluate(grid);l=min(grid,key=scores.__getitem__);chosen.append(l)
         oof[fold==outer]=fit(fold!=outer,fold==outer,[l])[l]
     result={}
     for name,v in [('all',np.ones(len(y),bool))]+[(p,page==p) for p in sorted(set(page))]:
@@ -56,6 +80,19 @@ def ridge():
         result[name]=dict(actions=int(v.sum()),states=len(set(pos[v])),tasks=c.n,mse=mse,zero_mse=base,relative_gain=float(1-mse/base) if base else None,
                           gain_ci=c.estimate(zero-err))
     out=RUN/'reports';out.mkdir(exist_ok=True)
-    save(out/'capacity_action_ridge_report.json',dict(scope='read-only full rank; last hidden after last action token; train-fold standardized features',target='length-normalized sel minus matched placeholder; student-relative centered',regularization_by_fold=chosen,groups=result,total_native_states=len(set(zip(meta['goal'],meta['step']))),zero_candidate_states=len(set(zip(meta['goal'],meta['step'])))-len(points),singleton_states_excluded=sum(len(p['actions'])==1 for p in points)))
-    append(RUN/'b_cost.jsonl',dict(stage='action_ridge',gpu_hours=(time.monotonic()-start)/3600))
-if __name__=='__main__':ridge()
+    report=dict(scope='read-only full rank; last hidden after last action token; train-fold standardized features',target='length-normalized sel minus matched placeholder; student-relative centered',regularization_by_fold=chosen,groups=result,total_native_states=len(set(zip(meta['goal'],meta['step']))),zero_candidate_states=len(set(zip(meta['goal'],meta['step'])))-len(points),singleton_states_excluded=sum(len(p['actions'])==1 for p in points))
+    if section19:
+        original=read(out/'capacity_action_ridge_report.json')
+        assert original['regularization_by_fold']==[100.]*4
+        report.update(original_status='GRID_BOUNDARY',original=original,
+                      status='GRID_BOUNDARY' if any(v['at_boundary'] for v in chosen) else 'INTERIOR',
+                      gpu_hours=0.,cpu_wall_seconds=time.monotonic()-start)
+        save(RUN/'section19/capacity_action_ridge_report_v2.json',report)
+    else:
+        save(out/'capacity_action_ridge_report.json',report)
+        append(RUN/'b_cost.jsonl',dict(stage='action_ridge',gpu_hours=(time.monotonic()-start)/3600))
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--section19',action='store_true')
+    ridge(parser.parse_args().section19)
