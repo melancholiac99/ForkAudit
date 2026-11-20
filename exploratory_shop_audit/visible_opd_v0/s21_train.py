@@ -91,7 +91,14 @@ def run(mode):
             torch.save(dict(end=final,steps=records,probes=probes),path/f'logits_{rank}.pt')
             dist.barrier()
             if rank==0:
-                pack(path/'adapter.zip',params,init)
+                prior=RUN/'grid'/f'{arm}_{scale:g}'
+                if mode=='rerun' and final_hash==read(prior/'complete.json')['final_sha256']:
+                    # Reuse only byte-identical endpoint weights after the independent optimization.
+                    archive=path/'adapter.zip'
+                    if archive.exists():archive.unlink()
+                    archive.hardlink_to(prior/'adapter.zip')
+                else:
+                    pack(path/'adapter.zip',params,init)
                 save(path/'complete.json',dict(arm=arm,multiplier=scale,lr=1e-6*scale,
                     initial_sha256=initial_hash,final_sha256=final_hash,replicas=4,optimizer_steps=len(norms),
                     minibatch_rows=[len(b) for b in batch.batches],minibatch_sha256=digest_value(batch.batches),
