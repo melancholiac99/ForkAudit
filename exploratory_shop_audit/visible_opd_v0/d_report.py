@@ -110,7 +110,8 @@ def training():
                     with (gzip.open(gz,'rt') if gz.exists() else (path/f'rollout_{rep}.jsonl').open()) as f:
                         for line in f:
                             total+=1;legal+=json.loads(line)['legal']
-            reasons=[] if k==1 else read(path/'target_manifest.json').get('na_records',[])
+            staging={} if k==1 else read(path/'target_manifest.json')
+            reasons=staging.get('na_records',[])
             assert total==len(batch.rows)+len(reasons)
             rows.append(dict(arm=arm,update=k,optimizer_steps=opt['optimizer_steps'],minibatch_rows=opt['minibatch_rows'],
                  records=total,scored_records=len(batch.rows),na_records=len(reasons),
@@ -118,7 +119,8 @@ def training():
                  positions=sum(len(r['answer']) for r in batch.rows),
                  legal_rate=legal/total,projection_age=k-1,actor_sha=opt['before_sha'],scorer_sha=mon['actor_before_sha'],
                  updated_sha=opt['after_sha'],**mon['fixed_target'],probe_movement=mon['probe_movement'],
-                 bf16_delta_kl=opt['bf16_fixed_target']['delta_kl']))
+                 bf16_delta_kl=opt['bf16_fixed_target']['delta_kl'],optimizer_wall_seconds=opt['elapsed_seconds'],
+                 retained_records=opt.get('retained_records',0),equal_scoring_records_reused=staging.get('identical_records_reused',0)))
         window=cumulative_window(updates,probe,probe.probes,probe.targets(arm))
         tasks={c:len(covered[c]) for c in DECISION_CLASSES}
         summary[arm]=dict(**window,improving_updates=sum(r['delta']>0 for r in window['rows']),
@@ -126,6 +128,8 @@ def training():
     EVIDENCE.mkdir(exist_ok=True,parents=True)
     save(EVIDENCE/'training_report.json',dict(checks=checks,arms=summary,by_class=byclass,
         allocation_gpu_hours=sum(r['seconds']*r['allocated_gpus'] for r in costs if r['stage']!='d_eval')/3600,
+        phase_times=costs,activation_benchmarks={f'{p.parent.name}/{p.stem}':read(p)
+            for p in sorted((RUN/'pilot').glob('*/activation_check_rank*.json'))},
         fixed_projector=True));tsv(EVIDENCE/'training_steps.tsv',rows)
     for a in ARMS:archive_final(a)
 
