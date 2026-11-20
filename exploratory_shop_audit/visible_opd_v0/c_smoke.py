@@ -45,13 +45,18 @@ def same_hash(parameters):
     return value
 
 
-def run():
+def run(archive_replay=False):
     os.umask(0o077)
     rank=int(os.environ['LOCAL_RANK'])
     torch.cuda.set_device(rank)
     dist.init_process_group('nccl',device_id=torch.device('cuda',rank))
     assert dist.get_world_size()==4
     start=time.monotonic()
+    out=RUN
+    if archive_replay:
+        from .s21_store import RUN as DIAGNOSTIC, pack
+        out=DIAGNOSTIC/'original'
+        out.mkdir(parents=True,exist_ok=True)
     shard=RUN/f'batch_{rank}'
     rows=torch.load(shard/'student.pt',weights_only=True)
     expected={'goal','rep','step','prompt','answer','ids','mask','classes','snapshot'}
@@ -67,7 +72,10 @@ def run():
     initial={name:p.detach().cpu().clone() for name,p in params}
     base_hash=same_hash(params)
     results={}
+    if archive_replay and rank==0:
+        torch.save(initial,out/'initial.pt')
     for arm in ARMS:
+        if archive_replay and arm=='N':continue
         with torch.no_grad():
             for name,p in params:p.copy_(initial[name])
         assert same_hash(params)==base_hash
@@ -76,10 +84,11 @@ def run():
         optim=torch.optim.AdamW([p for _,p in params],lr=1e-6,weight_decay=0.)
         optim.zero_grad(set_to_none=True)
         def scan(backward):
-            total=0.;largest=0.;metrics=defaultdict(Counter)
+            total=0.;largest=0.;metrics=defaultdict(Counter);saved_logits=[]
             for r,t in zip(rows,targets,strict=True):
                 _,logits=response(model,r['prompt'],r['answer'])
                 logits=logits.gather(1,r['ids'].cuda())
+                if archive_replay:saved_logits.append(logits.detach().cpu())
                 target=t.cuda();mask=r['mask'].cuda();snap=r['snapshot'].cuda()
                 loss,prob=kl_positions(logits,target,mask)
                 weighted=loss.sum()/(64*counts[r['goal'],r['rep']])
@@ -96,6 +105,9 @@ def run():
                         v.update(dict(n=int(m.sum()),kl_sum=loss[m].detach().sum().item(),
                                       gradient_l1_sum=grad[m].sum().item(),entropy_sum=ent[m].sum().item(),
                                       zero_n=int((m&zero).sum()),zero_kl_sum=loss[m&zero].detach().sum().item()))
+            if archive_replay:
+                phase='before' if backward else 'after'
+                torch.save(saved_logits,out/f'{arm}_{phase}_{rank}.pt')
             return dict(task_weighted_kl=total,max_snapshot_error=largest,by_class=dict(metrics))
         before=scan(True)
         for _,p in params:
@@ -124,17 +136,26 @@ def run():
                           initial_adapter_sha256=base_hash,final_adapter_sha256=final_hash,
                           synchronized_ranks=4,optimizer_steps=1,epochs=1)
         if rank==0:
-            save(RUN/f'arm_{arm}.json',results[arm])
+            if archive_replay:
+                expected=read(RUN/f'arm_{arm}.json')
+                assert base_hash==expected['initial_adapter_sha256']
+                results[arm]['matches_original_final_hash']=final_hash==expected['final_adapter_sha256']
+                pack(out/f'{arm}.zip',params,initial)
+            save(out/f'arm_{arm}.json',results[arm])
             print(arm,'completed',norm,flush=True)
         del optim
     dist.barrier()
     if rank==0:
         shards=[read(RUN/f'batch_{k}/manifest.json') for k in range(4)]
-        save(RUN/'smoke_report.json',dict(arms=results,tasks=32,trajectories=64,shards=shards,
+        save(out/'smoke_report.json',dict(arms=results,tasks=32,trajectories=64,shards=shards,
             steps=sum(s['steps'] for s in shards),positions=sum(s['positions'] for s in shards),
             optimizer='AdamW',lr=1e-6,weight_decay=0.,gradient_clip=1.,lora_rank=64,lora_alpha=64,
             structural_support_shared=True,reward_fields_in_actor_batch=0,eval_V_tasks=0,
             target_gpu_hours=sum(s['gpu_hours'] for s in shards),train_gpu_hours=4*(time.monotonic()-start)/3600))
     dist.destroy_process_group()
 
-if __name__=='__main__':run()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--archive-replay',action='store_true')
+    run(parser.parse_args().archive_replay)
