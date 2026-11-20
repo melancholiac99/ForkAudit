@@ -1,7 +1,6 @@
 """Stage D task order, snapshots, and the sealed student-only optimizer input."""
 import os
 from collections import Counter
-from pathlib import Path
 import torch
 from safetensors.torch import load_file
 from .b_collect import PARENT
@@ -12,7 +11,7 @@ from .s23_cross import RUN
 from exploratory_shop_audit.grpo_forced_audit.common import read, save, digest_file
 
 
-SCRATCH = Path('/dev/shm/forkaudit_visible_opd_s23')
+SCRATCH = RUN / 'state'
 
 
 def folder(k, arm):
