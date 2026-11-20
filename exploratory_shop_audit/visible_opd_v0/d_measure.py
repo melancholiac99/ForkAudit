@@ -7,9 +7,9 @@ from .c_targets import actor
 from .c_smoke import state_hash
 from .d_data import folder, load_batch, snapshot
 from .s21_data import SmokeBatch,summarize
-from .s21_store import ARMS
+from .s21_store import ARMS, RUN as SECTION21
 from .s21_train import score
-from .s22_measure import fp32_scores,shard_order
+from .s22_measure import fp32_scores,shard_order,restore
 from .s22_report import checkpoint
 from exploratory_shop_audit.grpo_forced_audit.common import read, save
 
@@ -30,8 +30,15 @@ def measure(k,arm):
     meta=read(path/'optimizer.json')
     ids=[i for j in range(4) for i in shard_order(batch,j)]
     def endpoint(step,sha):
-        snapshot(model,step,arm)
-        assert state_hash([(n,p) for n,p in model.named_parameters() if p.requires_grad])==sha
+        params=[(n,p) for n,p in model.named_parameters() if p.requires_grad]
+        if step==0:
+            # PEFT initialization depends on the base dtype. Use the exact archived BF16-run LoRA.
+            initial=torch.load(SECTION21/'original/initial.pt',map_location='cpu',weights_only=True)
+            actual,_=restore(params,initial,initial)
+        else:
+            snapshot(model,step,arm)
+            actual=state_hash(params)
+        assert actual==sha,(step,arm,actual,sha)
         # Update one replayed the same five steps byte-for-byte, including its current-batch endpoints.
         logits=checkpoint('fp32','initial' if step==0 else f'{arm}_1')[0] if k==1 else fp32_scores(model,batch,ids)
         with sdpa_kernel(SDPBackend.MATH):
