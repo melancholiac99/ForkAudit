@@ -59,8 +59,11 @@ def audit():
                 for key in vals[0]:
                     metrics[key+'_sum']=vals[0][key]-vals[j][key]
                     metrics[key]=vals[0][key]/len(seq[0])-vals[j][key]/len(seq[j])
-                metrics['excess_R']=metrics['content']-metrics['student'];metrics['excess_P']=metrics['projected']-metrics['student']
-                metrics['R_minus_P']=metrics['content']-metrics['projected']
+                metrics['raw_margin_sel_minus_ph']=metrics['direct_sel_minus_ph']
+                metrics['excess_R']=metrics['raw_margin_sel_minus_ph']-metrics['student']
+                metrics['excess_P']=metrics['projected']-metrics['student']
+                metrics['normalized_content_teacher_excess']=metrics['content']-metrics['student']
+                metrics['R_minus_P']=metrics['raw_margin_sel_minus_ph']-metrics['projected']
                 pairs.append((g,metrics))
                 t=next((u for u,(x,y) in enumerate(zip(seq[0],seq[j])) if x!=y),None)
                 if t is None or t>=len(r['response']) or seq[0][:t]!=r['response'][:t]:continue
@@ -74,6 +77,6 @@ def audit():
         if not rs:return dict(status='INSUFFICIENT_PAIRS',pairs=0)
         c=Cluster(np.array([r[0] for r in rs]))
         return dict(tasks=c.n,pairs=len(rs),metrics={k:c.estimate(np.array([r[1][k] for r in rs])) for k in rs[0][1]})
-    save(out/'equivalent_product_bias_report.json',dict(result,full_vocabulary=aggregate(pairs),strict_candidate_subset=aggregate(strict),factual_prefix_positions=support_n,out_of_support_positions=outside,no_factual_prefix=no_factual_prefix))
+    save(out/'equivalent_product_bias_report.json',dict(result,interpretation='Report observed margins descriptively; very few eligible tasks do not establish general gold preference.',raw_definition='(sel gold-alt margin) minus (placeholder gold-alt margin); excess_R subtracts student margin. Also report full-vocabulary student-base content teacher separately.',full_vocabulary=aggregate(pairs),strict_candidate_subset=aggregate(strict),factual_prefix_positions=support_n,out_of_support_positions=outside,no_factual_prefix=no_factual_prefix))
     append(RUN/'b_cost.jsonl',dict(stage='bias_audit',gpu_hours=(time.monotonic()-start)/3600))
 if __name__=='__main__':audit()

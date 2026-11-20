@@ -5,6 +5,7 @@ import torch
 from transformers import AutoModelForCausalLM,AutoTokenizer
 from .b_collect import RUN,PARENT
 from .score import support,measure,centered
+from .content_target import content_correction, PLANNED_SCORER_COST_FACTOR
 from exploratory_shop_audit.grpo_forced_audit.common import MODEL,read,save,append
 
 def padded(sequences,device):
@@ -47,11 +48,11 @@ def score_row(model,tok,row,repeat):
             ret['action_'+mode]=torch.tensor(scores)
         if mode=='none':qs=q
     s,sel,ph=map(compact.get,('none','full','placeholder'))
-    d=centered(sel-ph,qs);old=centered(sel-s,qs)
+    d=content_correction(sel,ph,qs);old=centered(sel-s,qs)
     def prob(z):return z.masked_fill(~mask,-torch.inf).softmax(1)
     err=(prob(s+d)-prob(s+sel-ph)).abs().max().item()
     assert err<=1e-5 and d.isfinite().all()
-    zero=(centered(compact['selfcheck']-ph,qs).abs().max().item() if repeat else None)
+    zero=(content_correction(compact['selfcheck'],ph,qs).abs().max().item() if repeat else None)
     assert zero is None or zero<=1e-5
     ret.update(s=s.cpu(),q=qs.cpu(),d=d.cpu(),old=old.cpu(),identity_error=err,self_error=zero,
                goal=row['goal'],step=row['step'],page=row['page'],classes=row['classes'],actions=actions)
@@ -90,7 +91,7 @@ def score(pilot):
     if pilot:
         fs=[torch.load(p,weights_only=True) for p in sorted((RUN/'features').glob('*.pt'))]
         assert len({x['goal'] for x in fs})==8
-        save(RUN/'p0.json',dict(pass_=True,**{'pass':True},tasks=8,steps=len(fs),max_identity_error=max(x['identity_error'] for x in fs),max_self_error=max(x['self_error'] for x in fs),expected_cost_factor=1.5))
+        save(RUN/'p0.json',dict(pass_=True,**{'pass':True},tasks=8,steps=len(fs),max_identity_error=max(x['identity_error'] for x in fs),max_self_error=max(x['self_error'] for x in fs),expected_cost_factor=PLANNED_SCORER_COST_FACTOR))
 if __name__=='__main__':
     os.umask(0o077)
     p=argparse.ArgumentParser();p.add_argument('--rank',type=int);p.add_argument('--pilot',action='store_true');a=p.parse_args()
