@@ -1,0 +1,24 @@
+{
+  "source_registration": "2282edb212dd0c2af8aad67e36afcb041265b4ef",
+  "feature_set": "d618325824d019f3b433aef362371a53454261e8c4afc1d17ec8a35b55f46d4c",
+  "feature_shards": 2233,
+  "original_acceptance_sha256": "58302d02e555ed1dd7aef07ef6ad2552c5cf656e0dbf07d256c1bbf398d15a5e",
+  "oof": {
+    "fold_0.npz": "fa5085872f2690fefee1aa7f9f6cd5d37405022895feb4ebb787480a559e24fe",
+    "fold_1.npz": "f842cc7b2511117f438b68db3fe54bb71c92d09bed64d5822791bb5359357521",
+    "fold_2.npz": "0d861641cb983413db0cb9804eb1fc86cd3e986b300234a65ac92162733008b4",
+    "fold_3.npz": "4d26f883762fa32797582b64f852370780d25adda6a66eb652e31d9296724083"
+  },
+  "parent_report_hashes": {
+    "projection_report": "7b8fe162d19a3681d892d8889da1e7dd96797dc35e10d0a0580a582304432f37",
+    "original_label_control": "ad648938fffcdc28f1c6a3b6a9e8f3934e56a5ca8371e33914a2e2e6e691a6e7",
+    "power_injection_report": "6b24a72c4f43e13ecf2ce0e591560d75c87a790dede245e0ae675412f5965efc",
+    "capacity_action_ridge_report": "56fdd859c9c243cd1fd8290f7f8a592e902456003c707c38bbfc1956dea1d8c8",
+    "candidate_mass_report": "06b0275145b94b0dd92d9f108e6628c010aeea043960da2ca8cf866b8c47bd70",
+    "calibration_strength_report": "90be8828e2ee4a7b777c1916df0d6177e25f691e84098799f4e413b303238cbd",
+    "equivalent_product_bias_report": "c1c480de58b42118041801057d7bf8f05ea1932ea1f461b1c4a78396011e53d0",
+    "P1_decision": "3538266ec007088b342fff35267f77302a6d8e3233f50c9d0068149a32160222",
+    "p2_minima": "179fdde3658c2266ce1723c6b3c27aa99e5460eee85474619820a468ab9567d5"
+  },
+  "gpu_hours": 0
+}

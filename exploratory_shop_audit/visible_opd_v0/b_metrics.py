@@ -92,6 +92,10 @@ def p1_status(detected, powered):
 
 
 def analyze():
+    # A completed signed B run can only receive versioned diagnostics.
+    if (RUN/'reports/acceptance.json').exists():
+        from .b_section19 import describe
+        return describe()
     ts,meta,_=load_data();data={k:v.numpy().astype(np.float64) if k not in ('ids','mask') else v.numpy() for k,v in ts.items() if k!='h'}
     merged={};seen=[]
     for f in range(4):

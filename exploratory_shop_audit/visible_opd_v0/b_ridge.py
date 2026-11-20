@@ -25,6 +25,7 @@ def expanded_grid(n_train, score):
 
 
 def ridge(section19=False):
+    section19 = section19 or (RUN/'reports/acceptance.json').exists()
     start=time.monotonic();_,meta,points=load_data();split=read(PARENT/'asin_split_manifest.json')
     folds={r['goal_index']:split['cal_folds'][r['asin']] for r in split['T_cal']}
     xx=[];yy=[];gg=[];ff=[];pg=[];pos=[];probs=[]

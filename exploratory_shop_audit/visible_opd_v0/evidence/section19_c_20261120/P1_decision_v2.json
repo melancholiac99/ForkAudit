@@ -1,0 +1,213 @@
+{
+  "post_hoc": true,
+  "groups": {
+    "all": {
+      "previous": "PASS",
+      "revised": "PASS",
+      "strongest": "rank_mean",
+      "gain_ci95": [
+        0.2805519496097249,
+        0.4145425285069204
+      ],
+      "stable_same_sign": 0.786875889276937,
+      "power_status": "POWER_OK"
+    },
+    "search": {
+      "previous": "UNDERPOWERED",
+      "revised": "PASS_LOW_POWER",
+      "strongest": "zero",
+      "gain_ci95": [
+        0.07995072061540436,
+        0.13842766151222496
+      ],
+      "stable_same_sign": 0.7408208356348553,
+      "power_status": "UNDERPOWERED"
+    },
+    "unknown": {
+      "previous": "FAIL_POWERED",
+      "revised": "FAIL_POWERED",
+      "strongest": "zero",
+      "gain_ci95": [
+        -0.057637345119445654,
+        0.15771891548371042
+      ],
+      "stable_same_sign": 0.783303730017762,
+      "power_status": "POWER_OK"
+    },
+    "format": {
+      "previous": "PASS",
+      "revised": "PASS",
+      "strongest": "token_only",
+      "gain_ci95": [
+        0.3387874759426992,
+        0.4320155106232207
+      ],
+      "stable_same_sign": 0.8738617649907973,
+      "power_status": "POWER_OK"
+    },
+    "click": {
+      "previous": "PASS",
+      "revised": "PASS",
+      "strongest": "token_only",
+      "gain_ci95": [
+        0.16665688325988584,
+        0.730563889515773
+      ],
+      "stable_same_sign": 0.8129745979257478,
+      "power_status": "POWER_OK"
+    },
+    "option": {
+      "previous": "UNDERPOWERED",
+      "revised": "UNDERPOWERED",
+      "strongest": "rank_mean",
+      "gain_ci95": [
+        -0.0510404864410429,
+        0.21740718067084694
+      ],
+      "stable_same_sign": 0.6680612824822549,
+      "power_status": "UNDERPOWERED"
+    },
+    "information_subpage/click": {
+      "previous": "UNDERPOWERED",
+      "revised": "UNDERPOWERED",
+      "strongest": "zero",
+      "gain_ci95": [
+        -0.2263261967210885,
+        -0.19815756798712064
+      ],
+      "stable_same_sign": 0.5595238095238095,
+      "power_status": "UNDERPOWERED"
+    },
+    "information_subpage/format": {
+      "previous": "UNDERPOWERED",
+      "revised": "UNDERPOWERED",
+      "strongest": "zero",
+      "gain_ci95": [
+        -0.09750562343627361,
+        0.03698425228962799
+      ],
+      "stable_same_sign": 0.7623318385650224,
+      "power_status": "UNDERPOWERED"
+    },
+    "product_detail/click": {
+      "previous": "FAIL_POWERED",
+      "revised": "FAIL_POWERED",
+      "strongest": "zero",
+      "gain_ci95": [
+        -0.0016218998871530485,
+        0.12180490765035143
+      ],
+      "stable_same_sign": 0.8247511396408969,
+      "power_status": "POWER_OK"
+    },
+    "product_detail/format": {
+      "previous": "PASS",
+      "revised": "PASS",
+      "strongest": "zero",
+      "gain_ci95": [
+        0.15257719103164505,
+        0.22624851085327707
+      ],
+      "stable_same_sign": 0.8282979359856416,
+      "power_status": "POWER_OK"
+    },
+    "product_detail/option": {
+      "previous": "UNDERPOWERED",
+      "revised": "UNDERPOWERED",
+      "strongest": "rank_mean",
+      "gain_ci95": [
+        -0.0510404864410429,
+        0.21740718067084694
+      ],
+      "stable_same_sign": 0.6680612824822549,
+      "power_status": "UNDERPOWERED"
+    },
+    "product_detail/unknown": {
+      "previous": "FAIL_POWERED",
+      "revised": "FAIL_POWERED",
+      "strongest": "zero",
+      "gain_ci95": [
+        -0.052141913607941785,
+        0.16629379223869345
+      ],
+      "stable_same_sign": 0.7864026169215808,
+      "power_status": "POWER_OK"
+    },
+    "search_home/format": {
+      "previous": "PASS",
+      "revised": "PASS",
+      "strongest": "token_only",
+      "gain_ci95": [
+        0.4611552159554953,
+        0.6450562643341895
+      ],
+      "stable_same_sign": 0.921403855659911,
+      "power_status": "POWER_OK"
+    },
+    "search_home/search": {
+      "previous": "UNDERPOWERED",
+      "revised": "PASS_LOW_POWER",
+      "strongest": "zero",
+      "gain_ci95": [
+        0.07995072061540436,
+        0.13842766151222496
+      ],
+      "stable_same_sign": 0.7408208356348553,
+      "power_status": "UNDERPOWERED"
+    },
+    "search_home/unknown": {
+      "previous": "UNDERPOWERED",
+      "revised": "UNDERPOWERED",
+      "strongest": "zero",
+      "gain_ci95": [
+        -0.10299347190428618,
+        -0.10299347190428618
+      ],
+      "stable_same_sign": 0.7506976744186047,
+      "power_status": "UNDERPOWERED"
+    },
+    "search_results/click": {
+      "previous": "PASS",
+      "revised": "PASS",
+      "strongest": "token_only",
+      "gain_ci95": [
+        0.21704742484343573,
+        0.8913224014641647
+      ],
+      "stable_same_sign": 0.809038906243661,
+      "power_status": "POWER_OK"
+    },
+    "search_results/format": {
+      "previous": "PASS",
+      "revised": "PASS",
+      "strongest": "token_only",
+      "gain_ci95": [
+        0.4165115041942206,
+        0.690574582001162
+      ],
+      "stable_same_sign": 0.9131896755860762,
+      "power_status": "POWER_OK"
+    }
+  },
+  "original": {
+    "eligible_classes": [
+      "click"
+    ],
+    "stage": "B",
+    "actor_updates": 0,
+    "positive_projected_pilot_supported": true,
+    "clusters": "512 distinct tasks; one per ASIN; task and ASIN folds/intervals coincide"
+  },
+  "frozen_hashes": {
+    "projection_report": "7b8fe162d19a3681d892d8889da1e7dd96797dc35e10d0a0580a582304432f37",
+    "original_label_control": "ad648938fffcdc28f1c6a3b6a9e8f3934e56a5ca8371e33914a2e2e6e691a6e7",
+    "power_injection_report": "6b24a72c4f43e13ecf2ce0e591560d75c87a790dede245e0ae675412f5965efc",
+    "capacity_action_ridge_report": "56fdd859c9c243cd1fd8290f7f8a592e902456003c707c38bbfc1956dea1d8c8",
+    "candidate_mass_report": "06b0275145b94b0dd92d9f108e6628c010aeea043960da2ca8cf866b8c47bd70",
+    "calibration_strength_report": "90be8828e2ee4a7b777c1916df0d6177e25f691e84098799f4e413b303238cbd",
+    "equivalent_product_bias_report": "c1c480de58b42118041801057d7bf8f05ea1932ea1f461b1c4a78396011e53d0",
+    "P1_decision": "3538266ec007088b342fff35267f77302a6d8e3233f50c9d0068149a32160222",
+    "p2_minima": "179fdde3658c2266ce1723c6b3c27aa99e5460eee85474619820a468ab9567d5"
+  },
+  "gpu_hours": 0
+}
