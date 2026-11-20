@@ -6,7 +6,7 @@ POLICIES = ('none', 'full', 'product', 'evidence', 'placeholder')
 MATCH = {'full': 'placeholder', 'product': 'placeholder_product', 'evidence': 'placeholder_evidence'}
 FIELDS = {
     'full': [('商品编号', 'goal.asin', 'no'), ('规格', 'goal.goal_options', 'partial'), ('价格上限', 'goal.price_upper', 'partial')],
-    'product': [('商品名称', 'catalog.title', 'partial'), ('属性', 'catalog.attribute', 'partial'), ('规格', 'goal.goal_options', 'partial')],
+    'product': [('商品编号', 'goal.asin', 'no'), ('规格', 'goal.goal_options', 'partial'), ('价格上限', 'goal.price_upper', 'partial'), ('商品名称', 'catalog.title', 'partial'), ('属性', 'catalog.attribute', 'partial')],
     'evidence': [('按展示顺序的首个规格轴', 'catalog.customization_options keys for current public.products', 'partial')],
 }
 HEADER = '补充购物资料'
@@ -31,7 +31,7 @@ def packet(mode, public, catalog, goal=None):
         values = [goal['asin'], goal['goal_options'], goal['price_upper']]
     else:
         p = catalog[goal['asin']]
-        values = [p['title'], p['attribute'], goal['goal_options']]
+        values = [goal['asin'], goal['goal_options'], goal['price_upper'], p['title'], p['attribute']]
     return dict(zip(keys, values)), None
 
 def render(tokenizer, native, fields, reason=None):
@@ -50,7 +50,8 @@ def render(tokenizer, native, fields, reason=None):
             counts[k] = len(tokenizer.encode(value, add_special_tokens=False))
         block = '\n'.join(lines)
         length = len(tokenizer.encode(block, add_special_tokens=False))
-        if length > 192:
+        cap = 1024 if set(fields) == {FIELDS['evidence'][0][0]} else 192
+        if length > cap:
             return ids, 'PACKET_OVERFLOW', counts, length
         messages.insert(2, {'role': 'user', 'content': block})
     final = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True)

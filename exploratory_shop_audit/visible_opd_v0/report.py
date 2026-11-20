@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 from exploratory_shop_audit.grpo_forced_audit.common import save, read_rows, read
 from .packets import POLICIES, MATCH
+from .section16 import behavior_result
 
 def stats(arr):
     if not len(arr):return dict(n=0)
@@ -100,10 +101,11 @@ def report(run,formal=False):
             cover=len(items)>=100 and len({g for g,h in items})>=20
             signal=cover and np.mean([h for g,h in items])>=.1 and len(shifted[m])>=10
             verdict='inconclusive'
-            if cover and (not signal or lift['ci95'][1]<=0):verdict='negative'
-            if signal and lift['ci95'][0]>0:
+            behavior_gate=behavior_result(lift['estimate'],lift['ci95'])
+            if cover and (not signal or behavior_gate=='no_improvement'):verdict='negative'
+            if signal and behavior_gate=='improved':
                 verdict='eligible';passed.append(m)
-            decisions[m]=dict(status=verdict,positions=len(items),tasks=len({g for g,h in items}),shifted_tasks=len(shifted[m]),hits=sum(h for g,h in items),lift=lift)
+            decisions[m]=dict(status=verdict,behavior_gate=behavior_gate,positions=len(items),tasks=len({g for g,h in items}),shifted_tasks=len(shifted[m]),hits=sum(h for g,h in items),lift=lift)
         winner=max(passed,key=lambda m:decisions[m]['lift']['estimate']) if passed else None
         status='SELECTED' if winner else ('PREFLIGHT_INCONCLUSIVE' if any(x['status']=='inconclusive' for x in decisions.values()) else 'PRIVILEGE_NOT_USEFUL')
         save(dest/'packet_selection.json',dict(status=status,selected=winner,decisions=decisions,templates=read(run/'teacher_packet_manifest.json'),pre_hash=read(run/'splits_hash.json')['T_pre']))

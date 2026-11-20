@@ -1,5 +1,7 @@
 # credit-grok 实验方案 v0.4：只做 on-policy 特权蒸馏与学生可见投影（VC-OPD）
 
+**2026-11-20 更新：执行参数与判定以 §16 为准。**
+
 **用途：交给服务器 agent 的可执行实验协议。日期：2026-11-20。版本：v0.4（生效版本，替代 v0.3；新增特权包有用性预检）。**
 
 > 本版取代 `credit_grok_visible_opsd_v0_experiment_plan.md` 中的 **GRPO 训练部分**，保留其特权老师、学生候选 token、中心化相对评分、rank=8 低秩双线性投影器、按题跨折诊断及主要工程审计。**本轮不运行 GRPO，不使用任何环境 reward/advantage 更新参数。**
@@ -61,7 +63,7 @@
 - `student`：`pi_{bar_theta_k}(v | h_{i,t})`，无特权。
 - `privileged`：`pi_{bar_theta_k}(v | h_{i,t}, z_i)`，仅评分端有特权包 `z_i`。
 
-训练用特权包 **先通过 §3.1 的 P-pre 预检选定一种模板与数据来源，再冻结为 `z_selected`**；默认候选 `z_full` 沿用 `gold ASIN`、`goal_options` 和可核验约束；`z_product` 使用冻结 train 商品目录中 gold 商品的标题/属性/目标规格；`z_evidence` 仅使用**当前时刻**真实结果页候选商品的属性/规格且不标注 gold。不得加入未来观察、实际 rollout 结果、E0/E1 oracle 或 V/final 答案。默认包上限 192 tokens；各模式均报告实际字段数、token 数、截断/溢出率；信息超过上限时按预先冻结规则记 `PACKET_OVERFLOW`/不可用，不能暗中省略困难商品或为了择优临时扩上下文。**`teacher_packet_manifest.json` 必须逐字段列出 `field_name/source/already_visible_to_student(yes|partial|no)/token_count`，并报告各字段 token 数及总长度分布**，检验老师额外拿到的究竟是什么（预期 gold ASIN 是主要差异，但不得先验断言）。不能为加入 `z` 删改原学生历史；超上下文记 NA 并分层报告覆盖。
+训练用特权包 **先通过 §3.1 的 P-pre 预检选定一种模板与数据来源，再冻结为 `z_selected`**；默认候选 `z_full` 沿用 `gold ASIN`、`goal_options` 和可核验约束；`z_product` 使用冻结 train 商品目录中 gold 商品的标题/属性/目标规格；`z_evidence` 仅使用**当前时刻**真实结果页候选商品的属性/规格且不标注 gold。不得加入未来观察、实际 rollout 结果、E0/E1 oracle 或 V/final 答案。证据包上限 1024 tokens，其余真实包上限 192 tokens；各模式均报告实际字段数、token 数、截断/溢出率；信息超过上限时按预先冻结规则记 `PACKET_OVERFLOW`/不可用，不能暗中省略困难商品或为了择优临时扩上下文。**`teacher_packet_manifest.json` 必须逐字段列出 `field_name/source/already_visible_to_student(yes|partial|no)/token_count`，并报告各字段 token 数及总长度分布**，检验老师额外拿到的究竟是什么（预期 gold ASIN 是主要差异，但不得先验断言）。不能为加入 `z` 删改原学生历史；超上下文记 NA 并分层报告覆盖。
 
 在**任何 GPU 预检前**冻结全部候选包的角色、插入位置、文字模板、占位模板、分隔符、tokenizer 和模板哈希，写入 `teacher_packet_manifest.json`；例如将 `z` 作为“完整购物要求”消息之后的独立固定格式段落，但最终必须依据真实 prompt 验证。P-pre 只能在这些**事前固定**的候选中做一次选择，不准根据结果改写包内容。`z=空` 时**整个额外段落完全不出现**（不能保留空 system 段），保证 student 与 empty-z 的输入 token IDs 完全相同。不得在运行中为改善信号改模板。V 的一次性只读审计例外按 §2 的隔离规定执行，不产生训练用 packet。
 
@@ -75,7 +77,7 @@
 |---|---|---|
 | `z_none`（学生基线） | 完全无附加段落，原学生原生 prompt | 评测无包行为与 token/logit 基线 |
 | `z_full` | 原版包：gold ASIN、冻结目标规格/价格等可核验字段 | 最贴近原 v0.3 设计；字段逐项核对哪些已对学生可见 |
-| `z_product` | gold 商品标题、关键属性、目标规格；ASIN 可选但固定 | 只来自 train 冻结商品目录；不能从实际未来轨迹提取 |
+| `z_product` | z_full 全部字段，含 gold ASIN，另加 gold 商品标题与关键属性 | 只来自 train 冻结商品目录；不能从实际未来轨迹提取 |
 | `z_evidence` | 当前结果页**各个当前可见候选商品**的属性/规格证据，不带 gold 标记 | 必须在每个真实环境状态重新构建，禁止引用未出现的下一页/未来反馈；与学生已看到的重合部分单列 |
 | `z_placeholder` | 与 `z_full` **同角色、同插入位置、同字段和固定文本格式**，内容值全为“未提供” | 控制有无附加段落造成的模板/格式效应；`z_none` 才是严格空包控制 |
 
@@ -312,7 +314,7 @@ L_group = mean_same_valid_response_positions KL(stopgrad(q_group,t) || q_actor_t
 
 - 1-update：N/R/P/R-β/P-shuffled 检查相同结构性 token mask、target detach、LoRA 实际更新、`z=空` 自蒸馏梯度、分布式同步和 GPU 成本；在**同一离线轨迹/第 0 步**严格检查四个训练组的有效位置相同，更新后在线轨迹分叉仅要求规则一致。
 - 10-update：通过 P1 后共同运行 R/P/R-β/P-shuffled（B 不更新）；每个 on-policy 迭代以当次 actor 为快照，只做 1 optimization epoch。在**同一批固定 detached target** 上测量每步 actor 更新前/后 KL 变化，报告合法动作、任务覆盖、非零校准修正比例、分类别 target KL/熵与梯度 proxy、`b_c/β_c/γ_c`、projection age、自蒸馏 KL、成本。不同批次的目标 KL 不可直接比较来宣称单步改善。
-- 预注册 100-update 继续门：P0 全通过；P1 至少一个决策内容类别有稳定非零可见预测且 `b_c` 区间不含 0；pilot 大多数更新的固定目标 KL 下降、无数值/隔离异常；10 更新覆盖**至少 50 个不同任务**，按 frozen parser 至少 **15% 的结构性有效 response token 属于 search/click/规格决策内容**（这是任务覆盖的工程 sanity 门，**不是 P active mask**），并单独报告 `KL(q_P||q_S)` 非零的决策 token 比例及 0 修正比例。预算明确授权。阈值在 pilot 前冻结；若低于要求标 `LOW_DECISION_COVERAGE` 或 `LOW_SIGNAL`，不能用 V@10 reward 调它。
+- 预注册 100-update 继续门：P0 全通过；P1 至少一个决策内容类别有稳定非零可见预测且 `b_c` 区间不含 0；pilot 大多数更新的固定目标 KL 下降、无数值/隔离异常；10 更新按 §16.3 为 search/click/规格各核验至少 N_c 个有效 token 和至少 50 个不同任务（这是任务覆盖的工程 sanity 门，**不是 P active mask**），并单独报告 `KL(q_P||q_S)` 非零的决策 token 比例及 0 修正比例。预算明确授权。阈值在 pilot 前冻结；若低于要求标 `LOW_DECISION_COVERAGE` 或 `LOW_SIGNAL`，不能用 V@10 reward 调它。
 - 在 `V@0/10` 与 `T_opd_eval@0/10` 进行无特权行为评测；报 Reward v3、严格成功率、**满足全部要求的购买率**、reward_type 全分布、合法率、search/click/规格漏斗、轨迹长度，以及未见商品的**click/规格决策 token 学生熵**、满足全部要求购买率/严格成功率之比。V@10 只描述，**不能作为是否进行 100 更新的门槛**。
 
 ### P3：有条件的完整 100 更新
@@ -515,7 +517,7 @@ RUNBOOK.md
 
 ## 15. 特权包预检修订（2026-11-20；对应外部建议的 §16′；已合入 §2/§3.1/§7/§8/§9）
 
-**15.1 五种 teacher-as-policy 设置。** 约 100 个 train-only `T_pre` 不同任务，在同一冻结 Qwen2.5-7B 快照、同任务、相同 seed 方案上比较 `z_none/z_full/z_product/z_evidence/z_placeholder`，每种 `sample×2+greedy×1`。`z_placeholder` 与 `z_full` 同格式但全部字段值改“未提供”。`z_product` 包含 gold 商品标题/属性/目标规格（可含 ASIN）；`z_evidence` 只来自**当前**结果页的候选属性/规格，**不标 gold、不看未来**。奖励与漏斗只用于 `T_pre` 预检包选择，不进 OPD 梯度。
+**15.1 五种 teacher-as-policy 设置。** 约 100 个 train-only `T_pre` 不同任务，在同一冻结 Qwen2.5-7B 快照、同任务、相同 seed 方案上比较 `z_none/z_full/z_product/z_evidence/z_placeholder`，每种 `sample×2+greedy×1`。`z_placeholder` 与 `z_full` 同格式但全部字段值改“未提供”。`z_product` 包含 gold 商品标题/属性/目标规格（固定包含 z_full 的 gold ASIN、价格与规格）；`z_evidence` 只来自**当前**结果页的候选属性/规格，**不标 gold、不看未来**。奖励与漏斗只用于 `T_pre` 预检包选择，不进 OPD 梯度。
 
 **15.2 同轨迹的 token 内容效应。** 在固定的无包学生轨迹上，按学生候选集比较各包相对 `z_placeholder` 的 `KL(q_x||q_S)`、动作 token 的 `|Δ|` 非零比例和 `d_x-d_placeholder` 的差；`z_product/z_evidence` 还要使用**各自同格式**的评分侧占位包，避免把不同模板导致的分数变化误称特权信息增益。区分 `z_none→placeholder` 的格式影响与 `placeholder→真实包` 的内容影响。占位对照仅审计，不改变原 `d_x` 训练标签。
 
@@ -532,3 +534,17 @@ RUNBOOK.md
 - **PINT / Privileged Information Internalization for Agentic RL**（2026 预印本，作者公开页面标注 NeurIPS 2026 PretoPost Workshop 接收、主会录用未确认）：同样关注“老师依据特权信息产生学生难以内化的监督”问题，已有方案说明把它与奖励验证、在基础上下文拟合临时老师的路线相区分；我们的技术路线是**同模相对 logit 标签 → student-only rank=8 跨任务投影 → 候选 KL**。正式论文中须进一步核对 PINT 原文方法和具体结果，当前不把 31.6% 等未核实数字写作确定结论。作者论文入口：<https://yilanchen6.github.io/>；论文链接：<https://openreview.net/forum?id=R1peldcnUL>。
 
 **文献不能替代本次 `T_pre` 五设置预检。** 特别是采用不同尺度/不同环境/不同老师包的工作，不能推导出 Qwen2.5-7B 在当前购物环境下的 token 可蒸馏性。
+
+## 16. 执行前定值（2026-11-20）
+
+本节覆盖前文相应旧值。修订在旧模板 8 题预检已报告、旧正式采集已启动之后收到。修订版沿用原冻结任务与种子，独立保存产物、重新测量，不作为旧数据收集前预注册。
+
+16.1 P-pre 以相对 z_none 的采样全要求购买率配对差为主。点估计 ≥ +10 个百分点且任务簇 95% 区间下界 > 0 为改善。区间同时包含 0 与 +10 为 PREFLIGHT_INCONCLUSIVE。点估计 < +10 且上界 < +10 为无改善。其余未明确达到改善或无改善的边界情形保留为 PREFLIGHT_INCONCLUSIVE。动作内容和覆盖要求继续独立判定。
+
+16.2 z_evidence 包长上限 1024 tokens，其他真实包 192。匹配占位仅用于同格式诊断。记录各包溢出率。在非结果页（含商品页规格决策）z_evidence 为 NA。仅当选中 z_evidence 时，所有训练组在这些位置同样不计入该包评分覆盖。其他已选包沿用原共同结构性有效位置。
+
+16.3 P2 使用绝对覆盖门。10 次更新合计，search、click、规格各至少 N_c 个结构性有效 token，且各来自至少 50 个不同任务。阶段 B 以 T_cal 每题一条 rollout、已选包适用域的类别计数，冻结 N_c=max(1,ceil(0.5×10×32×2×该类有效 token 总数/T_cal 不同任务数))。10-update pilot 固定并留存每类 N_c 和分母。若某类结构性不适用，标记覆盖门未满足并披露原因。
+
+16.4 1-update smoke 前冻结 OPD 每次更新 32 个任务、每题 2 条轨迹，四训练组相同。实测吞吐后如需调整须在 pilot 前登记，禁止据 V 结果修改。
+
+16.5 z_product 固定为 z_full 的全部字段（gold ASIN、目标规格和价格约束）加冻结商品目录的 gold 商品标题与关键属性。

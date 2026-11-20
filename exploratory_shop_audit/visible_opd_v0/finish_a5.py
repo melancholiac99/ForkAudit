@@ -25,7 +25,7 @@ def extra_diagnostics(run):
                 if real['reason'] or empty['reason']:continue
                 lengths[m].append(real['length']-empty['length'])
 
-    repaired={(r['goal'],r['rep'],r['step']):r['classes'] for r in rows(run/'parser_repair.jsonl')}
+    repaired={(r['goal'],r['rep'],r['step']):r['classes'] for r in rows(run/'parser_repair.jsonl')} if (run/'parser_repair.jsonl').exists() else {}
     delta=defaultdict(list)
     kl_nonzero=defaultdict(list)
     for p in [*run.glob('scores_*.jsonl'),*run.glob('formal_scores_*.jsonl')]:
@@ -62,7 +62,7 @@ def finish(run):
     (dest/'funnel.json').write_text(json.dumps(funnel,indent=2)+'\n')
     files=['acceptance.json','input_hashes.json','summary.json','score_alignment.json','preflight_utility_report.json','preflight_content_coverage.json','privilege_delta_report.json','template_effect_report.json','packet_token_counts.json','extra_diagnostics.json','funnel.json','packet_selection.json']
     artifacts={name:digest(dest/name) for name in files}
-    for name in ('formal_authorization.json','splits_hash.json','teacher_packet_manifest.json','parser_repair_manifest.json','preflight_cost_ledger.jsonl','env_manifest.json','PROTOCOL.md'):
+    for name in ('formal_authorization.json','splits_hash.json','teacher_packet_manifest.json','token_parser_manifest.json','preflight_cost_ledger.jsonl','env_manifest.json','PROTOCOL.md'):
         artifacts['../'+name]=digest(run/name)
     (dest/'report_manifest.json').write_text(json.dumps(artifacts,indent=2)+'\n')
     winner=selection['selected']
@@ -82,9 +82,9 @@ def finish(run):
         lines.append(f"| {NAMES[m]} | {x['positions']:,} | {x['hits']:,} ({x['hits']/max(1,x['positions']):.1%}) | {x['shifted_tasks']}/{x['tasks']} | {x['status']} |")
     ref=results['full_sample']['all_requirements_vs_placeholder']
     lines+=['',f"完整包相对同格式占位文本的采样购买率差为 {ref['estimate']*100:+.1f} 个百分点（95% CI {ref['ci95'][0]*100:+.1f} 至 {ref['ci95'][1]*100:+.1f}）。商品包与当页证据包的同格式占位对照只用于 token 评分，行为层面的差值仍包含模板效应。",'',
-            '行动内容判定使用学生 top-8 加实际采样 token 的条件分布，并比较同一输出前缀上的真实包与对应占位包。至少 10% 合格位置须同时达到采样 token 中心化差绝对值 >0.02 和内容 KL >1e-5，还须覆盖至少 10 题。行为门使用采样全要求购买率的配对区间下界 >0。','',
-            f"无包学生的 {alignment['scored_steps']:,} 个决策和 {alignment['response_tokens']:,} 个响应 token 全部对齐。重复空包评分的最大误差为 {alignment['max_empty_error']:.3g}。保留了 8 题试跑中对裸动作解析的逐步修订记录。CPU 独立回放复核了全部 1,500 条轨迹的终止原因、终局奖励与逐步合法性。",'',
-            f"本次追加使用 {evidence['formal_gpu_hours']:.3f} / 2.500 GPU 小时。含首次 8 题的总用量为 {summary['gpu_hours']:.3f} GPU 小时。实验停在 A.5；本报告未评估投影器效果或蒸馏后策略泛化。",'',
+            '行动内容判定使用学生 top-8 加实际采样 token 的条件分布，并比较同一输出前缀上的真实包与对应占位包。至少 10% 合格位置须同时达到采样 token 中心化差绝对值 >0.02 和内容 KL >1e-5，还须覆盖至少 10 题。§16 行为门要求采样全要求购买率提升至少 10 个百分点且配对区间下界 >0。','',
+            f"无包学生的 {alignment['scored_steps']:,} 个决策和 {alignment['response_tokens']:,} 个响应 token 全部对齐。重复空包评分的最大误差为 {alignment['max_empty_error']:.3g}。本次按 §16 模板重跑全部 100 题。CPU 独立回放复核了全部 1,500 条轨迹的终止原因、终局奖励与逐步合法性。",'',
+            f"本次追加使用 {evidence['formal_gpu_hours']:.3f} / 2.500 GPU 小时。其中新 §16 运行（全部 100 题）用量为 {summary['gpu_hours']:.3f} GPU 小时，旧版首次预检 0.190 GPU 小时在追加额度之外。实验停在 A.5；本报告未评估投影器效果或蒸馏后策略泛化。",'',
             '正式运行目录内的 report_manifest.json 记录报告和原始输入清单的 SHA256。完整 reward 类型分布、合法动作率、搜索/打开商品/规格/购买漏斗、KL 与候选质量的页面和 token 分类统计随附。']
     (dest/'REPORT.md').write_text('\n'.join(lines)+'\n')
 

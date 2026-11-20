@@ -48,8 +48,10 @@ def audit(run):
             require({t[col] for t in pre}.isdisjoint(t[col] for t in split[name]), 'split overlap')
 
     decision = load('formal_report/packet_selection.json')
-    repair = {key(r):r['classes'] for r in rows(run/'parser_repair.jsonl')}
-    require(digest(run/'parser_repair.jsonl') == load('parser_repair_manifest.json')['sidecar_sha'], 'repair hash')
+    repair = {}
+    if (run/'parser_repair.jsonl').exists():
+        repair = {key(r):r['classes'] for r in rows(run/'parser_repair.jsonl')}
+        require(digest(run/'parser_repair.jsonl') == load('parser_repair_manifest.json')['sidecar_sha'], 'repair hash')
     completed = {}
     student = {}
     tapes = {}
@@ -135,7 +137,12 @@ def audit(run):
         require(np.allclose(np.quantile(boot,[.025,.975]),saved['lift']['ci95']), 'bootstrap CI mismatch')
     ledger=list(rows(run/'preflight_cost_ledger.jsonl'))
     used=sum(x['gpu_hours'] for x in ledger if x['stage'].startswith('formal_'))
-    require(0<used<=load('formal_authorization.json')['additional_gpu_hours'], 'budget exceeded')
+    receipt=load('formal_authorization.json')
+    if receipt['stage']=='section16_P_pre':
+        old=Path(receipt['prior_run'])
+        prior_used=sum(x['gpu_hours'] for x in rows(old/'preflight_cost_ledger.jsonl') if x['stage'].startswith('formal_'))
+        used=prior_used+sum(x['gpu_hours'] for x in ledger)
+    require(0<used<=receipt['additional_gpu_hours'], 'budget exceeded')
     (dest/'input_hashes.json').write_text(json.dumps(manifest,indent=2)+'\n')
     result=dict(passed=True,episodes=len(completed),steps=n_steps,student_steps=len(seen),response_classes=classes,
                 max_center_error=max_center,max_content_kl_error=max_kl_error,formal_gpu_hours=used,

@@ -14,7 +14,7 @@ def categories(tokenizer, ids, public):
     labels = []
     offset = 0
     options = public.get('available_options', {})
-    arg = m[2].decode('utf-8').strip().lower() if m else ''
+    arg = m[2].decode('utf-8',errors='replace').strip().lower() if m else ''
     for i,b in zip(ids,parts):
         end = offset + len(b)
         label = 'unknown'
