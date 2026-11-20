@@ -18,7 +18,11 @@ class InferencePool:
     def __init__(self,cmd,run,ids):
         self.ids=ids;self.pool=ThreadPoolExecutor(max_workers=len(ids));self.models=[]
         def start(gpu):
-            env=os.environ.copy();env.update(PYTHONPATH=str(ROOT),CUDA_VISIBLE_DEVICES=str(gpu),VLLM_WORKER_MULTIPROC_METHOD='spawn',OMP_NUM_THREADS='2')
+            # Each TP1 engine creates its own rendezvous even when the controllers use torchrun.
+            rank_env = {'RANK','LOCAL_RANK','WORLD_SIZE','LOCAL_WORLD_SIZE','GROUP_RANK',
+                        'ROLE_RANK','ROLE_WORLD_SIZE','MASTER_ADDR','MASTER_PORT'}
+            env = {k:v for k,v in os.environ.items() if k not in rank_env and not k.startswith('TORCHELASTIC_')}
+            env.update(PYTHONPATH=str(ROOT),CUDA_VISIBLE_DEVICES=str(gpu),VLLM_WORKER_MULTIPROC_METHOD='spawn',OMP_NUM_THREADS='2')
             return RPC(cmd,run/f'inference_gpu_{gpu}.log',env,timeout=900)
         futures=[self.pool.submit(start,gpu) for gpu in ids]
         try:
