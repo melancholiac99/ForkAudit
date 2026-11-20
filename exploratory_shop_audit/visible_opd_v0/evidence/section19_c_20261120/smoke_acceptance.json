@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "section19_cpu_only": true,
+  "seed": 20261120,
+  "groups": [
+    "N",
+    "R",
+    "P",
+    "R-beta",
+    "P-shuffled"
+  ],
+  "batch_tasks": 32,
+  "trajectories": 64,
+  "steps": 282,
+  "positions": 4448,
+  "classes": {
+    "format": 1059,
+    "search": 1462,
+    "click": 1144,
+    "option": 734,
+    "unknown": 49
+  },
+  "replica_count": 4,
+  "staged_tensor_sha256": {
+    "batch_0/student.pt": "551b9855c758bf83edb490e2138fe7435852a9031499ea1b96f557a3ac9d51af",
+    "batch_0/N.pt": "7823439c5b716329b3c641555f11ad880042ebe10af9dfde5a27ae7834aab015",
+    "batch_0/R.pt": "890e6f580ecb0b60c3dd40799288b8921ddb738538a33b083c2c66d9654bcf1c",
+    "batch_0/P.pt": "d41e4a69b68dd8a35fadb16c281f83eda6bc87fc9ff1337720322f7f5025bb9f",
+    "batch_0/R-beta.pt": "db4c99c3152fd51756b81c4ba054696d434afbdb3c3e6979be8f97b9f91162fe",
+    "batch_0/P-shuffled.pt": "256223e6ca49316eb531e6fcc1c7b4ab33c9f1e36821e309ba8644109e5f5b62",
+    "batch_1/student.pt": "b72fd47d8e2ca4e0237cf3ec709b2e2600b59533c8a1dd5efd0613f5a80012a8",
+    "batch_1/N.pt": "5d617e7e366d8c8861992830499ecb597fbc5f062f9d79349e0de4fa17e95f01",
+    "batch_1/R.pt": "83378e3bb29c4bda672eb65938c1fa6daa88ef2efc4ccac5a0f5a2af23b18973",
+    "batch_1/P.pt": "0c050ecbc35be233c5dc589798a1fd0953850ea384134c1dee8ed3630e0bda0b",
+    "batch_1/R-beta.pt": "95b7fd4bedab3710922f00458d997e5357ffdc30115a4a818af485a7973cb8ae",
+    "batch_1/P-shuffled.pt": "5b04cc65101852f1500256979bed43ca0720036832b462c0b3b9a72097a6fddb",
+    "batch_2/student.pt": "b2b23786aa2a6395f68ff2e45e1ff953cbc78968573316a54cab33835fdfc19e",
+    "batch_2/N.pt": "f29e12bf1c681f51091cecbc128591cb803afea3b6430379e81b6c0f938216af",
+    "batch_2/R.pt": "6bd4ad8b8d4bc135ebcc1407aeba5313c0761816670b178f86f60d9275396e55",
+    "batch_2/P.pt": "f4c8c28dbf7d4c1fcbde9986668903306345296622d39defc353a0385975bd9a",
+    "batch_2/R-beta.pt": "0375eed5e3a87a27c7b1e5633fc9ce97412c98f3dbdca220fcbd3da8a924b836",
+    "batch_2/P-shuffled.pt": "285030ec96cd597966e11402ab5a0fa064d231c627c330d2247b1a7a7055eab4",
+    "batch_3/student.pt": "75c8764971aac9d1e3bd8e4264a68aaac339afbfe88fdaa19481b12944d76829",
+    "batch_3/N.pt": "f23e01fcd0484338c09a19a88a4569e4434950ecc81f32c772d9c42a36b9195d",
+    "batch_3/R.pt": "620dc7cc2aa8574cf381a99a667414ed64e8b3d969d5a2e50e797a200e235633",
+    "batch_3/P.pt": "726f350509a0097aa0c4565f6977b012e11c4eaa6d54464ef2c9265c3f4941aa",
+    "batch_3/R-beta.pt": "e46bf5199fc8f91e2f38f2ef5245509f4633c29151b2c752e18957e8cb71d71d",
+    "batch_3/P-shuffled.pt": "6fec72857bc4baef677bbae3d21c463bcecd1c6f0b79e8a2a924b46325e586c4"
+  },
+  "rollouts": {
+    "rollout_1.jsonl": "29a0eacc7e9fb0bb08a39e3f57189e7122209d89c560306c15a5073a087b5068",
+    "rollout_0.jsonl": "da5b39ac31157fe9e72f3450083ade7e2b779e4dd36006c316c92cc5f4db142e"
+  },
+  "report_sha256": "c68b3421259ab246934411472a39f89a83a80fe8c67ab8df4643b355fc69c3e1",
+  "frozen_strength_sha256": "90be8828e2ee4a7b777c1916df0d6177e25f691e84098799f4e413b303238cbd",
+  "frozen_p2_sha256": "179fdde3658c2266ce1723c6b3c27aa99e5460eee85474619820a468ab9567d5",
+  "costs_gpu_hours": {
+    "collection": 0.09200001533999966,
+    "targets": 0.08801451625722166,
+    "updates": 0.8306048458977764
+  },
+  "total_gpu_hours": 1.0106193774949976
+}
