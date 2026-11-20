@@ -92,9 +92,10 @@ def training():
         P2_minima=minima,workers=4,lr=1e-6,weight_decay=0,clip=1,epoch=1)
     base_legal=first_legal()
     for arm in ARMS:
-        updates=[];counts=Counter();covered=defaultdict(set);last_sha=None
+        updates=[];counts=Counter();covered=defaultdict(set);last_sha=None;norms=[]
         for k in range(1,11):
             path=folder(k,arm);opt=read(path/'optimizer.json');mon=read(path/'fp32.json')
+            norms.extend(opt['grad_norms'])
             assert opt['after_sha']==mon['actor_after_sha'] and opt['before_sha']==mon['actor_before_sha']
             if k>1:assert last_sha==opt['before_sha']==read(path/'target_manifest.json')['scorer_sha']
             last_sha=opt['after_sha'];tape=torch.load(path/'probes.pt',weights_only=True)
@@ -124,6 +125,8 @@ def training():
         window=cumulative_window(updates,probe,probe.probes,probe.targets(arm))
         tasks={c:len(covered[c]) for c in DECISION_CLASSES}
         summary[arm]=dict(**window,improving_updates=sum(r['delta']>0 for r in window['rows']),
+             positive_alignment_updates=sum(r['alignment']>0 for r in window['rows']),
+             clipped_minibatches=sum(x>1. for x in norms),optimizer_minibatches=len(norms),
              counts=counts,covered_tasks=tasks,coverage_pass=p2_coverage(minima,counts,tasks))
     EVIDENCE.mkdir(exist_ok=True,parents=True)
     save(EVIDENCE/'training_report.json',dict(checks=checks,arms=summary,by_class=byclass,
@@ -131,6 +134,8 @@ def training():
         phase_times=costs,activation_benchmarks={f'{p.parent.name}/{p.stem}':read(p)
             for p in sorted((RUN/'pilot').glob('*/activation_check_rank*.json'))},
         fixed_projector=True));tsv(EVIDENCE/'training_steps.tsv',rows)
+    from .d_probe_pairs import pairs_through
+    tsv(EVIDENCE/'fixed_probe_pairs.tsv',pairs_through(10))
     for a in ARMS:archive_final(a)
 
 if __name__=='__main__':
@@ -142,7 +147,7 @@ if __name__=='__main__':
         from shutil import copyfile
         public=RUN/'reports'
         public.mkdir(exist_ok=True)
-        files=('training_report.json','training_steps.tsv','behavior_report.json','behavior_summary.tsv','STAGE_D.md')
+        files=('training_report.json','training_steps.tsv','behavior_report.json','behavior_summary.tsv','fixed_probe_pairs.tsv','STAGE_D.md')
         hashes={}
         for name in files:
             src=EVIDENCE/name
