@@ -12,7 +12,7 @@ RUN=ROOT/'.runtime/runs/shop_visible_opd_content_b_20261120'
 def batch(runner,tasks,goals,path,rep=0,stream='T_cal'):
     active=[]
     for task in tasks:
-        i=task['goal_index'];key=f'{stream}_{i}_{rep}'
+        i=task['goal_index'];key=f'cal_{i}' if stream=='T_cal' else f'{stream}_{i}_{rep}'
         active.append((i,key,[],runner.engine.call(cmd='open',key=key,goal_index=i)))
     while active:
         requests=[];rows=[]
