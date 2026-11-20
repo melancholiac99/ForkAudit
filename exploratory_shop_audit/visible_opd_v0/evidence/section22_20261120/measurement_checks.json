@@ -1,0 +1,16 @@
+{
+  "tasks": 32,
+  "trajectories": 64,
+  "rows": 282,
+  "positions": 4448,
+  "real_fp32_cells": 12,
+  "null_paired_directions": 20,
+  "fixed_probe_records": 4,
+  "frozen_targets": true,
+  "source_weights_dtype": "bfloat16",
+  "fp32_compute": "FP32 MATH SDPA, TF32 disabled",
+  "max_identity_residual": 2.0816681711721685e-17,
+  "max_direct_cached_fp32_error": 0.00012969970703125,
+  "cosine_source_sha256": "8976e64a9daef8666c830c7ebdc159699ff0f3710ce655b950fb43109160a014",
+  "measured_scoring_worker_gpu_hours": 2.638013641512777
+}

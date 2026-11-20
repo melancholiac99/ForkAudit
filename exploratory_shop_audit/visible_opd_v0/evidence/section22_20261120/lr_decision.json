@@ -1,0 +1,36 @@
+{
+  "prior_section21_status": "NOT_ESTABLISHED",
+  "status": "RETAIN_LR",
+  "selected_lr": 1e-06,
+  "by_arm": {
+    "R": {
+      "alignment": 0.009636778524125745,
+      "null_q95": 3.086502893694264e-06,
+      "above_by": 0.00963369202123205,
+      "passed": true
+    },
+    "R-beta": {
+      "alignment": 0.0024670675600993192,
+      "null_q95": 5.344043578727498e-07,
+      "above_by": 0.0024665331557414466,
+      "passed": true
+    },
+    "P": {
+      "alignment": 0.00411419410548815,
+      "null_q95": 3.8282617357387915e-07,
+      "above_by": 0.004113811279314576,
+      "passed": true
+    },
+    "P-shuffled": {
+      "alignment": 0.0018275952714985895,
+      "null_q95": 5.486070887323841e-07,
+      "above_by": 0.0018270466644098571,
+      "passed": true
+    }
+  },
+  "null_per_arm": 5,
+  "quantile_method": "linear empirical q95, strict greater-than",
+  "stage_D_updates": 0,
+  "V_reads": 0,
+  "T_opd_eval_reads": 0
+}
