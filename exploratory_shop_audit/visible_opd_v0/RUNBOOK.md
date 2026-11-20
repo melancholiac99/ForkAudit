@@ -1,0 +1,9 @@
+# VC-OPD package preflight
+
+Run as a module from the checkout based on credit-grok 5a076ef5a. Source env/verl_agent.sh. Link the checkout's .runtime to the verified server assets. Reserve four idle A100s. Keep run directories owner-only.
+
+For a new independent run, use prepare RUN (validates full model/data checksums), collect RUN, score RUN and report RUN under exploratory_shop_audit.visible_opd_v0. Each accepts the same directory. prepare requires a new directory. The current registered run and parser repair are documented in SMOKE.md. Use a systemd transient service for a persistent launch, include the checkout as WorkingDirectory, and record the code commit for each phase. Run the tests with python -m unittest exploratory_shop_audit.visible_opd_v0.test_visible.
+
+To finish the same P-pre after authorization, store the user's stage and approved additional GPU-hours in private formal_authorization.json with stage=remaining_92_P_pre, additional_gpu_hours and smoke_summary_sha256. The latter is SHA256 over the actual smoke_summary.json file bytes. Run python -m exploratory_shop_audit.visible_opd_v0.formal RUN once. The driver holds a run lock, sets a wall timer for four allocated devices, reuses the first eight frozen tasks and reads only the remaining 92 for new collection. Complete batch directories survive interruption. Report-only access to all 100 tasks follows scoring. The final packet decision is in formal_report/packet_selection.json. No downstream stage is launched by this command.
+
+Do not treat partial shards or averaged historical baseline rewards as completed observations. An unexpected host kill requires reconciling elapsed GPU allocation before resuming. Inspect the cost ledger and GPU workers first. The runner accounts four reserved GPUs from model/environment initialization through teardown, including idle intervals. It excludes CPU-only scoring summaries.

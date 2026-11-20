@@ -2,7 +2,8 @@ import unittest
 import torch
 from transformers import AutoTokenizer
 from exploratory_shop_audit.runtime import MODEL, make_input
-from .packets import packet, render, categories
+from .packets import packet, render
+from .parser import categories
 from .projection import candidate_loss, candidate_target, VisibleProjection
 from .score import centered, measure, support
 
@@ -25,7 +26,7 @@ class Tests(unittest.TestCase):
 
     def test_spans(self):
         public=dict(page_type='product_detail',available_options={'颜色':['蓝色']})
-        for text,label in [('想法\nAction: click[1234567890]','click'),('Action: click[蓝色]','option'),('Action: search[冰箱]','search'),('invalid','unknown')]:
+        for text,label in [('想法\nAction: click[1234567890]','click'),('Action: click[蓝色]','option'),('Action: search[冰箱]','search'),('click[蓝色]','option'),('search[中文]','search'),('invalid','unknown')]:
             ids=self.tok.encode(text)+[self.tok.eos_token_id]
             cats=categories(self.tok,ids,public)
             self.assertEqual(len(ids),len(cats))

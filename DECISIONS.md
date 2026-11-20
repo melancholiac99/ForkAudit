@@ -1941,3 +1941,5 @@ Source-wide parsing audit still finds570 of239,925 normalized option values fail
 ## VC-OPD v0.4 launch registration (2026-11-20)
 
 Start the eight-task A.5 cost and alignment pilot from the unadapted model at 5a076ef5a. Freeze template choices, seed, matching thresholds and projected controls in exploratory_shop_audit/visible_opd_v0/PROTOCOL.md. Use the existing V unchanged, excluding its products from train pools to preserve unseen evaluation. Formal P-pre allocation follows measured cost.
+
+VC-OPD smoke parser correction. The first alignment report counted almost every native bare search/click action as unknown. The native interface accepts bare commands as well as Action-prefixed commands. Add the direct-command case using the same content span and option membership rules. Freeze the corrected parser and require CPU environment replay with exact native prefix equality against all stored student rows. Preserve the first report and the raw scores, reuse the same task identities, templates, thresholds and selections. No packet was selected. Disclose the timing of this change before formal budget review.

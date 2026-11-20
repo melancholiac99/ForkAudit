@@ -69,14 +69,14 @@ def score_row(model,row):
         out[m].update(content_d_y=(d-dp).gather(1,index).flatten().tolist(),content_kl=kl(q,logq,logqp).tolist())
     return {k:row[k] for k in ('goal','rep','step','page','classes')} | dict(actual=row['response'],ids=ids.tolist(),candidate_mask=mask.tolist(),qs=qs.tolist(),scores=out,na={m:v['reason'] for m,v in views.items() if v['reason']},greedy_match=greedy_match,empty_max=error)
 
-def worker(run,rank,size):
+def worker(run,rank,size,formal=False):
     from transformers import AutoModelForCausalLM
-    out=run/f'scores_{rank}.jsonl'
+    out=run/(('formal_scores_' if formal else 'scores_')+str(rank)+'.jsonl')
     if out.exists():return
     partial=run/f'scores_{rank}_{time.time_ns()}.partial'
     model=AutoModelForCausalLM.from_pretrained(MODEL,local_files_only=True,torch_dtype=torch.bfloat16).eval().to('cuda')
     count=0
-    for tape in sorted(run.glob('smoke_batch_*/score_inputs.jsonl')):
+    for tape in sorted(run.glob(('formal' if formal else 'smoke')+'_batch_*/score_inputs.jsonl')):
         with tape.open() as f:
             for line in f:
                 if count%size==rank:
@@ -86,22 +86,25 @@ def worker(run,rank,size):
     if count==0:raise ValueError('empty student tape')
     partial.rename(out)
 
-def score(run):
+def score(run,formal=False):
     if len(list(run.glob('smoke_batch_*/episodes.jsonl')))!=2:raise ValueError('missing behavior batches')
+    if formal:
+        from .formal import check_receipt
+        check_receipt(run)
     start=time.monotonic()
     children=[]
     try:
         for gpu in range(4):
-            children.append(subprocess.Popen([sys.executable,'-m',__spec__.name,str(run),'--rank',str(gpu)],env={**os.environ,'CUDA_VISIBLE_DEVICES':str(gpu)}))
+            children.append(subprocess.Popen([sys.executable,'-m',__spec__.name,str(run),'--rank',str(gpu)]+(['--formal'] if formal else []),env={**os.environ,'CUDA_VISIBLE_DEVICES':str(gpu)}))
         if any(code!=0 for code in [p.wait() for p in children]):raise RuntimeError('SCORER_FAILURE; see worker output')
     finally:
         for p in children:
             if p.poll() is None:p.terminate()
         for p in children:p.wait()
-        append(run/'preflight_cost_ledger.jsonl',dict(stage='scoring',gpus=4,gpu_hours=4*(time.monotonic()-start)/3600))
+        append(run/'preflight_cost_ledger.jsonl',dict(stage='formal_scoring' if formal else 'scoring',gpus=4,gpu_hours=4*(time.monotonic()-start)/3600))
 
 if __name__=='__main__':
     os.umask(0o077)
-    p=argparse.ArgumentParser();p.add_argument('run',type=Path);p.add_argument('--rank',type=int);a=p.parse_args()
-    if a.rank is None:score(a.run)
-    else:worker(a.run,a.rank,4)
+    p=argparse.ArgumentParser();p.add_argument('run',type=Path);p.add_argument('--rank',type=int);p.add_argument('--formal',action='store_true');a=p.parse_args()
+    if a.rank is None:score(a.run,a.formal)
+    else:worker(a.run,a.rank,4,a.formal)
