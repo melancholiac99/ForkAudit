@@ -126,4 +126,11 @@ def training():
         fixed_projector=True));tsv(EVIDENCE/'training_steps.tsv',rows)
     for a in ARMS:archive_final(a)
 
-if __name__=='__main__' and sys.argv[1]=='training':training()
+if __name__=='__main__':
+    if sys.argv[1]=='training':
+        training()
+    elif sys.argv[1]=='behavior':
+        from .d_behavior import report
+        report()
+    else:
+        raise ValueError('Expected training or behavior')

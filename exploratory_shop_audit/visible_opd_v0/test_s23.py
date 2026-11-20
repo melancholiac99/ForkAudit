@@ -18,3 +18,22 @@ class StageDTests(unittest.TestCase):
             self.assertEqual(sorted(i for part in parts for i in part),list(range(n)))
             self.assertLessEqual(max(map(len,parts))-min(map(len,parts)),1)
             self.assertEqual(len(parts),(n+63)//64)
+
+    def test_behavior_uses_episode_denominators_and_token_weighted_entropy(self):
+        from .d_behavior import readout
+        episode = dict(reward=1., events={'buy':1}, length=1, reason='gold_purchase',
+                       tokens={'click':1}, entropy_sum={'click':.5})
+        alternate = dict(episode,reason='valid_alternative_purchase',tokens={'option':3},entropy_sum={'option':4.5})
+        result,by_task = readout([[episode,alternate]])
+        self.assertEqual(result['all_requirements'],1)
+        self.assertEqual(result['strict'],.5)
+        self.assertEqual(result['strict_ratio'],2.)
+        self.assertEqual(result['decision_entropy'],1.25)
+        self.assertEqual(by_task.shape,(1,4))
+
+    def test_product_cluster_resamples_paired_task_differences(self):
+        import numpy as np
+        from .d_behavior import cluster_draws
+        data = np.array([[1.],[3.],[5.]])
+        got = cluster_draws(data,['a','a','b'],61)
+        self.assertEqual(set(np.unique(got)),{2.,3.,5.})
