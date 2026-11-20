@@ -1,0 +1,327 @@
+{
+  "groups": {
+    "all": {
+      "status": "POWER_OK",
+      "tasks": 512,
+      "positions": 34741,
+      "unmatched": 84,
+      "recovery": {
+        "raw": 0.5359152905232961,
+        "ci95": [
+          0.5290515071667368,
+          0.5429136139926355
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 3.0269646808962034,
+        "ci95": [
+          2.915929995791306,
+          3.1340529071354584
+        ]
+      },
+      "independent_component_variance_fraction": 0.49941152334213257
+    },
+    "search": {
+      "status": "UNDERPOWERED",
+      "tasks": 512,
+      "positions": 12414,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.2813281433955579,
+        "ci95": [
+          0.2728436328618926,
+          0.28965946833454426
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 0.8813964313071763,
+        "ci95": [
+          0.8111272442190686,
+          0.9532947668450205
+        ]
+      },
+      "independent_component_variance_fraction": 0.503922700881958
+    },
+    "unknown": {
+      "status": "POWER_OK",
+      "tasks": 62,
+      "positions": 604,
+      "unmatched": 66,
+      "recovery": {
+        "raw": 0.8879314668070077,
+        "ci95": [
+          0.8575342488237436,
+          0.917052186328146
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 1.390256621233354,
+        "ci95": [
+          1.0794816860878256,
+          1.7488179125680101
+        ]
+      },
+      "independent_component_variance_fraction": 0.5616902112960815
+    },
+    "format": {
+      "status": "POWER_OK",
+      "tasks": 512,
+      "positions": 8341,
+      "unmatched": 12,
+      "recovery": {
+        "raw": 0.8576930617176599,
+        "ci95": [
+          0.8528578450033456,
+          0.8625826173763242
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 2.540396785001673,
+        "ci95": [
+          2.464977567635732,
+          2.625299651302243
+        ]
+      },
+      "independent_component_variance_fraction": 0.49472787976264954
+    },
+    "click": {
+      "status": "POWER_OK",
+      "tasks": 512,
+      "positions": 8480,
+      "unmatched": 6,
+      "recovery": {
+        "raw": 0.6230958212091752,
+        "ci95": [
+          0.6143534740571851,
+          0.6315679736333888
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 7.237532640518913,
+        "ci95": [
+          6.803597812194434,
+          7.676371683744842
+        ]
+      },
+      "independent_component_variance_fraction": 0.5037704110145569
+    },
+    "option": {
+      "status": "UNDERPOWERED",
+      "tasks": 458,
+      "positions": 4902,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.40074291689970126,
+        "ci95": [
+          0.3804892186235234,
+          0.42220749033390487
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 2.962123149005391,
+        "ci95": [
+          2.642521660234682,
+          3.2871009126706157
+        ]
+      },
+      "independent_component_variance_fraction": 0.49315711855888367
+    },
+    "information_subpage/click": {
+      "status": "UNDERPOWERED",
+      "positions": 0,
+      "unmatched": 6
+    },
+    "information_subpage/format": {
+      "status": "UNDERPOWERED",
+      "positions": 0,
+      "unmatched": 12
+    },
+    "product_detail/click": {
+      "status": "POWER_OK",
+      "tasks": 476,
+      "positions": 2260,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.8962677271224487,
+        "ci95": [
+          0.8797753335955373,
+          0.9124648121338791
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 1.736330359956169,
+        "ci95": [
+          1.603400405662929,
+          1.8811561401148116
+        ]
+      },
+      "independent_component_variance_fraction": 0.591019332408905
+    },
+    "product_detail/format": {
+      "status": "POWER_OK",
+      "tasks": 512,
+      "positions": 4208,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.8212530325898656,
+        "ci95": [
+          0.813834818672573,
+          0.82838701692444
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 2.2050365535851473,
+        "ci95": [
+          2.095229682426634,
+          2.315324241327266
+        ]
+      },
+      "independent_component_variance_fraction": 0.5077285170555115
+    },
+    "product_detail/option": {
+      "status": "UNDERPOWERED",
+      "tasks": 458,
+      "positions": 4902,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.40074291689970126,
+        "ci95": [
+          0.3804892186235234,
+          0.42220749033390487
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 2.962123149005391,
+        "ci95": [
+          2.642521660234682,
+          3.2871009126706157
+        ]
+      },
+      "independent_component_variance_fraction": 0.49315711855888367
+    },
+    "product_detail/unknown": {
+      "status": "POWER_OK",
+      "tasks": 62,
+      "positions": 604,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.8879314668070077,
+        "ci95": [
+          0.8575342488237436,
+          0.917052186328146
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 1.390256621233354,
+        "ci95": [
+          1.0794816860878256,
+          1.7488179125680101
+        ]
+      },
+      "independent_component_variance_fraction": 0.5616902112960815
+    },
+    "search_home/format": {
+      "status": "POWER_OK",
+      "tasks": 512,
+      "positions": 2057,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.8302995988607509,
+        "ci95": [
+          0.8215959638100218,
+          0.8391276477255507
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 2.568800275539843,
+        "ci95": [
+          2.4130293360160198,
+          2.7307028715748096
+        ]
+      },
+      "independent_component_variance_fraction": 0.5008295178413391
+    },
+    "search_home/search": {
+      "status": "UNDERPOWERED",
+      "tasks": 512,
+      "positions": 12414,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.2813281433955579,
+        "ci95": [
+          0.2728436328618926,
+          0.28965946833454426
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 0.8813964313071763,
+        "ci95": [
+          0.8111272442190686,
+          0.9532947668450205
+        ]
+      },
+      "independent_component_variance_fraction": 0.503922700881958
+    },
+    "search_home/unknown": {
+      "status": "UNDERPOWERED",
+      "positions": 0,
+      "unmatched": 66
+    },
+    "search_results/click": {
+      "status": "POWER_OK",
+      "tasks": 512,
+      "positions": 6220,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.610448354282234,
+        "ci95": [
+          0.6014248492836596,
+          0.6192312319532803
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 8.644863101228314,
+        "ci95": [
+          8.160613284683487,
+          9.144445251727921
+        ]
+      },
+      "independent_component_variance_fraction": 0.5001819729804993
+    },
+    "search_results/format": {
+      "status": "POWER_OK",
+      "tasks": 512,
+      "positions": 2076,
+      "unmatched": 0,
+      "recovery": {
+        "raw": 0.9320522159847183,
+        "ci95": [
+          0.9268173943507676,
+          0.9371236717195416
+        ],
+        "bootstrap_valid": 2000
+      },
+      "oof_mse_gain": {
+        "point": 3.1907951441135083,
+        "ci95": [
+          3.0331202035272327,
+          3.35874399590748
+        ]
+      },
+      "independent_component_variance_fraction": 0.4969891309738159
+    }
+  }
+}

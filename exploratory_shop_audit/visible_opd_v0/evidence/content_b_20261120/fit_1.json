@@ -1,0 +1,73 @@
+{
+  "fold": 1,
+  "train_tasks": 384,
+  "heldout_tasks": 128,
+  "train_ids_sha256": "97d6c36936251b3e698d4d2f018e9cac4ea70a43a2bb58c904e0171ae7e095d2",
+  "heldout_ids_sha256": "8eb4d28679d30a5beeb64ce7cfb839c70563dd85d6d792cb14c0d37983f1892c",
+  "donor_remapped": 3,
+  "unmatched_train": 66,
+  "unmatched_test": 0,
+  "scales": [
+    {
+      "page": "information_subpage",
+      "category": "click",
+      "scale": 1408.198486328125,
+      "train_positions": 6
+    },
+    {
+      "page": "information_subpage",
+      "category": "format",
+      "scale": 3243.352783203125,
+      "train_positions": 12
+    },
+    {
+      "page": "product_detail",
+      "category": "click",
+      "scale": 5653.751953125,
+      "train_positions": 1774
+    },
+    {
+      "page": "product_detail",
+      "category": "format",
+      "scale": 6098.947265625,
+      "train_positions": 3168
+    },
+    {
+      "page": "product_detail",
+      "category": "option",
+      "scale": 10035.130859375,
+      "train_positions": 3592
+    },
+    {
+      "page": "product_detail",
+      "category": "unknown",
+      "scale": 5059.390625,
+      "train_positions": 398
+    },
+    {
+      "page": "search_home",
+      "category": "format",
+      "scale": 4749.2509765625,
+      "train_positions": 1546
+    },
+    {
+      "page": "search_home",
+      "category": "search",
+      "scale": 6100.041015625,
+      "train_positions": 9288
+    },
+    {
+      "page": "search_results",
+      "category": "click",
+      "scale": 20092.654296875,
+      "train_positions": 4672
+    },
+    {
+      "page": "search_results",
+      "category": "format",
+      "scale": 5142.12841796875,
+      "train_positions": 1560
+    }
+  ],
+  "gpu_hours": 0.00434386634222215
+}

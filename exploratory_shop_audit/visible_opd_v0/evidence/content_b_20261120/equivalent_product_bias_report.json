@@ -1,0 +1,160 @@
+{
+  "coverage": {
+    "result_states": 519,
+    "gold_absent": 42,
+    "configurations_checked": 114028,
+    "no_equivalent_alternative": 475,
+    "eligible_states": 2
+  },
+  "scope": "T_cal ASIN-held-out, no V; visible candidate nomination before feasibility review",
+  "interpretation": "Report observed margins descriptively; very few eligible tasks do not establish general gold preference.",
+  "raw_definition": "(sel gold-alt margin) minus (placeholder gold-alt margin); excess_R subtracts student margin. Also report full-vocabulary student-base content teacher separately.",
+  "full_vocabulary": {
+    "tasks": 2,
+    "pairs": 4,
+    "metrics": {
+      "student_sum": {
+        "point": 12.428983453509014,
+        "ci95": [
+          5.366358921863139,
+          19.49160798515489
+        ]
+      },
+      "student": {
+        "point": 0.828598896900601,
+        "ci95": [
+          0.3577572614575426,
+          1.2994405323436593
+        ]
+      },
+      "content_sum": {
+        "point": 17.353066564282926,
+        "ci95": [
+          15.625189423619304,
+          19.08094370494655
+        ]
+      },
+      "content": {
+        "point": 1.1568711042855284,
+        "ci95": [
+          1.0416792949079536,
+          1.2720629136631032
+        ]
+      },
+      "projected_sum": {
+        "point": 12.993571075207607,
+        "ci95": [
+          5.9647366842255,
+          20.022405466189714
+        ]
+      },
+      "projected": {
+        "point": 0.8662380716805071,
+        "ci95": [
+          0.39764911228169997,
+          1.3348270310793142
+        ]
+      },
+      "direct_sel_minus_ph_sum": {
+        "point": 4.968557779813921,
+        "ci95": [
+          -0.3165660162516133,
+          10.253681575879455
+        ]
+      },
+      "direct_sel_minus_ph": {
+        "point": 0.331237185320928,
+        "ci95": [
+          -0.021104401083440888,
+          0.6835787717252969
+        ]
+      },
+      "raw_margin_sel_minus_ph": {
+        "point": 0.331237185320928,
+        "ci95": [
+          -0.021104401083440888,
+          0.6835787717252969
+        ]
+      },
+      "excess_R": {
+        "point": -0.49736171157967296,
+        "ci95": [
+          -1.3205449334271002,
+          0.3258215102677543
+        ]
+      },
+      "excess_P": {
+        "point": 0.03763917477990614,
+        "ci95": [
+          0.035386498735654914,
+          0.03989185082415736
+        ]
+      },
+      "normalized_content_teacher_excess": {
+        "point": 0.3282722073849275,
+        "ci95": [
+          -0.02737761868055603,
+          0.683922033450411
+        ]
+      },
+      "R_minus_P": {
+        "point": -0.5350008863595791,
+        "ci95": [
+          -1.3559314321627551,
+          0.28592965944359694
+        ]
+      }
+    }
+  },
+  "strict_candidate_subset": {
+    "tasks": 2,
+    "pairs": 4,
+    "metrics": {
+      "student": {
+        "point": 11.958333333333334,
+        "ci95": [
+          5.25,
+          18.666666666666668
+        ]
+      },
+      "raw_margin_sel_minus_ph": {
+        "point": 5.427083313465118,
+        "ci95": [
+          0.22916662693023682,
+          10.625
+        ]
+      },
+      "excess_R": {
+        "point": -6.5312500198682155,
+        "ci95": [
+          -18.43750003973643,
+          5.375
+        ]
+      },
+      "content": {
+        "point": 17.385416646798454,
+        "ci95": [
+          15.875,
+          18.895833293596905
+        ]
+      },
+      "projected": {
+        "point": 12.477901935577393,
+        "ci95": [
+          5.848132133483887,
+          19.1076717376709
+        ]
+      },
+      "excess_P": {
+        "point": 0.5195686022440592,
+        "ci95": [
+          0.44100507100423175,
+          0.5981321334838867
+        ]
+      }
+    }
+  },
+  "factual_prefix_positions": 46,
+  "out_of_support_positions": 0,
+  "no_factual_prefix": 44
+}

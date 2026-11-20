@@ -1,0 +1,6 @@
+{"stage": "collection", "pilot": true, "gpu_hours": 0.05651666073777758}
+{"stage": "three_view_scoring", "pilot": true, "gpu_hours": 0.029157388084443785}
+{"stage": "collection", "pilot": false, "gpu_hours": 0.342281807028889}
+{"stage": "three_view_scoring", "pilot": false, "gpu_hours": 0.4518109107599998}
+{"stage": "action_ridge", "gpu_hours": 0.0012760204811110675}
+{"stage": "bias_audit", "gpu_hours": 0.0014983970822221534}

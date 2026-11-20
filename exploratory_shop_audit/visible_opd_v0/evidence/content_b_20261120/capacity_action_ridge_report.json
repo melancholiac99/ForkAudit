@@ -1,0 +1,75 @@
+{
+  "scope": "read-only full rank; last hidden after last action token; train-fold standardized features",
+  "target": "length-normalized sel minus matched placeholder; student-relative centered",
+  "regularization_by_fold": [
+    100.0,
+    100.0,
+    100.0,
+    100.0
+  ],
+  "groups": {
+    "all": {
+      "actions": 13585,
+      "states": 1714,
+      "tasks": 512,
+      "mse": 0.2091420144025163,
+      "zero_mse": 0.18203292622097877,
+      "relative_gain": -0.1489240916153185,
+      "gain_ci": {
+        "point": -0.02710908818153753,
+        "ci95": [
+          -0.03528539994224237,
+          -0.01890165994581166
+        ]
+      }
+    },
+    "information_subpage": {
+      "actions": 6,
+      "states": 3,
+      "tasks": 2,
+      "mse": 0.021324711875709234,
+      "zero_mse": 0.004710362601920318,
+      "relative_gain": -3.527191148090295,
+      "gain_ci": {
+        "point": -0.016614349273788912,
+        "ci95": [
+          -0.0321586078752713,
+          -0.0010700906723065287
+        ]
+      }
+    },
+    "product_detail": {
+      "actions": 9427,
+      "states": 1192,
+      "tasks": 512,
+      "mse": 0.26809578065211415,
+      "zero_mse": 0.23947663326425328,
+      "relative_gain": -0.11950705585659671,
+      "gain_ci": {
+        "point": -0.028619147387860866,
+        "ci95": [
+          -0.041027469255795104,
+          -0.016487994434320332
+        ]
+      }
+    },
+    "search_results": {
+      "actions": 4152,
+      "states": 519,
+      "tasks": 512,
+      "mse": 0.0863556963267649,
+      "zero_mse": 0.06555820784670102,
+      "relative_gain": -0.3172369892828064,
+      "gain_ci": {
+        "point": -0.020797488480063873,
+        "ci95": [
+          -0.025593127182696202,
+          -0.01643043092294514
+        ]
+      }
+    }
+  },
+  "total_native_states": 2233,
+  "zero_candidate_states": 519,
+  "singleton_states_excluded": 0
+}

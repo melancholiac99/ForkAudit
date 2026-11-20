@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "registered_before_recount": true,
+  "registered_commit": "54794325cdf4dbf264e9f540b8f0d8450eb4bc50",
+  "registered_unix_seconds": 1795159735,
+  "recount_unix_ns": 1795159764640060406,
+  "original_a5_sha": "30c2c9abc056fa405d269d98d2b8068103f37b0b1e6eca6c89724506a54210fd",
+  "recount_sha": "a70138474b0c2869e22c70032c8996c5f4c3b17e5221a21f991153a99737276f",
+  "raw_rollout_hashes": {
+    "tape_264.jsonl": "f56c55a08a1e2f7e8fb26b761eba1a5b6cef3c8b47aeccb31488dee6904e268a",
+    "tape_200.jsonl": "c957116fc38f69052a0fdd127217681e599193c14329ef908c46484781e561e4",
+    "tape_456.jsonl": "a08e0864d325afe4e07287098f08eb38bbbcc7719b336e72f2a86b61168b201a",
+    "tape_000.jsonl": "4a36b0fdeca133cbc52fa4a0bb9dd59517f3c672ecac9eaf61f6d4a733b78fad",
+    "tape_392.jsonl": "17d9d691978d1a3e3503a05c5261d4aef6723da319e69281b166d81211d25a24",
+    "tape_072.jsonl": "654eb07d99be1b739d8d9a3500055abb90696ce2647d2cc185297b4e08a7a8e9",
+    "tape_136.jsonl": "ae734aac634af4ba273ef04f1d272369982326dc563d63ba27b1cb356cb337b1",
+    "tape_008.jsonl": "739ce6fe3a3ecf6fc8cad7a7358172e41f6a4cb22c229f5db4991c8d1142444b",
+    "tape_328.jsonl": "3d69d551245b383ebce24a269eb7d827f81ad5073d839331e27f94debf038617"
+  },
+  "oof_hashes": {
+    "fold_0.npz": "fa5085872f2690fefee1aa7f9f6cd5d37405022895feb4ebb787480a559e24fe",
+    "fold_1.npz": "f842cc7b2511117f438b68db3fe54bb71c92d09bed64d5822791bb5359357521",
+    "fold_2.npz": "0d861641cb983413db0cb9804eb1fc86cd3e986b300234a65ac92162733008b4",
+    "fold_3.npz": "4d26f883762fa32797582b64f852370780d25adda6a66eb652e31d9296724083"
+  },
+  "reports": {
+    "projection_report": "7b8fe162d19a3681d892d8889da1e7dd96797dc35e10d0a0580a582304432f37",
+    "original_label_control": "ad648938fffcdc28f1c6a3b6a9e8f3934e56a5ca8371e33914a2e2e6e691a6e7",
+    "power_injection_report": "6b24a72c4f43e13ecf2ce0e591560d75c87a790dede245e0ae675412f5965efc",
+    "capacity_action_ridge_report": "56fdd859c9c243cd1fd8290f7f8a592e902456003c707c38bbfc1956dea1d8c8",
+    "candidate_mass_report": "06b0275145b94b0dd92d9f108e6628c010aeea043960da2ca8cf866b8c47bd70",
+    "calibration_strength_report": "90be8828e2ee4a7b777c1916df0d6177e25f691e84098799f4e413b303238cbd",
+    "equivalent_product_bias_report": "c1c480de58b42118041801057d7bf8f05ea1932ea1f461b1c4a78396011e53d0",
+    "P1_decision": "3538266ec007088b342fff35267f77302a6d8e3233f50c9d0068149a32160222",
+    "p2_minima": "179fdde3658c2266ce1723c6b3c27aa99e5460eee85474619820a468ab9567d5"
+  },
+  "model_files": {
+    "README.md": "f366f33bbf6bcadbb7d87f0a21a7b65584a56b8d58b0743c77c88bee625b93a6",
+    "model-00001-of-00004.safetensors": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7",
+    "tokenizer_config.json": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+    "generation_config.json": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f",
+    "model-00004-of-00004.safetensors": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd",
+    "model.safetensors.index.json": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "model-00003-of-00004.safetensors": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5",
+    "model-00002-of-00004.safetensors": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185",
+    "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "config.json": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c",
+    "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+  },
+  "seed": 20261120,
+  "tasks": 512,
+  "steps": 2233,
+  "positions": 34825,
+  "classes": {
+    "format": 8353,
+    "search": 12414,
+    "click": 8486,
+    "option": 4902,
+    "unknown": 670
+  },
+  "scorer_views": {
+    "none": 2233,
+    "full": 2233,
+    "placeholder": 2233
+  },
+  "max_target_identity_error": 3.5762786865234375e-07,
+  "max_center_residual": 4.116445779800415e-06,
+  "min_candidate_mass": 8.123473890009336e-06,
+  "planned_score_factor": 1.5,
+  "measured_gpu_hours": {
+    "collection": 0.39879846776666655,
+    "three_view_scoring": 0.4809682988444436,
+    "projectors": 0.01760192578861102,
+    "ridge_and_equivalence": 0.0027744175633332207
+  },
+  "total_measured_gpu_hours": 0.9001431099630544,
+  "actor_updates": 0,
+  "eval_V_tasks": 0
+}
