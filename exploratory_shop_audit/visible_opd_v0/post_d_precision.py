@@ -33,7 +33,14 @@ def measure(model,k,arm):
     batch,q=load_batch(k,arm)
     order=[i for j in range(4) for i in shard_order(batch,j)]
     assert start_at(model,k,arm)==hist['actor_before_sha']
-    before=fp32_scores(model,batch,order)
+    # The original smoke ran four independent prefix caches. Online steps used one
+    # cache per arm across the concatenated, balanced shards.
+    if k==1:
+        before={}
+        for j in range(4):
+            before.update(fp32_scores(model,batch,shard_order(batch,j)))
+    else:
+        before=fp32_scores(model,batch,order)
     if k==1:
         bf16=checkpoint('bf16','initial')[0]
         after=checkpoint('fp32',f'{arm}_1')[0]
@@ -49,7 +56,7 @@ def measure(model,k,arm):
     same=summarize(batch,bf16,bf16,q,ids)['kl_before']
     mixed=summarize(batch,before,after,q,ids)
     for field in ('kl_before','kl_after','alignment','movement','delta_kl'):
-        assert abs(hist['fixed_target'][field]-mixed[field])<1e-10,(k,arm,field)
+        assert abs(hist['fixed_target'][field]-mixed[field])<1e-10,(k,arm,field,hist['fixed_target'][field],mixed[field])
     anchored=summarize(batch,before,after,targets,ids)
     assert abs(anchored['movement']-mixed['movement'])<1e-12
     dst.mkdir(parents=True,exist_ok=True)
