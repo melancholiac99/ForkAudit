@@ -85,6 +85,12 @@ def match_scale(s,mask,d,reference,stop):
     _,proxy=strength(s,best[1]*d,mask)
     return dict(scale=best[1],target_quantiles=target.tolist(),achieved_quantiles=best[2].tolist(),relative_errors=best[3].tolist(),status='STRENGTH_MISMATCH' if best[3].max()>.25 else 'MATCHED',gradient_l1=summary(proxy))
 
+def p1_status(detected, powered):
+    if detected:
+        return 'PASS' if powered else 'PASS_LOW_POWER'
+    return 'FAIL_POWERED' if powered else 'UNDERPOWERED'
+
+
 def analyze():
     ts,meta,_=load_data();data={k:v.numpy().astype(np.float64) if k not in ('ids','mask') else v.numpy() for k,v in ts.items() if k!='h'}
     merged={};seen=[]

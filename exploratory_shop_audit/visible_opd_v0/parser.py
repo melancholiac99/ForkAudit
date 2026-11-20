@@ -1,7 +1,7 @@
 """Native action spans, including direct command responses."""
 import re
 
-def categories(tokenizer, ids, public):
+def command_parts(tokenizer, ids):
     # Decode byte-BPE spans, including split UTF-8 tokens, against actual IDs.
     from transformers.models.gpt2.tokenization_gpt2 import bytes_to_unicode
     reverse = {v:k for k,v in bytes_to_unicode().items()}
@@ -11,6 +11,10 @@ def categories(tokenizer, ids, public):
     m = re.search(rb'(?:^|\n|\\n)\s*Action:\s*(search|click|finish)\[(.*)\]\s*(?:<\|im_end\|>)?\s*$', data, re.S)
     if not m:
         m = re.fullmatch(rb'\s*(search|click|finish)\[(.*)\]\s*(?:<\|im_end\|>)?\s*', data, re.S)
+    return parts, m
+
+def categories(tokenizer, ids, public):
+    parts, m = command_parts(tokenizer, ids)
     labels = []
     offset = 0
     options = public.get('available_options', {})
