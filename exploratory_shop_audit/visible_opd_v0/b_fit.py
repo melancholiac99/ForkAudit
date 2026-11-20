@@ -6,7 +6,7 @@ import torch
 from torch.nn import functional as F
 from .b_collect import RUN,PARENT
 from .projection import VisibleProjection
-from exploratory_shop_audit.grpo_forced_audit.common import read,save
+from exploratory_shop_audit.grpo_forced_audit.common import read,save,digest_value
 
 SEED=20261120
 CLASSES=['search','click','option','format','thought','unknown']
@@ -118,6 +118,6 @@ def fit_fold(fold):
         for name,p in [('rank_mean',np.broadcast_to(rank,(len(va),9))),('token_only',(sums/totals.clip(1e-12))[token[va]])]:
             pred[label+'_'+name]=p-(p*qs[va]).sum(1,keepdims=True)
     np.savez(RUN/f'fold_{fold}.npz',idx=va,planted=planted[va],shuffled=shuf[va],power_valid=vva[va]&(alpha[va]>0),**pred)
-    save(RUN/f'fit_{fold}.json',dict(fold=fold,train_tasks=len(set(meta['goal'][tr])),heldout_tasks=len(set(meta['goal'][va])),donor_remapped=rem+remv,unmatched_train=int((~vtr[tr]).sum()),unmatched_test=int((~vva[va]).sum()),scales=inject,gpu_hours=(time.monotonic()-start)/3600))
+    save(RUN/f'fit_{fold}.json',dict(fold=fold,train_tasks=len(set(meta['goal'][tr])),heldout_tasks=len(set(meta['goal'][va])),train_ids_sha256=digest_value(sorted(set(meta['goal'][tr].tolist()))),heldout_ids_sha256=digest_value(sorted(set(meta['goal'][va].tolist()))),donor_remapped=rem+remv,unmatched_train=int((~vtr[tr]).sum()),unmatched_test=int((~vva[va]).sum()),scales=inject,gpu_hours=(time.monotonic()-start)/3600))
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('fold',type=int);fit_fold(p.parse_args().fold)
