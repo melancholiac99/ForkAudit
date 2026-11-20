@@ -18,8 +18,14 @@ def quantiles(values):
 def extra_diagnostics(run):
     """Describe the actual available pairs, preserving action-class/task coverage."""
     lengths=defaultdict(list)
+    exposures=defaultdict(Counter)
     for p in [*run.glob('smoke_batch_*/score_inputs.jsonl'), *run.glob('formal_batch_*/score_inputs.jsonl')]:
         for r in rows(p):
+            for m,view in r['views'].items():
+                exposures[m][view['reason'] or 'available']+=1
+                cap=1024 if m in ('evidence','placeholder_evidence') else 192
+                if view['reason'] is None and view['length']>cap:raise ValueError('packet exceeded applicable cap')
+                if m in ('evidence','placeholder_evidence') and r['page']!='search_results' and view['reason']!='PACKET_UNAVAILABLE':raise ValueError('off-page evidence')
             for m,ref in MATCH.items():
                 real,empty=r['views'][m],r['views'][ref]
                 if real['reason'] or empty['reason']:continue
@@ -41,6 +47,7 @@ def extra_diagnostics(run):
                         diff=np.asarray(score['d'])-np.asarray(r['scores'][MATCH[mode]]['d'])
                         delta[k].extend(diff[selected][valid[selected]])
     return dict(
+        student_packet_exposures={m:dict(counts=x,total=sum(x.values()),overflow_rate=x['PACKET_OVERFLOW']/sum(x.values()),overflow_given_available_page=x['PACKET_OVERFLOW']/max(1,sum(x.values())-x['PACKET_UNAVAILABLE'])) for m,x in exposures.items()},
         paired_packet_minus_placeholder_token_length={m:quantiles(v) for m,v in lengths.items()},
         kl_fraction_above_1em5_by_position={k:dict(positions=len(v),fraction=float(np.mean(v))) for k,v in kl_nonzero.items()},
         candidate_centered_content_delta={k:quantiles(v) for k,v in delta.items()},
@@ -58,7 +65,8 @@ def finish(run):
     funnel=json.loads((run/'cpu_replay_checks/funnel.json').read_text())
     assert sum(g['episodes'] for g in funnel.values())==1500
     assert sum(sum(g['steps'].values()) for g in funnel.values())==evidence['steps']
-    (dest/'extra_diagnostics.json').write_text(json.dumps(extra_diagnostics(run),indent=2)+'\n')
+    diagnostics=extra_diagnostics(run)
+    (dest/'extra_diagnostics.json').write_text(json.dumps(diagnostics,indent=2)+'\n')
     (dest/'funnel.json').write_text(json.dumps(funnel,indent=2)+'\n')
     files=['acceptance.json','input_hashes.json','summary.json','score_alignment.json','preflight_utility_report.json','preflight_content_coverage.json','privilege_delta_report.json','template_effect_report.json','packet_token_counts.json','extra_diagnostics.json','funnel.json','packet_selection.json']
     artifacts={name:digest(dest/name) for name in files}
@@ -86,6 +94,9 @@ def finish(run):
             f"无包学生的 {alignment['scored_steps']:,} 个决策和 {alignment['response_tokens']:,} 个响应 token 全部对齐。重复空包评分的最大误差为 {alignment['max_empty_error']:.3g}。本次按 §16 模板重跑全部 100 题。CPU 独立回放复核了全部 1,500 条轨迹的终止原因、终局奖励与逐步合法性。",'',
             f"本次追加使用 {evidence['formal_gpu_hours']:.3f} / 2.500 GPU 小时。其中新 §16 运行（全部 100 题）用量为 {summary['gpu_hours']:.3f} GPU 小时，旧版首次预检 0.190 GPU 小时在追加额度之外。实验停在 A.5；本报告未评估投影器效果或蒸馏后策略泛化。",'',
             '正式运行目录内的 report_manifest.json 记录报告和原始输入清单的 SHA256。完整 reward 类型分布、合法动作率、搜索/打开商品/规格/购买漏斗、KL 与候选质量的页面和 token 分类统计随附。']
+    e=diagnostics['student_packet_exposures']['evidence']
+    lines+=['', f"在无包学生的真实状态上，证据包的 1024-token 上限溢出 {e['counts'].get('PACKET_OVERFLOW',0)}/{e['total']} 步（{e['overflow_rate']:.2%}）；在有对应页面资料的决策步中溢出率为 {e['overflow_given_available_page']:.2%}。非结果页标 NA。各真实包与占位包的溢出计数、分母及成对长度差见 extra_diagnostics.json。",
+            '', '本次修订在旧 8 题预检披露及第一轮正式采集启动后登记。新版所有条件按同一冻结任务和种子重跑，旧样本未合入本表。']
     (dest/'REPORT.md').write_text('\n'.join(lines)+'\n')
 
 if __name__=='__main__':

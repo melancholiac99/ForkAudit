@@ -51,3 +51,37 @@ class Tests(unittest.TestCase):
         self.assertEqual(actor.grad[~mask].abs().sum(),0)
         proj=VisibleProjection(12)(torch.randn(5,12),torch.randn(5,9,12),qs)
         self.assertLess((proj*qs).sum(-1).abs().max(),1e-6)
+
+class AmendmentTests(unittest.TestCase):
+    def test_ten_point_boundary(self):
+        from .section16 import behavior_result
+        for q,ci,status in [(0.1,(.001,.16),'improved'),(.1,(0,.21),'PREFLIGHT_INCONCLUSIVE'),
+                            (.08,(-.01,.10),'PREFLIGHT_INCONCLUSIVE'),(.08,(.01,.099),'no_improvement'),
+                            (.08,(.03,.12),'PREFLIGHT_INCONCLUSIVE')]:
+            self.assertEqual(behavior_result(q,ci),status)
+
+    def test_packets_and_budget(self):
+        from .packets import FIELDS
+        goal=dict(asin='123',goal_options={'色':'蓝'},price_upper=50)
+        data={'123':dict(title='商品',attribute=['蓝'],customization_options={'色':[]})}
+        pub={'page_type':'product_detail'}
+        full=packet('full',pub,data,goal)[0]; prod=packet('product',pub,data,goal)[0]
+        self.assertEqual({k:prod[k] for k in full},full)
+        self.assertEqual(set(prod),set(packet('placeholder_product',pub,data)[0]))
+        tok=AutoTokenizer.from_pretrained(MODEL,local_files_only=True)
+        native=make_input(tok,'task',[],'page')
+        evidence_key=FIELDS['evidence'][0][0]
+        self.assertIsNone(render(tok,native,{evidence_key:' test'*400})[1])
+        self.assertEqual(render(tok,native,{evidence_key:' test'*1100})[1],'PACKET_OVERFLOW')
+
+    def test_invalid_utf8_and_calibration_domain(self):
+        from transformers.models.gpt2.tokenization_gpt2 import bytes_to_unicode
+        from .section16 import scoreable,freeze_p2_minima,p2_coverage
+        tok=AutoTokenizer.from_pretrained(MODEL,local_files_only=True)
+        ids=tok.encode('search[')+[tok.convert_tokens_to_ids(bytes_to_unicode()[255])]+tok.encode(']')
+        self.assertIn('search',categories(tok,ids,{'page_type':'search_home'}))
+        self.assertTrue(scoreable('full','product_detail'))
+        self.assertFalse(scoreable('evidence','product_detail'))
+        limits=freeze_p2_minima(dict(click=768,option=128,search=512),512)
+        self.assertEqual(limits,dict(click=480,option=80,search=320))
+        self.assertFalse(p2_coverage(limits,limits,dict(click=51,option=49,search=50))['option'])
