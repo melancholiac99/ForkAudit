@@ -48,7 +48,7 @@ def archive_final(arm):
 
 def first_legal():
     from exploratory_shop_audit.grpo_forced_audit.checks import environment
-    engine=environment(SMOKE,'s23_replay_legality')
+    engine=environment(folder(1,'R'),'s23_replay_legality')
     legal=0;total=0
     try:
         for rep in range(2):
