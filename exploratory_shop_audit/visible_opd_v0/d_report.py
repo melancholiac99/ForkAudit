@@ -139,5 +139,20 @@ if __name__=='__main__':
     elif sys.argv[1]=='behavior':
         from .d_behavior import report
         report()
+        from shutil import copyfile
+        public=RUN/'reports'
+        public.mkdir(exist_ok=True)
+        files=('training_report.json','training_steps.tsv','behavior_report.json','behavior_summary.tsv','STAGE_D.md')
+        hashes={}
+        for name in files:
+            src=EVIDENCE/name
+            out=public/name
+            pending=out.with_suffix(out.suffix+'.pending')
+            copyfile(src,pending)
+            hashes[name]=digest_file(src)
+            assert digest_file(pending)==hashes[name]
+            pending.replace(out)
+        save(public/'delivery.json',dict(completed_updates=10,launch_commit=(RUN/'pilot_launch_revision.txt').read_text().strip(),
+             public_sha256=hashes,episodes=10000,arms=list(ARMS),stage_E_started=False))
     else:
         raise ValueError('Expected training or behavior')
