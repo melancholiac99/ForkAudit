@@ -21,3 +21,13 @@ Section 16 supersedes conflicting values above. P-pre requires paired sampled li
 固定无包学生候选集 C=top8(S)∪{实际 token}，统一快照、精度、T_score=1。三种前向上下文是无包 S、选定包 sel 和匹配占位 ph；相同前缀、相同字段和插入位置，ph 值均为未提供。计算 Delta_content=log π_sel−log π_ph，d_content=Delta_content−E_{q_S}[Delta_content]。R 定义为内容老师 q_R=softmax_C(s+d_content)。R-β、投影器/OOF、功效埋信号、b_c、任务内位置保留的任务级乱标 P-shuffled、β/γ 强度匹配均使用该新标签。完整动作岭回归使用 sel 对 ph 的动作似然差。等价商品的内容老师以 S 为底在全词表施加 sel 对 ph 的修正，excess 相对无包学生；附报直接 sel−ph 动作 margin。原标签 sel 对 S 单独运行同规格 OOF、b_c、类别 KL，只读对照，不用于系数选择、决策或训练。
 
 P0 检验 softmax_C(s+d_content)=softmax_C(log π_S+log π_sel−log π_ph)；以 ph 替换 sel 时内容修正在容差内为零。旧版 q_R=特权老师条件分布断言不适用于新版。三前向评分预算登记为原两前向的 1.5 倍，同时记录实际耗时；在线阶段沿用。任务池、rank=8、四训练臂、阈值、分折、暂停点不变。阶段 B 仅用 512 个冻结 T_cal 任务各 1 条原生无包 rollout。先检查 8 题的 scorer 对齐，再扩至全池，保留首批。B 完成提交投影、功效、满秩动作岭回归、候选质量、强度校准、等价商品偏好及旧标签对照，随后暂停；本次不更新 actor。
+
+## 19. 阶段 B 诊断修正（2026-11-20，已看到阶段 B 结果后登记；仅 CPU，不改任何冻结的训练量）
+
+19.1 动作级容量参照：原正则网格 {0.1,1,10,100} 相对标准化特征下约 6,800 的训练样本量过小，四折均选中上界，结果记为 GRID_BOUNDARY、不可解读。改为按训练样本量缩放的网格 n_train×{1e-3,1e-2,1e-1,1,10,100}，若选中值落在网格端点则向外扩一个数量级，最多 3 次；报告每折最终 alpha、是否仍在端点、扩网格次数。原结果与新结果并列报告。该参照仍只读，不产生任何训练目标。
+
+19.2 P1 状态：功效检查只限制阴性推断。真实 OOF 相对最强基线改善区间下界 >0 且折间同号率 ≥0.7 时，记 PASS（功效达标）或 PASS_LOW_POWER（功效未达标）；未检出时，功效未达标记 UNDERPOWERED，达标记 FAIL_POWERED。原标签并列保留。P1 状态不控制 token，b_c/β/γ 与 P2 覆盖门均不变。
+
+19.3 描述性拆分：将冻结类别“format”细分为“动作动词（search/click/finish 对应 token）”与“纯格式（括号、Action:、特殊结束符等）”，分别报告 OOF 改善、b 与 KL；不改变训练所用类别与系数。
+
+19.4 执行：先提交本节，再以已保存的阶段 B 数据重算；不新增 GPU 采样或评分，可与阶段 C smoke 并行。
