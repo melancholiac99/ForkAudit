@@ -1,0 +1,83 @@
+{
+  "post_hoc": true,
+  "history_cells": 40,
+  "reset_cells": 9,
+  "behavior_models": 5,
+  "behavior_episodes": 160,
+  "behavior_batch_offset": 992,
+  "behavior_provenance": {
+    "R": {
+      "model": "R",
+      "episodes": 32,
+      "archived_actions_matched": 26,
+      "snapshot_sha": "fc7c7dea32c025e86772c61ba7e9e2c5c81d8c4814f8a3dcdf9eb851c86d81d4",
+      "archive_sha": "a07be0db40ea206e2249b8182517a448252d02749cf16a225a9fac3467e0bc66",
+      "trace_sha": "6ba7875456468a1217f4201fbdebd3cd347f15cf2e1abb4a79966584c25c3697"
+    },
+    "R-beta": {
+      "model": "R-beta",
+      "episodes": 32,
+      "archived_actions_matched": 26,
+      "snapshot_sha": "644f32c6998068947ae9b431b2b9bbc6dc538861138669d956c5e6f47851f053",
+      "archive_sha": "7be252c48abaa0e242fe238651b1b3791fc97dcff145b533c9f7291351038aaa",
+      "trace_sha": "83b976755821a72b084abc37f783804b43804c7bfa8a6f78bd7d1e6525f01c9a"
+    },
+    "P": {
+      "model": "P",
+      "episodes": 32,
+      "archived_actions_matched": 24,
+      "snapshot_sha": "b61ee54191e25aef8ed7e13406439289e771e54e921a2729be596375d246232f",
+      "archive_sha": "f70798df04d9ad4c017f3c907c150249d6e5285ca68b827fb99030e73c713090",
+      "trace_sha": "f7d0ac6d149505e4228d7e6e81f4ffb87ae8d33492b779cf2daf3a76111c8c2e"
+    },
+    "P-shuffled": {
+      "model": "P-shuffled",
+      "episodes": 32,
+      "archived_actions_matched": 29,
+      "snapshot_sha": "476174d99118bc197dced54500c5a030780273fe76cd1148a870ba1e78853841",
+      "archive_sha": "b638ddcb8d02d4f3f96d1c1a6b6f6c6e0a6fb65aafefc5c614d0c9af12d1881f",
+      "trace_sha": "4d79ec284b142b6eb7453f3b126152021be17fcf22b7850339f7a170245efbc1"
+    },
+    "B": {
+      "model": "B",
+      "episodes": 32,
+      "archived_actions_matched": 28,
+      "snapshot_sha": "Qwen2.5-7B-Instruct:a09a35458c702b33eeacc393d103063234e8bc28",
+      "archive_sha": "e89a3aac377c6f5c1bf1f0593016ecab751d42583c99fa5cfc09e74efb1ed0d7",
+      "trace_sha": "26519fb3eb4d5ad3906a5b74d4c2031566da2bd2cf275bfce1bfca83ffe07456"
+    }
+  },
+  "sums": {
+    "R": {
+      "original_alignment": 0.03778945902951193,
+      "reanchored_alignment": 0.06923735979265541,
+      "original_delta_kl": 0.03350350626098134,
+      "reanchored_delta_kl": 0.06495140702412482,
+      "positive_after_reanchor": 10
+    },
+    "R-beta": {
+      "original_alignment": -0.01256816374949696,
+      "reanchored_alignment": 0.010668480900584879,
+      "original_delta_kl": -0.016535365248031734,
+      "reanchored_delta_kl": 0.006701279402050103,
+      "positive_after_reanchor": 10
+    },
+    "P": {
+      "original_alignment": -0.050950409505634064,
+      "reanchored_alignment": 0.021925497627389694,
+      "original_delta_kl": -0.061309978984849856,
+      "reanchored_delta_kl": 0.011565928148173883,
+      "positive_after_reanchor": 10
+    },
+    "P-shuffled": {
+      "original_alignment": -0.02861478314339783,
+      "reanchored_alignment": 0.011360315563498164,
+      "original_delta_kl": -0.034720974406694236,
+      "reanchored_delta_kl": 0.005254124300201758,
+      "positive_after_reanchor": 10
+    }
+  },
+  "precision_kl": "KL(p_BF16 || p_FP32) on the historical candidate support",
+  "correction": "log(q) minus normalized candidate log probabilities at the historical BF16 anchor; exact zero q remains zero",
+  "logprob_difference": "full native vocabulary at T=1, sampled token, HF minus vLLM"
+}
