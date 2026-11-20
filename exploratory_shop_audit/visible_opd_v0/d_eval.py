@@ -45,9 +45,10 @@ def episodes(runner,jobs):
             e['events'][event(pub,action,out['legal'])]+=1
             e['actions'].append(action)
             if out['status']['done']:
-                st=out['status'];assert st.get('reward_valid') and len(e['actions'])<=35
+                st=out['status']
+                assert isinstance(st['reward_valid'],bool) and len(e['actions'])<=35, (key,st,len(e['actions']))
                 finished.append(dict(split=e['split'],goal=e['goal'],rep=e['rep'],length=len(e['actions']),
-                    reason=st['termination_reason'],reward=st['reward'],actions_sha=digest_value(e['actions']),
+                    reason=st['termination_reason'],reward=st['reward'],reward_valid=st['reward_valid'],actions_sha=digest_value(e['actions']),
                     events=e['events'],entropy_sum=e['entropy_sum'],tokens=e['tokens']))
                 runner.engine.call(cmd='close',key=e['key'])
             else:

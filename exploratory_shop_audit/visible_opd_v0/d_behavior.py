@@ -45,7 +45,9 @@ def readout(groups):
         events.update(e['events']); tokens.update(e['tokens']); ent.update(e['entropy_sum'])
     keys = ('search','open_listed_product','select_visible_option','buy')
     decision_n = tokens['click']+tokens['option']
-    values.update(tasks=len(groups),episodes=len(rows),strict_ratio=(values['all_requirements']/values['strict']
+    # Early completed chunks used a strict validity assertion before writing any episode.
+    valid=sum(e.get('reward_valid',True) for e in rows)
+    values.update(tasks=len(groups),episodes=len(rows),reward_valid_rate=valid/len(rows),invalid_rewards=len(rows)-valid,strict_ratio=(values['all_requirements']/values['strict']
         if values['strict'] else None),reward_types=dict(Counter(e['reason'] for e in rows)),
         legal_rate=1-events['illegal']/sum(events.values()),action_counts=events,
         funnel_episode_rate={k:sum(e['events'].get(k,0)>0 for e in rows)/len(rows) for k in keys},
@@ -92,7 +94,7 @@ def report():
                 row,data = readout(groups)
                 summary[key] = row; arrays[arm,pool,mode] = data
                 table.append(dict(arm=arm,checkpoint=0 if arm=='B' else 10,pool=pool,decode=mode,
-                    **{k:row[k] for k in (*METRICS,'tasks','episodes','legal_rate','strict_ratio','decision_entropy')}))
+                    **{k:row[k] for k in (*METRICS,'tasks','episodes','legal_rate','reward_valid_rate','invalid_rewards','strict_ratio','decision_entropy')}))
     paired = {}; gaps = {}
     for mode in MODES:
         for arm in ('B',*ARMS):

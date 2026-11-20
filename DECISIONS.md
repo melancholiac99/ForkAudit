@@ -1985,3 +1985,12 @@ At the researcher's request to improve throughput, retain the existing full resp
 At update 2 the scorer encountered native histories for which the matched packet or selected packet exceeded the frozen 8192-token context. The original plan §§3/4 requires NA and coverage reporting. Apply that rule in every arm; retain the entire native trajectory and the original N-record partition and N/m factor. NA records contribute no scored positions. Average valid positions within trajectory and available trajectories within task. Report raw and scored records, excluded positions and page stratum. The first failed scoring attempt did not perform an optimizer step; resume from the already collected tapes.
 
 After inspecting the first seven completed training-side updates, add descriptive readouts in response to the researcher's monitoring question. Count pre-clip gradient norms above 1.0 and updates with positive FP32 alignment. At every saved snapshot compare the four identical fixed probes across arms using Jensen–Shannon divergence on their common candidate support and the cosine of centered changes in log probability from the shared baseline. Center each position under its initial candidate distribution and use that distribution and the original probe weights for the inner product. Report NA for a zero-length direction. All computations use saved data on CPU, with no new gate or change to optimization.
+
+The first Stage D evaluation attempt stopped on a native terminal record at the
+reward-validity/length assertion. The reference rollout engine retains terminal
+records with both values of reward_valid. Preserve this flag and the native
+numeric reward, reason and denominator for every episode, and report the
+invalid count and validity rate by model, split and decode. The fixed action
+limit still applies. A chunk saved before this change passed the old validity
+assertion for every row, so its missing validity fields have value true. Resume
+at the first missing chunk with the original tasks, checkpoints and seeds.
