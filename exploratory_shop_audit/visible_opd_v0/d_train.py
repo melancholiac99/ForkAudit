@@ -61,7 +61,9 @@ def train(k):
         norms=[]
         quick_records=0
         train_started=time.monotonic()
-        for subset in batch.batches:
+        total_records=getattr(batch,'total_records',len(every))
+        batch_sizes=getattr(batch,'batch_sizes',list(map(len,batch.batches)))
+        for subset,physical_size in zip(batch.batches,batch_sizes,strict=True):
             optim.zero_grad(set_to_none=True)
             for i in batch.local(subset,rank):
                 row=batch.rows[i]
@@ -70,9 +72,10 @@ def train(k):
                 quick_records+=int(retained)
                 logits=score(model,row)
                 loss,_=kl_positions(logits,q[i].cuda(),row['mask'].cuda())
-                (loss.sum()*batch.weights[i]*(len(every)/len(subset))).backward()
+                (loss.sum()*batch.weights[i]*(total_records/physical_size)).backward()
             for _,p in params:
-                assert p.grad is not None
+                if p.grad is None:
+                    p.grad=torch.zeros_like(p)
                 dist.all_reduce(p.grad)
             norms.append(float(torch.nn.utils.clip_grad_norm_([p for _,p in params],1.,error_if_nonfinite=True)))
             optim.step()
@@ -99,7 +102,7 @@ def train(k):
             save(path/'optimizer.json',dict(update=k,arm=arm,before_sha=before_sha,after_sha=after_sha,
                 before_logits_reused_on_rank0=reused,activation_limit=fast_limit,retained_records=int(n_quick),
                 training_loop_seconds=train_seconds,optimizer_steps=len(norms),cumulative_steps=steps,grad_norms=norms,
-                minibatch_rows=[len(b) for b in batch.batches],minibatch_sha256=digest_value(batch.batches),
+                minibatch_rows=batch_sizes,scored_minibatch_rows=list(map(len,batch.batches)),minibatch_sha256=digest_value(batch.batches),
                 bf16_fixed_target=dict(zip(('kl_before','kl_after','delta_kl','alignment','movement'),values.tolist())),
                 adam_sha256=digest_file(storage/'adam.pt'),safetensors_sha256=digest_file(storage/'adapter/adapter_model.safetensors'),
                 elapsed_seconds=time.monotonic()-start))

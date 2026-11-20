@@ -26,14 +26,18 @@ def build(k,arm):
     cal=read(STAGE_B/'reports/calibration_strength_report.json')['classes']
     # Cache only completely identical texts, response boundaries, classes and fold routing on this snapshot.
     cache={};verified_duplicate=False;reused=0
-    rows=[]; targets=[]; student_logits=[]; episodes=Counter(); done=set()
+    na=[]; rows=[]; targets=[]; student_logits=[]; episodes=Counter(); done=set()
     for rep in range(2):
         for r in read_rows(path/f'rollout_{rep}.jsonl'):
             key=(r['goal'],rep)
             assert r['goal'] in folds and r['rep']==rep and r['step']==episodes[key] and key not in done
             episodes[key]+=1
             if r['done']:done.add(key)
-            assert not any(r['na'].values()),(key,r['na'])
+            if any(r['na'].values()):
+                assert all(why in (None,'CONTEXT_OVERFLOW','PACKET_OVERFLOW') for why in r['na'].values()),r['na']
+                na.append(dict(goal=key[0],rep=rep,step=r['step'],page=r['page'],
+                               reasons=r['na'],positions=len(r['response']),classes=dict(Counter(r['classes']))))
+                continue
             prompt=r['views']['none'];answer=r['response']
             key=(r['goal'],tuple(prompt),tuple(answer),tuple(r['views']['full']),
                  tuple(r['views']['placeholder']),tuple(r['classes']))
@@ -71,7 +75,7 @@ def build(k,arm):
     order=sorted(range(len(rows)),key=lambda i:(rows[i]['goal'],rows[i]['rep'],rows[i]['step']))
     for name,values in [('student',rows),('target',targets),('bf16_before',student_logits)]:
         torch.save([values[i] for i in order],path/f'{name}.pt')
-    save(path/'target_manifest.json',dict(scorer_sha=sha,identical_records_reused=reused,duplicate_verified=verified_duplicate,goals=sorted(folds),projection_age=k-1,
+    save(path/'target_manifest.json',dict(scorer_sha=sha,na_records=na,rollout_records=sum(episodes.values()),identical_records_reused=reused,duplicate_verified=verified_duplicate,goals=sorted(folds),projection_age=k-1,
         student_sha256=digest_file(path/'student.pt'),bf16_before_sha256=digest_file(path/'bf16_before.pt'),target_sha256=digest_file(path/'target.pt')))
 
 if __name__=='__main__':

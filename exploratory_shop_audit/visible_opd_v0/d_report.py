@@ -110,9 +110,12 @@ def training():
                     with (gzip.open(gz,'rt') if gz.exists() else (path/f'rollout_{rep}.jsonl').open()) as f:
                         for line in f:
                             total+=1;legal+=json.loads(line)['legal']
-            assert total==len(batch.rows)
+            reasons=[] if k==1 else read(path/'target_manifest.json').get('na_records',[])
+            assert total==len(batch.rows)+len(reasons)
             rows.append(dict(arm=arm,update=k,optimizer_steps=opt['optimizer_steps'],minibatch_rows=opt['minibatch_rows'],
-                 records=len(batch.rows),positions=sum(len(r['answer']) for r in batch.rows),
+                 records=total,scored_records=len(batch.rows),na_records=len(reasons),
+                 na_positions=sum(r['positions'] for r in reasons),na_by_page=dict(Counter(r['page'] for r in reasons)),
+                 positions=sum(len(r['answer']) for r in batch.rows),
                  legal_rate=legal/total,projection_age=k-1,actor_sha=opt['before_sha'],scorer_sha=mon['actor_before_sha'],
                  updated_sha=opt['after_sha'],**mon['fixed_target'],probe_movement=mon['probe_movement'],
                  bf16_delta_kl=opt['bf16_fixed_target']['delta_kl']))

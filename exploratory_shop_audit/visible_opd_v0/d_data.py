@@ -62,9 +62,17 @@ class OnlineBatch:
         n = Counter()
         for r in self.rows:
             n[r['goal'],r['rep']] += len(r['answer'])
-        assert len(n)==64 and set(n)=={(g,rep) for g in info['goals'] for rep in range(2)}
-        self.weights = [1/(64*n[r['goal'],r['rep']]) for r in self.rows]
-        self.batches = balanced_batches(len(keys),k)
+        na_keys=[(x['goal'],x['rep'],x['step']) for x in info.get('na_records',[])]
+        all_keys=sorted(keys+na_keys)
+        self.total_records=len(all_keys)
+        assert len(set(all_keys))==self.total_records==info.get('rollout_records',len(keys))
+        assert {(g,rep) for g,rep,_ in all_keys}=={(g,rep) for g in info['goals'] for rep in range(2)}
+        trajectories=Counter(g for g,rep in n)
+        self.weights=[1/(len(trajectories)*trajectories[r['goal']]*n[r['goal'],r['rep']]) for r in self.rows]
+        indices={key:i for i,key in enumerate(keys)}
+        full_batches=balanced_batches(self.total_records,k)
+        self.batch_sizes=list(map(len,full_batches))
+        self.batches=[[indices[all_keys[j]] for j in part if all_keys[j] in indices] for part in full_batches]
         assert abs(sum(w*len(r['answer']) for w,r in zip(self.weights,self.rows))-1)<1e-12
 
 
