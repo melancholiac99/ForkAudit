@@ -63,7 +63,7 @@
 - `student`：`pi_{bar_theta_k}(v | h_{i,t})`，无特权。
 - `privileged`：`pi_{bar_theta_k}(v | h_{i,t}, z_i)`，仅评分端有特权包 `z_i`。
 
-训练用特权包 **先通过 §3.1 的 P-pre 预检选定一种模板与数据来源，再冻结为 `z_selected`**；默认候选 `z_full` 沿用 `gold ASIN`、`goal_options` 和可核验约束；`z_product` 使用冻结 train 商品目录中 gold 商品的标题/属性/目标规格；`z_evidence` 仅使用**当前时刻**真实结果页候选商品的属性/规格且不标注 gold。不得加入未来观察、实际 rollout 结果、E0/E1 oracle 或 V/final 答案。证据包上限 1024 tokens，其余真实包上限 192 tokens；各模式均报告实际字段数、token 数、截断/溢出率；信息超过上限时按预先冻结规则记 `PACKET_OVERFLOW`/不可用，不能暗中省略困难商品或为了择优临时扩上下文。**`teacher_packet_manifest.json` 必须逐字段列出 `field_name/source/already_visible_to_student(yes|partial|no)/token_count`，并报告各字段 token 数及总长度分布**，检验老师额外拿到的究竟是什么（预期 gold ASIN 是主要差异，但不得先验断言）。不能为加入 `z` 删改原学生历史；超上下文记 NA 并分层报告覆盖。
+训练用特权包 **先通过 §3.1 的 P-pre 预检选定一种模板与数据来源，再冻结为 `z_selected`**；默认候选 `z_full` 沿用 `gold ASIN`、`goal_options` 和可核验约束；`z_product` 包含 z_full 全部字段（含 gold ASIN 与价格约束），另取冻结 train 商品目录中的 gold 商品标题与关键属性；`z_evidence` 仅使用**当前时刻**真实结果页候选商品的属性/规格且不标注 gold。不得加入未来观察、实际 rollout 结果、E0/E1 oracle 或 V/final 答案。证据包上限 1024 tokens，其余真实包上限 192 tokens；各模式均报告实际字段数、token 数、截断/溢出率；信息超过上限时按预先冻结规则记 `PACKET_OVERFLOW`/不可用，不能暗中省略困难商品或为了择优临时扩上下文。**`teacher_packet_manifest.json` 必须逐字段列出 `field_name/source/already_visible_to_student(yes|partial|no)/token_count`，并报告各字段 token 数及总长度分布**，检验老师额外拿到的究竟是什么（预期 gold ASIN 是主要差异，但不得先验断言）。不能为加入 `z` 删改原学生历史；超上下文记 NA 并分层报告覆盖。
 
 在**任何 GPU 预检前**冻结全部候选包的角色、插入位置、文字模板、占位模板、分隔符、tokenizer 和模板哈希，写入 `teacher_packet_manifest.json`；例如将 `z` 作为“完整购物要求”消息之后的独立固定格式段落，但最终必须依据真实 prompt 验证。P-pre 只能在这些**事前固定**的候选中做一次选择，不准根据结果改写包内容。`z=空` 时**整个额外段落完全不出现**（不能保留空 system 段），保证 student 与 empty-z 的输入 token IDs 完全相同。不得在运行中为改善信号改模板。V 的一次性只读审计例外按 §2 的隔离规定执行，不产生训练用 packet。
 

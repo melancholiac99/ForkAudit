@@ -66,7 +66,7 @@ def freeze(run):
     save(run/'asin_split_manifest.json',{**pools,'T_opd_eval':clean[:200],'cal_folds':folds,'V_unseen':[r['goal_index'] for r in val]})
     save(run/'splits_hash.json',{k:digest_value(v) for k,v in pools.items()})
     tok = AutoTokenizer.from_pretrained(MODEL,local_files_only=True)
-    manifest = dict(fields=FIELDS,match=MATCH,template_source_sha=digest_file(HERE/'packets.py'),tokenizer=env['model_files_sha256']['tokenizer.json'],chat_template_sha=digest_value(tok.chat_template),position='user message index 2',token_cap={'evidence':1024,'placeholder_evidence':1024,'others':192},field_counts='per exposure recorded in steps and score_inputs')
+    manifest = dict(fields=FIELDS,match=MATCH,template_source_sha=digest_file(HERE/'packets.py'),tokenizer=env['model_files_sha256']['tokenizer.json'],chat_template_sha=digest_value(tok.chat_template),position='user message index 2',token_cap={'evidence':1024,'others':192},field_counts='per exposure recorded in steps and score_inputs')
     save(run/'teacher_packet_manifest.json',manifest)
     save(run/'token_parser_manifest.json',dict(source_sha=digest_file(HERE/'parser.py'),categories=['thought','search','click','option','format','unknown']))
     shutil.copyfile(HERE/'PROTOCOL.md',run/'PROTOCOL.md')

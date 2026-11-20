@@ -23,7 +23,7 @@ def extra_diagnostics(run):
         for r in rows(p):
             for m,view in r['views'].items():
                 exposures[m][view['reason'] or 'available']+=1
-                cap=1024 if m in ('evidence','placeholder_evidence') else 192
+                cap=1024 if m=='evidence' else 192
                 if view['reason'] is None and view['length']>cap:raise ValueError('packet exceeded applicable cap')
                 if m in ('evidence','placeholder_evidence') and r['page']!='search_results' and view['reason']!='PACKET_UNAVAILABLE':raise ValueError('off-page evidence')
             for m,ref in MATCH.items():

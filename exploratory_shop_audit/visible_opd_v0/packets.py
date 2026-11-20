@@ -50,7 +50,9 @@ def render(tokenizer, native, fields, reason=None):
             counts[k] = len(tokenizer.encode(value, add_special_tokens=False))
         block = '\n'.join(lines)
         length = len(tokenizer.encode(block, add_special_tokens=False))
-        cap = 1024 if set(fields) == {FIELDS['evidence'][0][0]} else 192
+        evidence_field = FIELDS['evidence'][0][0]
+        is_real_evidence = set(fields) == {evidence_field} and fields[evidence_field] != EMPTY
+        cap = 1024 if is_real_evidence else 192
         if length > cap:
             return ids, 'PACKET_OVERFLOW', counts, length
         messages.insert(2, {'role': 'user', 'content': block})
