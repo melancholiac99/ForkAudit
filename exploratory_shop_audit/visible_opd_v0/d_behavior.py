@@ -116,3 +116,37 @@ def report():
         independent_pool_bootstrap=True,entropy='full native vocabulary at temperature 1; token-weighted on click and option',
         manifest_sha256=digest_file(PARENT/'asin_split_manifest.json')))
     tsv(EVIDENCE/'behavior_summary.tsv',table)
+    markdown(read(EVIDENCE/'training_report.json'),summary,paired,gaps)
+
+
+def markdown(training,summary,paired,gaps):
+    lines=['# 阶段 D 十步试点','',
+        '四组使用恒定学习率 1e-6、冻结投影器、相同的任务顺序和随机种子方案。每步在本组当时策略生成的轨迹上冻结目标。ΔKL 为当步更新前后针对同一目标的 KL 下降量。','',
+        '| 训练组 | KL 下降步数 / 10 | 累计 ΔKL | 累计对齐量 | 累计移动量 | 固定探针首尾 KL | search / click / 规格覆盖门 |',
+        '|---|---:|---:|---:|---:|---:|---|']
+    for a in ARMS:
+        row=training['arms'][a]
+        cover=' / '.join('通过' if row['coverage_pass'][c] else '不足' for c in ('search','click','option'))
+        lines.append(f"| {a} | {row['improving_updates']} | {row['sum_fixed_target_delta']:+.6f} | "
+                     f"{row['sum_fixed_target_alignment']:+.6f} | {row['sum_fixed_target_movement']:.6f} | "
+                     f"{row['start_to_end_probe_movement']:.6f} | {cover} |")
+    lines.extend(['','[40 次更新的 FP32 分解与相邻探针移动量](training_steps.tsv) · [累计量、类别诊断、冻结系数和覆盖门](training_report.json)',
+        '', '## 无特权行为评测','',
+        '两个任务池各 200 题。采样为每题 4 条，温度 0.7；贪心为每题 1 条。0 步四组共享 B，B 在 10 步仍是同一冻结策略。下列全要求购买率以百分比计。','',
+        '| 任务池 | 解码 | B@0 | R@10 | Rβ@10 | P@10 | P-shuffled@10 |','|---|---|---:|---:|---:|---:|---:|'])
+    for pool in POOLS:
+        for mode in MODES:
+            rates=[summary[f'{a}/{pool}/{mode}']['all_requirements'] for a in ('B',*ARMS)]
+            lines.append(f'| {pool} | {mode} | '+' | '.join(f'{100*x:.2f}%' for x in rates)+' |')
+    lines.extend(['','两项主比较及 P−R 的采样全要求购买率差，单位为百分点。括号内为配对商品簇 bootstrap 95% 区间。','',
+        '| 比较 | T_opd_eval | V |','|---|---:|---:|'])
+    for a,b in PAIRS[:3]:
+        row=paired[f'{a}-{b}/sample/asin']
+        entries=[]
+        for p in POOLS:
+            m=row[p]['all_requirements'];lo,hi=m['ci95']
+            entries.append(f"{100*m['estimate']:+.2f} [{100*lo:+.2f}, {100*hi:+.2f}]")
+        lines.append(f'| {a} − {b} | '+' | '.join(entries)+' |')
+    lines.extend(['','[严格成功率、学生决策熵与漏斗](behavior_summary.tsv) · [终止类型、分层结果、训练与验证差距、任务簇和商品簇区间](behavior_report.json)',
+        '', '本次停在第 10 步；V@10 仅作描述。'])
+    (EVIDENCE/'STAGE_D.md').write_text('\n'.join(lines)+'\n')
