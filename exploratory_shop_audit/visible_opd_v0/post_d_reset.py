@@ -10,6 +10,7 @@ from .c_targets import actor
 from .d_data import load_batch
 from .d_speed import length,set_checkpoint
 from .post_d_common import CASES, POST, case_dir, configure, folder, start_at, train_model
+from .post_d_precision import location
 from .s21_data import summarize
 from .s21_train import score
 from .s22_measure import fp32_scores,shard_order
@@ -87,7 +88,13 @@ def measure(rank):
         meta=read(dst/'optimizer.json');original=read(folder(k,arm)/'fp32.json')['fixed_target']
         assert start_at(model,k,arm)==meta['before_sha']
         batch,q=load_batch(k,arm);ids=[i for j in range(4) for i in shard_order(batch,j)]
-        before=fp32_scores(model,batch,ids)
+        source=location(k,arm)
+        historical_precision=read(source/'result.json')
+        assert historical_precision['initial_sha']==meta['before_sha']
+        tape_file=source/'target_and_start.pt'
+        assert digest_file(tape_file)==historical_precision['tape_sha']
+        tape=torch.load(tape_file,weights_only=True)
+        before=tape['before']
         adapter=dst/'adapter/adapter_model.safetensors'
         assert digest_file(adapter)==meta['adapter_file_sha256']
         vals=load_file(str(adapter))
@@ -96,7 +103,11 @@ def measure(rank):
         after=fp32_scores(model,batch,ids)
         metrics=summarize(batch,before,after,q,range(len(q)))
         assert abs(metrics['kl_before']-original['kl_before'])<1e-10
+        anchored=summarize(batch,before,after,tape['targets'],range(len(q)))
+        assert abs(anchored['kl_before']-historical_precision['reanchored']['kl_before'])<1e-10
+        assert abs(anchored['movement']-metrics['movement'])<1e-12
         save(dst/'fp32.json',dict(arm=arm,update=k,reset=metrics,historical=original,
+             reset_reanchored=anchored,historical_reanchored=historical_precision['reanchored'],
              initial_sha=meta['before_sha'],reset_sha=meta['after_sha'],seconds=time.monotonic()-start))
         print(k,arm,'reset FP32 completed',flush=True)
 

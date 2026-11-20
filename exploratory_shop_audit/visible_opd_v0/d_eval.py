@@ -19,7 +19,7 @@ def event(state,action,legal):
     if arg in {str(v).lower() for vs in state.get('available_options',{}).values() for v in vs}:return 'select_visible_option'
     return 'buy' if arg=='buy now' else 'other_click'
 
-def episodes(runner,jobs):
+def episodes(runner,jobs,trace=None):
     active=[];finished=[]
     for split,g,rep in jobs:
         key=f'{split}_{g}_{rep}'
@@ -34,9 +34,12 @@ def episodes(runner,jobs):
             requests.append(dict(token_ids=ids,temperature=0 if e['rep']==4 else .7,
                 seed=stable_seed(20261120,'D_eval',e['split'],e['goal'],e['rep'],len(e['h']))))
         keep=[]
-        for e,gen in zip(active,runner.model.call(requests),strict=True):
+        for e,gen,req in zip(active,runner.model.call(requests),requests,strict=True):
             state=e['state'];pub=state['public']
             cats=categories(runner.tokenizer,gen['token_ids'],pub)
+            if trace is not None:
+                trace.append(dict(split=e['split'],goal=e['goal'],rep=e['rep'],step=len(e['h']),
+                     prefix=req['token_ids'],answer=gen['token_ids'],native=gen['raw_logprobs'],classes=cats))
             for c,entropy in zip(cats,gen['entropy'],strict=True):
                 if c in ('click','option','search'):
                     e['entropy_sum'][c]+=entropy;e['tokens'][c]+=1

@@ -19,7 +19,9 @@ def main():
         required_stage()
         if (POST / 'reports/delivery.json').exists():
             return
-        stages = [('post_d_snapshot', [], 4), ('post_d_report', ['snapshot'], 0),
+        stages = [('post_d_behavior_probs', ['native'], 4), ('post_d_behavior_probs', ['hf'], 4),
+                  ('post_d_snapshot', [], 4), ('post_d_report', ['snapshot'], 0),
+                  ('post_d_precision', [], 4),
                   ('post_d_reset', ['train'], 4), ('post_d_reset', ['measure'], 4),
                   ('post_d_gradients', [], 4), ('post_d_report', ['final'], 0)]
         for module, args, gpus in stages:

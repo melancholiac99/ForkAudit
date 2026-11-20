@@ -15,6 +15,9 @@ def main():
         from vllm.lora.request import LoRARequest
         options={}
         tape=None
+        logprob_audit=os.environ.get('OPD_RAW_LOGPROBS')=='1'
+        if logprob_audit:
+            options['logprobs_mode']='raw_logprobs'
         if 'OPD_ENTROPY_TAPE' in os.environ:
             import numpy as np
             from exploratory_shop_audit.visible_opd_v0.d_entropy import NativeEntropy
@@ -34,13 +37,16 @@ def main():
                 assert len(rows)<=len(tape)
                 tape[:len(rows)]=np.nan
             params=[SamplingParams(temperature=r.get('temperature',.7),top_p=1,max_tokens=512,seed=r['seed'],
-                    extra_args={'entropy_slot':i} if tape is not None else None) for i,r in enumerate(rows)]
+                    logprobs=0 if logprob_audit else None,extra_args={'entropy_slot':i} if tape is not None else None) for i,r in enumerate(rows)]
             with contextlib.redirect_stdout(sys.stderr):
                 outputs=model.generate([{'prompt_token_ids':r['token_ids']} for r in rows],params,lora_request=adapter,use_tqdm=False)
             results=[]
             for row,out in zip(rows,outputs):
                 assert list(out.prompt_token_ids)==row['token_ids'];reply=out.outputs[0]
                 results.append({'text':reply.text,'token_ids':list(reply.token_ids),'finish_reason':reply.finish_reason})
+                if logprob_audit:
+                    assert len(reply.logprobs)==len(reply.token_ids)
+                    results[-1]['raw_logprobs']=[d[tok].logprob for d,tok in zip(reply.logprobs,reply.token_ids,strict=True)]
                 if tape is not None:
                     entropy=tape[len(results)-1,:len(reply.token_ids)]
                     assert np.isfinite(entropy).all() and (entropy>=0).all(), 'missing native token entropy'

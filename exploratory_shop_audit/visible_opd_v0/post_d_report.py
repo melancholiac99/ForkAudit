@@ -134,14 +134,17 @@ def final():
     (EVIDENCE / 'POST_D_DIAGNOSTICS.md').write_text('\n'.join(lines)+'\n')
     dest = POST / 'reports'
     dest.mkdir(exist_ok=True)
+    from .post_d_supplement import report as supplement, OUTPUTS
+    extra=supplement()
     names = ('snapshot_audit.tsv','reset_adam_replay.tsv','adjacent_gradient_cosines.tsv',
-             'post_d_checks.json','POST_D_DIAGNOSTICS.md')
+             'post_d_checks.json','POST_D_DIAGNOSTICS.md',*OUTPUTS)
     hashes = {}
     for name in names:
         shutil.copyfile(EVIDENCE / name,dest / name)
         hashes[name] = digest_file(dest / name)
         assert hashes[name] == digest_file(EVIDENCE / name)
-    save(dest / 'delivery.json', dict(cells=40, reset_cases=9, gradient_pairs=36, public_sha256=hashes))
+    save(dest / 'delivery.json', dict(cells=40, reset_cases=9, gradient_pairs=36, reanchored_history=extra['history_cells'],
+         reanchored_reset=extra['reset_cells'],behavior_models=extra['behavior_models'],public_sha256=hashes))
 
 
 if __name__ == '__main__':
