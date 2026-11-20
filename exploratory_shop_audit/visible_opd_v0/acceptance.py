@@ -83,6 +83,14 @@ def audit(run):
                 require(k in student and k not in tapes, 'unpaired/duplicate scorer input')
                 require(student[k] == (r['views']['none']['ids'],r['response']), 'student prefix/response mismatch')
                 available = {m for m,v in r['views'].items() if not v['reason']}
+                for mode,view in r['views'].items():
+                    if view['reason'] is None:
+                        require(view['length']<=(1024 if mode=='evidence' else 192), 'effective packet cap')
+                if r['page']!='search_results':
+                    require('evidence' not in available and 'placeholder_evidence' not in available,'evidence domain')
+                full=set(r['views']['full']['counts'])
+                require(full=={'商品编号','规格','价格上限'} and set(r['views']['product']['counts'])==full|{'商品名称','属性'},'amended product schema')
+                require(set(r['views']['product']['counts'])==set(r['views']['placeholder_product']['counts']), 'mismatched product placeholder')
                 tapes[k] = r['response'],repair.get(k,r['classes']),available
     expected = {(m,g,r) for m in POLICIES for g in goals for r in range(3)}
     require(set(completed)==expected and set(tapes)==set(student), 'missing cells')
@@ -127,6 +135,8 @@ def audit(run):
                     crosses=(np.abs(dy)>.02) & (np.asarray(real['content_kl'])>1e-5)
                     hits[m].extend((k[0],bool(v)) for v in crosses[keep])
     require(seen==set(tapes) and max_center<1e-5 and max_kl_error<1e-5,'distribution reconstruction')
+    independently_qualified=[]
+    indeterminate=False
     for m in MATCH:
         saved=decision['decisions'][m]
         required=hits[m]
@@ -135,6 +145,28 @@ def audit(run):
         require(np.isclose(gain.mean(),saved['lift']['estimate']), 'paired estimate mismatch')
         boot=np.random.default_rng(20261120).choice(gain,size=(10000,len(goals)),replace=True).mean(1)
         require(np.allclose(np.quantile(boot,[.025,.975]),saved['lift']['ci95']), 'bootstrap CI mismatch')
+        point=round(float(gain.mean()),12)
+        lo,hi=np.round(np.quantile(boot,[.025,.975]),12)
+        group_count=len({g for g,v in required})
+        shifted_count=len({g for g,v in required if v})
+        enough=len(required)>=100 and group_count>=20
+        fraction=sum(v for g,v in required)/max(1,len(required))
+        token_pass=enough and fraction>=.10 and shifted_count>=10
+        behavior='improved' if point>=.10 and lo>0 else (
+            'no_improvement' if point<.10 and hi<.10 else 'PREFLIGHT_INCONCLUSIVE')
+        require(behavior==saved['behavior_gate'],'section 16.1 behavior category mismatch')
+        if behavior=='improved' and token_pass:
+            independently_qualified.append((m,point))
+            expected_verdict='eligible'
+        elif enough and (not token_pass or behavior=='no_improvement'):
+            expected_verdict='negative'
+        else:
+            expected_verdict='inconclusive'
+            indeterminate=True
+        require(expected_verdict==saved['status'],'combined packet gate mismatch')
+    winner=max(independently_qualified,key=lambda x:x[1])[0] if independently_qualified else None
+    overall='SELECTED' if winner else ('PREFLIGHT_INCONCLUSIVE' if indeterminate else 'PRIVILEGE_NOT_USEFUL')
+    require(winner==decision['selected'] and overall==decision['status'],'selection mismatch')
     ledger=list(rows(run/'preflight_cost_ledger.jsonl'))
     used=sum(x['gpu_hours'] for x in ledger if x['stage'].startswith('formal_'))
     receipt=load('formal_authorization.json')
