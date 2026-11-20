@@ -18,9 +18,9 @@ ARMS = ('N','R','P','R-beta','P-shuffled')
 SEED = 20261120
 
 
-def actor():
+def actor(dtype=torch.bfloat16):
     torch.manual_seed(SEED)
-    base = AutoModelForCausalLM.from_pretrained(MODEL,torch_dtype=torch.bfloat16,local_files_only=True).cuda()
+    base = AutoModelForCausalLM.from_pretrained(MODEL,torch_dtype=dtype,local_files_only=True).cuda()
     config = LoraConfig(r=64,lora_alpha=64,target_modules='all-linear',lora_dropout=0.,bias='none',task_type='CAUSAL_LM')
     model = get_peft_model(base,config)
     assert not base.lm_head.weight.requires_grad
