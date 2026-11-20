@@ -24,7 +24,9 @@ def build(k,arm):
     folds={t['goal_index']:routing.get(t['asin'],stable_seed(SEED,'projection_fold',t['asin'])%4) for t in tasks}
     nets=projections(model,folds)
     cal=read(STAGE_B/'reports/calibration_strength_report.json')['classes']
-    rows=[]; targets=[]; episodes=Counter(); done=set()
+    # Cache only completely identical texts, response boundaries, classes and fold routing on this snapshot.
+    cache={};verified_duplicate=False;reused=0
+    rows=[]; targets=[]; student_logits=[]; episodes=Counter(); done=set()
     for rep in range(2):
         for r in read_rows(path/f'rollout_{rep}.jsonl'):
             key=(r['goal'],rep)
@@ -33,6 +35,14 @@ def build(k,arm):
             if r['done']:done.add(key)
             assert not any(r['na'].values()),(key,r['na'])
             prompt=r['views']['none'];answer=r['response']
+            key=(r['goal'],tuple(prompt),tuple(answer),tuple(r['views']['full']),
+                 tuple(r['views']['placeholder']),tuple(r['classes']))
+            prior=cache.get(key)
+            if prior is not None and verified_duplicate:
+                rows.append(dict(rows[prior],rep=rep,step=r['step']))
+                targets.append(targets[prior]);student_logits.append(student_logits[prior])
+                reused+=1
+                continue
             h,logits=response(model,prompt,answer)
             ids,mask=support(logits,torch.tensor(answer,device='cuda'))
             s=logits.gather(1,ids)
@@ -50,12 +60,19 @@ def build(k,arm):
             rows.append(dict(goal=r['goal'],rep=rep,step=r['step'],prompt=prompt,answer=answer,
                 ids=ids.cpu(),mask=mask.cpu(),classes=r['classes'],snapshot=q.cpu()))
             targets.append(t.cpu())
+            student_logits.append(s.cpu())
+            if prior is not None:
+                for field in ('ids','mask','snapshot'):
+                    assert torch.equal(rows[-1][field],rows[prior][field])
+                assert torch.equal(student_logits[-1],student_logits[prior]) and torch.equal(targets[-1],targets[prior])
+                verified_duplicate=True
+            cache[key]=len(rows)-1
     assert done==set(episodes)=={(g,rep) for g in folds for rep in range(2)}
     order=sorted(range(len(rows)),key=lambda i:(rows[i]['goal'],rows[i]['rep'],rows[i]['step']))
-    for name,values in [('student',rows),('target',targets)]:
+    for name,values in [('student',rows),('target',targets),('bf16_before',student_logits)]:
         torch.save([values[i] for i in order],path/f'{name}.pt')
-    save(path/'target_manifest.json',dict(scorer_sha=sha,goals=sorted(folds),projection_age=k-1,
-        student_sha256=digest_file(path/'student.pt'),target_sha256=digest_file(path/'target.pt')))
+    save(path/'target_manifest.json',dict(scorer_sha=sha,identical_records_reused=reused,duplicate_verified=verified_duplicate,goals=sorted(folds),projection_age=k-1,
+        student_sha256=digest_file(path/'student.pt'),bf16_before_sha256=digest_file(path/'bf16_before.pt'),target_sha256=digest_file(path/'target.pt')))
 
 if __name__=='__main__':
     import sys

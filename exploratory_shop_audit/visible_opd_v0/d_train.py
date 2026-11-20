@@ -6,6 +6,7 @@ import torch
 import torch.distributed as dist
 from .c_targets import actor
 from .c_smoke import kl_positions, same_hash
+from .d_speed import benchmark, initial_logits, length, set_checkpoint
 from .d_data import folder, state_dir, load_batch, snapshot
 from .s21_train import score
 from .s21_store import ARMS, RUN as PREVIOUS
@@ -25,6 +26,8 @@ def train(k):
     model.train()
     params=[(n,p) for n,p in model.named_parameters() if p.requires_grad]
     initial={n:p.detach().cpu().clone() for n,p in params} if k==1 else None
+    checkpoint_modules=[m for m in model.modules() if getattr(m,'gradient_checkpointing',False)]
+    fast_limit=None
     for arm in ARMS:
         path=folder(k,arm);storage=state_dir(k,arm)
         if (path/'optimizer.json').exists():continue
@@ -40,7 +43,7 @@ def train(k):
         batch,q=load_batch(k,arm);every=list(range(len(batch.rows)))
         local=batch.local(every,rank)
         with torch.no_grad():
-            before={i:score(model,batch.rows[i]).cpu() for i in local}
+            before,reused=initial_logits(model,batch,local,path)
             for i,v in before.items():
                 p0=v.masked_fill(~batch.rows[i]['mask'],-torch.inf).softmax(-1)
                 assert torch.allclose(p0,batch.rows[i]['snapshot'],atol=1e-6,rtol=0)
@@ -52,11 +55,19 @@ def train(k):
             assert digest_file(prev)==meta['adam_sha256']
             optim.load_state_dict(torch.load(prev,map_location='cpu',weights_only=True))
             prior_steps=meta['cumulative_steps']
+        if k>1 and fast_limit is None:
+            fast_limit,probe=benchmark(model,batch,q,params,local,checkpoint_modules)
+            save(path.parent/f'activation_check_rank{rank}.json',dict(limit=fast_limit,**probe))
         norms=[]
+        quick_records=0
+        train_started=time.monotonic()
         for subset in batch.batches:
             optim.zero_grad(set_to_none=True)
             for i in batch.local(subset,rank):
                 row=batch.rows[i]
+                retained=k>1 and length(row)<=fast_limit
+                set_checkpoint(checkpoint_modules,not retained)
+                quick_records+=int(retained)
                 logits=score(model,row)
                 loss,_=kl_positions(logits,q[i].cuda(),row['mask'].cuda())
                 (loss.sum()*batch.weights[i]*(len(every)/len(subset))).backward()
@@ -65,6 +76,10 @@ def train(k):
                 dist.all_reduce(p.grad)
             norms.append(float(torch.nn.utils.clip_grad_norm_([p for _,p in params],1.,error_if_nonfinite=True)))
             optim.step()
+        set_checkpoint(checkpoint_modules,True)
+        train_seconds=time.monotonic()-train_started
+        n_quick=torch.tensor(quick_records,device='cuda')
+        dist.all_reduce(n_quick)
         steps=prior_steps+len(batch.batches)
         assert {int(st['step'].item()) for st in optim.state.values()}=={steps}
         after_sha=same_hash(params)
@@ -82,7 +97,8 @@ def train(k):
             model.save_pretrained(storage/'adapter',save_embedding_layers=False)
             torch.save(optim.state_dict(),storage/'adam.pt')
             save(path/'optimizer.json',dict(update=k,arm=arm,before_sha=before_sha,after_sha=after_sha,
-                optimizer_steps=len(norms),cumulative_steps=steps,grad_norms=norms,
+                before_logits_reused_on_rank0=reused,activation_limit=fast_limit,retained_records=int(n_quick),
+                training_loop_seconds=train_seconds,optimizer_steps=len(norms),cumulative_steps=steps,grad_norms=norms,
                 minibatch_rows=[len(b) for b in batch.batches],minibatch_sha256=digest_value(batch.batches),
                 bf16_fixed_target=dict(zip(('kl_before','kl_after','delta_kl','alignment','movement'),values.tolist())),
                 adam_sha256=digest_file(storage/'adam.pt'),safetensors_sha256=digest_file(storage/'adapter/adapter_model.safetensors'),
