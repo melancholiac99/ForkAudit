@@ -1,6 +1,7 @@
 """Verify provenance, paired labels, OOF separation and delivery before signing B."""
 from collections import Counter
-import json,subprocess
+import hashlib,json,re
+from pathlib import Path
 import numpy as np
 import torch
 from .b_collect import RUN,PARENT
@@ -15,8 +16,11 @@ def verify():
         assert digest_file(MODEL/n)==h
     selected=read(RUN/'packet_selection_v2.json')
     assert selected['selected']=='full' and selected['original_verdict']=='PRIVILEGE_NOT_USEFUL'
-    commit_time=int(subprocess.check_output(['git','show','-s','--format=%ct',REGISTRATION],cwd=ROOT,text=True))
-    assert commit_time < (RUN/'packet_selection_v2.json').stat().st_mtime
+    registration=(Path(__file__).parent/'evidence/content_b_20261120/protocol_registration.gitcommit').read_bytes()
+    assert hashlib.sha1(b'commit '+str(len(registration)).encode()+b'\x00'+registration).hexdigest()==REGISTRATION
+    commit_time=int(re.search(rb'^committer .* (\d+) [+-]\d{4}$',registration,re.MULTILINE)[1])
+    recount_time=(RUN/'packet_selection_v2.json').stat().st_mtime_ns
+    assert commit_time*10**9 < recount_time
     goals=[r['goal_index'] for r in splits['T_cal']];ids={g:i for i,g in enumerate(goals)}
     hold={r['goal_index']:splits['cal_folds'][r['asin']] for r in splits['T_cal']}
     views=Counter();steps=Counter();terminal=Counter();classes=Counter();identity=0.;positions=0;max_center=0.;min_mass=1.
@@ -50,5 +54,5 @@ def verify():
     outputs={p.name:digest_file(p) for p in sorted(RUN.glob('fold_*.npz'))}
     led=[json.loads(l) for l in (RUN/'b_cost.jsonl').read_text().splitlines()]
     costs=dict(collection=sum(x['gpu_hours'] for x in led if x['stage']=='collection'),three_view_scoring=sum(x['gpu_hours'] for x in led if x['stage']=='three_view_scoring'),projectors=sum(read(RUN/f'fit_{f}.json')['gpu_hours'] for f in range(4)),ridge_and_equivalence=sum(x['gpu_hours'] for x in led if x['stage'] in ('action_ridge','bias_audit')))
-    save(rep/'acceptance.json',dict(passed=True,registered_before_recount=True,registered_commit=REGISTRATION,original_a5_sha=selected['original_sha256'],recount_sha=digest_file(RUN/'packet_selection_v2.json'),raw_rollout_hashes={p.name:digest_file(p) for p in RUN.glob('tape_*.jsonl')},oof_hashes=outputs,reports=evidence,model_files=env['model_files'],seed=20261120,tasks=len(goals),steps=sum(steps.values()),positions=positions,classes=classes,scorer_views=views,max_target_identity_error=identity,max_center_residual=max_center,min_candidate_mass=min_mass,planned_score_factor=1.5,measured_gpu_hours=costs,total_measured_gpu_hours=sum(costs.values()),actor_updates=0,eval_V_tasks=0))
+    save(rep/'acceptance.json',dict(passed=True,registered_before_recount=True,registered_commit=REGISTRATION,registered_unix_seconds=commit_time,recount_unix_ns=recount_time,original_a5_sha=selected['original_sha256'],recount_sha=digest_file(RUN/'packet_selection_v2.json'),raw_rollout_hashes={p.name:digest_file(p) for p in RUN.glob('tape_*.jsonl')},oof_hashes=outputs,reports=evidence,model_files=env['model_files'],seed=20261120,tasks=len(goals),steps=sum(steps.values()),positions=positions,classes=classes,scorer_views=views,max_target_identity_error=identity,max_center_residual=max_center,min_candidate_mass=min_mass,planned_score_factor=1.5,measured_gpu_hours=costs,total_measured_gpu_hours=sum(costs.values()),actor_updates=0,eval_V_tasks=0))
 if __name__=='__main__':verify()
