@@ -1,0 +1,37 @@
+{
+  "optimizer": "AdamW",
+  "lr": 1e-06,
+  "warmup_steps": 0,
+  "lr_schedule": "constant",
+  "weight_decay": 0.0,
+  "betas": [
+    0.9,
+    0.999
+  ],
+  "eps": 1e-08,
+  "clip_global_gradient_norm": 1.0,
+  "epochs_per_outer_update": 1,
+  "batch_width": 64,
+  "optimizer_steps": "ceil(record_count/64)",
+  "partition": "fixed-seed shuffle, then nearly equal size, no tail minibatch",
+  "record_weight": "1 / (#tasks * #trajectories in task * #response positions in trajectory), per valid token",
+  "minibatch_loss": "sum of global token-weighted KL over included rows times N/m",
+  "smoke_steps": 5,
+  "smoke_rows_per_step": [
+    57,
+    57,
+    56,
+    56,
+    56
+  ],
+  "arms": [
+    "R",
+    "R-beta",
+    "P",
+    "P-shuffled"
+  ],
+  "applies_to": [
+    "D",
+    "E"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "grid_cells": 28,
+  "rerun_matches": {
+    "R": {
+      "grid_final_adapter_match": true,
+      "grid_final_logits_match": true
+    },
+    "R-beta": {
+      "grid_final_adapter_match": true,
+      "grid_final_logits_match": true
+    },
+    "P": {
+      "grid_final_adapter_match": true,
+      "grid_final_logits_match": true
+    },
+    "P-shuffled": {
+      "grid_final_adapter_match": true,
+      "grid_final_logits_match": true
+    }
+  },
+  "steps_per_update": 5,
+  "batch_sizes": [
+    57,
+    57,
+    56,
+    56,
+    56
+  ],
+  "batches_sha256": "cc9fb69b88baeae5a65aaf9e124ff6604c3fdf6d480acb7aa4a2d8d937961da1",
+  "identity_max_abs_residual": 9.974659986866641e-18,
+  "numerical_controls": {
+    "R": 0.0,
+    "R-beta": 0.0,
+    "P": 0.0,
+    "P-shuffled": 0.0
+  },
+  "old_single_step_final_hash_matches": {
+    "R": false,
+    "R-beta": false,
+    "P": false,
+    "P-shuffled": false
+  },
+  "selected_multiplier": 1.0,
+  "nominal_lr": 1e-06,
+  "new_smoke_ran": true,
+  "measured_worker_gpu_hours": {
+    "grid": 5.017758665388891,
+    "rerun": 0.7750291697366709,
+    "original": 0.7041708133488889
+  },
+  "stage_D_updates": 0,
+  "stage_E_updates": 0,
+  "V_reads": 0,
+  "T_opd_eval_reads": 0,
+  "reports": {
+    "lora_direction_cosines.tsv": "3cf66dcd7d03436d47f9ea8f2af40b87df20a99b2b6002c9a7bf4e45610471e7",
+    "optimizer_steps.tsv": "89bfc8a9d3de2c0f469ff9d57424128cd7340a3bffdb0f53bb6850780908af22",
+    "paired_contrasts.tsv": "fdf4e6c26e010622d5f2648496d26c2cdf18ec95f317cb13342343a6cd36f307",
+    "step_size_diagnostics.json": "8976e64a9daef8666c830c7ebdc159699ff0f3710ce655b950fb43109160a014",
+    "baseline_optimizer_audit.json": "71c94cc889b94fef146753baf1c58f035aa15e61ca8093cd7ecce148b224abef",
+    "original_replay_report.json": "e3df64a74c006d4f012da3156f7e4de1782b5b04063ee2a152144d15368d7e75",
+    "new_smoke_report.json": "00149d10eb2488e02f3f3b7dd72c0846d97ad223b05a10d8b531a85b2ae9fb7f",
+    "frozen_optimizer.json": "6f0b5c4c0826952e34b432789554da6f0e22bd63049676133accaf019b31293a",
+    "private_artifacts.json": "20a515e8018cc0d48d255a82d0878c07606dc1ca4e82c3e2de8a57d65402ab28",
+    "step_size_diagnostics.tsv": "5b99894b60ad5d56aba07dc8a4372d74308113b9a1292a07814944b1539d3282",
+    "selection.json": "65e6e7f2847755e9de05b89135cb2117fbee4f0b9c679bd321c08930cba83bfe"
+  }
+}

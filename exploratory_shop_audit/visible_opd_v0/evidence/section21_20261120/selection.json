@@ -1,0 +1,12 @@
+{
+  "selected_multiplier": 1.0,
+  "learning_rate": 1e-06,
+  "rule": "Try 1, 1/2, 1/4, 1/8; require all four weighted alignments strictly above their measured zero-scale error.",
+  "status": "SELECTED",
+  "error": {
+    "R": 0.0,
+    "R-beta": 0.0,
+    "P": 0.0,
+    "P-shuffled": 0.0
+  }
+}
