@@ -5,7 +5,7 @@ import subprocess
 import time
 
 from .e25_behavior import report as behavior_report
-from .e25_driver import cleanup, commit_file, freeze, trajectory_stats
+from .e25_driver import REPO, cleanup, commit_file, freeze, trajectory_stats
 from .e25_layout import Layout
 from .e25_measure import merge_common, merge_update
 from .e25_probe import PUBLIC, RUN
@@ -127,6 +127,17 @@ def train_arm(l,a):
     return status
 
 
+def commit_delivery():
+    report_names=('STAGE_E.md','stage_e_steps.tsv','stage_e_monitors.tsv','stage_e_category_metrics.json',
+        'stage_e_behavior_by_checkpoint.tsv','stage_e_final_behavior.json','stage_e_completion.json')
+    paths=[str((PUBLIC/name).relative_to(REPO)) for name in report_names]
+    assert all((PUBLIC/name).stat().st_size>0 for name in report_names)
+    subprocess.run(['git','-C',str(REPO),'add','--',*paths],check=True)
+    if subprocess.run(['git','-C',str(REPO),'diff','--cached','--quiet','--',*paths]).returncode:
+        subprocess.run(['git','-C',str(REPO),'-c','user.name=Codex','-c','user.email=codex@localhost',
+                        'commit','--only','-m','Record serial Stage E outcomes, gate and checkpoint reports','--',*paths],check=True)
+
+
 def main():
     os.umask(0o077)
     l=Layout(SERIAL)
@@ -152,6 +163,7 @@ def main():
              not_run=not_run,gate=outcome,section='25.12',timestamp=utc()))
         from .e25_delivery import final_report
         final_report(l)
+        commit_delivery()
 
 
 if __name__=='__main__':

@@ -7,8 +7,9 @@ from exploratory_shop_audit.grpo_forced_audit.common import read,read_rows,save,
 def markdown(l,completion,behavior,costs):
     step=completion['last_step']
     endpoint=behavior[str(step)]
+    trained='、'.join(completion['endpoints'])
     lines=['# 阶段 E 结果','',
-        '本次是单种子探索性实验。R、R-matched（如设立）及 P 均从同一初始快照独立训练。'
+        f'本次是单种子探索性实验。实际训练组为 {trained}，各组均从同一初始快照独立启动。'
         '各步以当步学生为锚，沿修正方向反复推进。P 按冻结窗口和当前快照重评分并进行 ASIN 隔离的四折刷新。','',
         '| 组 | 终点更新 | 停止状态 | 学习率 |','|---|---:|---|---:|']
     for a,k in completion['endpoints'].items():

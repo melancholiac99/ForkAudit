@@ -84,7 +84,7 @@ class SerialLayout(unittest.TestCase):
                     return result
                 for name,fn in dict(Layout=lambda name:l,setup=lambda layout:None,launch=lambda *args:None,
                     merge_common=lambda *args:None,behavior_report=lambda *args:None,train_arm=train,
-                    endpoints_at=lambda *args:{},gate=gate).items():
+                    endpoints_at=lambda *args:{},gate=gate,commit_delivery=lambda:None).items():
                     mocks.enter_context(patch.object(driver,name,fn))
                 mocks.enter_context(patch(__package__+'.e25_delivery.final_report',lambda layout:None))
                 mask=os.umask(0o077)
