@@ -113,4 +113,11 @@ if __name__=='__main__':
     group=os.environ['OPD_MIGRATION_GROUP']
     with (RUN/'migration_2514'/f'driver_{group}.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        for arm in sys.argv[1:]:train(arm)
+        if sys.argv[1:]==['frozen-probe']:
+            assert group=='B'
+            l=Layout(SERIAL);control_authorized(l)
+            l.initialize(30,arms=['P-frozen'])
+            if not (l.root/'adoption/P-frozen.json').exists():frozen_prefix(l)
+            if not (OUT/'P-frozen/behavior/010.json').exists():evaluate(l,10,'P-frozen')
+        else:
+            for arm in sys.argv[1:]:train(arm)

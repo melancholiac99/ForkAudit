@@ -176,4 +176,12 @@ if __name__=='__main__':
     import sys
     if sys.argv[1:]==['initial']:
         save(DATA/'authenticated_initial.json',recover())
-    else:plan(recover())
+    else:
+        import os,subprocess
+        monitor=None
+        if os.environ.get('OPD_MIGRATION_GROUP')=='B' and not (OUT/'P-frozen/behavior/010.json').exists():
+            # This is evaluation of the already-trained D checkpoint, with no optimizer step.
+            monitor=subprocess.Popen([sys.executable,'-m',__package__+'.e2514_driver','frozen-probe'])
+        try:plan(recover())
+        finally:
+            if monitor is not None and monitor.wait()!=0:raise RuntimeError('P-frozen starting checkpoint evaluation failed')
