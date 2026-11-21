@@ -50,6 +50,18 @@ def collected_and_scored(k, arm, rank):
     return True
 
 
+def evaluation_complete(k, arm, rank):
+    root=RUN/SERIAL
+    file=root/'evaluation'/f'{k:03}'/arm/f'rank{rank}'/'complete.json'
+    if not file.exists():
+        return False
+    meta=read(file)
+    assert (meta['k'],meta['arm'],meta['rank'],meta['count'])==(k,arm,rank,500)
+    assert meta['routing_sha']==read(root/'settings.json')['routing_sha']
+    assert meta['checkpoint']==read(root/'pilot'/f'{k:02}'/arm/'optimizer.json')['safetensors_sha256']
+    return True
+
+
 def can_prepare_next(k):
     # The next actor and projector are known here only between monitoring points.
     return 7 <= k < 100 and k % 10 != 0
@@ -59,6 +71,8 @@ def main():
     phase,step,arm=sys.argv[1:]
     k=int(step);rank=int(os.environ['LOCAL_RANK'])
     if phase in ('collect','targets') and k>=7 and collected_and_scored(k,arm,rank):
+        return
+    if phase=='eval' and k>=10 and evaluation_complete(k,arm,rank):
         return
     from .e25_layout import Layout
     from .e25_probe import configure
@@ -102,6 +116,10 @@ def main():
     elif phase=='common':
         from .e25_measure import common
         common(rank,l,k,[arm])
+        if k>=10:
+            # Both a continuing arm and a stopping arm require this same endpoint evaluation.
+            print(f'Rank {rank} finished the common probe; evaluating {arm}@{k}',flush=True)
+            os.execv(sys.executable,[sys.executable,'-m',__package__+'.e2512_worker','eval',str(k),arm])
     elif phase.startswith('refresh_'):
         from . import e25_refresh
         assert arm=='P' and k%10==0
