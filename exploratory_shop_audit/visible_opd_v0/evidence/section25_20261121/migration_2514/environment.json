@@ -1,9 +1,50 @@
 {
-  "archived_run": {"driver": "595.84", "torch": "2.8.0+cu128", "torch_cuda": "12.8", "vllm": "0.11.0", "provenance": "Previous-boot NVIDIA module journal, archived evaluation engine version log, original dependency lock and preserved torch/version.py installed Nov 13. The original Python package versions use the retained installation."},
-  "migration_host": {"driver": "595.84", "gpu": "8 x NVIDIA A100-SXM4-80GB", "torch": "2.8.0+cu128", "torch_cuda": "12.8", "vllm": "0.11.0", "provenance": "Live NVIDIA module and package imports, Nov 22."},
-  "groups": {"A": [0,1,2,3], "B": [4,5,6,7]},
+  "archived_run": {
+    "driver": "595.84",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8",
+    "vllm": "0.11.0",
+    "provenance": "Previous-boot NVIDIA module journal, archived evaluation engine version log, original dependency lock and preserved torch/version.py installed Nov 13. The original Python package versions use the retained installation."
+  },
+  "migration_host": {
+    "driver": "595.84",
+    "gpu": "8 x NVIDIA A100-SXM4-80GB",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8",
+    "vllm": "0.11.0",
+    "provenance": "Live NVIDIA module and package imports, Nov 22."
+  },
+  "groups": {
+    "A": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "B": [
+      4,
+      5,
+      6,
+      7
+    ]
+  },
   "archived_probe": "B@0, four frozen rank shards, all full-vocabulary BF16 response logits, 4448 weighted positions including repeated prefixes",
   "archived_update": "formal_2512 P@6 from adopted P@5, same SHA-verified native tapes, optimizer, routing and mini-batches",
   "P_endpoint": 30,
-  "registration_remote_commits": ["d7ceaf82067128c01afb038f99fb231075220346", "2fb992d6440195e3c23803315f17e57e4eea4bf0"]
+  "registration_remote_commits": [
+    "d7ceaf82067128c01afb038f99fb231075220346",
+    "2fb992d6440195e3c23803315f17e57e4eea4bf0"
+  ],
+  "registration_local": [
+    {
+      "commit": "734b0267baccb7211fd6e9d77a8f342fde9f52a7",
+      "committed_at": "2026-11-22T01:13:19+08:00",
+      "tree": "3f629fad6f463c2bc15d35d4ddde0b1df875176a"
+    },
+    {
+      "commit": "feb60c44f5ebf7b2d89698e6cd0955748f472654",
+      "committed_at": "2026-11-22T01:15:37+08:00",
+      "tree": "362516ff2ff107b11de806248c7ec5985a451caf"
+    }
+  ]
 }
