@@ -16,8 +16,7 @@ from .s21_store import ARMS, RUN as S21
 from .s22_measure import matched_null, restore
 from exploratory_shop_audit.grpo_forced_audit.common import MODEL, read, save, digest_file
 
-RUN=S21.parent/'shop_visible_opd_e25_20261121'
-PUBLIC=Path(__file__).parent/'evidence/section25_20261121'
+from .e25_paths import PUBLIC, RUN
 GROUPS=('click','option','search','verb','syntax','other')
 SEED=20261121
 

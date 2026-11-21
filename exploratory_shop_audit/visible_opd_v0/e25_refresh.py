@@ -29,6 +29,17 @@ def source_dir(run,k):
     if k==1 and run!='formal_2512':return SMOKE
     return d_folder(k,'P') if run=='benchmark' else RUN/run/'pilot'/f'{k:02}'/'P'
 
+def refresh_features(model, views, answer):
+    h, raw = response(model, views['none'], answer)
+    ids, mask = support(raw, torch.tensor(answer, device='cuda'))
+    s = raw.gather(1, ids)
+    q = candidate_target(s, torch.zeros_like(s), 1, mask)
+    def lp(name):
+        return response(model, views[name], answer)[1].log_softmax(-1).gather(1, ids)
+    d = content_correction(lp('full'), lp('placeholder'), q)
+    return {name: value.cpu() for name, value in dict(h=h, ids=ids, mask=mask, s=s, q=q, d=d).items()}
+
+
 @torch.inference_mode()
 def score(rank,run,k,window,dst):
     out=dst/f'features_{rank}.pt';done=dst/f'score_{rank}.json'
@@ -47,7 +58,9 @@ def score(rank,run,k,window,dst):
     if run=='formal_2512':
         from .e2512_routing import owners
         assigned=owners()
+    reused=0;reuse_verified=False
     for step in range(max(1,k-window+1),k+1):
+        exact={}
         root=source_dir(run,step)
         for rep in range(2):
             p=root/f'rollout_{rep}.jsonl'
@@ -60,16 +73,28 @@ def score(rank,run,k,window,dst):
                 goal=rec['goal'];assert goal in allowed and goal not in held
                 if any(rec['na'].values()):skipped+=1;continue
                 answer=rec['response'];views=rec['views']
-                h,raw=response(model,views['none'],answer)
-                ids,mask=support(raw,torch.tensor(answer,device='cuda'))
-                s=raw.gather(1,ids);q=candidate_target(s,torch.zeros_like(s),1,mask)
-                def lp(name):return response(model,views[name],answer)[1].log_softmax(-1).gather(1,ids)
-                d=content_correction(lp('full'),lp('placeholder'),q)
-                for key,val in dict(h=h,ids=ids,mask=mask,s=s,q=q,d=d).items():features[key].append(val.cpu())
+                if assigned is None:
+                    row_features = refresh_features(model, views, answer)
+                else:
+                    key = (tuple(answer), *(tuple(views[v]) for v in ('none', 'full', 'placeholder')))
+                    # Each feature is a function only of this actor and these token sequences.
+                    prior = exact.get(key)
+                    if prior is not None and reuse_verified:
+                        row_features = prior
+                        reused += 1
+                    else:
+                        row_features = refresh_features(model, views, answer)
+                        if prior is not None:
+                            assert all(torch.equal(value, prior[name]) for name, value in row_features.items())
+                            reuse_verified = True
+                        exact[key] = row_features
+                for name,value in row_features.items():
+                    features[name].append(value)
                 goals.extend([goal]*len(answer));classes.extend(rec['classes'])
     data={key:torch.cat(v) for key,v in features.items()};data.update(goals=goals,classes=classes)
     torch.save(data,out.with_suffix('.tmp'));out.with_suffix('.tmp').replace(out)
     save(done,dict(actor_sha=sha,files=files,positions=len(goals),total_records=count,na_local=skipped,
+                   duplicate_features_verified=reuse_verified,duplicate_records_reused=reused,
                    goals=sorted(set(goals)),feature_sha=digest_file(out),seconds=time.monotonic()-start))
 
 def fit(rank,dst):

@@ -48,7 +48,7 @@ def collect(l,k,arm,rank):
     for tmp in files.values():
         tmp.unlink(missing_ok=True)
     start=time.monotonic()
-    runner=Runner(p,cp)
+    runner=Runner(p,cp,parallel_start=True)
     try:
         native_batches(runner,tasks,goals,files,stream=f'T_opd_D_{k}',include_legal=True)
     finally:
@@ -59,7 +59,8 @@ def collect(l,k,arm,rank):
         tmp.replace(out)
         signatures.append(digest_file(out))
     save(p/'complete.json',dict(rank=rank,goals=[v['goal_index'] for v in tasks],checkpoint=signature,
-         routing_sha=digest_file(ROUTING),rollout_sha256=signatures,seconds=time.monotonic()-start))
+         routing_sha=digest_file(ROUTING),rollout_sha256=signatures,seconds=time.monotonic()-start,
+         startup=runner.startup_timing,finished=time.time()))
 
 
 def merge_tapes(l,k,arm):
@@ -111,7 +112,7 @@ def evaluate(l,k,arm,rank):
     os.environ['OPD_ENTROPY_TAPE']=str(root/f'eval_entropy_{rank}.bin')
     cp,signature=checkpoint(l,k,arm)
     split=read(PARENT/'asin_split_manifest.json')
-    controller=Runner(root,cp)
+    controller=Runner(root,cp,parallel_start=True)
     count=0
     try:
         for pool in ('V','T_opd_eval'):

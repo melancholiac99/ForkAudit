@@ -2100,3 +2100,11 @@ steps on saved batches with the recorded activation policy. No new collection,
 teacher scoring or FP32 checks for those steps. Require the original hash of
 parameters, serialized Adam state, adapter and minibatch ordering. No control
 restoration is permitted before the training-domain terminal gate.
+
+### Stage E four-GPU execution, 2026-11-21, after P@6 optimization
+
+From update 7, each native rank starts its CPU environment and its cold vLLM engine concurrently. After collecting its two local tapes it builds its target shard immediately. The central merge verifies the original routing, both replicates, tensor file hashes, scorer and projector signatures. Batch membership, rank ownership, row order, optimizer steps and generation seeds follow §25.13. Each rank uses its own measured activation-retention limit when the checkpointed and retained longest-row gradient and logits match bitwise and the existing memory-headroom and speed tests pass. Record all four limits in the optimizer receipt.
+
+Between monitoring points only, a rank that finishes its FP32 diagnostic may collect and score the next batch using the already committed next actor. A fresh worker process releases the FP32 CUDA context before starting the cold native engine. Training waits for all four shards and the previous step's merged checks. The step preceding the next collection can therefore include time spent preparing it. Use checkpoint-to-checkpoint wall times and rank timings for throughput. The ten-step decision and projector refresh occur before any subsequent collection. Apply the same schedule to any controls that run.
+
+On a projector refresh the worker recomputes the three views at the current actor. Within each historical update it caches exact complete token sequences for all views and the answer, with a bitwise check on all six feature tensors on the first duplicate per rank per refresh. All original rows, order, goals, class labels and weights enter the fit. During evaluation the controller tokenizes identical task, observation and history once within each generation batch. No model output is shared between evaluation episodes.

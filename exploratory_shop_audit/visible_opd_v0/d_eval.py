@@ -28,9 +28,13 @@ def episodes(runner,jobs,trace=None):
                            entropy_sum=Counter(),tokens=Counter(),actions=[]))
     while active:
         requests=[]
+        tokens_by_input={}
         for e in active:
             state=e['state']
-            ids=make_input(runner.tokenizer,state['task'],e['h'],state['observation'])['token_ids']
+            key=(state['task'],tuple(e['h']),state['observation'])
+            if key not in tokens_by_input:
+                tokens_by_input[key]=make_input(runner.tokenizer,*key)['token_ids']
+            ids=tokens_by_input[key]
             requests.append(dict(token_ids=ids,temperature=0 if e['rep']==4 else .7,
                 seed=stable_seed(20261120,'D_eval',e['split'],e['goal'],e['rep'],len(e['h']))))
         keep=[]

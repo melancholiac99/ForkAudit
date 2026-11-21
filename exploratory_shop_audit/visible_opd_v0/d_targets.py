@@ -12,7 +12,7 @@ from .s21_store import ARMS
 from exploratory_shop_audit.grpo_forced_audit.common import read, read_rows, save, stable_seed, digest_file
 
 @torch.inference_mode()
-def build(k,arm,layout=None,*,goals=None,output=None):
+def build(k,arm,layout=None,*,goals=None,output=None,rollout_root=None,rollout_hashes=None):
     loc=folder if layout is None else layout.folder
     fresh_first = layout is not None and layout.name=='formal_2512'
     source = loc(k,arm)
@@ -34,8 +34,12 @@ def build(k,arm,layout=None,*,goals=None,output=None):
     cache={};verified_duplicate=False;reused=0
     masses=[]
     na=[]; rows=[]; targets=[]; student_logits=[]; episodes=Counter(); done=set()
+    tapes = rollout_root if rollout_root is not None else (SMOKE if k==1 and not fresh_first else source)
+    if rollout_root is not None:
+        assert goals and layout.name == 'formal_2512' and k > 1
+        assert [digest_file(tapes/f'rollout_{rep}.jsonl') for rep in range(2)] == rollout_hashes
     for rep in range(2):
-        for r in read_rows((SMOKE if k==1 and not fresh_first else source)/f'rollout_{rep}.jsonl'):
+        for r in read_rows(tapes/f'rollout_{rep}.jsonl'):
             if goals is not None and r['goal'] not in goals:continue
             key=(r['goal'],rep)
             assert r['goal'] in folds and r['rep']==rep and r['step']==episodes[key] and key not in done
@@ -91,6 +95,8 @@ def build(k,arm,layout=None,*,goals=None,output=None):
     for name,values in [('student',rows),('target',targets),('bf16_before',student_logits)]:
         torch.save([values[i] for i in order],path/f'{name}.pt')
     extra={}
+    if rollout_root is not None:
+        extra['native_rollout_sha256'] = rollout_hashes
     if layout is not None:
         mass_file=path/'candidate_mass.pt'
         torch.save([masses[i] for i in order],mass_file)

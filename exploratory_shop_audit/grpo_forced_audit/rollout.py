@@ -3,6 +3,7 @@ from collections import defaultdict
 import argparse
 import json
 import os
+import time
 from pathlib import Path
 import numpy as np
 from concurrent.futures import ThreadPoolExecutor
@@ -50,15 +51,40 @@ class InferencePool:
 
 
 class Runner:
-    def __init__(self,run,checkpoint='base'):
+    def __init__(self,run,checkpoint='base',*,parallel_start=False):
         from transformers import AutoTokenizer
         self.run=run; self.checkpoint=checkpoint
         self.tokenizer=AutoTokenizer.from_pretrained(str(MODEL),local_files_only=True)
-        self.engine=environment(run,'collection_engine_gpu_'+os.environ.get('SHOP_GPU_ID','0'))
+        engine_name='collection_engine_gpu_'+os.environ.get('SHOP_GPU_ID','0')
         cmd=[GPU_PYTHON,'-m',__package__+'.inference_worker','--model',MODEL]
         if checkpoint!='base':cmd+=['--adapter',checkpoint]
         self.gpu_ids=[int(x) for x in os.environ.get('SHOP_GPU_IDS',os.environ.get('SHOP_GPU_ID','0')).split(',')]
-        self.model=InferencePool(cmd,run,self.gpu_ids)
+        if parallel_start:
+            def start_environment():
+                started=time.monotonic()
+                engine=environment(run,engine_name)
+                return engine,(started,time.monotonic())
+            with ThreadPoolExecutor(max_workers=1) as startup:
+                pending = startup.submit(start_environment)
+                model_start=time.monotonic()
+                try:
+                    self.model = InferencePool(cmd, run, self.gpu_ids)
+                    model_end=time.monotonic()
+                except BaseException:
+                    if pending.exception() is None:
+                        pending.result()[0].close()
+                    raise
+                try:
+                    self.engine,(env_start,env_end) = pending.result()
+                    self.startup_timing=dict(environment_seconds=env_end-env_start,
+                        model_seconds=model_end-model_start,
+                        overlap_seconds=max(0.,min(model_end,env_end)-max(model_start,env_start)))
+                except BaseException:
+                    self.model.close()
+                    raise
+        else:
+            self.engine=environment(run,engine_name)
+            self.model=InferencePool(cmd,run,self.gpu_ids)
         self.checkpoint_hash=digest_file(Path(checkpoint)/'adapter_model.safetensors') if checkpoint!='base' else 'Qwen2.5-7B-Instruct:a09a35458c702b33eeacc393d103063234e8bc28'
     def close(self):
         try:self.model.close()

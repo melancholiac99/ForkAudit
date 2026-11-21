@@ -13,7 +13,7 @@ from .s21_store import ARMS, RUN as PREVIOUS
 from .s21_data import components
 from exploratory_shop_audit.grpo_forced_audit.common import digest_file, digest_value, read, save
 
-def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None, compare_original=True, replay_state=None):
+def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None, compare_original=True, replay_state=None, rank_local_activations=False):
     os.umask(0o077)
     os.environ['CUBLAS_WORKSPACE_CONFIG']=':4096:8'
     os.environ['NCCL_ALGO']='Ring'
@@ -42,6 +42,7 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
         assert expected==before_sha
         batch,q=load_batch(k,arm);every=list(range(len(batch.rows)))
         local=batch.local(every,rank)
+        limits_by_rank=None
         before,reused={},False
         if replay_state is None:
             with torch.no_grad():
@@ -52,6 +53,7 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
         else:
             assert replay_state['arm']==arm and replay_state['update']==k and replay_state['before_sha']==before_sha
             assert replay_state['minibatch_sha256']==digest_value(batch.batches)
+            limits_by_rank=replay_state.get('activation_limit_by_rank')
             fast_limit=replay_state['activation_limit']
         optim=torch.optim.AdamW([p for _,p in params],lr=1e-6 if rates is None else rates[arm],weight_decay=0.)
         prior_steps=0
@@ -64,6 +66,13 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
         if k>1 and fast_limit is None:
             fast_limit,probe=benchmark(model,batch,q,params,local,checkpoint_modules)
             save(path.parent/f'activation_check_rank{rank}.json',dict(limit=fast_limit,**probe))
+            if rank_local_activations:
+                value=torch.tensor(probe.get('local_limit',0),device='cuda')
+                limits=[torch.zeros_like(value) for _ in range(dist.get_world_size())]
+                dist.all_gather(limits,value)
+                limits_by_rank=[int(v) for v in limits]
+                assert min(limits_by_rank)==fast_limit
+        effective_limit=limits_by_rank[rank] if limits_by_rank is not None else fast_limit
         norms=[]
         quick_records=0
         train_started=time.monotonic()
@@ -73,7 +82,7 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
             optim.zero_grad(set_to_none=True)
             for i in batch.local(subset,rank):
                 row=batch.rows[i]
-                retained=k>1 and length(row)<=fast_limit
+                retained=k>1 and length(row)<=effective_limit
                 set_checkpoint(checkpoint_modules,not retained)
                 quick_records+=int(retained)
                 logits=score(model,row)
@@ -106,7 +115,7 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
             model.save_pretrained(storage/'adapter',save_embedding_layers=False)
             torch.save(optim.state_dict(),storage/'adam.pt')
             save(path/'optimizer.json',dict(update=k,arm=arm,before_sha=before_sha,after_sha=after_sha,
-                before_logits_reused_on_rank0=reused,activation_limit=fast_limit,retained_records=int(n_quick),
+                before_logits_reused_on_rank0=reused,activation_limit=fast_limit,activation_limit_by_rank=limits_by_rank,retained_records=int(n_quick),
                 training_loop_seconds=train_seconds,optimizer_steps=len(norms),cumulative_steps=steps,grad_norms=norms,
                 minibatch_rows=batch_sizes,scored_minibatch_rows=list(map(len,batch.batches)),minibatch_sha256=digest_value(batch.batches),
                 bf16_fixed_target=dict(zip(('kl_before','kl_after','delta_kl','alignment','movement'),values.tolist())) if replay_state is None else None,

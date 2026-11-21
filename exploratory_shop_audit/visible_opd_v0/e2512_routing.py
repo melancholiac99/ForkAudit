@@ -3,11 +3,10 @@ from functools import lru_cache
 from pathlib import Path
 
 from .d_data import PARENT
-from .e25_probe import RUN, PUBLIC
+from .e25_paths import RUN, PUBLIC, SERIAL
 from exploratory_shop_audit.grpo_forced_audit.common import MODEL, digest_file, read, save
 from exploratory_shop_audit.runtime import environment, make_input
 
-SERIAL='formal_2512'
 ROOT=RUN/SERIAL
 ROUTING=ROOT/'task_routing.json'
 
