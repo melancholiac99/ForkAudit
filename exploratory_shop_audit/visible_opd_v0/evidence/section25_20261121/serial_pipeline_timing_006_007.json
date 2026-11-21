@@ -1,0 +1,352 @@
+{
+  "arm": "P",
+  "run": "formal_2512",
+  "routing": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+  "sample_period_s": 2,
+  "6": {
+    "workload": {
+      "records": 287,
+      "valid_records": 286,
+      "three_view_input_tokens": 2156892,
+      "rank_tapes_match_merged_bytes": true
+    },
+    "phases": {
+      "collect": {
+        "elapsed_seconds": 67.04889204699793,
+        "end": "2026-11-21T10:42:40.304298+00:00",
+        "gpus": [
+          {
+            "rank": 0,
+            "samples": 34,
+            "mean_utilization_pct": 11.5,
+            "peak_memory_MiB": 58548
+          },
+          {
+            "rank": 1,
+            "samples": 34,
+            "mean_utilization_pct": 20.65,
+            "peak_memory_MiB": 58554
+          },
+          {
+            "rank": 2,
+            "samples": 34,
+            "mean_utilization_pct": 16.21,
+            "peak_memory_MiB": 58638
+          },
+          {
+            "rank": 3,
+            "samples": 34,
+            "mean_utilization_pct": 17.82,
+            "peak_memory_MiB": 58590
+          }
+        ]
+      },
+      "targets": {
+        "elapsed_seconds": 99.11588663099974,
+        "end": "2026-11-21T10:44:20.248108+00:00",
+        "gpus": [
+          {
+            "rank": 0,
+            "samples": 50,
+            "mean_utilization_pct": 72.74,
+            "peak_memory_MiB": 27069
+          },
+          {
+            "rank": 1,
+            "samples": 50,
+            "mean_utilization_pct": 80.04,
+            "peak_memory_MiB": 31081
+          },
+          {
+            "rank": 2,
+            "samples": 50,
+            "mean_utilization_pct": 67.38,
+            "peak_memory_MiB": 23621
+          },
+          {
+            "rank": 3,
+            "samples": 50,
+            "mean_utilization_pct": 72.9,
+            "peak_memory_MiB": 27341
+          }
+        ]
+      },
+      "train": {
+        "elapsed_seconds": 184.50138734199936,
+        "end": "2026-11-21T10:47:25.751683+00:00",
+        "gpus": [
+          {
+            "rank": 0,
+            "samples": 92,
+            "mean_utilization_pct": 83.23,
+            "peak_memory_MiB": 79553
+          },
+          {
+            "rank": 1,
+            "samples": 92,
+            "mean_utilization_pct": 85.35,
+            "peak_memory_MiB": 63423
+          },
+          {
+            "rank": 2,
+            "samples": 92,
+            "mean_utilization_pct": 86.18,
+            "peak_memory_MiB": 56717
+          },
+          {
+            "rank": 3,
+            "samples": 92,
+            "mean_utilization_pct": 86.35,
+            "peak_memory_MiB": 73579
+          }
+        ]
+      },
+      "per_update": {
+        "elapsed_seconds": 152.07547634000002,
+        "end": "2026-11-21T10:49:57.827647+00:00",
+        "gpus": [
+          {
+            "rank": 0,
+            "samples": 76,
+            "mean_utilization_pct": 69.32,
+            "peak_memory_MiB": 33761
+          },
+          {
+            "rank": 1,
+            "samples": 76,
+            "mean_utilization_pct": 79.25,
+            "peak_memory_MiB": 35611
+          },
+          {
+            "rank": 2,
+            "samples": 76,
+            "mean_utilization_pct": 67.59,
+            "peak_memory_MiB": 36751
+          },
+          {
+            "rank": 3,
+            "samples": 76,
+            "mean_utilization_pct": 76.5,
+            "peak_memory_MiB": 38021
+          }
+        ]
+      }
+    },
+    "optimizer": {
+      "before": "d5227f072e8d9c3446176b2823327f789a9195ef31ebbc771f76601c78d46fc0",
+      "after": "7d9225aaec53061940ad2b093aa9e1a982aaef9e486b1a8f71786be89cb09301",
+      "steps": 5,
+      "cumulative": 30,
+      "loop_s": 123.27163329700124,
+      "retained": 246,
+      "common_limit": 3423,
+      "local_limits": null
+    },
+    "collection_rank_seconds": [
+      55.41038337700229,
+      59.06450912999935,
+      57.786976200000936,
+      56.93710667599953
+    ]
+  },
+  "7": {
+    "workload": {
+      "records": 279,
+      "valid_records": 279,
+      "three_view_input_tokens": 2074724,
+      "rank_tapes_match_merged_bytes": true
+    },
+    "phases": {
+      "collect": {
+        "elapsed_seconds": 165.24394045900044,
+        "end": "2026-11-21T10:52:45.566529+00:00",
+        "gpus": [
+          {
+            "rank": 0,
+            "samples": 82,
+            "mean_utilization_pct": 45.54,
+            "peak_memory_MiB": 58706
+          },
+          {
+            "rank": 1,
+            "samples": 82,
+            "mean_utilization_pct": 40.61,
+            "peak_memory_MiB": 58826
+          },
+          {
+            "rank": 2,
+            "samples": 82,
+            "mean_utilization_pct": 65.2,
+            "peak_memory_MiB": 58498
+          },
+          {
+            "rank": 3,
+            "samples": 82,
+            "mean_utilization_pct": 41.02,
+            "peak_memory_MiB": 58632
+          }
+        ]
+      },
+      "targets": {
+        "elapsed_seconds": 1.6989281269998173,
+        "end": "2026-11-21T10:52:48.086071+00:00",
+        "gpus": [
+          {
+            "rank": 0,
+            "samples": 1,
+            "mean_utilization_pct": 0.0,
+            "peak_memory_MiB": 17
+          },
+          {
+            "rank": 1,
+            "samples": 1,
+            "mean_utilization_pct": 0.0,
+            "peak_memory_MiB": 17
+          },
+          {
+            "rank": 2,
+            "samples": 1,
+            "mean_utilization_pct": 0.0,
+            "peak_memory_MiB": 17
+          },
+          {
+            "rank": 3,
+            "samples": 1,
+            "mean_utilization_pct": 0.0,
+            "peak_memory_MiB": 17
+          }
+        ]
+      },
+      "train": {
+        "elapsed_seconds": 201.41162757000347,
+        "end": "2026-11-21T10:56:10.426932+00:00",
+        "gpus": [
+          {
+            "rank": 0,
+            "samples": 92,
+            "mean_utilization_pct": 86.46,
+            "peak_memory_MiB": 67917
+          },
+          {
+            "rank": 1,
+            "samples": 92,
+            "mean_utilization_pct": 86.65,
+            "peak_memory_MiB": 60619
+          },
+          {
+            "rank": 2,
+            "samples": 91,
+            "mean_utilization_pct": 86.75,
+            "peak_memory_MiB": 71461
+          },
+          {
+            "rank": 3,
+            "samples": 91,
+            "mean_utilization_pct": 87.75,
+            "peak_memory_MiB": 76463
+          }
+        ]
+      }
+    },
+    "optimizer": {
+      "before": "7d9225aaec53061940ad2b093aa9e1a982aaef9e486b1a8f71786be89cb09301",
+      "after": "7c38cd2cadcb37406df15f21a342a578f227b6de7ace17c58aa9b4adee247790",
+      "steps": 5,
+      "cumulative": 35,
+      "loop_s": 134.02140528499876,
+      "retained": 266,
+      "common_limit": 3831,
+      "local_limits": [
+        4077,
+        4044,
+        3950,
+        3831
+      ]
+    },
+    "collection_rank_seconds": [
+      51.920342623998295,
+      48.561127452998335,
+      53.32946078199893,
+      50.05018746100177
+    ],
+    "extra_retained_training_records": 10,
+    "startup_overlap_seconds_by_rank": [
+      5.989424641000369,
+      5.530765408999287,
+      5.429163160999451,
+      5.45222958299928
+    ],
+    "seconds_first_target_before_last_collection": 4.763781309127808,
+    "rank_target_seconds": [
+      76.50958347320557,
+      71.64685773849487,
+      103.88041949272156,
+      65.005042552948
+    ],
+    "fp32_rank_times": [
+      {
+        "rank": 0,
+        "update": 7,
+        "start": 1795258576.3332088,
+        "end": 1795258690.957073
+      },
+      {
+        "rank": 1,
+        "update": 7,
+        "start": 1795258576.5367615,
+        "end": 1795258698.3155577
+      },
+      {
+        "rank": 2,
+        "update": 7,
+        "start": 1795258576.547559,
+        "end": 1795258724.1935332
+      },
+      {
+        "rank": 3,
+        "update": 7,
+        "start": 1795258576.4996727,
+        "end": 1795258683.331591
+      }
+    ]
+  },
+  "note": "Update 7 collect includes rank-local scoring. Compare collect plus targets including manifest merge time. Batches differ in sequence length and action count. No estimate of a full-run speedup from these two updates.",
+  "8_prefetch": {
+    "rank_seconds_before_last_fp32": [
+      27.978,
+      20.32,
+      -5.355,
+      35.724
+    ],
+    "rank": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "checkpoint": "9d0b15d20bfac44a0262a57903c283793115576857d1a99f3bc2575521fa197b"
+  },
+  "cpu_parser": {
+    "records": 566,
+    "tokens": 8763,
+    "labels_identical": true,
+    "median_s": {
+      "old": 0.20176610250018712,
+      "new": 0.03175191800073662
+    },
+    "seconds": {
+      "old": [
+        0.2074794549989747,
+        0.20187575800082413,
+        0.20136245600224356,
+        0.2016564469995501
+      ],
+      "new": [
+        0.03192091999881086,
+        0.03182453499903204,
+        0.03167930100244121,
+        0.03138558099817601
+      ]
+    }
+  }
+}

@@ -1,4 +1,5 @@
 """Frozen per-update KL and ten-step full-vocabulary and projector diagnostics."""
+import time
 import torch
 from transformers import AutoTokenizer
 from .c_targets import actor,response,STAGE_B
@@ -14,6 +15,15 @@ from .post_d_precision import reanchor
 from .score import support
 from exploratory_shop_audit.grpo_forced_audit.common import MODEL,read,save,digest_file
 
+def fp32_probe_actor(layout):
+    from .e25_fp32_cache import verified_path
+    path=verified_path() if layout.name=='formal_2512' else MODEL
+    start=time.monotonic()
+    model=actor(dtype=torch.float32,base_path=path).eval()
+    print(f'FP32 actor loaded from {path} in {time.monotonic()-start:.2f}s',flush=True)
+    return model
+
+
 def at(model,layout,k,a):
     if k:layout.snapshot(model,k,a)
     else:
@@ -23,7 +33,7 @@ def at(model,layout,k,a):
 
 @torch.inference_mode()
 def per_update(rank,l,k,arms):
-    model=actor(dtype=torch.float32).eval()
+    model=fp32_probe_actor(l)
     for a in arms:
         path=l.folder(k,a);out=path/f'fp32_part_{rank}.json'
         if out.exists():continue
@@ -90,7 +100,7 @@ def common(rank,l,k,arms):
                     proj+=b.weights[j]*torch.stack(tuple((q*x).sum() for x in ((u-w).square(),u*w,u.square(),w.square())))
         del model,prev,curr,base
         torch.cuda.empty_cache()
-        model=actor(dtype=torch.float32).eval();at(model,l,k,a)
+        model=fp32_probe_actor(l);at(model,l,k,a)
         cross={g:[0.,0.] for g in totals}
         fp_base = None
         if l.name=='calibration_2511':

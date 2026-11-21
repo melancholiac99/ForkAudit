@@ -1,0 +1,25 @@
+{
+  "method": "Single CPU process, two threads; HF load plus touch every parameter page. ABBA order, two loads each. CPU logits compared bitwise.",
+  "seconds": {
+    "source": [
+      7.921627099000034,
+      8.385540994000621
+    ],
+    "cache": [
+      0.7405413310007134,
+      0.7490246439992916
+    ]
+  },
+  "median": {
+    "source": 8.153584046500328,
+    "cache": 0.7447829875000025
+  },
+  "cpu_logits_bitwise_equal": true,
+  "verified_tensors": 339,
+  "cache_sha256": {
+    "model-00001-of-00004.safetensors": "d4f4fc4b042e9dcb80c33797093ecb710d9526f1e9daec4145c37c2251a952d4",
+    "model-00002-of-00004.safetensors": "22c79d1918805ff7106cd115c8413bf8e4bcf9e8e108c34ac52d97b19ced049d",
+    "model-00003-of-00004.safetensors": "59f37c8d2edcf098502bf5421c337e53ed78efc15314289cf2ce8507ef91b142",
+    "model-00004-of-00004.safetensors": "c56d4292ba92977a143315875d67e8efae3ce90743a55357a8ee1454565554fe"
+  }
+}

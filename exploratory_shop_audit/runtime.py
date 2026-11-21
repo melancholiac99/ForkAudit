@@ -107,8 +107,9 @@ def make_input(tokenizer, task, history, observation, limit=8192):
     minimum_ids = tokenizer.apply_chat_template(minimum, tokenize=True, add_generation_prompt=True)
     if len(minimum_ids) > limit:
         raise ValueError(f'CURRENT_OBSERVATION_OVERFLOW: minimum input {len(minimum_ids)} > {limit}')
-    before = tokenizer.apply_chat_template(messages(history), tokenize=True, add_generation_prompt=True)
     kept = list(history)
+    before = (tokenizer.apply_chat_template(messages(kept), tokenize=True, add_generation_prompt=True)
+              if kept else minimum_ids)
     removed = []
     ids = before
     while len(ids) > limit:

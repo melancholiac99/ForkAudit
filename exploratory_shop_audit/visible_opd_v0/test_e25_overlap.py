@@ -9,6 +9,7 @@ import torch
 from exploratory_shop_audit.grpo_forced_audit.common import save
 from . import e2512_worker as worker
 from . import e25_refresh as refresh
+from .e25_fp32_cache import prepare, verified_path
 
 
 class NativeTargets(unittest.TestCase):
@@ -64,3 +65,23 @@ class RefreshReuse(unittest.TestCase):
             self.assertEqual(compute.call_count,3)
             self.assertEqual(data['classes'],['verb','verb','syntax','other'])
             self.assertEqual(data['h'].tolist(),[3,3,3,7])
+
+
+class ExactFp32Weights(unittest.TestCase):
+    def test_round_trip_and_fallback_on_change(self):
+        from safetensors.torch import save_file,load_file
+        with tempfile.TemporaryDirectory() as temp:
+            source=Path(temp)/'source'
+            source.mkdir()
+            cache=Path(temp)/'copy'
+            weights={'weight':torch.tensor([1.,2.125,-8],dtype=torch.bfloat16)}
+            save_file(weights,source/'part.safetensors',metadata={'format':'pt'})
+            save(source/'model.safetensors.index.json',dict(weight_map={'weight':'part.safetensors'},metadata={'total_size':6}))
+            for name in ('config.json','generation_config.json'):
+                save(source/name,{})
+            self.assertEqual(verified_path(cache,source),source)
+            self.assertEqual(prepare(cache,source)['tensor_count'],1)
+            self.assertEqual(load_file(cache/'part.safetensors')['weight'].tolist(),weights['weight'].tolist())
+            self.assertEqual(verified_path(cache,source),cache)
+            save(source/'config.json',dict(changed=True))
+            self.assertEqual(verified_path(cache,source),source)
