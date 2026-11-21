@@ -8,6 +8,14 @@ from .e2514_search import selection
 
 
 class MigrationTests(unittest.TestCase):
+    def test_historical_arg_counts_require_unambiguous_evidence(self):
+        from .e2514_queries import archived_token_counts
+        self.assertEqual(archived_token_counts(1,{'search':1},7,{(6,)}),
+                         ([7],'archived_single_search_total'))
+        self.assertIsNone(archived_token_counts(1,{'illegal':1},7,{(6,)})[0])
+        self.assertEqual(archived_token_counts(2,{},7,{(2,4),(3,4)})[0],[3,4])
+        self.assertIsNone(archived_token_counts(2,{},7,{(2,5),(3,4)})[0])
+
     def test_physical_rank_in_group(self):
         for start in (0,4):
             with patch.dict(os.environ,{'CUDA_VISIBLE_DEVICES':','.join(str(start+r) for r in range(4))}):

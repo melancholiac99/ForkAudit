@@ -174,6 +174,15 @@ def plan(result):
     return tasks
 
 
+def archived_token_counts(search_count, events, total, variants):
+    if search_count==1 and not events.get('illegal'):
+        return [total], 'archived_single_search_total'
+    compatible = {v for v in variants if len(v)==search_count and sum(v)==total}
+    if len(compatible)==1:
+        return list(compatible.pop()), 'donor_tokenization_matches_archived_total'
+    return None, 'unresolved_per_search_tokenization'
+
+
 def crosscheck_starting_evaluations():
     """Recover exact historical action text from the two available migration @10 evaluations."""
     from .e25_paths import RUN, SERIAL
@@ -213,20 +222,14 @@ def crosscheck_starting_evaluations():
             continue
         archived = originals[k][pool,goal,rep]
         variants = set()
-        for donor,actions,receipt in matches:
+        for donor,actions,_ in matches:
             for field in ('length','events','reason','reward_valid','reward'):
                 assert donor[field] == archived[field]
             searches = [a for a in actions if a['event'] == 'search']
             variants.add(tuple(a['arg_tokens'] for a in searches))
         queries = [a['query'] for a in searches]
         total = archived['tokens'].get('search',0)
-        compatible = [v for v in sorted(variants) if sum(v)==total]
-        if len(queries)==1 and not archived['events'].get('illegal'):
-            counts,provenance = [total], 'archived_single_search_total'
-        elif len(compatible)==1:
-            counts,provenance = list(compatible[0]), 'donor_tokenization_matches_archived_total'
-        else:
-            counts,provenance = None, 'unresolved_per_search_tokenization'
+        counts,provenance = archived_token_counts(len(queries),archived['events'],total,variants)
         rows.append(dict(step=k,split=pool,goal=goal,rep=rep,actions_sha=r['actions_sha'],
             queries=queries,first_query=queries[0] if queries else None,each_arg_token_count=counts,
             count_source=provenance,archived_search_tokens=total,in_intervention_source=(k,pool,goal,rep) in selected,
