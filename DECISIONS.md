@@ -1994,3 +1994,12 @@ invalid count and validity rate by model, split and decode. The fixed action
 limit still applies. A chunk saved before this change passed the old validity
 assertion for every row, so its missing validity fields have value true. Resume
 at the first missing chunk with the original tasks, checkpoints and seeds.
+
+For §25.2 and §25.8 use the signed D update-one native response positions. Within
+format use the existing §19 command-byte overlap rule. Roll remaining thought
+and unknown positions into other. The null seed is 20261121 on the ordered FP32
+LoRA tensors and the same perturbation is used in both precisions. Accumulate
+full-vocabulary probabilities, KL and norms in FP64 after the specified forward.
+Dead-zone layer aggregates use all action-predicting positions, including repeats,
+and the original per-position trajectory/task weights; additionally report raw
+element counts. Match roots of the movement ratios throughout §25.3.
