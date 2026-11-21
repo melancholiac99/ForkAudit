@@ -8,6 +8,66 @@ from .e2514_search import selection
 
 
 class MigrationTests(unittest.TestCase):
+    def test_early_probe_waits_for_the_bound_new_snapshot(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from .e2514_early_probe import await_optimizer
+        from exploratory_shop_audit.grpo_forced_audit.common import save
+        with TemporaryDirectory() as tmp:
+            path=Path(tmp)
+            save(path/'target_manifest.json', dict(scorer_sha='frozen'))
+            with self.assertRaises(TimeoutError):
+                await_optimizer(path,18,timeout=0)
+            for arm,step,sha in [('P',18,'frozen'),('R',17,'frozen'),('R',18,'other')]:
+                save(path/'optimizer.json',dict(arm=arm,update=step,before_sha=sha))
+                with self.assertRaises(AssertionError):
+                    await_optimizer(path,18,timeout=0)
+            save(path/'optimizer.json',dict(arm='R',update=18,before_sha='frozen'))
+            await_optimizer(path,18,timeout=0)
+
+    def test_early_and_regular_workers_score_the_rank_once(self):
+        from concurrent.futures import ThreadPoolExecutor
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from threading import Event
+        from . import e2514_early_probe as probe
+        from exploratory_shop_audit.grpo_forced_audit.common import read,save
+        with TemporaryDirectory() as tmp:
+            path=Path(tmp)/probe.SERIAL/'pilot/18/R'
+            save(path/'target_manifest.json',dict(scorer_sha='frozen'))
+            save(path.parents[1]/'17/R/optimizer.json',dict(after_sha='frozen'))
+            ready=Event()
+            def score(rank,layout,k,arms,before_new_snapshot):
+                ready.set()
+                before_new_snapshot(path)
+                save(path/f'fp32_part_{rank}.json',dict(done=True))
+            with patch.object(probe,'check_lane'),patch.object(probe,'RUN',Path(tmp)), \
+                 patch(__package__+'.e25_probe.configure',return_value=0), \
+                 patch(__package__+'.e25_measure.per_update',side_effect=score) as worker, \
+                 ThreadPoolExecutor(max_workers=2) as pool:
+                first=pool.submit(probe.measure_rank,18,0,True)
+                self.assertTrue(ready.wait(3))
+                second=pool.submit(probe.measure_rank,18,0,False)
+                save(path/'optimizer.json',dict(arm='R',update=18,before_sha='frozen'))
+                first.result(timeout=5)
+                second.result(timeout=5)
+                self.assertEqual(worker.call_count,1)
+                self.assertTrue(read(path/'fp32_timing_0.json')['early'])
+
+    def test_probe_gpu_allocation_unions_overlapping_launches(self):
+        from datetime import datetime,timezone
+        from .e2514_delivery import probe_allocation
+        def stage(name,begin,end):
+            return dict(phase=name,finished=datetime.fromtimestamp(end,timezone.utc).isoformat(),
+                        elapsed=end-begin,physical_devices='0,1,2,3',update=18)
+        regular=stage('per_update',100,150)
+        peers=[stage('train',0,98),stage('collect',100,160)]
+        for end,duration,training in [(130,140,88),(80,120,70)]:
+            early=dict(start=10.,end=end,physical_devices='0,1,2,3',exit_code=0)
+            data=probe_allocation(regular,peers,early)
+            self.assertEqual(data['fp32_seconds'],duration)
+            self.assertEqual(data['overlap_by_phase'],{'train':training,'collect':50})
+
     def test_terminal_label_needs_two_consecutive_training_breaches(self):
         from .e2514_delivery import stop_record
         rates=[(10,.9),(20,.8),(30,.79)]

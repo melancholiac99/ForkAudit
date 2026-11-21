@@ -83,6 +83,31 @@ def milestone(arm):
     return OUT/arm
 
 
+def overlap_seconds(first, second):
+    return max(0., min(first[1], second[1]) - max(first[0], second[0]))
+
+
+def stage_interval(stage):
+    end = datetime.fromisoformat(stage['finished']).timestamp()
+    return end - stage['elapsed'], end
+
+
+def probe_allocation(stage, peers, early):
+    normal = stage_interval(stage)
+    spans = [normal]
+    if early:
+        assert early['physical_devices'] == stage['physical_devices']
+        spans.append((early['start'], early['end']))
+    spans.sort()
+    if len(spans) == 2 and spans[1][0] <= spans[0][1]:
+        spans = [(spans[0][0], max(s[1] for s in spans))]
+    seconds = sum(end-start for start,end in spans)
+    by_phase = {p['phase']: sum(overlap_seconds(s, stage_interval(p)) for s in spans) for p in peers}
+    return dict(update=stage['update'], fp32_seconds=seconds, overlap_seconds=sum(by_phase.values()),
+                other_phase='+'.join(by_phase), other_seconds=sum(p['elapsed'] for p in peers),
+                overlap_by_phase=by_phase, early_exit_code=early['exit_code'] if early else None)
+
+
 def utilization():
     tape=LOCAL/'gpu_utilization.jsonl'
     samples=[json.loads(line) for line in tape.read_text().splitlines() if line.endswith(']]')] if tape.exists() else []
@@ -119,14 +144,12 @@ def utilization():
             if arm!='R-matched' and stage['phase']=='per_update' and devices=='0,1,2,3':
                 k=stage['update']
                 peer=file.parent/(f'{k:03}_common.json' if k%10==0 else f'{k+1:03}_collect.json')
-                if peer.is_file():
-                    other=read(peer)
-                    assert other['physical_devices']=='4,5,6,7' and other['arms']==[arm]
-                    stop=[datetime.fromisoformat(s['finished']).timestamp() for s in (stage,other)]
-                    start=[t-s['elapsed'] for t,s in zip(stop,(stage,other))]
-                    seconds=max(0.,min(stop)-max(start))
-                    overlap.append(dict(update=k,other_phase=other['phase'],overlap_seconds=seconds,
-                        fp32_seconds=stage['elapsed'],other_seconds=other['elapsed']))
+                peers=[read(p) for p in (file.parent/f'{k:03}_train.json',peer) if p.is_file()]
+                assert all(p['physical_devices']=='4,5,6,7' and p['arms']==[arm] for p in peers)
+                event=LOCAL/'early_fp32'/f'{k:03}.json'
+                result=probe_allocation(stage,peers,read(event) if arm=='R' and event.exists() else None)
+                by_devices[devices]+=4*(result['fp32_seconds']-stage['elapsed'])/3600
+                overlap.append(result)
         allocations[arm]=dict(completed_stages=stages,device_map_from_update_receipt=from_update,
             completed_stage_gpu_hours=sum(by_devices.values()),by_physical_devices=by_devices,cross_group_overlap=overlap)
     save(OUT/'final/gpu_utilization.json',dict(interval_seconds=15,coverage='Polling began during R-matched update 9',
@@ -235,7 +258,7 @@ def final():
     overlaps=[x for a in telemetry['formal_arm_allocations'].values() for x in a['cross_group_overlap']]
     if overlaps:
         minutes=sum(x['overlap_seconds'] for x in overlaps)/60
-        lines.extend(['',f"After the R-matched endpoint, the paired stage timestamps show {minutes:.1f} minutes of overlap across {len(overlaps)} updates. Cards 0–3 scored the frozen FP32 probes while cards 4–7 collected the next batch or evaluated the checkpoint."])
+        lines.extend(['',f"After the R-matched endpoint, the stage timestamps show {minutes:.1f} minutes of overlapping allocations across {len(overlaps)} updates. Cards 0–3 handled the FP32 checks while cards 4–7 trained, collected the next batch or evaluated the checkpoint. The per-device telemetry also records idle and synchronization periods within these allocations."])
     (OUT/'final/REPORT.md').write_text('\n'.join(lines)+'\n')
     save(OUT/'final/completion.json',dict(endpoints=outcomes,original_p=30,cpu_checks=needed,task_selection=selection,
          all_public_sha256={str(p.relative_to(OUT)):digest_file(p) for p in sorted(OUT.rglob('*')) if p.is_file() and p!=OUT/'final/completion.json'}))

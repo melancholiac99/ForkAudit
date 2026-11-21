@@ -54,7 +54,7 @@ def check_direct_load(model,l,rank):
 
 
 @torch.inference_mode()
-def per_update(rank,l,k,arms):
+def per_update(rank,l,k,arms,before_new_snapshot=None):
     model=fp32_probe_actor(l)
     check_direct_load(model,l,rank)
     for a in arms:
@@ -62,6 +62,8 @@ def per_update(rank,l,k,arms):
         if out.exists():continue
         batch,q=l.batch(k,a);ids=shard_order(batch,rank)
         at(model,l,k-1,a);old=fp32_scores(model,batch,ids)
+        if before_new_snapshot is not None:
+            before_new_snapshot(path)
         at(model,l,k,a);new=fp32_scores(model,batch,ids)
         if k==1 and l.name!='formal_2512':bf=checkpoint('bf16','initial')[0]
         else:

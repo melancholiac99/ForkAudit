@@ -70,6 +70,10 @@ def can_prepare_next(k):
 def main():
     phase,step,arm=sys.argv[1:]
     k=int(step);rank=int(os.environ['LOCAL_RANK'])
+    if phase in ('per_update','per_update_early') and arm=='R' and os.environ.get('OPD_READONLY_FP32')=='1':
+        from .e2514_early_probe import measure_rank
+        measure_rank(k,rank,early=phase=='per_update_early')
+        return
     if (phase,k,arm)==('collect',6,'R') and os.environ.get('OPD_MIGRATION_GROUP')=='B':
         from .e2514_search_extension import handoff_ready,finished_sampling,paths
         if handoff_ready() and not finished_sampling('handoff'):
