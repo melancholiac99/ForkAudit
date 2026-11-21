@@ -2003,3 +2003,9 @@ full-vocabulary probabilities, KL and norms in FP64 after the specified forward.
 Dead-zone layer aggregates use all action-predicting positions, including repeats,
 and the original per-position trajectory/task weights; additionally report raw
 element counts. Match roots of the movement ratios throughout §25.3.
+
+For §25.9(b) select the shrinkage of each held-out outer fold on inner OOF
+predictions restricted to its training goals/ASINs. Also fit per-class
+deployment shrinkage on the pooled OOF predictions. Use the frozen §B Huber
+OOF predictions and b_c as specified. Bootstrap the paired weighted KL loss
+difference by task, with 10,000 draws and seed 20261121. All fitting is on CPU.
