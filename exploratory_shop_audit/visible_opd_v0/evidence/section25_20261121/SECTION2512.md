@@ -1,6 +1,6 @@
 # §25.12 串行四卡实验
 
-本节登记时，正式 E 仅有 B@0 的行为评测。轮流调度下的 R、P 各完成 5 次参数更新，均标为 SUPERSEDED，保留适配器、AdamW 状态和更新记录，排除于本节比较。第二次 R-matched 校准沿用已完成的更新并按 §25.11 冻结学习率。[预登记提交](https://github.com/melancholiac99/ForkAudit/commit/dd35e027ed471f468a40f0af00a70bedfce80775) · [旧分支封存清单](superseded_interleaved_2512.json)
+本节登记时，正式 E 仅有 B@0 的行为评测。轮流调度下的 R、P 各完成 5 次参数更新，均标为 SUPERSEDED，保留五次更新的全部回执，以及切换时仍在盘上的第 4、5 步适配器和 AdamW 状态，排除于本节比较。第二次 R-matched 校准沿用已完成的更新并按 §25.11 冻结学习率。[预登记提交](https://github.com/melancholiac99/ForkAudit/commit/dd35e027ed471f468a40f0af00a70bedfce80775) · [旧分支封存清单](superseded_interleaved_2512.json)
 
 正式训练顺序为 **P → R-matched → R**。每组从同一初始 LoRA 和新的 AdamW 状态开始，每次只运行一个正式组。四个 vLLM 引擎重新评测 B@0。首批训练轨迹也由新布局下的 B 生成，以相同的原始字节供各组首步使用。每个训练更新每卡 8 个任务、每题 2 条轨迹；每个 200 题评测池每卡 50 个任务、每题 4 条采样和 1 条贪心轨迹。
 

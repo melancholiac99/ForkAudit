@@ -147,6 +147,8 @@ def run(l,steps):
     save(done,result);return result
 
 def main():
+    if (RUN/'formal/SUPERSEDED_2512.json').exists():
+        raise SystemExit('The interleaved formal run is archived under protocol 25.12')
     os.umask(0o077)
     with (RUN/'driver.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)

@@ -192,6 +192,8 @@ def run_round(round_number,jobs,stopped):
 
 
 def main():
+    if (RUN/'formal/SUPERSEDED_2512.json').exists():
+        raise SystemExit('The interleaved formal run is archived under protocol 25.12')
     os.umask(0o077)
     WORK.mkdir(exist_ok=True)
     with (RUN/'driver.lock').open('a') as lock:

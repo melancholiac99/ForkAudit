@@ -16,6 +16,10 @@ def main():
     with (RUN/'driver.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         cal=Layout(CAL)
+        if (cal.root/'complete_2512.json').is_file():
+            signed=read(PUBLIC/'calibration_2511_result.json')
+            assert signed['frozen'] and read(cal.root/'complete_2512.json')['rho_double_prime']==signed['rho_double_prime']
+            return
         assert all(progress(cal,i,MATCH).exists() for i in range(1,5))
         if not progress(cal,5,MATCH).exists():
             merge_update(cal,5,[MATCH])
