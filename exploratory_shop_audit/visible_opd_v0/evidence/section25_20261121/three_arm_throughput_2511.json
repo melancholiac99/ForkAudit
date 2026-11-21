@@ -1,0 +1,36 @@
+{
+  "original_three_arm_step1": {
+    "records": 846,
+    "valid": 846,
+    "logical_input_tokens_three_views": 6537147,
+    "seconds": 313.0898882750007,
+    "logical_input_tokens_per_s": 20879.457449159567
+  },
+  "four_shard_three_arm_step3": {
+    "records": 865,
+    "valid": 863,
+    "logical_input_tokens_three_views": 6844947,
+    "seconds": 268.845834,
+    "logical_input_tokens_per_s": 25460.4912345415
+  },
+  "new_step3_by_arm": {
+    "R": {
+      "records": 285,
+      "valid": 285,
+      "logical_input_tokens_three_views": 2228612
+    },
+    "P": {
+      "records": 289,
+      "valid": 288,
+      "logical_input_tokens_three_views": 2299116
+    },
+    "R-matched": {
+      "records": 291,
+      "valid": 290,
+      "logical_input_tokens_three_views": 2317219
+    }
+  },
+  "observed_token_throughput_ratio": 1.2194038708398685,
+  "paired_input": false,
+  "scope": "Different batches; logical input lengths include repeated valid records and exclude NA rows. This descriptive comparison does not estimate a causal end-to-end speedup."
+}
