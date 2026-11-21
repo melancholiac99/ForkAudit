@@ -1,0 +1,33 @@
+{
+  "rates": {
+    "P": 1e-06,
+    "R-matched": 1.705835096201349e-06,
+    "R": 1e-06
+  },
+  "section": "25.13",
+  "adopted_old_layout_updates": 5,
+  "four_engine_from_update": 6,
+  "order": [
+    "P",
+    "R-matched",
+    "R"
+  ],
+  "window_updates": 20,
+  "seed": 20261120,
+  "updates": 100,
+  "primary": [
+    "P-R-matched",
+    "P-B"
+  ],
+  "learning_rate_frozen": true,
+  "matching_2511": {
+    "rho_double_prime": 1.080109362280456,
+    "label": "MATCHED",
+    "frozen_lr": 1.705835096201349e-06
+  },
+  "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+  "calibration_sha": "7500183c17468cec2ec5f7b985ee62cef8ddea86944c712363ff21a61fa77385",
+  "baseline": "new four-engine B@0",
+  "training_legal_reference": "B batch used for adopted update 1",
+  "control_gate": "P@100 > B@0 count on the 800 T_opd_eval samples"
+}
