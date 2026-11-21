@@ -25,13 +25,15 @@ def native_purchase_candidates(traces,orig,goal):
     for val in goal.get('goal_options') or ():
         options.add(f'click[{val}]')
         options.add(f'click[{str(val).lower()}]')
+    buy_commands={r['action'] for t in traces for r in t if r.get('event')=='buy'} | {'click[buy now]', 'click[Buy Now]'}
     for search in first.values():
         products=search['products']
         if orig['reason']=='gold_purchase':products=[a for a in products if a==goal['asin']]
         for asin in products:
             for suffix in product(sorted(options),repeat=num_options):
-                commands=[f'click[{asin}]',*suffix,'click[buy now]']
-                yield [search,*[dict(action=cmd) for cmd in commands]]
+                for buy in sorted(buy_commands):
+                    commands=[f'click[{asin}]',*suffix,buy]
+                    yield [search,*[dict(action=cmd) for cmd in commands]]
 
 
 def recover():
@@ -174,7 +176,17 @@ def plan(result):
 
 if __name__=='__main__':
     import sys
-    if sys.argv[1:]==['initial']:
+    if sys.argv[1:]==['seal']:
+        from .e2514_search import digest_file
+        import fcntl
+        with (DATA/'seal.lock').open('a') as lock:
+            fcntl.flock(lock,fcntl.LOCK_EX)
+            if not (DATA/'plan_sealed.json').exists():
+                assert not list((DATA/'swap').glob('*/*/part_*.json'))
+                tasks=plan(recover())
+                save(DATA/'plan_sealed.json',dict(tasks=len(tasks),sha256=digest_file(OUT/'intervention_tasks.json'),
+                     archive_sha256=digest_file(DATA/'authenticated.json')))
+    elif sys.argv[1:]==['initial']:
         save(DATA/'authenticated_initial.json',recover())
     else:
         import os,subprocess

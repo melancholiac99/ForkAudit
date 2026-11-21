@@ -50,6 +50,11 @@ def run(k,rank):
     assert configure()==rank
     native_rank(rank);l=Layout(SERIAL);cp,sha=checkpoint(l,k,'P')
     root=DATA/'swap'/f'{k:03}'/f'rank{rank}';snapshot_dir(root)
+    from exploratory_shop_audit.grpo_forced_audit.common import digest_file
+    import subprocess
+    if not (DATA/'plan_sealed.json').is_file():
+        subprocess.run([sys.executable,'-m',__package__+'.e2514_queries','seal'],check=True)
+    assert read(DATA/'plan_sealed.json')['sha256']==digest_file(OUT/'intervention_tasks.json')
     tasks=read(OUT/'intervention_tasks.json')
     jobs=[]
     for task in tasks:

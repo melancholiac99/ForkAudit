@@ -33,9 +33,15 @@ def commit(label,files):
 
 def watch():
     while True:
-        if (OUT/'intervention_tasks.json').exists():
-            if not (OUT/'archived_search_metrics.json').exists():call('e2514_pages',cpu=True)
-            if not (OUT/'intervention_result_pages.json').exists():call('e2514_pages','pages',cpu=True)
+        seal=CONTROL/'search/plan_sealed.json'
+        if seal.exists():
+            signature=read(seal)
+            archived=CONTROL/'search/metrics_source.json'
+            if not archived.exists() or read(archived)!=signature:
+                call('e2514_pages',cpu=True)
+                save(archived,signature)
+            pages=CONTROL/'search/pages_source.json'
+            if not pages.exists() or read(pages)['sha256']!=signature['sha256']:call('e2514_pages','pages',cpu=True)
             swap=CONTROL/'search/swap'
             if all((swap/f'{k:03}'/f'rank{r}/complete.json').exists() for k in (20,30) for r in range(4)):
                 if not (OUT/'search_swap_report.json').exists():call('e2514_swap_report')

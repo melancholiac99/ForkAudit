@@ -70,4 +70,5 @@ class SearchReportTests(unittest.TestCase):
         q=dict(action='search[abc]',event='search',products=['111','222'])
         rows=list(native_purchase_candidates([[q]],dict(reason='gold_purchase',events={'buy':1,'search':1,'open_listed_product':1}),
                                               dict(asin='222',goal_options=[])))
-        self.assertEqual([[a['action'] for a in row] for row in rows],[['search[abc]','click[222]','click[buy now]']])
+        self.assertEqual({tuple(a['action'] for a in row) for row in rows},
+            {('search[abc]','click[222]',cmd) for cmd in ('click[buy now]','click[Buy Now]')})

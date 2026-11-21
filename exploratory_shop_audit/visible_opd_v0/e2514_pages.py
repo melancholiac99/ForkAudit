@@ -6,7 +6,7 @@ import re
 import sys
 import statistics
 from .e25_paths import PUBLIC,RUN
-from exploratory_shop_audit.grpo_forced_audit.common import COMMUNITY,read,save
+from exploratory_shop_audit.grpo_forced_audit.common import COMMUNITY,read,save,digest_file
 from exploratory_shop_audit.grpo_forced_audit.interface import Engine
 from exploratory_shop_audit.derive_environment import configurations
 
@@ -37,10 +37,16 @@ def page_judgments():
         if row['searches']:
             search=row['searches'][0]
             observed_pages[row['split'],row['goal'],search['query']].add(tuple(search['products']))
+    old=OUT/'intervention_result_pages.json'
+    cache={(r['split'],r['goal'],r['query']):r for r in read(old)} if old.exists() else {}
     results=[]
     for t in tasks:
         g=t['goal'];pool=t['split']
         for query in sorted(set(t['queries']['20'])|set(t['queries']['30'])):
+            if (pool,g,query) in cache:
+                saved=cache[pool,g,query]
+                assert observed_pages[pool,g,query]=={tuple(saved['page_asins'])}
+                results.append(saved);continue
             key=f'query_{g}';engine.open(key,g)
             try:
                 after=engine.step(key,f'search[{query}]')
@@ -52,6 +58,7 @@ def page_judgments():
             results.append(dict(split=pool,goal=g,query=query,page_asins=products,qualifying_asins=good,
                    contains_qualifying=bool(good),contains_gold=engine.server.goals[g]['asin'] in products))
     save(OUT/'intervention_result_pages.json',results)
+    save(DATA/'pages_source.json',dict(sha256=digest_file(OUT/'intervention_tasks.json')))
 
 
 def metrics(rows,goals):
