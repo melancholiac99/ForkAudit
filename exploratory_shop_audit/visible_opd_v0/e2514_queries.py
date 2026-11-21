@@ -1,17 +1,42 @@
 """Authenticate archived actions, then construct the two fresh query conditions."""
 from collections import Counter, defaultdict
+from itertools import product
 import csv
 
 from exploratory_shop_audit.env_worker import parse_action_fixed
 from .e2514_search import DATA, OUT, original, selection
 from .d_eval import event
+from .d_data import PARENT
 from .e2512_native import snapshot_dir
 from exploratory_shop_audit.grpo_forced_audit.checks import environment
 from exploratory_shop_audit.grpo_forced_audit.common import digest_value, read, save
 
 
+def native_purchase_candidates(traces,orig,goal):
+    # Test strings compatible with an observed first page and a short native purchase.
+    # Candidates are never accepted without the archived ordered action SHA.
+    events=orig['events']
+    num_options=events.get('select_visible_option',0)
+    if (set(events)-{'search','open_listed_product','select_visible_option','buy'} or
+            any(events.get(k)!=1 for k in ('search','open_listed_product','buy')) or num_options>3):
+        return
+    first={r[0]['action']:r[0] for r in traces if r and r[0]['event']=='search'}
+    options={r['action'] for t in traces for r in t if r['event']=='select_visible_option'}
+    for val in goal.get('goal_options') or ():
+        options.add(f'click[{val}]')
+        options.add(f'click[{str(val).lower()}]')
+    for search in first.values():
+        products=search['products']
+        if orig['reason']=='gold_purchase':products=[a for a in products if a==goal['asin']]
+        for asin in products:
+            for suffix in product(sorted(options),repeat=num_options):
+                commands=[f'click[{asin}]',*suffix,'click[buy now]']
+                yield [search,*[dict(action=cmd) for cmd in commands]]
+
+
 def recover():
     archives={k:original(k) for k in (0,10,20,30)}
+    goals=read(PARENT/'snapshots/goals_frozen.json')
     bank=defaultdict(dict)
     direct={}
     for k in archives:
@@ -87,6 +112,11 @@ def recover():
                     if digest_value([x['action'] for x in candidate])==expected:
                         rows=correct_labels(g,orig,candidate)
                         source='assembled_digest';related[expected]=rows;break
+                if rows is None:
+                    for candidate in native_purchase_candidates(traces,orig,goals[g]):
+                        if digest_value([x['action'] for x in candidate])==expected:
+                            rows=correct_labels(g,orig,candidate)
+                            source='native_page_digest';related[expected]=rows;break
             if rows is not None:
                 assert digest_value([r['action'] for r in rows])==expected
                 # The archived class count includes every response, including illegal commands.
