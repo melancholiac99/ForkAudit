@@ -1,0 +1,37 @@
+{
+  "window_updates": 20,
+  "active_training_groups": 3,
+  "calibration_gpu_h": 7.486325235780376,
+  "E_gpu_h": 167.66160835198028,
+  "E_plus_calibration_gpu_h": 175.14793358776066,
+  "wall_hours_if_four_reserved": 43.786983396940165,
+  "all_history_refresh_gpu_h": 48.827777777777776,
+  "selected_refresh_gpu_h": 16.86777777777778,
+  "ten_update_P_occupied_gpu_h": 3.924960546249999,
+  "baseline_phase_mean_seconds": {
+    "collect": 106.93868022855693,
+    "target": 296.9615317213328,
+    "train_four": 545.1252621077773,
+    "measure_four": 463.96032259233266
+  },
+  "cost_components_E_gpu_h": {
+    "rollout_target_training_measurement": 128.96826671944135,
+    "behavior": 15.95967615632227,
+    "refresh": 16.86777777777778,
+    "common_probe": 5.865887698438889
+  },
+  "benchmark": {
+    "actor_sha": "19d44cbe6240583d3a7faabe435d55a2cb7c19892da574f499bcdd1223407d36",
+    "cutoff": 10,
+    "tasks": 320,
+    "records": 2811,
+    "positions": 43504,
+    "seconds_score": 788,
+    "seconds_fit": 11,
+    "allocated_gpu_hours": 0.8877777777777778,
+    "folds": 4,
+    "raw_tape_manifest_sha": "f61b112271c3f60849ef03fd59b1f2dcc61c37878b2eb2206d0b584ed7ed818d"
+  },
+  "assumptions": "Four reserved A100s; D phase means and measured 10-update refresh scale linearly; no early stop; native replay/IO and trajectory lengths can change.",
+  "movement_sha": "14b3b754d42edb6de128da5cc4ed784c77e12c868f57dd5520bd9d813e7f4a69"
+}

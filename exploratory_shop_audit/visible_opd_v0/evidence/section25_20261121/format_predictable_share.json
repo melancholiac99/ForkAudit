@@ -1,0 +1,44 @@
+{
+  "definition": "当前预测器（rank-8、512 题、Huber）的题外可预测份额",
+  "reference": "relative OOF MSE improvement over strongest baseline",
+  "source_sha": "62c2177f86ea05cd2e5c55c345afc53066d6e2425cfe30b18123614afe256595",
+  "classes": {
+    "verb": {
+      "positions": 2110,
+      "tasks": 512,
+      "baseline": "token_only",
+      "mse": 1.739530594182428,
+      "gain": {
+        "point": 0.2732917423471797,
+        "ci95": [
+          0.23959915001481702,
+          0.30751444821090984
+        ]
+      },
+      "relative_gain": 0.15710660293136475,
+      "relative_ci95": [
+        0.1392299774205997,
+        0.17457216654698166
+      ]
+    },
+    "pure_format": {
+      "positions": 6243,
+      "tasks": 512,
+      "baseline": "token_only",
+      "mse": 2.98268433598407,
+      "gain": {
+        "point": 0.4244325580032607,
+        "ci95": [
+          0.36038475578707274,
+          0.485829891264063
+        ]
+      },
+      "relative_gain": 0.14229885237360482,
+      "relative_ci95": [
+        0.12173707020935334,
+        0.16270053519626967
+      ]
+    }
+  },
+  "frozen_b": 0.9813073109022129
+}

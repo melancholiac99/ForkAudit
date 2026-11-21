@@ -1,0 +1,146 @@
+{
+  "P": {
+    "q_proj": {
+      "layers": 28,
+      "norm_ratio": 0.507462131477747,
+      "cosine": 0.3833730507526235,
+      "zero_given_nonzero_weighted": 0.9554396678327353,
+      "nonzero_elements": 446365696,
+      "rounded_to_zero_elements": 426502563,
+      "zero_given_nonzero_unweighted": 0.9555003147016029,
+      "actual_forward_mismatches": 0
+    },
+    "k_proj": {
+      "layers": 28,
+      "norm_ratio": 0.41554667245863436,
+      "cosine": 0.3133464062351517,
+      "zero_given_nonzero_weighted": 0.9723882153531828,
+      "nonzero_elements": 63766528,
+      "rounded_to_zero_elements": 62011359,
+      "zero_given_nonzero_unweighted": 0.9724750734429197,
+      "actual_forward_mismatches": 0
+    },
+    "v_proj": {
+      "layers": 28,
+      "norm_ratio": 0.4535307978882731,
+      "cosine": 0.3408512610205051,
+      "zero_given_nonzero_weighted": 0.9317798347101277,
+      "nonzero_elements": 63766528,
+      "rounded_to_zero_elements": 59430825,
+      "zero_given_nonzero_unweighted": 0.9320066007043696,
+      "actual_forward_mismatches": 0
+    },
+    "o_proj": {
+      "layers": 28,
+      "norm_ratio": 0.6279729712747782,
+      "cosine": 0.4728474450710777,
+      "zero_given_nonzero_weighted": 0.90851263933862,
+      "nonzero_elements": 446365696,
+      "rounded_to_zero_elements": 405659807,
+      "zero_given_nonzero_unweighted": 0.908805964784534,
+      "actual_forward_mismatches": 0
+    },
+    "gate_proj": {
+      "layers": 28,
+      "norm_ratio": 0.24652697293900447,
+      "cosine": 0.18635467147482226,
+      "zero_given_nonzero_weighted": 0.9713798039975128,
+      "nonzero_elements": 2359361536,
+      "rounded_to_zero_elements": 2292181109,
+      "zero_given_nonzero_unweighted": 0.9715260141462271,
+      "actual_forward_mismatches": 0
+    },
+    "up_proj": {
+      "layers": 28,
+      "norm_ratio": 0.6900165780997095,
+      "cosine": 0.5289899645762399,
+      "zero_given_nonzero_weighted": 0.8883215155977203,
+      "nonzero_elements": 2359361536,
+      "rounded_to_zero_elements": 2096465686,
+      "zero_given_nonzero_unweighted": 0.8885733085037459,
+      "actual_forward_mismatches": 0
+    },
+    "down_proj": {
+      "layers": 28,
+      "norm_ratio": 0.5718593535266173,
+      "cosine": 0.4267469620014892,
+      "zero_given_nonzero_weighted": 0.9672766240331288,
+      "nonzero_elements": 446365696,
+      "rounded_to_zero_elements": 431823518,
+      "zero_given_nonzero_unweighted": 0.9674209328129014,
+      "actual_forward_mismatches": 0
+    }
+  },
+  "R": {
+    "q_proj": {
+      "layers": 28,
+      "norm_ratio": 0.4482913286401783,
+      "cosine": 0.3381282955678014,
+      "zero_given_nonzero_weighted": 0.965270221287602,
+      "nonzero_elements": 446365696,
+      "rounded_to_zero_elements": 430889331,
+      "zero_given_nonzero_unweighted": 0.9653280591705685,
+      "actual_forward_mismatches": 0
+    },
+    "k_proj": {
+      "layers": 28,
+      "norm_ratio": 0.3689365046340453,
+      "cosine": 0.2774917579342422,
+      "zero_given_nonzero_weighted": 0.9789537324437155,
+      "nonzero_elements": 63766528,
+      "rounded_to_zero_elements": 62430157,
+      "zero_given_nonzero_unweighted": 0.9790427510809433,
+      "actual_forward_mismatches": 0
+    },
+    "v_proj": {
+      "layers": 28,
+      "norm_ratio": 0.41947551093990104,
+      "cosine": 0.3152451124570183,
+      "zero_given_nonzero_weighted": 0.9450626214797785,
+      "nonzero_elements": 63766528,
+      "rounded_to_zero_elements": 60275632,
+      "zero_given_nonzero_unweighted": 0.945255040387333,
+      "actual_forward_mismatches": 0
+    },
+    "o_proj": {
+      "layers": 28,
+      "norm_ratio": 0.511691083578424,
+      "cosine": 0.38562925787382724,
+      "zero_given_nonzero_weighted": 0.9308255386099855,
+      "nonzero_elements": 446365696,
+      "rounded_to_zero_elements": 415623376,
+      "zero_given_nonzero_unweighted": 0.9311275031314235,
+      "actual_forward_mismatches": 0
+    },
+    "gate_proj": {
+      "layers": 28,
+      "norm_ratio": 0.17595841825110575,
+      "cosine": 0.1326364960419592,
+      "zero_given_nonzero_weighted": 0.9795864445996117,
+      "nonzero_elements": 2359361536,
+      "rounded_to_zero_elements": 2311461490,
+      "zero_given_nonzero_unweighted": 0.979697877892335,
+      "actual_forward_mismatches": 0
+    },
+    "up_proj": {
+      "layers": 28,
+      "norm_ratio": 0.6628994094317208,
+      "cosine": 0.5083850698987706,
+      "zero_given_nonzero_weighted": 0.9120062454237935,
+      "nonzero_elements": 2359361536,
+      "rounded_to_zero_elements": 2152241557,
+      "zero_given_nonzero_unweighted": 0.9122135476739416,
+      "actual_forward_mismatches": 0
+    },
+    "down_proj": {
+      "layers": 28,
+      "norm_ratio": 0.41758664356226666,
+      "cosine": 0.3177212137245314,
+      "zero_given_nonzero_weighted": 0.9767425653988416,
+      "nonzero_elements": 446365696,
+      "rounded_to_zero_elements": 436042019,
+      "zero_given_nonzero_unweighted": 0.9768717061088852,
+      "actual_forward_mismatches": 0
+    }
+  }
+}
