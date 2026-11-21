@@ -1,0 +1,29 @@
+{
+  "R-matched": {
+    "start_step": 5,
+    "cumulative_steps": 25,
+    "weight_sha256": "dc65ee65e3a06217c692980a131837130fe3d91e5b5bae2c2270839befaa2207",
+    "safetensors_sha256": "49dd0d3951cd3f447b803ebd4ec6bc25433431202f72c0452c78c5fca5f1aca0",
+    "adam_sha256": "824db9769d6674031845069073f2ec9103599fdb5afa1078b743cb9d5ada1248",
+    "source": "calibration_2511",
+    "verified": true
+  },
+  "P-frozen": {
+    "start_step": 10,
+    "cumulative_steps": 50,
+    "weight_sha256": "19d44cbe6240583d3a7faabe435d55a2cb7c19892da574f499bcdd1223407d36",
+    "safetensors_sha256": "b61ee54191e25aef8ed7e13406439289e771e54e921a2729be596375d246232f",
+    "adam_sha256": "888f01d6b43d8a20ec5264c979128be3a76657954a47e8f2cc71503cef8e524e",
+    "source": "D/P@10",
+    "verified": true
+  },
+  "R": {
+    "start_step": 5,
+    "cumulative_steps": 25,
+    "weight_sha256": "972175cdaf51838b93b17bc03f203c9e0abadc19f829fb277f752a83a718cd20",
+    "safetensors_sha256": "49ff588b1dac967cd4d31b459b267d61266fd429f350c8c803b95afbf0e8d42c",
+    "adam_sha256": "676808aeef843f4ee2958e5cb3ff3b7b02c334d0c0d0049deb9642d5aa26c444",
+    "source": "formal",
+    "verified": true
+  }
+}

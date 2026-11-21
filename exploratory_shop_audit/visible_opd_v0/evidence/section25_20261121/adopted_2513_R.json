@@ -1,0 +1,99 @@
+{
+  "arm": "R",
+  "adopted_steps": 5,
+  "source": "formal",
+  "resumed_from_state": "formal/state/05/R",
+  "before_six_sha": "972175cdaf51838b93b17bc03f203c9e0abadc19f829fb277f752a83a718cd20",
+  "adam_sha256": "676808aeef843f4ee2958e5cb3ff3b7b02c334d0c0d0049deb9642d5aa26c444",
+  "safetensors_sha256": "49ff588b1dac967cd4d31b459b267d61266fd429f350c8c803b95afbf0e8d42c",
+  "cumulative_optimizer_steps": 25,
+  "initial_training_legal_rate": 0.9113475177304965,
+  "layout_switch_at": 6,
+  "steps": [
+    {
+      "arm": "R",
+      "update": 1,
+      "stopped": false,
+      "before_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+      "after_sha": "592fff70d93384fa14c4135ef2b2ba84b0eef8d0510bace6e517c51f9575ba95",
+      "optimizer_steps": 5,
+      "cumulative_steps": 5,
+      "source": "formal",
+      "provenance": "adopted",
+      "native_layout": "interleaved_before_section_25.12",
+      "rollout_sha256": [
+        "da5b39ac31157fe9e72f3450083ade7e2b779e4dd36006c316c92cc5f4db142e",
+        "29a0eacc7e9fb0bb08a39e3f57189e7122209d89c560306c15a5073a087b5068"
+      ],
+      "optimizer_receipt_sha": "c459da5eea297fe1966eff0027675d3638ebd0df24b964b8cd545ebc22b2470b"
+    },
+    {
+      "arm": "R",
+      "update": 2,
+      "stopped": false,
+      "before_sha": "592fff70d93384fa14c4135ef2b2ba84b0eef8d0510bace6e517c51f9575ba95",
+      "after_sha": "e4c24fb698262665abb837ec5f7326c2627102eee70ce8434dbc2ff0ef4620a5",
+      "optimizer_steps": 5,
+      "cumulative_steps": 10,
+      "source": "formal",
+      "provenance": "adopted",
+      "native_layout": "interleaved_before_section_25.12",
+      "rollout_sha256": [
+        "a6c883cf4cfc983d9382366c096b9af1a57dfd0be12d30888bbc71dff7f25002",
+        "571975e2e5eeb931cb8d41af3dffcb11a8aeaa8adf9eac55ef42b97e404c3683"
+      ],
+      "optimizer_receipt_sha": "c408425f8d6a96e2b0d5a12c607d93090697502af0bcbe554d3a262bc7b02677"
+    },
+    {
+      "arm": "R",
+      "update": 3,
+      "stopped": false,
+      "before_sha": "e4c24fb698262665abb837ec5f7326c2627102eee70ce8434dbc2ff0ef4620a5",
+      "after_sha": "25039d1fd76aa459f835dc0bc765a65f4986df8b2d9378d1da1f5ee679165e6e",
+      "optimizer_steps": 5,
+      "cumulative_steps": 15,
+      "source": "formal",
+      "provenance": "adopted",
+      "native_layout": "interleaved_before_section_25.12",
+      "rollout_sha256": [
+        "d7a2bfb64092105f7ea97fb1bfdf2051caf76838444bfa08ebfa1bcbc32eaed8",
+        "502dff830018957373a85546984fb1481e809a60092ab05288a5997101d30052"
+      ],
+      "optimizer_receipt_sha": "47f75c861aaf89f598e125355b0e811ec3c0b9752eab20b8ec8cf12eb3a15403"
+    },
+    {
+      "arm": "R",
+      "update": 4,
+      "stopped": false,
+      "before_sha": "25039d1fd76aa459f835dc0bc765a65f4986df8b2d9378d1da1f5ee679165e6e",
+      "after_sha": "6ef4cb5966e70e1ca9383e9d6aac04f984d0d4e09609191768d58381ad212191",
+      "optimizer_steps": 5,
+      "cumulative_steps": 20,
+      "source": "formal",
+      "provenance": "adopted",
+      "native_layout": "interleaved_before_section_25.12",
+      "rollout_sha256": [
+        "dafbe04d204de3d8ae7c794663823b65d75a486b99461b894f7fea4bcab99c22",
+        "e9567c93de9ff1a5722bc063140d55962f91f3ebb0ce34aa8328acf49e3fc347"
+      ],
+      "optimizer_receipt_sha": "772c6dc6567cdf3fa651c50b3450a70f69a0d2e422bbc9029e96bbfbc3929500"
+    },
+    {
+      "arm": "R",
+      "update": 5,
+      "stopped": false,
+      "before_sha": "6ef4cb5966e70e1ca9383e9d6aac04f984d0d4e09609191768d58381ad212191",
+      "after_sha": "972175cdaf51838b93b17bc03f203c9e0abadc19f829fb277f752a83a718cd20",
+      "optimizer_steps": 5,
+      "cumulative_steps": 25,
+      "source": "formal",
+      "provenance": "adopted",
+      "native_layout": "interleaved_before_section_25.12",
+      "rollout_sha256": [
+        "b69c0308ff89f7cd3ac7c1adafa42896dd24c2791f83cad9e745cb0b5b6e82c0",
+        "49819c3df88e19ae24e2b6990a5ace8f496b7e359f0d1764091c2b09ed6b94df"
+      ],
+      "optimizer_receipt_sha": "400af4bf543591981e36653c23788afdfb3fde45034d4026770a962bb694ec7a"
+    }
+  ]
+}
