@@ -51,7 +51,8 @@ def watch():
                 commit(arm,[folder])
         if all((CONTROL/'publication_requests'/f'{name}.json').is_file() for name in ('search-swap','R-matched','P-frozen','R')):
             call('e2514_delivery','final')
-            commit('final',[OUT/'final'])
+            # The final signed manifest also covers cross-lane probe receipts outside arm folders.
+            commit('final',[OUT])
             return
         time.sleep(10)
 
