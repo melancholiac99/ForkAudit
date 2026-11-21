@@ -174,9 +174,75 @@ def plan(result):
     return tasks
 
 
+def crosscheck_starting_evaluations():
+    """Recover exact historical action text from the two available migration @10 evaluations."""
+    from .e25_paths import RUN, SERIAL
+    from exploratory_shop_audit.grpo_forced_audit.common import digest_file
+
+    sealed = read(DATA/'plan_sealed.json')
+    assert digest_file(DATA/'authenticated.json') == sealed['archive_sha256']
+    assert digest_file(OUT/'intervention_tasks.json') == sealed['sha256']
+    missing = [r for r in read(DATA/'authenticated.json') if r['source'] == 'unrecovered']
+    selected = {(k,t['split'],t['goal'],rep) for t in read(OUT/'intervention_tasks.json')
+                for k,field in ((20,'good_reps'),(30,'failed_reps')) for rep in t[field]}
+    wanted = {(r['split'],r['goal'],r['actions_sha']) for r in missing}
+    donors = defaultdict(list)
+    for arm in ('P-frozen','R-matched'):
+        for rank in range(4):
+            directory = RUN/SERIAL/'evaluation/010'/arm/f'rank{rank}'
+            complete = read(directory/'complete.json')
+            assert (complete['arm'], complete['k'], complete['count']) == (arm,10,500)
+            for source in sorted(directory.glob('search_*.json')):
+                traces = read(source)
+                for episode in read(directory/source.name.replace('search_', 'episodes_', 1)):
+                    pool,goal,rep = episode['split'],episode['goal'],episode['rep']
+                    key = (pool,goal,episode['actions_sha'])
+                    if key not in wanted:
+                        continue
+                    actions = traces[f'{pool}_{goal}_{rep}']
+                    assert digest_value([a['action'] for a in actions]) == key[-1]
+                    assert Counter(a['event'] for a in actions) == episode['events']
+                    donors[key].append((episode,actions,dict(arm=arm,step=10,rank=rank,rep=rep,
+                        file=source.name,sha256=digest_file(source))))
+    originals = {k:original(k) for k in (0,10,20,30)}
+    rows = []
+    for r in missing:
+        k,pool,goal,rep = r['step'],r['split'],r['goal'],r['rep']
+        matches = donors.get((pool,goal,r['actions_sha']))
+        if not matches:
+            continue
+        archived = originals[k][pool,goal,rep]
+        variants = set()
+        for donor,actions,receipt in matches:
+            for field in ('length','events','reason','reward_valid','reward'):
+                assert donor[field] == archived[field]
+            searches = [a for a in actions if a['event'] == 'search']
+            variants.add(tuple(a['arg_tokens'] for a in searches))
+        queries = [a['query'] for a in searches]
+        total = archived['tokens'].get('search',0)
+        compatible = [v for v in sorted(variants) if sum(v)==total]
+        if len(queries)==1 and not archived['events'].get('illegal'):
+            counts,provenance = [total], 'archived_single_search_total'
+        elif len(compatible)==1:
+            counts,provenance = list(compatible[0]), 'donor_tokenization_matches_archived_total'
+        else:
+            counts,provenance = None, 'unresolved_per_search_tokenization'
+        rows.append(dict(step=k,split=pool,goal=goal,rep=rep,actions_sha=r['actions_sha'],
+            queries=queries,first_query=queries[0] if queries else None,each_arg_token_count=counts,
+            count_source=provenance,archived_search_tokens=total,in_intervention_source=(k,pool,goal,rep) in selected,
+            donor_receipts=[m[2] for m in matches]))
+    save(OUT/'search_archive/crosscheck_at_10.json',dict(sealed_plan=sealed,
+        evidence='Post-intervention descriptive archive supplement using both migration @10 evaluations. '
+                 'Each entry matches the same task and complete ordered action digest, events and native outcome.',
+        originally_unrecovered=len(missing),newly_authenticated=len(rows),
+        intervention_source_rows=sum(r['in_intervention_source'] for r in rows),rows=rows))
+
+
 if __name__=='__main__':
     import sys
-    if sys.argv[1:]==['seal']:
+    if sys.argv[1:]==['crosscheck-at-10']:
+        crosscheck_starting_evaluations()
+    elif sys.argv[1:]==['seal']:
         from .e2514_search import digest_file
         import fcntl
         with (DATA/'seal.lock').open('a') as lock:

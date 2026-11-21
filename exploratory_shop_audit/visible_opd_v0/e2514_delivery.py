@@ -131,6 +131,8 @@ def final():
         lines.append(f"| {a['mode']} | {a['decode']} | {a['with_first_search']}/{a['episodes']} | {a['mean_tokens']:.2f} | {a['gold_in_query']} |")
     lines.extend(['','The archive tables distinguish verified action sequences from unrecovered episodes. Argument token counts come from regenerated native tokens or the archived total for an unambiguous single search. Each distinct task/query result page is scored once with the native purchase rules. The fresh sampling report includes task-cluster intervals, both task definitions and coverage.','',
         '[Archived first searches](../search_archive) · [Checkpoint search summaries](../archived_search_metrics.json) · [First result pages](../intervention_result_pages.json) · [Fresh continuation outcomes](../search_swap_report.json) · [Closing bracket by position](../tcal_closing_bracket.json).'])
+    extra=read(OUT/'search_archive/crosscheck_at_10.json')
+    lines.extend(['', f"The two migration update-10 evaluations independently authenticated {extra['newly_authenticated']} of the {extra['originally_unrecovered']} historical trajectories originally marked as missing. {extra['intervention_source_rows']} were source trials for the sealed intervention. [Additional first searches and token counts](../search_archive/crosscheck_at_10.json)."])
     (OUT/'final/REPORT.md').write_text('\n'.join(lines)+'\n')
     save(OUT/'final/completion.json',dict(endpoints=outcomes,original_p=30,cpu_checks=needed,task_selection=selection,
          all_public_sha256={str(p.relative_to(OUT)):digest_file(p) for p in sorted(OUT.rglob('*')) if p.is_file() and p!=OUT/'final/completion.json'}))

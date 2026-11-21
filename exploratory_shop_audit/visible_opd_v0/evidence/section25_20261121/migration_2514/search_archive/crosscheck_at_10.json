@@ -1,0 +1,896 @@
+{
+  "sealed_plan": {
+    "tasks": 93,
+    "sha256": "7d7e3756dba62140047ffd69c15c2ad94dc296f585d66d869f7026f7dd771774",
+    "archive_sha256": "28159cd77af41889b022f5b14a0f8158feed99fe7ab436e8d46b6767a2ef7c4b"
+  },
+  "evidence": "Post-intervention descriptive archive supplement using both migration @10 evaluations. Each entry matches the same task and complete ordered action digest, events and native outcome.",
+  "originally_unrecovered": 274,
+  "newly_authenticated": 31,
+  "intervention_source_rows": 0,
+  "rows": [
+    {
+      "step": 0,
+      "split": "T_opd_eval",
+      "goal": 14549,
+      "rep": 4,
+      "actions_sha": "06ff39a9807f5f34ab20eed188ba692f311ae960897c238da72e8a430c0d5f3f",
+      "queries": [
+        "成人 慢回弹海绵材质 方形 枕头 垫片 高5cm 支撑好"
+      ],
+      "first_query": "成人 慢回弹海绵材质 方形 枕头 垫片 高5cm 支撑好",
+      "each_arg_token_count": [
+        25
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 25,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 2,
+          "rep": 4,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "8a8eeab5368ece77a125c33348a0cd13b1f8bdeffdb271835cf22d38d373fa95"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 2527,
+      "rep": 3,
+      "actions_sha": "44de36278c40d3d58717569239a9c3b66ebdee04751118b0be00bbc77d4a676c",
+      "queries": [
+        "华星光电 D07定制板 4K粗板线 分开的Y状排列 新品"
+      ],
+      "first_query": "华星光电 D07定制板 4K粗板线 分开的Y状排列 新品",
+      "each_arg_token_count": [
+        22
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 22,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "d81baa32a57ba04aa4bd77b55821ec021ccf65a7cb42754ddcd9a511bfd7ea62"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 5029,
+      "rep": 4,
+      "actions_sha": "f0688402ed308cc9f33f29f3ea8af734a9d5e10eabb89ef34f22a7a266283b52",
+      "queries": [
+        "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖",
+        "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖",
+        "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖",
+        "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖"
+      ],
+      "first_query": "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖",
+      "each_arg_token_count": [
+        38,
+        38,
+        38,
+        38
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 152,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 4,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "d81baa32a57ba04aa4bd77b55821ec021ccf65a7cb42754ddcd9a511bfd7ea62"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 7453,
+      "rep": 3,
+      "actions_sha": "7e0923a0d7bda9aa8bb1ec698a44a8af01ecb5ce4f2eba186e6bf2f048a80c70",
+      "queries": [
+        "隔热防雨涂料1公斤"
+      ],
+      "first_query": "隔热防雨涂料1公斤",
+      "each_arg_token_count": [
+        6
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 6,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_T_opd_eval_0064.json",
+          "sha256": "2e6a84c96738c2cf3236831408937b82df9940b1bef581ce0b6ef4dd3b10224c"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 11011,
+      "rep": 2,
+      "actions_sha": "8a84e2840641b5a934d49f8295b1e60e4e48e89995b1a689c34ae30d44b64dfe",
+      "queries": [
+        "汉服 春秋 传统 比甲 主腰 明朝 铃兰 蝴蝶 刺绣 开襟 落肩 连袖 小码 预购"
+      ],
+      "first_query": "汉服 春秋 传统 比甲 主腰 明朝 铃兰 蝴蝶 刺绣 开襟 落肩 连袖 小码 预购",
+      "each_arg_token_count": [
+        43
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 43,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 2,
+          "rep": 2,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "edc595e9ef75c5f4ce71cd300ab9f81fc6f5deb2cfe18d2e00dd9594b86a0a15"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 12031,
+      "rep": 4,
+      "actions_sha": "bbaac4219ef74506ece5433c07dec221d605ef2eef03d5473df7331a86e009e7",
+      "queries": [
+        "儿童玛丽珍鞋 25年新款 春秋季 软底设计 银色 23码 150元内"
+      ],
+      "first_query": "儿童玛丽珍鞋 25年新款 春秋季 软底设计 银色 23码 150元内",
+      "each_arg_token_count": [
+        31
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 31,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 0,
+          "rep": 4,
+          "file": "search_T_opd_eval_0000.json",
+          "sha256": "d1579814a7397767b07e5003873fa2085f53513ddb20248d6359d363bbb91140"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 14945,
+      "rep": 4,
+      "actions_sha": "0e9126b99fbb2061afe618347a27545019ec39ba019d265a710885e0977a1ffe",
+      "queries": [
+        "古典风格 女士单肩包 2023新款 冬季适用 搭配各种衣服 上下班和外出都能用 卡其色 挂件 130元"
+      ],
+      "first_query": "古典风格 女士单肩包 2023新款 冬季适用 搭配各种衣服 上下班和外出都能用 卡其色 挂件 130元",
+      "each_arg_token_count": [
+        44
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 44,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 2,
+          "rep": 4,
+          "file": "search_T_opd_eval_0064.json",
+          "sha256": "e24c916691a39ae4cc2a3eeaf5435eea3897052aefca3928cc5eab047618df34"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 17507,
+      "rep": 2,
+      "actions_sha": "411b16d32a91feb2395d020ca14f0bfa0357bab741511f68f9c3c22e1cef1676",
+      "queries": [
+        "男款九分长西裤 黑色 冰丝面料 28尺码",
+        "男款九分长西裤 黑色 冰丝面料 28尺码"
+      ],
+      "first_query": "男款九分长西裤 黑色 冰丝面料 28尺码",
+      "each_arg_token_count": [
+        19,
+        19
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 38,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 2,
+          "rep": 2,
+          "file": "search_T_opd_eval_0192.json",
+          "sha256": "80b4d96575d590c757ad11d664b8c750ae171ecf6acf30b8166970a200d56b56"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 19852,
+      "rep": 1,
+      "actions_sha": "9d451b3fbf371c6b70cd6f45cbbda2eb7707f1e87a3504b0e20248d3a8dce5b3",
+      "queries": [
+        "foreverkey 水唇泥 鲜杨梅红酒浓郁红色 组合装"
+      ],
+      "first_query": "foreverkey 水唇泥 鲜杨梅红酒浓郁红色 组合装",
+      "each_arg_token_count": [
+        20
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 20,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 0,
+          "rep": 1,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "4474d4a3ebd7c74dfe6f123124d2aea889a84358c9217f46d9687cf42824cbe6"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 19852,
+      "rep": 2,
+      "actions_sha": "327a00cf980324e2375a08af16dc1984e6622455d1596f050a88bd0aff3d147b",
+      "queries": [
+        "foreverkey 水唇泥 鲜杨梅红酒色 组合装"
+      ],
+      "first_query": "foreverkey 水唇泥 鲜杨梅红酒色 组合装",
+      "each_arg_token_count": [
+        19
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 19,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 0,
+          "rep": 2,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "4474d4a3ebd7c74dfe6f123124d2aea889a84358c9217f46d9687cf42824cbe6"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 20766,
+      "rep": 2,
+      "actions_sha": "a728eea5e1d6e742c94dd6c4b8c1923e28118206f065fa8090107c23828f0bcb",
+      "queries": [
+        "含有茶树精油成分的新款香氛型洗衣珠 去渍 除菌 除螨 百合香味"
+      ],
+      "first_query": "含有茶树精油成分的新款香氛型洗衣珠 去渍 除菌 除螨 百合香味",
+      "each_arg_token_count": [
+        26
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 26,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "026577743c08391a16656ffe66ba7e208fe7ebf4e8b9f930774ddfd8ac98d464"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 21950,
+      "rep": 0,
+      "actions_sha": "8d9a72bec162a6a29c48b0ccf863bd6798cda4fe622362a4e28725a31945c1b8",
+      "queries": [
+        "矮凳子 幼儿园 折叠 收纳 靠背 独角兽图案 40元"
+      ],
+      "first_query": "矮凳子 幼儿园 折叠 收纳 靠背 独角兽图案 40元",
+      "each_arg_token_count": [
+        27
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 27,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 3,
+          "rep": 0,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "b0acd830b03310b29ef3c16c3b8bf2d9ae97b6dc5822d87ff240f53bf5b071f4"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 0,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "15f642ba30bbaaf7ffed78260ece57a3b2e363f132ca3052f3457465e18744ae"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 21950,
+      "rep": 1,
+      "actions_sha": "00446c09355ea593dddc1b7f89733eb326d4358d5b0a094b9b4a6df73eba112f",
+      "queries": [
+        "幼儿园小朋友坐的矮凳子 折叠 收纳 靠背 独角兽图案"
+      ],
+      "first_query": "幼儿园小朋友坐的矮凳子 折叠 收纳 靠背 独角兽图案",
+      "each_arg_token_count": [
+        23
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 23,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 3,
+          "rep": 1,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "b0acd830b03310b29ef3c16c3b8bf2d9ae97b6dc5822d87ff240f53bf5b071f4"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 1,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "15f642ba30bbaaf7ffed78260ece57a3b2e363f132ca3052f3457465e18744ae"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 23407,
+      "rep": 3,
+      "actions_sha": "0535e349eb55b13fcc438684c1fba10c2dd9b2341573b88252b6cf046241c5e4",
+      "queries": [
+        "可调焦发丝灯 300瓦 三种颜色 赠送5色片 支架"
+      ],
+      "first_query": "可调焦发丝灯 300瓦 三种颜色 赠送5色片 支架",
+      "each_arg_token_count": [
+        24
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 24,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "66419b85adf788012d46474319649d703d7a949218627f15d02ea44494391a91"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 2642,
+      "rep": 3,
+      "actions_sha": "97c281042d25dfccf002e9602a59c3c067d57126decd36cd9b3374c4ae06ce9f",
+      "queries": [
+        "外接硬盘盒 USB3.0 6Gbps 12Gbps 2.5寸 3.5寸 SAS SATA 白色"
+      ],
+      "first_query": "外接硬盘盒 USB3.0 6Gbps 12Gbps 2.5寸 3.5寸 SAS SATA 白色",
+      "each_arg_token_count": [
+        32
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 32,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_V_0160.json",
+          "sha256": "2d4ef527716a9ad11923332d49f84780983afaf1393d5f79551f1d74fddd839b"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 2692,
+      "rep": 1,
+      "actions_sha": "3ac1f077fe93b62bd3dc5f6987fdb39186558ca71e7d2f95f91746f67fc9a600",
+      "queries": [
+        "270ml 开盖即饮 咖啡 三瓶 30内 拿铁 芝士奶香 美式"
+      ],
+      "first_query": "270ml 开盖即饮 咖啡 三瓶 30内 拿铁 芝士奶香 美式",
+      "each_arg_token_count": [
+        33
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 33,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 1,
+          "file": "search_V_0224.json",
+          "sha256": "03d5c51bdf6de0247d029831ec4afcc67e3383655ae80f83450f41dcb7f44083"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 4417,
+      "rep": 1,
+      "actions_sha": "4d32dd659ee7205ab1ea54e775cad8639e8459a1eb75f91457eb0712172ffc4e",
+      "queries": [
+        "日本睫毛膏 保养 防护 亮泽 持久 黑色 >5g 160元以下"
+      ],
+      "first_query": "日本睫毛膏 保养 防护 亮泽 持久 黑色 >5g 160元以下",
+      "each_arg_token_count": [
+        28
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 28,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 1,
+          "file": "search_V_0000.json",
+          "sha256": "6fb3b25ae5217f0ae6797679f87653308a6f555a5a19daacb492ea55d0dab057"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 1,
+          "file": "search_V_0000.json",
+          "sha256": "68e4dc241af27db4eb5c9d4a4638d7767ed0b9b813003f5f25ee8965fa3bb5fe"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 4655,
+      "rep": 0,
+      "actions_sha": "80a5ddc06d68ba983d13b517c507683b9d69b2fb71ecb981c208398d558e4943",
+      "queries": [
+        "蓝黑蛱蝶标本装饰 正方形 原生态"
+      ],
+      "first_query": "蓝黑蛱蝶标本装饰 正方形 原生态",
+      "each_arg_token_count": [
+        14
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 14,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 0,
+          "file": "search_V_0096.json",
+          "sha256": "8b7c60aacba93349d74cb7009540fbe17b13b63160861351c8afaa143cfc104b"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 5086,
+      "rep": 3,
+      "actions_sha": "7e26352102e666f9ac98526aa41426131673bbda1b203328923732646c80a0b0",
+      "queries": [
+        "复古风 仿真玫瑰花 花瓣焦状感 带有花瓣图案 陶瓷瓶 轻奢感 45元"
+      ],
+      "first_query": "复古风 仿真玫瑰花 花瓣焦状感 带有花瓣图案 陶瓷瓶 轻奢感 45元",
+      "each_arg_token_count": [
+        31
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 31,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 3,
+          "file": "search_V_0160.json",
+          "sha256": "47fb6f1e12be5db46e1fe93ff9e0ead630e2d2513b4391202ec7b5435924a6b2"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 5455,
+      "rep": 0,
+      "actions_sha": "56d2f46c0456aff28eab2162cd49752cdef64f69bddbcea744fbe5856c4eb003",
+      "queries": [
+        "人体感应器 24GHz 毫米波 70-80mm 官方旗舰店 国标电压 静态人体检测"
+      ],
+      "first_query": "人体感应器 24GHz 毫米波 70-80mm 官方旗舰店 国标电压 静态人体检测",
+      "each_arg_token_count": [
+        33
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 33,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 2,
+          "rep": 0,
+          "file": "search_V_0096.json",
+          "sha256": "a3b8ec1f5d33b8a3eedb6f1c358fc6d9648f028b1e275905103b46ef974bf91d"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 8858,
+      "rep": 0,
+      "actions_sha": "ba15c02395822fb8cce0f33e7a84670d9109abf9e0a328e3e733fd0bc17cd1d1",
+      "queries": [
+        "北欧风格 实木 玻璃 材质 储物格 玄关 隔断 400左右"
+      ],
+      "first_query": "北欧风格 实木 玻璃 材质 储物格 玄关 隔断 400左右",
+      "each_arg_token_count": [
+        29
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 29,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 0,
+          "file": "search_V_0032.json",
+          "sha256": "5eaceaad9da29e6ce4e5e00aae0397924c13cbe410b8aabfab1a2b9e7fb8d345"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 9618,
+      "rep": 3,
+      "actions_sha": "5677dba9bf931e5428c3c60f6effd96d83a85182a9c368d31373490a2f1c1543",
+      "queries": [
+        "微晶精华水 意大利进口 改善肤色暗沉 修复肌肤损伤 补充胶原蛋白 肤质紧实"
+      ],
+      "first_query": "微晶精华水 意大利进口 改善肤色暗沉 修复肌肤损伤 补充胶原蛋白 肤质紧实",
+      "each_arg_token_count": [
+        31
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 31,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_V_0096.json",
+          "sha256": "3b633087a55bc3980fb9bea70e7dd7089041043239d24de4b083962391ff5e71"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 10532,
+      "rep": 3,
+      "actions_sha": "5ce75612b16d0d6309abb8bd24c41f4c49e2ec7ec53d7372b564215804072db7",
+      "queries": [
+        "自然一刻人物 和纸胶带 商家自己设计 宽度6-7厘米 50元以内"
+      ],
+      "first_query": "自然一刻人物 和纸胶带 商家自己设计 宽度6-7厘米 50元以内",
+      "each_arg_token_count": [
+        23
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 23,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 2,
+          "rep": 3,
+          "file": "search_V_0224.json",
+          "sha256": "d87976e9bdcd53c54605d25b97e94b04728e823af0029d0bfb671a1e700d9b74"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 11776,
+      "rep": 4,
+      "actions_sha": "5fbf4b71d6f24574469e6565a303f2b9c0fd2977bc9d8a9c13910856fd7d6f3a",
+      "queries": [
+        "足金戒指 5D硬金技术 小蝴蝶造型 莫桑石 1.8g 11号 多退少补 2000元以下"
+      ],
+      "first_query": "足金戒指 5D硬金技术 小蝴蝶造型 莫桑石 1.8g 11号 多退少补 2000元以下",
+      "each_arg_token_count": [
+        39
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 39,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 0,
+          "rep": 4,
+          "file": "search_V_0128.json",
+          "sha256": "d46e8f93884050ed044bede525799e1c67e167f9098a79b9ff3dbfc589128b7e"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 17596,
+      "rep": 0,
+      "actions_sha": "d83f0669e1f2658dd8eda3b9005c46e80669ca5358099b3b993ec6e58e283297",
+      "queries": [
+        "手机直播补光灯 两盏一组",
+        "手机直播补光灯 两盏一组 支持三种颜色调节",
+        "手机直播补光灯 两盏一组 支持三种颜色调节 70元以内",
+        "手机直播补光灯 两盏一组 支持三种颜色调节 70元以内 夹子"
+      ],
+      "first_query": "手机直播补光灯 两盏一组",
+      "each_arg_token_count": [
+        9,
+        15,
+        20,
+        23
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 67,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 0,
+          "file": "search_V_0064.json",
+          "sha256": "278f836e26222dce201fd1c9a6737fae3e745c07b2223acd6243dddb8d7badc1"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 17596,
+      "rep": 1,
+      "actions_sha": "75d7981bb6e96cd9c2d82d9415eb62a52576f9200964c1227ab2ffff10648f46",
+      "queries": [
+        "手机直播补光灯 两盏一组 夹在手机上 支持三种颜色 背景氛围灯 热靴一字夹 桌面三脚架 70元"
+      ],
+      "first_query": "手机直播补光灯 两盏一组 夹在手机上 支持三种颜色 背景氛围灯 热靴一字夹 桌面三脚架 70元",
+      "each_arg_token_count": [
+        42
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 42,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 1,
+          "file": "search_V_0064.json",
+          "sha256": "278f836e26222dce201fd1c9a6737fae3e745c07b2223acd6243dddb8d7badc1"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 22154,
+      "rep": 2,
+      "actions_sha": "269271bd380b37c5381d3b36399628ee6d6e66f45b8a71b5667546865f7a7323",
+      "queries": [
+        "农村自建房 奶油风 铸铝大门 精雕工艺 8毫米 3000-3500元包邮包安装"
+      ],
+      "first_query": "农村自建房 奶油风 铸铝大门 精雕工艺 8毫米 3000-3500元包邮包安装",
+      "each_arg_token_count": [
+        37
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 37,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 2,
+          "rep": 2,
+          "file": "search_V_0128.json",
+          "sha256": "7354f2c37c2e992d261a75d1aeb7842c42ec190416f4e6199b1d0695d15e1846"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 22636,
+      "rep": 2,
+      "actions_sha": "017431e676f4a98df6ec4edf805da350dda0205b1073b77def4a9135335e90ff",
+      "queries": [
+        "男款黑色 山浩 徒步旅行卫衣 帽子 L码 透气 排汗 400"
+      ],
+      "first_query": "男款黑色 山浩 徒步旅行卫衣 帽子 L码 透气 排汗 400",
+      "each_arg_token_count": [
+        27
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 27,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 2,
+          "file": "search_V_0192.json",
+          "sha256": "93418bdb02e085827b800cc2880b5f63ddaff115f5a1153d7688335bf0edc07e"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 22898,
+      "rep": 0,
+      "actions_sha": "c7d4b7417b6ecdde164c1f5ab35ad80b6b1ff2627ed2f50a64bb5ca31f4bb6a5",
+      "queries": [
+        "植物脂肪奶精炼乳 五谷米线 鱼粉 奶茶 咖啡 一箱"
+      ],
+      "first_query": "植物脂肪奶精炼乳 五谷米线 鱼粉 奶茶 咖啡 一箱",
+      "each_arg_token_count": [
+        26
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 26,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 0,
+          "file": "search_V_0128.json",
+          "sha256": "a6db82cea83bb162ff4676082a36bcb6d40cc7f0256fd1a27f6d8e3ec839eaf1"
+        }
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 6390,
+      "rep": 0,
+      "actions_sha": "ae7665ea62176d50d5a0292f1d430d509657dac6b2c913842c75adfba7959a86",
+      "queries": [
+        "布艺封面 离型纸内页 80页 蜜瓜包 手账 预售"
+      ],
+      "first_query": "布艺封面 离型纸内页 80页 蜜瓜包 手账 预售",
+      "each_arg_token_count": [
+        26
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 26,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "d66c358ef0505c876943e06d48ea3a113a78cda63b1753c7e4b8c38c49fd1ba4"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 4,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "d66c358ef0505c876943e06d48ea3a113a78cda63b1753c7e4b8c38c49fd1ba4"
+        }
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 21457,
+      "rep": 2,
+      "actions_sha": "12f35d758acb5da5dd5b3925aab04ab408f8ac850b4f0ceb7b6afb59e405b27e",
+      "queries": [
+        "INTO YOU 潮流联名唇泥"
+      ],
+      "first_query": "INTO YOU 潮流联名唇泥",
+      "each_arg_token_count": [
+        11
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 11,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_V_0032.json",
+          "sha256": "f85344c54fc44feac8b62be2d67c13057dffa7b56850ba01e7a244a6601d087d"
+        }
+      ]
+    }
+  ]
+}
