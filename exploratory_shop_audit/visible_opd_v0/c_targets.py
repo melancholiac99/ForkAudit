@@ -18,9 +18,10 @@ ARMS = ('N','R','P','R-beta','P-shuffled')
 SEED = 20261120
 
 
-def actor(dtype=torch.bfloat16, *, base_path=MODEL):
+def actor(dtype=torch.bfloat16, *, base_path=MODEL, load_on_rank=False):
     torch.manual_seed(SEED)
-    base = AutoModelForCausalLM.from_pretrained(base_path,torch_dtype=dtype,local_files_only=True).cuda()
+    mapping = {'': torch.cuda.current_device()} if load_on_rank else None
+    base = AutoModelForCausalLM.from_pretrained(base_path,torch_dtype=dtype,local_files_only=True,device_map=mapping).cuda()
     config = LoraConfig(r=64,lora_alpha=64,target_modules='all-linear',lora_dropout=0.,bias='none',task_type='CAUSAL_LM')
     model = get_peft_model(base,config)
     assert not base.lm_head.weight.requires_grad

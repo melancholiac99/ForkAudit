@@ -1,4 +1,5 @@
 """Frozen per-update KL and ten-step full-vocabulary and projector diagnostics."""
+import os
 import time
 import torch
 from transformers import AutoTokenizer
@@ -19,7 +20,7 @@ def fp32_probe_actor(layout):
     from .e25_fp32_cache import verified_path
     path=verified_path() if layout.name=='formal_2512' else MODEL
     start=time.monotonic()
-    model=actor(dtype=torch.float32,base_path=path).eval()
+    model=actor(dtype=torch.float32,base_path=path,load_on_rank=bool(os.environ.get('OPD_MIGRATION_GROUP'))).eval()
     print(f'FP32 actor loaded from {path} in {time.monotonic()-start:.2f}s',flush=True)
     return model
 

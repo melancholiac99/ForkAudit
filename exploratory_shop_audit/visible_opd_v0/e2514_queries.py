@@ -3,7 +3,10 @@ from collections import Counter, defaultdict
 import csv
 
 from exploratory_shop_audit.env_worker import parse_action_fixed
-from .e2514_search import DATA, OUT, POOLS, original, selection
+from .e2514_search import DATA, OUT, original, selection
+from .d_eval import event
+from .e2512_native import snapshot_dir
+from exploratory_shop_audit.grpo_forced_audit.checks import environment
 from exploratory_shop_audit.grpo_forced_audit.common import digest_value, read, save
 
 
@@ -25,7 +28,29 @@ def recover():
                     bank[key[:2]][sha]=actions
                     direct[k,key]=actions
     result=[]
-    counts=Counter()
+    recovered_engine=None
+    scratch=DATA/'assembled_cpu_replay'
+    snapshot_dir(scratch)
+    def correct_labels(goal,original,actions):
+        nonlocal recovered_engine
+        if recovered_engine is None:recovered_engine=environment(scratch,'cpu')
+        eng=recovered_engine;key=f'recover_{goal}'
+        state=eng.call(cmd='open',key=key,goal_index=goal)
+        checked=[]
+        for item in actions:
+            action=item['action']
+            step=eng.call(cmd='step',key=key,action=action)
+            kind=event(state['public'],action,step['legal']);new=dict(action=action,event=kind)
+            if kind=='search':
+                new.update(query=parse_action_fixed(action)[1],arg_tokens=item['arg_tokens'],
+                           products=[p['asin'] for p in step['state']['public'].get('products',[])])
+            if kind=='other_click':new['target']=parse_action_fixed(action)[1]
+            checked.append(new);state=step['state']
+        assert step['status']['done'] and step['status']['termination_reason']==original['reason']
+        assert Counter(a['event'] for a in checked)==original['events']
+        eng.call(cmd='close',key=key)
+        return checked
+
     for k,archive in archives.items():
         for key,orig in sorted(archive.items()):
             pool,g,rep=key; expected=orig['actions_sha']; related=bank[pool,g]
@@ -36,17 +61,27 @@ def recover():
                 rows=related[expected];source='same_task_digest'
             else:
                 rows=None;source='unrecovered'
-                # A query and an observed suffix can recover a missing sequence if and
-                # only if the assembled ordered action strings match the archived SHA.
-                options={r['action']:r for trace in related.values() for r in trace if r['event']=='search'}
-                for trace in list(related.values()):
-                    if len(trace)!=orig['length'] or trace[0]['event']!='search':continue
-                    if Counter(a['event'] for a in trace)!=orig['events']:continue
-                    for a in options.values():
-                        candidate=[a,*trace[1:]]
-                        if digest_value([x['action'] for x in candidate])==expected:
-                            rows=candidate;source='assembled_digest';break
-                    if rows is not None:break
+                # Try observed same-task prefixes/suffixes and one substituted action.
+                # An exact match authenticates all strings; the original episode's
+                # native legality and terminal reason are independently replayed below.
+                traces=list(related.values());n=orig['length']
+                choices={a['action']:a for trace in traces for a in trace}
+                seqs=[trace for trace in traces if len(trace)==n]
+                def candidates():
+                    for t in seqs:
+                        for i,a in enumerate(t):
+                            for alt in choices.values():
+                                if alt['action']!=a['action']:
+                                    yield [*t[:i],alt,*t[i+1:]]
+                    for t in traces:
+                        for u in traces:
+                            for cut in range(1,min(len(t)+1,n)):
+                                if len(u)>=n-cut:
+                                    yield [*t[:cut],*u[-(n-cut):]]
+                for candidate in candidates():
+                    if digest_value([x['action'] for x in candidate])==expected:
+                        rows=correct_labels(g,orig,candidate)
+                        source='assembled_digest';related[expected]=rows;break
             if rows is not None:
                 assert digest_value([r['action'] for r in rows])==expected
                 # The archived class count includes every response, including illegal commands.
@@ -62,10 +97,11 @@ def recover():
             if rows and rows[-1]['event']=='buy':
                 purchased=next((parse_action_fixed(r['action'])[1] for r in reversed(rows) if r['event']=='open_listed_product'),None)
                 assert purchased is not None
-            counts[k,pool,source]+=1
             result.append(dict(step=k,split=pool,goal=g,rep=rep,reason=orig['reason'],source=source,
                   actions_sha=expected,purchased_asin=purchased,legal_search_count=orig['events'].get('search',0),searches=searches,
                   search_token_total_matches_archive=token_match,other_click=other))
+    assert len(result)==8000
+    if recovered_engine is not None:recovered_engine.close()
     save(DATA/'authenticated.json',result)
     out=OUT/'search_archive';out.mkdir(parents=True,exist_ok=True)
     # Separate sampled/greedy and preserve original episode IDs, missingness and counts.
