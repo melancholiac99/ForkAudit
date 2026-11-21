@@ -15,9 +15,12 @@ def main():
         from .e2511_targets import score_shard
         score_shard(rank,jobs)
         return
-    if rank >= len(jobs):
+    slots = {'R': 0, 'P': 1, 'R-matched': 2}
+    assigned = [job for job in jobs if slots[job[2]] == rank]
+    if not assigned:
         return
-    run, step, arm = jobs[rank]
+    assert len(assigned) == 1
+    run, step, arm = assigned[0]
     layout = Layout(run)
     if phase == 'collect':
         d_collect.collect(step, rank, arm, layout.folder, layout.state)

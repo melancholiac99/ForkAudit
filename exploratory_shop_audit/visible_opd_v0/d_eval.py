@@ -61,7 +61,7 @@ def episodes(runner,jobs,trace=None):
     assert len(finished)==len(jobs)
     return finished
 
-def run(k,rank,layout=None,arm_override=None):
+def run(k,rank,layout=None,arm_override=None,chunk_starts=None):
     if layout is None:assert (RUN/'training_complete.json').exists()
     splits=read(PARENT/'asin_split_manifest.json')
     arm='B' if k==0 else (arm_override or ARMS[rank])
@@ -80,6 +80,10 @@ def run(k,rank,layout=None,arm_override=None):
         for t in splits[name]:
             for rep in range(5):jobs.append((name,t['goal_index'],rep))
     chunks=[j for j in range(0,len(jobs),32) if k or (j//32)%4==rank]
+    if chunk_starts is not None:
+        valid=set(range(0,len(jobs),32))
+        assert chunk_starts and len(set(chunk_starts))==len(chunk_starts) and set(chunk_starts)<=valid
+        chunks=chunk_starts
     start=time.monotonic()
     runner=Runner(path,checkpoint)
     try:

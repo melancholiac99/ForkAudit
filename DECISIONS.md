@@ -2052,3 +2052,9 @@ candidate logits, candidate mass and targets against the saved single-GPU R
 scorer, tensor by tensor. Reuse only rows with signed provenance; duplicate
 verification is local to a shard. The four-GPU criterion is elapsed time for
 the same workload. Report allocation and measured durations separately.
+
+Keep native rollout and behavioral evaluation on each arm's assigned rank.
+Under a separate cold-engine check, relocating intact seeded native chunks
+changed some actions on both replays; this does not isolate a hardware cause.
+Keep the check separate from the formal and calibration outcomes. Deterministic
+HF target scoring uses the validated four-way task partition instead.

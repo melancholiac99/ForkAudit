@@ -1,0 +1,47 @@
+{
+  "old_single_arm_scorer_wall_s": 309.8361329969998,
+  "new_four_shard_subprocess_s": 103.37644268700024,
+  "new_wall_through_merge_s": 105.373664,
+  "speedup": 2.9403564537435067,
+  "scope": "One R-family arm, same initial checkpoint, 32 tasks, 64 trajectories, 282 action records. R and P targets at this index were already signed and skipped.",
+  "step": 1,
+  "actor_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+  "exact_comparison": {
+    "student": 282,
+    "target": 282,
+    "bf16_before": 282,
+    "candidate_mass": 282
+  },
+  "valid_positions": 4448,
+  "by_rank_records": [
+    76,
+    77,
+    59,
+    70
+  ],
+  "device_observations": {
+    "0": {
+      "samples": 106,
+      "mean_utilization_pct": 66.4,
+      "peak_mem_MiB": 21559
+    },
+    "1": {
+      "samples": 106,
+      "mean_utilization_pct": 69.8,
+      "peak_mem_MiB": 21151
+    },
+    "2": {
+      "samples": 106,
+      "mean_utilization_pct": 81.7,
+      "peak_mem_MiB": 28237
+    },
+    "3": {
+      "samples": 106,
+      "mean_utilization_pct": 59.0,
+      "peak_mem_MiB": 27529
+    }
+  },
+  "sampled_from": "2026-11-21T08:21:25.269340+00:00",
+  "sampled_to": "2026-11-21T08:23:10.643004+00:00",
+  "lagging_multiarm_end_to_end_estimate": null
+}

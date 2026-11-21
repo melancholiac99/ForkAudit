@@ -1,0 +1,45 @@
+{
+  "read_only": true,
+  "used_for_lr_or_training": false,
+  "native_repartition_enabled": false,
+  "eval_reference": "formal/B@0: GPU 0, native chunks 0 and 128",
+  "eval_replay": "GPU 2, cold fresh engine, same original groups and seeds",
+  "collection_reference": "formal/R@2: GPU 0, original replicate 1 of 32 training tasks",
+  "collection_replay": "GPU 3, cold fresh engine, original task and seed order",
+  "env2": "Replay also sets the torchrun controller CUBLAS_WORKSPACE_CONFIG=:4096:8.",
+  "inference": "A cross-device cold restart did not reproduce the complete interaction tape. Device, engine warm state and native nondeterminism are not separately identified.",
+  "results": {
+    "shard_validation": {
+      "eval_episodes": 64,
+      "eval_changed": {
+        "entropy_sum": 58,
+        "length": 4,
+        "reason": 3,
+        "reward": 3,
+        "actions_sha": 6,
+        "events": 4,
+        "tokens": 5
+      },
+      "collection_tasks": 32,
+      "collection_changed_trajectories": 5,
+      "collection_original_records": 138,
+      "collection_replay_records": 139
+    },
+    "shard_validation_env2": {
+      "eval_episodes": 64,
+      "eval_changed": {
+        "entropy_sum": 59,
+        "length": 7,
+        "reason": 6,
+        "reward": 6,
+        "actions_sha": 10,
+        "events": 8,
+        "tokens": 8
+      },
+      "collection_tasks": 32,
+      "collection_changed_trajectories": 8,
+      "collection_original_records": 138,
+      "collection_replay_records": 137
+    }
+  }
+}
