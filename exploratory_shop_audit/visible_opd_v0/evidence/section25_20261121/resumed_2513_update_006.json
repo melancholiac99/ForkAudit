@@ -1,0 +1,275 @@
+{
+  "receipt": {
+    "arm": "P",
+    "update": 6,
+    "stopped": false,
+    "before_sha": "d5227f072e8d9c3446176b2823327f789a9195ef31ebbc771f76601c78d46fc0",
+    "after_sha": "7d9225aaec53061940ad2b093aa9e1a982aaef9e486b1a8f71786be89cb09301",
+    "optimizer_steps": 5,
+    "native_layout": "fixed_four_engines",
+    "provenance": "continued",
+    "finished": "2026-11-21T10:49:59.070275+00:00"
+  },
+  "adopted_steps": 5,
+  "adam_at_five_sha256": "1d1ebf783f8f3b03e682f0845aa2b082e09f90a427954fcb96dce362102eb5d6",
+  "learning_rate": 1e-06,
+  "optimizer": {
+    "update": 6,
+    "arm": "P",
+    "before_sha": "d5227f072e8d9c3446176b2823327f789a9195ef31ebbc771f76601c78d46fc0",
+    "after_sha": "7d9225aaec53061940ad2b093aa9e1a982aaef9e486b1a8f71786be89cb09301",
+    "before_logits_reused_on_rank0": true,
+    "activation_limit": 3423,
+    "retained_records": 246,
+    "training_loop_seconds": 123.27163329700124,
+    "optimizer_steps": 5,
+    "cumulative_steps": 30,
+    "grad_norms": [
+      0.2437153458595276,
+      0.21901054680347443,
+      0.2757335305213928,
+      0.24089442193508148,
+      0.3781834542751312
+    ],
+    "minibatch_rows": [
+      58,
+      58,
+      57,
+      57,
+      57
+    ],
+    "scored_minibatch_rows": [
+      58,
+      58,
+      57,
+      57,
+      56
+    ],
+    "minibatch_sha256": "3b25193b7182ee5b4d7c5167c0be61fe227a9140be79dee26290334787882d93",
+    "bf16_fixed_target": {
+      "kl_before": 0.0036912851326842914,
+      "kl_after": 0.0038035399599291747,
+      "delta_kl": -0.00011225482724488392,
+      "alignment": 0.0010204811532488968,
+      "movement": 0.0011327359804937814
+    },
+    "adam_sha256": "10826831ea243aed142754f7026a8bf34f2ec153d481ea4ceda414c3da1cdd4c",
+    "safetensors_sha256": "7b1e5b76286b38966c85babdb59e19aadca2ed12824c65bf428269e4258670db",
+    "elapsed_seconds": 168.97332641100002
+  },
+  "collection": {
+    "checkpoint": "2bc5d95741b4c94d6646b0339982b7d7491ce6f63f6ab1bd1980146bd8405aa3",
+    "rollout_sha256": [
+      "b4de886c8e22fc474a3b72d259ff59321e1da13e8ccb69c3266675dfe7011d43",
+      "166a1072b7b4d4f5f0c5bf67a3e800945cc1d9547e38ac6d0c351bc6ea98ce78"
+    ],
+    "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+    "legal": 275,
+    "records": 287,
+    "legal_rate": 0.9581881533101045
+  },
+  "rank_manifests": [
+    {
+      "rank": 0,
+      "goals": [
+        16055,
+        6865,
+        10565,
+        10831,
+        5961,
+        17075,
+        9311,
+        1677
+      ],
+      "checkpoint": "2bc5d95741b4c94d6646b0339982b7d7491ce6f63f6ab1bd1980146bd8405aa3",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+      "rollout_sha256": [
+        "87c1057d30d468e71d8039e101dcc170c593f755f6037e19d2f0e74f8c65d1d6",
+        "5396cf83647d0b5d12c3fb168113e0e6a82d809b0c1f5e9d31cdf7e8935a670d"
+      ],
+      "seconds": 55.41038337700229
+    },
+    {
+      "rank": 1,
+      "goals": [
+        7079,
+        6501,
+        21740,
+        2850,
+        18456,
+        4354,
+        2988,
+        11583
+      ],
+      "checkpoint": "2bc5d95741b4c94d6646b0339982b7d7491ce6f63f6ab1bd1980146bd8405aa3",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+      "rollout_sha256": [
+        "12570582b3b3591a5bd7a932644834f1a4837f38a8b2e628146dcfe99e259a60",
+        "b34cf21e5b1a97185565828a3de78549d3f9b0ac018aae3797d1fbe994cc9bde"
+      ],
+      "seconds": 59.06450912999935
+    },
+    {
+      "rank": 2,
+      "goals": [
+        15727,
+        14548,
+        6054,
+        14372,
+        10622,
+        2679,
+        9807,
+        12973
+      ],
+      "checkpoint": "2bc5d95741b4c94d6646b0339982b7d7491ce6f63f6ab1bd1980146bd8405aa3",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+      "rollout_sha256": [
+        "9c251bcfe7abdc97d0487a613c0b29eba8d461653d8e35d7851cbb572b914fef",
+        "f5c0e1efdf6563cfdb16680dae4c9fd33e0210138611ff607b0eaa3e87f4a629"
+      ],
+      "seconds": 57.786976200000936
+    },
+    {
+      "rank": 3,
+      "goals": [
+        3409,
+        6423,
+        17697,
+        5575,
+        2926,
+        12461,
+        12888,
+        9114
+      ],
+      "checkpoint": "2bc5d95741b4c94d6646b0339982b7d7491ce6f63f6ab1bd1980146bd8405aa3",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+      "rollout_sha256": [
+        "5664901bce5eab8f4f7913e23cebb8330b8f36aeaa334659ea17dc3304d408ff",
+        "526195ac9dd9a6a59898b1d1107134563dd2bcb13290ab89379c809f5dc600de"
+      ],
+      "seconds": 56.93710667599953
+    }
+  ],
+  "trajectories": 64,
+  "measurement": {
+    "arm": "P",
+    "update": 6,
+    "bf16": {
+      "kl_before": 0.0036912851326842914,
+      "kl_after": 0.0038035399599291747,
+      "delta_kl": -0.00011225482724488392,
+      "alignment": 0.0010204811532488968,
+      "movement": 0.0011327359804937814
+    },
+    "fp32_reanchored": {
+      "kl_before": 0.003588277327819508,
+      "kl_after": 0.002461603556010089,
+      "delta_kl": 0.0011266737718094197,
+      "alignment": 0.0017943458646385642,
+      "movement": 0.0006676720928291448
+    }
+  },
+  "baseline_manifests": [
+    {
+      "arm": "B",
+      "k": 0,
+      "rank": 0,
+      "count": 500,
+      "checkpoint": "B@0",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa"
+    },
+    {
+      "arm": "B",
+      "k": 0,
+      "rank": 1,
+      "count": 500,
+      "checkpoint": "B@0",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa"
+    },
+    {
+      "arm": "B",
+      "k": 0,
+      "rank": 2,
+      "count": 500,
+      "checkpoint": "B@0",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa"
+    },
+    {
+      "arm": "B",
+      "k": 0,
+      "rank": 3,
+      "count": 500,
+      "checkpoint": "B@0",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa"
+    }
+  ],
+  "baseline_sampled_training_domain": {
+    "successes": 317,
+    "trials": 800
+  },
+  "phase_receipts": [
+    {
+      "run": "formal_2512",
+      "update": 6,
+      "phase": "collect",
+      "arms": [
+        "P"
+      ],
+      "source_commit": "3fa32cca4de0dba90ce5b3ab67a12b42ed771835",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+      "elapsed": 67.04889204699793,
+      "allocated_gpus": 4,
+      "exit_code": 0,
+      "finished": "2026-11-21T10:42:40.304298+00:00"
+    },
+    {
+      "run": "formal_2512",
+      "update": 6,
+      "phase": "targets",
+      "arms": [
+        "P"
+      ],
+      "source_commit": "3fa32cca4de0dba90ce5b3ab67a12b42ed771835",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+      "elapsed": 99.11588663099974,
+      "allocated_gpus": 4,
+      "exit_code": 0,
+      "finished": "2026-11-21T10:44:20.248108+00:00"
+    },
+    {
+      "run": "formal_2512",
+      "update": 6,
+      "phase": "train",
+      "arms": [
+        "P"
+      ],
+      "source_commit": "3fa32cca4de0dba90ce5b3ab67a12b42ed771835",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+      "elapsed": 184.50138734199936,
+      "allocated_gpus": 4,
+      "exit_code": 0,
+      "finished": "2026-11-21T10:47:25.751683+00:00"
+    },
+    {
+      "run": "formal_2512",
+      "update": 6,
+      "phase": "per_update",
+      "arms": [
+        "P"
+      ],
+      "source_commit": "0d2cf26d672342175e87ba7a2e35e3c7945d56a7",
+      "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+      "elapsed": 152.07547634000002,
+      "allocated_gpus": 4,
+      "exit_code": 0,
+      "finished": "2026-11-21T10:49:57.827647+00:00"
+    }
+  ],
+  "hashes": {
+    "pilot/06/P/optimizer.json": "dc72664fb2aab61f4dba3d0629d51044da8a996740495e8760b1fef4546d5020",
+    "pilot/06/P/measurement.json": "43dc1a307a988920e71bfa64d9e0b7b84e00aeb59b1f384a52ab8c7b1248ae27",
+    "adoption/P.json": "d24e781c1c3f2d2f99bb5dd8381ff45ed60852846670bdb0b05a2c1ef88a44b8",
+    "behavior/000.json": "259f6c282ac2735f784282d3835013d4a8e51e5eb2cc73f5102981d731a74f35",
+    "monitor/000.json": "386ce1d63cb377f315702b601cb0b1d72b28800603c8c92c4f7c5f8f21d7b593"
+  }
+}
