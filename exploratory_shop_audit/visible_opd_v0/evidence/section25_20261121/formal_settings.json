@@ -1,0 +1,24 @@
+{
+  "rates": {
+    "R": 1e-06,
+    "P": 1e-06,
+    "R-matched": 1.3000595528940857e-06
+  },
+  "window_updates": 20,
+  "match_adjusted": true,
+  "calibration": {
+    "rho_prime": 1.9203921551451821,
+    "matched_movement": 0.04521593856939092,
+    "first_lr": 2.496624166599355e-06,
+    "adjusted": true,
+    "final_lr": 1.3000595528940857e-06
+  },
+  "primary": [
+    "P-R-matched",
+    "P-B"
+  ],
+  "learning_rate_frozen": true,
+  "updates": 100,
+  "seed": 20261120,
+  "budget_sha": "2d6d25c6217e4ad74af1053953fb57d92d939f88c100ae1753278b444140a04f"
+}
