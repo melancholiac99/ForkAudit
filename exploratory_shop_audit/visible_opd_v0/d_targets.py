@@ -12,23 +12,25 @@ from .s21_store import ARMS
 from exploratory_shop_audit.grpo_forced_audit.common import read, read_rows, save, stable_seed, digest_file
 
 @torch.inference_mode()
-def build(k,arm):
-    path = folder(k,arm)
+def build(k,arm,layout=None):
+    loc=folder if layout is None else layout.folder
+    path = loc(k,arm)
     if (path/'target_manifest.json').exists():return
     model=actor().eval()
-    snapshot(model,k-1,arm)
+    (snapshot if layout is None else layout.snapshot)(model,k-1,arm)
     sha=state_hash([(n,p) for n,p in model.named_parameters() if p.requires_grad])
-    assert sha==read(folder(k-1,arm)/'optimizer.json')['after_sha']
+    if k>1:assert sha==read(loc(k-1,arm)/'optimizer.json')['after_sha']
+    else:assert sha==read(SMOKE/'arm_R.json')['initial_adapter_sha256']
     tasks=read(path.parent/'tasks.json')
     routing=read(PARENT/'asin_split_manifest.json')['cal_folds']
     folds={t['goal_index']:routing.get(t['asin'],stable_seed(SEED,'projection_fold',t['asin'])%4) for t in tasks}
-    nets=projections(model,folds)
+    nets=projections(model,folds) if layout is None else layout.projectors(model,k,arm)
     cal=read(STAGE_B/'reports/calibration_strength_report.json')['classes']
     # Cache only completely identical texts, response boundaries, classes and fold routing on this snapshot.
     cache={};verified_duplicate=False;reused=0
     na=[]; rows=[]; targets=[]; student_logits=[]; episodes=Counter(); done=set()
     for rep in range(2):
-        for r in read_rows(path/f'rollout_{rep}.jsonl'):
+        for r in read_rows((SMOKE if k==1 else path)/f'rollout_{rep}.jsonl'):
             key=(r['goal'],rep)
             assert r['goal'] in folds and r['rep']==rep and r['step']==episodes[key] and key not in done
             episodes[key]+=1
@@ -55,10 +57,12 @@ def build(k,arm):
                 return response(model,r['views'][view],answer)[1].log_softmax(-1).gather(1,ids)
             # Three detached forward passes in every arm. Projected targets read visible tensors only.
             d=content_correction(subset('full'),subset('placeholder'),q)
-            if arm in ('P','P-shuffled'):
+            if layout is not None and arm in ('P','P-KL'):
+                t=layout.projected(nets,arm,h,model.get_base_model().lm_head.weight,ids,s,mask,q,folds[r['goal']],cal,r['classes'])
+            elif arm in ('P','P-shuffled'):
                 t=visible_targets(h,model.get_base_model().lm_head.weight,ids,s,mask,q,nets,folds[r['goal']],cal,r['classes'])[arm]
             else:
-                scale=1. if arm=='R' else torch.tensor([cal[c]['beta']['scale'] for c in r['classes']],device='cuda')[:,None]
+                scale=1. if arm in ('R','R-matched') else torch.tensor([cal[c]['beta']['scale'] for c in r['classes']],device='cuda')[:,None]
                 t=candidate_target(s,d,scale,mask)
             assert not t.requires_grad and t.isfinite().all() and (t[~mask]==0).all()
             rows.append(dict(goal=r['goal'],rep=rep,step=r['step'],prompt=prompt,answer=answer,
@@ -75,7 +79,8 @@ def build(k,arm):
     order=sorted(range(len(rows)),key=lambda i:(rows[i]['goal'],rows[i]['rep'],rows[i]['step']))
     for name,values in [('student',rows),('target',targets),('bf16_before',student_logits)]:
         torch.save([values[i] for i in order],path/f'{name}.pt')
-    save(path/'target_manifest.json',dict(scorer_sha=sha,na_records=na,rollout_records=sum(episodes.values()),identical_records_reused=reused,duplicate_verified=verified_duplicate,goals=sorted(folds),projection_age=k-1,
+    save(path/'target_manifest.json',dict(scorer_sha=sha,na_records=na,rollout_records=sum(episodes.values()),identical_records_reused=reused,duplicate_verified=verified_duplicate,goals=sorted(folds),projection_age=k-1 if layout is None else k-1-layout.version(k,arm),
+        projector_fit_sha=(layout.projector_sha(k,arm) if layout is not None else None),
         student_sha256=digest_file(path/'student.pt'),bf16_before_sha256=digest_file(path/'bf16_before.pt'),target_sha256=digest_file(path/'target.pt')))
 
 if __name__=='__main__':

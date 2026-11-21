@@ -13,7 +13,7 @@ from .s21_store import ARMS, RUN as PREVIOUS
 from .s21_data import components
 from exploratory_shop_audit.grpo_forced_audit.common import digest_file, digest_value, read, save
 
-def train(k):
+def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None):
     os.umask(0o077)
     os.environ['CUBLAS_WORKSPACE_CONFIG']=':4096:8'
     os.environ['NCCL_ALGO']='Ring'
@@ -28,7 +28,7 @@ def train(k):
     initial={n:p.detach().cpu().clone() for n,p in params} if k==1 else None
     checkpoint_modules=[m for m in model.modules() if getattr(m,'gradient_checkpointing',False)]
     fast_limit=None
-    for arm in ARMS:
+    for arm in arms:
         path=folder(k,arm);storage=state_dir(k,arm)
         if (path/'optimizer.json').exists():continue
         start=time.monotonic()
@@ -47,7 +47,7 @@ def train(k):
             for i,v in before.items():
                 p0=v.masked_fill(~batch.rows[i]['mask'],-torch.inf).softmax(-1)
                 assert torch.allclose(p0,batch.rows[i]['snapshot'],atol=1e-6,rtol=0)
-        optim=torch.optim.AdamW([p for _,p in params],lr=1e-6,weight_decay=0.)
+        optim=torch.optim.AdamW([p for _,p in params],lr=1e-6 if rates is None else rates[arm],weight_decay=0.)
         prior_steps=0
         if k>1:
             prev=state_dir(k-1,arm)/'adam.pt'
@@ -86,7 +86,7 @@ def train(k):
         steps=prior_steps+len(batch.batches)
         assert {int(st['step'].item()) for st in optim.state.values()}=={steps}
         after_sha=same_hash(params)
-        if k==1:
+        if k==1 and arm in ARMS and (rates is None or rates[arm]==1e-6):
             assert after_sha==read(PREVIOUS/'grid'/f'{arm}_1'/'complete.json')['final_sha256'],(arm,after_sha)
         values=torch.zeros(5,dtype=torch.float64,device='cuda')
         with torch.no_grad():

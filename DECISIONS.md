@@ -2009,3 +2009,24 @@ predictions restricted to its training goals/ASINs. Also fit per-class
 deployment shrinkage on the pooled OOF predictions. Use the frozen §B Huber
 OOF predictions and b_c as specified. Bootstrap the paired weighted KL loss
 difference by task, with 10,000 draws and seed 20261121. All fitting is on CPU.
+
+Before timing the refresh, set the resource choice rule as follows. Estimate
+the ten-update P-only scoring/rollout/optimizer/FP32 monitoring cost from
+successful D phase wall times. Budget one half of that amount per refresh,
+allow a minimum ten-update history, and choose the largest multiple of ten
+updates that fits, up to the full history. Show both the resulting window and
+the all-history estimate. Use 10 refresh points, including the final read-only
+version comparison. Preserve every per-step metric and every ten-step adapter;
+transient earlier E optimizer states/other adapters can be removed after the
+replacement, readouts and provenance are verified. At all evaluation points
+use four samples and one greedy episode on each of both 200-task pools.
+Measure training legality from the training rollout at the monitored step;
+use the signed D step-one rollout as the B reference. The 10-step calibration
+uses D's task order and decode seeds. The E@10 rematch check uses E's actual P.
+
+For the E@10,...,@100 projector comparison evaluate both versions on the same
+current BF16 hidden states, current student-nominated candidates and frozen
+b_c, weighting each candidate by its current student q and each response
+position by its original common-batch weight. Report forward KL in nats and
+top-1/entropy on the full vocabulary. All eval jobs use frozen seeds shared
+across arms. Calibration reads training data and no held-out behavior.

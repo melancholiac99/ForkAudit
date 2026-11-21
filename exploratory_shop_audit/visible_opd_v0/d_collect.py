@@ -9,8 +9,9 @@ from exploratory_shop_audit.grpo_forced_audit.rollout import Runner
 from exploratory_shop_audit.grpo_forced_audit.common import save, digest_file
 
 
-def collect(k,rank):
-    arm=ARMS[rank];path=folder(k,arm)
+def collect(k,rank,arm=None,folder=folder,state_dir=state_dir):
+    arm=ARMS[rank] if arm is None else arm
+    path=folder(k,arm)
     if (path/'collection.json').exists():return
     checkpoint=state_dir(k-1,arm)/'adapter'
     sha=digest_file(checkpoint/'adapter_model.safetensors')

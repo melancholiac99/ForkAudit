@@ -35,7 +35,11 @@ def snapshot(model,k,arm):
         return
     path = state_dir(k,arm)/'adapter/adapter_model.safetensors'
     meta = read(folder(k,arm)/'optimizer.json')
-    assert digest_file(path)==meta['safetensors_sha256']
+    load_adapter(model,path,meta['safetensors_sha256'])
+
+
+def load_adapter(model,path,sha):
+    assert digest_file(path)==sha
     vals = load_file(str(path))
     with torch.no_grad():
         for name,p in model.named_parameters():
@@ -47,8 +51,8 @@ def snapshot(model,k,arm):
 class OnlineBatch:
     local = SmokeBatch.local
 
-    def __init__(self,k,arm):
-        path = folder(k,arm)
+    def __init__(self,k,arm,path=None):
+        path = folder(k,arm) if path is None else path
         info = read(path/'target_manifest.json')
         for name in ('student','target'):
             assert digest_file(path/f'{name}.pt') == info[name+'_sha256']

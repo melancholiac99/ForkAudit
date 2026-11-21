@@ -61,19 +61,20 @@ def episodes(runner,jobs,trace=None):
     assert len(finished)==len(jobs)
     return finished
 
-def run(k,rank):
-    assert (RUN/'training_complete.json').exists()
+def run(k,rank,layout=None,arm_override=None):
+    if layout is None:assert (RUN/'training_complete.json').exists()
     splits=read(PARENT/'asin_split_manifest.json')
-    arm='B' if k==0 else ARMS[rank]
-    path=RUN/'evaluation'/arm/f'rank{rank}'
+    arm='B' if k==0 else (arm_override or ARMS[rank])
+    root=RUN/'evaluation' if layout is None else layout.root/'evaluation'/f'{k:03}'
+    path=root/arm/f'rank{rank}'
     path.mkdir(parents=True,exist_ok=True)
     if (path/'complete.json').exists():return
     if not (path/'snapshots').exists():(path/'snapshots').symlink_to(PARENT/'snapshots',target_is_directory=True)
     os.environ['SHOP_GPU_IDS']=str(rank)
-    os.environ['OPD_ENTROPY_TAPE']=str(SCRATCH/f'eval_entropy_{rank}.bin')
-    checkpoint='base' if k==0 else state_dir(10,arm)/'adapter'
+    os.environ['OPD_ENTROPY_TAPE']=str((SCRATCH if layout is None else path)/f'eval_entropy_{rank}.bin')
+    checkpoint='base' if k==0 else (state_dir(k,arm) if layout is None else layout.state(k,arm))/'adapter'
     if k:
-        assert digest_file(checkpoint/'adapter_model.safetensors')==read(folder(10,arm)/'optimizer.json')['safetensors_sha256']
+        assert digest_file(checkpoint/'adapter_model.safetensors')==read((folder(k,arm) if layout is None else layout.folder(k,arm))/'optimizer.json')['safetensors_sha256']
     jobs=[]
     for name in ('V','T_opd_eval'):
         for t in splits[name]:
