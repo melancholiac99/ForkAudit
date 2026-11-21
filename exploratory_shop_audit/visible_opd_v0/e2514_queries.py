@@ -190,6 +190,10 @@ if __name__=='__main__':
         save(DATA/'authenticated_initial.json',recover())
     else:
         import os,subprocess
+        if (DATA/'plan_sealed.json').exists():
+            from .e2514_search import digest_file
+            assert digest_file(OUT/'intervention_tasks.json')==read(DATA/'plan_sealed.json')['sha256']
+            sys.exit(0)
         monitor=None
         if os.environ.get('OPD_MIGRATION_GROUP')=='B' and not (OUT/'P-frozen/behavior/010.json').exists():
             # This is evaluation of the already-trained D checkpoint, with no optimizer step.
