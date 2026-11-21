@@ -1,0 +1,1417 @@
+{
+  "counts": {
+    "V": {
+      "total_tasks": 200,
+      "eligible": 51,
+      "strict": 20
+    },
+    "T_opd_eval": {
+      "total_tasks": 200,
+      "eligible": 42,
+      "strict": 28
+    }
+  },
+  "tasks": [
+    {
+      "split": "V",
+      "goal": 2455,
+      "good_reps": [
+        0,
+        1,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 3068,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 3651,
+      "good_reps": [
+        0,
+        1,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 4417,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 4790,
+      "good_reps": [
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 6470,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 6636,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 6874,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 6909,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 7030,
+      "good_reps": [
+        0,
+        1,
+        3
+      ],
+      "failed_reps": [
+        0,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 8094,
+      "good_reps": [
+        0,
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 8916,
+      "good_reps": [
+        0,
+        1,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 9153,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 9495,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 9618,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 9627,
+      "good_reps": [
+        0,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 10082,
+      "good_reps": [
+        0,
+        2,
+        3
+      ],
+      "failed_reps": [
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 10618,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 10725,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        1,
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 11055,
+      "good_reps": [
+        1,
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 11185,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 11764,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 11839,
+      "good_reps": [
+        1,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 11965,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        2,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 12293,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 13033,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 13124,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 14274,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        2,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 14560,
+      "good_reps": [
+        1,
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 15103,
+      "good_reps": [
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 15254,
+      "good_reps": [
+        0,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 15589,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 16238,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 16317,
+      "good_reps": [
+        0,
+        1,
+        2
+      ],
+      "failed_reps": [
+        2,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 16349,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        1
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 16709,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 16831,
+      "good_reps": [
+        0,
+        1
+      ],
+      "failed_reps": [
+        1,
+        2,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 17345,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        1
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 18238,
+      "good_reps": [
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 18370,
+      "good_reps": [
+        0,
+        3
+      ],
+      "failed_reps": [
+        0,
+        2,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 19046,
+      "good_reps": [
+        0,
+        2,
+        3
+      ],
+      "failed_reps": [
+        1,
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 19496,
+      "good_reps": [
+        0,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 19849,
+      "good_reps": [
+        0
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 20792,
+      "good_reps": [
+        0,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 21028,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 21052,
+      "good_reps": [
+        1,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 21179,
+      "good_reps": [
+        1
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 21986,
+      "good_reps": [
+        1
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 22154,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "V",
+      "goal": 23218,
+      "good_reps": [
+        0,
+        1,
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "V",
+      "goal": 23314,
+      "good_reps": [
+        0,
+        2,
+        3
+      ],
+      "failed_reps": [
+        1,
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 2830,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 2894,
+      "good_reps": [
+        0,
+        1
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 3722,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 5029,
+      "good_reps": [
+        0,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 5336,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 5535,
+      "good_reps": [
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 5751,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 5879,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 6030,
+      "good_reps": [
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 6155,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 6823,
+      "good_reps": [
+        1,
+        3
+      ],
+      "failed_reps": [
+        1,
+        2,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 7609,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        1,
+        2,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 8138,
+      "good_reps": [
+        1
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 8233,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 8839,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 9155,
+      "good_reps": [
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 11211,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 12031,
+      "good_reps": [
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 12456,
+      "good_reps": [
+        0,
+        1,
+        2
+      ],
+      "failed_reps": [
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 12497,
+      "good_reps": [
+        0,
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 13428,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 14230,
+      "good_reps": [
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 14900,
+      "good_reps": [
+        0
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 14945,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 15040,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 15821,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 15933,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 16523,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 16582,
+      "good_reps": [
+        1,
+        2
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 16731,
+      "good_reps": [
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 17507,
+      "good_reps": [
+        0,
+        1,
+        2
+      ],
+      "failed_reps": [
+        0,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 17752,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 18385,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 18422,
+      "good_reps": [
+        0,
+        1,
+        3
+      ],
+      "failed_reps": [
+        1,
+        2,
+        3
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 18998,
+      "good_reps": [
+        0,
+        1,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 19597,
+      "good_reps": [
+        1,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 20464,
+      "good_reps": [
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 20924,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 22181,
+      "good_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "failed_reps": [
+        0
+      ],
+      "strict_subset": false
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 23109,
+      "good_reps": [
+        0,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 23222,
+      "good_reps": [
+        2,
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    },
+    {
+      "split": "T_opd_eval",
+      "goal": 23407,
+      "good_reps": [
+        3
+      ],
+      "failed_reps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "strict_subset": true
+    }
+  ]
+}

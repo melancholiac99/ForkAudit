@@ -1,5 +1,6 @@
 """Only if the control gate opens, reconstruct missing Adam/LoRA state using signed existing batches."""
 import sys
+from .e2514_gate import control_authorized
 from . import d_train
 from .d_data import load_adapter
 from .e25_layout import Layout
@@ -12,7 +13,7 @@ from exploratory_shop_audit.grpo_forced_audit.common import read
 def main():
     k=int(sys.argv[1]);rank=configure()
     serial=Layout('formal_2512')
-    assert read(serial.root/'controls_gate.json')['decision']=='RUN_CONTROLS'
+    control_authorized(serial)
     old=Layout(CAL)
     original=read(old.folder(k,MATCH)/'optimizer.json')
     def folder(i,a):return RESTORE/'pilot'/f'{i:02}'/a

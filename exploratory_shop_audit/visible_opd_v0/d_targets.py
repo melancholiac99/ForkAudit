@@ -72,7 +72,7 @@ def build(k,arm,layout=None,*,goals=None,output=None,rollout_root=None,rollout_h
             if layout is not None:
                 base_log=s-logits.logsumexp(-1,keepdim=True)
                 masses.append(torch.stack([(v.exp()*mask).sum(-1) for v in (base_log,selected,placeholder)],-1).cpu())
-            if layout is not None and arm in ('P','P-KL'):
+            if layout is not None and arm in ('P','P-KL','P-frozen'):
                 t=layout.projected(nets,arm,h,model.get_base_model().lm_head.weight,ids,s,mask,q,folds[r['goal']],cal,r['classes'])
             elif arm in ('P','P-shuffled'):
                 t=visible_targets(h,model.get_base_model().lm_head.weight,ids,s,mask,q,nets,folds[r['goal']],cal,r['classes'])[arm]

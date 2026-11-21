@@ -21,7 +21,7 @@ def outcomes(l,k,a,expected):
     assert set(out)==expected
     return out
 
-def report(l,k,endpoints):
+def report(l,k,endpoints,dest=None):
     split=read(PARENT/'asin_split_manifest.json')
     expected={(p,t['goal_index'],r) for p in POOLS for t in split[p] for r in range(5)}
     seen={t['asin'] for p in ('T_cal','T_opd') for t in split[p]}
@@ -42,7 +42,7 @@ def report(l,k,endpoints):
         for mode in MODES:
             gap[f'{a}/{mode}']={m:stats[f'{a}/T_opd_eval/{mode}'][m]-stats[f'{a}/V/{mode}'][m] for m in METRICS}
     # Orient P comparisons as registered.
-    order=[a for a in ('P','P-KL','R-matched','R','B') if a in endpoints]
+    order=[a for a in ('P','P-KL','P-frozen','R-matched','R','B') if a in endpoints]
     for left,right in combinations(order,2):
         for mode in MODES:
             for cluster,key in [('asin','asin'),('task','goal_index')]:
@@ -56,5 +56,5 @@ def report(l,k,endpoints):
                 paired_gap[name]=interval(point,draws_by_pool['T_opd_eval']-draws_by_pool['V'])
     result=dict(update=k,endpoints=endpoints,summary=stats,paired=pairs,train_eval_minus_V=gap,paired_gap=paired_gap,
         primary=['P-R-matched' if 'R-matched' in l.config['rates'] else 'P-R','P-B'],seeds=1)
-    dest=l.root/'behavior'/f'{k:03}.json';save(dest,result)
+    save(dest or l.root/'behavior'/f'{k:03}.json',result)
     if k==100 and l.name!='formal_2512':save(PUBLIC/'stage_e_final_behavior.json',result)

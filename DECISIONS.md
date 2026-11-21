@@ -2118,3 +2118,9 @@ Serial FP32 probes can load a verified, read-only host-RAM copy of the 339 base 
 ### Stage E long-row activation probe after P@11
 
 Across the 24 rank batches of P updates 6–11, 57 scored rows had 4,097–5,120 visible prompt-plus-response tokens. From formal update 13 onwards permit each rank's existing gradient and memory test to probe its longest row up to 5,120 tokens. The acceptance checks are unchanged: byte-identical logits and gradients, retained backward faster than checkpointed backward, and more than 8 GiB of headroom. If the longer probe fails, try the original longest eligible row up to 4,096 on that rank. Only the passing length governs training. Use the same update-index rule in later formal control arms. No rollout, target or optimizer replay is required.
+
+### 2026-11-22 — §25.14 搜索干预与迁移
+
+两套四卡组分别重放 B@0 固定探针及 P@6 的目标和 AdamW 更新。R-matched@5 按归档哈希恢复 LoRA 与 AdamW；P-frozen 从 D/P@10 直接读取两者。此前 E/P 的行为终点为第 30 步。发布按步骤与 BF16 移动量的两个横轴，P-frozen 单列为机制诊断。§4 的斜率非有限规则同样适用于 T_cal 中零观测的 thought 类（b=0），这些位置仍纳入同一训练损失。
+
+原生行为归档只有有序动作摘要。重放沿用原 rank、批次、种子和解码方式，只有与同题原归档完整动作 SHA-256 一致的查询才分配到该原样本。逐搜索 token 数由恢复的生成 token 按原生参数跨度计数，另核对存档聚合 token 数。缺失按题、来源和检查点报告。两类原查询均从空任务页以相同的可见 search 命令开始；每个不同的题目、查询和接收策略续跑四次。同一题的两类查询与两个策略共用新的随机数流，该流与原评测隔离。各题等权，同一来源的查询按其在原样本的出现次数加权；重复查询共享采样。回收比例分母为新采样的 P@20 自身好查询购买率减 P@30 自身原查询购买率，分母非正记为无法定义，同时给出配对购买率差。结果分别报告两套筛题口径、同题两来源均可用的覆盖，以及全部来源均已恢复的子集。结果页检查逐个枚举可达的商品规格和原生价格、购买判定。搜索词重合、规格词及价格词比例采用模拟器的检索分词，规格词来自任务的型号和规格值，价格词按显式货币表达式，均作为描述。

@@ -19,7 +19,7 @@ def event(state,action,legal):
     if arg in {str(v).lower() for vs in state.get('available_options',{}).values() for v in vs}:return 'select_visible_option'
     return 'buy' if arg=='buy now' else 'other_click'
 
-def episodes(runner,jobs,trace=None):
+def episodes(runner,jobs,trace=None,action_observer=None):
     active=[];finished=[]
     for split,g,rep in jobs:
         key=f'{split}_{g}_{rep}'
@@ -49,6 +49,8 @@ def episodes(runner,jobs,trace=None):
                     e['entropy_sum'][c]+=entropy;e['tokens'][c]+=1
             action=parse_generation(gen['text'])
             out=runner.engine.call(cmd='step',key=e['key'],action=action)
+            if action_observer is not None:
+                action_observer(e, action, gen, cats, out)
             e['events'][event(pub,action,out['legal'])]+=1
             e['actions'].append(action)
             if out['status']['done']:

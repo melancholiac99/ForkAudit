@@ -96,7 +96,7 @@ def main():
         retry=any(path.glob('retained_oom_rank*.json'))
         try:
             d_train.train(k,arms=[arm],folder=l.folder,state_dir=l.state,snapshot=l.snapshot,load_batch=l.batch,
-                          rates=l.config['rates'],compare_original=False,rank_local_activations=(k>=7 and not retry),
+                          rates={**l.config['rates'],'P-frozen':l.config['rates']['P']},compare_original=False,rank_local_activations=(k>=7 and not retry),
                           checkpoint_only=retry)
         except torch.cuda.OutOfMemoryError:
             if k>=7 and not retry:

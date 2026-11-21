@@ -122,7 +122,7 @@ def common(rank,l,k,arms):
         save(out,dict(stats=totals,cross=cross,fp32_movement=fp_move if fp_base is not None else None,projector_moments=proj.tolist(),compared_versions=[l.version(k,a),l.version(k+1,a)] if a=='P' else None))
         del model,per_id;torch.cuda.empty_cache()
 
-def merge_common(l,k,arms):
+def merge_common(l,k,arms,dest=None):
     result={}
     for a in arms:
         rows=[read(l.folder(k,a)/f'common_{r}.json') for r in range(4)]
@@ -143,5 +143,5 @@ def merge_common(l,k,arms):
              **{f:sum(g['mass']*g[f] for g in decision if g['mass'])/mass for f in ('kl','entropy','top1','cross_precision')})
         result[a]=dict(stats=stats,projector_mse=mse if a=='P' else None,projector_cosine=dot/(n0*n1)**.5 if n0*n1 else None,
                        versions=rows[0]['compared_versions'])
-    save(l.root/'monitor'/f'{k:03}.json',result)
+    save(dest or l.root/'monitor'/f'{k:03}.json',result)
     return result

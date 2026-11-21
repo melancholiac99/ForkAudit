@@ -50,10 +50,10 @@ class Layout:
     def projector_file(self,k,a,f):
         return self.projector_dir(k,a)/(f'kl_{f}.pt' if a=='P-KL' else f'content_{f}.pt')
     def projector_sha(self,k,a):
-        return [digest_file(self.projector_file(k,a,f)) for f in range(4)] if a in ('P','P-KL') else []
+        return [digest_file(self.projector_file(k,a,f)) for f in range(4)] if a in ('P','P-KL','P-frozen') else []
     def projectors(self,model,k,a):
         result={}
-        if a in ('P','P-KL'):
+        if a in ('P','P-KL','P-frozen'):
             for f in range(4):
                 p=self.projector_file(k,a,f)
                 if self.version(k,a):
@@ -67,7 +67,11 @@ class Layout:
     def kl_scales(self):return read(RUN/'offline/complete.json')['deployment_oof_shrink']
     def projected(self,nets,a,h,head,ids,s,mask,q,f,cal,classes):
         d=nets[f](h,head[ids],q)
-        coeff=[cal[c]['b'] if a=='P' else self.kl_scales[c] for c in classes]
+        if a in ('P', 'P-frozen'):
+            # §4.4 sets an undefined T_cal slope to zero. 'thought' had no calibration rows.
+            coeff=[0. if c=='thought' and c not in cal else cal[c]['b'] for c in classes]
+        else:
+            coeff=[self.kl_scales[c] for c in classes]
         return candidate_target(s,d,torch.tensor(coeff,device=s.device)[:,None],mask)
     def initialize(self,n,arms=None):
         split=read(PARENT/'asin_split_manifest.json')

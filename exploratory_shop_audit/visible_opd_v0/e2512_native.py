@@ -29,8 +29,10 @@ def checkpoint(l,k,arm):
 
 
 def native_rank(rank):
-    os.environ['SHOP_GPU_IDS']=str(rank)
-    os.environ['SHOP_GPU_ID']=str(rank)
+    visible = os.environ.get('CUDA_VISIBLE_DEVICES')
+    gpu = visible.split(',')[rank].strip() if visible else str(rank)
+    os.environ['SHOP_GPU_IDS'] = gpu
+    os.environ['SHOP_GPU_ID'] = gpu
 
 
 def collect(l,k,arm,rank):
@@ -122,7 +124,14 @@ def evaluate(l,k,arm,rank):
             sampled={}
             for i in range(0,len(jobs),32):
                 f=root/f'episodes_{pool}_{i:04}.json';part=jobs[i:i+32]
-                if not f.exists():save(f,episodes(controller,part))
+                if not f.exists():
+                    if os.environ.get('OPD_MIGRATION_GROUP'):
+                        from .e2514_search import observer
+                        logs,record=observer()
+                        rows=episodes(controller,part,action_observer=record)
+                        save(root/f'search_{pool}_{i:04}.json',logs)
+                        save(f,rows)
+                    else:save(f,episodes(controller,part))
                 rows=read(f)
                 assert {(e['split'],e['goal'],e['rep']) for e in rows}==set(part) and len(rows)==len(part)
                 count+=len(rows)

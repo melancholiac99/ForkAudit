@@ -8,6 +8,7 @@ import subprocess
 import time
 from pathlib import Path
 
+from .e2514_gate import control_authorized
 from .d_data import SMOKE
 from .e25_probe import RUN,PUBLIC
 from .e2511_schedule import CAL,MATCH
@@ -46,7 +47,7 @@ def copy_state(src,dst,rec):
 
 
 def recover_matched(l):
-    assert read(l.root/'controls_gate.json')['decision']=='RUN_CONTROLS'
+    control_authorized(l)
     source=RUN/CAL
     # A later verified archive covers all earlier optimizer steps.
     receipts=list(RUN.glob('*/pilot/*/*/optimizer.json'))
@@ -88,7 +89,7 @@ def adopt_prefix(l,a):
     from .e25_driver import freeze
     out=l.root/'adoption'/f'{a}.json'
     if out.is_file():return read(out)
-    if a!='P':assert read(l.root/'controls_gate.json')['decision']=='RUN_CONTROLS'
+    if a!='P':control_authorized(l)
     root=RUN/(CAL if a==MATCH else 'formal')
     status=[];previous=None;count=0
     for k in range(1,6):
