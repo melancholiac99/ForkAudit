@@ -93,6 +93,20 @@ def final():
         if not key.endswith('/both_sources'):continue
         ef=v['effects'];frac=ef['P30_recovery_fraction']['estimate']
         lines.append(f"| {key.rsplit('/',1)[0]} | {v['selected_tasks']} | {v['paired_tasks']} | {100*ef['P30_gain_good_minus_own']['estimate']:+.2f} | {100*ef['P20_loss_own_minus_bad']['estimate']:+.2f} | {frac if frac is not None else 'NA'} |")
+    lines.extend(['','[Sampling curves](sample_curves.png) · [Greedy curves](greedy_curves.png) · [Checkpoint table](checkpoint_curves.tsv).',
+                  '', '## Projector refresh on the P probes','',
+                  '| Versions | Cosine | Mean squared difference | All-position BF16 KL |','|---|---:|---:|---:|'])
+    for k in (10,20):
+        m=read(OUT/'P/monitor'/f'{k:03}.json')['P']
+        lines.append(f"| {m['versions'][0]} → {m['versions'][1]} | {m['projector_cosine']:.4f} | {m['projector_mse']:.6f} | {m['stats']['all']['kl']:.6f} |")
+    b=read(OUT/'tcal_closing_bracket.json')['overall']
+    lines.extend(['','## Search label and teacher trajectory checks','',
+        f"On T_cal, the exact closing-bracket candidate occurred at {b['n']} search-argument positions across {b['tasks']} tasks. Its mean content correction was {b['mean'][0]:.4f}. The held-out predictor mean was {b['mean'][1]:.4f}.",
+        '', '| A.5 packet | Decoding | First searches / episodes | Mean argument tokens | Queries containing gold ASIN |', '|---|---|---:|---:|---:|'])
+    for a in read(OUT/'a5_first_query.json')['results']:
+        lines.append(f"| {a['mode']} | {a['decode']} | {a['with_first_search']}/{a['episodes']} | {a['mean_tokens']:.2f} | {a['gold_in_query']} |")
+    lines.extend(['','The archive tables distinguish verified action sequences from unrecovered episodes. Argument token counts come from regenerated native tokens or the archived total for an unambiguous single search. Each distinct task/query result page is scored once with the native purchase rules. The fresh sampling report includes task-cluster intervals, both task definitions and coverage.','',
+        '[Archived first searches](../search_archive) · [Checkpoint search summaries](../archived_search_metrics.json) · [First result pages](../intervention_result_pages.json) · [Fresh continuation outcomes](../search_swap_report.json) · [Closing bracket by position](../tcal_closing_bracket.json).'])
     (OUT/'final/REPORT.md').write_text('\n'.join(lines)+'\n')
     save(OUT/'final/completion.json',dict(endpoints=outcomes,original_p=30,cpu_checks=needed,task_selection=selection,
          all_public_sha256={str(p.relative_to(OUT)):digest_file(p) for p in sorted(OUT.rglob('*')) if p.is_file() and p!=OUT/'final/completion.json'}))
