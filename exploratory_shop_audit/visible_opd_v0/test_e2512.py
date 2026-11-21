@@ -66,3 +66,31 @@ class SerialLayout(unittest.TestCase):
             p=read(l.folder(1,'P')/'collection.json')
             self.assertEqual(read(l.folder(1,'R')/'collection.json'),p)
             self.assertEqual((p['records'],p['legal_rate']),(64,.5))
+
+    def test_serial_driver_only_launches_authorized_controls(self):
+        import os
+        from contextlib import ExitStack
+        from . import e2512_driver as driver
+        for choice,expected in [('NOT_RUN',['P']),('RUN_CONTROLS',['P','R-matched','R'])]:
+            with self.subTest(choice=choice), tempfile.TemporaryDirectory() as temp, ExitStack() as mocks:
+                root=Path(temp);l=SimpleNamespace(root=root,folder=lambda k,a:root/'pilot'/str(k)/a)
+                calls=[]
+                def train(layout,a):
+                    calls.append(a)
+                    return dict(arm=a,step=100,status='COMPLETED')
+                def gate(layout,k):
+                    result=dict(decision=choice)
+                    save(root/'controls_gate.json',result)
+                    return result
+                for name,fn in dict(Layout=lambda name:l,setup=lambda layout:None,launch=lambda *args:None,
+                    merge_common=lambda *args:None,behavior_report=lambda *args:None,train_arm=train,
+                    endpoints_at=lambda *args:{},gate=gate).items():
+                    mocks.enter_context(patch.object(driver,name,fn))
+                mocks.enter_context(patch(__package__+'.e25_delivery.final_report',lambda layout:None))
+                mask=os.umask(0o077)
+                try:driver.main()
+                finally:os.umask(mask)
+                self.assertEqual(calls,expected)
+                result=read(root/'complete.json')
+                self.assertEqual(list(result['endpoints']),expected)
+                self.assertEqual(result['not_run'],[a for a in driver.ORDER if a not in expected])
