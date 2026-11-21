@@ -18,7 +18,8 @@ def markdown(l,completion,behavior,costs):
         lines.append(f"| {a} | not run | not run | {l.config['rates'][a]:.8g} |")
     if l.name=='formal_2512':
         gate=read(l.root/'controls_gate.json')
-        lines+=['','采用 §25.12 的四引擎固定任务布局及新 B@0 基线，顺序为 P、R-matched、R。']
+        lines+=['','采用 §25.13：正式前五步沿用旧布局，从第 6 步起使用相同的四引擎任务映射，'
+            '行为比较共用新布局 B@0。P、R 的第五步权重及 AdamW 状态沿用归档。控制组仍依 §25.12 的顺序及门执行。']
         if 'counts' in gate:
             c=gate['counts'];n=gate['episodes_per_arm']
             lines+=[f"T_opd_eval 采样全要求购买为 P {c['P']}/{n}、B {c['B']}/{n}，控制组决策 {gate['decision']}。"]
@@ -77,7 +78,11 @@ def final_report(l=None):
             m=read(directory/'measurement.json');opt=read(directory/'optimizer.json')
             assert opt['before_sha']==s['before_sha'] and opt['after_sha']==s['after_sha']
             raw={f'{prec}_{field}':m[prec][field] for prec in ('bf16','fp32_reanchored') for field in ('kl_before','kl_after','delta_kl','alignment','movement')}
-            steps.append(dict(arm=a,update=k,legal_rate=s['legal_rate'],records=s['records'],scored=s['scored'],
+            layout_provenance={}
+            if l.name=='formal_2512' and l.config['section']=='25.13':
+                layout_provenance=dict(native_layout='old_layout' if k<=5 else 'fixed_four_engines',
+                    origin='adopted' if k<=5 else 'continued')
+            steps.append(dict(arm=a,update=k,**layout_provenance,legal_rate=s['legal_rate'],records=s['records'],scored=s['scored'],
                  before_sha=s['before_sha'],after_sha=s['after_sha'],optimizer_steps=s['optimizer_steps'],
                  clip_count=s['clip_count'],projector_version=s['projection_version'],**raw))
             staging[f'{a}/{k}']=dict(classes=s['by_class'],candidate_mass=s.get('candidate_mass'))

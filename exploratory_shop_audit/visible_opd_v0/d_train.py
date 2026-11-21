@@ -13,7 +13,7 @@ from .s21_store import ARMS, RUN as PREVIOUS
 from .s21_data import components
 from exploratory_shop_audit.grpo_forced_audit.common import digest_file, digest_value, read, save
 
-def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None, compare_original=True):
+def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None, compare_original=True, replay_state=None):
     os.umask(0o077)
     os.environ['CUBLAS_WORKSPACE_CONFIG']=':4096:8'
     os.environ['NCCL_ALGO']='Ring'
@@ -38,15 +38,21 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
         else:snapshot(model,k-1,arm)
         before_sha=same_hash(params)
         expected=(read(PREVIOUS/'grid/R_1/complete.json')['initial_sha256'] if k==1
-                  else read(path/'target_manifest.json')['scorer_sha'])
+                  else (replay_state['before_sha'] if replay_state is not None else read(path/'target_manifest.json')['scorer_sha']))
         assert expected==before_sha
         batch,q=load_batch(k,arm);every=list(range(len(batch.rows)))
         local=batch.local(every,rank)
-        with torch.no_grad():
-            before,reused=initial_logits(model,batch,local,path)
-            for i,v in before.items():
-                p0=v.masked_fill(~batch.rows[i]['mask'],-torch.inf).softmax(-1)
-                assert torch.allclose(p0,batch.rows[i]['snapshot'],atol=1e-6,rtol=0)
+        before,reused={},False
+        if replay_state is None:
+            with torch.no_grad():
+                before,reused=initial_logits(model,batch,local,path)
+                for i,v in before.items():
+                    p0=v.masked_fill(~batch.rows[i]['mask'],-torch.inf).softmax(-1)
+                    assert torch.allclose(p0,batch.rows[i]['snapshot'],atol=1e-6,rtol=0)
+        else:
+            assert replay_state['arm']==arm and replay_state['update']==k and replay_state['before_sha']==before_sha
+            assert replay_state['minibatch_sha256']==digest_value(batch.batches)
+            fast_limit=replay_state['activation_limit']
         optim=torch.optim.AdamW([p for _,p in params],lr=1e-6 if rates is None else rates[arm],weight_decay=0.)
         prior_steps=0
         if k>1:
@@ -90,7 +96,7 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
             assert after_sha==read(PREVIOUS/'grid'/f'{arm}_1'/'complete.json')['final_sha256'],(arm,after_sha)
         values=torch.zeros(5,dtype=torch.float64,device='cuda')
         with torch.no_grad():
-            for i in local:
+            for i in (local if replay_state is None else []):
                 r=batch.rows[i]
                 v=components(before[i],score(model,r).cpu(),q[i],r['mask']).sum(0)*batch.weights[i]
                 values+=v.cuda()
@@ -103,7 +109,7 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
                 before_logits_reused_on_rank0=reused,activation_limit=fast_limit,retained_records=int(n_quick),
                 training_loop_seconds=train_seconds,optimizer_steps=len(norms),cumulative_steps=steps,grad_norms=norms,
                 minibatch_rows=batch_sizes,scored_minibatch_rows=list(map(len,batch.batches)),minibatch_sha256=digest_value(batch.batches),
-                bf16_fixed_target=dict(zip(('kl_before','kl_after','delta_kl','alignment','movement'),values.tolist())),
+                bf16_fixed_target=dict(zip(('kl_before','kl_after','delta_kl','alignment','movement'),values.tolist())) if replay_state is None else None,
                 adam_sha256=digest_file(storage/'adam.pt'),safetensors_sha256=digest_file(storage/'adapter/adapter_model.safetensors'),
                 elapsed_seconds=time.monotonic()-start))
             print(k,arm,'optimized',steps,flush=True)

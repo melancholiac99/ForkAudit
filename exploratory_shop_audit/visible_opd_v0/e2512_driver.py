@@ -45,14 +45,14 @@ def setup(l):
     from .d_data import PARENT
     assert len(owners())==3600 and read(ROUTING)['split_sha256']==digest_file(PARENT/'asin_split_manifest.json')
     assert read(RUN/'formal/SUPERSEDED_2512.json')['status']=='SUPERSEDED'
-    settings=dict(rates={'P':1e-6,'R-matched':signed['learning_rate'],'R':1e-6},section='25.12',
+    settings=dict(rates={'P':1e-6,'R-matched':signed['learning_rate'],'R':1e-6},section='25.13',adopted_old_layout_updates=5,four_engine_from_update=6,
         order=list(ORDER),window_updates=read(RUN/'gpu_budget.json')['window_updates'],seed=20261120,
         updates=100,primary=['P-R-matched','P-B'],learning_rate_frozen=True,
         matching_2511=dict(rho_double_prime=signed['rho_double_prime'],label=signed['label'],frozen_lr=signed['learning_rate']),
         routing_sha=digest_file(ROUTING),calibration_sha=digest_file(PUBLIC/'calibration_2511_result.json'),
-        baseline='new four-engine B@0',control_gate='P@100 > B@0 count on the 800 T_opd_eval samples')
+        baseline='new four-engine B@0',training_legal_reference='B batch used for adopted update 1',control_gate='P@100 > B@0 count on the 800 T_opd_eval samples')
     freeze(l.root/'settings.json',settings);freeze(PUBLIC/'formal_settings_2512.json',settings)
-    commit_file(PUBLIC/'formal_settings_2512.json','Freeze serial Stage E settings before its four-engine B baseline')
+    commit_file(PUBLIC/'formal_settings_2512.json','Freeze adopted-prefix serial settings before the new B baseline')
 
 
 def ended(l,a):return l.root/'arms'/a/'complete.json'
@@ -81,7 +81,9 @@ def train_arm(l,a):
         assert read(l.root/'controls_gate.json')['decision']=='RUN_CONTROLS'
         assert ended(l,ORDER[ORDER.index(a)-1]).is_file()
     l.initialize(100,arms=[a])
-    for k in range(1,101):
+    from .e2513_adopt import adopt_prefix
+    adopt_prefix(l,a)
+    for k in range(6,101):
         receipt=l.root/'arms'/a/'updates'/f'{k:03}.json'
         if receipt.exists():
             if read(receipt)['stopped']:break
@@ -110,17 +112,18 @@ def train_arm(l,a):
             if k==10 and a=='R-matched':
                 from .e2511_schedule import classify
                 ratio,label=classify(monitors[a]['stats']['all']['kl'],monitors['P']['stats']['all']['kl'])
-                save(l.root/'rematch_at_10.json',dict(ratio=ratio,within_band=label=='MATCHED',label=label,feedback_to_lr=False,section='25.12'))
+                save(l.root/'rematch_at_10.json',dict(ratio=ratio,within_band=label=='MATCHED',label=label,feedback_to_lr=False,section='25.13'))
             if k>=20:
                 prev=read(l.folder(k-10,a)/'train_statistics.json')
-                baseline=read(l.root/'shared_first/collection.json')['legal_rate']
+                baseline=read(l.root/'adoption'/f'{a}.json')['initial_training_legal_rate']
                 stopped=baseline-max(prev['legal_rate'],stats['legal_rate'])>=.1-1e-12
             launch(l,'eval',k,a)
             if a=='P' and (stopped or k==100):gate(l,k)
             behavior_report(l,k,endpoints_at(l,k))
-        cleanup(l,k,a)
         save(receipt,dict(arm=a,update=k,stopped=stopped,before_sha=stats['before_sha'],
-             after_sha=stats['after_sha'],optimizer_steps=stats['optimizer_steps'],finished=utc()))
+             after_sha=stats['after_sha'],optimizer_steps=stats['optimizer_steps'],native_layout='fixed_four_engines',
+             provenance='continued',finished=utc()))
+        cleanup(l,k,a)
         if stopped:break
     status=dict(arm=a,step=k,status='EARLY_STOP' if read(receipt)['stopped'] else 'COMPLETED',time=utc())
     save(ended(l,a),status)
@@ -146,7 +149,8 @@ def main():
         setup(l)
         l.folder(0,'B').mkdir(exist_ok=True,parents=True)
         launch(l,'eval',0,'B');launch(l,'common',0,'B')
-        merge_common(l,0,['B']);behavior_report(l,0,{'B':0})
+        if not (l.root/'behavior/000.json').exists():
+            merge_common(l,0,['B']);behavior_report(l,0,{'B':0})
         p=train_arm(l,'P')
         outcome=gate(l,p['step']);finished={'P':p};not_run=[]
         if outcome['decision']=='RUN_CONTROLS':
@@ -160,7 +164,7 @@ def main():
         for k in range(10,last+1,10):behavior_report(l,k,endpoints_at(l,k))
         save(l.root/'complete.json',dict(run=SERIAL,last_step=last,endpoints={a:v['step'] for a,v in finished.items()},
              stop_labels={**{a:v['status'] for a,v in finished.items()},**{a:'not run' for a in not_run}},
-             not_run=not_run,gate=outcome,section='25.12',timestamp=utc()))
+             not_run=not_run,gate=outcome,section='25.13',adopted_steps=5,timestamp=utc()))
         from .e25_delivery import final_report
         final_report(l)
         commit_delivery()

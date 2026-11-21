@@ -2081,3 +2081,22 @@ to gate controls after P@100. Equality skips both controls. If P stops under
 registered serial order and run both controls. Report any unrun arm literally
 as "not run". Earlier B@0 and the interleaved P/R optimizer receipts stay
 archived separately and cannot supply formal baselines, adapters or moments.
+
+### Section 25.13 adopted prefix
+
+Before starting the serial P arm, verify the actual adapter and AdamW files
+against the old update-five receipts. Use independent destination directories
+and file hard links so later retention cleanup cannot remove the archive.
+Adopt the five original per-step measurements, hash chain, optimizer step counts
+and historical rollouts, including the shared D smoke tape at step one. P's
+projector refresh recomputes that history at the current P snapshot as usual.
+The native baseline on the new layout remains the behavioral comparison
+reference. Training legality uses the B batch that actually generated update one.
+If controls are admitted, use the signed old R checkpoint directly. For
+R-matched, its matching-rate calibration did the same first five updates but
+normal retention removed its intermediate Adam/adapter. Search for an exact
+signed recoverable prefix first; only if necessary replay the missing optimizer
+steps on saved batches with the recorded activation policy. No new collection,
+teacher scoring or FP32 checks for those steps. Require the original hash of
+parameters, serialized Adam state, adapter and minibatch ordering. No control
+restoration is permitted before the training-domain terminal gate.
