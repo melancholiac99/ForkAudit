@@ -132,7 +132,7 @@ def run(l,steps):
                 for a in active:
                     now=ref-info[a]['legal_rate']
                     prev=ref-read(l.folder(k-10,a)/'train_statistics.json')['legal_rate'] if k>10 else 0.
-                    if now>.1 and prev>.1:stopped[a]=k
+                    if min(now,prev)>=.1-1e-12:stopped[a]=k
                 launch(l,'eval',k,active)
                 behavior_report(l,k,{'B':0,**{a:stopped.get(a,k) for a in arms}})
                 if k==10 and 'R-matched' in active:
@@ -151,6 +151,8 @@ def main():
     with (RUN/'driver.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         if not (RUN/'gpu_budget.json').exists():budget()
+        from .e25_preflight_report import render
+        render()
         costs=read(RUN/'gpu_budget.json');move=read(RUN/'movement.json')
         assert costs['benchmark']['tasks']==320 and costs['benchmark']['positions']>0
         rates={'R':1.e-6,'P':1.e-6}
