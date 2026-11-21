@@ -1,5 +1,7 @@
 """Publish independent arm milestones and finish after all result and search receipts exist."""
 import csv
+import json
+import statistics
 import os
 import subprocess
 from pathlib import Path
@@ -68,6 +70,27 @@ def milestone(arm):
     return OUT/arm
 
 
+def utilization():
+    tape=LOCAL/'gpu_utilization.jsonl'
+    if not tape.exists():return
+    samples=[json.loads(line) for line in tape.read_text().splitlines() if line.endswith(']]')]
+    if not samples:return
+    cutoff=(OUT/'R-matched/endpoint.json').stat().st_mtime
+    summary={}
+    for label,group in [('whole_recorded_interval',samples),('before_matched_endpoint',[s for s in samples if s[0]<=cutoff]),
+                        ('after_matched_endpoint',[s for s in samples if s[0]>cutoff])]:
+        if not group:continue
+        by_gpu=[]
+        for rank in range(8):
+            readings=[s[1][rank] for s in group]
+            assert all(r[0]==rank for r in readings)
+            pct=[r[1] for r in readings]
+            by_gpu.append(dict(rank=rank,mean_utilization_pct=statistics.mean(pct),median_utilization_pct=statistics.median(pct),
+                               sample_fraction_at_zero=pct.count(0)/len(pct),peak_mib=max(r[2] for r in readings)))
+        summary[label]=dict(samples=len(group),first_unix=group[0][0],last_unix=group[-1][0],gpus=by_gpu)
+    save(OUT/'final/gpu_utilization.json',dict(interval_seconds=15,coverage='Polling began during R-matched update 9',periods=summary))
+
+
 def final():
     from .e2514_gate import migration_verified
     migration_verified()
@@ -80,6 +103,7 @@ def final():
         with (OUT/'search_archive'/f'checkpoint_{k:03}.tsv').open() as f:
             assert sum(1 for r in csv.DictReader(f,delimiter='\t'))==2000
     curves(ARMS,OUT/'final')
+    utilization()
     outcomes={a:read(OUT/a/'endpoint.json')['step'] for a in ARMS}
     report=read(OUT/'search_swap_report.json')['summary'];selection=read(OUT/'search_selection.json')['counts']
     lines=['# Stage E migration endpoints','', 'Single seed. P ended at update 30. P-frozen is a mechanism diagnostic and its first ten updates used the old layout. Updates 1–5 of R and R-matched used the adopted layout.','',
