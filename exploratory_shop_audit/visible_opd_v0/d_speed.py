@@ -36,47 +36,65 @@ def set_checkpoint(modules,enabled):
         module.gradient_checkpointing=enabled
 
 
-def benchmark(model,batch,q,params,local,modules):
-    # Bound eager activation storage using an actual long row on each GPU.
-    eligible=[i for i in local if length(batch.rows[i])<=4096]
+def activation_probe(model,batch,q,params,modules,i):
+    row=batch.rows[i]
     limit=0
     result={}
-    if eligible and modules:
-        i=max(eligible,key=lambda j:length(batch.rows[j]))
-        row=batch.rows[i]
-        for mode in ('checkpoint','retained'):
-            model.zero_grad(set_to_none=True)
-            set_checkpoint(modules,mode=='checkpoint')
+    for mode in ('checkpoint','retained'):
+        model.zero_grad(set_to_none=True)
+        set_checkpoint(modules,mode=='checkpoint')
+        torch.cuda.synchronize()
+        torch.cuda.reset_peak_memory_stats()
+        start=time.monotonic()
+        try:
+            logits=score(model,row)
+            loss,_=kl_positions(logits,q[i].cuda(),row['mask'].cuda())
+            (loss.sum()*batch.weights[i]).backward()
             torch.cuda.synchronize()
-            torch.cuda.reset_peak_memory_stats()
-            start=time.monotonic()
-            try:
-                logits=score(model,row)
-                loss,_=kl_positions(logits,q[i].cuda(),row['mask'].cuda())
-                (loss.sum()*batch.weights[i]).backward()
-                torch.cuda.synchronize()
-                seconds=time.monotonic()-start
-                peak=torch.cuda.max_memory_allocated()
-                signature=hashlib.sha256()
-                for _,p in params:
-                    signature.update(p.grad.detach().cpu().numpy().tobytes())
-                result[mode]=dict(seconds=seconds,peak_bytes=peak,grad_sha=signature.hexdigest(),
-                                  logits_sha=hashlib.sha256(logits.detach().cpu().numpy().tobytes()).hexdigest())
-                del loss,logits
-            except torch.cuda.OutOfMemoryError:
-                if mode=='checkpoint':raise
-                result[mode]=dict(oom=True)
-            finally:
-                model.zero_grad(set_to_none=True)
-                set_checkpoint(modules,True)
-        torch.cuda.empty_cache()
-        a,b=result['checkpoint'],result['retained']
-        if not b.get('oom'):
-            same=(a['grad_sha'],a['logits_sha'])==(b['grad_sha'],b['logits_sha'])
-            room=torch.cuda.get_device_properties(torch.cuda.current_device()).total_memory-b['peak_bytes']
-            if same and room>8*1024**3 and b['seconds']<a['seconds']:
-                limit=length(row)
-        result.update(tokens=length(row),local_limit=limit)
+            seconds=time.monotonic()-start
+            peak=torch.cuda.max_memory_allocated()
+            signature=hashlib.sha256()
+            for _,p in params:
+                signature.update(p.grad.detach().cpu().numpy().tobytes())
+            result[mode]=dict(seconds=seconds,peak_bytes=peak,grad_sha=signature.hexdigest(),
+                              logits_sha=hashlib.sha256(logits.detach().cpu().numpy().tobytes()).hexdigest())
+            del loss,logits
+        except torch.cuda.OutOfMemoryError:
+            if mode=='checkpoint':raise
+            result[mode]=dict(oom=True)
+        finally:
+            model.zero_grad(set_to_none=True)
+            set_checkpoint(modules,True)
+    torch.cuda.empty_cache()
+    a,b=result['checkpoint'],result['retained']
+    if not b.get('oom'):
+        same=(a['grad_sha'],a['logits_sha'])==(b['grad_sha'],b['logits_sha'])
+        room=torch.cuda.get_device_properties(torch.cuda.current_device()).total_memory-b['peak_bytes']
+        if same and room>8*1024**3 and b['seconds']<a['seconds']:
+            limit=length(row)
+    result.update(tokens=length(row),local_limit=limit)
+    return result
+
+
+def local_probe(batch,local,modules,cap,probe):
+    eligible=[i for i in local if length(batch.rows[i])<=cap]
+    if not eligible or not modules:
+        return {}
+    i=max(eligible,key=lambda j:length(batch.rows[j]))
+    result=probe(i)
+    if result['local_limit']==0 and length(batch.rows[i])>4096:
+        shorter=[j for j in eligible if length(batch.rows[j])<=4096]
+        if shorter:
+            fallback=probe(max(shorter,key=lambda j:length(batch.rows[j])))
+            fallback['long_probe']=result
+            return fallback
+    return result
+
+
+def benchmark(model,batch,q,params,local,modules,cap=4096):
+    result=local_probe(batch,local,modules,cap,
+                       lambda i:activation_probe(model,batch,q,params,modules,i))
+    limit=result.get('local_limit',0)
     shared=torch.tensor(limit,device='cuda')
     dist.all_reduce(shared,op=dist.ReduceOp.MIN)
     return shared.item(),result

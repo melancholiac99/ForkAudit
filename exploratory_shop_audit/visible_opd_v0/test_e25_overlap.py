@@ -85,3 +85,22 @@ class ExactFp32Weights(unittest.TestCase):
             self.assertEqual(verified_path(cache,source),cache)
             save(source/'config.json',dict(changed=True))
             self.assertEqual(verified_path(cache,source),source)
+
+
+class LongActivationProbe(unittest.TestCase):
+    def test_keep_passing_long_probe_and_retry_shorter_on_failure(self):
+        from .d_speed import local_probe
+        lengths=[3100,4096,4800,5200]
+        batch=SimpleNamespace(rows=[{'prompt':range(n),'answer':[]} for n in lengths])
+        for cap,fail,expected,chosen in [(4096,False,[1],4096),(5120,False,[2],4800),
+                                         (5120,True,[2,1],4096)]:
+            calls=[]
+            def probe(i):
+                calls.append(i)
+                return dict(tokens=lengths[i],local_limit=0 if fail and i==2 else lengths[i])
+            actual=local_probe(batch,range(4),[object()],cap,probe)
+            self.assertEqual(calls,expected)
+            self.assertEqual(actual['local_limit'],chosen)
+            if fail:
+                self.assertEqual(actual['long_probe']['local_limit'],0)
+        self.assertEqual(local_probe(batch,[],[object()],5120,None),{})

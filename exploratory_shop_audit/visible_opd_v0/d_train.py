@@ -64,7 +64,8 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
             optim.load_state_dict(torch.load(prev,map_location='cpu',weights_only=True))
             prior_steps=meta['cumulative_steps']
         if k>1 and fast_limit is None:
-            fast_limit,probe=benchmark(model,batch,q,params,local,checkpoint_modules)
+            probe_cap=5120 if rank_local_activations and k>=13 else 4096
+            fast_limit,probe=benchmark(model,batch,q,params,local,checkpoint_modules,cap=probe_cap)
             save(path.parent/f'activation_check_rank{rank}.json',dict(limit=fast_limit,**probe))
             if rank_local_activations:
                 value=torch.tensor(probe.get('local_limit',0),device='cuda')
