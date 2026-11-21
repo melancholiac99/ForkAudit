@@ -33,8 +33,30 @@ def at(model,layout,k,a):
         restore(p,initial,initial)
 
 @torch.inference_mode()
+def check_direct_load(model,l,rank):
+    from .s22_measure import RUN as precision_run
+    group=os.environ.get('OPD_MIGRATION_GROUP')
+    if not group:return
+    output=PUBLIC/'migration_2514'/f'fp32_direct_load_{group}_{rank}.json'
+    if output.exists():return
+    probe=SmokeBatch()
+    row=shard_order(probe,rank)[0]
+    src=precision_run/'fp32/initial'/f'logits_{rank}.pt'
+    expected_sha=read(src.with_name(f'manifest_{rank}.json'))['logits_sha256']
+    assert digest_file(src)==expected_sha
+    before=torch.load(src,map_location='cpu',weights_only=True)[row]
+    at(model,l,0,'B')
+    actual=fp32_scores(model,probe,[row])[row]
+    error=(actual-before).abs().max().item()
+    assert torch.equal(actual,before),(rank,row,error)
+    save(output,dict(group=group,rank=rank,probe_row=row,elements=before.numel(),max_abs_error=error,
+                     archive_sha256=expected_sha,bit_identical=True))
+
+
+@torch.inference_mode()
 def per_update(rank,l,k,arms):
     model=fp32_probe_actor(l)
+    check_direct_load(model,l,rank)
     for a in arms:
         path=l.folder(k,a);out=path/f'fp32_part_{rank}.json'
         if out.exists():continue
