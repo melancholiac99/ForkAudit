@@ -107,6 +107,10 @@ def merge_common(l,k,arms):
                           top1=p/w if w else None,cross_precision=x/w if w else None)
         assert stats['all']['positions']==4448 and abs(stats['all']['mass']-1)<1e-10
         mse,dot,n0,n1=map(sum,zip(*(r['projector_moments'] for r in rows)))
+        decision=[stats[g] for g in ('click','option')]
+        mass=sum(g['mass'] for g in decision)
+        stats['decision_click_option']=dict(positions=sum(g['positions'] for g in decision),mass=mass,
+             **{f:sum(g['mass']*g[f] for g in decision if g['mass'])/mass for f in ('kl','entropy','top1','cross_precision')})
         result[a]=dict(stats=stats,projector_mse=mse if a=='P' else None,projector_cosine=dot/(n0*n1)**.5 if n0*n1 else None,
                        versions=rows[0]['compared_versions'])
     save(l.root/'monitor'/f'{k:03}.json',result)

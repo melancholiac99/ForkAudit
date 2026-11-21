@@ -74,8 +74,19 @@ def trajectory_stats(l,k,a):
                     row=json.loads(line);n+=1;good+=row['legal']
             src.unlink(missing_ok=True)
         legal=good/n
+    import torch
+    from collections import defaultdict
+    mass_file=path/'candidate_mass.pt'
+    assert digest_file(mass_file)==read(path/'target_manifest.json')['mass_sha256']
+    mass=torch.load(mass_file,weights_only=True)
+    bins=defaultdict(lambda:torch.zeros(4,dtype=torch.float64))
+    for row,values,w in zip(batch.rows,mass,batch.weights,strict=True):
+        assert len(row['answer'])==len(values) and values.min()>=0 and values.max()<=1.00001
+        for j,c in enumerate(row['classes']):
+            bins[c][:3]+=w*values[j].double();bins[c][3]+=w
+    masses={c:{key:float(x[j]/x[3]) for j,key in enumerate(('student','selected','placeholder'))} for c,x in bins.items()}
     opts=read(path/'optimizer.json')
-    result=dict(update=k,arm=a,legal_rate=legal,records=n,scored=len(q),by_class=stats,
+    result=dict(update=k,arm=a,legal_rate=legal,records=n,scored=len(q),by_class=stats,candidate_mass=masses,
                 optimizer_steps=opts['optimizer_steps'],clip_count=sum(x>1 for x in opts['grad_norms']),
                 before_sha=opts['before_sha'],after_sha=opts['after_sha'],projection_version=l.version(k,a))
     save(out,result);return result
@@ -108,7 +119,7 @@ def run(l,steps):
             continue
         active=[a for a in arms if a not in stopped]
         if k>1:launch(l,'collect',k,active)
-        if k>1 or 'P-KL' in active:launch(l,'targets',k,active if k>1 else ['P-KL'])
+        launch(l,'targets',k,active)
         launch(l,'train',k,active)
         launch(l,'per_update',k,active);merge_update(l,k,active)
         info={a:trajectory_stats(l,k,a) for a in active}

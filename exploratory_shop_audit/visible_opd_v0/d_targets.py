@@ -28,6 +28,7 @@ def build(k,arm,layout=None):
     cal=read(STAGE_B/'reports/calibration_strength_report.json')['classes']
     # Cache only completely identical texts, response boundaries, classes and fold routing on this snapshot.
     cache={};verified_duplicate=False;reused=0
+    masses=[]
     na=[]; rows=[]; targets=[]; student_logits=[]; episodes=Counter(); done=set()
     for rep in range(2):
         for r in read_rows((SMOKE if k==1 else path)/f'rollout_{rep}.jsonl'):
@@ -47,6 +48,7 @@ def build(k,arm,layout=None):
             if prior is not None and verified_duplicate:
                 rows.append(dict(rows[prior],rep=rep,step=r['step']))
                 targets.append(targets[prior]);student_logits.append(student_logits[prior])
+                if layout is not None:masses.append(masses[prior])
                 reused+=1
                 continue
             h,logits=response(model,prompt,answer)
@@ -56,7 +58,11 @@ def build(k,arm,layout=None):
             def subset(view):
                 return response(model,r['views'][view],answer)[1].log_softmax(-1).gather(1,ids)
             # Three detached forward passes in every arm. Projected targets read visible tensors only.
-            d=content_correction(subset('full'),subset('placeholder'),q)
+            selected,placeholder=subset('full'),subset('placeholder')
+            d=content_correction(selected,placeholder,q)
+            if layout is not None:
+                base_log=s-logits.logsumexp(-1,keepdim=True)
+                masses.append(torch.stack([(v.exp()*mask).sum(-1) for v in (base_log,selected,placeholder)],-1).cpu())
             if layout is not None and arm in ('P','P-KL'):
                 t=layout.projected(nets,arm,h,model.get_base_model().lm_head.weight,ids,s,mask,q,folds[r['goal']],cal,r['classes'])
             elif arm in ('P','P-shuffled'):
@@ -79,7 +85,17 @@ def build(k,arm,layout=None):
     order=sorted(range(len(rows)),key=lambda i:(rows[i]['goal'],rows[i]['rep'],rows[i]['step']))
     for name,values in [('student',rows),('target',targets),('bf16_before',student_logits)]:
         torch.save([values[i] for i in order],path/f'{name}.pt')
-    save(path/'target_manifest.json',dict(scorer_sha=sha,na_records=na,rollout_records=sum(episodes.values()),identical_records_reused=reused,duplicate_verified=verified_duplicate,goals=sorted(folds),projection_age=k-1 if layout is None else k-1-layout.version(k,arm),
+    extra={}
+    if layout is not None:
+        mass_file=path/'candidate_mass.pt'
+        torch.save([masses[i] for i in order],mass_file)
+        extra['mass_sha256']=digest_file(mass_file)
+        if k==1 and arm!='P-KL':
+            b,original=layout.batch(k,arm)
+            assert len(order)==len(original)
+            for j,i in enumerate(order):
+                assert torch.equal(rows[i]['ids'],b.rows[j]['ids']) and torch.equal(targets[i],original[j])
+    save(path/'target_manifest.json',dict(**extra,scorer_sha=sha,na_records=na,rollout_records=sum(episodes.values()),identical_records_reused=reused,duplicate_verified=verified_duplicate,goals=sorted(folds),projection_age=k-1 if layout is None else k-1-layout.version(k,arm),
         projector_fit_sha=(layout.projector_sha(k,arm) if layout is not None else None),
         student_sha256=digest_file(path/'student.pt'),bf16_before_sha256=digest_file(path/'bf16_before.pt'),target_sha256=digest_file(path/'target.pt')))
 
