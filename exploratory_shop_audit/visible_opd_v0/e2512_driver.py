@@ -19,7 +19,7 @@ from exploratory_shop_audit.grpo_forced_audit.common import append, digest_file,
 ORDER=('P','R-matched','R')
 
 
-def launch(l,phase,k,a):
+def launch(l,phase,k,a,env=None):
     stage=l.root/'stages'/a/f'{k:03}_{phase}.json'
     if stage.exists():
         m=read(stage)
@@ -31,10 +31,12 @@ def launch(l,phase,k,a):
     print(utc(),SERIAL,a,k,phase,flush=True)
     with logfile.open('a') as f:
         proc=subprocess.run(['torchrun','--standalone','--nproc-per-node=4','-m',
-             'exploratory_shop_audit.visible_opd_v0.e2512_worker',phase,str(k),a],stdout=f,stderr=f)
+             'exploratory_shop_audit.visible_opd_v0.e2512_worker',phase,str(k),a],stdout=f,stderr=f,env=env)
     revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     status=dict(run=SERIAL,update=k,phase=phase,arms=[a],source_commit=revision,routing_sha=digest_file(ROUTING),elapsed=time.monotonic()-start,
                 allocated_gpus=4,exit_code=proc.returncode,finished=utc())
+    physical = (os.environ if env is None else env).get('CUDA_VISIBLE_DEVICES')
+    if physical:status['physical_devices']=physical
     append(RUN/'allocation.jsonl',status);proc.check_returncode()
     save(stage,status)
 

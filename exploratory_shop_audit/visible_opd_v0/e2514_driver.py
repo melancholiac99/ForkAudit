@@ -1,5 +1,6 @@
 """Run the two registered four-card groups after both migration replays have passed."""
 import csv
+from concurrent.futures import ThreadPoolExecutor
 import fcntl
 import os
 import sys
@@ -47,6 +48,23 @@ def evaluate(l,k,arm):
     report(l,k,endpoints,dest/'behavior'/f'{k:03}.json')
 
 
+def update_measurement(l,k,arm,end):
+    # After A has finished all endpoint work, borrow its identical four local ranks
+    # only for read-only FP32 scoring. Actor sampling, targets, training, BF16
+    # checkpoint probes and all behavioral evaluation stay on the designated lane.
+    if os.environ['OPD_MIGRATION_GROUP']!='B' or not (OUT/'R-matched/endpoint.json').is_file():
+        launch(l,'per_update',k,arm)
+        return
+    monitor_env={**os.environ,'CUDA_VISIBLE_DEVICES':'0,1,2,3','OPD_MIGRATION_GROUP':'A','OPD_READONLY_FP32':'1'}
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        measurement=pool.submit(launch,l,'per_update',k,arm,monitor_env)
+        if k%10==0:
+            launch(l,'common',k,arm)
+        elif k<end:
+            launch(l,'collect',k+1,arm)
+        measurement.result()
+
+
 def train(arm):
     l=Layout(SERIAL)
     group=os.environ['OPD_MIGRATION_GROUP']
@@ -73,7 +91,7 @@ def train(arm):
         launch(l,'targets',k,arm)
         merge([(SERIAL,k,arm)],target_shards(l,k,arm))
         launch(l,'train',k,arm)
-        launch(l,'per_update',k,arm)
+        update_measurement(l,k,arm,end)
         merge_update(l,k,[arm])
         stats=trajectory_stats(l,k,arm)
         stopped=False

@@ -109,7 +109,7 @@ def main():
         timing=l.folder(k,arm)/f'fp32_timing_{rank}.json'
         if not timing.exists():
             save(timing,dict(rank=rank,update=k,start=started,end=time.time()))
-        if can_prepare_next(k):
+        if can_prepare_next(k) and not os.environ.get('OPD_READONLY_FP32'):
             # A fresh process releases the FP32 actor and its CUDA context before vLLM starts.
             print(f'Rank {rank} finished FP32 update {k}; preparing {arm} update {k+1}',flush=True)
             os.execv(sys.executable, [sys.executable,'-m',__package__+'.e2512_worker','collect',str(k+1),arm])
