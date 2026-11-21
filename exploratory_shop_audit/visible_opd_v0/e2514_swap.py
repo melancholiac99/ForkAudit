@@ -45,11 +45,29 @@ def continuations(runner,jobs,recipient):
     return done
 
 
-def run(k,rank):
+def collect_jobs(k,rank,jobs,tape):
     from .e25_probe import configure
     assert configure()==rank
     native_rank(rank);l=Layout(SERIAL);cp,sha=checkpoint(l,k,'P')
-    root=DATA/'swap'/f'{k:03}'/f'rank{rank}';snapshot_dir(root)
+    root=tape/f'{k:03}'/f'rank{rank}';snapshot_dir(root)
+    receipt=dict(checkpoint=sha,jobs=len(jobs),job_sha=digest_value(jobs))
+    if (root/'complete.json').exists():
+        assert read(root/'complete.json')==receipt
+        return
+    if jobs:
+        runner=Runner(root,cp,parallel_start=True)
+        try:
+            for i in range(0,len(jobs),32):
+                f=root/f'part_{i:04}.json'
+                if not f.exists():save(f,continuations(runner,jobs[i:i+32],k))
+                rows=read(f)
+                assert len(rows)==len(jobs[i:i+32])
+                assert {(r['split'],r['goal'],r['query'],r['rep']) for r in rows}==set(jobs[i:i+32])
+        finally:runner.close()
+    save(root/'complete.json',receipt)
+
+
+def run(k,rank):
     from exploratory_shop_audit.grpo_forced_audit.common import digest_file
     import subprocess
     if not (DATA/'plan_sealed.json').is_file():
@@ -61,15 +79,7 @@ def run(k,rank):
         if owners()[task['goal']]!=rank:continue
         for q in sorted(set(task['queries']['20'])|set(task['queries']['30'])):
             jobs.extend((task['split'],task['goal'],q,r) for r in range(4))
-    if (root/'complete.json').exists():return
-    runner=Runner(root,cp,parallel_start=True)
-    try:
-        for i in range(0,len(jobs),32):
-            f=root/f'part_{i:04}.json'
-            if not f.exists():save(f,continuations(runner,jobs[i:i+32],k))
-            assert {(r['split'],r['goal'],r['query'],r['rep']) for r in read(f)}==set(jobs[i:i+32])
-    finally:runner.close()
-    save(root/'complete.json',dict(checkpoint=sha,jobs=len(jobs),job_sha=digest_value(jobs)))
+    collect_jobs(k,rank,jobs,DATA/'swap')
 
 
 if __name__=='__main__':run(int(sys.argv[1]),int(os.environ['LOCAL_RANK']))

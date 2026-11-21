@@ -97,7 +97,8 @@ def final():
     for arm in ARMS:
         assert (OUT/arm/'training.json').is_file()
     needed=('search_selection.json','archived_search_metrics.json','intervention_tasks.json','intervention_result_pages.json',
-        'search_swap_report.json','tcal_closing_bracket.json','a5_first_query.json','verify_group_A.json','verify_group_B.json')
+        'search_swap_report.json','tcal_closing_bracket.json','a5_first_query.json','verify_group_A.json','verify_group_B.json',
+        'search_coverage/handoff/coverage.json','search_coverage/final/coverage.json')
     for name in needed:assert (OUT/name).is_file()
     for k in (0,10,20,30):
         with (OUT/'search_archive'/f'checkpoint_{k:03}.tsv').open() as f:
@@ -133,6 +134,19 @@ def final():
         '[Archived first searches](../search_archive) · [Checkpoint search summaries](../archived_search_metrics.json) · [First result pages](../intervention_result_pages.json) · [Fresh continuation outcomes](../search_swap_report.json) · [Closing bracket by position](../tcal_closing_bracket.json).'])
     extra=read(OUT/'search_archive/crosscheck_at_10.json')
     lines.extend(['', f"The two migration update-10 evaluations independently authenticated {extra['newly_authenticated']} of the {extra['originally_unrecovered']} historical trajectories originally marked as missing. {extra['intervention_source_rows']} were source trials for the sealed intervention. [Additional first searches and token counts](../search_archive/crosscheck_at_10.json)."])
+    augmented=OUT/'search_coverage/final'
+    more=read(augmented/'coverage.json')
+    assert digest_file(augmented/'search_swap_report.json')==more['outcomes_sha256']
+    lines.extend(['','## Coverage sensitivity after the migration evaluations','',
+        f"Full action digests recovered {more['recovered_original_source_trials']} additional source trials. The expanded analysis includes {more['fresh_episodes_including_prior']} fresh continuations including the original 2,664.",
+        '', '| Selected tasks | P@30 recovery | Task-cluster 95% interval |','|---|---:|---:|'])
+    for pool in POOLS:
+        value=read(augmented/'search_swap_report.json')['summary'][pool+'/all/both_sources']['effects']['P30_recovery_fraction']
+        interval=value['ci95']
+        ci='NA' if interval is None else f"{interval[0]:.3f} to {interval[1]:.3f}"
+        point='NA' if value['estimate'] is None else f"{value['estimate']:.3f}"
+        lines.append(f"| {pool} | {point} | {ci} |")
+    lines.extend(['','[Expanded fresh-control outcomes](../search_coverage/final/search_swap_report.json) · [Authenticated source records](../search_coverage/final/archived_queries.json) · [Additional sampling at the P-frozen handoff](../search_coverage/handoff/coverage.json).'])
     (OUT/'final/REPORT.md').write_text('\n'.join(lines)+'\n')
     save(OUT/'final/completion.json',dict(endpoints=outcomes,original_p=30,cpu_checks=needed,task_selection=selection,
          all_public_sha256={str(p.relative_to(OUT)):digest_file(p) for p in sorted(OUT.rglob('*')) if p.is_file() and p!=OUT/'final/completion.json'}))

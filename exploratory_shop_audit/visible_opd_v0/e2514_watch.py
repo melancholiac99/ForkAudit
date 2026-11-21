@@ -7,6 +7,7 @@ import sys
 import time
 
 from .e25_paths import PUBLIC,RUN,SERIAL
+from . import e2514_search_extension as extension
 from exploratory_shop_audit.grpo_forced_audit.common import ROOT,CPU_PYTHON,read,save,utc
 
 MOD='exploratory_shop_audit.visible_opd_v0.'
@@ -31,7 +32,23 @@ def commit(label,files):
     save(receipt,dict(label=label,commit=rev,tree=tree,at=utc()))
 
 
+def publish_extension(wave, terminal):
+    directory=extension.paths(wave)[0]
+    label='search-coverage-'+wave
+    if (CONTROL/'publication_requests'/(label+'.json')).is_file():return
+    if not extension.finished_sampling(wave):
+        if not terminal:return
+        call('e2514_search_extension','seal',wave)
+        if not extension.finished_sampling(wave):
+            subprocess.run(['torchrun','--standalone','--nproc-per-node=4','-m',MOD+'e2514_search_extension','rank',wave],
+                cwd=ROOT,env={**os.environ,'CUDA_VISIBLE_DEVICES':'4,5,6,7','OPD_MIGRATION_GROUP':'B'},check=True)
+    if not (directory/'intervention_result_pages.json').is_file():call('e2514_search_extension','pages',wave,cpu=True)
+    if not (directory/'coverage.json').is_file():call('e2514_search_extension','report',wave)
+    commit(label,[directory])
+
+
 def watch():
+    if (CONTROL/'publication_requests/final.json').is_file():return
     while True:
         seal=CONTROL/'search/plan_sealed.json'
         if seal.exists():
@@ -55,7 +72,10 @@ def watch():
             if (folder/'endpoint.json').exists() and not (CONTROL/'publication_requests'/(arm+'.json')).exists():
                 call('e2514_delivery',arm)
                 commit(arm,[folder])
-        if all((CONTROL/'publication_requests'/f'{name}.json').is_file() for name in ('search-swap','R-matched','P-frozen','R')):
+        terminal=all((CONTROL/'publication_requests'/f'{name}.json').is_file() for name in ('search-swap','R-matched','P-frozen','R'))
+        publish_extension('handoff',terminal)
+        if terminal:
+            publish_extension('final',True)
             call('e2514_delivery','final')
             # The final signed manifest also covers cross-lane probe receipts outside arm folders.
             commit('final',[OUT])

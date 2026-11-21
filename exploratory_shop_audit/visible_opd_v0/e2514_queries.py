@@ -183,8 +183,8 @@ def archived_token_counts(search_count, events, total, variants):
     return None, 'unresolved_per_search_tokenization'
 
 
-def crosscheck_starting_evaluations():
-    """Recover exact historical action text from the two available migration @10 evaluations."""
+def crosscheck_evaluations(checkpoints, include_pages=False):
+    """Authenticate historical action sequences against a fixed list of native evaluation tapes."""
     from .e25_paths import RUN, SERIAL
     from exploratory_shop_audit.grpo_forced_audit.common import digest_file
 
@@ -196,11 +196,11 @@ def crosscheck_starting_evaluations():
                 for k,field in ((20,'good_reps'),(30,'failed_reps')) for rep in t[field]}
     wanted = {(r['split'],r['goal'],r['actions_sha']) for r in missing}
     donors = defaultdict(list)
-    for arm in ('P-frozen','R-matched'):
+    for arm,step in checkpoints:
         for rank in range(4):
-            directory = RUN/SERIAL/'evaluation/010'/arm/f'rank{rank}'
+            directory = RUN/SERIAL/'evaluation'/f'{step:03}'/arm/f'rank{rank}'
             complete = read(directory/'complete.json')
-            assert (complete['arm'], complete['k'], complete['count']) == (arm,10,500)
+            assert (complete['arm'], complete['k'], complete['count']) == (arm,step,500)
             for source in sorted(directory.glob('search_*.json')):
                 traces = read(source)
                 for episode in read(directory/source.name.replace('search_', 'episodes_', 1)):
@@ -211,7 +211,7 @@ def crosscheck_starting_evaluations():
                     actions = traces[f'{pool}_{goal}_{rep}']
                     assert digest_value([a['action'] for a in actions]) == key[-1]
                     assert Counter(a['event'] for a in actions) == episode['events']
-                    donors[key].append((episode,actions,dict(arm=arm,step=10,rank=rank,rep=rep,
+                    donors[key].append((episode,actions,dict(arm=arm,step=step,rank=rank,rep=rep,
                         file=source.name,sha256=digest_file(source))))
     originals = {k:original(k) for k in (0,10,20,30)}
     rows = []
@@ -234,11 +234,20 @@ def crosscheck_starting_evaluations():
             queries=queries,first_query=queries[0] if queries else None,each_arg_token_count=counts,
             count_source=provenance,archived_search_tokens=total,in_intervention_source=(k,pool,goal,rep) in selected,
             donor_receipts=[m[2] for m in matches]))
-    save(OUT/'search_archive/crosscheck_at_10.json',dict(sealed_plan=sealed,
-        evidence='Post-intervention descriptive archive supplement using both migration @10 evaluations. '
-                 'Each entry matches the same task and complete ordered action digest, events and native outcome.',
+        if include_pages and searches:
+            first_pages = {tuple(next(a['products'] for a in trace if a['event']=='search')) for _,trace,_ in matches}
+            assert len(first_pages)==1
+            rows[-1]['first_page_asins']=list(first_pages.pop())
+    return dict(sealed_plan=sealed,
         originally_unrecovered=len(missing),newly_authenticated=len(rows),
-        intervention_source_rows=sum(r['in_intervention_source'] for r in rows),rows=rows))
+        intervention_source_rows=sum(r['in_intervention_source'] for r in rows),rows=rows)
+
+
+def crosscheck_starting_evaluations():
+    result=crosscheck_evaluations([('P-frozen',10),('R-matched',10)])
+    evidence=('Post-intervention descriptive archive supplement using both migration @10 evaluations. '
+              'Each entry matches the same task and complete ordered action digest, events and native outcome.')
+    save(OUT/'search_archive/crosscheck_at_10.json',dict(sealed_plan=result.pop('sealed_plan'),evidence=evidence,**result))
 
 
 if __name__=='__main__':

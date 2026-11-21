@@ -6,20 +6,23 @@ from .e2514_search import DATA,OUT,POOLS
 from exploratory_shop_audit.grpo_forced_audit.common import read,save,stable_seed,digest_file
 
 
-def report():
-    tasks=read(OUT/'intervention_tasks.json')
-    pages={(r['split'],r['goal'],r['query']):r for r in read(OUT/'intervention_result_pages.json')}
+def report(directory=None, tapes=None):
+    directory=OUT if directory is None else directory
+    tapes=[DATA/'swap'] if tapes is None else tapes
+    tasks=read(directory/'intervention_tasks.json')
+    pages={(r['split'],r['goal'],r['query']):r for r in read(directory/'intervention_result_pages.json')}
     trials={}
-    for k in (20,30):
-        for rank in range(4):
-            root=DATA/'swap'/f'{k:03}'/f'rank{rank}'
-            receipt=read(root/'complete.json')
-            n=0
-            for f in root.glob('part_*.json'):
-                for r in read(f):
-                    key=k,r['split'],r['goal'],r['query'],r['rep']
-                    assert key not in trials;trials[key]=int(r['reason'] in ALL_REQUIREMENTS);n+=1
-            assert n==receipt['jobs']
+    for tape in tapes:
+        for k in (20,30):
+            for rank in range(4):
+                root=tape/f'{k:03}'/f'rank{rank}'
+                receipt=read(root/'complete.json')
+                n=0
+                for f in root.glob('part_*.json'):
+                    for r in read(f):
+                        key=k,r['split'],r['goal'],r['query'],r['rep']
+                        assert key not in trials;trials[key]=int(r['reason'] in ALL_REQUIREMENTS);n+=1
+                assert n==receipt['jobs']
     expected={(actor,t['split'],t['goal'],q,r) for t in tasks
               for q in set(t['queries']['20'])|set(t['queries']['30']) for actor in (20,30) for r in range(4)}
     assert set(trials)==expected
@@ -64,8 +67,8 @@ def report():
                 summary[f'{pool}/{sub}/{coverage}']=dict(selected_tasks=len(selected),paired_tasks=len(included),
                          fresh_rates=dict(zip(cells,values.mean(0))),effects=metrics,
                          first_page_qualifying={s:np.mean([r['first_page_qualifying'][s] for r in included]) for s in ('20','30')})
-    save(OUT/'search_swap_report.json',dict(summary=summary,plan_sha256=digest_file(OUT/'intervention_tasks.json'),
-         pages_sha256=digest_file(OUT/'intervention_result_pages.json'),fresh_episodes=len(trials),distinct_task_queries=len(expected)//8,unit='equal task weight; within query source, original episode frequency',
+    save(directory/'search_swap_report.json',dict(summary=summary,plan_sha256=digest_file(directory/'intervention_tasks.json'),
+         pages_sha256=digest_file(directory/'intervention_result_pages.json'),fresh_episodes=len(trials),distinct_task_queries=len(expected)//8,unit='equal task weight; within query source, original episode frequency',
          estimator='All four cells use four fresh continuations per distinct task/query/recipient. Fractions divide by P20 own good minus P30 own failed-query fresh rates. Nonpositive denominators are undefined.',
          initial_history='Canonical search[query] at the empty task start, receiver handles all following decisions. Fresh seed by split, task, query text, recipient, repeat and action step.',
          interpretation='Selected tasks only; original-seed outcomes are used only for selection.',tasks=task_rows))

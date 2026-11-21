@@ -16,11 +16,14 @@ POOLS=('V','T_opd_eval')
 PRICE=re.compile(r'(?:[¥￥$]\s*\d+(?:\.\d+)?|\d+(?:\.\d+)?(?:\s*[-~至到]\s*\d+(?:\.\d+)?)?\s*(?:元|块钱|人民币|rmb|cny)|价格|价位|售价|预算|不超过|低于|高于|便宜|以下|以内)',re.I)
 
 
-def page_judgments():
+def page_judgments(*, tasks_file=None, output=None, prior=None, recovered=()):
     from exploratory_shop_audit.visible_opd_v0.e25_paths import RUN
     parent=RUN.parent/'shop_visible_opd_v04_s16_20261120'
     engine=Engine(parent)
-    tasks=read(OUT/'intervention_tasks.json')
+    primary=tasks_file is None
+    tasks_file=OUT/'intervention_tasks.json' if primary else tasks_file
+    output=OUT/'intervention_result_pages.json' if output is None else output
+    tasks=read(tasks_file)
     @lru_cache(maxsize=None)
     def qualifies(g,asin):
         prod=engine.server.product_item_dict[asin]
@@ -37,8 +40,13 @@ def page_judgments():
         if row['searches']:
             search=row['searches'][0]
             observed_pages[row['split'],row['goal'],search['query']].add(tuple(search['products']))
-    old=OUT/'intervention_result_pages.json'
-    cache={(r['split'],r['goal'],r['query']):r for r in read(old)} if old.exists() else {}
+    for r in recovered:
+        if r['first_query'] is not None:
+            observed_pages[r['split'],r['goal'],r['first_query']].add(tuple(r['first_page_asins']))
+    cache={}
+    for old in (prior,output):
+        if old is not None and old.exists():
+            cache.update({(r['split'],r['goal'],r['query']):r for r in read(old)})
     results=[]
     for t in tasks:
         g=t['goal'];pool=t['split']
@@ -57,8 +65,8 @@ def page_judgments():
             good=[p for p in products if qualifies(g,p)]
             results.append(dict(split=pool,goal=g,query=query,page_asins=products,qualifying_asins=good,
                    contains_qualifying=bool(good),contains_gold=engine.server.goals[g]['asin'] in products))
-    save(OUT/'intervention_result_pages.json',results)
-    save(DATA/'pages_source.json',dict(sha256=digest_file(OUT/'intervention_tasks.json')))
+    save(output,results)
+    if primary:save(DATA/'pages_source.json',dict(sha256=digest_file(tasks_file)))
 
 
 def metrics(rows,goals):

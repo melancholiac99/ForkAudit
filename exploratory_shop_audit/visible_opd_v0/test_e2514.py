@@ -43,6 +43,19 @@ class MigrationTests(unittest.TestCase):
 
 
 class SearchReportTests(unittest.TestCase):
+    def test_archive_extension_counts_source_occurrences_and_reuses_query_cells(self):
+        from .e2514_search_extension import extend_tasks,query_set
+        original=[dict(split='V',goal=9,good_reps=[0,2,3],failed_reps=[1],strict_subset=False,
+            queries={'20':{'same':1},'30':{'own':1}},missing={'20':{'unrecovered':2},'30':{}})]
+        recovered=[dict(step=20,split='V',goal=9,rep=rep,first_query=q,in_intervention_source=True)
+                   for rep,q in ((2,'same'),(3,'novel'))]
+        result=extend_tasks(original,recovered)
+        self.assertEqual(result[0]['queries']['20'],{'same':2,'novel':1})
+        self.assertEqual(result[0]['missing']['20'],{})
+        self.assertEqual(query_set(result)-query_set(original),{('V',9,'novel')})
+        self.assertEqual(original[0]['missing']['20'],{'unrecovered':2})
+        with self.assertRaises(AssertionError):extend_tasks(original,[recovered[0],recovered[0]])
+
     def test_fresh_comparisons_and_nonpositive_fraction_denominator(self):
         from tempfile import TemporaryDirectory
         from pathlib import Path
@@ -72,6 +85,16 @@ class SearchReportTests(unittest.TestCase):
             self.assertEqual(est['P20_loss_own_minus_bad']['estimate'],.5)
             self.assertEqual(est['P30_recovery_fraction']['estimate'],.5)
             self.assertIsNone(reports['V/all/both_sources']['effects']['P30_recovery_fraction']['estimate'])
+            for actor in (20,30):
+                for rank in range(4):
+                    sub=f'{actor:03}/rank{rank}'
+                    records=read(root/'swap'/sub/'part_0000.json')
+                    for name,query in (('swap','good'),('extra','own')):
+                        part=[r for r in records if r['query']==query]
+                        save(root/name/sub/'part_0000.json',part)
+                        save(root/name/sub/'complete.json',dict(jobs=len(part)))
+            module.report(out,[root/'swap',root/'extra'])
+            self.assertEqual(read(out/'search_swap_report.json')['summary'],reports)
 
     def test_short_purchase_uses_visible_asin_and_native_query_string(self):
         from .e2514_queries import native_purchase_candidates

@@ -70,6 +70,14 @@ def can_prepare_next(k):
 def main():
     phase,step,arm=sys.argv[1:]
     k=int(step);rank=int(os.environ['LOCAL_RANK'])
+    if (phase,k,arm)==('collect',6,'R') and os.environ.get('OPD_MIGRATION_GROUP')=='B':
+        from .e2514_search_extension import handoff_ready,finished_sampling,paths
+        if handoff_ready() and not finished_sampling('handoff'):
+            import subprocess
+            outcome=subprocess.run([sys.executable,'-m',__package__+'.e2514_search_extension','rank','handoff'])
+            if outcome.returncode:
+                save(paths('handoff')[1]/f'retry_rank{rank}.json',dict(rank=rank,exit_code=outcome.returncode))
+                print(f'Rank {rank} deferred incomplete supplementary queries to the terminal pass',flush=True)
     if phase in ('collect','targets') and k>=7 and collected_and_scored(k,arm,rank):
         return
     if phase=='eval' and k>=10 and evaluation_complete(k,arm,rank):
