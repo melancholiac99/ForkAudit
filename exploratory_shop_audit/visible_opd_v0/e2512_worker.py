@@ -76,9 +76,18 @@ def main():
             from .e2511_targets import score_shard
             score_shard(rank,target_shards(l,k,arm))
     elif phase=='train':
+        import torch
         from . import d_train
-        d_train.train(k,arms=[arm],folder=l.folder,state_dir=l.state,snapshot=l.snapshot,load_batch=l.batch,
-                      rates=l.config['rates'],compare_original=False,rank_local_activations=(k>=7))
+        path=l.folder(k,arm)
+        retry=any(path.glob('retained_oom_rank*.json'))
+        try:
+            d_train.train(k,arms=[arm],folder=l.folder,state_dir=l.state,snapshot=l.snapshot,load_batch=l.batch,
+                          rates=l.config['rates'],compare_original=False,rank_local_activations=(k>=7 and not retry),
+                          checkpoint_only=retry)
+        except torch.cuda.OutOfMemoryError:
+            if k>=7 and not retry:
+                save(path/f'retained_oom_rank{rank}.json',dict(rank=rank,update=k,arm=arm))
+            raise
     elif phase=='per_update':
         from .e25_measure import per_update
         started=time.time()

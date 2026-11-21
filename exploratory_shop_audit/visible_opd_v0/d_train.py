@@ -13,7 +13,7 @@ from .s21_store import ARMS, RUN as PREVIOUS
 from .s21_data import components
 from exploratory_shop_audit.grpo_forced_audit.common import digest_file, digest_value, read, save
 
-def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None, compare_original=True, replay_state=None, rank_local_activations=False):
+def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None, compare_original=True, replay_state=None, rank_local_activations=False, checkpoint_only=False):
     os.umask(0o077)
     os.environ['CUBLAS_WORKSPACE_CONFIG']=':4096:8'
     os.environ['NCCL_ALGO']='Ring'
@@ -27,7 +27,7 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
     params=[(n,p) for n,p in model.named_parameters() if p.requires_grad]
     initial={n:p.detach().cpu().clone() for n,p in params} if k==1 else None
     checkpoint_modules=[m for m in model.modules() if getattr(m,'gradient_checkpointing',False)]
-    fast_limit=None
+    fast_limit=0 if checkpoint_only else None
     for arm in arms:
         path=folder(k,arm);storage=state_dir(k,arm)
         if (path/'optimizer.json').exists():continue
