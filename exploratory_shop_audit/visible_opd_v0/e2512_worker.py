@@ -81,9 +81,14 @@ def main():
                       rates=l.config['rates'],compare_original=False,rank_local_activations=(k>=7))
     elif phase=='per_update':
         from .e25_measure import per_update
+        started=time.time()
         per_update(rank,l,k,[arm])
+        timing=l.folder(k,arm)/f'fp32_timing_{rank}.json'
+        if not timing.exists():
+            save(timing,dict(rank=rank,update=k,start=started,end=time.time()))
         if can_prepare_next(k):
             # A fresh process releases the FP32 actor and its CUDA context before vLLM starts.
+            print(f'Rank {rank} finished FP32 update {k}; preparing {arm} update {k+1}',flush=True)
             os.execv(sys.executable, [sys.executable,'-m',__package__+'.e2512_worker','collect',str(k+1),arm])
     elif phase=='common':
         from .e25_measure import common
