@@ -3,7 +3,7 @@ import torch
 from transformers import AutoTokenizer
 from .c_targets import actor,response,STAGE_B
 from .e25_layout import Layout
-from .e25_probe import GROUPS,SEED,add,baseline_logits,full_metrics,labels,pooled,RUN,PUBLIC
+from .e25_probe import GROUPS,SEED,add,full_metrics,labels,pooled,RUN,PUBLIC
 from .e25_refresh import fold_of
 from .d_data import PARENT
 from .s21_data import SmokeBatch,summarize
@@ -84,7 +84,13 @@ def common(rank,l,k,arms):
         torch.cuda.empty_cache()
         model=actor(dtype=torch.float32).eval();at(model,l,k,a)
         cross={g:[0.,0.] for g in totals}
-        fp_base = baseline_logits(model,b,chunks,rank,torch.float32) if l.name=='calibration_2511' else None
+        fp_base = None
+        if l.name=='calibration_2511':
+            # Reuse the signed preflight's step-zero reference; the loaded actor is already at step k.
+            reference=RUN/'base_logits'/str(torch.float32)/f'rank_{rank}.pt'
+            signature=read(PUBLIC/'common_reference_signatures_2511.json')['files']
+            assert digest_file(reference)==signature[str(reference.relative_to(RUN/'base_logits'))]
+            fp_base=torch.load(reference,weights_only=True,mmap=True,map_location='cpu')
         fp_move = {g:0. for g in totals}
         for ix in chunks:
             i=ix[0];r=b.rows[i];raw=response(model,r['prompt'],r['answer'])[1]
