@@ -4,6 +4,7 @@ import json
 import statistics
 import os
 import subprocess
+from datetime import datetime
 from pathlib import Path
 from .e25_paths import PUBLIC,RUN,SERIAL
 from exploratory_shop_audit.grpo_forced_audit.common import ROOT,read,save,digest_file
@@ -102,7 +103,7 @@ def utilization():
         summary[label]['mean_utilization_pct']=statistics.mean(r['mean_utilization_pct'] for r in by_gpu)
     allocations={}
     for arm in ARMS:
-        by_devices={};stages=0;from_update=0
+        by_devices={};stages=0;from_update=0;overlap=[]
         for file in sorted((RUN/SERIAL/'stages'/arm).glob('*.json')):
             stage=read(file)
             devices=stage.get('physical_devices')
@@ -115,8 +116,19 @@ def utilization():
             assert stage['allocated_gpus']==4 and stage['exit_code']==0 and stage['arms']==[arm]
             stages+=1
             by_devices[devices]=by_devices.get(devices,0.)+4*stage['elapsed']/3600
+            if arm!='R-matched' and stage['phase']=='per_update' and devices=='0,1,2,3':
+                k=stage['update']
+                peer=file.parent/(f'{k:03}_common.json' if k%10==0 else f'{k+1:03}_collect.json')
+                if peer.is_file():
+                    other=read(peer)
+                    assert other['physical_devices']=='4,5,6,7' and other['arms']==[arm]
+                    stop=[datetime.fromisoformat(s['finished']).timestamp() for s in (stage,other)]
+                    start=[t-s['elapsed'] for t,s in zip(stop,(stage,other))]
+                    seconds=max(0.,min(stop)-max(start))
+                    overlap.append(dict(update=k,other_phase=other['phase'],overlap_seconds=seconds,
+                        fp32_seconds=stage['elapsed'],other_seconds=other['elapsed']))
         allocations[arm]=dict(completed_stages=stages,device_map_from_update_receipt=from_update,
-            completed_stage_gpu_hours=sum(by_devices.values()),by_physical_devices=by_devices)
+            completed_stage_gpu_hours=sum(by_devices.values()),by_physical_devices=by_devices,cross_group_overlap=overlap)
     save(OUT/'final/gpu_utilization.json',dict(interval_seconds=15,coverage='Polling began during R-matched update 9',
         periods=summary,formal_arm_allocations=allocations,
         allocation_basis='Four reserved GPUs times elapsed wall time of each completed migrated arm stage, including prefetched work. Device IDs come from the stage or its signed update group. Separate sampling interventions and migration replays are outside these arm totals.'))
@@ -220,6 +232,10 @@ def final():
         hours=f"{allocation['completed_stage_gpu_hours']:.2f}" if allocation['completed_stages'] else 'NA'
         lines.append(f"| {arm} | {hours} |")
     lines.extend(['','Stage hours include training, collection and checkpoint evaluation within the scheduled four-card groups. [Per-device utilization and allocation basis](gpu_utilization.json).'])
+    overlaps=[x for a in telemetry['formal_arm_allocations'].values() for x in a['cross_group_overlap']]
+    if overlaps:
+        minutes=sum(x['overlap_seconds'] for x in overlaps)/60
+        lines.extend(['',f"After the R-matched endpoint, the paired stage timestamps show {minutes:.1f} minutes of overlap across {len(overlaps)} updates. Cards 0–3 scored the frozen FP32 probes while cards 4–7 collected the next batch or evaluated the checkpoint."])
     (OUT/'final/REPORT.md').write_text('\n'.join(lines)+'\n')
     save(OUT/'final/completion.json',dict(endpoints=outcomes,original_p=30,cpu_checks=needed,task_selection=selection,
          all_public_sha256={str(p.relative_to(OUT)):digest_file(p) for p in sorted(OUT.rglob('*')) if p.is_file() and p!=OUT/'final/completion.json'}))
