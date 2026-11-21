@@ -1,0 +1,2431 @@
+{
+  "update": 10,
+  "endpoints": {
+    "B": 0,
+    "R-matched": 10,
+    "P": 10
+  },
+  "summary": {
+    "B/T_opd_eval/sample": {
+      "reward": 0.15234050552312264,
+      "all_requirements": 0.39625,
+      "strict": 0.39625,
+      "length": 4.36125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 20,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 152,
+        "gold_purchase": 317,
+        "repeat_loop": 95,
+        "partial_alternative_purchase": 198,
+        "early_abstain": 18,
+        "reward_unverifiable": 20
+      },
+      "legal_rate": 0.8919461163657209,
+      "action_counts": {
+        "search": 813,
+        "open_listed_product": 814,
+        "select_visible_option": 762,
+        "buy": 687,
+        "illegal": 377,
+        "other_legal": 18,
+        "other_click": 18
+      },
+      "funnel_episode_rate": {
+        "search": 0.99875,
+        "open_listed_product": 0.9975,
+        "select_visible_option": 0.87,
+        "buy": 0.85875
+      },
+      "decision_token_count": 23738,
+      "decision_entropy": 0.041991610486611625,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20099,
+          "entropy": 0.1729146543493902
+        },
+        "click": {
+          "tokens": 15354,
+          "entropy": 0.052199041109983364
+        },
+        "option": {
+          "tokens": 8384,
+          "entropy": 0.023298279166090417
+        }
+      }
+    },
+    "B/T_opd_eval/greedy": {
+      "reward": 0.1806269688644687,
+      "all_requirements": 0.41,
+      "strict": 0.41,
+      "length": 4.255,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.98,
+      "invalid_rewards": 4,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 44,
+        "gold_purchase": 82,
+        "repeat_loop": 12,
+        "partial_alternative_purchase": 54,
+        "reward_unverifiable": 4,
+        "early_abstain": 4
+      },
+      "legal_rate": 0.9412455934195064,
+      "action_counts": {
+        "search": 202,
+        "open_listed_product": 204,
+        "select_visible_option": 202,
+        "buy": 184,
+        "illegal": 50,
+        "other_click": 5,
+        "other_legal": 4
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.925,
+        "buy": 0.92
+      },
+      "decision_token_count": 5564,
+      "decision_entropy": 0.04007791579161073,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4966,
+          "entropy": 0.16620218921789223
+        },
+        "click": {
+          "tokens": 3373,
+          "entropy": 0.05168823246822339
+        },
+        "option": {
+          "tokens": 2191,
+          "entropy": 0.02220406907768351
+        }
+      }
+    },
+    "B/V/sample": {
+      "reward": 0.367193159054487,
+      "all_requirements": 0.51875,
+      "strict": 0.51875,
+      "length": 4.25125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 24,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "repeat_loop": 64,
+        "gold_purchase": 415,
+        "early_abstain": 15,
+        "partial_alternative_purchase": 190,
+        "wrong_purchase": 92,
+        "reward_unverifiable": 24
+      },
+      "legal_rate": 0.9235518965010291,
+      "action_counts": {
+        "search": 813,
+        "open_listed_product": 815,
+        "select_visible_option": 753,
+        "illegal": 260,
+        "buy": 721,
+        "other_legal": 15,
+        "other_click": 24
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84125,
+        "buy": 0.90125
+      },
+      "decision_token_count": 21175,
+      "decision_entropy": 0.04058826831067175,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20497,
+          "entropy": 0.17441092240237194
+        },
+        "click": {
+          "tokens": 13684,
+          "entropy": 0.05239691966217843
+        },
+        "option": {
+          "tokens": 7491,
+          "entropy": 0.019017104902045733
+        }
+      }
+    },
+    "B/V/greedy": {
+      "reward": 0.44440407509157515,
+      "all_requirements": 0.57,
+      "strict": 0.57,
+      "length": 4.12,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 114,
+        "partial_alternative_purchase": 46,
+        "repeat_loop": 8,
+        "wrong_purchase": 23,
+        "reward_unverifiable": 6,
+        "early_abstain": 3
+      },
+      "legal_rate": 0.9538834951456311,
+      "action_counts": {
+        "search": 200,
+        "open_listed_product": 200,
+        "select_visible_option": 193,
+        "buy": 189,
+        "illegal": 38,
+        "other_click": 1,
+        "other_legal": 3
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.87,
+        "buy": 0.945
+      },
+      "decision_token_count": 5202,
+      "decision_entropy": 0.03641911647204284,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 5021,
+          "entropy": 0.1684036863814357
+        },
+        "click": {
+          "tokens": 3304,
+          "entropy": 0.04704845227577968
+        },
+        "option": {
+          "tokens": 1898,
+          "entropy": 0.01791578375573801
+        }
+      }
+    },
+    "B/V_seen/sample": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "B/V_seen/greedy": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "B/V_unseen/sample": {
+      "reward": 0.367193159054487,
+      "all_requirements": 0.51875,
+      "strict": 0.51875,
+      "length": 4.25125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 24,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "repeat_loop": 64,
+        "gold_purchase": 415,
+        "early_abstain": 15,
+        "partial_alternative_purchase": 190,
+        "wrong_purchase": 92,
+        "reward_unverifiable": 24
+      },
+      "legal_rate": 0.9235518965010291,
+      "action_counts": {
+        "search": 813,
+        "open_listed_product": 815,
+        "select_visible_option": 753,
+        "illegal": 260,
+        "buy": 721,
+        "other_legal": 15,
+        "other_click": 24
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84125,
+        "buy": 0.90125
+      },
+      "decision_token_count": 21175,
+      "decision_entropy": 0.04058826831067175,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20497,
+          "entropy": 0.17441092240237194
+        },
+        "click": {
+          "tokens": 13684,
+          "entropy": 0.05239691966217843
+        },
+        "option": {
+          "tokens": 7491,
+          "entropy": 0.019017104902045733
+        }
+      }
+    },
+    "B/V_unseen/greedy": {
+      "reward": 0.44440407509157515,
+      "all_requirements": 0.57,
+      "strict": 0.57,
+      "length": 4.12,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 114,
+        "partial_alternative_purchase": 46,
+        "repeat_loop": 8,
+        "wrong_purchase": 23,
+        "reward_unverifiable": 6,
+        "early_abstain": 3
+      },
+      "legal_rate": 0.9538834951456311,
+      "action_counts": {
+        "search": 200,
+        "open_listed_product": 200,
+        "select_visible_option": 193,
+        "buy": 189,
+        "illegal": 38,
+        "other_click": 1,
+        "other_legal": 3
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.87,
+        "buy": 0.945
+      },
+      "decision_token_count": 5202,
+      "decision_entropy": 0.03641911647204284,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 5021,
+          "entropy": 0.1684036863814357
+        },
+        "click": {
+          "tokens": 3304,
+          "entropy": 0.04704845227577968
+        },
+        "option": {
+          "tokens": 1898,
+          "entropy": 0.01791578375573801
+        }
+      }
+    },
+    "R-matched/T_opd_eval/sample": {
+      "reward": 0.18084053986378204,
+      "all_requirements": 0.405,
+      "strict": 0.405,
+      "length": 4.46125,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97125,
+      "invalid_rewards": 23,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 138,
+        "repeat_loop": 93,
+        "gold_purchase": 324,
+        "partial_alternative_purchase": 213,
+        "reward_unverifiable": 23,
+        "early_abstain": 9
+      },
+      "legal_rate": 0.9013729335948445,
+      "action_counts": {
+        "search": 831,
+        "open_listed_product": 839,
+        "select_visible_option": 767,
+        "other_click": 73,
+        "buy": 698,
+        "illegal": 352,
+        "other_legal": 9
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 0.9975,
+        "select_visible_option": 0.86875,
+        "buy": 0.8725
+      },
+      "decision_token_count": 24393,
+      "decision_entropy": 0.054442004432106075,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 18575,
+          "entropy": 0.1930628305673291
+        },
+        "click": {
+          "tokens": 16041,
+          "entropy": 0.06800344792453933
+        },
+        "option": {
+          "tokens": 8352,
+          "entropy": 0.02839565444861446
+        }
+      }
+    },
+    "R-matched/T_opd_eval/greedy": {
+      "reward": 0.21415711710164836,
+      "all_requirements": 0.43,
+      "strict": 0.43,
+      "length": 4.3,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.99,
+      "invalid_rewards": 2,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 39,
+        "gold_purchase": 86,
+        "repeat_loop": 15,
+        "partial_alternative_purchase": 58,
+        "reward_unverifiable": 2
+      },
+      "legal_rate": 0.9372093023255814,
+      "action_counts": {
+        "search": 207,
+        "open_listed_product": 208,
+        "select_visible_option": 198,
+        "buy": 185,
+        "illegal": 54,
+        "other_click": 8
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.895,
+        "buy": 0.925
+      },
+      "decision_token_count": 6003,
+      "decision_entropy": 0.052561748915279524,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4612,
+          "entropy": 0.1836937657588104
+        },
+        "click": {
+          "tokens": 3967,
+          "entropy": 0.06496939917129826
+        },
+        "option": {
+          "tokens": 2036,
+          "entropy": 0.02838633213452
+        }
+      }
+    },
+    "R-matched/V/sample": {
+      "reward": 0.37308351219093405,
+      "all_requirements": 0.525,
+      "strict": 0.525,
+      "length": 4.25875,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 420,
+        "partial_alternative_purchase": 190,
+        "early_abstain": 14,
+        "repeat_loop": 62,
+        "wrong_purchase": 92,
+        "reward_unverifiable": 22
+      },
+      "legal_rate": 0.9298503081890226,
+      "action_counts": {
+        "search": 819,
+        "open_listed_product": 821,
+        "select_visible_option": 744,
+        "buy": 724,
+        "illegal": 239,
+        "other_legal": 14,
+        "other_click": 46
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.8375,
+        "buy": 0.905
+      },
+      "decision_token_count": 21582,
+      "decision_entropy": 0.05104874025186676,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 18570,
+          "entropy": 0.19860689933051254
+        },
+        "click": {
+          "tokens": 14189,
+          "entropy": 0.06560393530899389
+        },
+        "option": {
+          "tokens": 7393,
+          "entropy": 0.023113712162379847
+        }
+      }
+    },
+    "R-matched/V/greedy": {
+      "reward": 0.3848768315018314,
+      "all_requirements": 0.545,
+      "strict": 0.545,
+      "length": 4.145,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 109,
+        "repeat_loop": 17,
+        "partial_alternative_purchase": 44,
+        "early_abstain": 1,
+        "wrong_purchase": 24,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.9348612786489747,
+      "action_counts": {
+        "search": 203,
+        "open_listed_product": 203,
+        "select_visible_option": 183,
+        "buy": 182,
+        "illegal": 54,
+        "other_legal": 1,
+        "other_click": 3
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.835,
+        "buy": 0.91
+      },
+      "decision_token_count": 5466,
+      "decision_entropy": 0.04989243308376284,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4453,
+          "entropy": 0.1957491689611393
+        },
+        "click": {
+          "tokens": 3678,
+          "entropy": 0.06187452414045954
+        },
+        "option": {
+          "tokens": 1788,
+          "entropy": 0.025244708863108208
+        }
+      }
+    },
+    "R-matched/V_seen/sample": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "R-matched/V_seen/greedy": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "R-matched/V_unseen/sample": {
+      "reward": 0.37308351219093405,
+      "all_requirements": 0.525,
+      "strict": 0.525,
+      "length": 4.25875,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.9725,
+      "invalid_rewards": 22,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 420,
+        "partial_alternative_purchase": 190,
+        "early_abstain": 14,
+        "repeat_loop": 62,
+        "wrong_purchase": 92,
+        "reward_unverifiable": 22
+      },
+      "legal_rate": 0.9298503081890226,
+      "action_counts": {
+        "search": 819,
+        "open_listed_product": 821,
+        "select_visible_option": 744,
+        "buy": 724,
+        "illegal": 239,
+        "other_legal": 14,
+        "other_click": 46
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.8375,
+        "buy": 0.905
+      },
+      "decision_token_count": 21582,
+      "decision_entropy": 0.05104874025186676,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 18570,
+          "entropy": 0.19860689933051254
+        },
+        "click": {
+          "tokens": 14189,
+          "entropy": 0.06560393530899389
+        },
+        "option": {
+          "tokens": 7393,
+          "entropy": 0.023113712162379847
+        }
+      }
+    },
+    "R-matched/V_unseen/greedy": {
+      "reward": 0.3848768315018314,
+      "all_requirements": 0.545,
+      "strict": 0.545,
+      "length": 4.145,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 109,
+        "repeat_loop": 17,
+        "partial_alternative_purchase": 44,
+        "early_abstain": 1,
+        "wrong_purchase": 24,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.9348612786489747,
+      "action_counts": {
+        "search": 203,
+        "open_listed_product": 203,
+        "select_visible_option": 183,
+        "buy": 182,
+        "illegal": 54,
+        "other_legal": 1,
+        "other_click": 3
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.835,
+        "buy": 0.91
+      },
+      "decision_token_count": 5466,
+      "decision_entropy": 0.04989243308376284,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4453,
+          "entropy": 0.1957491689611393
+        },
+        "click": {
+          "tokens": 3678,
+          "entropy": 0.06187452414045954
+        },
+        "option": {
+          "tokens": 1788,
+          "entropy": 0.025244708863108208
+        }
+      }
+    },
+    "P/T_opd_eval/sample": {
+      "reward": 0.21629439031021064,
+      "all_requirements": 0.43,
+      "strict": 0.43,
+      "length": 4.29,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.97625,
+      "invalid_rewards": 19,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 149,
+        "gold_purchase": 344,
+        "repeat_loop": 64,
+        "partial_alternative_purchase": 217,
+        "reward_unverifiable": 19,
+        "early_abstain": 7
+      },
+      "legal_rate": 0.9286130536130536,
+      "action_counts": {
+        "search": 814,
+        "open_listed_product": 819,
+        "select_visible_option": 792,
+        "other_click": 26,
+        "buy": 729,
+        "illegal": 245,
+        "other_legal": 7
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.89625,
+        "buy": 0.91125
+      },
+      "decision_token_count": 23076,
+      "decision_entropy": 0.048148463123807224,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 18959,
+          "entropy": 0.17503557276615903
+        },
+        "click": {
+          "tokens": 14597,
+          "entropy": 0.06189051282808124
+        },
+        "option": {
+          "tokens": 8479,
+          "entropy": 0.02449087384048518
+        }
+      }
+    },
+    "P/T_opd_eval/greedy": {
+      "reward": 0.21118586309523793,
+      "all_requirements": 0.435,
+      "strict": 0.435,
+      "length": 4.25,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.985,
+      "invalid_rewards": 3,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 44,
+        "gold_purchase": 87,
+        "repeat_loop": 12,
+        "partial_alternative_purchase": 54,
+        "reward_unverifiable": 3
+      },
+      "legal_rate": 0.9494117647058824,
+      "action_counts": {
+        "search": 204,
+        "open_listed_product": 206,
+        "select_visible_option": 203,
+        "buy": 188,
+        "illegal": 43,
+        "other_click": 6
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.92,
+        "buy": 0.94
+      },
+      "decision_token_count": 5585,
+      "decision_entropy": 0.0498850779751456,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4730,
+          "entropy": 0.16667024505546693
+        },
+        "click": {
+          "tokens": 3410,
+          "entropy": 0.06633474694592
+        },
+        "option": {
+          "tokens": 2175,
+          "entropy": 0.02409502225544876
+        }
+      }
+    },
+    "P/V/sample": {
+      "reward": 0.4183157337454212,
+      "all_requirements": 0.55375,
+      "strict": 0.55375,
+      "length": 4.2975,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.96875,
+      "invalid_rewards": 25,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 443,
+        "repeat_loop": 56,
+        "partial_alternative_purchase": 186,
+        "wrong_purchase": 82,
+        "reward_unverifiable": 25,
+        "early_abstain": 8
+      },
+      "legal_rate": 0.9357184409540431,
+      "action_counts": {
+        "search": 823,
+        "open_listed_product": 826,
+        "select_visible_option": 781,
+        "buy": 736,
+        "illegal": 221,
+        "other_click": 43,
+        "other_legal": 8
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.855,
+        "buy": 0.92
+      },
+      "decision_token_count": 21333,
+      "decision_entropy": 0.04691055594622464,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 19772,
+          "entropy": 0.17689805563169383
+        },
+        "click": {
+          "tokens": 13710,
+          "entropy": 0.061730558082528204
+        },
+        "option": {
+          "tokens": 7623,
+          "entropy": 0.020256715032054114
+        }
+      }
+    },
+    "P/V/greedy": {
+      "reward": 0.46961652930402925,
+      "all_requirements": 0.59,
+      "strict": 0.59,
+      "length": 4.14,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 118,
+        "repeat_loop": 9,
+        "partial_alternative_purchase": 46,
+        "wrong_purchase": 22,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.966183574879227,
+      "action_counts": {
+        "search": 203,
+        "open_listed_product": 203,
+        "select_visible_option": 199,
+        "buy": 191,
+        "illegal": 28,
+        "other_click": 4
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.88,
+        "buy": 0.955
+      },
+      "decision_token_count": 5146,
+      "decision_entropy": 0.04231372568045097,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4879,
+          "entropy": 0.17079589739159856
+        },
+        "click": {
+          "tokens": 3202,
+          "entropy": 0.05690616362997678
+        },
+        "option": {
+          "tokens": 1944,
+          "entropy": 0.018278238893217606
+        }
+      }
+    },
+    "P/V_seen/sample": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "P/V_seen/greedy": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "P/V_unseen/sample": {
+      "reward": 0.4183157337454212,
+      "all_requirements": 0.55375,
+      "strict": 0.55375,
+      "length": 4.2975,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.96875,
+      "invalid_rewards": 25,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 443,
+        "repeat_loop": 56,
+        "partial_alternative_purchase": 186,
+        "wrong_purchase": 82,
+        "reward_unverifiable": 25,
+        "early_abstain": 8
+      },
+      "legal_rate": 0.9357184409540431,
+      "action_counts": {
+        "search": 823,
+        "open_listed_product": 826,
+        "select_visible_option": 781,
+        "buy": 736,
+        "illegal": 221,
+        "other_click": 43,
+        "other_legal": 8
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.855,
+        "buy": 0.92
+      },
+      "decision_token_count": 21333,
+      "decision_entropy": 0.04691055594622464,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 19772,
+          "entropy": 0.17689805563169383
+        },
+        "click": {
+          "tokens": 13710,
+          "entropy": 0.061730558082528204
+        },
+        "option": {
+          "tokens": 7623,
+          "entropy": 0.020256715032054114
+        }
+      }
+    },
+    "P/V_unseen/greedy": {
+      "reward": 0.46961652930402925,
+      "all_requirements": 0.59,
+      "strict": 0.59,
+      "length": 4.14,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 5,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 118,
+        "repeat_loop": 9,
+        "partial_alternative_purchase": 46,
+        "wrong_purchase": 22,
+        "reward_unverifiable": 5
+      },
+      "legal_rate": 0.966183574879227,
+      "action_counts": {
+        "search": 203,
+        "open_listed_product": 203,
+        "select_visible_option": 199,
+        "buy": 191,
+        "illegal": 28,
+        "other_click": 4
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.88,
+        "buy": 0.955
+      },
+      "decision_token_count": 5146,
+      "decision_entropy": 0.04231372568045097,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4879,
+          "entropy": 0.17079589739159856
+        },
+        "click": {
+          "tokens": 3202,
+          "entropy": 0.05690616362997678
+        },
+        "option": {
+          "tokens": 1944,
+          "entropy": 0.018278238893217606
+        }
+      }
+    }
+  },
+  "paired": {
+    "P-R-matched/sample/asin/T_opd_eval": {
+      "reward": {
+        "estimate": 0.03545385044642856,
+        "ci95": [
+          0.006181318073202839,
+          0.06629849512791891
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.025,
+        "ci95": [
+          0.005,
+          0.04625
+        ]
+      },
+      "strict": {
+        "estimate": 0.025,
+        "ci95": [
+          0.005,
+          0.04625
+        ]
+      },
+      "length": {
+        "estimate": -0.17125,
+        "ci95": [
+          -0.25875,
+          -0.09375
+        ]
+      }
+    },
+    "P-R-matched/sample/asin/V": {
+      "reward": {
+        "estimate": 0.04523222155448718,
+        "ci95": [
+          0.014596607607886905,
+          0.07546114855196888
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02875,
+        "ci95": [
+          0.00875,
+          0.04875
+        ]
+      },
+      "strict": {
+        "estimate": 0.02875,
+        "ci95": [
+          0.00875,
+          0.04875
+        ]
+      },
+      "length": {
+        "estimate": 0.03875,
+        "ci95": [
+          -3.124999999997158e-05,
+          0.08
+        ]
+      }
+    },
+    "P-R-matched/sample/asin/V_unseen": {
+      "reward": {
+        "estimate": 0.04523222155448718,
+        "ci95": [
+          0.015574157938415744,
+          0.07581444382440473
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02875,
+        "ci95": [
+          0.00875,
+          0.04875
+        ]
+      },
+      "strict": {
+        "estimate": 0.02875,
+        "ci95": [
+          0.00875,
+          0.04875
+        ]
+      },
+      "length": {
+        "estimate": 0.03875,
+        "ci95": [
+          -0.00125,
+          0.08125
+        ]
+      }
+    },
+    "P-R-matched/sample/task/T_opd_eval": {
+      "reward": {
+        "estimate": 0.03545385044642856,
+        "ci95": [
+          0.005926076633327612,
+          0.06621135176997481
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.025,
+        "ci95": [
+          0.005,
+          0.045
+        ]
+      },
+      "strict": {
+        "estimate": 0.025,
+        "ci95": [
+          0.005,
+          0.045
+        ]
+      },
+      "length": {
+        "estimate": -0.17125,
+        "ci95": [
+          -0.26,
+          -0.0925
+        ]
+      }
+    },
+    "P-R-matched/sample/task/V": {
+      "reward": {
+        "estimate": 0.04523222155448718,
+        "ci95": [
+          0.015387332947000915,
+          0.07507464067508009
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02875,
+        "ci95": [
+          0.00875,
+          0.04875
+        ]
+      },
+      "strict": {
+        "estimate": 0.02875,
+        "ci95": [
+          0.00875,
+          0.04875
+        ]
+      },
+      "length": {
+        "estimate": 0.03875,
+        "ci95": [
+          -0.00125,
+          0.08125
+        ]
+      }
+    },
+    "P-R-matched/sample/task/V_unseen": {
+      "reward": {
+        "estimate": 0.04523222155448718,
+        "ci95": [
+          0.01501044635702839,
+          0.07533021691849817
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02875,
+        "ci95": [
+          0.00875,
+          0.04875
+        ]
+      },
+      "strict": {
+        "estimate": 0.02875,
+        "ci95": [
+          0.00875,
+          0.04875
+        ]
+      },
+      "length": {
+        "estimate": 0.03875,
+        "ci95": [
+          -0.00125,
+          0.08125
+        ]
+      }
+    },
+    "P-R-matched/greedy/asin/T_opd_eval": {
+      "reward": {
+        "estimate": -0.0029712540064102556,
+        "ci95": [
+          -0.05276810146233976,
+          0.04584096304086538
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.005,
+        "ci95": [
+          -0.025,
+          0.035
+        ]
+      },
+      "strict": {
+        "estimate": 0.005,
+        "ci95": [
+          -0.025,
+          0.035
+        ]
+      },
+      "length": {
+        "estimate": -0.05,
+        "ci95": [
+          -0.135,
+          0.025
+        ]
+      }
+    },
+    "P-R-matched/greedy/asin/V": {
+      "reward": {
+        "estimate": 0.08473969780219781,
+        "ci95": [
+          0.029401664091117212,
+          0.14622863009386441
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.045,
+        "ci95": [
+          0.01,
+          0.08
+        ]
+      },
+      "strict": {
+        "estimate": 0.045,
+        "ci95": [
+          0.01,
+          0.08
+        ]
+      },
+      "length": {
+        "estimate": -0.005,
+        "ci95": [
+          -0.055,
+          0.045
+        ]
+      }
+    },
+    "P-R-matched/greedy/asin/V_unseen": {
+      "reward": {
+        "estimate": 0.08473969780219781,
+        "ci95": [
+          0.02777842548076923,
+          0.1451762977907509
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.045,
+        "ci95": [
+          0.01,
+          0.08
+        ]
+      },
+      "strict": {
+        "estimate": 0.045,
+        "ci95": [
+          0.01,
+          0.08
+        ]
+      },
+      "length": {
+        "estimate": -0.005,
+        "ci95": [
+          -0.055,
+          0.045
+        ]
+      }
+    },
+    "P-R-matched/greedy/task/T_opd_eval": {
+      "reward": {
+        "estimate": -0.0029712540064102556,
+        "ci95": [
+          -0.054126384715544866,
+          0.04544954427083331
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.005,
+        "ci95": [
+          -0.025,
+          0.035
+        ]
+      },
+      "strict": {
+        "estimate": 0.005,
+        "ci95": [
+          -0.025,
+          0.035
+        ]
+      },
+      "length": {
+        "estimate": -0.05,
+        "ci95": [
+          -0.135,
+          0.025
+        ]
+      }
+    },
+    "P-R-matched/greedy/task/V": {
+      "reward": {
+        "estimate": 0.08473969780219781,
+        "ci95": [
+          0.029820876259157504,
+          0.14646536458333334
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.045,
+        "ci95": [
+          0.01,
+          0.08
+        ]
+      },
+      "strict": {
+        "estimate": 0.045,
+        "ci95": [
+          0.01,
+          0.08
+        ]
+      },
+      "length": {
+        "estimate": -0.005,
+        "ci95": [
+          -0.055,
+          0.045
+        ]
+      }
+    },
+    "P-R-matched/greedy/task/V_unseen": {
+      "reward": {
+        "estimate": 0.08473969780219781,
+        "ci95": [
+          0.02976001602564103,
+          0.14502355196886443
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.045,
+        "ci95": [
+          0.01,
+          0.08
+        ]
+      },
+      "strict": {
+        "estimate": 0.045,
+        "ci95": [
+          0.01,
+          0.08
+        ]
+      },
+      "length": {
+        "estimate": -0.005,
+        "ci95": [
+          -0.055,
+          0.045
+        ]
+      }
+    },
+    "P-B/sample/asin/T_opd_eval": {
+      "reward": {
+        "estimate": 0.06395388478708791,
+        "ci95": [
+          0.0376958833419185,
+          0.09235567042983059
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.03375,
+        "ci95": [
+          0.01625,
+          0.0525
+        ]
+      },
+      "strict": {
+        "estimate": 0.03375,
+        "ci95": [
+          0.01625,
+          0.0525
+        ]
+      },
+      "length": {
+        "estimate": -0.07125,
+        "ci95": [
+          -0.15,
+          0.0025
+        ]
+      }
+    },
+    "P-B/sample/asin/V": {
+      "reward": {
+        "estimate": 0.05112257469093404,
+        "ci95": [
+          0.025196867845695966,
+          0.07882297193366529
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.035,
+        "ci95": [
+          0.0175,
+          0.05375
+        ]
+      },
+      "strict": {
+        "estimate": 0.035,
+        "ci95": [
+          0.0175,
+          0.05375
+        ]
+      },
+      "length": {
+        "estimate": 0.04625,
+        "ci95": [
+          -0.03125,
+          0.13003124999999954
+        ]
+      }
+    },
+    "P-B/sample/asin/V_unseen": {
+      "reward": {
+        "estimate": 0.05112257469093404,
+        "ci95": [
+          0.025339794921874995,
+          0.07837496726905908
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.035,
+        "ci95": [
+          0.01875,
+          0.05375
+        ]
+      },
+      "strict": {
+        "estimate": 0.035,
+        "ci95": [
+          0.01875,
+          0.05375
+        ]
+      },
+      "length": {
+        "estimate": 0.04625,
+        "ci95": [
+          -0.03,
+          0.13003124999999954
+        ]
+      }
+    },
+    "P-B/sample/task/T_opd_eval": {
+      "reward": {
+        "estimate": 0.06395388478708791,
+        "ci95": [
+          0.037405636625744046,
+          0.09151017706902471
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.03375,
+        "ci95": [
+          0.01625,
+          0.0525
+        ]
+      },
+      "strict": {
+        "estimate": 0.03375,
+        "ci95": [
+          0.01625,
+          0.0525
+        ]
+      },
+      "length": {
+        "estimate": -0.07125,
+        "ci95": [
+          -0.14875,
+          0.0025
+        ]
+      }
+    },
+    "P-B/sample/task/V": {
+      "reward": {
+        "estimate": 0.05112257469093404,
+        "ci95": [
+          0.0246534177898924,
+          0.07800597062442766
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.035,
+        "ci95": [
+          0.0175,
+          0.0525
+        ]
+      },
+      "strict": {
+        "estimate": 0.035,
+        "ci95": [
+          0.0175,
+          0.0525
+        ]
+      },
+      "length": {
+        "estimate": 0.04625,
+        "ci95": [
+          -0.03125,
+          0.1325
+        ]
+      }
+    },
+    "P-B/sample/task/V_unseen": {
+      "reward": {
+        "estimate": 0.05112257469093404,
+        "ci95": [
+          0.025144728887648807,
+          0.07871417875744045
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.035,
+        "ci95": [
+          0.0175,
+          0.05375
+        ]
+      },
+      "strict": {
+        "estimate": 0.035,
+        "ci95": [
+          0.0175,
+          0.05375
+        ]
+      },
+      "length": {
+        "estimate": 0.04625,
+        "ci95": [
+          -0.03125,
+          0.1325
+        ]
+      }
+    },
+    "P-B/greedy/asin/T_opd_eval": {
+      "reward": {
+        "estimate": 0.030558894230769233,
+        "ci95": [
+          -0.01590697115384615,
+          0.07616186899038457
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.025,
+        "ci95": [
+          -0.005,
+          0.06
+        ]
+      },
+      "strict": {
+        "estimate": 0.025,
+        "ci95": [
+          -0.005,
+          0.06
+        ]
+      },
+      "length": {
+        "estimate": -0.005,
+        "ci95": [
+          -0.115,
+          0.145
+        ]
+      }
+    },
+    "P-B/greedy/asin/V": {
+      "reward": {
+        "estimate": 0.02521245421245422,
+        "ci95": [
+          -0.02044821428571428,
+          0.07256570942078754
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.01,
+          0.05
+        ]
+      },
+      "strict": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.01,
+          0.05
+        ]
+      },
+      "length": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.065,
+          0.12
+        ]
+      }
+    },
+    "P-B/greedy/asin/V_unseen": {
+      "reward": {
+        "estimate": 0.02521245421245422,
+        "ci95": [
+          -0.019312674565018312,
+          0.07129203010531135
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.01,
+          0.05
+        ]
+      },
+      "strict": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.01,
+          0.05
+        ]
+      },
+      "length": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.065,
+          0.12
+        ]
+      }
+    },
+    "P-B/greedy/task/T_opd_eval": {
+      "reward": {
+        "estimate": 0.030558894230769233,
+        "ci95": [
+          -0.013037760416666665,
+          0.07594261818910253
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.025,
+        "ci95": [
+          -0.005,
+          0.06
+        ]
+      },
+      "strict": {
+        "estimate": 0.025,
+        "ci95": [
+          -0.005,
+          0.06
+        ]
+      },
+      "length": {
+        "estimate": -0.005,
+        "ci95": [
+          -0.115,
+          0.14
+        ]
+      }
+    },
+    "P-B/greedy/task/V": {
+      "reward": {
+        "estimate": 0.02521245421245422,
+        "ci95": [
+          -0.018288169642857142,
+          0.07099782366071425
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.01,
+          0.05
+        ]
+      },
+      "strict": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.01,
+          0.05
+        ]
+      },
+      "length": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.065,
+          0.12
+        ]
+      }
+    },
+    "P-B/greedy/task/V_unseen": {
+      "reward": {
+        "estimate": 0.02521245421245422,
+        "ci95": [
+          -0.020437554372710623,
+          0.07172089056776555
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.01,
+          0.05
+        ]
+      },
+      "strict": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.01,
+          0.05
+        ]
+      },
+      "length": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.065,
+          0.12
+        ]
+      }
+    },
+    "R-matched-B/sample/asin/T_opd_eval": {
+      "reward": {
+        "estimate": 0.02850003434065935,
+        "ci95": [
+          -0.003930355586796018,
+          0.0614715272829384
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.00875,
+        "ci95": [
+          -0.01375,
+          0.03125
+        ]
+      },
+      "strict": {
+        "estimate": 0.00875,
+        "ci95": [
+          -0.01375,
+          0.03125
+        ]
+      },
+      "length": {
+        "estimate": 0.1,
+        "ci95": [
+          -0.00625,
+          0.21875
+        ]
+      }
+    },
+    "R-matched-B/sample/asin/V": {
+      "reward": {
+        "estimate": 0.0058903531364468895,
+        "ci95": [
+          -0.02458723457532051,
+          0.03768672375801281
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.00625,
+        "ci95": [
+          -0.0125,
+          0.025
+        ]
+      },
+      "strict": {
+        "estimate": 0.00625,
+        "ci95": [
+          -0.0125,
+          0.025
+        ]
+      },
+      "length": {
+        "estimate": 0.0075,
+        "ci95": [
+          -0.0675,
+          0.0875
+        ]
+      }
+    },
+    "R-matched-B/sample/asin/V_unseen": {
+      "reward": {
+        "estimate": 0.0058903531364468895,
+        "ci95": [
+          -0.025585095796130955,
+          0.03697358899238782
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.00625,
+        "ci95": [
+          -0.0125,
+          0.02625
+        ]
+      },
+      "strict": {
+        "estimate": 0.00625,
+        "ci95": [
+          -0.0125,
+          0.02625
+        ]
+      },
+      "length": {
+        "estimate": 0.0075,
+        "ci95": [
+          -0.0675,
+          0.08875
+        ]
+      }
+    },
+    "R-matched-B/sample/task/T_opd_eval": {
+      "reward": {
+        "estimate": 0.02850003434065935,
+        "ci95": [
+          -0.003796280691964288,
+          0.06054730735247825
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.00875,
+        "ci95": [
+          -0.01375,
+          0.03125
+        ]
+      },
+      "strict": {
+        "estimate": 0.00875,
+        "ci95": [
+          -0.01375,
+          0.03125
+        ]
+      },
+      "length": {
+        "estimate": 0.1,
+        "ci95": [
+          -0.01,
+          0.21625
+        ]
+      }
+    },
+    "R-matched-B/sample/task/V": {
+      "reward": {
+        "estimate": 0.0058903531364468895,
+        "ci95": [
+          -0.025416947830815023,
+          0.03586143025269002
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.00625,
+        "ci95": [
+          -0.0125,
+          0.025
+        ]
+      },
+      "strict": {
+        "estimate": 0.00625,
+        "ci95": [
+          -0.0125,
+          0.025
+        ]
+      },
+      "length": {
+        "estimate": 0.0075,
+        "ci95": [
+          -0.06625,
+          0.09
+        ]
+      }
+    },
+    "R-matched-B/sample/task/V_unseen": {
+      "reward": {
+        "estimate": 0.0058903531364468895,
+        "ci95": [
+          -0.025911638979510074,
+          0.0374031740069826
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.00625,
+        "ci95": [
+          -0.0125,
+          0.02625
+        ]
+      },
+      "strict": {
+        "estimate": 0.00625,
+        "ci95": [
+          -0.0125,
+          0.02625
+        ]
+      },
+      "length": {
+        "estimate": 0.0075,
+        "ci95": [
+          -0.06875,
+          0.09
+        ]
+      }
+    },
+    "R-matched-B/greedy/asin/T_opd_eval": {
+      "reward": {
+        "estimate": 0.03353014823717949,
+        "ci95": [
+          -0.029049591846955134,
+          0.09616527944711536
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.02,
+          0.06
+        ]
+      },
+      "strict": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.02,
+          0.06
+        ]
+      },
+      "length": {
+        "estimate": 0.045,
+        "ci95": [
+          -0.09,
+          0.21
+        ]
+      }
+    },
+    "R-matched-B/greedy/asin/V": {
+      "reward": {
+        "estimate": -0.05952724358974359,
+        "ci95": [
+          -0.119025486492674,
+          -0.004873304429945059
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.025,
+        "ci95": [
+          -0.065,
+          0.01
+        ]
+      },
+      "strict": {
+        "estimate": -0.025,
+        "ci95": [
+          -0.065,
+          0.01
+        ]
+      },
+      "length": {
+        "estimate": 0.025,
+        "ci95": [
+          -0.06,
+          0.12
+        ]
+      }
+    },
+    "R-matched-B/greedy/asin/V_unseen": {
+      "reward": {
+        "estimate": -0.05952724358974359,
+        "ci95": [
+          -0.11851573517628201,
+          -0.0024415765224359053
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.025,
+        "ci95": [
+          -0.06,
+          0.01
+        ]
+      },
+      "strict": {
+        "estimate": -0.025,
+        "ci95": [
+          -0.06,
+          0.01
+        ]
+      },
+      "length": {
+        "estimate": 0.025,
+        "ci95": [
+          -0.06,
+          0.12
+        ]
+      }
+    },
+    "R-matched-B/greedy/task/T_opd_eval": {
+      "reward": {
+        "estimate": 0.03353014823717949,
+        "ci95": [
+          -0.027377303685897428,
+          0.0948037610176282
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.02,
+          0.06
+        ]
+      },
+      "strict": {
+        "estimate": 0.02,
+        "ci95": [
+          -0.02,
+          0.06
+        ]
+      },
+      "length": {
+        "estimate": 0.045,
+        "ci95": [
+          -0.09,
+          0.21
+        ]
+      }
+    },
+    "R-matched-B/greedy/task/V": {
+      "reward": {
+        "estimate": -0.05952724358974359,
+        "ci95": [
+          -0.11802105940934067,
+          -0.003950228937728959
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.025,
+        "ci95": [
+          -0.065,
+          0.01
+        ]
+      },
+      "strict": {
+        "estimate": -0.025,
+        "ci95": [
+          -0.065,
+          0.01
+        ]
+      },
+      "length": {
+        "estimate": 0.025,
+        "ci95": [
+          -0.06,
+          0.12
+        ]
+      }
+    },
+    "R-matched-B/greedy/task/V_unseen": {
+      "reward": {
+        "estimate": -0.05952724358974359,
+        "ci95": [
+          -0.11903360376602562,
+          -0.0033935639880952368
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.025,
+        "ci95": [
+          -0.065,
+          0.01
+        ]
+      },
+      "strict": {
+        "estimate": -0.025,
+        "ci95": [
+          -0.065,
+          0.01
+        ]
+      },
+      "length": {
+        "estimate": 0.025,
+        "ci95": [
+          -0.06,
+          0.12
+        ]
+      }
+    }
+  },
+  "train_eval_minus_V": {
+    "B/sample": {
+      "reward": -0.21485265353136437,
+      "all_requirements": -0.12250000000000005,
+      "strict": -0.12250000000000005,
+      "length": 0.11000000000000032
+    },
+    "B/greedy": {
+      "reward": -0.2637771062271065,
+      "all_requirements": -0.15999999999999998,
+      "strict": -0.15999999999999998,
+      "length": 0.1349999999999998
+    },
+    "R-matched/sample": {
+      "reward": -0.192242972327152,
+      "all_requirements": -0.12,
+      "strict": -0.12,
+      "length": 0.20249999999999968
+    },
+    "R-matched/greedy": {
+      "reward": -0.17071971440018302,
+      "all_requirements": -0.11500000000000005,
+      "strict": -0.11500000000000005,
+      "length": 0.15500000000000025
+    },
+    "P/sample": {
+      "reward": -0.20202134343521055,
+      "all_requirements": -0.12374999999999997,
+      "strict": -0.12374999999999997,
+      "length": -0.007500000000000284
+    },
+    "P/greedy": {
+      "reward": -0.2584306662087913,
+      "all_requirements": -0.15499999999999997,
+      "strict": -0.15499999999999997,
+      "length": 0.11000000000000032
+    }
+  },
+  "paired_gap": {
+    "P-R-matched/sample/asin": {
+      "reward": {
+        "estimate": -0.009778371108058542,
+        "ci95": [
+          -0.051583780280591796,
+          0.03333923792353476
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.0037499999999999756,
+        "ci95": [
+          -0.0325,
+          0.024999999999999998
+        ]
+      },
+      "strict": {
+        "estimate": -0.0037499999999999756,
+        "ci95": [
+          -0.0325,
+          0.024999999999999998
+        ]
+      },
+      "length": {
+        "estimate": -0.20999999999999996,
+        "ci95": [
+          -0.3075,
+          -0.1225
+        ]
+      }
+    },
+    "P-R-matched/sample/task": {
+      "reward": {
+        "estimate": -0.009778371108058542,
+        "ci95": [
+          -0.05284889637706043,
+          0.032517921835651324
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.0037499999999999756,
+        "ci95": [
+          -0.03125,
+          0.025
+        ]
+      },
+      "strict": {
+        "estimate": -0.0037499999999999756,
+        "ci95": [
+          -0.03125,
+          0.025
+        ]
+      },
+      "length": {
+        "estimate": -0.20999999999999996,
+        "ci95": [
+          -0.30378125,
+          -0.12121875000000046
+        ]
+      }
+    },
+    "P-R-matched/greedy/asin": {
+      "reward": {
+        "estimate": -0.08771095180860827,
+        "ci95": [
+          -0.16624854839171244,
+          -0.012693642685439566
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.039999999999999925,
+        "ci95": [
+          -0.085,
+          0.005
+        ]
+      },
+      "strict": {
+        "estimate": -0.039999999999999925,
+        "ci95": [
+          -0.085,
+          0.005
+        ]
+      },
+      "length": {
+        "estimate": -0.04499999999999993,
+        "ci95": [
+          -0.14,
+          0.045
+        ]
+      }
+    },
+    "P-R-matched/greedy/task": {
+      "reward": {
+        "estimate": -0.08771095180860827,
+        "ci95": [
+          -0.1674215530563187,
+          -0.013323958333333335
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.039999999999999925,
+        "ci95": [
+          -0.085,
+          0.0049999999999999975
+        ]
+      },
+      "strict": {
+        "estimate": -0.039999999999999925,
+        "ci95": [
+          -0.085,
+          0.0049999999999999975
+        ]
+      },
+      "length": {
+        "estimate": -0.04499999999999993,
+        "ci95": [
+          -0.145,
+          0.045
+        ]
+      }
+    },
+    "P-B/sample/asin": {
+      "reward": {
+        "estimate": 0.01283131009615382,
+        "ci95": [
+          -0.02539638560983289,
+          0.05138387895633012
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.0012499999999999178,
+        "ci95": [
+          -0.026250000000000002,
+          0.02375
+        ]
+      },
+      "strict": {
+        "estimate": -0.0012499999999999178,
+        "ci95": [
+          -0.026250000000000002,
+          0.02375
+        ]
+      },
+      "length": {
+        "estimate": -0.1175000000000006,
+        "ci95": [
+          -0.23125,
+          -0.01121875000000045
+        ]
+      }
+    },
+    "P-B/sample/task": {
+      "reward": {
+        "estimate": 0.01283131009615382,
+        "ci95": [
+          -0.025950583469265077,
+          0.051139045222355774
+        ]
+      },
+      "all_requirements": {
+        "estimate": -0.0012499999999999178,
+        "ci95": [
+          -0.0275,
+          0.024999999999999998
+        ]
+      },
+      "strict": {
+        "estimate": -0.0012499999999999178,
+        "ci95": [
+          -0.0275,
+          0.024999999999999998
+        ]
+      },
+      "length": {
+        "estimate": -0.1175000000000006,
+        "ci95": [
+          -0.23375,
+          -0.01
+        ]
+      }
+    },
+    "P-B/greedy/asin": {
+      "reward": {
+        "estimate": 0.0053464400183151906,
+        "ci95": [
+          -0.060666430574633695,
+          0.06973169785943222
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.0050000000000000044,
+        "ci95": [
+          -0.04,
+          0.05
+        ]
+      },
+      "strict": {
+        "estimate": 0.0050000000000000044,
+        "ci95": [
+          -0.04,
+          0.05
+        ]
+      },
+      "length": {
+        "estimate": -0.024999999999999467,
+        "ci95": [
+          -0.175,
+          0.1401249999999982
+        ]
+      }
+    },
+    "P-B/greedy/task": {
+      "reward": {
+        "estimate": 0.0053464400183151906,
+        "ci95": [
+          -0.059654623111263724,
+          0.06829279561584248
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.0050000000000000044,
+        "ci95": [
+          -0.04,
+          0.05
+        ]
+      },
+      "strict": {
+        "estimate": 0.0050000000000000044,
+        "ci95": [
+          -0.04,
+          0.05
+        ]
+      },
+      "length": {
+        "estimate": -0.024999999999999467,
+        "ci95": [
+          -0.175,
+          0.14500000000000002
+        ]
+      }
+    },
+    "R-matched-B/sample/asin": {
+      "reward": {
+        "estimate": 0.022609681204212362,
+        "ci95": [
+          -0.022990411211509833,
+          0.06694472827953296
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.0025000000000000577,
+        "ci95": [
+          -0.0275,
+          0.03125
+        ]
+      },
+      "strict": {
+        "estimate": 0.0025000000000000577,
+        "ci95": [
+          -0.0275,
+          0.03125
+        ]
+      },
+      "length": {
+        "estimate": 0.09249999999999936,
+        "ci95": [
+          -0.04375,
+          0.2325
+        ]
+      }
+    },
+    "R-matched-B/sample/task": {
+      "reward": {
+        "estimate": 0.022609681204212362,
+        "ci95": [
+          -0.02130295458447802,
+          0.06737041811541322
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.0025000000000000577,
+        "ci95": [
+          -0.02625,
+          0.03125
+        ]
+      },
+      "strict": {
+        "estimate": 0.0025000000000000577,
+        "ci95": [
+          -0.02625,
+          0.03125
+        ]
+      },
+      "length": {
+        "estimate": 0.09249999999999936,
+        "ci95": [
+          -0.045,
+          0.23125
+        ]
+      }
+    },
+    "R-matched-B/greedy/asin": {
+      "reward": {
+        "estimate": 0.09305739182692346,
+        "ci95": [
+          0.010275486492673985,
+          0.17900479910714281
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.04499999999999993,
+        "ci95": [
+          -0.009999999999999998,
+          0.1
+        ]
+      },
+      "strict": {
+        "estimate": 0.04499999999999993,
+        "ci95": [
+          -0.009999999999999998,
+          0.1
+        ]
+      },
+      "length": {
+        "estimate": 0.020000000000000462,
+        "ci95": [
+          -0.14500000000000002,
+          0.20500000000000002
+        ]
+      }
+    },
+    "R-matched-B/greedy/task": {
+      "reward": {
+        "estimate": 0.09305739182692346,
+        "ci95": [
+          0.009174281707875454,
+          0.17863944418211994
+        ]
+      },
+      "all_requirements": {
+        "estimate": 0.04499999999999993,
+        "ci95": [
+          -0.009999999999999998,
+          0.1
+        ]
+      },
+      "strict": {
+        "estimate": 0.04499999999999993,
+        "ci95": [
+          -0.009999999999999998,
+          0.1
+        ]
+      },
+      "length": {
+        "estimate": 0.020000000000000462,
+        "ci95": [
+          -0.14500000000000002,
+          0.21
+        ]
+      }
+    }
+  },
+  "primary": [
+    "P-R-matched",
+    "P-B"
+  ],
+  "seeds": 1
+}
