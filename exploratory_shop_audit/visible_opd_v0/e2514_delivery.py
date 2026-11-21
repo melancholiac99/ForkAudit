@@ -103,6 +103,31 @@ def utilization():
     save(OUT/'final/gpu_utilization.json',dict(interval_seconds=15,coverage='Polling began during R-matched update 9',periods=summary))
 
 
+def comparison_table(outcomes):
+    def pp(metric):
+        low,high=metric['ci95']
+        return f"{100*metric['estimate']:+.2f} [{100*low:+.2f}, {100*high:+.2f}]"
+    base=read(RUN/SERIAL/'behavior/030.json')
+    unseen=base['summary']['P/V_unseen/sample']['tasks']
+    seen=base['summary']['P/V_seen/sample']['tasks']
+    lines=['','## Paired all-requirements purchase rates','',
+        f"Contrasts use the four sampled episodes per task and ASIN-cluster bootstrap intervals. V contains {unseen} unseen-ASIN tasks and {seen} seen-ASIN tasks. P comparisons between trained arms use their last shared checkpoint.",
+        '', '| Comparison | Role | Checkpoints (left, right) | T_opd_eval difference, pp [95% CI] | V-unseen difference, pp [95% CI] |',
+        '|---|---|---:|---:|---:|']
+    checkpoints={'P-R-matched':min(30,outcomes['R-matched']),'P-B':30,'P-R':min(30,outcomes['R']),'R-B':outcomes['R']}
+    for pair,k in checkpoints.items():
+        left,right=pair.split('-',1)
+        arm='R' if pair=='R-B' else right
+        record=base if pair=='P-B' else read(OUT/arm/'behavior'/f'{k:03}.json')
+        assert record['endpoints'][left]==k and record['endpoints'][right]==(0 if right=='B' else k)
+        values=[pp(record['paired'][f'{pair}/sample/asin/{s}']['all_requirements']) for s in ('T_opd_eval','V_unseen')]
+        role='Primary' if pair in ('P-R-matched','P-B') else 'Secondary'
+        lines.append(f"| {pair} | {role} | {k}, {record['endpoints'][right]} | {values[0]} | {values[1]} |")
+    old=read(PUBLIC.parent/'section23_20261120/behavior_report.json')['paired']['P-P-shuffled/sample/asin']
+    lines.extend(['',f"At update 10 in stage D, P minus P-shuffled was {pp(old['T_opd_eval']['all_requirements'])} pp on T_opd_eval and {pp(old['V']['all_requirements'])} pp on V. The stage D record includes the R-beta and shuffled controls. [Stage D paired outcomes](../../../section23_20261120/behavior_report.json)."])
+    return lines
+
+
 def final():
     from .e2514_gate import migration_verified
     migration_verified()
@@ -131,6 +156,7 @@ def final():
         if train['status']=='EARLY_STOP':
             lower,upper=train['checkpoint_legal_rates'][-2:]
             lines.extend(['',f"{a} met §25.7. Its baseline training legal-action rate was {100*train['baseline_legal_rate']:.2f}%. The rates at updates {lower['update']} and {upper['update']} were {100*lower['rate']:.2f}% and {100*upper['rate']:.2f}%."])
+    lines.extend(comparison_table(outcomes))
     lines.extend(['','## First-query intervention','','Rates below use the same selected tasks on both sides and four fresh completions per distinct query and recipient.','','| Set | Selected | Both sources available | P@30 gain (pp) | P@20 loss (pp) | P@30 recovery fraction |','|---|---:|---:|---:|---:|---:|'])
     for key,v in report.items():
         if not key.endswith('/both_sources'):continue
