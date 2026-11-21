@@ -18,7 +18,12 @@ def recover():
         for rank in range(4):
             path=DATA/'reconstruction'/f'{k:03}'/f'rank{rank}'
             assert (path/'complete.json').is_file(),path
-            for f in sorted(path.glob('*.json')):
+            retry=DATA/'exact_retry'/f'{k:03}'/f'rank{rank}'
+            files=sorted(path.glob('*.json'))
+            if retry.is_dir():
+                assert (retry/'complete.json').is_file()
+                files+=sorted(retry.glob('*.json'))
+            for f in files:
                 if f.name=='complete.json':continue
                 for row in read(f):
                     key=(row['split'],row['goal'],row['rep'])
@@ -26,7 +31,7 @@ def recover():
                     sha=row['actions_sha']
                     assert sha==digest_value([a['action'] for a in actions])
                     bank[key[:2]][sha]=actions
-                    direct[k,key]=actions
+                    if (k,key) not in direct or sha==archives[k][key]['actions_sha']:direct[k,key]=actions
     result=[]
     recovered_engine=None
     scratch=DATA/'assembled_cpu_replay'
@@ -137,4 +142,8 @@ def plan(result):
     return tasks
 
 
-if __name__=='__main__':plan(recover())
+if __name__=='__main__':
+    import sys
+    if sys.argv[1:]==['initial']:
+        save(DATA/'authenticated_initial.json',recover())
+    else:plan(recover())

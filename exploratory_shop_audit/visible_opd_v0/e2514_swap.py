@@ -47,6 +47,8 @@ def continuations(runner,jobs):
 
 
 def run(k,rank):
+    from .e25_probe import configure
+    assert configure()==rank
     native_rank(rank);l=Layout(SERIAL);cp,sha=checkpoint(l,k,'P')
     root=DATA/'swap'/f'{k:03}'/f'rank{rank}';snapshot_dir(root)
     tasks=read(OUT/'intervention_tasks.json')

@@ -64,12 +64,17 @@ def observer():
     return logs,record
 
 
-def replay(k,rank):
+def replay(k,rank,exact_retry=False):
     arm = 'P' if k else 'B'
     l = Layout(SERIAL)
     cp, signature = checkpoint(l,k,arm)
     native_rank(rank)
-    path = DATA/'reconstruction'/f'{k:03}'/f'rank{rank}'
+    if exact_retry:
+        from .e25_probe import configure
+        assert configure()==rank
+        unresolved={(r['split'],r['goal'],r['rep']) for r in read(DATA/'authenticated_initial.json')
+                    if r['step']==k and r['searches'] is None and r['legal_search_count']>0}
+    path = DATA/('exact_retry' if exact_retry else 'reconstruction')/f'{k:03}'/f'rank{rank}'
     snapshot_dir(path)
     os.environ['OPD_ENTROPY_TAPE'] = str(path/'eval_entropy.bin')
     archive = original(k)
@@ -81,7 +86,7 @@ def replay(k,rank):
             jobs = [(pool,g,rep) for g in goals for rep in range(5)]
             for start in range(0,len(jobs),32):
                 dest=path/f'{pool}_{start:04}.json'
-                if dest.exists():continue
+                if dest.exists() or (exact_retry and not unresolved.intersection(jobs[start:start+32])):continue
                 logs,record=observer()
                 result=episodes(runner,jobs[start:start+32],action_observer=record)
                 recovered=[]
@@ -100,4 +105,4 @@ def replay(k,rank):
 
 if __name__=='__main__':
     if sys.argv[1]=='selection':selection()
-    else:replay(int(sys.argv[1]),int(os.environ['LOCAL_RANK']))
+    else:replay(int(sys.argv[1]),int(os.environ['LOCAL_RANK']),sys.argv[2:]==['retry'])
