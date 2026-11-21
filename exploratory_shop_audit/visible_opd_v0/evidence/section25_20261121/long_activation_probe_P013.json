@@ -1,0 +1,81 @@
+{
+  "arm": "P",
+  "update": 13,
+  "probe_cap": 5120,
+  "ranks": [
+    {
+      "rank": 0,
+      "valid_rows": 67,
+      "eligible_long": 4,
+      "newly_covered": 4,
+      "tested_length": 4556,
+      "accepted_limit": 4556,
+      "phase_times_s": {
+        "checkpoint": 3.1447762930001772,
+        "retained": 2.427133650002361
+      },
+      "retained_peak_GiB": 57.47429800033569,
+      "reference_grad_sha": "63bf97c354b54dfadc57a7f24d9d96a5d39cc1ea596048c0b5b02042aeb0e7cb",
+      "retained_grad_sha": "63bf97c354b54dfadc57a7f24d9d96a5d39cc1ea596048c0b5b02042aeb0e7cb",
+      "reference_logits_sha": "a4c777145374a0f8cce27c7bb52ea608c4802a233e945c6caeff67c692069353",
+      "retained_logits_sha": "a4c777145374a0f8cce27c7bb52ea608c4802a233e945c6caeff67c692069353",
+      "long_probe_fell_back": false
+    },
+    {
+      "rank": 1,
+      "valid_rows": 76,
+      "eligible_long": 1,
+      "newly_covered": 1,
+      "tested_length": 4203,
+      "accepted_limit": 4203,
+      "phase_times_s": {
+        "checkpoint": 2.861917035999795,
+        "retained": 2.1793070569983684
+      },
+      "retained_peak_GiB": 54.15731763839722,
+      "reference_grad_sha": "d87aed7e7d2cf2a11225bcac74bf555b192779c6da12cd8f4eaed1935e50d029",
+      "retained_grad_sha": "d87aed7e7d2cf2a11225bcac74bf555b192779c6da12cd8f4eaed1935e50d029",
+      "reference_logits_sha": "03f4910cb61b69a954ddc94416ea9656da91c3838fe16ca9e2d36a9c6e19aaee",
+      "retained_logits_sha": "03f4910cb61b69a954ddc94416ea9656da91c3838fe16ca9e2d36a9c6e19aaee",
+      "long_probe_fell_back": false
+    },
+    {
+      "rank": 2,
+      "valid_rows": 69,
+      "eligible_long": 2,
+      "newly_covered": 2,
+      "tested_length": 4671,
+      "accepted_limit": 4671,
+      "phase_times_s": {
+        "checkpoint": 3.330011693000415,
+        "retained": 2.5665079169993987
+      },
+      "retained_peak_GiB": 58.48753833770752,
+      "reference_grad_sha": "d3a7a0dd703c4054596ebd97c69a0f0c2b2ae6a04cf6283a01db2688a119155c",
+      "retained_grad_sha": "d3a7a0dd703c4054596ebd97c69a0f0c2b2ae6a04cf6283a01db2688a119155c",
+      "reference_logits_sha": "8a1fd34847b2c625db8527ac00566fa9858fa63aa0da912a1a499fc104a77a0f",
+      "retained_logits_sha": "8a1fd34847b2c625db8527ac00566fa9858fa63aa0da912a1a499fc104a77a0f",
+      "long_probe_fell_back": false
+    },
+    {
+      "rank": 3,
+      "valid_rows": 71,
+      "eligible_long": 1,
+      "newly_covered": 1,
+      "tested_length": 5022,
+      "accepted_limit": 5022,
+      "phase_times_s": {
+        "checkpoint": 3.741522447002353,
+        "retained": 2.879142164001678
+      },
+      "retained_peak_GiB": 61.7321891784668,
+      "reference_grad_sha": "ec9b800f0e5842edd10b46ae1fa2918abbfe79e038246d2aae4dd16ead1da7a5",
+      "retained_grad_sha": "ec9b800f0e5842edd10b46ae1fa2918abbfe79e038246d2aae4dd16ead1da7a5",
+      "reference_logits_sha": "65ddf136eafee640a9e16b51c5543eff05f99cabf82a97e04e2c5fa0ad54e281",
+      "retained_logits_sha": "65ddf136eafee640a9e16b51c5543eff05f99cabf82a97e04e2c5fa0ad54e281",
+      "long_probe_fell_back": false
+    }
+  ],
+  "newly_covered_rows": 8,
+  "note": "Additional long rows relative to a 4096-token cap. Probe seconds measure one row, not a controlled end-to-end speedup."
+}
