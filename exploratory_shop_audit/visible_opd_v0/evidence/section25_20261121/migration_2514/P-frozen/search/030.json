@@ -1,0 +1,108 @@
+{
+  "tokenization": "native deduplicated Chinese bigrams and Latin/number tokens, query denominator; option/model terms from frozen goal, budget terms from explicit monetary expressions",
+  "results": {
+    "30": {
+      "V/sample": {
+        "total_episodes": 800,
+        "authenticated": 800,
+        "with_first_query": 800,
+        "without_search": 0,
+        "length_tokens": 6.68,
+        "instruction_overlap": 0.9357207420070871,
+        "spec_fraction": 0.16430555295399046,
+        "price_fraction": 0.0004926242236024845,
+        "first_page_gold_count": 613,
+        "first_page_gold_rate": 0.76625,
+        "bought_gold_with_gold_visible": 462,
+        "bought_gold_conditional": 0.7536704730831973,
+        "other_click_target_types": {
+          "product_detail_tab": 40,
+          "navigation": 175,
+          "other_visible_target": 2
+        },
+        "other_click_targets": {
+          "< prev": 94,
+          "back to search": 81,
+          "description": 12,
+          "features": 5,
+          "reviews": 23,
+          "布面经典系列: 小王子": 2
+        }
+      },
+      "V/greedy": {
+        "total_episodes": 200,
+        "authenticated": 200,
+        "with_first_query": 200,
+        "without_search": 0,
+        "length_tokens": 6.375,
+        "instruction_overlap": 0.9352117604617605,
+        "spec_fraction": 0.1682202034077034,
+        "price_fraction": 0.00020833333333333332,
+        "first_page_gold_count": 152,
+        "first_page_gold_rate": 0.76,
+        "bought_gold_with_gold_visible": 118,
+        "bought_gold_conditional": 0.7763157894736842,
+        "other_click_target_types": {
+          "navigation": 42,
+          "product_detail_tab": 8
+        },
+        "other_click_targets": {
+          "< prev": 25,
+          "back to search": 17,
+          "description": 2,
+          "features": 1,
+          "reviews": 5
+        }
+      },
+      "T_opd_eval/sample": {
+        "total_episodes": 800,
+        "authenticated": 800,
+        "with_first_query": 800,
+        "without_search": 0,
+        "length_tokens": 6.88375,
+        "instruction_overlap": 0.9455303320035228,
+        "spec_fraction": 0.18599349625155545,
+        "price_fraction": 0.0007997337092731829,
+        "first_page_gold_count": 542,
+        "first_page_gold_rate": 0.6775,
+        "bought_gold_with_gold_visible": 400,
+        "bought_gold_conditional": 0.7380073800738007,
+        "other_click_target_types": {
+          "navigation": 170,
+          "product_detail_tab": 35
+        },
+        "other_click_targets": {
+          "< prev": 80,
+          "back to search": 90,
+          "description": 13,
+          "features": 7,
+          "reviews": 15
+        }
+      },
+      "T_opd_eval/greedy": {
+        "total_episodes": 200,
+        "authenticated": 200,
+        "with_first_query": 200,
+        "without_search": 0,
+        "length_tokens": 6.515,
+        "instruction_overlap": 0.9536052558552559,
+        "spec_fraction": 0.18310148185148184,
+        "price_fraction": 0.0,
+        "first_page_gold_count": 134,
+        "first_page_gold_rate": 0.67,
+        "bought_gold_with_gold_visible": 102,
+        "bought_gold_conditional": 0.7611940298507462,
+        "other_click_target_types": {
+          "navigation": 30,
+          "product_detail_tab": 4
+        },
+        "other_click_targets": {
+          "< prev": 13,
+          "back to search": 17,
+          "description": 2,
+          "reviews": 2
+        }
+      }
+    }
+  }
+}

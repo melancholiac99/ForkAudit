@@ -1,0 +1,110 @@
+{
+  "arm": "P-frozen",
+  "step": 30,
+  "early_stop": false,
+  "mechanism_only": true,
+  "adoption": {
+    "initial_training_legal_rate": 0.9113475177304965,
+    "old_layout_through": 10,
+    "mechanism_only": true,
+    "origin": "D/P@10",
+    "projector_version": 0,
+    "optimizer": {
+      "update": 10,
+      "arm": "P",
+      "before_sha": "c43fa5090475a31fc7411bb166b21a086f5671feae194ff4c2f583db09f1b0bf",
+      "after_sha": "19d44cbe6240583d3a7faabe435d55a2cb7c19892da574f499bcdd1223407d36",
+      "before_logits_reused_on_rank0": true,
+      "activation_limit": 3914,
+      "retained_records": 261,
+      "training_loop_seconds": 90.654458832003,
+      "optimizer_steps": 5,
+      "cumulative_steps": 50,
+      "grad_norms": [
+        0.19719159603118896,
+        0.21028713881969452,
+        0.2655470073223114,
+        0.357639878988266,
+        0.20444363355636597
+      ],
+      "minibatch_rows": [
+        56,
+        56,
+        55,
+        55,
+        55
+      ],
+      "scored_minibatch_rows": [
+        56,
+        56,
+        55,
+        55,
+        55
+      ],
+      "minibatch_sha256": "62ea7c1b07ab7e76a354be1bd6f8adf4a9e7022fe018d57622c07fd8c975acae",
+      "bf16_fixed_target": {
+        "kl_before": 0.003520244088493077,
+        "kl_after": 0.003874337091822348,
+        "delta_kl": -0.00035409300332927125,
+        "alignment": 0.0010143891805208705,
+        "movement": 0.001368482183850142
+      },
+      "adam_sha256": "888f01d6b43d8a20ec5264c979128be3a76657954a47e8f2cc71503cef8e524e",
+      "safetensors_sha256": "b61ee54191e25aef8ed7e13406439289e771e54e921a2729be596375d246232f",
+      "elapsed_seconds": 125.31131737199757
+    }
+  },
+  "terminal_optimizer": {
+    "update": 30,
+    "arm": "P-frozen",
+    "before_sha": "7bf555db016261dab1275da69c53ef0729d67a3f0a50be1cf88363b4e3090642",
+    "after_sha": "b4ab842955b5b6103825e2559bbaec1dcb47fd449e098ff59260c070139c45f6",
+    "before_logits_reused_on_rank0": true,
+    "activation_limit": 3628,
+    "activation_limit_by_rank": [
+      4922,
+      3628,
+      4661,
+      5038
+    ],
+    "retained_records": 289,
+    "training_loop_seconds": 282.62571076399945,
+    "optimizer_steps": 6,
+    "cumulative_steps": 152,
+    "grad_norms": [
+      0.48530006408691406,
+      0.2515422999858856,
+      0.13151508569717407,
+      0.17750327289104462,
+      0.11557082831859589,
+      0.20456935465335846
+    ],
+    "minibatch_rows": [
+      59,
+      59,
+      59,
+      59,
+      59,
+      59
+    ],
+    "scored_minibatch_rows": [
+      59,
+      59,
+      59,
+      59,
+      59,
+      58
+    ],
+    "minibatch_sha256": "b503514316db6932d1e15624178e90866fb33ad510519daf5a319a956ffd44d2",
+    "bf16_fixed_target": {
+      "kl_before": 0.0021417638212036234,
+      "kl_after": 0.002083799216059165,
+      "delta_kl": 5.796460514445977e-05,
+      "alignment": 0.0012232658128192107,
+      "movement": 0.0011653012076747514
+    },
+    "adam_sha256": "7f43bd708bdcb9dc65e89a5f310b6d2604131238ef78706d3a7760b41b90125c",
+    "safetensors_sha256": "1cc9c0a9a18fe7c92ab1e808ab9802182254d3015b7cca82c81da792e031b24b",
+    "elapsed_seconds": 360.76802826399944
+  }
+}
