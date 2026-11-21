@@ -50,8 +50,17 @@ def curves(arms,dest):
         fig.savefig(dest/f'{mode}_curves.png',dpi=140);plt.close(fig)
 
 
+def stop_record(baseline,rates,early_stop):
+    legal=[dict(update=k,rate=rate,drop_pp=100*(baseline-rate),below_threshold=baseline-rate>=.1-1e-12)
+           for k,rate in rates]
+    triggers=[right['update'] for left,right in zip(legal,legal[1:]) if left['below_threshold'] and right['below_threshold']]
+    assert triggers==([legal[-1]['update']] if early_stop else [])
+    return dict(status='EARLY_STOP' if early_stop else 'COMPLETED',baseline_legal_rate=baseline,checkpoint_legal_rates=legal)
+
+
 def milestone(arm):
-    end=read(OUT/arm/'endpoint.json')['step']
+    endpoint=read(OUT/arm/'endpoint.json')
+    end=endpoint['step']
     for k in range(10,end+1,10):
         for name in ('monitor','behavior','search'):
             assert (OUT/arm/name/f'{k:03}.json').is_file()
@@ -59,13 +68,16 @@ def milestone(arm):
     from .e2513_adopt import verify_state
     l=Layout(SERIAL);receipt=read(l.folder(end,arm)/'optimizer.json')
     assert verify_state(l.state(end,arm),receipt)
+    baseline=endpoint['adoption']['initial_training_legal_rate']
+    rates=[(k,read(l.folder(k,arm)/'train_statistics.json')['legal_rate']) for k in range(10,end+1,10)]
     vals=[]
     start=11 if arm=='P-frozen' else 6
     for k in range(start,end+1):
         path=l.folder(k,arm)
         vals.append(dict(update=k,optimizer=read(path/'optimizer.json'),measurement=read(path/'measurement.json'),
                          train_statistics=read(path/'train_statistics.json')))
-    save(OUT/arm/'training.json',dict(first_new_update=start,steps=vals))
+    save(OUT/arm/'training.json',dict(first_new_update=start,terminal_update=end,steps=vals,
+        **stop_record(baseline,rates,endpoint['early_stop'])))
     curves([arm],OUT/arm)
     return OUT/arm
 
@@ -108,11 +120,17 @@ def final():
     outcomes={a:read(OUT/a/'endpoint.json')['step'] for a in ARMS}
     report=read(OUT/'search_swap_report.json')['summary'];selection=read(OUT/'search_selection.json')['counts']
     lines=['# Stage E migration endpoints','', 'Single seed. P ended at update 30. P-frozen is a mechanism diagnostic and its first ten updates used the old layout. Updates 1–5 of R and R-matched used the adopted layout.','',
-        '| Arm | Terminal update | T_opd_eval sample | V sample | BF16 movement |','|---|---:|---:|---:|---:|']
+        '| Arm | Status | Terminal update | T_opd_eval sample | V sample | BF16 movement |','|---|---|---:|---:|---:|---:|']
     with (OUT/'final/checkpoint_curves.tsv').open() as f:t=list(csv.DictReader(f,delimiter='\t'))
     for a,k in {'B':0,'P':30,**outcomes}.items():
         rows={x['pool']:x for x in t if x['arm']==a and x['step']==str(k) and x['decode']=='sample'}
-        lines.append(f"| {a} | {k} | {rows['T_opd_eval']['successes']}/800 | {rows['V']['successes']}/800 | {float(rows['V']['kl']):.6f} |")
+        status=read(OUT/a/'training.json')['status'] if a in ARMS else {'B':'Baseline','P':'Stopped at migration'}[a]
+        lines.append(f"| {a} | {status} | {k} | {rows['T_opd_eval']['successes']}/800 | {rows['V']['successes']}/800 | {float(rows['V']['kl']):.6f} |")
+    for a in ARMS:
+        train=read(OUT/a/'training.json')
+        if train['status']=='EARLY_STOP':
+            lower,upper=train['checkpoint_legal_rates'][-2:]
+            lines.extend(['',f"{a} met §25.7. Its baseline training legal-action rate was {100*train['baseline_legal_rate']:.2f}%. The rates at updates {lower['update']} and {upper['update']} were {100*lower['rate']:.2f}% and {100*upper['rate']:.2f}%."])
     lines.extend(['','## First-query intervention','','Rates below use the same selected tasks on both sides and four fresh completions per distinct query and recipient.','','| Set | Selected | Both sources available | P@30 gain (pp) | P@20 loss (pp) | P@30 recovery fraction |','|---|---:|---:|---:|---:|---:|'])
     for key,v in report.items():
         if not key.endswith('/both_sources'):continue

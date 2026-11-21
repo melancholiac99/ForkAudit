@@ -8,6 +8,14 @@ from .e2514_search import selection
 
 
 class MigrationTests(unittest.TestCase):
+    def test_terminal_label_needs_two_consecutive_training_breaches(self):
+        from .e2514_delivery import stop_record
+        rates=[(10,.9),(20,.8),(30,.79)]
+        self.assertEqual(stop_record(.9,rates,True)['status'],'EARLY_STOP')
+        self.assertEqual(stop_record(.9,rates[:2],False)['status'],'COMPLETED')
+        with self.assertRaises(AssertionError):stop_record(.9,rates[:2],True)
+        with self.assertRaises(AssertionError):stop_record(.9,rates,False)
+
     def test_historical_arg_counts_require_unambiguous_evidence(self):
         from .e2514_queries import archived_token_counts
         self.assertEqual(archived_token_counts(1,{'search':1},7,{(6,)}),
