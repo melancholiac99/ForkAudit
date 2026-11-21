@@ -11,7 +11,7 @@ from exploratory_shop_audit.grpo_forced_audit.rollout import Runner
 from exploratory_shop_audit.grpo_forced_audit.common import read,save,stable_seed,digest_value
 
 
-def continuations(runner,jobs):
+def continuations(runner,jobs,recipient):
     active=[];done=[]
     for pool,g,query,rep in jobs:
         key=digest_value([pool,g,query,rep])
@@ -26,9 +26,8 @@ def continuations(runner,jobs):
         for e in active:
             s=e['state'];step=len(e['history'])
             ids=make_input(runner.tokenizer,s['task'],e['history'],s['observation'])['token_ids']
-            # Common random numbers for both policies/queries on a task, independent
-            # of the D_eval stream that generated the selected trajectories.
-            seed=stable_seed(20261122,'search_swap_2514',e['split'],e['goal'],e['rep'],step)
+            # Fresh stream for every distinct query, receiver and replicate.
+            seed=stable_seed(20261122,'search_swap_2514',e['split'],e['goal'],e['query'],recipient,e['rep'],step)
             requests.append(dict(token_ids=ids,temperature=.7,seed=seed))
         keep=[]
         for e,gen in zip(active,runner.model.call(requests),strict=True):
@@ -62,7 +61,7 @@ def run(k,rank):
     try:
         for i in range(0,len(jobs),32):
             f=root/f'part_{i:04}.json'
-            if not f.exists():save(f,continuations(runner,jobs[i:i+32]))
+            if not f.exists():save(f,continuations(runner,jobs[i:i+32],k))
             assert {(r['split'],r['goal'],r['query'],r['rep']) for r in read(f)}==set(jobs[i:i+32])
     finally:runner.close()
     save(root/'complete.json',dict(checkpoint=sha,jobs=len(jobs),job_sha=digest_value(jobs)))

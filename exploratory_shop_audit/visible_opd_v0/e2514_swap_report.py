@@ -63,7 +63,7 @@ def report():
                          first_page_qualifying={s:np.mean([r['first_page_qualifying'][s] for r in included]) for s in ('20','30')})
     save(OUT/'search_swap_report.json',dict(summary=summary,unit='equal task weight; within query source, original episode frequency',
          estimator='All four cells use four fresh continuations per distinct task/query/recipient. Fractions divide by P20 own good minus P30 own failed-query fresh rates. Nonpositive denominators are undefined.',
-         initial_history='Canonical search[query] at the empty task start, receiver handles all following decisions. Common fresh seed by task/repeat/action step.',
+         initial_history='Canonical search[query] at the empty task start, receiver handles all following decisions. Fresh seed by split, task, query text, recipient, repeat and action step.',
          interpretation='Selected tasks only; original-seed outcomes are used only for selection.',tasks=task_rows))
 
 
