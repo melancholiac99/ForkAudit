@@ -31,6 +31,12 @@ def page_judgments():
             if verdict.reward_valid and verdict.reward_type in ('gold_purchase','valid_alternative_purchase'):
                 return True
         return False
+    historical=read(DATA/'authenticated.json')
+    observed_pages=defaultdict(set)
+    for row in historical:
+        if row['searches']:
+            search=row['searches'][0]
+            observed_pages[row['split'],row['goal'],search['query']].add(tuple(search['products']))
     results=[]
     for t in tasks:
         g=t['goal'];pool=t['split']
@@ -41,6 +47,7 @@ def page_judgments():
                 assert after['legal'] and not after['status']['done']
                 products=[p['asin'] for p in after['state']['public'].get('products',[])]
             finally:engine.close(key)
+            assert observed_pages[pool,g,query]=={tuple(products)},(pool,g,query)
             good=[p for p in products if qualifies(g,p)]
             results.append(dict(split=pool,goal=g,query=query,page_asins=products,qualifying_asins=good,
                    contains_qualifying=bool(good),contains_gold=engine.server.goals[g]['asin'] in products))
@@ -68,12 +75,18 @@ def metrics(rows,goals):
             price.append(len(q&terms)/len(q))
         lengths.append(s['tokens']);has_gold=goal['asin'] in s['products'];gold_pages.append(has_gold)
         if has_gold and (r['purchased_asin'] or '').casefold()==goal['asin'].casefold():hitgold+=1
+    types=defaultdict(int)
+    for target,count in targets.items():
+        if target in ('back to search','< prev','next >'):kind='navigation'
+        elif target in ('description','features','reviews','attributes'):kind='product_detail_tab'
+        else:kind='other_visible_target'
+        types[kind]+=count
     def avg(v):return statistics.mean(v) if v else None
     return dict(total_episodes=len(rows),authenticated=len(observed),with_first_query=len(first),without_search=sum(r['legal_search_count']==0 for r in rows),
          length_tokens=avg(lengths),instruction_overlap=avg(overlaps),spec_fraction=avg(spec),price_fraction=avg(price),
          first_page_gold_count=sum(gold_pages),first_page_gold_rate=avg(gold_pages),
          bought_gold_with_gold_visible=hitgold,bought_gold_conditional=hitgold/sum(gold_pages) if sum(gold_pages) else None,
-         other_click_targets=dict(sorted(targets.items())))
+         other_click_target_types=dict(types),other_click_targets=dict(sorted(targets.items())))
 
 
 def describe(historical=True,arm=None,k=None):
