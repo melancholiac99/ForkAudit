@@ -84,9 +84,7 @@ def milestone(arm):
 
 def utilization():
     tape=LOCAL/'gpu_utilization.jsonl'
-    if not tape.exists():return
-    samples=[json.loads(line) for line in tape.read_text().splitlines() if line.endswith(']]')]
-    if not samples:return
+    samples=[json.loads(line) for line in tape.read_text().splitlines() if line.endswith(']]')] if tape.exists() else []
     cutoff=(OUT/'R-matched/endpoint.json').stat().st_mtime
     summary={}
     for label,group in [('whole_recorded_interval',samples),('before_matched_endpoint',[s for s in samples if s[0]<=cutoff]),
@@ -100,7 +98,28 @@ def utilization():
             by_gpu.append(dict(rank=rank,mean_utilization_pct=statistics.mean(pct),median_utilization_pct=statistics.median(pct),
                                sample_fraction_at_zero=pct.count(0)/len(pct),peak_mib=max(r[2] for r in readings)))
         summary[label]=dict(samples=len(group),first_unix=group[0][0],last_unix=group[-1][0],gpus=by_gpu)
-    save(OUT/'final/gpu_utilization.json',dict(interval_seconds=15,coverage='Polling began during R-matched update 9',periods=summary))
+        summary[label]['observed_eight_gpu_hours']=8*(group[-1][0]-group[0][0])/3600
+        summary[label]['mean_utilization_pct']=statistics.mean(r['mean_utilization_pct'] for r in by_gpu)
+    allocations={}
+    for arm in ARMS:
+        by_devices={};stages=0;from_update=0
+        for file in sorted((RUN/SERIAL/'stages'/arm).glob('*.json')):
+            stage=read(file)
+            devices=stage.get('physical_devices')
+            if devices is None:
+                marker=RUN/SERIAL/'arms'/arm/'updates'/f"{stage['update']:03}.json"
+                group=read(marker).get('physical_group') if marker.exists() else None
+                devices={'A':'0,1,2,3','B':'4,5,6,7'}.get(group)
+                from_update+=int(devices is not None)
+            if devices not in ('0,1,2,3','4,5,6,7'):continue
+            assert stage['allocated_gpus']==4 and stage['exit_code']==0 and stage['arms']==[arm]
+            stages+=1
+            by_devices[devices]=by_devices.get(devices,0.)+4*stage['elapsed']/3600
+        allocations[arm]=dict(completed_stages=stages,device_map_from_update_receipt=from_update,
+            completed_stage_gpu_hours=sum(by_devices.values()),by_physical_devices=by_devices)
+    save(OUT/'final/gpu_utilization.json',dict(interval_seconds=15,coverage='Polling began during R-matched update 9',
+        periods=summary,formal_arm_allocations=allocations,
+        allocation_basis='Four reserved GPUs times elapsed wall time of each completed migrated arm stage, including prefetched work. Device IDs come from the stage or its signed update group. Separate sampling interventions and migration replays are outside these arm totals.'))
 
 
 def comparison_table(outcomes):
@@ -191,6 +210,16 @@ def final():
         point='NA' if value['estimate'] is None else f"{value['estimate']:.3f}"
         lines.append(f"| {pool} | {point} | {ci} |")
     lines.extend(['','[Expanded fresh-control outcomes](../search_coverage/final/search_swap_report.json) · [Authenticated source records](../search_coverage/final/archived_queries.json) · [Additional sampling at the P-frozen handoff](../search_coverage/handoff/coverage.json).'])
+    telemetry=read(OUT/'final/gpu_utilization.json')
+    whole=telemetry['periods'].get('whole_recorded_interval')
+    lines.extend(['','## GPU use',''])
+    if whole:
+        lines.append(f"The eight cards accounted for {whole['observed_eight_gpu_hours']:.2f} GPU-hours during the monitored interval. Mean utilization was {whole['mean_utilization_pct']:.1f}% across devices. Sampling began during R-matched update 9 at 15-second intervals.")
+    lines.extend(['', '| Migrated arm | Completed-stage GPU-hours |','|---|---:|'])
+    for arm,allocation in telemetry['formal_arm_allocations'].items():
+        hours=f"{allocation['completed_stage_gpu_hours']:.2f}" if allocation['completed_stages'] else 'NA'
+        lines.append(f"| {arm} | {hours} |")
+    lines.extend(['','Stage hours include training, collection and checkpoint evaluation within the scheduled four-card groups. [Per-device utilization and allocation basis](gpu_utilization.json).'])
     (OUT/'final/REPORT.md').write_text('\n'.join(lines)+'\n')
     save(OUT/'final/completion.json',dict(endpoints=outcomes,original_p=30,cpu_checks=needed,task_selection=selection,
          all_public_sha256={str(p.relative_to(OUT)):digest_file(p) for p in sorted(OUT.rglob('*')) if p.is_file() and p!=OUT/'final/completion.json'}))
