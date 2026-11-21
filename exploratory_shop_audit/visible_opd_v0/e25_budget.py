@@ -15,7 +15,10 @@ def budget():
     assert score>0 and fit>0 and len({v['actor_sha'] for v in fits+scored})==1
     block=(score+fit)*4/3600
     collect,target,train,measure=map(mean,('d_collect','d_targets','d_train','d_measure'))
-    standalone=(collect+target+train/4+measure)*10/3600
+    # D spent four GPU-seconds per DDP wall second across four sequential arms.
+    # Each arm therefore accounts for train GPU-seconds, while single-device
+    # rollout, scoring and measurement each account for their own wall time.
+    standalone=(collect+target+train+measure)*10/3600
     window=10*min(10,max(1,math.floor(.5*standalone/block)))
     movement=read(RUN/'movement.json');n=2+int(movement['needs_matched'])
     def policy_hours(updates,n):
