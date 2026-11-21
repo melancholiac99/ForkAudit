@@ -84,14 +84,18 @@ def common(rank,l,k,arms):
         torch.cuda.empty_cache()
         model=actor(dtype=torch.float32).eval();at(model,l,k,a)
         cross={g:[0.,0.] for g in totals}
+        fp_base = baseline_logits(model,b,chunks,rank,torch.float32) if l.name=='calibration_2511' else None
+        fp_move = {g:0. for g in totals}
         for ix in chunks:
             i=ix[0];r=b.rows[i];raw=response(model,r['prompt'],r['answer'])[1]
             v=full_metrics(per_id[i].cuda(),raw)[:,0].tolist()
+            fv=full_metrics(fp_base[i].cuda(),raw)[:,0].tolist() if fp_base is not None else None
             for j in ix:
-                for g,val in zip(cats[j],v,strict=True):
+                for pos,(g,val) in enumerate(zip(cats[j],v,strict=True)):
                     for key in (g,'all'):
                         cross[key][0]+=b.weights[j]*val;cross[key][1]+=b.weights[j]
-        save(out,dict(stats=totals,cross=cross,projector_moments=proj.tolist(),compared_versions=[l.version(k,a),l.version(k+1,a)] if a=='P' else None))
+                        if fv is not None:fp_move[key]+=b.weights[j]*fv[pos]
+        save(out,dict(stats=totals,cross=cross,fp32_movement=fp_move if fp_base is not None else None,projector_moments=proj.tolist(),compared_versions=[l.version(k,a),l.version(k+1,a)] if a=='P' else None))
         del model,per_id;torch.cuda.empty_cache()
 
 def merge_common(l,k,arms):
@@ -105,6 +109,8 @@ def merge_common(l,k,arms):
             assert abs(w-z)<1e-10
             stats[g]=dict(positions=n,mass=w,kl=kl/w if w else None,entropy=h/w if w else None,
                           top1=p/w if w else None,cross_precision=x/w if w else None)
+            if l.name=='calibration_2511':
+                stats[g]['fp32_kl']=sum(r['fp32_movement'][g] for r in rows)/w if w else None
         assert stats['all']['positions']==4448 and abs(stats['all']['mass']-1)<1e-10
         mse,dot,n0,n1=map(sum,zip(*(r['projector_moments'] for r in rows)))
         decision=[stats[g] for g in ('click','option')]

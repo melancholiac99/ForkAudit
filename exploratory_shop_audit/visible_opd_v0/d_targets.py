@@ -12,16 +12,19 @@ from .s21_store import ARMS
 from exploratory_shop_audit.grpo_forced_audit.common import read, read_rows, save, stable_seed, digest_file
 
 @torch.inference_mode()
-def build(k,arm,layout=None):
+def build(k,arm,layout=None,*,goals=None,output=None):
     loc=folder if layout is None else layout.folder
-    path = loc(k,arm)
+    source = loc(k,arm)
+    path = source if output is None else output
+    path.mkdir(parents=True,exist_ok=True)
     if (path/'target_manifest.json').exists():return
     model=actor().eval()
     (snapshot if layout is None else layout.snapshot)(model,k-1,arm)
     sha=state_hash([(n,p) for n,p in model.named_parameters() if p.requires_grad])
     if k>1:assert sha==read(loc(k-1,arm)/'optimizer.json')['after_sha']
     else:assert sha==read(SMOKE/'arm_R.json')['initial_adapter_sha256']
-    tasks=read(path.parent/'tasks.json')
+    tasks=read(source.parent/'tasks.json')
+    if goals is not None:tasks=[t for t in tasks if t['goal_index'] in goals]
     routing=read(PARENT/'asin_split_manifest.json')['cal_folds']
     folds={t['goal_index']:routing.get(t['asin'],stable_seed(SEED,'projection_fold',t['asin'])%4) for t in tasks}
     nets=projections(model,folds) if layout is None else layout.projectors(model,k,arm)
@@ -31,7 +34,8 @@ def build(k,arm,layout=None):
     masses=[]
     na=[]; rows=[]; targets=[]; student_logits=[]; episodes=Counter(); done=set()
     for rep in range(2):
-        for r in read_rows((SMOKE if k==1 else path)/f'rollout_{rep}.jsonl'):
+        for r in read_rows((SMOKE if k==1 else source)/f'rollout_{rep}.jsonl'):
+            if goals is not None and r['goal'] not in goals:continue
             key=(r['goal'],rep)
             assert r['goal'] in folds and r['rep']==rep and r['step']==episodes[key] and key not in done
             episodes[key]+=1
@@ -92,8 +96,9 @@ def build(k,arm,layout=None):
         extra['mass_sha256']=digest_file(mass_file)
         if k==1 and arm!='P-KL':
             b,original=layout.batch(k,arm)
-            assert len(order)==len(original)
-            for j,i in enumerate(order):
+            ref=[j for j,row in enumerate(b.rows) if goals is None or row['goal'] in goals]
+            assert len(order)==len(ref)
+            for j,i in zip(ref,order,strict=True):
                 assert torch.equal(rows[i]['ids'],b.rows[j]['ids']) and torch.equal(targets[i],original[j])
     save(path/'target_manifest.json',dict(**extra,scorer_sha=sha,na_records=na,rollout_records=sum(episodes.values()),identical_records_reused=reused,duplicate_verified=verified_duplicate,goals=sorted(folds),projection_age=k-1 if layout is None else k-1-layout.version(k,arm),
         projector_fit_sha=(layout.projector_sha(k,arm) if layout is not None else None),

@@ -32,6 +32,11 @@ def markdown(l,completion,behavior,costs):
         '[逐更新 BF16 与 FP32 重锚分解](stage_e_steps.tsv) · '
         '[全词表移动量、类别熵、top-1 概率、跨精度 KL 和相邻投影器变化](stage_e_monitors.tsv) · '
         '[每类修正强度、覆盖和候选质量](stage_e_category_metrics.json)']
+    matching=l.config.get('matching_2511')
+    if matching:
+        lines+=['',f"§25.11 第二次校准 ρ″ = {matching['rho_double_prime']:.5f}，状态为 {matching['label']}，"
+            f"正式 R-matched 学习率冻结为 {matching['frozen_lr']:.9g}。"
+            "正式比较仅纳入第二次校准后从第 0 步独立启动的 R-matched。"]
     check=l.root/'rematch_at_10.json'
     if check.exists():
         match=read(check)
@@ -44,6 +49,10 @@ def markdown(l,completion,behavior,costs):
         f"正式 E 已计入的四卡阶段用量为 {costs['formal']:.2f} GPU 小时。"
         +('匹配校准另用 %.2f GPU 小时。'%costs['calibration'] if 'calibration' in costs else ''),
         '', '[成本预估与匹配依据](PREFLIGHT.md) · [终点快照签名与停止状态](stage_e_completion.json)']
+    if 'shared_2511' in costs:
+        lines+=['', f"§25.11 两次校准及正式 E 的共享四卡环节按整次计费。"
+            f"第二次校准独占环节 {costs.get('calibration_2511',0.):.2f} GPU 小时，"
+            f"正式 R/P 与第二次校准共同执行的环节 {costs['shared_2511']:.2f} GPU 小时。"]
     (PUBLIC/'STAGE_E.md').write_text('\n'.join(lines)+'\n')
 
 def final_report():

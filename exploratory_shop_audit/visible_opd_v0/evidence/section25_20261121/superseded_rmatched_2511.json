@@ -1,0 +1,28 @@
+{
+  "status": "SUPERSEDED",
+  "included_in_comparisons": false,
+  "learning_rate": 1.3000595528940857e-06,
+  "completed_updates": 0,
+  "preserved_files": [
+    "pilot/01/R-matched/bf16_before.pt",
+    "pilot/01/R-matched/candidate_mass.pt",
+    "pilot/01/R-matched/student.pt",
+    "pilot/01/R-matched/target.pt",
+    "pilot/01/R-matched/target_manifest.json"
+  ],
+  "continued_R_P": {
+    "R": {
+      "optimizer_steps": 5,
+      "before_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+      "after_sha": "592fff70d93384fa14c4135ef2b2ba84b0eef8d0510bace6e517c51f9575ba95",
+      "adam_sha256": "225b2d0575f2eed57aa98fc545a55d02404cd0249524e8d2ac7a95c7c2243531"
+    },
+    "P": {
+      "optimizer_steps": 5,
+      "before_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+      "after_sha": "5e7277b31b522b73fcef8a880e3b9177d24802704b25fa48c79cd6239e60ae65",
+      "adam_sha256": "95c6928194ee6fe832ff036552ec63b6b389fc8ec96499231fc61ddda2f11086"
+    }
+  },
+  "archived_at": "2026-11-21T08:09:45.257428+00:00"
+}

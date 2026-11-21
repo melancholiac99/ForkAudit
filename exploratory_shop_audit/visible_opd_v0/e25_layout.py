@@ -10,7 +10,7 @@ from exploratory_shop_audit.grpo_forced_audit.common import read,save,digest_fil
 
 class Layout:
     def __init__(self,run):
-        if run not in ('formal','calibration','p_kl'):raise ValueError(run)
+        if run not in ('formal','calibration','calibration_2511','p_kl'):raise ValueError(run)
         self.name=run;self.root=RUN/run
     def folder(self,k,a):return self.root/'pilot'/f'{k:02}'/a
     def state(self,k,a):return self.root/'state'/f'{k:02}'/a
@@ -19,7 +19,11 @@ class Layout:
         p=self.state(k,a)/'adapter/adapter_model.safetensors'
         load_adapter(model,p,read(self.folder(k,a)/'optimizer.json')['safetensors_sha256'])
     @cached_property
-    def config(self):return read(self.root/'settings.json')
+    def config(self):
+        amended = self.root / 'settings_2511.json'
+        if self.name == 'formal' and amended.exists():
+            return read(amended)
+        return read(self.root/'settings.json')
     def batch(self,k,a):
         if k==1 and a!='P-KL':
             batch=SmokeBatch();return batch,batch.targets('R' if a=='R-matched' else a)

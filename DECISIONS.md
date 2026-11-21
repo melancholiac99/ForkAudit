@@ -2030,3 +2030,25 @@ b_c, weighting each candidate by its current student q and each response
 position by its original common-batch weight. Report forward KL in nats and
 top-1/entropy on the full vocabulary. All eval jobs use frozen seeds shared
 across arms. Calibration reads training data and no held-out behavior.
+
+### Section 25.11 R-matched transition, 2026-11-21
+
+Use the unrounded archived BF16 observations in the registered log-log interpolation.
+Keep the interrupted 1.30005955e-6 target artifacts under a separate superseded
+runtime directory. R and P retain the first optimizer receipts and Adam state.
+Share the four GPUs in scheduling rounds: R and P continue their own formal
+updates while the new independent calibration runs ten rounds. The formal
+matched arm then starts with its own update index at one and fresh Adam; its
+task schedule, common prefix and comparison endpoints remain indexed by its own
+updates. Sampling/target construction can use one rank per arm. Training uses
+all four ranks. Deduplicate four-card wall-time accounting for joint phases.
+Carry forward the identical P-norm-matched null and common initial logits
+from §25.2, and measure the new endpoint in both BF16 and FP32.
+
+Score complete goals on four GPU shards, assigned by total input lengths across
+the current active snapshots. Preserve unbatched forward shapes and the same
+global goal/replicate/action order. At update one compare all student records,
+candidate logits, candidate mass and targets against the saved single-GPU R
+scorer, tensor by tensor. Reuse only rows with signed provenance; duplicate
+verification is local to a shard. The four-GPU criterion is elapsed time for
+the same workload. Report allocation and measured durations separately.

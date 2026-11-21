@@ -1,0 +1,343 @@
+{
+  "update": 0,
+  "endpoints": {
+    "B": 0
+  },
+  "summary": {
+    "B/T_opd_eval/sample": {
+      "reward": 0.13131336209363548,
+      "all_requirements": 0.3825,
+      "strict": 0.3825,
+      "length": 4.42375,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.975,
+      "invalid_rewards": 20,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 155,
+        "gold_purchase": 306,
+        "repeat_loop": 96,
+        "partial_alternative_purchase": 201,
+        "reward_unverifiable": 20,
+        "early_abstain": 22
+      },
+      "legal_rate": 0.8909296411415655,
+      "action_counts": {
+        "search": 815,
+        "open_listed_product": 822,
+        "select_visible_option": 784,
+        "buy": 682,
+        "illegal": 386,
+        "other_click": 28,
+        "other_legal": 22
+      },
+      "funnel_episode_rate": {
+        "search": 0.99875,
+        "open_listed_product": 0.9975,
+        "select_visible_option": 0.8775,
+        "buy": 0.8525
+      },
+      "decision_token_count": 23594,
+      "decision_entropy": 0.04231850822692234,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20190,
+          "entropy": 0.17347396073193785
+        },
+        "click": {
+          "tokens": 14991,
+          "entropy": 0.052611151163876754
+        },
+        "option": {
+          "tokens": 8603,
+          "entropy": 0.02438325188984415
+        }
+      }
+    },
+    "B/T_opd_eval/greedy": {
+      "reward": 0.18992916666666657,
+      "all_requirements": 0.415,
+      "strict": 0.415,
+      "length": 4.27,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "wrong_purchase": 42,
+        "gold_purchase": 83,
+        "repeat_loop": 14,
+        "partial_alternative_purchase": 52,
+        "reward_unverifiable": 6,
+        "early_abstain": 3
+      },
+      "legal_rate": 0.9297423887587822,
+      "action_counts": {
+        "search": 202,
+        "open_listed_product": 204,
+        "select_visible_option": 198,
+        "buy": 183,
+        "illegal": 60,
+        "other_click": 4,
+        "other_legal": 3
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.91,
+        "buy": 0.915
+      },
+      "decision_token_count": 5640,
+      "decision_entropy": 0.04029816209211189,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 4952,
+          "entropy": 0.16712089000687963
+        },
+        "click": {
+          "tokens": 3502,
+          "entropy": 0.05274695220667041
+        },
+        "option": {
+          "tokens": 2138,
+          "entropy": 0.019907300080332688
+        }
+      }
+    },
+    "B/V/sample": {
+      "reward": 0.3805828539949632,
+      "all_requirements": 0.525,
+      "strict": 0.525,
+      "length": 4.22625,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.96875,
+      "invalid_rewards": 25,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 420,
+        "early_abstain": 18,
+        "partial_alternative_purchase": 192,
+        "repeat_loop": 55,
+        "wrong_purchase": 90,
+        "reward_unverifiable": 25
+      },
+      "legal_rate": 0.9266489204377403,
+      "action_counts": {
+        "search": 808,
+        "open_listed_product": 808,
+        "select_visible_option": 752,
+        "buy": 727,
+        "illegal": 248,
+        "other_legal": 18,
+        "other_click": 20
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84375,
+        "buy": 0.90875
+      },
+      "decision_token_count": 20948,
+      "decision_entropy": 0.04173164457731239,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20326,
+          "entropy": 0.1762377129539802
+        },
+        "click": {
+          "tokens": 13431,
+          "entropy": 0.05451515188048737
+        },
+        "option": {
+          "tokens": 7517,
+          "entropy": 0.018890712478211263
+        }
+      }
+    },
+    "B/V/greedy": {
+      "reward": 0.4544085393772895,
+      "all_requirements": 0.57,
+      "strict": 0.57,
+      "length": 4.12,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 114,
+        "partial_alternative_purchase": 49,
+        "repeat_loop": 7,
+        "wrong_purchase": 22,
+        "reward_unverifiable": 6,
+        "early_abstain": 2
+      },
+      "legal_rate": 0.962378640776699,
+      "action_counts": {
+        "search": 201,
+        "open_listed_product": 201,
+        "select_visible_option": 196,
+        "buy": 191,
+        "illegal": 31,
+        "other_legal": 2,
+        "other_click": 2
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.875,
+        "buy": 0.955
+      },
+      "decision_token_count": 5125,
+      "decision_entropy": 0.037252018036276674,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 5140,
+          "entropy": 0.1703393170353476
+        },
+        "click": {
+          "tokens": 3202,
+          "entropy": 0.04768722191919925
+        },
+        "option": {
+          "tokens": 1923,
+          "entropy": 0.019876291133979172
+        }
+      }
+    },
+    "B/V_seen/sample": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "B/V_seen/greedy": {
+      "tasks": 0,
+      "status": "EMPTY_STRATUM"
+    },
+    "B/V_unseen/sample": {
+      "reward": 0.3805828539949632,
+      "all_requirements": 0.525,
+      "strict": 0.525,
+      "length": 4.22625,
+      "tasks": 200,
+      "episodes": 800,
+      "reward_valid_rate": 0.96875,
+      "invalid_rewards": 25,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 420,
+        "early_abstain": 18,
+        "partial_alternative_purchase": 192,
+        "repeat_loop": 55,
+        "wrong_purchase": 90,
+        "reward_unverifiable": 25
+      },
+      "legal_rate": 0.9266489204377403,
+      "action_counts": {
+        "search": 808,
+        "open_listed_product": 808,
+        "select_visible_option": 752,
+        "buy": 727,
+        "illegal": 248,
+        "other_legal": 18,
+        "other_click": 20
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.84375,
+        "buy": 0.90875
+      },
+      "decision_token_count": 20948,
+      "decision_entropy": 0.04173164457731239,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 20326,
+          "entropy": 0.1762377129539802
+        },
+        "click": {
+          "tokens": 13431,
+          "entropy": 0.05451515188048737
+        },
+        "option": {
+          "tokens": 7517,
+          "entropy": 0.018890712478211263
+        }
+      }
+    },
+    "B/V_unseen/greedy": {
+      "reward": 0.4544085393772895,
+      "all_requirements": 0.57,
+      "strict": 0.57,
+      "length": 4.12,
+      "tasks": 200,
+      "episodes": 200,
+      "reward_valid_rate": 0.97,
+      "invalid_rewards": 6,
+      "strict_ratio": 1.0,
+      "reward_types": {
+        "gold_purchase": 114,
+        "partial_alternative_purchase": 49,
+        "repeat_loop": 7,
+        "wrong_purchase": 22,
+        "reward_unverifiable": 6,
+        "early_abstain": 2
+      },
+      "legal_rate": 0.962378640776699,
+      "action_counts": {
+        "search": 201,
+        "open_listed_product": 201,
+        "select_visible_option": 196,
+        "buy": 191,
+        "illegal": 31,
+        "other_legal": 2,
+        "other_click": 2
+      },
+      "funnel_episode_rate": {
+        "search": 1.0,
+        "open_listed_product": 1.0,
+        "select_visible_option": 0.875,
+        "buy": 0.955
+      },
+      "decision_token_count": 5125,
+      "decision_entropy": 0.037252018036276674,
+      "entropy_by_class": {
+        "search": {
+          "tokens": 5140,
+          "entropy": 0.1703393170353476
+        },
+        "click": {
+          "tokens": 3202,
+          "entropy": 0.04768722191919925
+        },
+        "option": {
+          "tokens": 1923,
+          "entropy": 0.019876291133979172
+        }
+      }
+    }
+  },
+  "paired": {},
+  "train_eval_minus_V": {
+    "B/sample": {
+      "reward": -0.24926949190132774,
+      "all_requirements": -0.14250000000000002,
+      "strict": -0.14250000000000002,
+      "length": 0.1974999999999998
+    },
+    "B/greedy": {
+      "reward": -0.26447937271062294,
+      "all_requirements": -0.15499999999999997,
+      "strict": -0.15499999999999997,
+      "length": 0.14999999999999947
+    }
+  },
+  "paired_gap": {},
+  "primary": [
+    "P-R-matched",
+    "P-B"
+  ],
+  "seeds": 1
+}
