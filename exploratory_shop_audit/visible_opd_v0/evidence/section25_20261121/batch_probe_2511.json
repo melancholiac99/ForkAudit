@@ -1,0 +1,274 @@
+{
+  "device": 3,
+  "scope": "BF16 student forward only; 12 length-matched pairs on original training prefixes, native unpadded single versus right-padded batch of two; alternating timings after warmup",
+  "pairs": [
+    {
+      "records": [
+        0,
+        220
+      ],
+      "lengths": [
+        268,
+        271
+      ],
+      "timing_s": {
+        "single": 0.15285787699940556,
+        "pair": 0.08886467299998912
+      },
+      "peak_allocated_bytes": {
+        "single": 16045824512,
+        "pair": 16106201600
+      },
+      "candidate_mismatches": 209,
+      "candidates": 328,
+      "positions": 41,
+      "top8_changed_positions": 5
+    },
+    {
+      "records": [
+        161,
+        246
+      ],
+      "lengths": [
+        291,
+        291
+      ],
+      "timing_s": {
+        "pair": 0.10926982999990287,
+        "single": 0.15261935500166146
+      },
+      "peak_allocated_bytes": {
+        "pair": 16114087936,
+        "single": 16046042624
+      },
+      "candidate_mismatches": 234,
+      "candidates": 368,
+      "positions": 46,
+      "top8_changed_positions": 12
+    },
+    {
+      "records": [
+        108,
+        194
+      ],
+      "lengths": [
+        311,
+        311
+      ],
+      "timing_s": {
+        "single": 0.15781993600103306,
+        "pair": 0.09078645800036611
+      },
+      "peak_allocated_bytes": {
+        "single": 16063067136,
+        "pair": 16124512256
+      },
+      "candidate_mismatches": 346,
+      "candidates": 552,
+      "positions": 69,
+      "top8_changed_positions": 8
+    },
+    {
+      "records": [
+        195,
+        206
+      ],
+      "lengths": [
+        2434,
+        2434
+      ],
+      "timing_s": {
+        "pair": 0.5926543650002714,
+        "single": 0.6853919019995374
+      },
+      "peak_allocated_bytes": {
+        "pair": 17273693184,
+        "single": 16631072256
+      },
+      "candidate_mismatches": 214,
+      "candidates": 256,
+      "positions": 32,
+      "top8_changed_positions": 6
+    },
+    {
+      "records": [
+        25,
+        191
+      ],
+      "lengths": [
+        2539,
+        2544
+      ],
+      "timing_s": {
+        "single": 0.697281335000298,
+        "pair": 0.668949402999715
+      },
+      "peak_allocated_bytes": {
+        "single": 16661082112,
+        "pair": 17346273280
+      },
+      "candidate_mismatches": 0,
+      "candidates": 256,
+      "positions": 32,
+      "top8_changed_positions": 0
+    },
+    {
+      "records": [
+        144,
+        102
+      ],
+      "lengths": [
+        2687,
+        2689
+      ],
+      "timing_s": {
+        "pair": 0.712957458999881,
+        "single": 0.7485125019993575
+      },
+      "peak_allocated_bytes": {
+        "pair": 17425614848,
+        "single": 16701117440
+      },
+      "candidate_mismatches": 0,
+      "candidates": 256,
+      "positions": 32,
+      "top8_changed_positions": 0
+    },
+    {
+      "records": [
+        44,
+        141
+      ],
+      "lengths": [
+        2833,
+        2834
+      ],
+      "timing_s": {
+        "single": 0.7783324329993775,
+        "pair": 0.7390038140001707
+      },
+      "peak_allocated_bytes": {
+        "single": 16744940544,
+        "pair": 17506528256
+      },
+      "candidate_mismatches": 0,
+      "candidates": 272,
+      "positions": 34,
+      "top8_changed_positions": 0
+    },
+    {
+      "records": [
+        240,
+        168
+      ],
+      "lengths": [
+        3028,
+        3029
+      ],
+      "timing_s": {
+        "pair": 0.8069293999997171,
+        "single": 0.8436402859988448
+      },
+      "peak_allocated_bytes": {
+        "pair": 17613968896,
+        "single": 16793330176
+      },
+      "candidate_mismatches": 114,
+      "candidates": 152,
+      "positions": 19,
+      "top8_changed_positions": 0
+    },
+    {
+      "records": [
+        45,
+        62
+      ],
+      "lengths": [
+        3211,
+        3211
+      ],
+      "timing_s": {
+        "single": 0.9133670729988808,
+        "pair": 0.7620441170001868
+      },
+      "peak_allocated_bytes": {
+        "single": 16849191424,
+        "pair": 17693880320
+      },
+      "candidate_mismatches": 146,
+      "candidates": 184,
+      "positions": 23,
+      "top8_changed_positions": 5
+    },
+    {
+      "records": [
+        160,
+        175
+      ],
+      "lengths": [
+        3399,
+        3400
+      ],
+      "timing_s": {
+        "pair": 0.8854989970004681,
+        "single": 0.950181607999184
+      },
+      "peak_allocated_bytes": {
+        "pair": 17820327936,
+        "single": 16891948032
+      },
+      "candidate_mismatches": 0,
+      "candidates": 192,
+      "positions": 24,
+      "top8_changed_positions": 0
+    },
+    {
+      "records": [
+        152,
+        147
+      ],
+      "lengths": [
+        3804,
+        3835
+      ],
+      "timing_s": {
+        "single": 1.04570943500039,
+        "pair": 1.0216982349993486
+      },
+      "peak_allocated_bytes": {
+        "single": 17012920832,
+        "pair": 18060809216
+      },
+      "candidate_mismatches": 0,
+      "candidates": 184,
+      "positions": 23,
+      "top8_changed_positions": 0
+    },
+    {
+      "records": [
+        211,
+        203
+      ],
+      "lengths": [
+        7956,
+        8093
+      ],
+      "timing_s": {
+        "pair": 2.5092450859992823,
+        "single": 2.5231812480014923
+      },
+      "peak_allocated_bytes": {
+        "pair": 20468989440,
+        "single": 18218471936
+      },
+      "candidate_mismatches": 0,
+      "candidates": 176,
+      "positions": 22,
+      "top8_changed_positions": 0
+    }
+  ],
+  "speedup": 1.0735425425185599,
+  "candidate_mismatches": 1263,
+  "top8_changed_positions": 36,
+  "training_settings_changed": false
+}
