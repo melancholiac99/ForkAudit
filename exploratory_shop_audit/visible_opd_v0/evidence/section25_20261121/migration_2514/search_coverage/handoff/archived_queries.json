@@ -1,0 +1,3522 @@
+{
+  "sealed_plan": {
+    "tasks": 93,
+    "sha256": "7d7e3756dba62140047ffd69c15c2ad94dc296f585d66d869f7026f7dd771774",
+    "archive_sha256": "28159cd77af41889b022f5b14a0f8158feed99fe7ab436e8d46b6767a2ef7c4b"
+  },
+  "originally_unrecovered": 274,
+  "newly_authenticated": 68,
+  "intervention_source_rows": 9,
+  "rows": [
+    {
+      "step": 0,
+      "split": "T_opd_eval",
+      "goal": 14549,
+      "rep": 4,
+      "actions_sha": "06ff39a9807f5f34ab20eed188ba692f311ae960897c238da72e8a430c0d5f3f",
+      "queries": [
+        "成人 慢回弹海绵材质 方形 枕头 垫片 高5cm 支撑好"
+      ],
+      "first_query": "成人 慢回弹海绵材质 方形 枕头 垫片 高5cm 支撑好",
+      "each_arg_token_count": [
+        25
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 25,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 2,
+          "rep": 4,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "8a8eeab5368ece77a125c33348a0cd13b1f8bdeffdb271835cf22d38d373fa95"
+        }
+      ],
+      "first_page_asins": [
+        "649360653015",
+        "919699076561",
+        "885160631261",
+        "809401384704",
+        "915995796824",
+        "891902542146",
+        "919888285120",
+        "894061240764",
+        "889318642254",
+        "624080968457",
+        "35721723890",
+        "936951393427",
+        "608796352403",
+        "856187313010",
+        "772395703403",
+        "928020564150",
+        "886480415467",
+        "939045806017",
+        "735991957331",
+        "925946038110"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 2527,
+      "rep": 3,
+      "actions_sha": "44de36278c40d3d58717569239a9c3b66ebdee04751118b0be00bbc77d4a676c",
+      "queries": [
+        "华星光电 D07定制板 4K粗板线 分开的Y状排列 新品"
+      ],
+      "first_query": "华星光电 D07定制板 4K粗板线 分开的Y状排列 新品",
+      "each_arg_token_count": [
+        22
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 22,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "d81baa32a57ba04aa4bd77b55821ec021ccf65a7cb42754ddcd9a511bfd7ea62"
+        }
+      ],
+      "first_page_asins": [
+        "610786506928",
+        "809831988221",
+        "622375454241",
+        "901542631900",
+        "811423746672",
+        "891103845810",
+        "607854963764",
+        "922715640702",
+        "749199743693",
+        "889790409740",
+        "763138110021",
+        "748437418408",
+        "570675957794",
+        "743367835625",
+        "572699964551",
+        "743143946904",
+        "941861388347",
+        "839665493973",
+        "907635943271",
+        "887371091591"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 5029,
+      "rep": 4,
+      "actions_sha": "f0688402ed308cc9f33f29f3ea8af734a9d5e10eabb89ef34f22a7a266283b52",
+      "queries": [
+        "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖",
+        "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖",
+        "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖",
+        "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖"
+      ],
+      "first_query": "乳胶枕 斯里兰卡 生产 流线型 设计 颈部曲线 按压护理 环保 无公害 热卖",
+      "each_arg_token_count": [
+        38,
+        38,
+        38,
+        38
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 152,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 4,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "d81baa32a57ba04aa4bd77b55821ec021ccf65a7cb42754ddcd9a511bfd7ea62"
+        }
+      ],
+      "first_page_asins": [
+        "669819915742",
+        "899475968758",
+        "14666460731",
+        "868862705328",
+        "667936550378",
+        "544199524177",
+        "843227265870",
+        "685573351336",
+        "762028877507",
+        "691132591852",
+        "889318642254",
+        "919888285120",
+        "831068729137",
+        "643436000957",
+        "594655736502",
+        "788569442907",
+        "640949349809",
+        "843446632925",
+        "728536086916",
+        "719633577630"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 6155,
+      "rep": 1,
+      "actions_sha": "f261273461f6e4e8fa3f23fc9e0917adde5a09716ec6e03fa5927c8b4391d226",
+      "queries": [
+        "汽车 仪表盘 装饰贴膜 碳纤维 黑色 30cm*100cm"
+      ],
+      "first_query": "汽车 仪表盘 装饰贴膜 碳纤维 黑色 30cm*100cm",
+      "each_arg_token_count": [
+        26
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 26,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 1,
+          "rep": 1,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "2cfd65e4b363584ac13bf60323409fb5fa448b0c8ba8ac165f5612171654ab1f"
+        }
+      ],
+      "first_page_asins": [
+        "945361420736",
+        "851115584058",
+        "602660873317",
+        "15466988770",
+        "803661820028",
+        "943157550850",
+        "819068921434",
+        "927678453080",
+        "932470311557",
+        "918191419995",
+        "750153282705",
+        "903820919018",
+        "903811459909",
+        "820355160796",
+        "909155804383",
+        "908240986404",
+        "912100937888",
+        "865570485587",
+        "851154665650",
+        "878723729821"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 7453,
+      "rep": 3,
+      "actions_sha": "7e0923a0d7bda9aa8bb1ec698a44a8af01ecb5ce4f2eba186e6bf2f048a80c70",
+      "queries": [
+        "隔热防雨涂料1公斤"
+      ],
+      "first_query": "隔热防雨涂料1公斤",
+      "each_arg_token_count": [
+        6
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 6,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_T_opd_eval_0064.json",
+          "sha256": "2e6a84c96738c2cf3236831408937b82df9940b1bef581ce0b6ef4dd3b10224c"
+        }
+      ],
+      "first_page_asins": [
+        "865554273776",
+        "546438641323",
+        "700762023681",
+        "43600119874",
+        "805804245195",
+        "802043306763",
+        "930630283861",
+        "38157104987",
+        "677825992275",
+        "751062214379",
+        "726135085511",
+        "899578539052",
+        "641814980596",
+        "900266941883",
+        "785380967925",
+        "930425920002",
+        "708549207129",
+        "654393180687",
+        "539126836677",
+        "43621902041"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 11011,
+      "rep": 2,
+      "actions_sha": "8a84e2840641b5a934d49f8295b1e60e4e48e89995b1a689c34ae30d44b64dfe",
+      "queries": [
+        "汉服 春秋 传统 比甲 主腰 明朝 铃兰 蝴蝶 刺绣 开襟 落肩 连袖 小码 预购"
+      ],
+      "first_query": "汉服 春秋 传统 比甲 主腰 明朝 铃兰 蝴蝶 刺绣 开襟 落肩 连袖 小码 预购",
+      "each_arg_token_count": [
+        43
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 43,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 2,
+          "rep": 2,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "edc595e9ef75c5f4ce71cd300ab9f81fc6f5deb2cfe18d2e00dd9594b86a0a15"
+        }
+      ],
+      "first_page_asins": [
+        "920103125754",
+        "903014561305",
+        "770468701211",
+        "925180182324",
+        "877042732704",
+        "938862321397",
+        "666594761770",
+        "799477676158",
+        "719488868396",
+        "874249384450",
+        "907085336602",
+        "771640086272",
+        "881935958689",
+        "865168205443",
+        "675162894980",
+        "941175150882",
+        "678148426711",
+        "818519116730",
+        "682540502866",
+        "706775563453"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 12031,
+      "rep": 0,
+      "actions_sha": "a1da8232d07a193ebac9e54b6ac474e6c4ce6e472ade2c66390492b5449709e9",
+      "queries": [
+        "儿童玛丽珍鞋 软底 银色 23码 春秋季"
+      ],
+      "first_query": "儿童玛丽珍鞋 软底 银色 23码 春秋季",
+      "each_arg_token_count": [
+        19
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 19,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 0,
+          "rep": 0,
+          "file": "search_T_opd_eval_0000.json",
+          "sha256": "5204c714ff146c7f40799b51d559ad5b3f9faf1a911d8a799754e8c29f6c22dc"
+        }
+      ],
+      "first_page_asins": [
+        "730288751751",
+        "901288311655",
+        "892920373526",
+        "890015474890",
+        "888836792499",
+        "888835774473",
+        "828619741926",
+        "896758670206",
+        "792869143839",
+        "926206356764",
+        "829291545343",
+        "944042920461",
+        "926532106285",
+        "900536986023",
+        "811435434245",
+        "889546255039",
+        "734010752171",
+        "942985922729",
+        "914298305873",
+        "724634197038"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 12031,
+      "rep": 4,
+      "actions_sha": "bbaac4219ef74506ece5433c07dec221d605ef2eef03d5473df7331a86e009e7",
+      "queries": [
+        "儿童玛丽珍鞋 25年新款 春秋季 软底设计 银色 23码 150元内"
+      ],
+      "first_query": "儿童玛丽珍鞋 25年新款 春秋季 软底设计 银色 23码 150元内",
+      "each_arg_token_count": [
+        31
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 31,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 0,
+          "rep": 4,
+          "file": "search_T_opd_eval_0000.json",
+          "sha256": "d1579814a7397767b07e5003873fa2085f53513ddb20248d6359d363bbb91140"
+        }
+      ],
+      "first_page_asins": [
+        "730288751751",
+        "901288311655",
+        "892920373526",
+        "888835774473",
+        "890015474890",
+        "888836792499",
+        "828619741926",
+        "941660269226",
+        "896758670206",
+        "610127503120",
+        "893620682938",
+        "926206356764",
+        "792869143839",
+        "910284078270",
+        "944042920461",
+        "770350363422",
+        "900536986023",
+        "812078458153",
+        "734010752171",
+        "787622698408"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 14945,
+      "rep": 4,
+      "actions_sha": "0e9126b99fbb2061afe618347a27545019ec39ba019d265a710885e0977a1ffe",
+      "queries": [
+        "古典风格 女士单肩包 2023新款 冬季适用 搭配各种衣服 上下班和外出都能用 卡其色 挂件 130元"
+      ],
+      "first_query": "古典风格 女士单肩包 2023新款 冬季适用 搭配各种衣服 上下班和外出都能用 卡其色 挂件 130元",
+      "each_arg_token_count": [
+        44
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 44,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 2,
+          "rep": 4,
+          "file": "search_T_opd_eval_0064.json",
+          "sha256": "e24c916691a39ae4cc2a3eeaf5435eea3897052aefca3928cc5eab047618df34"
+        }
+      ],
+      "first_page_asins": [
+        "910767494863",
+        "748643074364",
+        "732806497062",
+        "841337658974",
+        "681012989652",
+        "780597704790",
+        "937054632582",
+        "916559443920",
+        "775401997630",
+        "804703998635",
+        "824594655267",
+        "850213316629",
+        "823191051563",
+        "868014350115",
+        "874165924721",
+        "730712096247",
+        "743620469627",
+        "671668693289",
+        "753405390477",
+        "744515019516"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 17507,
+      "rep": 2,
+      "actions_sha": "411b16d32a91feb2395d020ca14f0bfa0357bab741511f68f9c3c22e1cef1676",
+      "queries": [
+        "男款九分长西裤 黑色 冰丝面料 28尺码",
+        "男款九分长西裤 黑色 冰丝面料 28尺码"
+      ],
+      "first_query": "男款九分长西裤 黑色 冰丝面料 28尺码",
+      "each_arg_token_count": [
+        19,
+        19
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 38,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 2,
+          "rep": 2,
+          "file": "search_T_opd_eval_0192.json",
+          "sha256": "80b4d96575d590c757ad11d664b8c750ae171ecf6acf30b8166970a200d56b56"
+        }
+      ],
+      "first_page_asins": [
+        "940599447247",
+        "928014764242",
+        "652362782318",
+        "933137844384",
+        "938459708059",
+        "896774783702",
+        "929110763910",
+        "903549890911",
+        "937404410382",
+        "843197309485",
+        "918544419749",
+        "894169928553",
+        "939807056654",
+        "917664309640",
+        "916264085599",
+        "900787005587",
+        "918110788886",
+        "730455735235",
+        "724820817003",
+        "906982162367"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 19852,
+      "rep": 1,
+      "actions_sha": "9d451b3fbf371c6b70cd6f45cbbda2eb7707f1e87a3504b0e20248d3a8dce5b3",
+      "queries": [
+        "foreverkey 水唇泥 鲜杨梅红酒浓郁红色 组合装"
+      ],
+      "first_query": "foreverkey 水唇泥 鲜杨梅红酒浓郁红色 组合装",
+      "each_arg_token_count": [
+        20
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 20,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 0,
+          "rep": 1,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "31b7b6ee011328c5f88c49f977b1f8ca1ceb1bf86cd6be5df576f713fa4c8fd5"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 0,
+          "rep": 1,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "4474d4a3ebd7c74dfe6f123124d2aea889a84358c9217f46d9687cf42824cbe6"
+        }
+      ],
+      "first_page_asins": [
+        "944303833958",
+        "847450525916",
+        "846850519858",
+        "930557628720",
+        "859023544823",
+        "859832824457",
+        "900452005210",
+        "802837828770",
+        "850125961566",
+        "722119681195",
+        "814205653247",
+        "936944685417",
+        "724086366984",
+        "922556161036",
+        "837680802602",
+        "848127797052",
+        "638527011893",
+        "775306023931",
+        "19175707421",
+        "858022910290"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 19852,
+      "rep": 2,
+      "actions_sha": "327a00cf980324e2375a08af16dc1984e6622455d1596f050a88bd0aff3d147b",
+      "queries": [
+        "foreverkey 水唇泥 鲜杨梅红酒色 组合装"
+      ],
+      "first_query": "foreverkey 水唇泥 鲜杨梅红酒色 组合装",
+      "each_arg_token_count": [
+        19
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 19,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 0,
+          "rep": 2,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "4474d4a3ebd7c74dfe6f123124d2aea889a84358c9217f46d9687cf42824cbe6"
+        }
+      ],
+      "first_page_asins": [
+        "944303833958",
+        "847450525916",
+        "846850519858",
+        "930557628720",
+        "859023544823",
+        "859832824457",
+        "900452005210",
+        "802837828770",
+        "850125961566",
+        "722119681195",
+        "936944685417",
+        "724086366984",
+        "922556161036",
+        "837680802602",
+        "638527011893",
+        "775306023931",
+        "19175707421",
+        "858022910290",
+        "909206300867",
+        "893171410640"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 20766,
+      "rep": 2,
+      "actions_sha": "a728eea5e1d6e742c94dd6c4b8c1923e28118206f065fa8090107c23828f0bcb",
+      "queries": [
+        "含有茶树精油成分的新款香氛型洗衣珠 去渍 除菌 除螨 百合香味"
+      ],
+      "first_query": "含有茶树精油成分的新款香氛型洗衣珠 去渍 除菌 除螨 百合香味",
+      "each_arg_token_count": [
+        26
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 26,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "026577743c08391a16656ffe66ba7e208fe7ebf4e8b9f930774ddfd8ac98d464"
+        }
+      ],
+      "first_page_asins": [
+        "902541137393",
+        "900536188182",
+        "857642071070",
+        "654094376218",
+        "890090280828",
+        "726337817191",
+        "757185038028",
+        "937492113221",
+        "676015512673",
+        "895441259958",
+        "861204920693",
+        "918136038355",
+        "902373661165",
+        "799529526291",
+        "913220286754",
+        "665800153478",
+        "773495423217",
+        "842894082254",
+        "625831707321",
+        "835827402483"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 21950,
+      "rep": 0,
+      "actions_sha": "8d9a72bec162a6a29c48b0ccf863bd6798cda4fe622362a4e28725a31945c1b8",
+      "queries": [
+        "矮凳子 幼儿园 折叠 收纳 靠背 独角兽图案 40元"
+      ],
+      "first_query": "矮凳子 幼儿园 折叠 收纳 靠背 独角兽图案 40元",
+      "each_arg_token_count": [
+        27
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 27,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 3,
+          "rep": 0,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "b0acd830b03310b29ef3c16c3b8bf2d9ae97b6dc5822d87ff240f53bf5b071f4"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 0,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "15f642ba30bbaaf7ffed78260ece57a3b2e363f132ca3052f3457465e18744ae"
+        }
+      ],
+      "first_page_asins": [
+        "707086236097",
+        "841760144515",
+        "803792959161",
+        "928035917807",
+        "670080242189",
+        "649068158253",
+        "750705893091",
+        "901530643122",
+        "935370306015",
+        "942123105009",
+        "944330349689",
+        "726127891412",
+        "777790078932",
+        "642560094551",
+        "637084521706",
+        "919989593603",
+        "676933342649",
+        "904887167322",
+        "593989638164",
+        "827875445928"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 21950,
+      "rep": 1,
+      "actions_sha": "00446c09355ea593dddc1b7f89733eb326d4358d5b0a094b9b4a6df73eba112f",
+      "queries": [
+        "幼儿园小朋友坐的矮凳子 折叠 收纳 靠背 独角兽图案"
+      ],
+      "first_query": "幼儿园小朋友坐的矮凳子 折叠 收纳 靠背 独角兽图案",
+      "each_arg_token_count": [
+        23
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 23,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 3,
+          "rep": 1,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "b0acd830b03310b29ef3c16c3b8bf2d9ae97b6dc5822d87ff240f53bf5b071f4"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 1,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "15f642ba30bbaaf7ffed78260ece57a3b2e363f132ca3052f3457465e18744ae"
+        }
+      ],
+      "first_page_asins": [
+        "707086236097",
+        "671591851341",
+        "841760144515",
+        "803792959161",
+        "928035917807",
+        "935370306015",
+        "670080242189",
+        "605667041033",
+        "649068158253",
+        "750705893091",
+        "710758712798",
+        "901530643122",
+        "863177325308",
+        "850863250007",
+        "673594166186",
+        "891476988910",
+        "800623215828",
+        "936334393582",
+        "911298417849",
+        "726127891412"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "T_opd_eval",
+      "goal": 23407,
+      "rep": 3,
+      "actions_sha": "0535e349eb55b13fcc438684c1fba10c2dd9b2341573b88252b6cf046241c5e4",
+      "queries": [
+        "可调焦发丝灯 300瓦 三种颜色 赠送5色片 支架"
+      ],
+      "first_query": "可调焦发丝灯 300瓦 三种颜色 赠送5色片 支架",
+      "each_arg_token_count": [
+        24
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 24,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "66419b85adf788012d46474319649d703d7a949218627f15d02ea44494391a91"
+        }
+      ],
+      "first_page_asins": [
+        "830640574183",
+        "776878089894",
+        "649845229416",
+        "771016727698",
+        "807424746350",
+        "789347016477",
+        "773644968861",
+        "840818338344",
+        "768700959713",
+        "678060833167",
+        "904154438958",
+        "844464692157",
+        "524368052042",
+        "814389970966",
+        "823614921239",
+        "944168108210",
+        "845697593580",
+        "803421788591",
+        "830585633900",
+        "844246963102"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 2642,
+      "rep": 3,
+      "actions_sha": "97c281042d25dfccf002e9602a59c3c067d57126decd36cd9b3374c4ae06ce9f",
+      "queries": [
+        "外接硬盘盒 USB3.0 6Gbps 12Gbps 2.5寸 3.5寸 SAS SATA 白色"
+      ],
+      "first_query": "外接硬盘盒 USB3.0 6Gbps 12Gbps 2.5寸 3.5寸 SAS SATA 白色",
+      "each_arg_token_count": [
+        32
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 32,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_V_0160.json",
+          "sha256": "2d4ef527716a9ad11923332d49f84780983afaf1393d5f79551f1d74fddd839b"
+        }
+      ],
+      "first_page_asins": [
+        "655831246999",
+        "935071543063",
+        "750631380615",
+        "743310543298",
+        "706871144697",
+        "873534861424",
+        "867042522900",
+        "781070815585",
+        "822388237217",
+        "745895467186",
+        "789739808387",
+        "797197993560",
+        "855410887393",
+        "802529087470",
+        "871475773413",
+        "657671000726",
+        "753173576333",
+        "856716279369",
+        "556271081848",
+        "797933550151"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 2692,
+      "rep": 1,
+      "actions_sha": "3ac1f077fe93b62bd3dc5f6987fdb39186558ca71e7d2f95f91746f67fc9a600",
+      "queries": [
+        "270ml 开盖即饮 咖啡 三瓶 30内 拿铁 芝士奶香 美式"
+      ],
+      "first_query": "270ml 开盖即饮 咖啡 三瓶 30内 拿铁 芝士奶香 美式",
+      "each_arg_token_count": [
+        33
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 33,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 1,
+          "file": "search_V_0224.json",
+          "sha256": "03d5c51bdf6de0247d029831ec4afcc67e3383655ae80f83450f41dcb7f44083"
+        }
+      ],
+      "first_page_asins": [
+        "859868456822",
+        "793883406996",
+        "938669441153",
+        "921760392642",
+        "675794699556",
+        "898537185841",
+        "944363177496",
+        "943301151218",
+        "927843840967",
+        "814080386130",
+        "908430899614",
+        "651321647259",
+        "894700607384",
+        "890807694290",
+        "704003756028",
+        "896880579236",
+        "928618243560",
+        "747554093924",
+        "676486911861",
+        "922486094244"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 4417,
+      "rep": 1,
+      "actions_sha": "4d32dd659ee7205ab1ea54e775cad8639e8459a1eb75f91457eb0712172ffc4e",
+      "queries": [
+        "日本睫毛膏 保养 防护 亮泽 持久 黑色 >5g 160元以下"
+      ],
+      "first_query": "日本睫毛膏 保养 防护 亮泽 持久 黑色 >5g 160元以下",
+      "each_arg_token_count": [
+        28
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 28,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 1,
+          "rep": 1,
+          "file": "search_V_0000.json",
+          "sha256": "6fb3b25ae5217f0ae6797679f87653308a6f555a5a19daacb492ea55d0dab057"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 1,
+          "file": "search_V_0000.json",
+          "sha256": "68e4dc241af27db4eb5c9d4a4638d7767ed0b9b813003f5f25ee8965fa3bb5fe"
+        }
+      ],
+      "first_page_asins": [
+        "901558559409",
+        "832792435914",
+        "606692339535",
+        "778599802908",
+        "710287742025",
+        "902178590679",
+        "646312067024",
+        "712353030578",
+        "852090966439",
+        "863101477729",
+        "658391870761",
+        "691741726595",
+        "899995923348",
+        "820609326683",
+        "828122387554",
+        "6583054929",
+        "883042067521",
+        "856967797102",
+        "769940518546",
+        "779001291627"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 4655,
+      "rep": 0,
+      "actions_sha": "80a5ddc06d68ba983d13b517c507683b9d69b2fb71ecb981c208398d558e4943",
+      "queries": [
+        "蓝黑蛱蝶标本装饰 正方形 原生态"
+      ],
+      "first_query": "蓝黑蛱蝶标本装饰 正方形 原生态",
+      "each_arg_token_count": [
+        14
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 14,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 0,
+          "file": "search_V_0096.json",
+          "sha256": "8b7c60aacba93349d74cb7009540fbe17b13b63160861351c8afaa143cfc104b"
+        }
+      ],
+      "first_page_asins": [
+        "715624542075",
+        "766320069707",
+        "708400191997",
+        "720734258812",
+        "911771636736",
+        "678961311785",
+        "839297970681",
+        "655913357404",
+        "844677171413",
+        "726708064842",
+        "763001079155",
+        "896952421184",
+        "944862496918",
+        "778769184677",
+        "707158969269",
+        "668136024528",
+        "670328971122",
+        "940419758111",
+        "721827540460",
+        "799601402469"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 5086,
+      "rep": 3,
+      "actions_sha": "7e26352102e666f9ac98526aa41426131673bbda1b203328923732646c80a0b0",
+      "queries": [
+        "复古风 仿真玫瑰花 花瓣焦状感 带有花瓣图案 陶瓷瓶 轻奢感 45元"
+      ],
+      "first_query": "复古风 仿真玫瑰花 花瓣焦状感 带有花瓣图案 陶瓷瓶 轻奢感 45元",
+      "each_arg_token_count": [
+        31
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 31,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 3,
+          "file": "search_V_0160.json",
+          "sha256": "47fb6f1e12be5db46e1fe93ff9e0ead630e2d2513b4391202ec7b5435924a6b2"
+        }
+      ],
+      "first_page_asins": [
+        "874765768178",
+        "534281198006",
+        "802887448465",
+        "927889877783",
+        "907384066961",
+        "662982955064",
+        "931590929138",
+        "709820612975",
+        "897643653695",
+        "867175517896",
+        "800992864525",
+        "726089308314",
+        "898666491817",
+        "914048892006",
+        "649468121768",
+        "838582443050",
+        "937167152071",
+        "761634422634",
+        "937392958239",
+        "924102248112"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 5455,
+      "rep": 0,
+      "actions_sha": "56d2f46c0456aff28eab2162cd49752cdef64f69bddbcea744fbe5856c4eb003",
+      "queries": [
+        "人体感应器 24GHz 毫米波 70-80mm 官方旗舰店 国标电压 静态人体检测"
+      ],
+      "first_query": "人体感应器 24GHz 毫米波 70-80mm 官方旗舰店 国标电压 静态人体检测",
+      "each_arg_token_count": [
+        33
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 33,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 2,
+          "rep": 0,
+          "file": "search_V_0096.json",
+          "sha256": "a3b8ec1f5d33b8a3eedb6f1c358fc6d9648f028b1e275905103b46ef974bf91d"
+        }
+      ],
+      "first_page_asins": [
+        "833117047947",
+        "744073966487",
+        "872877907334",
+        "824629030498",
+        "872944147150",
+        "831056626983",
+        "832966594255",
+        "889440259760",
+        "934736763752",
+        "710979371385",
+        "924334283093",
+        "931656710778",
+        "903939509724",
+        "918822674708",
+        "939715551106",
+        "941269584071",
+        "941258572503",
+        "940742505503",
+        "903529781260",
+        "801770113510"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 8858,
+      "rep": 0,
+      "actions_sha": "ba15c02395822fb8cce0f33e7a84670d9109abf9e0a328e3e733fd0bc17cd1d1",
+      "queries": [
+        "北欧风格 实木 玻璃 材质 储物格 玄关 隔断 400左右"
+      ],
+      "first_query": "北欧风格 实木 玻璃 材质 储物格 玄关 隔断 400左右",
+      "each_arg_token_count": [
+        29
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 29,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 0,
+          "file": "search_V_0032.json",
+          "sha256": "5eaceaad9da29e6ce4e5e00aae0397924c13cbe410b8aabfab1a2b9e7fb8d345"
+        }
+      ],
+      "first_page_asins": [
+        "659297561157",
+        "870901607882",
+        "798664933512",
+        "610408725274",
+        "826513844961",
+        "523352719644",
+        "626239867716",
+        "811480398949",
+        "935064278417",
+        "743503832651",
+        "886011993169",
+        "834368861472",
+        "782830353575",
+        "803366989400",
+        "923670354217",
+        "729667496675",
+        "707280084338",
+        "816282901564",
+        "795085643070",
+        "841547449766"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 9618,
+      "rep": 3,
+      "actions_sha": "5677dba9bf931e5428c3c60f6effd96d83a85182a9c368d31373490a2f1c1543",
+      "queries": [
+        "微晶精华水 意大利进口 改善肤色暗沉 修复肌肤损伤 补充胶原蛋白 肤质紧实"
+      ],
+      "first_query": "微晶精华水 意大利进口 改善肤色暗沉 修复肌肤损伤 补充胶原蛋白 肤质紧实",
+      "each_arg_token_count": [
+        31
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 31,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_V_0096.json",
+          "sha256": "3b633087a55bc3980fb9bea70e7dd7089041043239d24de4b083962391ff5e71"
+        }
+      ],
+      "first_page_asins": [
+        "924845625333",
+        "885131140481",
+        "805790309236",
+        "900642414355",
+        "667693778879",
+        "944339561890",
+        "737754827007",
+        "816037555471",
+        "609230975684",
+        "892216481093",
+        "918418472280",
+        "891384826212",
+        "877534536801",
+        "934094399932",
+        "863305935654",
+        "929506203999",
+        "932629798348",
+        "710698035374",
+        "623344988883",
+        "784429071838"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 10532,
+      "rep": 3,
+      "actions_sha": "5ce75612b16d0d6309abb8bd24c41f4c49e2ec7ec53d7372b564215804072db7",
+      "queries": [
+        "自然一刻人物 和纸胶带 商家自己设计 宽度6-7厘米 50元以内"
+      ],
+      "first_query": "自然一刻人物 和纸胶带 商家自己设计 宽度6-7厘米 50元以内",
+      "each_arg_token_count": [
+        23
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 23,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 2,
+          "rep": 3,
+          "file": "search_V_0224.json",
+          "sha256": "d87976e9bdcd53c54605d25b97e94b04728e823af0029d0bfb671a1e700d9b74"
+        }
+      ],
+      "first_page_asins": [
+        "821688944035",
+        "813225971645",
+        "820384930785",
+        "857609184520",
+        "877257002647",
+        "669014221015",
+        "943705375982",
+        "842137622357",
+        "888184207468",
+        "708593385722",
+        "924168690356",
+        "719245667421",
+        "920394190647",
+        "924647333688",
+        "877253555740",
+        "943321595511",
+        "915098637068",
+        "802514720348",
+        "813560905083",
+        "705132937842"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 11776,
+      "rep": 4,
+      "actions_sha": "5fbf4b71d6f24574469e6565a303f2b9c0fd2977bc9d8a9c13910856fd7d6f3a",
+      "queries": [
+        "足金戒指 5D硬金技术 小蝴蝶造型 莫桑石 1.8g 11号 多退少补 2000元以下"
+      ],
+      "first_query": "足金戒指 5D硬金技术 小蝴蝶造型 莫桑石 1.8g 11号 多退少补 2000元以下",
+      "each_arg_token_count": [
+        39
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 39,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 0,
+          "rep": 4,
+          "file": "search_V_0128.json",
+          "sha256": "d46e8f93884050ed044bede525799e1c67e167f9098a79b9ff3dbfc589128b7e"
+        }
+      ],
+      "first_page_asins": [
+        "919836186026",
+        "931035004446",
+        "941099089715",
+        "908883721205",
+        "880778922304",
+        "941101793540",
+        "924173873281",
+        "688872782257",
+        "819420832708",
+        "920086487599",
+        "923314559372",
+        "923688846609",
+        "811202631716",
+        "938728977718",
+        "699749528189",
+        "827785224845",
+        "934909004241",
+        "844544845063",
+        "930477949906",
+        "924015804118"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 17596,
+      "rep": 0,
+      "actions_sha": "d83f0669e1f2658dd8eda3b9005c46e80669ca5358099b3b993ec6e58e283297",
+      "queries": [
+        "手机直播补光灯 两盏一组",
+        "手机直播补光灯 两盏一组 支持三种颜色调节",
+        "手机直播补光灯 两盏一组 支持三种颜色调节 70元以内",
+        "手机直播补光灯 两盏一组 支持三种颜色调节 70元以内 夹子"
+      ],
+      "first_query": "手机直播补光灯 两盏一组",
+      "each_arg_token_count": [
+        9,
+        15,
+        20,
+        23
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 67,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 0,
+          "file": "search_V_0064.json",
+          "sha256": "278f836e26222dce201fd1c9a6737fae3e745c07b2223acd6243dddb8d7badc1"
+        }
+      ],
+      "first_page_asins": [
+        "673108598240",
+        "934070088259",
+        "938331707656",
+        "611703027915",
+        "894935507277",
+        "856261104097",
+        "930148487636",
+        "727466912999",
+        "695859407199",
+        "724660141388",
+        "936463156491",
+        "731805707246",
+        "860997613539",
+        "871710885280",
+        "874934513918",
+        "860543507890",
+        "796673650314",
+        "771704161977",
+        "937312250973",
+        "760268461188"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 17596,
+      "rep": 1,
+      "actions_sha": "75d7981bb6e96cd9c2d82d9415eb62a52576f9200964c1227ab2ffff10648f46",
+      "queries": [
+        "手机直播补光灯 两盏一组 夹在手机上 支持三种颜色 背景氛围灯 热靴一字夹 桌面三脚架 70元"
+      ],
+      "first_query": "手机直播补光灯 两盏一组 夹在手机上 支持三种颜色 背景氛围灯 热靴一字夹 桌面三脚架 70元",
+      "each_arg_token_count": [
+        42
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 42,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 1,
+          "file": "search_V_0064.json",
+          "sha256": "278f836e26222dce201fd1c9a6737fae3e745c07b2223acd6243dddb8d7badc1"
+        }
+      ],
+      "first_page_asins": [
+        "846171947354",
+        "923151334292",
+        "891217179857",
+        "934070088259",
+        "845460689074",
+        "648735962979",
+        "776878089894",
+        "856323928235",
+        "853352321093",
+        "923280437700",
+        "853033018288",
+        "914125821273",
+        "859300570839",
+        "766471513959",
+        "790312893868",
+        "862877808381",
+        "855769150028",
+        "794041548393",
+        "848568792613",
+        "705047452140"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 22154,
+      "rep": 2,
+      "actions_sha": "269271bd380b37c5381d3b36399628ee6d6e66f45b8a71b5667546865f7a7323",
+      "queries": [
+        "农村自建房 奶油风 铸铝大门 精雕工艺 8毫米 3000-3500元包邮包安装"
+      ],
+      "first_query": "农村自建房 奶油风 铸铝大门 精雕工艺 8毫米 3000-3500元包邮包安装",
+      "each_arg_token_count": [
+        37
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 37,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 2,
+          "rep": 2,
+          "file": "search_V_0128.json",
+          "sha256": "7354f2c37c2e992d261a75d1aeb7842c42ec190416f4e6199b1d0695d15e1846"
+        }
+      ],
+      "first_page_asins": [
+        "715122977016",
+        "913280558554",
+        "681727116215",
+        "830075951169",
+        "938118456401",
+        "904389851978",
+        "807616650908",
+        "902878539171",
+        "909563995594",
+        "802834987969",
+        "844019567685",
+        "880979784086",
+        "856476047419",
+        "807356255086",
+        "902906951337",
+        "940848965063",
+        "911999511279",
+        "939028256819",
+        "693744155211",
+        "857261313532"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 22636,
+      "rep": 2,
+      "actions_sha": "017431e676f4a98df6ec4edf805da350dda0205b1073b77def4a9135335e90ff",
+      "queries": [
+        "男款黑色 山浩 徒步旅行卫衣 帽子 L码 透气 排汗 400"
+      ],
+      "first_query": "男款黑色 山浩 徒步旅行卫衣 帽子 L码 透气 排汗 400",
+      "each_arg_token_count": [
+        27
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 27,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 1,
+          "rep": 2,
+          "file": "search_V_0192.json",
+          "sha256": "93418bdb02e085827b800cc2880b5f63ddaff115f5a1153d7688335bf0edc07e"
+        }
+      ],
+      "first_page_asins": [
+        "723371871408",
+        "816532817504",
+        "940242892052",
+        "913167424081",
+        "825027003453",
+        "842627821487",
+        "679551515443",
+        "807682073620",
+        "887218955491",
+        "822441397632",
+        "643627990377",
+        "917463969832",
+        "935046201669",
+        "904376211178",
+        "921801348083",
+        "824119759488",
+        "885416394106",
+        "886055802770",
+        "939078042578",
+        "721706946140"
+      ]
+    },
+    {
+      "step": 10,
+      "split": "V",
+      "goal": 22898,
+      "rep": 0,
+      "actions_sha": "c7d4b7417b6ecdde164c1f5ab35ad80b6b1ff2627ed2f50a64bb5ca31f4bb6a5",
+      "queries": [
+        "植物脂肪奶精炼乳 五谷米线 鱼粉 奶茶 咖啡 一箱"
+      ],
+      "first_query": "植物脂肪奶精炼乳 五谷米线 鱼粉 奶茶 咖啡 一箱",
+      "each_arg_token_count": [
+        26
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 26,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 10,
+          "rank": 0,
+          "rep": 0,
+          "file": "search_V_0128.json",
+          "sha256": "a6db82cea83bb162ff4676082a36bcb6d40cc7f0256fd1a27f6d8e3ec839eaf1"
+        }
+      ],
+      "first_page_asins": [
+        "577543095002",
+        "607411290986",
+        "563404214673",
+        "709275799292",
+        "648440039390",
+        "897460544834",
+        "672552562267",
+        "899967491957",
+        "892492875613",
+        "738145460936",
+        "911812761997",
+        "936429710736",
+        "896605467127",
+        "683436048059",
+        "611273519290",
+        "855727723147",
+        "925895372189",
+        "742953872227",
+        "610117793427",
+        "939110420098"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 3002,
+      "rep": 2,
+      "actions_sha": "eac352687edc048cf1bb1de96d6f913741a10f134bc7072db2d19dc0b07e950c",
+      "queries": [
+        "彩色笔 60色 荧光 教学"
+      ],
+      "first_query": "彩色笔 60色 荧光 教学",
+      "each_arg_token_count": [
+        13
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 13,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 1,
+          "rep": 2,
+          "file": "search_T_opd_eval_0128.json",
+          "sha256": "6776382b6182bb0df449419d53b1e8686dc2b57db710ad92177b36ce60c7c4ee"
+        }
+      ],
+      "first_page_asins": [
+        "796075776215",
+        "723375866032",
+        "810865183213",
+        "896526411167",
+        "626772823045",
+        "703636809996",
+        "762659156413",
+        "921932839296",
+        "899532603012",
+        "935917341653",
+        "809116219998",
+        "685074970502",
+        "865455748748",
+        "845886022792",
+        "891476988910",
+        "942081720765",
+        "898595517759",
+        "814418290164",
+        "923650632433",
+        "940072910395"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 3722,
+      "rep": 1,
+      "actions_sha": "727b12bc0859bb0b8131f38c47146c6c511d9a3b518322fc21fc381810b9426c",
+      "queries": [
+        "贝稀止 辅食营养品 24小包"
+      ],
+      "first_query": "贝稀止 辅食营养品 24小包",
+      "each_arg_token_count": [
+        13
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 13,
+      "in_intervention_source": true,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 2,
+          "rep": 1,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "4ceac4f1dfcbe421810e13a33aafc6a620dcf18018badd47654dad77f7e2d8b5"
+        }
+      ],
+      "first_page_asins": [
+        "903715116184",
+        "922088503707",
+        "627798237749",
+        "830613518128",
+        "930949954316",
+        "626902370831",
+        "585769301875",
+        "927238015049",
+        "903342848119",
+        "643399722955",
+        "771169986664",
+        "908334010912",
+        "942642768050",
+        "711918972944",
+        "893006899005",
+        "939068234077",
+        "599749389256",
+        "638803878968",
+        "936202452960",
+        "763666762874"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 6155,
+      "rep": 1,
+      "actions_sha": "f261273461f6e4e8fa3f23fc9e0917adde5a09716ec6e03fa5927c8b4391d226",
+      "queries": [
+        "汽车 仪表盘 装饰贴膜 碳纤维 黑色 30cm*100cm"
+      ],
+      "first_query": "汽车 仪表盘 装饰贴膜 碳纤维 黑色 30cm*100cm",
+      "each_arg_token_count": [
+        26
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 26,
+      "in_intervention_source": true,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 1,
+          "rep": 1,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "2cfd65e4b363584ac13bf60323409fb5fa448b0c8ba8ac165f5612171654ab1f"
+        }
+      ],
+      "first_page_asins": [
+        "945361420736",
+        "851115584058",
+        "602660873317",
+        "15466988770",
+        "803661820028",
+        "943157550850",
+        "819068921434",
+        "927678453080",
+        "932470311557",
+        "918191419995",
+        "750153282705",
+        "903820919018",
+        "903811459909",
+        "820355160796",
+        "909155804383",
+        "908240986404",
+        "912100937888",
+        "865570485587",
+        "851154665650",
+        "878723729821"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 6390,
+      "rep": 0,
+      "actions_sha": "ae7665ea62176d50d5a0292f1d430d509657dac6b2c913842c75adfba7959a86",
+      "queries": [
+        "布艺封面 离型纸内页 80页 蜜瓜包 手账 预售"
+      ],
+      "first_query": "布艺封面 离型纸内页 80页 蜜瓜包 手账 预售",
+      "each_arg_token_count": [
+        26
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 26,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 3,
+          "rep": 0,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "33b1e0cf084eb5ab7b19b7e4295d285646f09ecd14e92d7813e44f565a2943de"
+        },
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "33b1e0cf084eb5ab7b19b7e4295d285646f09ecd14e92d7813e44f565a2943de"
+        },
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 3,
+          "rep": 4,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "33b1e0cf084eb5ab7b19b7e4295d285646f09ecd14e92d7813e44f565a2943de"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "d66c358ef0505c876943e06d48ea3a113a78cda63b1753c7e4b8c38c49fd1ba4"
+        },
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 4,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "d66c358ef0505c876943e06d48ea3a113a78cda63b1753c7e4b8c38c49fd1ba4"
+        }
+      ],
+      "first_page_asins": [
+        "911464698107",
+        "806734892854",
+        "862877104616",
+        "940980478580",
+        "936006953674",
+        "916272594950",
+        "798985445344",
+        "893255824475",
+        "815874424954",
+        "765446673535",
+        "877257002647",
+        "710401701827",
+        "694889455421",
+        "728911150990",
+        "924647333688",
+        "920457872398",
+        "861027177750",
+        "895646966718",
+        "705132937842",
+        "739749376594"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 7001,
+      "rep": 2,
+      "actions_sha": "f9b871222e3f4973ae2f25c1e1b91b49013d67d4708da0e58b0321d3734f2bad",
+      "queries": [
+        "古典纹路 太阳能 插电 红色 金属铜金色 宽大 仿石材质 300元"
+      ],
+      "first_query": "古典纹路 太阳能 插电 红色 金属铜金色 宽大 仿石材质 300元",
+      "each_arg_token_count": [
+        30
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 30,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 1,
+          "rep": 2,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "b6b0dd6afffbc553798520a19dc1b48c11656e7cddc165c1389633562bad11bf"
+        }
+      ],
+      "first_page_asins": [
+        "939863572454",
+        "542670695251",
+        "742069948978",
+        "863103423311",
+        "835606462242",
+        "796847772441",
+        "903534528194",
+        "937559833186",
+        "940212299011",
+        "838085994838",
+        "756158665229",
+        "900519442456",
+        "908448611064",
+        "908669635987",
+        "570675957794",
+        "903676284052",
+        "927935441628",
+        "933102756089",
+        "769610688718",
+        "909563995594"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 7163,
+      "rep": 3,
+      "actions_sha": "b9414520ce6b0c6cb03cb16a32fb11b722a83f607e0a930b003a1c510723ec1f",
+      "queries": [
+        "精选锅包汁 150ml"
+      ],
+      "first_query": "精选锅包汁 150ml",
+      "each_arg_token_count": [
+        9
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 9,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 2,
+          "rep": 3,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "654705dc487cc76d54fa9378d645f3f8c410c2803e3b0c4aeab2bb4af9b441a8"
+        }
+      ],
+      "first_page_asins": [
+        "742057927926",
+        "825961363594",
+        "728549536797",
+        "899374910581",
+        "798483735456",
+        "939240340367",
+        "706641124720",
+        "710120089231",
+        "866999933008",
+        "731498001473",
+        "738081201804",
+        "748200923196",
+        "864112977909",
+        "933660082640",
+        "936944685417",
+        "892539501207",
+        "859023544823",
+        "921456599898",
+        "925610572113",
+        "910931087565"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 11732,
+      "rep": 2,
+      "actions_sha": "74ebc3562000a497410fbd9296cf2df7c5c259dd5242ae4406c0b9492088ccc2",
+      "queries": [
+        "一次性染发喷雾 �dely 奶奶灰"
+      ],
+      "first_query": "一次性染发喷雾 �dely 奶奶灰",
+      "each_arg_token_count": [
+        14
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 14,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 0,
+          "rep": 2,
+          "file": "search_T_opd_eval_0000.json",
+          "sha256": "5204c714ff146c7f40799b51d559ad5b3f9faf1a911d8a799754e8c29f6c22dc"
+        }
+      ],
+      "first_page_asins": [
+        "883845416980",
+        "836919040646",
+        "735185216610",
+        "641543938620",
+        "810778267806",
+        "835032658667",
+        "724058745356",
+        "729063396185",
+        "655629226298",
+        "931030100244",
+        "922071142840",
+        "933199743632",
+        "833036774522",
+        "821991686407",
+        "684314622937",
+        "913675272415",
+        "937604311685",
+        "723130890857",
+        "927550233251",
+        "840745225794"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 12493,
+      "rep": 2,
+      "actions_sha": "9019377ef4898878ae15b0c7a2a404e04705e681b53b777fa799ba864d5409b5",
+      "queries": [
+        "电脑缝纫机卷边附件 5毫米"
+      ],
+      "first_query": "电脑缝纫机卷边附件 5毫米",
+      "each_arg_token_count": [
+        10
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 10,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 2,
+          "rep": 2,
+          "file": "search_T_opd_eval_0064.json",
+          "sha256": "5746fb353c36f5c106ba4cc2a6f7cdf19a39273328555fcfa2b6e2ead823b523"
+        }
+      ],
+      "first_page_asins": [
+        "677819405893",
+        "630041182276",
+        "865436472090",
+        "702751791386",
+        "796190035761",
+        "806148320001",
+        "931293623762",
+        "610122458156",
+        "602087885320",
+        "897247173376",
+        "627911882075",
+        "845379923824",
+        "683236525566",
+        "619192330440",
+        "903409744038",
+        "752446894861",
+        "531324259384",
+        "594651320248",
+        "712532077814",
+        "833321621966"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 16473,
+      "rep": 3,
+      "actions_sha": "919e825136a1f040409f7d1c23eb9ffd1fd9a3cc4095d00e3095dd8e9d7f7d82",
+      "queries": [
+        "凉山崖柏 手串 情侣 纹理 陈化 珠子数量10-15 20mm 价格70元以下"
+      ],
+      "first_query": "凉山崖柏 手串 情侣 纹理 陈化 珠子数量10-15 20mm 价格70元以下",
+      "each_arg_token_count": [
+        38
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 38,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_T_opd_eval_0128.json",
+          "sha256": "6776382b6182bb0df449419d53b1e8686dc2b57db710ad92177b36ce60c7c4ee"
+        }
+      ],
+      "first_page_asins": [
+        "936611944893",
+        "885414269458",
+        "835282641881",
+        "887581454500",
+        "726273910258",
+        "684377852981",
+        "825142541648",
+        "550723105924",
+        "703674675523",
+        "837410402516",
+        "846506993267",
+        "874923312750",
+        "681567430370",
+        "917017308226",
+        "769149389081",
+        "902943897277",
+        "830368202312",
+        "797267359389",
+        "828977346215",
+        "874388740617"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 16473,
+      "rep": 4,
+      "actions_sha": "f2a9df173635eb875d32d1e2cbac9cddfe0e4f2d94dcee037764219e65d7199c",
+      "queries": [
+        "凉山崖柏 手串 情侣 保留纹理 留疤 10-15颗 20mm 70元以下"
+      ],
+      "first_query": "凉山崖柏 手串 情侣 保留纹理 留疤 10-15颗 20mm 70元以下",
+      "each_arg_token_count": [
+        34
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 34,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 1,
+          "rep": 4,
+          "file": "search_T_opd_eval_0128.json",
+          "sha256": "6776382b6182bb0df449419d53b1e8686dc2b57db710ad92177b36ce60c7c4ee"
+        }
+      ],
+      "first_page_asins": [
+        "885414269458",
+        "936611944893",
+        "835282641881",
+        "863799293622",
+        "684377852981",
+        "896835210536",
+        "887581454500",
+        "874923312750",
+        "726273910258",
+        "797267359389",
+        "917017308226",
+        "838907895994",
+        "769149389081",
+        "550723105924",
+        "841949422421",
+        "842214233996",
+        "630879433272",
+        "870939531913",
+        "932971970547",
+        "764221137915"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 16582,
+      "rep": 1,
+      "actions_sha": "115fdf0822a2fc9769d38b7080e79295d2acb6db9b3a12acc8f7d4a688dde07d",
+      "queries": [
+        "高光粉膏",
+        "高光粉膏 配套海绵刷子"
+      ],
+      "first_query": "高光粉膏",
+      "each_arg_token_count": [
+        4,
+        10
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 14,
+      "in_intervention_source": true,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 1,
+          "rep": 1,
+          "file": "search_T_opd_eval_0192.json",
+          "sha256": "d2e3149e00a852aaf68687d315d0376dd6e97e07b3d236dafb37d0f7fc0dd33d"
+        }
+      ],
+      "first_page_asins": [
+        "745784218753",
+        "689082117843",
+        "943110700441",
+        "836701832356",
+        "671227725845",
+        "758337024636",
+        "923087922833",
+        "728490337953",
+        "666589994349",
+        "754306453302",
+        "894426257431",
+        "839259623364",
+        "682029645380",
+        "921615866120",
+        "845017748091",
+        "868543959586",
+        "809518689248",
+        "811293577872",
+        "764442851376",
+        "824735134130"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "T_opd_eval",
+      "goal": 19799,
+      "rep": 2,
+      "actions_sha": "24335c23b46060d6e67d06e6c2bf9b583af7d9d29859e982160461ced454f315",
+      "queries": [
+        "婧麒 婴儿出行车 超轻便 可折叠 爵士白"
+      ],
+      "first_query": "婧麒 婴儿出行车 超轻便 可折叠 爵士白",
+      "each_arg_token_count": [
+        21
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 21,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 2,
+          "rep": 2,
+          "file": "search_T_opd_eval_0000.json",
+          "sha256": "4521279fc0e28a63943569e213f47e9e361a3118cdd4b1980a4e810b36b81285"
+        }
+      ],
+      "first_page_asins": [
+        "901365710174",
+        "869539686844",
+        "940774580674",
+        "941054247064",
+        "939216711302",
+        "939663902199",
+        "939660510755",
+        "769701184137",
+        "902830066614",
+        "712921242373",
+        "915665386536",
+        "732756813577",
+        "870176908005",
+        "939229475488",
+        "937768675578",
+        "922712738678",
+        "940189038158",
+        "882901875359",
+        "891493331788",
+        "887398060412"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "V",
+      "goal": 2642,
+      "rep": 3,
+      "actions_sha": "f4701634dd997ab76a44c41444701f195aeada285173c53fe29713c675f365b9",
+      "queries": [
+        "外接硬盘扩展盒 SAS USB3.0 6Gbps 12Gbps"
+      ],
+      "first_query": "外接硬盘扩展盒 SAS USB3.0 6Gbps 12Gbps",
+      "each_arg_token_count": [
+        19
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 19,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_V_0160.json",
+          "sha256": "bd964e00954f66b881684231881a72aa7b1654b7b772f3887c65a925877ff763"
+        }
+      ],
+      "first_page_asins": [
+        "655831246999",
+        "706871144697",
+        "743310543298",
+        "763390585879",
+        "750631380615",
+        "935071543063",
+        "822388237217",
+        "556271081848",
+        "856716279369",
+        "867042522900",
+        "624315780238",
+        "836692915694",
+        "860697673106",
+        "865352774238",
+        "521056839859",
+        "629239042224",
+        "39125138797",
+        "657671000726",
+        "758687413762",
+        "802529087470"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "V",
+      "goal": 11965,
+      "rep": 1,
+      "actions_sha": "b9efe54728599da4ee3b9e09d0334099a7d8a767b869bf2566810ad60cfc5d58",
+      "queries": [
+        "屏风 国风 现代简约 天然木材 手工制作 可折叠 收纳 空间分隔 200-250cm 470元以下"
+      ],
+      "first_query": "屏风 国风 现代简约 天然木材 手工制作 可折叠 收纳 空间分隔 200-250cm 470元以下",
+      "each_arg_token_count": [
+        45
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 45,
+      "in_intervention_source": true,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 2,
+          "rep": 1,
+          "file": "search_V_0096.json",
+          "sha256": "979473c270aedbaf8d968688a8d3012f8d4fa763429ee85863b27cef50e27a7d"
+        }
+      ],
+      "first_page_asins": [
+        "707280084338",
+        "743325182636",
+        "941212904578",
+        "939598411457",
+        "723680406919",
+        "688267254002",
+        "802232511451",
+        "886465473104",
+        "896285275181",
+        "820136808726",
+        "939225318886",
+        "802735434205",
+        "713071757148",
+        "615403647539",
+        "833892782672",
+        "740440987730",
+        "742528288938",
+        "806185382283",
+        "864947236081",
+        "638939502114"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "V",
+      "goal": 13720,
+      "rep": 3,
+      "actions_sha": "22bedf4c0aea3d326dc5bf0712768f24aa2124dfc59398d30a96ee7544b336ac",
+      "queries": [
+        "单缸冷饮机 22升"
+      ],
+      "first_query": "单缸冷饮机 22升",
+      "each_arg_token_count": [
+        9
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 9,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_V_0192.json",
+          "sha256": "ee74a4f7dd74de31b5c8fec531a6e0cdcb1c28830c27a889286f303f6f7eb913"
+        }
+      ],
+      "first_page_asins": [
+        "899923315875",
+        "598897192753",
+        "930010158158",
+        "775139513956",
+        "890647757317",
+        "574244034337",
+        "770945355396",
+        "45237201427",
+        "669417734069",
+        "586557497747",
+        "621807699926",
+        "551574336764",
+        "42711288610",
+        "770718842365",
+        "888826118157",
+        "545602315534",
+        "896930680723",
+        "656603510799",
+        "931995525870",
+        "589002573460"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "V",
+      "goal": 16317,
+      "rep": 1,
+      "actions_sha": "445cec34fd94cefe158a19e533b7701bf8714a8ba92089e81ddf06dcd889521e",
+      "queries": [
+        "适合小女孩穿的皮鞋，带蝴蝶结设计，杏色，26码，380元"
+      ],
+      "first_query": "适合小女孩穿的皮鞋，带蝴蝶结设计，杏色，26码，380元",
+      "each_arg_token_count": [
+        23
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 23,
+      "in_intervention_source": true,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 2,
+          "rep": 1,
+          "file": "search_V_0096.json",
+          "sha256": "979473c270aedbaf8d968688a8d3012f8d4fa763429ee85863b27cef50e27a7d"
+        }
+      ],
+      "first_page_asins": [
+        "941660269226",
+        "676895980984",
+        "867657094256",
+        "899934597609",
+        "724634197038",
+        "937263779164",
+        "899469434620",
+        "734010752171",
+        "821395082637",
+        "893620682938",
+        "873684412912",
+        "720015170431",
+        "895835546445",
+        "734122656586",
+        "921374966518",
+        "704856480883",
+        "784170991211",
+        "909210568737",
+        "697253086134",
+        "900882829721"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "V",
+      "goal": 18112,
+      "rep": 1,
+      "actions_sha": "cf90e8a23196b00cd0a230cf5fd6fdcf37f81420589a5e08f7a437111caa91af",
+      "queries": [
+        "适合残疾人使用的软质硅胶中指套 斯奈尔家居"
+      ],
+      "first_query": "适合残疾人使用的软质硅胶中指套 斯奈尔家居",
+      "each_arg_token_count": [
+        15
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 15,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_V_0096.json",
+          "sha256": "edef6b91edffde5c08b166fa078fbf0280bac4715083e9c3da819e0ad851c429"
+        }
+      ],
+      "first_page_asins": [
+        "933939535029",
+        "846201269695",
+        "871617199626",
+        "930516393730",
+        "941815618824",
+        "936924418521",
+        "845878267701",
+        "873791156169",
+        "938233478532",
+        "925674414159",
+        "887617794834",
+        "872597857323",
+        "875276689718",
+        "943111208064",
+        "758612881034",
+        "920355650221",
+        "880943970514",
+        "928978025571",
+        "925238608732",
+        "830230786646"
+      ]
+    },
+    {
+      "step": 20,
+      "split": "V",
+      "goal": 18112,
+      "rep": 3,
+      "actions_sha": "cf90e8a23196b00cd0a230cf5fd6fdcf37f81420589a5e08f7a437111caa91af",
+      "queries": [
+        "适合残疾人使用的软质硅胶中指套 斯奈尔家居"
+      ],
+      "first_query": "适合残疾人使用的软质硅胶中指套 斯奈尔家居",
+      "each_arg_token_count": [
+        15
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 15,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 20,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_V_0096.json",
+          "sha256": "edef6b91edffde5c08b166fa078fbf0280bac4715083e9c3da819e0ad851c429"
+        }
+      ],
+      "first_page_asins": [
+        "933939535029",
+        "846201269695",
+        "871617199626",
+        "930516393730",
+        "941815618824",
+        "936924418521",
+        "845878267701",
+        "873791156169",
+        "938233478532",
+        "925674414159",
+        "887617794834",
+        "872597857323",
+        "875276689718",
+        "943111208064",
+        "758612881034",
+        "920355650221",
+        "880943970514",
+        "928978025571",
+        "925238608732",
+        "830230786646"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "T_opd_eval",
+      "goal": 6823,
+      "rep": 1,
+      "actions_sha": "29552a419f1718818159e3e6e5b9bfd2cb393b73b732a6c59580250faf050a70",
+      "queries": [
+        "窗户玻璃贴膜"
+      ],
+      "first_query": "窗户玻璃贴膜",
+      "each_arg_token_count": [
+        4
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 4,
+      "in_intervention_source": true,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 2,
+          "rep": 1,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "f910251560b6873d133da2349ec1bc9cedaa86856ece508173b603f6f1872ac5"
+        }
+      ],
+      "first_page_asins": [
+        "898608400068",
+        "791205094370",
+        "898595340247",
+        "927865149795",
+        "898506192463",
+        "898536515461",
+        "930579869090",
+        "789150145232",
+        "931146408769",
+        "869508961517",
+        "902982712191",
+        "885587127461",
+        "885662518419",
+        "782852430569",
+        "860180903177",
+        "899260389861",
+        "862725014222",
+        "869170358727",
+        "898457035642",
+        "935625901083"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "T_opd_eval",
+      "goal": 7001,
+      "rep": 1,
+      "actions_sha": "69060782618076e40004a8793ff2b309617f5f43727e52f49fabedf3ec259f42",
+      "queries": [
+        "太阳能路灯"
+      ],
+      "first_query": "太阳能路灯",
+      "each_arg_token_count": [
+        2
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 2,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 1,
+          "rep": 1,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "3d0229ac799386d3b4f49e32be90cf0f23a00b3a91aad69e53fa5ceab4ad3fa0"
+        }
+      ],
+      "first_page_asins": [
+        "892820764685",
+        "857380788337",
+        "943371249798",
+        "744335425524",
+        "909563995594",
+        "944469272120",
+        "861252194074",
+        "908448611064",
+        "570675957794",
+        "903676284052",
+        "927935441628",
+        "769610688718",
+        "835606462242",
+        "758475631600",
+        "796847772441",
+        "735336232616",
+        "739215322188",
+        "612685783314",
+        "800353664241",
+        "671038665697"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "T_opd_eval",
+      "goal": 7276,
+      "rep": 1,
+      "actions_sha": "b3a92c88a079dc4a38f9edaeef258c090243c069a86154e552bab410eb6dca8a",
+      "queries": [
+        "伏加特 90度 500ml"
+      ],
+      "first_query": "伏加特 90度 500ml",
+      "each_arg_token_count": [
+        12
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 12,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 0,
+          "rep": 1,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "7571678f5a32a46a8dd5e78bf25307c2d9c3658322095a72b07b70144fc2e84c"
+        },
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 0,
+          "rep": 4,
+          "file": "search_T_opd_eval_0096.json",
+          "sha256": "7571678f5a32a46a8dd5e78bf25307c2d9c3658322095a72b07b70144fc2e84c"
+        }
+      ],
+      "first_page_asins": [
+        "792256035032",
+        "709268264088",
+        "596934731110",
+        "942863459464",
+        "848127797052",
+        "914463298892",
+        "788991284531",
+        "717353168995",
+        "902272419498",
+        "763253474026",
+        "816785602041",
+        "789356726926",
+        "894678409353",
+        "677037072010",
+        "901847913257",
+        "863304332403",
+        "744730914175",
+        "886493105184",
+        "904076397975",
+        "820772469792"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "T_opd_eval",
+      "goal": 7757,
+      "rep": 1,
+      "actions_sha": "440b633d56af674df2350b49f2e6948c94b8d33d63d579e625ae5516b9507aa1",
+      "queries": [
+        "乒乓球拍底板"
+      ],
+      "first_query": "乒乓球拍底板",
+      "each_arg_token_count": [
+        4
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 4,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 2,
+          "rep": 1,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "99bcdeb662c57b0ea40b78ac5aa028476a316e614f90be32d77d9434273f6b05"
+        }
+      ],
+      "first_page_asins": [
+        "884699670716",
+        "601520963727",
+        "41806090224",
+        "682666654408",
+        "648895833121",
+        "643246859676",
+        "817759306572",
+        "910900923226",
+        "937696098254",
+        "565473714664",
+        "933743407616",
+        "839815481894",
+        "907369826552",
+        "584437102816",
+        "897480389218",
+        "719001453686",
+        "641826569629",
+        "555177541980",
+        "819457795500",
+        "906424246635"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "T_opd_eval",
+      "goal": 12497,
+      "rep": 3,
+      "actions_sha": "aafc7d969f7c3138d8578eae41dc1f030a4040373ffd2e751152e485be5dc8ea",
+      "queries": [
+        "女款金戒指 石榴石"
+      ],
+      "first_query": "女款金戒指 石榴石",
+      "each_arg_token_count": [
+        8
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 8,
+      "in_intervention_source": true,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 0,
+          "rep": 3,
+          "file": "search_T_opd_eval_0032.json",
+          "sha256": "ac8ad24568110983fbeab002d1faed25b79a95250b1aade760c752c7e0f7e790"
+        }
+      ],
+      "first_page_asins": [
+        "897643653695",
+        "896612517530",
+        "912221233140",
+        "795365510318",
+        "740660024687",
+        "666718588809",
+        "884874325310",
+        "894868075555",
+        "649714866911",
+        "884918694109",
+        "729451319602",
+        "921038863244",
+        "913754450000",
+        "728941316683",
+        "859105030817",
+        "870366902822",
+        "940621054028",
+        "931080512888",
+        "930071938343",
+        "910775478188"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "T_opd_eval",
+      "goal": 14999,
+      "rep": 0,
+      "actions_sha": "b3b51e16e540a2fac15f2bb4be4d2ee6914512392e47ec60ad87ebac70d11b39",
+      "queries": [
+        "蝴蝶标本手账"
+      ],
+      "first_query": "蝴蝶标本手账",
+      "each_arg_token_count": [
+        5
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 5,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 1,
+          "rep": 0,
+          "file": "search_T_opd_eval_0224.json",
+          "sha256": "fae30ca36607033ec1a43cbd661206ade25ca3b6cb8a4733aab0d68a12712da0"
+        },
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 1,
+          "rep": 0,
+          "file": "search_T_opd_eval_0224.json",
+          "sha256": "b32b87979fdec53259575b8ac3c3a1f15cbc6a108ffb2f095826f3ca5aa2614f"
+        }
+      ],
+      "first_page_asins": [
+        "888540557441",
+        "721827540460",
+        "942043589824",
+        "766320069707",
+        "868288982876",
+        "831746707914",
+        "720734258812",
+        "866691996298",
+        "899278880160",
+        "844374719404",
+        "789026023586",
+        "911771636736",
+        "860013890369",
+        "922556161036",
+        "899290676126",
+        "761382524786",
+        "763001079155",
+        "718005057006",
+        "748976660871",
+        "869325920204"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "T_opd_eval",
+      "goal": 17885,
+      "rep": 0,
+      "actions_sha": "7039d965726fad24bd30a81283a38b28b05ce9ba39a09d2392bc523574cc26f4",
+      "queries": [
+        "男士 泳衣 2025 防尴尬 渐变灰"
+      ],
+      "first_query": "男士 泳衣 2025 防尴尬 渐变灰",
+      "each_arg_token_count": [
+        17
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 17,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 3,
+          "rep": 0,
+          "file": "search_T_opd_eval_0160.json",
+          "sha256": "44bbec859431a2fa89c1803ff1e19d2d9caf591e7cb085a8bf6f4311fceba89c"
+        }
+      ],
+      "first_page_asins": [
+        "939778520419",
+        "918659419024",
+        "916490068881",
+        "839337358249",
+        "919044374725",
+        "808334252060",
+        "570283431999",
+        "904052263123",
+        "915718121078",
+        "678507538250",
+        "902281949891",
+        "877181093718",
+        "935638645507",
+        "801643327506",
+        "885135640724",
+        "622299354836",
+        "740934110872",
+        "867835991356",
+        "884688270572",
+        "701993542323"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "T_opd_eval",
+      "goal": 19597,
+      "rep": 0,
+      "actions_sha": "aecc8b569733a9fa9f79bf80b219bea4acb2cd75c90d051efa601acd7e947782",
+      "queries": [
+        "半拖式布鞋"
+      ],
+      "first_query": "半拖式布鞋",
+      "each_arg_token_count": [
+        5
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 5,
+      "in_intervention_source": true,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 3,
+          "rep": 0,
+          "file": "search_T_opd_eval_0224.json",
+          "sha256": "9f629d8ba2765b959623c9a55b3123e1d01063de02c3ff6520e211dc7bfa92dc"
+        }
+      ],
+      "first_page_asins": [
+        "929769947939",
+        "718093511269",
+        "792974985402",
+        "806160966791",
+        "903694519231",
+        "834021761998",
+        "775185567873",
+        "611316694082",
+        "914783375590",
+        "885727992383",
+        "619915263276",
+        "734576480833",
+        "923841426899",
+        "761606732281",
+        "760525806022",
+        "704081937068",
+        "941215260649",
+        "676891914440",
+        "621964752451",
+        "941175150882"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 4032,
+      "rep": 2,
+      "actions_sha": "d8f2e04f9848dbff6cef8529c937aafe894c71c7613194396822242e714c7b1b",
+      "queries": [
+        "儿童三轮车"
+      ],
+      "first_query": "儿童三轮车",
+      "each_arg_token_count": [
+        4
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 4,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 1,
+          "rep": 0,
+          "file": "search_V_0000.json",
+          "sha256": "d9e8870e6813cdd3cce1641cbce17ac009744e5d1d4811b7f8bbffb7e7600e39"
+        },
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 1,
+          "rep": 2,
+          "file": "search_V_0000.json",
+          "sha256": "d9e8870e6813cdd3cce1641cbce17ac009744e5d1d4811b7f8bbffb7e7600e39"
+        },
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 1,
+          "rep": 3,
+          "file": "search_V_0000.json",
+          "sha256": "d9e8870e6813cdd3cce1641cbce17ac009744e5d1d4811b7f8bbffb7e7600e39"
+        },
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 1,
+          "rep": 4,
+          "file": "search_V_0000.json",
+          "sha256": "d9e8870e6813cdd3cce1641cbce17ac009744e5d1d4811b7f8bbffb7e7600e39"
+        },
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 1,
+          "rep": 2,
+          "file": "search_V_0000.json",
+          "sha256": "35194affa9615ba713c7d1c4543cd49dc4eaeede154c62461ab42da7d6e1cfe9"
+        }
+      ],
+      "first_page_asins": [
+        "887179351498",
+        "732756813577",
+        "763213042739",
+        "814188666895",
+        "822380895319",
+        "939068004439",
+        "830780793453",
+        "922712738678",
+        "909927945699",
+        "908967801083",
+        "909427390262",
+        "605368659009",
+        "681174342225",
+        "900363255227",
+        "833519681024",
+        "821822884000",
+        "768350724978",
+        "677762646810",
+        "833063380213",
+        "831089547457"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 4764,
+      "rep": 2,
+      "actions_sha": "fd7c2f1f9eb6a506ab4e9f4d58a58a5b3bbb732c5c2df6680aa10eca841c895e",
+      "queries": [
+        "趣味头套"
+      ],
+      "first_query": "趣味头套",
+      "each_arg_token_count": [
+        3
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 3,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 0,
+          "rep": 2,
+          "file": "search_V_0096.json",
+          "sha256": "2178297a79e498ab581938ac2a81d455b57dc761f06b58062e5807f829495ee5"
+        }
+      ],
+      "first_page_asins": [
+        "943133296024",
+        "937524153077",
+        "906944054791",
+        "939594047240",
+        "938115154347",
+        "933046827330",
+        "816811954508",
+        "940934930689",
+        "832218845351",
+        "675043786693",
+        "824888853317",
+        "936431728821",
+        "944145592829",
+        "895841628368",
+        "942013511162",
+        "856588151211",
+        "783171397665",
+        "937604311685",
+        "929599236433",
+        "843338504454"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 5371,
+      "rep": 2,
+      "actions_sha": "029c4b638e1039453f8202848bbc305f87274617a06954bfe09f54ab0e2ef202",
+      "queries": [
+        "四川 白酒 高粱 品味浓郁 浓香型 52度 500ml 6瓶装"
+      ],
+      "first_query": "四川 白酒 高粱 品味浓郁 浓香型 52度 500ml 6瓶装",
+      "each_arg_token_count": [
+        29
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 29,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_V_0160.json",
+          "sha256": "30c0f3c9a1cd9efb4965dfc706a2399a2d7bfc4763a3ee7bf4009392c63bc3e8"
+        }
+      ],
+      "first_page_asins": [
+        "902272419498",
+        "914463298892",
+        "763253474026",
+        "744730914175",
+        "863304332403",
+        "666681807355",
+        "886493105184",
+        "709268264088",
+        "708816069328",
+        "848127797052",
+        "817019504705",
+        "801190962445",
+        "901847913257",
+        "749253634247",
+        "894678409353",
+        "942002009604",
+        "788991284531",
+        "923851584024",
+        "904076397975",
+        "792256035032"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 10618,
+      "rep": 3,
+      "actions_sha": "519a5275364f9686a467e3cde9cf6b7da29822a3ca48b2484eea4658fa68a6c0",
+      "queries": [
+        "单肩包",
+        "真皮单肩包",
+        "真皮单肩包黑色"
+      ],
+      "first_query": "单肩包",
+      "each_arg_token_count": [
+        3,
+        4,
+        5
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 12,
+      "in_intervention_source": true,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 0,
+          "rep": 2,
+          "file": "search_V_0096.json",
+          "sha256": "2178297a79e498ab581938ac2a81d455b57dc761f06b58062e5807f829495ee5"
+        },
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 0,
+          "rep": 3,
+          "file": "search_V_0096.json",
+          "sha256": "2178297a79e498ab581938ac2a81d455b57dc761f06b58062e5807f829495ee5"
+        },
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 0,
+          "rep": 4,
+          "file": "search_V_0096.json",
+          "sha256": "2178297a79e498ab581938ac2a81d455b57dc761f06b58062e5807f829495ee5"
+        }
+      ],
+      "first_page_asins": [
+        "874165924721",
+        "673863743946",
+        "889246661732",
+        "718010032782",
+        "921487959276",
+        "905315419145",
+        "922014033262",
+        "681012989652",
+        "910853962810",
+        "921321087885",
+        "724194079412",
+        "671668693289",
+        "934126173750",
+        "729357580027",
+        "763398413161",
+        "852367745696",
+        "841337658974",
+        "616277747632",
+        "643625750724",
+        "867391209898"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 11553,
+      "rep": 2,
+      "actions_sha": "94b0f75a4cf542f62dab99c2ec7b1b2a88a18e87179048da61b17432d1e69c48",
+      "queries": [
+        "岩板家具膜"
+      ],
+      "first_query": "岩板家具膜",
+      "each_arg_token_count": [
+        4
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 4,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 0,
+          "rep": 2,
+          "file": "search_V_0160.json",
+          "sha256": "549e7533fb850b38ae27c1640e95e3bb9b3dd09fcae863953aacac6250dad0c8"
+        }
+      ],
+      "first_page_asins": [
+        "899327628252",
+        "749132426283",
+        "925211242164",
+        "925274362824",
+        "939652888136",
+        "808225450867",
+        "809675199349",
+        "14092796668",
+        "772546589209",
+        "920539828187",
+        "775410021557",
+        "775391786018",
+        "939129656791",
+        "722630112287",
+        "729588953933",
+        "769076576174",
+        "900197660522",
+        "643967204263",
+        "906956986757",
+        "923790240241"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 12258,
+      "rep": 3,
+      "actions_sha": "ac49c08228390869978a65391134ec32bce57e2bce36150ff3335c806c933bc0",
+      "queries": [
+        "8寸嵌入式壁挂音箱"
+      ],
+      "first_query": "8寸嵌入式壁挂音箱",
+      "each_arg_token_count": [
+        8
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 8,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 2,
+          "rep": 3,
+          "file": "search_V_0192.json",
+          "sha256": "357380d757e7ca2ef8118b0b3e7a2a088782a3a2fb642aba8f8020518d940fad"
+        }
+      ],
+      "first_page_asins": [
+        "602283648775",
+        "531682713598",
+        "924254578028",
+        "902293588349",
+        "929409398796",
+        "781676244738",
+        "763983240653",
+        "872895685764",
+        "918975933564",
+        "942019764042",
+        "866025885887",
+        "937529290790",
+        "880494779522",
+        "891482027042",
+        "894121160123",
+        "900298253140",
+        "682150338161",
+        "799043860249",
+        "902699321310",
+        "903660609836"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 16349,
+      "rep": 4,
+      "actions_sha": "e47e574bed4345fc171201922bba6e98cb2b03c85fb17f98859640a93f9d5ab6",
+      "queries": [
+        "纯白色粗毛线",
+        "纯白色5股棉毛线",
+        "纯白色5股棉毛线"
+      ],
+      "first_query": "纯白色粗毛线",
+      "each_arg_token_count": [
+        5,
+        7,
+        7
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 19,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 1,
+          "rep": 4,
+          "file": "search_V_0128.json",
+          "sha256": "a33c46b78318032d86e449626a131e469dca0d0588a67964cd75e334f41a6744"
+        }
+      ],
+      "first_page_asins": [
+        "826396085436",
+        "600710533439",
+        "663019466276",
+        "944185338165",
+        "760856054340",
+        "674419350312",
+        "849302933175",
+        "704324811473",
+        "614920107955",
+        "835443465215",
+        "851017298628",
+        "735489374492",
+        "815096100197",
+        "796075776215",
+        "602430967295",
+        "829342506879",
+        "877324576524",
+        "774139660810",
+        "901809596857",
+        "886465473104"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 16818,
+      "rep": 3,
+      "actions_sha": "d670395618b002dddeb082c35ca4754c47a75b4bb9a111625e477db778da2202",
+      "queries": [
+        "婚鞋 34码"
+      ],
+      "first_query": "婚鞋 34码",
+      "each_arg_token_count": [
+        6
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 6,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_V_0224.json",
+          "sha256": "9eb5dfe295eedf88e19759a4beb2b3bf78f3dd17e892b8e423905b2a21216b9f"
+        }
+      ],
+      "first_page_asins": [
+        "901133979772",
+        "870067047324",
+        "939069581779",
+        "805668995480",
+        "905562877870",
+        "940250918841",
+        "901586126802",
+        "919098809420",
+        "837526695594",
+        "930839659215",
+        "709742581048",
+        "805637787427",
+        "728124932042",
+        "788207977689",
+        "741614497110",
+        "924177389415",
+        "795450750451",
+        "836645998608",
+        "939158668057",
+        "925822342462"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 16917,
+      "rep": 2,
+      "actions_sha": "e22f5c6885d10be1a86158510fddb48218a27dd0018bf3f5b1dc9c632a6edecd",
+      "queries": [
+        "烯酰吗啉 防霜霉病"
+      ],
+      "first_query": "烯酰吗啉 防霜霉病",
+      "each_arg_token_count": [
+        10
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 10,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_V_0192.json",
+          "sha256": "565bcfded842dba14cdfa88b76d9ff8a60ee5bc8d81441257248ef3710da916d"
+        },
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 3,
+          "rep": 1,
+          "file": "search_V_0160.json",
+          "sha256": "15bdf7ef199fd1ef0231662cffde0f1d78ab3081a0b01aedc980fb6236f3e60f"
+        },
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 3,
+          "rep": 4,
+          "file": "search_V_0192.json",
+          "sha256": "152cc110e0a169ab0815624d6a50059c53bd4d7dd96edec0a0029b40ae0da02b"
+        }
+      ],
+      "first_page_asins": [
+        "827631993340",
+        "655135132593",
+        "900172749417",
+        "836381662653",
+        "867499885188",
+        "644264064782",
+        "745410423366",
+        "521874374037",
+        "797934436382",
+        "742053899678",
+        "621500809194",
+        "811086681429",
+        "581302961477",
+        "871329616970",
+        "607384577492",
+        "814074030475",
+        "634194417131",
+        "610930321739",
+        "890411035302",
+        "575346557962"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 17596,
+      "rep": 0,
+      "actions_sha": "772a024ee9334117eff919d4667e2afb683f2bc4f0e5ea61470c2bba0c584977",
+      "queries": [
+        "手机直播补光灯",
+        "手机直播补光灯 三色"
+      ],
+      "first_query": "手机直播补光灯",
+      "each_arg_token_count": [
+        5,
+        8
+      ],
+      "count_source": "donor_tokenization_matches_archived_total",
+      "archived_search_tokens": 13,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "P-frozen",
+          "step": 30,
+          "rank": 0,
+          "rep": 0,
+          "file": "search_V_0064.json",
+          "sha256": "d85b13c495cd32b35e3062426186cdd6ae290c4077ea212cb10cc7933f71663e"
+        }
+      ],
+      "first_page_asins": [
+        "673108598240",
+        "934070088259",
+        "938331707656",
+        "611703027915",
+        "894935507277",
+        "856261104097",
+        "930148487636",
+        "727466912999",
+        "695859407199",
+        "724660141388",
+        "936463156491",
+        "731805707246",
+        "860997613539",
+        "871710885280",
+        "874934513918",
+        "860543507890",
+        "796673650314",
+        "771704161977",
+        "937312250973",
+        "760268461188"
+      ]
+    },
+    {
+      "step": 30,
+      "split": "V",
+      "goal": 21457,
+      "rep": 2,
+      "actions_sha": "12f35d758acb5da5dd5b3925aab04ab408f8ac850b4f0ceb7b6afb59e405b27e",
+      "queries": [
+        "INTO YOU 潮流联名唇泥"
+      ],
+      "first_query": "INTO YOU 潮流联名唇泥",
+      "each_arg_token_count": [
+        11
+      ],
+      "count_source": "archived_single_search_total",
+      "archived_search_tokens": 11,
+      "in_intervention_source": false,
+      "donor_receipts": [
+        {
+          "arm": "R-matched",
+          "step": 10,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_V_0032.json",
+          "sha256": "f85344c54fc44feac8b62be2d67c13057dffa7b56850ba01e7a244a6601d087d"
+        },
+        {
+          "arm": "R-matched",
+          "step": 20,
+          "rank": 3,
+          "rep": 2,
+          "file": "search_V_0032.json",
+          "sha256": "a76de7b4bb404cb706c154bef47f399154f453543e230e07479d0ea2ed381406"
+        }
+      ],
+      "first_page_asins": [
+        "736817543283",
+        "911106971032",
+        "803863071392",
+        "837498622289",
+        "905289990821",
+        "727531632363",
+        "893171410640",
+        "945346964017",
+        "739942886854",
+        "825043790149",
+        "901515779814",
+        "914125821273",
+        "724615771603",
+        "672816977604",
+        "809896638094",
+        "911351423629",
+        "643613831522",
+        "802904938065",
+        "936588630535",
+        "793598200477"
+      ]
+    }
+  ]
+}

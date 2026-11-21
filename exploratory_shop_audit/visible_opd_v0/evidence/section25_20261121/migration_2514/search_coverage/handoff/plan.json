@@ -1,0 +1,64 @@
+{
+  "pass_name": "handoff",
+  "registration_github": "c1bf0ac03d51dc15b37c4fc43b02853275fb0aad",
+  "source_checkpoints": [
+    [
+      "P-frozen",
+      10
+    ],
+    [
+      "P-frozen",
+      20
+    ],
+    [
+      "P-frozen",
+      30
+    ],
+    [
+      "R-matched",
+      10
+    ],
+    [
+      "R-matched",
+      20
+    ]
+  ],
+  "primary_tasks_sha256": "7d7e3756dba62140047ffd69c15c2ad94dc296f585d66d869f7026f7dd771774",
+  "prior_tasks_sha256": "7d7e3756dba62140047ffd69c15c2ad94dc296f585d66d869f7026f7dd771774",
+  "tasks_sha256": "498908c784d58f9587d2ba62facdd118f08e500d03d24775f69e36e29f6831c2",
+  "archive_sha256": "07dd84dd6deb037a29c11d27bc8308a53359320fa2b657a5e49bdf1cef79638a",
+  "new_queries": [
+    [
+      "T_opd_eval",
+      3722,
+      "贝稀止 辅食营养品 24小包"
+    ],
+    [
+      "T_opd_eval",
+      6155,
+      "汽车 仪表盘 装饰贴膜 碳纤维 黑色 30cm*100cm"
+    ],
+    [
+      "T_opd_eval",
+      12497,
+      "女款金戒指 石榴石"
+    ],
+    [
+      "T_opd_eval",
+      19597,
+      "半拖式布鞋"
+    ],
+    [
+      "V",
+      11965,
+      "屏风 国风 现代简约 天然木材 手工制作 可折叠 收纳 空间分隔 200-250cm 470元以下"
+    ],
+    [
+      "V",
+      16317,
+      "适合小女孩穿的皮鞋，带蝴蝶结设计，杏色，26码，380元"
+    ]
+  ],
+  "distinct_queries": 339,
+  "recovered_source_trials": 9
+}

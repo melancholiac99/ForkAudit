@@ -1,0 +1,33 @@
+{
+  "posthoc": true,
+  "sealed_primary": "../..",
+  "source_checkpoints": [
+    [
+      "P-frozen",
+      10
+    ],
+    [
+      "P-frozen",
+      20
+    ],
+    [
+      "P-frozen",
+      30
+    ],
+    [
+      "R-matched",
+      10
+    ],
+    [
+      "R-matched",
+      20
+    ]
+  ],
+  "recovered_original_source_trials": 9,
+  "additional_queries_this_pass": 6,
+  "additional_episodes_this_pass": 48,
+  "fresh_episodes_including_prior": 2712,
+  "tasks_sha256": "498908c784d58f9587d2ba62facdd118f08e500d03d24775f69e36e29f6831c2",
+  "pages_sha256": "8d7e566c49be7a61755494f340b5472aa2c66c2ea4669689d5a47699d7b77907",
+  "outcomes_sha256": "44f325d92b2fea59ac5cb2dda0e16ece5a93c5b254f65b50ebfbca674d4d2952"
+}
