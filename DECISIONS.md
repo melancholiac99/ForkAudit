@@ -2058,3 +2058,26 @@ Under a separate cold-engine check, relocating intact seeded native chunks
 changed some actions on both replays; this does not isolate a hardware cause.
 Keep the check separate from the formal and calibration outcomes. Deterministic
 HF target scoring uses the validated four-way task partition instead.
+
+### Section 25.12 serial layout, registered before any formal post-training behavior readout
+
+Use token length of the initial visible native prompt, measured at environment
+reset before generating any action. Balance within each registered 32-task
+update (8 tasks/rank) and each 200-task evaluation pool (50 tasks/rank).
+Assign longest first, then task ID; choose smallest load/count/rank subject to
+equal counts. Freeze one map for all actors and all checkpoints. Keep both
+training replicas and the five evaluation replicas of each task on its owner.
+Training's native initial queue is replicate-major over its eight tasks; the
+two replicas are served together. Evaluation retains pool order and native
+groups of at most 32 episodes per engine, within each pool. Generate one new
+shared training batch at B@0; all three fresh arms use its exact tape for their
+first optimizer update. The original D common-prefix measurement corpus stays
+fixed and is routed through the same task map. The second R-matched calibration
+finishes under its registered layout before exclusive four-card formal work.
+
+Use integer counts on the 200 T_opd_eval tasks and four sampled episodes/task
+to gate controls after P@100. Equality skips both controls. If P stops under
+25.7 before updating to 100, the P@100 gate has no observation; follow the
+registered serial order and run both controls. Report any unrun arm literally
+as "not run". Earlier B@0 and the interleaved P/R optimizer receipts stay
+archived separately and cannot supply formal baselines, adapters or moments.

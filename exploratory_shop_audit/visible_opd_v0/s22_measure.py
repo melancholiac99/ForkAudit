@@ -31,6 +31,8 @@ def shard_order(batch,rank):
     by_task=defaultdict(list)
     seq=[r['prompt']+r['answer'] for r in batch.rows]
     for i,r in enumerate(batch.rows):by_task[r['goal']].append(i)
+    if hasattr(batch,'owners'):
+        return sorted((i for i,r in enumerate(batch.rows) if batch.owners[r['goal']]==rank),key=lambda i:seq[i])
     groups=[]
     for indices in by_task.values():
         indices.sort(key=lambda i:seq[i])
@@ -46,6 +48,7 @@ def shard_order(batch,rank):
 
 @torch.inference_mode()
 def fp32_scores(model,batch,order):
+    if not order:return {}
     base=model.get_base_model()
     outputs={}
     maxlen=max(len(batch.rows[i]['prompt'])+len(batch.rows[i]['answer']) for i in order)

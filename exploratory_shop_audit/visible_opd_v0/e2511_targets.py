@@ -100,7 +100,7 @@ def merge(jobs,shards):
         for stem,field in FILES.items():
             assert len(data[stem])==len(order)
             sorted_values=[data[stem][i] for i in order]
-            if k==1 and arm=='R-matched':
+            if k==1 and arm=='R-matched' and name!='formal_2512':
                 reference=Layout('formal').folder(1,'R')
                 ref_file=reference/f'{stem}.pt'
                 assert digest_file(ref_file)==read(reference/'target_manifest.json')[field]

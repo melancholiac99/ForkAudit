@@ -26,7 +26,7 @@ def tape(path):
         for line in f:yield json.loads(line)
 
 def source_dir(run,k):
-    if k==1:return SMOKE
+    if k==1 and run!='formal_2512':return SMOKE
     return d_folder(k,'P') if run=='benchmark' else RUN/run/'pilot'/f'{k:02}'/'P'
 
 @torch.inference_mode()
@@ -43,6 +43,10 @@ def score(rank,run,k,window,dst):
     allowed={t['goal_index']:t['asin'] for t in split['T_opd']}
     held={t['goal_index'] for name in ('T_pre','T_cal','V','T_opd_eval') for t in split[name]}
     features=defaultdict(list);goals=[];classes=[];files={};skipped=0;count=0
+    assigned=None
+    if run=='formal_2512':
+        from .e2512_routing import owners
+        assigned=owners()
     for step in range(max(1,k-window+1),k+1):
         root=source_dir(run,step)
         for rep in range(2):
@@ -51,7 +55,8 @@ def score(rank,run,k,window,dst):
             files[f'{step}/{rep}']=digest_file(p)
             for rec in tape(p):
                 count+=1
-                if (count-1)%4!=rank:continue
+                owner=(count-1)%4 if assigned is None else assigned[rec['goal']]
+                if owner!=rank:continue
                 goal=rec['goal'];assert goal in allowed and goal not in held
                 if any(rec['na'].values()):skipped+=1;continue
                 answer=rec['response'];views=rec['views']

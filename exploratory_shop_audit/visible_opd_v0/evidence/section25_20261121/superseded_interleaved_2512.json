@@ -1,0 +1,97 @@
+{
+  "status": "SUPERSEDED",
+  "used_for_comparisons": false,
+  "root_relative": "formal",
+  "replacement_root": "formal_2512",
+  "old_arms": {
+    "R": [
+      {
+        "update": 1,
+        "before_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+        "after_sha": "592fff70d93384fa14c4135ef2b2ba84b0eef8d0510bace6e517c51f9575ba95",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "c459da5eea297fe1966eff0027675d3638ebd0df24b964b8cd545ebc22b2470b",
+        "measurement_receipt_sha": "6bb1db8aea99b63dec29a5a24896b686f48086d4cfc261da7916e5a59af3532a"
+      },
+      {
+        "update": 2,
+        "before_sha": "592fff70d93384fa14c4135ef2b2ba84b0eef8d0510bace6e517c51f9575ba95",
+        "after_sha": "e4c24fb698262665abb837ec5f7326c2627102eee70ce8434dbc2ff0ef4620a5",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "c408425f8d6a96e2b0d5a12c607d93090697502af0bcbe554d3a262bc7b02677",
+        "measurement_receipt_sha": "b951c79f3b9fb30a9f12738efb8709760581c0dbf0fd67a8d0c8faa4b854b400"
+      },
+      {
+        "update": 3,
+        "before_sha": "e4c24fb698262665abb837ec5f7326c2627102eee70ce8434dbc2ff0ef4620a5",
+        "after_sha": "25039d1fd76aa459f835dc0bc765a65f4986df8b2d9378d1da1f5ee679165e6e",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "47f75c861aaf89f598e125355b0e811ec3c0b9752eab20b8ec8cf12eb3a15403",
+        "measurement_receipt_sha": "305caa464c02e326dcc7d656a08661b21cae5985c76c8fba68fd7309b6ad5562"
+      },
+      {
+        "update": 4,
+        "before_sha": "25039d1fd76aa459f835dc0bc765a65f4986df8b2d9378d1da1f5ee679165e6e",
+        "after_sha": "6ef4cb5966e70e1ca9383e9d6aac04f984d0d4e09609191768d58381ad212191",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "772c6dc6567cdf3fa651c50b3450a70f69a0d2e422bbc9029e96bbfbc3929500",
+        "measurement_receipt_sha": "a3016e7da98171876415e478b98f1147775538b20bbd68781637971daa5e95ae"
+      },
+      {
+        "update": 5,
+        "before_sha": "6ef4cb5966e70e1ca9383e9d6aac04f984d0d4e09609191768d58381ad212191",
+        "after_sha": "972175cdaf51838b93b17bc03f203c9e0abadc19f829fb277f752a83a718cd20",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "400af4bf543591981e36653c23788afdfb3fde45034d4026770a962bb694ec7a",
+        "measurement_receipt_sha": "240126062be50eba4d1b3730ba1b5ce46b2b116e90b517efd615030d58f81766"
+      }
+    ],
+    "P": [
+      {
+        "update": 1,
+        "before_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+        "after_sha": "5e7277b31b522b73fcef8a880e3b9177d24802704b25fa48c79cd6239e60ae65",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "ef3f9c6ea614aafd473448779514cc6ed37488327744cbcead1a3dd8e9346443",
+        "measurement_receipt_sha": "d8b540714c354891b208e571f35bff9b9ee4b6af4e86d7275589152f209a5f6f"
+      },
+      {
+        "update": 2,
+        "before_sha": "5e7277b31b522b73fcef8a880e3b9177d24802704b25fa48c79cd6239e60ae65",
+        "after_sha": "002b7d1376a144055716303dad025021397a1164a70ee073e2537b6aabbc188a",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "99dcab51a29a6e7b6582aa3814bd9e5e9b15effabd453c78cbc2e484492ae246",
+        "measurement_receipt_sha": "75fce5599fa84d66a7d76cfc8b3e171a1a2a48a256cbd74b8bedf9b3318d25a9"
+      },
+      {
+        "update": 3,
+        "before_sha": "002b7d1376a144055716303dad025021397a1164a70ee073e2537b6aabbc188a",
+        "after_sha": "f88647a9c3433ce5e55436dfb08c29be0dd826420240b3ae429d97aaf7607b25",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "8341b1e64f3728acce5266ae3fa0fa5f9ddfbc611c61ac90517d0e6a20a412af",
+        "measurement_receipt_sha": "49edc690a979c7d07c8d86649ad1244d7c5cc2894bce4c7130a11ed54ede3d5d"
+      },
+      {
+        "update": 4,
+        "before_sha": "f88647a9c3433ce5e55436dfb08c29be0dd826420240b3ae429d97aaf7607b25",
+        "after_sha": "82c901a98423195175abad75415db36de32c5751ddef9d6d26f14193d30119c0",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "1a4c4e714f629782f99d08aab633d24c7d235498ea840804997f34c84ee33d5d",
+        "measurement_receipt_sha": "9c378487d2bc7c4bc372fe1735bb631184fa9ff07baaabc861135b2949e7fbde"
+      },
+      {
+        "update": 5,
+        "before_sha": "82c901a98423195175abad75415db36de32c5751ddef9d6d26f14193d30119c0",
+        "after_sha": "d5227f072e8d9c3446176b2823327f789a9195ef31ebbc771f76601c78d46fc0",
+        "optimizer_steps": 5,
+        "optimizer_receipt_sha": "2b858491bac97c335995f2ed725c80bb1780032938881febf8bfb2e5f70c118c",
+        "measurement_receipt_sha": "24190a02cb8c605b303dfeed422c75a39f8995438fa185e50aece8ae5a9c4a3d"
+      }
+    ]
+  },
+  "original_settings_sha256": "365e7503dbb05f118afdd159745a6ea443159c6a14b2be2340d30db0ffff9caf",
+  "archive_scope": "All interleaved formal P/R updates, states, moments and baseline superseded. Second calibration remains valid.",
+  "formal_behavior_checkpoint_directories_at_registration": [
+    "000"
+  ]
+}

@@ -78,7 +78,7 @@ def summarize(batch,old,new,targets,indices):
         values+=w*components(old[i],new[i],targets[i],r['mask']).sum(0)
         mass+=w*len(r['answer'])
     # For a strict subset, condition the original evaluation weights on that subset.
-    k0,k1,delta,align,move=(values/mass).tolist()
+    k0,k1,delta,align,move=(values/mass if mass else values).tolist()
     residual=delta-align+move
     assert abs(residual)<1e-11
     return dict(kl_before=k0,kl_after=k1,delta_kl=delta,alignment=align,

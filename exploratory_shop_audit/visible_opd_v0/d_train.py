@@ -13,7 +13,7 @@ from .s21_store import ARMS, RUN as PREVIOUS
 from .s21_data import components
 from exploratory_shop_audit.grpo_forced_audit.common import digest_file, digest_value, read, save
 
-def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None):
+def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None, compare_original=True):
     os.umask(0o077)
     os.environ['CUBLAS_WORKSPACE_CONFIG']=':4096:8'
     os.environ['NCCL_ALGO']='Ring'
@@ -86,7 +86,7 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
         steps=prior_steps+len(batch.batches)
         assert {int(st['step'].item()) for st in optim.state.values()}=={steps}
         after_sha=same_hash(params)
-        if k==1 and arm in ARMS and (rates is None or rates[arm]==1e-6):
+        if k==1 and compare_original and arm in ARMS and (rates is None or rates[arm]==1e-6):
             assert after_sha==read(PREVIOUS/'grid'/f'{arm}_1'/'complete.json')['final_sha256'],(arm,after_sha)
         values=torch.zeros(5,dtype=torch.float64,device='cuda')
         with torch.no_grad():

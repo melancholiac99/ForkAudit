@@ -57,7 +57,7 @@ def trajectory_stats(l,k,a):
     path=l.folder(k,a);out=path/'train_statistics.json'
     if out.exists():return read(out)
     batch,q=l.batch(k,a);stats,cover=class_stats(batch,q)
-    if k==1:
+    if k==1 and l.name!='formal_2512':
         legal=baseline_legal();n=batch.total_records if hasattr(batch,'total_records') else len(batch.rows)
     else:
         good=n=0

@@ -16,6 +16,7 @@ def length(row):
 @torch.no_grad()
 def initial_logits(model,batch,local,path):
     """Read the exact student logits produced by this update's verified frozen scorer."""
+    if not local:return {},True
     manifest=path/'target_manifest.json'
     if manifest.exists():
         sha=read(manifest).get('bf16_before_sha256')

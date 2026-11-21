@@ -41,13 +41,14 @@ def labels(tok,row):
         out.append(c if c in GROUPS else 'other');offset=end
     return out
 
-def pooled(batch,rank):
+def pooled(batch,rank,owners=None):
     all_ids=range(len(batch.rows))
     mapping=defaultdict(list)
     for i in all_ids:
-        row=batch.rows[i];mapping[(tuple(row['prompt']),tuple(row['answer']))].append(i)
+        row=batch.rows[i];owner=owners[row['goal']] if owners is not None else None
+        mapping[(owner,tuple(row['prompt']),tuple(row['answer']))].append(i)
     first=[v[0] for v in mapping.values()]
-    local=set(batch.local(first,rank))
+    local=set(batch.local(first,rank)) if owners is None else {i for i in first if owners[batch.rows[i]['goal']]==rank}
     return [v for v in mapping.values() if v[0] in local]
 
 def add(totals,name,rows,indices,w):
@@ -67,8 +68,8 @@ def reduce_rows(dst,prefix):
     return {key:dict(positions=n,mass=w,kl=kl/w if w else None,entropy=h/w if w else None,top1=z/w if w else None)
             for key,(n,w,kl,h,z) in sums.items()}
 
-def baseline_logits(model,batch,chunks,rank,dtype):
-    dest=RUN/'base_logits'/str(dtype);dest.mkdir(parents=True,exist_ok=True)
+def baseline_logits(model,batch,chunks,rank,dtype,root=RUN):
+    dest=root/'base_logits'/str(dtype);dest.mkdir(parents=True,exist_ok=True)
     path=dest/f'rank_{rank}.pt'
     if path.exists():return torch.load(path,mmap=True,map_location='cpu',weights_only=True)
     cache={}

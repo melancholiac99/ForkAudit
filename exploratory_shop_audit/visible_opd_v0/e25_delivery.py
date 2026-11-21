@@ -13,6 +13,15 @@ def markdown(l,completion,behavior,costs):
         '| 组 | 终点更新 | 停止状态 | 学习率 |','|---|---:|---|---:|']
     for a,k in completion['endpoints'].items():
         lines.append(f"| {a} | {k} | {completion['stop_labels'][a]} | {l.config['rates'][a]:.8g} |")
+    for a in completion.get('not_run',[]):
+        lines.append(f"| {a} | not run | not run | {l.config['rates'][a]:.8g} |")
+    if l.name=='formal_2512':
+        gate=read(l.root/'controls_gate.json')
+        lines+=['','采用 §25.12 的四引擎固定任务布局及新 B@0 基线，顺序为 P、R-matched、R。']
+        if 'counts' in gate:
+            c=gate['counts'];n=gate['episodes_per_arm']
+            lines+=[f"T_opd_eval 采样全要求购买为 P {c['P']}/{n}、B {c['B']}/{n}，控制组决策 {gate['decision']}。"]
+        else:lines+=['P 在第 100 步前按 §25.7 停止，依登记解释继续运行控制组。']
     lines+=['','## 主要行为比较','',
         '全要求购买率之差，按预登记主比较列出。每个池 200 题，采样每题 4 条，贪心每题 1 条。'
         '单位为百分点，括号内为配对商品簇 95% bootstrap 区间。','',
@@ -22,7 +31,9 @@ def markdown(l,completion,behavior,costs):
             cells=[]
             for pool in ('T_opd_eval','V','V_unseen'):
                 key=f'{comparison}/{mode}/asin/{pool}'
-                if key not in endpoint['paired']:cells.append('NA（空层）');continue
+                if key not in endpoint['paired']:
+                    cells.append('not run' if any(comparison.endswith('-'+a) for a in completion.get('not_run',[])) else 'NA（空层）')
+                    continue
                 v=endpoint['paired'][key]['all_requirements']
                 lo,hi=v['ci95'];cells.append(f"{100*v['estimate']:+.2f} [{100*lo:+.2f}, {100*hi:+.2f}]")
             lines.append('| '+comparison+' | '+mode+' | '+' | '.join(cells)+' |')
@@ -46,7 +57,7 @@ def markdown(l,completion,behavior,costs):
         'D@10 中，P 相对 P-shuffled 的采样全要求购买率差在 T_opd_eval 为 +6.62 [+4.25, +9.00] 个百分点，'
         '在 V 为 +7.12 [+5.00, +9.38] 个百分点。'
         '[阶段 D 原报告](../section23_20261120/STAGE_D.md)','',
-        f"正式 E 已计入的四卡阶段用量为 {costs['formal']:.2f} GPU 小时。"
+        f"正式 E 已计入的四卡阶段用量为 {costs[l.name]:.2f} GPU 小时。"
         +('匹配校准另用 %.2f GPU 小时。'%costs['calibration'] if 'calibration' in costs else ''),
         '', '[成本预估与匹配依据](PREFLIGHT.md) · [终点快照签名与停止状态](stage_e_completion.json)']
     if 'shared_2511' in costs:
@@ -55,8 +66,9 @@ def markdown(l,completion,behavior,costs):
             f"正式 R/P 与第二次校准共同执行的环节 {costs['shared_2511']:.2f} GPU 小时。"]
     (PUBLIC/'STAGE_E.md').write_text('\n'.join(lines)+'\n')
 
-def final_report():
-    l=Layout('formal');completion=read(l.root/'complete.json')
+def final_report(l=None):
+    l=Layout('formal') if l is None else l
+    completion=read(l.root/'complete.json')
     steps=[];monitors=[];staging={}
     for a,last in completion['endpoints'].items():
         for k in range(1,last+1):

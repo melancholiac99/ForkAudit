@@ -57,4 +57,4 @@ def report(l,k,endpoints):
     result=dict(update=k,endpoints=endpoints,summary=stats,paired=pairs,train_eval_minus_V=gap,paired_gap=paired_gap,
         primary=['P-R-matched' if 'R-matched' in l.config['rates'] else 'P-R','P-B'],seeds=1)
     dest=l.root/'behavior'/f'{k:03}.json';save(dest,result)
-    if k==100:save(PUBLIC/'stage_e_final_behavior.json',result)
+    if k==100 and l.name!='formal_2512':save(PUBLIC/'stage_e_final_behavior.json',result)

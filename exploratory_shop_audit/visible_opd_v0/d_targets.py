@@ -14,6 +14,7 @@ from exploratory_shop_audit.grpo_forced_audit.common import read, read_rows, sav
 @torch.inference_mode()
 def build(k,arm,layout=None,*,goals=None,output=None):
     loc=folder if layout is None else layout.folder
+    fresh_first = layout is not None and layout.name=='formal_2512'
     source = loc(k,arm)
     path = source if output is None else output
     path.mkdir(parents=True,exist_ok=True)
@@ -34,7 +35,7 @@ def build(k,arm,layout=None,*,goals=None,output=None):
     masses=[]
     na=[]; rows=[]; targets=[]; student_logits=[]; episodes=Counter(); done=set()
     for rep in range(2):
-        for r in read_rows((SMOKE if k==1 else source)/f'rollout_{rep}.jsonl'):
+        for r in read_rows((SMOKE if k==1 and not fresh_first else source)/f'rollout_{rep}.jsonl'):
             if goals is not None and r['goal'] not in goals:continue
             key=(r['goal'],rep)
             assert r['goal'] in folds and r['rep']==rep and r['step']==episodes[key] and key not in done
@@ -94,7 +95,7 @@ def build(k,arm,layout=None,*,goals=None,output=None):
         mass_file=path/'candidate_mass.pt'
         torch.save([masses[i] for i in order],mass_file)
         extra['mass_sha256']=digest_file(mass_file)
-        if k==1 and arm!='P-KL':
+        if k==1 and arm!='P-KL' and not fresh_first:
             b,original=layout.batch(k,arm)
             ref=[j for j,row in enumerate(b.rows) if goals is None or row['goal'] in goals]
             assert len(order)==len(ref)

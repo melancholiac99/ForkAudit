@@ -8,9 +8,19 @@ from .projection import VisibleProjection,candidate_target
 from .s21_data import SmokeBatch
 from exploratory_shop_audit.grpo_forced_audit.common import read,save,digest_file
 
+class RoutedBatch(OnlineBatch):
+    def __init__(self,k,arm,path):
+        from .e2512_routing import owners
+        super().__init__(k,arm,path)
+        self.owners=owners()
+
+    def local(self,subset,rank):
+        return sorted(i for i in subset if self.owners[self.rows[i]['goal']]==rank)
+
+
 class Layout:
     def __init__(self,run):
-        if run not in ('formal','calibration','calibration_2511','p_kl'):raise ValueError(run)
+        if run not in ('formal','calibration','calibration_2511','formal_2512','p_kl'):raise ValueError(run)
         self.name=run;self.root=RUN/run
     def folder(self,k,a):return self.root/'pilot'/f'{k:02}'/a
     def state(self,k,a):return self.root/'state'/f'{k:02}'/a
@@ -25,6 +35,9 @@ class Layout:
             return read(amended)
         return read(self.root/'settings.json')
     def batch(self,k,a):
+        if self.name=='formal_2512':
+            b=RoutedBatch(k,a,self.folder(k,a))
+            return b,b.q
         if k==1 and a!='P-KL':
             batch=SmokeBatch();return batch,batch.targets('R' if a=='R-matched' else a)
         b=OnlineBatch(k,a,self.folder(k,a));return b,b.q
@@ -56,7 +69,7 @@ class Layout:
         d=nets[f](h,head[ids],q)
         coeff=[cal[c]['b'] if a=='P' else self.kl_scales[c] for c in classes]
         return candidate_target(s,d,torch.tensor(coeff,device=s.device)[:,None],mask)
-    def initialize(self,n):
+    def initialize(self,n,arms=None):
         split=read(PARENT/'asin_split_manifest.json')
         held={t['goal_index'] for pool in ('T_pre','V','T_cal','T_opd_eval') for t in split[pool]}
         tasks=[t for t in split['T_opd'] if t['goal_index'] not in held][:32*n]
@@ -64,7 +77,7 @@ class Layout:
         schedule=[tasks[i:i+32] for i in range(0,len(tasks),32)]
         assert schedule[:10]==pilot_schedule()
         for k,group in enumerate(schedule,1):
-            for a in self.config['rates']:
+            for a in (self.config['rates'] if arms is None else arms):
                 path=self.folder(k,a);path.mkdir(parents=True,exist_ok=True)
                 if not (path/'snapshots').exists():(path/'snapshots').symlink_to(PARENT/'snapshots',target_is_directory=True)
             dest=path.parent/'tasks.json'

@@ -3,7 +3,7 @@ import torch
 from transformers import AutoTokenizer
 from .c_targets import actor,response,STAGE_B
 from .e25_layout import Layout
-from .e25_probe import GROUPS,SEED,add,full_metrics,labels,pooled,RUN,PUBLIC
+from .e25_probe import GROUPS,SEED,add,baseline_logits,full_metrics,labels,pooled,RUN,PUBLIC
 from .e25_refresh import fold_of
 from .d_data import PARENT
 from .s21_data import SmokeBatch,summarize
@@ -30,7 +30,7 @@ def per_update(rank,l,k,arms):
         batch,q=l.batch(k,a);ids=shard_order(batch,rank)
         at(model,l,k-1,a);old=fp32_scores(model,batch,ids)
         at(model,l,k,a);new=fp32_scores(model,batch,ids)
-        if k==1:bf=checkpoint('bf16','initial')[0]
+        if k==1 and l.name!='formal_2512':bf=checkpoint('bf16','initial')[0]
         else:
             p=path/'bf16_before.pt';assert digest_file(p)==read(path/'target_manifest.json')['bf16_before_sha256']
             bf=torch.load(p,weights_only=True)
@@ -48,7 +48,11 @@ def merge_update(l,k,arms):
 
 @torch.inference_mode()
 def common(rank,l,k,arms):
-    b=SmokeBatch();chunks=pooled(b,rank)
+    b=SmokeBatch()
+    if l.name=='formal_2512':
+        from .e2512_routing import owners
+        chunks=pooled(b,rank,owners())
+    else:chunks=pooled(b,rank)
     tok=AutoTokenizer.from_pretrained(MODEL,local_files_only=True)
     cats=[labels(tok,r) for r in b.rows]
     sp=read(PARENT/'asin_split_manifest.json')
@@ -58,7 +62,11 @@ def common(rank,l,k,arms):
         out=l.folder(k,a)/f'common_{rank}.json'
         if out.exists():continue
         model=actor().eval();at(model,l,k,a)
-        base=torch.load(RUN/'base_logits'/str(torch.bfloat16)/f'rank_{rank}.pt',weights_only=True,mmap=True)
+        reference_root=l.root if l.name=='formal_2512' else RUN
+        if l.name=='formal_2512' and k==0:
+            base=baseline_logits(model,b,chunks,rank,torch.bfloat16,root=reference_root)
+        else:
+            base=torch.load(reference_root/'base_logits'/str(torch.bfloat16)/f'rank_{rank}.pt',weights_only=True,mmap=True)
         prev=curr=None
         if a=='P':
             prev=l.projectors(model,k,a);curr=l.projectors(model,k+1,a)
