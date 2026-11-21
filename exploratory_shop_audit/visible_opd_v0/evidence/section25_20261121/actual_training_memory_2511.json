@@ -1,0 +1,51 @@
+{
+  "formal_step": 2,
+  "arms": [
+    "R",
+    "P"
+  ],
+  "scope": "four-card DDP training subprocess including startup, both arm updates, serialization and exit",
+  "from_utc": "2026-11-21T08:32:18.646661+00:00",
+  "until_utc": "2026-11-21T08:37:47.290304+00:00",
+  "rank_ordered_board_readings": [
+    {
+      "samples": 328,
+      "peak_board_GiB": 67.8447265625,
+      "mean_gpu_utilization_percent": 87.32621951219512,
+      "percent_samples_at_95_or_above": 82.92682926829268
+    },
+    {
+      "samples": 328,
+      "peak_board_GiB": 72.2216796875,
+      "mean_gpu_utilization_percent": 90.02743902439025,
+      "percent_samples_at_95_or_above": 85.0609756097561
+    },
+    {
+      "samples": 328,
+      "peak_board_GiB": 67.7431640625,
+      "mean_gpu_utilization_percent": 89.1189024390244,
+      "percent_samples_at_95_or_above": 82.01219512195122
+    },
+    {
+      "samples": 328,
+      "peak_board_GiB": 66.9404296875,
+      "mean_gpu_utilization_percent": 89.78048780487805,
+      "percent_samples_at_95_or_above": 84.7560975609756
+    }
+  ],
+  "earlier_long_sequence_pytorch_measurements": 36,
+  "lengths": [
+    3580,
+    4096
+  ],
+  "pytorch_allocated_memory": {
+    "checkpoint": {
+      "min_GiB": 18.318801403045654,
+      "max_GiB": 18.643086910247803
+    },
+    "retained": {
+      "min_GiB": 48.34623432159424,
+      "max_GiB": 53.08259391784668
+    }
+  }
+}
