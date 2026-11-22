@@ -1,0 +1,140 @@
+{
+  "coverage": {
+    "0/T_opd_eval/sample": {
+      "episodes": 800,
+      "episodes_with_legal_search": 799,
+      "first_queries_authenticated": 770,
+      "legal_searches": 813,
+      "legal_searches_with_counts": 791,
+      "counts_known_with_unresolved_text": 11
+    },
+    "0/T_opd_eval/greedy": {
+      "episodes": 200,
+      "episodes_with_legal_search": 200,
+      "first_queries_authenticated": 197,
+      "legal_searches": 202,
+      "legal_searches_with_counts": 199,
+      "counts_known_with_unresolved_text": 1
+    },
+    "0/V/sample": {
+      "episodes": 800,
+      "episodes_with_legal_search": 800,
+      "first_queries_authenticated": 780,
+      "legal_searches": 813,
+      "legal_searches_with_counts": 801,
+      "counts_known_with_unresolved_text": 11
+    },
+    "0/V/greedy": {
+      "episodes": 200,
+      "episodes_with_legal_search": 200,
+      "first_queries_authenticated": 197,
+      "legal_searches": 200,
+      "legal_searches_with_counts": 200,
+      "counts_known_with_unresolved_text": 3
+    },
+    "10/T_opd_eval/sample": {
+      "episodes": 800,
+      "episodes_with_legal_search": 800,
+      "first_queries_authenticated": 775,
+      "legal_searches": 814,
+      "legal_searches_with_counts": 808,
+      "counts_known_with_unresolved_text": 19
+    },
+    "10/T_opd_eval/greedy": {
+      "episodes": 200,
+      "episodes_with_legal_search": 200,
+      "first_queries_authenticated": 200,
+      "legal_searches": 204,
+      "legal_searches_with_counts": 204,
+      "counts_known_with_unresolved_text": 0
+    },
+    "10/V/sample": {
+      "episodes": 800,
+      "episodes_with_legal_search": 800,
+      "first_queries_authenticated": 787,
+      "legal_searches": 823,
+      "legal_searches_with_counts": 817,
+      "counts_known_with_unresolved_text": 7
+    },
+    "10/V/greedy": {
+      "episodes": 200,
+      "episodes_with_legal_search": 200,
+      "first_queries_authenticated": 194,
+      "legal_searches": 203,
+      "legal_searches_with_counts": 203,
+      "counts_known_with_unresolved_text": 6
+    },
+    "20/T_opd_eval/sample": {
+      "episodes": 800,
+      "episodes_with_legal_search": 800,
+      "first_queries_authenticated": 771,
+      "legal_searches": 828,
+      "legal_searches_with_counts": 807,
+      "counts_known_with_unresolved_text": 17
+    },
+    "20/T_opd_eval/greedy": {
+      "episodes": 200,
+      "episodes_with_legal_search": 200,
+      "first_queries_authenticated": 197,
+      "legal_searches": 202,
+      "legal_searches_with_counts": 201,
+      "counts_known_with_unresolved_text": 2
+    },
+    "20/V/sample": {
+      "episodes": 800,
+      "episodes_with_legal_search": 800,
+      "first_queries_authenticated": 776,
+      "legal_searches": 816,
+      "legal_searches_with_counts": 807,
+      "counts_known_with_unresolved_text": 19
+    },
+    "20/V/greedy": {
+      "episodes": 200,
+      "episodes_with_legal_search": 200,
+      "first_queries_authenticated": 195,
+      "legal_searches": 203,
+      "legal_searches_with_counts": 202,
+      "counts_known_with_unresolved_text": 4
+    },
+    "30/T_opd_eval/sample": {
+      "episodes": 800,
+      "episodes_with_legal_search": 800,
+      "first_queries_authenticated": 782,
+      "legal_searches": 851,
+      "legal_searches_with_counts": 833,
+      "counts_known_with_unresolved_text": 9
+    },
+    "30/T_opd_eval/greedy": {
+      "episodes": 200,
+      "episodes_with_legal_search": 200,
+      "first_queries_authenticated": 193,
+      "legal_searches": 215,
+      "legal_searches_with_counts": 207,
+      "counts_known_with_unresolved_text": 3
+    },
+    "30/V/sample": {
+      "episodes": 800,
+      "episodes_with_legal_search": 800,
+      "first_queries_authenticated": 783,
+      "legal_searches": 844,
+      "legal_searches_with_counts": 822,
+      "counts_known_with_unresolved_text": 7
+    },
+    "30/V/greedy": {
+      "episodes": 200,
+      "episodes_with_legal_search": 200,
+      "first_queries_authenticated": 196,
+      "legal_searches": 211,
+      "legal_searches_with_counts": 208,
+      "counts_known_with_unresolved_text": 1
+    }
+  },
+  "sha256": {
+    "checkpoint_000.tsv": "fe283fb22ba07900abd8a5cca568d8b17530cd15bc709eee2c4ff667bcd3d8c4",
+    "checkpoint_010.tsv": "553ad1a42e78f2b114a1bf0caa99007a9a6afa7822246ef15b6d54200238db85",
+    "checkpoint_020.tsv": "979f66f7088d66dc5bbd9ebfaef20d6c6039f22f032262e822dc29b0ef3d7802",
+    "checkpoint_030.tsv": "7b7b57161d7ee23b609758b293408599ff4ed3c73a6e1f5f27130a7279fccfe9"
+  },
+  "source_archive_sha256": "28159cd77af41889b022f5b14a0f8158feed99fe7ab436e8d46b6767a2ef7c4b",
+  "donor_table_sha256": "07dd84dd6deb037a29c11d27bc8308a53359320fa2b657a5e49bdf1cef79638a"
+}
