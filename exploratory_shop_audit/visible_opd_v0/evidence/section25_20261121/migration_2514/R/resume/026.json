@@ -1,0 +1,173 @@
+{
+  "arm": "R",
+  "update": 26,
+  "status": "INTERMEDIATE_CHECKPOINT",
+  "last_behavior_step": 20,
+  "private_resume_directory": "migration_2514/resume_snapshots/026",
+  "update_receipt": {
+    "arm": "R",
+    "update": 26,
+    "stopped": false,
+    "physical_group": "B",
+    "optimizer_steps": 5,
+    "before_sha": "8cb217cf7bd4f63a1d962076d98989d4b210139fdef674707b82ee2f93bb70a1",
+    "after_sha": "da93ef88620bbf3f81bb46b10d9069e4b212ede1aa7596c82a3ebcfaf58f2e89",
+    "finished": "2026-11-22T00:57:24.769387+00:00"
+  },
+  "optimizer": {
+    "update": 26,
+    "arm": "R",
+    "before_sha": "8cb217cf7bd4f63a1d962076d98989d4b210139fdef674707b82ee2f93bb70a1",
+    "after_sha": "da93ef88620bbf3f81bb46b10d9069e4b212ede1aa7596c82a3ebcfaf58f2e89",
+    "before_logits_reused_on_rank0": true,
+    "activation_limit": 3897,
+    "activation_limit_by_rank": [
+      3897,
+      4561,
+      5097,
+      4327
+    ],
+    "retained_records": 284,
+    "training_loop_seconds": 165.1655476820015,
+    "optimizer_steps": 5,
+    "cumulative_steps": 130,
+    "grad_norms": [
+      1.1405242681503296,
+      0.5848815441131592,
+      0.9556481242179871,
+      1.7999248504638672,
+      0.8898414969444275
+    ],
+    "minibatch_rows": [
+      61,
+      61,
+      60,
+      60,
+      60
+    ],
+    "scored_minibatch_rows": [
+      61,
+      60,
+      60,
+      59,
+      60
+    ],
+    "minibatch_sha256": "bdcfae117fdccd3d4a0da17aa5c6aa73701aed16b4128c8a5288e2789d9b45c4",
+    "bf16_fixed_target": {
+      "kl_before": 0.08640663749436364,
+      "kl_after": 0.08125676889285667,
+      "delta_kl": 0.005149868601507014,
+      "alignment": 0.006490546330201966,
+      "movement": 0.0013406777286949503
+    },
+    "adam_sha256": "9173101ac8a2f5287625433a05d3cb7ee48766818e37946d706b1d816f85983f",
+    "safetensors_sha256": "a6cf1f3280a2b18cd41c8bc1ec357a302d956d73cef7545cf6a0f4ba9147a842",
+    "elapsed_seconds": 223.32825444499758
+  },
+  "training": {
+    "update": 26,
+    "arm": "R",
+    "legal_rate": 0.8443708609271523,
+    "records": 302,
+    "scored": 300,
+    "by_class": {
+      "format": {
+        "tokens": 1167,
+        "task_count": 32,
+        "target_kl": 0.04277997944191061,
+        "student_entropy_candidate": 0.07907835074075258,
+        "gradient_l1": 0.04807915459896471,
+        "exactly_zero_fraction": 0.0,
+        "kl_above_1e5_fraction": 0.7660668380462725
+      },
+      "search": {
+        "tokens": 1159,
+        "task_count": 32,
+        "target_kl": 0.1359416878083666,
+        "student_entropy_candidate": 0.21617708697660992,
+        "gradient_l1": 0.13167573536860425,
+        "exactly_zero_fraction": 0.0,
+        "kl_above_1e5_fraction": 0.6807592752372735
+      },
+      "click": {
+        "tokens": 1428,
+        "task_count": 32,
+        "target_kl": 0.08500790946806182,
+        "student_entropy_candidate": 0.08526227123705021,
+        "gradient_l1": 0.06587062561642983,
+        "exactly_zero_fraction": 0.0,
+        "kl_above_1e5_fraction": 0.36554621848739494
+      },
+      "option": {
+        "tokens": 515,
+        "task_count": 29,
+        "target_kl": 0.05110494517597709,
+        "student_entropy_candidate": 0.036842844525403796,
+        "gradient_l1": 0.03707732409695922,
+        "exactly_zero_fraction": 0.0,
+        "kl_above_1e5_fraction": 0.23495145631067962
+      },
+      "unknown": {
+        "tokens": 52,
+        "task_count": 3,
+        "target_kl": 0.08083135679324163,
+        "student_entropy_candidate": 0.1447528282155437,
+        "gradient_l1": 0.10147025166905434,
+        "exactly_zero_fraction": 0.0,
+        "kl_above_1e5_fraction": 0.5
+      }
+    },
+    "candidate_mass": {
+      "format": {
+        "student": 0.9991425110891701,
+        "selected": 0.996990079133407,
+        "placeholder": 0.9988709527391542
+      },
+      "search": {
+        "student": 0.9983564166545495,
+        "selected": 0.9934815908225157,
+        "placeholder": 0.9978898891425545
+      },
+      "click": {
+        "student": 0.9990281807490913,
+        "selected": 0.9968869578401882,
+        "placeholder": 0.9990060334355166
+      },
+      "option": {
+        "student": 0.9998496460059958,
+        "selected": 0.9995801451818376,
+        "placeholder": 0.999798701658911
+      },
+      "unknown": {
+        "student": 0.999481269904123,
+        "selected": 0.9993963125249422,
+        "placeholder": 0.999471408455146
+      }
+    },
+    "optimizer_steps": 5,
+    "clip_count": 2,
+    "before_sha": "8cb217cf7bd4f63a1d962076d98989d4b210139fdef674707b82ee2f93bb70a1",
+    "after_sha": "da93ef88620bbf3f81bb46b10d9069e4b212ede1aa7596c82a3ebcfaf58f2e89",
+    "projection_version": 0
+  },
+  "precision_metrics": {
+    "arm": "R",
+    "update": 26,
+    "bf16": {
+      "kl_before": 0.08640663749436364,
+      "kl_after": 0.08125676889285667,
+      "delta_kl": 0.005149868601507014,
+      "alignment": 0.006490546330201966,
+      "movement": 0.0013406777286949503
+    },
+    "fp32_reanchored": {
+      "kl_before": 0.12312521489987435,
+      "kl_after": 0.11609453477526599,
+      "delta_kl": 0.007030680124608294,
+      "alignment": 0.007683450473674401,
+      "movement": 0.0006527703490661067
+    }
+  },
+  "frozen_target_manifest_sha256": "f3526b0ff8524b0c293ed50866979ed240a5a248722992d073c3cd583ac7239f",
+  "routing_sha256": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa"
+}
