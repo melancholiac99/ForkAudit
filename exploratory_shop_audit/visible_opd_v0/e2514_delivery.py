@@ -264,6 +264,13 @@ def final():
     if overlaps:
         minutes=sum(x['overlap_seconds'] for x in overlaps)/60
         lines.extend(['',f"After the R-matched endpoint, the stage timestamps show {minutes:.1f} minutes of overlapping allocations across {len(overlaps)} updates. Cards 0–3 handled the FP32 checks while cards 4–7 trained, collected the next batch or evaluated the checkpoint. The per-device telemetry also records idle and synchronization periods within these allocations."])
+    verification=sorted((OUT/'early_probe_verification').glob('030_rank*.json'))
+    if len(verification)==4:
+        for rank,file in enumerate(verification):
+            proof=read(file)
+            assert proof['rank']==rank and proof['identical_serialized_metrics'] and proof['update']==30
+            assert proof['result_sha256']==digest_file(RUN/SERIAL/'pilot/30/R'/f'fp32_part_{rank}.json')
+        lines.extend(['', 'At R@30, repeating both frozen FP32 forwards after training reproduced the serialized measurements byte for byte on all four ranks. [Verification receipts](../early_probe_verification).'])
     (OUT/'final/REPORT.md').write_text('\n'.join(lines)+'\n')
     save(OUT/'final/completion.json',dict(endpoints=outcomes,original_p=30,cpu_checks=needed,task_selection=selection,
          all_public_sha256={str(p.relative_to(OUT)):digest_file(p) for p in sorted(OUT.rglob('*')) if p.is_file() and p!=OUT/'final/completion.json'}))

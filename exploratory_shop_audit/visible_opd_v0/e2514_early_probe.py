@@ -90,5 +90,38 @@ def run(first):
                 return
 
 
+def verify_archived(update):
+    """Compare the completed early shard with an ordinary two-snapshot evaluation."""
+    from pathlib import Path
+    from tempfile import TemporaryDirectory
+    from types import SimpleNamespace
+    from .e25_layout import Layout
+    from .e25_measure import per_update
+    from .e25_probe import configure
+    from exploratory_shop_audit.grpo_forced_audit.common import digest_file
+    check_lane()
+    rank = configure()
+    layout = Layout(SERIAL)
+    original = layout.folder(update, 'R')
+    part = f'fp32_part_{rank}.json'
+    assert read(original / f'fp32_timing_{rank}.json')['early']
+    with TemporaryDirectory(dir=RUN/'migration_2514/early_fp32') as tmp:
+        scratch = Path(tmp)
+        for name in ('target_manifest.json', 'bf16_before.pt'):
+            (scratch/name).symlink_to(original/name)
+        view = SimpleNamespace(name=layout.name, batch=layout.batch, snapshot=layout.snapshot,
+                               folder=lambda k, arm: scratch)
+        per_update(rank, view, update, ['R'])
+        assert (scratch/part).read_bytes() == (original/part).read_bytes()
+    save(PUBLIC/'migration_2514/early_probe_verification'/f'{update:03}_rank{rank}.json',
+         dict(update=update, rank=rank, arm='R', identical_serialized_metrics=True,
+              result_sha256=digest_file(original/part), target_manifest_sha256=digest_file(original/'target_manifest.json'),
+              prior_adapter_sha256=read(layout.folder(update-1,'R')/'optimizer.json')['safetensors_sha256'],
+              updated_adapter_sha256=read(original/'optimizer.json')['safetensors_sha256']))
+
+
 if __name__ == '__main__':
-    run(int(sys.argv[1]))
+    if sys.argv[1]=='verify':
+        verify_archived(int(sys.argv[2]))
+    else:
+        run(int(sys.argv[1]))
