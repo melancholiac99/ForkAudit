@@ -37,6 +37,8 @@ def launch(l,phase,k,a,env=None):
                 allocated_gpus=4,exit_code=proc.returncode,finished=utc())
     physical = (os.environ if env is None else env).get('CUDA_VISIBLE_DEVICES')
     if physical:status['physical_devices']=physical
+    if (os.environ if env is None else env).get('OPD_FOUR_CARD_RESUME')=='1':
+        status['machine_layout']='four_card_continuation'
     append(RUN/'allocation.jsonl',status);proc.check_returncode()
     save(stage,status)
 

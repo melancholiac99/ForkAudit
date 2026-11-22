@@ -100,12 +100,15 @@ def summarize(source,dest):
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('phase',choices=['probe','targets','replay','summary'])
-    parser.add_argument('group',choices=['A','B'])
+    parser.add_argument('group',choices=['A','B','single'])
     args=parser.parse_args();source=Archive(SERIAL);dest=ROOT/args.group
+    if args.group=='single':
+        from .e2514_gate import resume_verification_dir
+        dest=resume_verification_dir()
     dest.mkdir(exist_ok=True,parents=True)
     if args.phase=='summary':
         summarize(source,dest)
     else:
-        assert os.environ['CUDA_VISIBLE_DEVICES']==('0,1,2,3' if args.group=='A' else '4,5,6,7')
+        assert os.environ['CUDA_VISIBLE_DEVICES']==('4,5,6,7' if args.group=='B' else '0,1,2,3')
         rank=configure()
         {'probe':probe,'targets':targets,'replay':replay}[args.phase](rank,source,dest)

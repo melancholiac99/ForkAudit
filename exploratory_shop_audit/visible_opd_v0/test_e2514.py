@@ -8,6 +8,23 @@ from .e2514_search import selection
 
 
 class MigrationTests(unittest.TestCase):
+    def test_four_card_resume_requires_its_own_replay_and_uses_one_lane(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from . import e2514_gate as gate, e2514_driver as driver
+        from exploratory_shop_audit.grpo_forced_audit.common import save
+        env={'OPD_FOUR_CARD_RESUME':'1','OPD_MIGRATION_GROUP':'B','CUDA_VISIBLE_DEVICES':'0,1,2,3'}
+        with TemporaryDirectory() as tmp,patch.dict(os.environ,env),patch.object(gate,'migration_verified'), \
+             patch.object(gate,'resume_verification_dir',return_value=Path(tmp)),patch.object(driver,'launch') as launch:
+            with self.assertRaises(FileNotFoundError):gate.control_authorized(None)
+            proof=dict(passed=True,replay=dict(adam_identical=True),targets=dict(shards=[dict(passed=True)]*4))
+            save(Path(tmp)/'result.json',proof)
+            gate.control_authorized(None)
+            driver.update_measurement(None,28,'R',50)
+            launch.assert_called_once_with(None,'per_update',28,'R')
+            with patch.dict(os.environ,{'CUDA_VISIBLE_DEVICES':'4,5,6,7'}):
+                with self.assertRaises(AssertionError):gate.control_authorized(None)
+
     def test_single_search_count_can_be_known_with_unresolved_text(self):
         from .e2514_queries import combined_search_fields
         primary=dict(actions_sha='sha', legal_search_count=1, searches=None, source='unrecovered')

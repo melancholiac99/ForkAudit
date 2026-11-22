@@ -8,6 +8,7 @@ import time
 
 from .e25_paths import PUBLIC,RUN,SERIAL
 from . import e2514_search_extension as extension
+from .e2514_gate import group_b_devices
 from exploratory_shop_audit.grpo_forced_audit.common import ROOT,CPU_PYTHON,read,save,utc
 
 MOD='exploratory_shop_audit.visible_opd_v0.'
@@ -41,7 +42,7 @@ def publish_extension(wave, terminal):
         call('e2514_search_extension','seal',wave)
         if not extension.finished_sampling(wave):
             subprocess.run(['torchrun','--standalone','--nproc-per-node=4','-m',MOD+'e2514_search_extension','rank',wave],
-                cwd=ROOT,env={**os.environ,'CUDA_VISIBLE_DEVICES':'4,5,6,7','OPD_MIGRATION_GROUP':'B'},check=True)
+                cwd=ROOT,env={**os.environ,'CUDA_VISIBLE_DEVICES':group_b_devices(),'OPD_MIGRATION_GROUP':'B'},check=True)
     if not (directory/'intervention_result_pages.json').is_file():call('e2514_search_extension','pages',wave,cpu=True)
     if not (directory/'coverage.json').is_file():call('e2514_search_extension','report',wave)
     commit(label,[directory])

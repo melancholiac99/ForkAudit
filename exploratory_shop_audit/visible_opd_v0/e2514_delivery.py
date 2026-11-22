@@ -113,18 +113,25 @@ def utilization():
     samples=[json.loads(line) for line in tape.read_text().splitlines() if line.endswith(']]')] if tape.exists() else []
     cutoff=(OUT/'R-matched/endpoint.json').stat().st_mtime
     summary={}
-    for label,group in [('whole_recorded_interval',samples),('before_matched_endpoint',[s for s in samples if s[0]<=cutoff]),
-                        ('after_matched_endpoint',[s for s in samples if s[0]>cutoff])]:
+    periods=[('whole_recorded_interval',samples),('before_matched_endpoint',[s for s in samples if s[0]<=cutoff]),
+             ('after_matched_endpoint',[s for s in samples if s[0]>cutoff])]
+    for file in sorted((LOCAL/'four_card_resume').glob('*/gpu_utilization.jsonl')):
+        data=[json.loads(line) for line in file.read_text().splitlines() if line.endswith(']]')]
+        periods.append(('four_card_'+file.parent.name,data))
+    for label,group in periods:
         if not group:continue
         by_gpu=[]
-        for rank in range(8):
+        width=4 if label.startswith('four_card_') else 8
+        for rank in range(width):
             readings=[s[1][rank] for s in group]
             assert all(r[0]==rank for r in readings)
             pct=[r[1] for r in readings]
             by_gpu.append(dict(rank=rank,mean_utilization_pct=statistics.mean(pct),median_utilization_pct=statistics.median(pct),
                                sample_fraction_at_zero=pct.count(0)/len(pct),peak_mib=max(r[2] for r in readings)))
         summary[label]=dict(samples=len(group),first_unix=group[0][0],last_unix=group[-1][0],gpus=by_gpu)
-        summary[label]['observed_eight_gpu_hours']=8*(group[-1][0]-group[0][0])/3600
+        hours=width*(group[-1][0]-group[0][0])/3600
+        summary[label]['observed_gpu_hours']=hours
+        if width==8:summary[label]['observed_eight_gpu_hours']=hours
         summary[label]['mean_utilization_pct']=statistics.mean(r['mean_utilization_pct'] for r in by_gpu)
     allocations={}
     for arm in ARMS:
@@ -140,8 +147,9 @@ def utilization():
             if devices not in ('0,1,2,3','4,5,6,7'):continue
             assert stage['allocated_gpus']==4 and stage['exit_code']==0 and stage['arms']==[arm]
             stages+=1
-            by_devices[devices]=by_devices.get(devices,0.)+4*stage['elapsed']/3600
-            if arm!='R-matched' and stage['phase']=='per_update' and devices=='0,1,2,3':
+            allocation_key=('four_card_continuation/'+devices) if stage.get('machine_layout')=='four_card_continuation' else devices
+            by_devices[allocation_key]=by_devices.get(allocation_key,0.)+4*stage['elapsed']/3600
+            if arm!='R-matched' and stage['phase']=='per_update' and devices=='0,1,2,3' and stage.get('machine_layout')!='four_card_continuation':
                 k=stage['update']
                 peer=file.parent/(f'{k:03}_common.json' if k%10==0 else f'{k+1:03}_collect.json')
                 peers=[read(p) for p in (file.parent/f'{k:03}_train.json',peer) if p.is_file()]
@@ -255,6 +263,11 @@ def final():
     lines.extend(['','## GPU use',''])
     if whole:
         lines.append(f"The eight cards accounted for {whole['observed_eight_gpu_hours']:.2f} GPU-hours during the monitored interval. Mean utilization was {whole['mean_utilization_pct']:.1f}% across devices. Sampling began during R-matched update 9 at 15-second intervals.")
+    for label,period in telemetry['periods'].items():
+        if label.startswith('four_card_'):
+            lines.append(f"On the four-card continuation from R@27, the monitored interval accounted for {period['observed_gpu_hours']:.2f} GPU-hours with mean utilization {period['mean_utilization_pct']:.1f}%.")
+    for proof in sorted((OUT/'four_card_resume').glob('*/handoff.json')):
+        lines.append(f"R resumed at update 28 with the stored rollouts and targets after the replacement host reproduced the archived probe, target and optimizer checks. [Four-card handoff](../{proof.relative_to(OUT).as_posix()}).")
     lines.extend(['', '| Migrated arm | Completed-stage GPU-hours |','|---|---:|'])
     for arm,allocation in telemetry['formal_arm_allocations'].items():
         hours=f"{allocation['completed_stage_gpu_hours']:.2f}" if allocation['completed_stages'] else 'NA'

@@ -15,7 +15,7 @@ from .e2512_driver import launch
 from .e2512_native import merge_tapes
 from .e2512_worker import target_shards
 from .e2513_adopt import adopt_prefix, copy_state, place
-from .e2514_gate import control_authorized
+from .e2514_gate import control_authorized, four_card_resume
 from exploratory_shop_audit.grpo_forced_audit.common import read, save, utc
 
 OUT=PUBLIC/'migration_2514'
@@ -52,7 +52,7 @@ def update_measurement(l,k,arm,end):
     # After A has finished all endpoint work, borrow its identical four local ranks
     # only for read-only FP32 scoring. Actor sampling, targets, training, BF16
     # checkpoint probes and all behavioral evaluation stay on the designated lane.
-    if os.environ['OPD_MIGRATION_GROUP']!='B' or not (OUT/'R-matched/endpoint.json').is_file():
+    if four_card_resume() or os.environ['OPD_MIGRATION_GROUP']!='B' or not (OUT/'R-matched/endpoint.json').is_file():
         launch(l,'per_update',k,arm)
         return
     monitor_env={**os.environ,'CUDA_VISIBLE_DEVICES':'0,1,2,3','OPD_MIGRATION_GROUP':'A','OPD_READONLY_FP32':'1'}

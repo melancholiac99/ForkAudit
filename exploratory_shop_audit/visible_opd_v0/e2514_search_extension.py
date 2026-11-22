@@ -105,7 +105,8 @@ def seal(wave):
 
 def run_rank(wave):
     from .e2512_routing import owners
-    assert os.environ['OPD_MIGRATION_GROUP']=='B' and os.environ['CUDA_VISIBLE_DEVICES']=='4,5,6,7'
+    from .e2514_gate import group_b_devices
+    assert os.environ['OPD_MIGRATION_GROUP']=='B' and os.environ['CUDA_VISIBLE_DEVICES']==group_b_devices()
     rank = int(os.environ['LOCAL_RANK'])
     plan = seal(wave)
     tape = paths(wave)[1]/'swap'

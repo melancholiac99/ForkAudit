@@ -38,6 +38,9 @@ def check_direct_load(model,l,rank):
     group=os.environ.get('OPD_MIGRATION_GROUP')
     if not group:return
     output=PUBLIC/'migration_2514'/f'fp32_direct_load_{group}_{rank}.json'
+    if os.environ.get('OPD_FOUR_CARD_RESUME')=='1':
+        from .e2514_gate import resume_verification_dir
+        output=PUBLIC/'migration_2514/four_card_resume'/resume_verification_dir().name/f'fp32_direct_load_{rank}.json'
     if output.exists():return
     probe=SmokeBatch()
     row=shard_order(probe,rank)[0]
