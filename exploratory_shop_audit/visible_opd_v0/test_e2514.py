@@ -8,6 +8,19 @@ from .e2514_search import selection
 
 
 class MigrationTests(unittest.TestCase):
+    def test_single_search_count_can_be_known_with_unresolved_text(self):
+        from .e2514_queries import combined_search_fields
+        primary=dict(actions_sha='sha', legal_search_count=1, searches=None, source='unrecovered')
+        trial=dict(actions_sha='sha', events={'search':1}, tokens={'search':9})
+        row=combined_search_fields(primary,None,trial)
+        self.assertEqual((row['each_arg_token_count'],row['first_query'],row['query_status']),([9],'','unresolved'))
+        trial['events']['illegal']=1
+        self.assertIsNone(combined_search_fields(primary,None,trial)['each_arg_token_count'])
+        donor=dict(actions_sha='sha', archived_search_tokens=9, queries=['abc'], each_arg_token_count=None,
+                   count_source='unresolved_per_search_tokenization')
+        row=combined_search_fields(primary,donor,trial)
+        self.assertEqual((row['first_query'],row['each_arg_token_count']),('abc',None))
+
     def test_early_probe_waits_for_the_bound_new_snapshot(self):
         from pathlib import Path
         from tempfile import TemporaryDirectory

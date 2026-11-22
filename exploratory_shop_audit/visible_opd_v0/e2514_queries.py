@@ -183,6 +183,79 @@ def archived_token_counts(search_count, events, total, variants):
     return None, 'unresolved_per_search_tokenization'
 
 
+def combined_search_fields(primary, donor, archive):
+    legal = archive['events'].get('search', 0)
+    total = archive['tokens'].get('search', 0)
+    assert primary['actions_sha'] == archive['actions_sha'] and primary['legal_search_count'] == legal
+    queries = counts = None
+    source = primary['source']
+    count_source = 'unresolved_per_search_tokenization'
+    if primary['searches'] is not None:
+        assert donor is None and len(primary['searches']) == legal
+        queries = [s['query'] for s in primary['searches']]
+        replay_counts = tuple(s['tokens'] for s in primary['searches'])
+        counts, count_source = archived_token_counts(legal, archive['events'], total, {replay_counts})
+        if count_source == 'donor_tokenization_matches_archived_total':
+            count_source = 'replayed_tokenization_matches_archived_total'
+    elif donor is not None:
+        assert donor['actions_sha'] == archive['actions_sha'] and donor['archived_search_tokens'] == total
+        queries = donor['queries']
+        assert len(queries) == legal
+        counts, count_source = donor['each_arg_token_count'], donor['count_source']
+        source = 'authenticated_migration_trace'
+    if legal == 0:
+        counts, count_source = [], 'no_legal_search'
+    elif legal == 1 and not archive['events'].get('illegal'):
+        counts, count_source = [total], 'archived_single_search_total'
+    if counts is not None:
+        assert len(counts) == legal and (not legal or sum(counts) == total)
+    return dict(legal_searches=legal, first_query=queries[0] if queries else '',
+                query_status='no_legal_search' if not legal else ('authenticated' if queries else 'unresolved'),
+                trace_source=source, each_arg_token_count=counts, count_source=count_source,
+                archived_search_tokens=total)
+
+
+def export_combined_searches(dest, supplement):
+    from exploratory_shop_audit.grpo_forced_audit.common import digest_file
+    evidence = read(supplement)
+    source = DATA/'authenticated.json'
+    assert digest_file(source) == evidence['sealed_plan']['archive_sha256']
+    def key(r):
+        return r['step'], r['split'], r['goal'], r['rep']
+    primary = {key(r): r for r in read(source)}
+    donors = {key(r): r for r in evidence['rows']}
+    assert len(primary) == 8000 and len(donors) == len(evidence['rows']) and donors.keys() <= primary.keys()
+    dest.mkdir(parents=True, exist_ok=True)
+    coverage = defaultdict(Counter)
+    hashes = {}
+    for k in (0,10,20,30):
+        file = dest/f'checkpoint_{k:03}.tsv'
+        archive = original(k)
+        with file.open('w', newline='') as h:
+            writer = csv.writer(h, delimiter='\t', lineterminator='\n')
+            writer.writerow(['split','goal','rep','mode','action_sha','legal_searches','first_query','query_status',
+                             'trace_source','each_arg_token_count','count_source','archived_search_tokens'])
+            for (split,goal,rep), trial in sorted(archive.items()):
+                index = (k,split,goal,rep)
+                row = combined_search_fields(primary[index], donors.get(index), trial)
+                mode = 'sample' if rep < 4 else 'greedy'
+                counts = row['each_arg_token_count']
+                writer.writerow([split,goal,rep,mode,trial['actions_sha'],row['legal_searches'],row['first_query'],
+                                 row['query_status'],row['trace_source'],
+                                 ','.join(map(str,counts)) if counts is not None else '',
+                                 row['count_source'],row['archived_search_tokens']])
+                c = coverage[f'{k}/{split}/{mode}']
+                c['episodes'] += 1
+                c['episodes_with_legal_search'] += int(row['legal_searches'] > 0)
+                c['first_queries_authenticated'] += int(row['query_status'] == 'authenticated')
+                c['legal_searches'] += row['legal_searches']
+                c['legal_searches_with_counts'] += len(counts or [])
+                c['counts_known_with_unresolved_text'] += len(counts or []) if row['query_status']=='unresolved' else 0
+        hashes[file.name] = digest_file(file)
+    save(dest/'coverage.json',dict(coverage=coverage,sha256=hashes,source_archive_sha256=digest_file(source),
+                                   donor_table_sha256=digest_file(supplement)))
+
+
 def crosscheck_evaluations(checkpoints, include_pages=False):
     """Authenticate historical action sequences against a fixed list of native evaluation tapes."""
     from .e25_paths import RUN, SERIAL

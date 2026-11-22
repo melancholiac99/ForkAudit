@@ -141,6 +141,9 @@ def finish(wave):
     report(public,tapes)
     result = read(public/'search_swap_report.json')
     assert result['fresh_episodes']==8*plan['distinct_queries']
+    if wave=='final':
+        from .e2514_queries import export_combined_searches
+        export_combined_searches(public/'historical_searches',public/'archived_queries.json')
     save(public/'coverage.json',dict(posthoc=True,sealed_primary='../..',source_checkpoints=plan['source_checkpoints'],
         recovered_original_source_trials=plan['recovered_source_trials'],additional_queries_this_pass=len(plan['new_queries']),
         additional_episodes_this_pass=8*len(plan['new_queries']),fresh_episodes_including_prior=result['fresh_episodes'],

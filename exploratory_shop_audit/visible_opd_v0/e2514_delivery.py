@@ -244,7 +244,12 @@ def final():
         ci='NA' if interval is None else f"{interval[0]:.3f} to {interval[1]:.3f}"
         point='NA' if value['estimate'] is None else f"{value['estimate']:.3f}"
         lines.append(f"| {pool} | {point} | {ci} |")
-    lines.extend(['','[Expanded fresh-control outcomes](../search_coverage/final/search_swap_report.json) · [Authenticated source records](../search_coverage/final/archived_queries.json) · [Additional sampling at the P-frozen handoff](../search_coverage/handoff/coverage.json).'])
+    combined=read(augmented/'historical_searches/coverage.json')['coverage'].values()
+    known=sum(x['legal_searches_with_counts'] for x in combined)
+    total=sum(x['legal_searches'] for x in combined)
+    counts_only=sum(x['counts_known_with_unresolved_text'] for x in combined)
+    lines.extend(['',f'The consolidated B@0 and P@10/20/30 tables give individual argument lengths for {known}/{total} legal searches. In {counts_only} single-search episodes, the original token total determines the length even though the query text is unresolved. [First searches and individual lengths by checkpoint](../search_coverage/final/historical_searches).',
+                  '', '[Expanded fresh-control outcomes](../search_coverage/final/search_swap_report.json) · [Authenticated source records](../search_coverage/final/archived_queries.json) · [Additional sampling at the P-frozen handoff](../search_coverage/handoff/coverage.json).'])
     telemetry=read(OUT/'final/gpu_utilization.json')
     whole=telemetry['periods'].get('whole_recorded_interval')
     lines.extend(['','## GPU use',''])
