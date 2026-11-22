@@ -1,0 +1,176 @@
+{
+  "arm": "R",
+  "status": "INTERMEDIATE",
+  "first_update": 28,
+  "through_update": 32,
+  "last_behavior_checkpoint": 30,
+  "note": "Per-update metrics refer to the frozen target on the training batch for that update.",
+  "updates": [
+    {
+      "update": 28,
+      "legal_rate": 0.8762886597938144,
+      "optimizer_steps": 5,
+      "cumulative_optimizer_steps": 140,
+      "before_sha": "608deadeff336251bc6424410e811078d9e77c8774f5274dc97ebc69d92450ee",
+      "after_sha": "791b1b38751e745e4f94ec7d3e8e6ec1ae58efd3ca9cebf88fb48f1b14f06697",
+      "adapter_sha256": "8241c70a7de634f976e62d445ad8877242ef6549e525ff776d23d40acd1f2dfa",
+      "adam_sha256": "db06f470e6d22910ef961e2ab04de6b24747f685dfe49634d57cd8b6fbd79b5f",
+      "target_manifest_sha256": "bf445c49a5acbcca2ce7c488b894b25ad823542ba3b8d7080fa35612cc8b7051",
+      "minibatch_sha256": "8dd72da333f051fb6412b32628434de5fbd12187a04687d154075c32386fabf0",
+      "gradient_norms": [
+        0.791981041431427,
+        0.9523648619651794,
+        1.1305521726608276,
+        0.7958865165710449,
+        1.0029187202453613
+      ],
+      "bf16": {
+        "kl_before": 0.08070331936744835,
+        "kl_after": 0.07592411441832125,
+        "delta_kl": 0.004779204949127093,
+        "alignment": 0.006652476737827989,
+        "movement": 0.0018732717887008977
+      },
+      "fp32_reanchored": {
+        "kl_before": 0.11175613527047093,
+        "kl_after": 0.10492014949013276,
+        "delta_kl": 0.006835985780338141,
+        "alignment": 0.007689690939987743,
+        "movement": 0.0008537051596496009
+      }
+    },
+    {
+      "update": 29,
+      "legal_rate": 0.8642384105960265,
+      "optimizer_steps": 5,
+      "cumulative_optimizer_steps": 145,
+      "before_sha": "791b1b38751e745e4f94ec7d3e8e6ec1ae58efd3ca9cebf88fb48f1b14f06697",
+      "after_sha": "5fb1c88c8b0ee7a93c16f173f87fef1ca32054cf7375d2796e18bdf2181d7850",
+      "adapter_sha256": "a68f110d25e4c6b0a34b0d8f3d98d47980d7b449747c7922efd4869a47824411",
+      "adam_sha256": "a5ac79dac09d44d2369613f8c9cc1c16aa4d632dbae027861336835f6cc55d88",
+      "target_manifest_sha256": "4b03662fc5f372f820bf59cbf040026b1d7eed116c33bc4275e772e31dff44b2",
+      "minibatch_sha256": "53caa754ee1dd44ebd1304ac3aa871a99fc1b01f4d90de48f3667406041242b5",
+      "gradient_norms": [
+        0.9845019578933716,
+        0.8784932494163513,
+        0.7467639446258545,
+        0.8516931533813477,
+        1.1170892715454102
+      ],
+      "bf16": {
+        "kl_before": 0.07264813162370205,
+        "kl_after": 0.0693928994790042,
+        "delta_kl": 0.0032552321446978416,
+        "alignment": 0.005412907251715043,
+        "movement": 0.0021576751070171997
+      },
+      "fp32_reanchored": {
+        "kl_before": 0.09130977218681376,
+        "kl_after": 0.08568041560544826,
+        "delta_kl": 0.005629356581365454,
+        "alignment": 0.006853028880590019,
+        "movement": 0.0012236722992245643
+      }
+    },
+    {
+      "update": 30,
+      "legal_rate": 0.8362989323843416,
+      "optimizer_steps": 5,
+      "cumulative_optimizer_steps": 150,
+      "before_sha": "5fb1c88c8b0ee7a93c16f173f87fef1ca32054cf7375d2796e18bdf2181d7850",
+      "after_sha": "43a94c95a1989b0c82b6b83f34c46eae53cf69f2b9b068cded64714aab9b55b0",
+      "adapter_sha256": "bd5f0424384073d26b8ae9587e33ece04f43c4e17eea18d4a5a658dab12e2078",
+      "adam_sha256": "077bef5c959c3ea9a1b65399e1f4312f2e179294c0ceb3d3eb0b9589c6d33535",
+      "target_manifest_sha256": "f6d22b62f6a58a1952ddea2cc2679cc2bc4ae82cb1ee72acf25614f9d499b931",
+      "minibatch_sha256": "4074e8559a3e367c960b677613993172dd0221f442be5496d9bb6db6f58651e4",
+      "gradient_norms": [
+        0.7888572216033936,
+        0.9930169582366943,
+        1.887175440788269,
+        0.8721742033958435,
+        2.0659711360931396
+      ],
+      "bf16": {
+        "kl_before": 0.09013855467379521,
+        "kl_after": 0.08611294605281798,
+        "delta_kl": 0.004025608620977248,
+        "alignment": 0.00567995596284527,
+        "movement": 0.001654347341868027
+      },
+      "fp32_reanchored": {
+        "kl_before": 0.1060372806765358,
+        "kl_after": 0.09928350383586115,
+        "delta_kl": 0.0067537768406746275,
+        "alignment": 0.007626064217003695,
+        "movement": 0.0008722873763290668
+      }
+    },
+    {
+      "update": 31,
+      "legal_rate": 0.8278388278388278,
+      "optimizer_steps": 5,
+      "cumulative_optimizer_steps": 155,
+      "before_sha": "43a94c95a1989b0c82b6b83f34c46eae53cf69f2b9b068cded64714aab9b55b0",
+      "after_sha": "e7fb4aa16efc1f1faec8107c0282aa4b15a2feb37a1af82fb04a0b5a1b600798",
+      "adapter_sha256": "a8fe26ef49ab4d8fc9ca958de991a039ab156746e5030d919801dee672d780f5",
+      "adam_sha256": "bdf323278e2f79e0e853c79a78ad209b03f192e115f18659e8ef652913cfbc95",
+      "target_manifest_sha256": "9fc3b8fd51457b8bad3aa4da7fee39909f16348523df49e901aa9cdfe062c122",
+      "minibatch_sha256": "4677a9cddc6244e04380f7e4caa0c9785179e2fbce6d826ce85deca0010490a6",
+      "gradient_norms": [
+        0.9079153537750244,
+        1.5176153182983398,
+        0.8282027840614319,
+        0.9658921957015991,
+        1.4520576000213623
+      ],
+      "bf16": {
+        "kl_before": 0.0976125419263616,
+        "kl_after": 0.09202576514537933,
+        "delta_kl": 0.0055867767809822284,
+        "alignment": 0.007269360530717497,
+        "movement": 0.0016825837497352666
+      },
+      "fp32_reanchored": {
+        "kl_before": 0.11575993009225037,
+        "kl_after": 0.10886443833286852,
+        "delta_kl": 0.006895491759381854,
+        "alignment": 0.007670753047158018,
+        "movement": 0.0007752612877761607
+      }
+    },
+    {
+      "update": 32,
+      "legal_rate": 0.8348909657320872,
+      "optimizer_steps": 6,
+      "cumulative_optimizer_steps": 161,
+      "before_sha": "e7fb4aa16efc1f1faec8107c0282aa4b15a2feb37a1af82fb04a0b5a1b600798",
+      "after_sha": "f41085390b57b442912cb3e39558b5c25d6bb16d6911dfa2735bf7ff13e7a94a",
+      "adapter_sha256": "577b6b81f7a65f369e05456298897b0560946f9432a729dfd010819b48261855",
+      "adam_sha256": "5b57ac986098168557c031f352853b13d6303b749402187209c226dd70e48e32",
+      "target_manifest_sha256": "fa18fb7bfcfb1f4f46713d6645bd25a44c4efc723c8670582ecaa6147e29b7a4",
+      "minibatch_sha256": "fd39faafc145e8c1bdc064364af604696c36eec3403d5fbf6ef280993752e273",
+      "gradient_norms": [
+        1.2049388885498047,
+        1.2818654775619507,
+        0.6248742341995239,
+        1.658388614654541,
+        1.0559186935424805,
+        1.6601406335830688
+      ],
+      "bf16": {
+        "kl_before": 0.09003001859554144,
+        "kl_after": 0.08430836499645838,
+        "delta_kl": 0.005721653599083055,
+        "alignment": 0.007778516187804924,
+        "movement": 0.0020568625887218694
+      },
+      "fp32_reanchored": {
+        "kl_before": 0.11008217628284486,
+        "kl_after": 0.10291438626561532,
+        "delta_kl": 0.00716779001722951,
+        "alignment": 0.008136600433687075,
+        "movement": 0.0009688104164575653
+      }
+    }
+  ]
+}
