@@ -1,0 +1,115 @@
+{
+  "arm": "R",
+  "last_completed": 27,
+  "resumed_update": 28,
+  "training_rows": 291,
+  "hardware": [
+    "NVIDIA A100-SXM4-80GB, 81920, 595.84",
+    "NVIDIA A100-SXM4-80GB, 81920, 595.84",
+    "NVIDIA A100-SXM4-80GB, 81920, 595.84",
+    "NVIDIA A100-SXM4-80GB, 81920, 595.84"
+  ],
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "vllm": "0.11.0",
+  "prior_adapter_sha256": "c8f5ca08013b79c7540ea919c4a9622864b01f4a36fda99a0ff9caf054535234",
+  "prior_adam_sha256": "79456919e75379703346963fd285e6b033453b4ab1e2fd6c2b9e25dd270fa217",
+  "target_sha256": "efb1e263712a46e15290ebfc170e31c22c7c4e46b71c9d055aaf99e555875d12",
+  "rollout_sha256": [
+    "de8f7db97bc892389ff38f51cc22660ad8fda1889aabc0b98930257ed786986a",
+    "f5cc01cb2ba9c5e41e529e9af97f45ed84273cb0687a01b9731f5f0af6d16f4b"
+  ],
+  "routing_sha256": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+  "migration_checks": {
+    "probes": [
+      {
+        "rank": 0,
+        "checkpoint": "B@0",
+        "reference": "1fb913807467ceca9247d81759548a77d687f8ad297e33019d703a3da98160d1",
+        "elements": 177002496,
+        "mismatches": 0,
+        "positions": 1164,
+        "passed": true
+      },
+      {
+        "rank": 1,
+        "checkpoint": "B@0",
+        "reference": "4be3de05b9b306cf38d75cf884add67b929b5a57033b6aa24662488e07ca10de",
+        "elements": 135489024,
+        "mismatches": 0,
+        "positions": 1002,
+        "passed": true
+      },
+      {
+        "rank": 2,
+        "checkpoint": "B@0",
+        "reference": "0866254b5cd4ff8f664ba5870cb7fa6e3945c3004b066cb04ba5449db5e1f540",
+        "elements": 164229120,
+        "mismatches": 0,
+        "positions": 1246,
+        "passed": true
+      },
+      {
+        "rank": 3,
+        "checkpoint": "B@0",
+        "reference": "93a8dd42fa03ead8285feb6822d68b34848ff648597ce00e2eff92f440d6a06a",
+        "elements": 139138560,
+        "mismatches": 0,
+        "positions": 1036,
+        "passed": true
+      }
+    ],
+    "targets": {
+      "expected": "f77fa2dc961eb5a9e529c75b22be9dfafffbe9a3d58241ec3711671ee6d3cf8f",
+      "actual": "f77fa2dc961eb5a9e529c75b22be9dfafffbe9a3d58241ec3711671ee6d3cf8f",
+      "passed": true,
+      "shards": [
+        {
+          "rank": 0,
+          "actual": "b133a00b5e1febf55a6c0a5d5a1d7317d3d19a2a55d2833ccab639fd1743d8a6",
+          "expected": "b133a00b5e1febf55a6c0a5d5a1d7317d3d19a2a55d2833ccab639fd1743d8a6",
+          "passed": true
+        },
+        {
+          "rank": 1,
+          "actual": "a912eea0aec16eb631af5147d874a4591926e991ef6e21d40ab1f552ee174db2",
+          "expected": "a912eea0aec16eb631af5147d874a4591926e991ef6e21d40ab1f552ee174db2",
+          "passed": true
+        },
+        {
+          "rank": 2,
+          "actual": "c8cb11c4b0df890c22b45bca8ed10adeefdb07c9293515a04246efd900e04457",
+          "expected": "c8cb11c4b0df890c22b45bca8ed10adeefdb07c9293515a04246efd900e04457",
+          "passed": true
+        },
+        {
+          "rank": 3,
+          "actual": "021942c1b73225f5d5b0d8c24ae205d3fb01239fb599d891ecf8aaf23b8dd1a0",
+          "expected": "021942c1b73225f5d5b0d8c24ae205d3fb01239fb599d891ecf8aaf23b8dd1a0",
+          "passed": true
+        }
+      ]
+    },
+    "replay": {
+      "archive": {
+        "before_sha": "d5227f072e8d9c3446176b2823327f789a9195ef31ebbc771f76601c78d46fc0",
+        "after_sha": "7d9225aaec53061940ad2b093aa9e1a982aaef9e486b1a8f71786be89cb09301",
+        "adam_sha256": "10826831ea243aed142754f7026a8bf34f2ec153d481ea4ceda414c3da1cdd4c",
+        "safetensors_sha256": "7b1e5b76286b38966c85babdb59e19aadca2ed12824c65bf428269e4258670db",
+        "minibatch_sha256": "3b25193b7182ee5b4d7c5167c0be61fe227a9140be79dee26290334787882d93",
+        "cumulative_steps": 30
+      },
+      "replayed": {
+        "before_sha": "d5227f072e8d9c3446176b2823327f789a9195ef31ebbc771f76601c78d46fc0",
+        "after_sha": "7d9225aaec53061940ad2b093aa9e1a982aaef9e486b1a8f71786be89cb09301",
+        "adam_sha256": "10826831ea243aed142754f7026a8bf34f2ec153d481ea4ceda414c3da1cdd4c",
+        "safetensors_sha256": "7b1e5b76286b38966c85babdb59e19aadca2ed12824c65bf428269e4258670db",
+        "minibatch_sha256": "3b25193b7182ee5b4d7c5167c0be61fe227a9140be79dee26290334787882d93",
+        "cumulative_steps": 30
+      },
+      "passed": true,
+      "adam_identical": true
+    },
+    "passed": true
+  }
+}
