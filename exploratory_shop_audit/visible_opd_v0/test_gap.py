@@ -83,6 +83,20 @@ class GapProtocol(unittest.TestCase):
                 with self.assertRaises(AssertionError):
                     verify_nominations(None,batch,[0],path,0)
 
+    def test_operator_hold_permits_current_update_only(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from types import SimpleNamespace
+        from .gap_run import beyond_operator_hold
+        from exploratory_shop_audit.grpo_forced_audit.common import save
+        with TemporaryDirectory() as folder:
+            layout=SimpleNamespace(root=Path(folder))
+            self.assertFalse(beyond_operator_hold(layout,4,'R-gap'))
+            save(layout.root/'operator_hold.json',dict(arm='R-gap',after_update=3))
+            self.assertFalse(beyond_operator_hold(layout,3,'R-gap'))
+            self.assertTrue(beyond_operator_hold(layout,4,'R-gap'))
+            self.assertTrue(beyond_operator_hold(layout,1,'P-gap'))
+
     def test_multiplicity_and_paired_resampling(self):
         self.assertEqual(holm([.03,.01]),[.03,.02])
         null=contrasts({1:1,2:0,3:1},{1:1,2:0,3:1},{1:'A',2:'A',3:'B'})

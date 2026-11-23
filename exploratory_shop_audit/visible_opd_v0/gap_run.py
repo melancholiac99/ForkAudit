@@ -113,10 +113,21 @@ def common_probe(l,rank,k,arm):
     save(l.folder(k,arm)/f'probe_{rank}.json',dict(mass=w,kl_sum=kl,reference_sha=digest_file(src)))
 
 
+def beyond_operator_hold(layout,k,arm):
+    path=layout.root/'operator_hold.json'
+    if not path.exists():
+        return False
+    hold=read(path)
+    return arm!=hold['arm'] or k>hold['after_update']
+
+
 def worker(phase,k,arm,extra):
     from .e25_probe import configure
     from .gap_targets import score_rank
-    rank=configure();l=GapLayout()
+    l=GapLayout()
+    if beyond_operator_hold(l,k,arm):
+        raise SystemExit('Operator hold before '+arm+' update '+str(k))
+    rank=configure()
     if phase=='collect':
         collect(l,k,arm,rank,view_modes=('none','full'))
     elif phase=='targets':
@@ -227,6 +238,8 @@ def train_arm(l,arm):
     endpoint=l.root/'endpoints'/f'{arm}.json'
     if endpoint.exists():return read(endpoint)['update']
     for k in range(1,51):
+        if beyond_operator_hold(l,k,arm):
+            raise SystemExit('Operator hold before '+arm+' update '+str(k))
         p=l.folder(k,arm)
         if not (p/'monitor.json').exists():
             if arm=='P-gap' and k>1 and (k-1)%5==0:
