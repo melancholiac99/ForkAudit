@@ -6,7 +6,7 @@ import torch.distributed as dist
 
 from .c_smoke import kl_positions
 from .s21_train import score
-from exploratory_shop_audit.grpo_forced_audit.common import digest_file,read
+from exploratory_shop_audit.grpo_forced_audit.common import digest_file,read,save
 
 
 def length(row):
