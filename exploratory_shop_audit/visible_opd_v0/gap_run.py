@@ -1,4 +1,4 @@
-"""Run R-gap then P-gap; isolate all outputs and defer V until both arm endpoints are frozen."""
+"""Run section 26 with independent arms and defer V until both endpoints are frozen."""
 import fcntl
 import os
 from pathlib import Path
@@ -284,30 +284,66 @@ def main():
         arms=('R-gap','P-gap')
         l.initialize(50,arms=arms)
         endpoints={a:train_arm(l,a) for a in arms}
-        for pool in ('T_opd_eval','V'):
-            launch(l,'eval',0,'B',pool,'free')
-            for a,k in endpoints.items():
-                if pool=='V':
-                    for j in sorted({v for v in (20,30,50) if v<=k}|{k}):
-                        launch(l,'eval',j,a,pool,'free')
-            for rank in range(4):
-                src=l.root/'pages'/pool/f'rank{rank}'
-                goals=[t['goal_index'] for t in split_tasks()[pool] if owners()[t['goal_index']]==rank]
-                if not (src/'qualify.json').exists():
-                    # Native scoring dependency lives in the CPU environment.
-                    import subprocess
-                    from exploratory_shop_audit.grpo_forced_audit.common import CPU_PYTHON
-                    cmd=[str(CPU_PYTHON),'-m','exploratory_shop_audit.visible_opd_v0.gap_qualify',str(src),pool,*map(str,goals)]
-                    subprocess.run(cmd,check=True)
-            for a,k in {'B':0,**endpoints}.items():
-                launch(l,'eval',k,a,pool,'page')
-                launch(l,'mass',k,a,pool)
-        from .gap_report import report
-        report(l,endpoints)
+        evaluate_endpoints(l,endpoints)
+
+
+def evaluate_endpoints(l,endpoints):
+    for pool in ('T_opd_eval','V'):
+        launch(l,'eval',0,'B',pool,'free')
+        for a,k in endpoints.items():
+            if pool=='V':
+                for j in sorted({v for v in (20,30,50) if v<=k}|{k}):
+                    launch(l,'eval',j,a,pool,'free')
+        for rank in range(4):
+            src=l.root/'pages'/pool/f'rank{rank}'
+            goals=[t['goal_index'] for t in split_tasks()[pool] if owners()[t['goal_index']]==rank]
+            if not (src/'qualify.json').exists():
+                # Native scoring dependency lives in the CPU environment.
+                import subprocess
+                from exploratory_shop_audit.grpo_forced_audit.common import CPU_PYTHON
+                cmd=[str(CPU_PYTHON),'-m','exploratory_shop_audit.visible_opd_v0.gap_qualify',str(src),pool,*map(str,goals)]
+                subprocess.run(cmd,check=True)
+        for a,k in {'B':0,**endpoints}.items():
+            launch(l,'eval',k,a,pool,'page')
+            launch(l,'mass',k,a,pool)
+    from .gap_report import report
+    report(l,endpoints)
+
+
+LANE_DEVICES = {'R-gap':'0,1,2,3', 'P-gap':'4,5,6,7'}
+
+
+def parallel_lane(arm):
+    layout = GapLayout()
+    if os.environ.get('CUDA_VISIBLE_DEVICES') != LANE_DEVICES[arm]:
+        raise ValueError(f'Incorrect device set for {arm}')
+    if not read(PUBLIC/'initialization_check.json')['passed']:
+        raise RuntimeError('Initialization check failed')
+    record = read(layout.root/'parallel_resume.json')
+    if record['devices'] != LANE_DEVICES:
+        raise ValueError('Unexpected registered GPU assignment')
+    with (layout.root/'driver.lock').open('a') as driver, (layout.root/f'{arm}.lock').open('a') as lane:
+        fcntl.flock(driver,fcntl.LOCK_SH|fcntl.LOCK_NB)
+        fcntl.flock(lane,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        # The existing shared first batch was finalized on the original machine.
+        shared = layout.root/'shared_first'
+        first = read(shared/'collection.json')
+        assert first['checkpoint']=='B@0' and first['rollout_sha256']==record['shared_rollout_sha256']
+        for rep,signature in enumerate(first['rollout_sha256']):
+            assert digest_file(shared/f'rollout_{rep}.jsonl')==signature
+        train_arm(layout,arm)
+        paths = {a:layout.root/'endpoints'/f'{a}.json' for a in LANE_DEVICES}
+        if all(path.exists() for path in paths.values()):
+            with (layout.root/'endpoint_eval.lock').open('a') as finalizer:
+                fcntl.flock(finalizer,fcntl.LOCK_EX)
+                if not (PUBLIC/'endpoint_report.json').exists():
+                    evaluate_endpoints(layout,{a:read(path)['update'] for a,path in paths.items()})
 
 
 if __name__=='__main__':
     if sys.argv[1:2]==['worker']:
         worker(sys.argv[2],int(sys.argv[3]),sys.argv[4],sys.argv[5:])
+    elif sys.argv[1:2]==['lane']:
+        parallel_lane(sys.argv[2])
     else:
         main()

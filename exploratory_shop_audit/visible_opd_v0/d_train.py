@@ -70,7 +70,7 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
         if k>1 and fast_limit is None:
             probe_cap=5120 if rank_local_activations and k>=13 else 4096
             fast_limit,probe=benchmark(model,batch,q,params,local,checkpoint_modules,cap=probe_cap)
-            probe_dir = path if os.environ.get('OPD_MIGRATION_GROUP') else path.parent
+            probe_dir = path if os.environ.get('OPD_MIGRATION_GROUP') or arm in ('R-gap','P-gap') else path.parent
             save(probe_dir/f'activation_check_rank{rank}.json',dict(limit=fast_limit,**probe))
             if rank_local_activations:
                 value=torch.tensor(probe.get('local_limit',0),device='cuda')

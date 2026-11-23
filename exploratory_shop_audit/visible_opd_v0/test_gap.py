@@ -10,6 +10,46 @@ from .e25_projector import FitData
 
 
 class GapProtocol(unittest.TestCase):
+    def test_parallel_lanes_join_only_after_both_endpoints(self):
+        import hashlib
+        import os
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        from . import gap_run
+        from exploratory_shop_audit.grpo_forced_audit.common import save
+
+        with TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            layout=SimpleNamespace(root=root)
+            save(root/'initialization_check.json',{'passed':True})
+            hashes=[]
+            for rep in range(2):
+                path=root/'shared_first'/f'rollout_{rep}.jsonl'
+                path.parent.mkdir(exist_ok=True)
+                path.write_bytes(bytes([rep]))
+                hashes.append(hashlib.sha256(path.read_bytes()).hexdigest())
+            save(root/'shared_first/collection.json',dict(checkpoint='B@0',rollout_sha256=hashes))
+            save(root/'parallel_resume.json',dict(devices=gap_run.LANE_DEVICES,shared_rollout_sha256=hashes))
+            def finish_arm(layout,arm):
+                save(layout.root/'endpoints'/f'{arm}.json',{'update':10})
+            def report(layout,ends):
+                self.assertEqual(ends,{'R-gap':10,'P-gap':10})
+                save(root/'endpoint_report.json',ends)
+            with patch.object(gap_run,'GapLayout',return_value=layout), patch.object(gap_run,'PUBLIC',root), \
+                 patch.object(gap_run,'train_arm',side_effect=finish_arm), \
+                 patch.object(gap_run,'evaluate_endpoints',side_effect=report) as evaluate:
+                for arm in ('P-gap','R-gap','R-gap'):
+                    with patch.dict(os.environ,CUDA_VISIBLE_DEVICES=gap_run.LANE_DEVICES[arm]):
+                        gap_run.parallel_lane(arm)
+                    if arm=='P-gap':
+                        evaluate.assert_not_called()
+                evaluate.assert_called_once()
+                with patch.dict(os.environ,CUDA_VISIBLE_DEVICES=gap_run.LANE_DEVICES['R-gap']):
+                    with self.assertRaises(ValueError):
+                        gap_run.parallel_lane('P-gap')
+
     def test_stopping_requires_same_readout_in_two_disjoint_windows(self):
         row=dict(legal=71,actions=100,searches=64,query_tokens=64*15,missed_searches=0)
         first=window_decision([row]*5,.81,{})
