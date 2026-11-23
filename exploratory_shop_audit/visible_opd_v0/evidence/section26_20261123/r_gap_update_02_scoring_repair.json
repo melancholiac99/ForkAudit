@@ -1,0 +1,51 @@
+{
+  "status": "TRAINER_REPLAY_PASSED",
+  "stage": "before optimizer on update 2",
+  "reused_update_1_optimizer_sha": "29f96f9cc5671f12fc155837e32ace3d49a0d18cf27354004373b23d9f27dd51",
+  "preserved_collection": [
+    "782b82bbfce1b6137c3e0bb59eed55b15c1d5ca71449d385767a47a424cd3194",
+    "b49b55d3af42a4735b90643b38bd9b81a15672a977eac8efee4d0fc0919c1544"
+  ],
+  "source": "same saved rollouts, no additional policy sampling",
+  "old_named_adapter_nonexact_parameter_tensors": 392,
+  "old_max_abs_parameter_error": 3.452179953455925e-06,
+  "rejected_manifest": "f0384324a311cb6e932cdb7f4814524d743f7d2c1bc1e944c40ea66c18fc3895",
+  "replacement_manifest": "96cecd845721b6cf4982b9eacf0166b69ead4a7b83505aea3f12214a3eb91fac",
+  "changed_ordered_candidate_rows": 2150,
+  "positions": 4324,
+  "training_replay": [
+    {
+      "records": 72,
+      "positions": 1135,
+      "exact_candidate_ids_and_mask": true,
+      "max_probability_error": 5.960464477539063e-08,
+      "max_logit_error": 0.0
+    },
+    {
+      "records": 69,
+      "positions": 1014,
+      "exact_candidate_ids_and_mask": true,
+      "max_probability_error": 1.1920928955078125e-07,
+      "max_logit_error": 0.0
+    },
+    {
+      "records": 68,
+      "positions": 1125,
+      "exact_candidate_ids_and_mask": true,
+      "max_probability_error": 5.960464477539063e-08,
+      "max_logit_error": 0.0
+    },
+    {
+      "records": 76,
+      "positions": 1050,
+      "exact_candidate_ids_and_mask": true,
+      "max_probability_error": 1.1920928955078125e-07,
+      "max_logit_error": 0.0
+    }
+  ],
+  "single_training_loader_snapshot": "actor hash checked before nomination; block hash checked after restoration",
+  "max_logit_error": 0.0,
+  "max_probability_error": 1.1920928955078125e-07,
+  "optimizer_tolerance": 1e-06,
+  "cpu_suite_tests": 64
+}

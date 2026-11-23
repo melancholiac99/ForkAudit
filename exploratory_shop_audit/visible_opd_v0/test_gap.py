@@ -56,6 +56,33 @@ class GapProtocol(unittest.TestCase):
                 exact_nominations(model,lambda _:use(1.),current,block,[(None,None)])
             self.assertEqual(signature(),block)
 
+    def test_training_replay_writes_complete_candidate_receipt(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        from .d_speed import verify_nominations
+        from .score import support
+        from exploratory_shop_audit.grpo_forced_audit.common import digest_file,read,save
+        raw=torch.arange(12,dtype=torch.float32)[None,:]
+        ids,mask=support(raw,torch.tensor([0]))
+        logits=raw.gather(1,ids)
+        row=dict(prompt=[1],answer=[0],ids=ids,mask=mask,snapshot=target(logits,mask))
+        batch=SimpleNamespace(rows=[row])
+        with TemporaryDirectory() as folder:
+            path=Path(folder)
+            torch.save([logits],path/'bf16_before.pt')
+            save(path/'target_manifest.json',dict(bf16_before_sha256=digest_file(path/'bf16_before.pt')))
+            with patch('exploratory_shop_audit.visible_opd_v0.c_targets.response',return_value=(None,raw)):
+                before,reused=verify_nominations(None,batch,[0],path,0)
+                self.assertFalse(reused)
+                self.assertTrue(torch.equal(before[0],logits))
+                receipt=read(path/'nomination_replay_0.json')
+                self.assertEqual((receipt['records'],receipt['positions'],receipt['max_probability_error']),(1,1,0.))
+                row['ids']=row['ids'].roll(1,1)
+                with self.assertRaises(AssertionError):
+                    verify_nominations(None,batch,[0],path,0)
+
     def test_multiplicity_and_paired_resampling(self):
         self.assertEqual(holm([.03,.01]),[.03,.02])
         null=contrasts({1:1,2:0,3:1},{1:1,2:0,3:1},{1:'A',2:'A',3:'B'})
