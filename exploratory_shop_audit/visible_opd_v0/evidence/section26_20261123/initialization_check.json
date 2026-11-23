@@ -1,0 +1,163 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "prefixes": [
+        {
+          "goal": 15725,
+          "positions": 31,
+          "teacher_error": 0.0,
+          "projector_error": 4.284083843231201e-08,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 1.75
+        },
+        {
+          "goal": 4768,
+          "positions": 46,
+          "teacher_error": 0.0,
+          "projector_error": 2.384185791015625e-07,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 1.5
+        },
+        {
+          "goal": 5614,
+          "positions": 26,
+          "teacher_error": 0.0,
+          "projector_error": 4.76837158203125e-07,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 1.25
+        }
+      ],
+      "initial_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+      "alternate_actor_sha": "c99d758b11410ca30e6c7d95fb3f25e6730443ca17dc9ab6d4912b74cdbcaf15"
+    },
+    {
+      "prefixes": [
+        {
+          "goal": 17611,
+          "positions": 26,
+          "teacher_error": 0.0,
+          "projector_error": 4.172325134277344e-07,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 0.625
+        },
+        {
+          "goal": 3465,
+          "positions": 23,
+          "teacher_error": 0.0,
+          "projector_error": 4.842877388000488e-08,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 0.5
+        },
+        {
+          "goal": 1949,
+          "positions": 21,
+          "teacher_error": 0.0,
+          "projector_error": 4.172325134277344e-07,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 0.5
+        }
+      ],
+      "initial_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+      "alternate_actor_sha": "c99d758b11410ca30e6c7d95fb3f25e6730443ca17dc9ab6d4912b74cdbcaf15"
+    },
+    {
+      "prefixes": [
+        {
+          "goal": 21491,
+          "positions": 45,
+          "teacher_error": 0.0,
+          "projector_error": 3.129243850708008e-07,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 1.625
+        },
+        {
+          "goal": 1478,
+          "positions": 19,
+          "teacher_error": 0.0,
+          "projector_error": 1.862645149230957e-08,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 1.0
+        },
+        {
+          "goal": 10215,
+          "positions": 16,
+          "teacher_error": 0.0,
+          "projector_error": 5.960464477539063e-08,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 0.875
+        }
+      ],
+      "initial_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+      "alternate_actor_sha": "c99d758b11410ca30e6c7d95fb3f25e6730443ca17dc9ab6d4912b74cdbcaf15"
+    },
+    {
+      "prefixes": [
+        {
+          "goal": 21209,
+          "positions": 21,
+          "teacher_error": 0.0,
+          "projector_error": 3.5762786865234375e-07,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 2.25
+        },
+        {
+          "goal": 8561,
+          "positions": 24,
+          "teacher_error": 0.0,
+          "projector_error": 8.195638656616211e-08,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 1.125
+        },
+        {
+          "goal": 23115,
+          "positions": 22,
+          "teacher_error": 0.0,
+          "projector_error": 1.862645149230957e-07,
+          "fixed_R_logits_max_abs": 0.0,
+          "fixed_P_logits_max_abs": 0.0,
+          "actor_logits_max_abs": 1.625
+        }
+      ],
+      "initial_sha": "99228cfe2fea5d72a080709109685fcbc2c018ea1d3255a0741e4043fc8b7a29",
+      "alternate_actor_sha": "c99d758b11410ca30e6c7d95fb3f25e6730443ca17dc9ab6d4912b74cdbcaf15"
+    }
+  ],
+  "classes": {
+    "classes": {
+      "click": 0.2030347599674119,
+      "format": 0.9654651345297247,
+      "option": 0.4081589152759669,
+      "search": 0.5706802675688623,
+      "unknown": 0.9482878330023727
+    },
+    "positions": 34825,
+    "tasks": 512,
+    "folds": [
+      "cbdb5eafbbf4ed4dce6e9d6c0e6b0880c9eb5b55e0c125cc7ac3254b340aa50f",
+      "fff45bff8777c0ae7e2e6171cbcae039a7c2573d0ec5de77258c6c14971f83ed",
+      "f3765bcb5191a12758098352951d9e1a9db9315ea0b763d0dda509b38dc7d2c7",
+      "81663b3eea7b960c7961638895efd07f23770421a459795cc0edc4fd2f27c9a9"
+    ],
+    "seconds": 0.8725854970000455
+  },
+  "initial_score_manifest": [
+    "c2cbc3f55ef507ac641834f3ecdfc02706c682aaaea7d979a20b78a2003283d5",
+    "ed1f590ef861984dcdf14c0a7084eb744e3534d54bb959e69284a59c6c0c14c1",
+    "915b18736a39be6475f8ced9f8e63b39112a17f81f98abd56373ad08118f13ee",
+    "9c82ecc50b720bcbb845971c7bf1208fcc6909f8f5ad0789e2653a1947091734"
+  ],
+  "support": "fixed h and C for actor replacement; nominal C from current online actor",
+  "source_commit": "b9ff87a9d20991d6e740f0785dae419061f5973f"
+}

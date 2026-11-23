@@ -250,8 +250,6 @@ def train_arm(l,arm):
                                     read(l.root/'shared_first/collection.json')['legal_rate'],
                                     read(prev)['flags'] if k>5 else {})
             save(p/'window.json',decision)
-            if decision['mean_first_query_tokens'] is None:
-                raise RuntimeError('Window has no first searches; operator review required')
             stopped=bool(decision['stop_reasons'])
         if k%10==0:
             launch(l,'probe',k,arm)

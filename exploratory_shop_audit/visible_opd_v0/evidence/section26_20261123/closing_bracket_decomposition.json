@@ -1,0 +1,58 @@
+{
+  "positions": 1701,
+  "tasks": 471,
+  "bootstrap_draws": 10000,
+  "seed": 20261123,
+  "storage": "Reconstructed conditional log probabilities from archived s, centered full−none, centered full−placeholder, and three support masses. The identity is an algebraic storage round trip, not an independent raw-logit audit.",
+  "max_abs_error": 1.2563181766012121e-06,
+  "statistics": {
+    "full_minus_none": {
+      "mean": {
+        "estimate": 0.7243619998679566,
+        "ci95": [
+          0.5787255231863728,
+          0.8699152207360538
+        ]
+      },
+      "median": {
+        "estimate": 0.6236134783751069,
+        "ci95": [
+          0.4862669115487986,
+          0.7490979421819745
+        ]
+      },
+      "positive_fraction": {
+        "estimate": 0.6190476190476191,
+        "ci95": [
+          0.5881335897859391,
+          0.6493356441363374
+        ]
+      }
+    },
+    "placeholder_minus_none": {
+      "mean": {
+        "estimate": -0.32696917747231175,
+        "ci95": [
+          -0.4149030975616772,
+          -0.24086080386426928
+        ]
+      },
+      "median": {
+        "estimate": -0.3693621886203827,
+        "ci95": [
+          -0.43631545713484476,
+          -0.2516938058219599
+        ]
+      },
+      "positive_fraction": {
+        "estimate": 0.36684303350970016,
+        "ci95": [
+          0.3397183098591549,
+          0.3942927231761905
+        ]
+      }
+    }
+  },
+  "old_cohort_sha256": "4baa283b2afef0bb8ebe1ea9e2ab976a8ee3e5caada49c5fc139103152f1c1a7",
+  "feature_files_digest": "d618325824d019f3b433aef362371a53454261e8c4afc1d17ec8a35b55f46d4c"
+}

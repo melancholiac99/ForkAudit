@@ -1,0 +1,19 @@
+{
+  "python": "3.12.3",
+  "packages": {
+    "torch": "2.8.0",
+    "vllm": "0.11.0",
+    "transformers": "4.57.3",
+    "peft": "0.17.1"
+  },
+  "gpus": [
+    "0, NVIDIA A100-SXM4-80GB, 81920 MiB, 595.84",
+    "1, NVIDIA A100-SXM4-80GB, 81920 MiB, 595.84",
+    "2, NVIDIA A100-SXM4-80GB, 81920 MiB, 595.84",
+    "3, NVIDIA A100-SXM4-80GB, 81920 MiB, 595.84"
+  ],
+  "routing_sha": "6cd963c70005e42533618194df097d94135ec841bcac726611fffb989bc743fa",
+  "implementation": "59489f9f296e2bba80960f1f710e2e3dd0f6182d",
+  "registration": "363dcdc7ef2773065e6c07394da6ffa176ee48e0",
+  "cpu_tests": 62
+}
