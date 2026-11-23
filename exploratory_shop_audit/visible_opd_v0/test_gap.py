@@ -50,6 +50,43 @@ class GapProtocol(unittest.TestCase):
                     with self.assertRaises(ValueError):
                         gap_run.parallel_lane('P-gap')
 
+    def test_parallel_evaluation_matches_original_stages_and_holds_v(self):
+        from collections import Counter
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        from . import gap_eval_parallel, gap_report, gap_run
+        from exploratory_shop_audit.grpo_forced_audit.common import save
+
+        with TemporaryDirectory() as tmp:
+            layout=SimpleNamespace(root=Path(tmp))
+            arms={'R-gap':45,'P-gap':50}
+            original=[]
+            with patch.object(gap_run,'launch',side_effect=lambda l,*args:original.append(args)), \
+                 patch.object(gap_run,'qualify_pages'),patch.object(gap_report,'report'):
+                gap_run.evaluate_endpoints(layout,arms)
+            save(layout.root/'endpoints/R-gap.json',dict(update=45))
+            actual=[]
+            prepared=set()
+            def stage(l,phase,k,arm,pool,*mode,devices):
+                group='R-gap' if arm=='B' else arm
+                self.assertEqual(devices,gap_run.LANE_DEVICES[group])
+                if phase=='mass' or mode==('page',):
+                    self.assertIn(pool,prepared)
+                actual.append((phase,k,arm,pool,*mode))
+            with patch.object(gap_eval_parallel,'launch',side_effect=stage), \
+                 patch.object(gap_eval_parallel,'qualify_pages',side_effect=lambda l,p:prepared.add(p)), \
+                 patch.object(gap_report,'report') as report:
+                with self.assertRaises(FileNotFoundError):
+                    gap_eval_parallel.evaluate(layout)
+                self.assertFalse(actual)
+                save(layout.root/'endpoints/P-gap.json',dict(update=50))
+                gap_eval_parallel.evaluate(layout)
+                self.assertEqual(Counter(original),Counter(actual))
+                self.assertEqual(len(set(actual)),len(actual))
+                report.assert_called_once_with(layout,arms)
+
     def test_stopping_requires_same_readout_in_two_disjoint_windows(self):
         row=dict(legal=71,actions=100,searches=64,query_tokens=64*15,missed_searches=0)
         first=window_decision([row]*5,.81,{})

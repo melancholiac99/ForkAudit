@@ -168,7 +168,7 @@ def worker(phase,k,arm,extra):
         raise ValueError(phase)
 
 
-def launch(l,phase,k,arm,*extra):
+def launch(l,phase,k,arm,*extra,devices=None):
     tag='_'.join([arm,f'{k:02}',phase,*extra])
     out=l.root/'stages'/f'{tag}.json'
     if out.exists():return
@@ -176,11 +176,12 @@ def launch(l,phase,k,arm,*extra):
     cmd=multi('gap_run','worker',phase,str(k),arm,*extra)
     print(tag,flush=True)
     start=time.monotonic()
+    env=None if devices is None else {**os.environ,'CUDA_VISIBLE_DEVICES':devices}
     with log.open('a') as f:
-        proc=subprocess.run(cmd,stdout=f,stderr=f)
+        proc=subprocess.run(cmd,stdout=f,stderr=f,env=env)
         if proc.returncode and phase=='train' and 'OutOfMemoryError' in log.read_text():
             (l.folder(k,arm)/'checkpoint_only_retry').touch()
-            proc=subprocess.run(cmd,stdout=f,stderr=f)
+            proc=subprocess.run(cmd,stdout=f,stderr=f,env=env)
         proc.check_returncode()
     save(out,dict(phase=phase,arm=arm,k=k,seconds=time.monotonic()-start,source_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()))
 
@@ -287,6 +288,18 @@ def main():
         evaluate_endpoints(l,endpoints)
 
 
+def qualify_pages(l,pool):
+    for rank in range(4):
+        src=l.root/'pages'/pool/f'rank{rank}'
+        goals=[t['goal_index'] for t in split_tasks()[pool] if owners()[t['goal_index']]==rank]
+        if not (src/'qualify.json').exists():
+            # Native scoring dependency lives in the CPU environment.
+            import subprocess
+            from exploratory_shop_audit.grpo_forced_audit.common import CPU_PYTHON
+            cmd=[str(CPU_PYTHON),'-m','exploratory_shop_audit.visible_opd_v0.gap_qualify',str(src),pool,*map(str,goals)]
+            subprocess.run(cmd,check=True)
+
+
 def evaluate_endpoints(l,endpoints):
     for pool in ('T_opd_eval','V'):
         launch(l,'eval',0,'B',pool,'free')
@@ -294,15 +307,7 @@ def evaluate_endpoints(l,endpoints):
             if pool=='V':
                 for j in sorted({v for v in (20,30,50) if v<=k}|{k}):
                     launch(l,'eval',j,a,pool,'free')
-        for rank in range(4):
-            src=l.root/'pages'/pool/f'rank{rank}'
-            goals=[t['goal_index'] for t in split_tasks()[pool] if owners()[t['goal_index']]==rank]
-            if not (src/'qualify.json').exists():
-                # Native scoring dependency lives in the CPU environment.
-                import subprocess
-                from exploratory_shop_audit.grpo_forced_audit.common import CPU_PYTHON
-                cmd=[str(CPU_PYTHON),'-m','exploratory_shop_audit.visible_opd_v0.gap_qualify',str(src),pool,*map(str,goals)]
-                subprocess.run(cmd,check=True)
+        qualify_pages(l,pool)
         for a,k in {'B':0,**endpoints}.items():
             launch(l,'eval',k,a,pool,'page')
             launch(l,'mass',k,a,pool)

@@ -2160,3 +2160,7 @@ The pre-optimization check for R-gap update 2 rejected the stored actor probabil
 ### 2026-11-23 — Resume §26 on two concurrent four-GPU groups
 
 The restored data disk contains R-gap update 3 and its 15 accumulated AdamW steps. The operator authorized concurrent execution on eight A100s. R occupies devices 0–3 and P occupies devices 4–7. Both groups retain the original logical four-rank assignment, common signed first batch, update schedule and seeds. P starts with the four registered first-block projection folds. Per-arm process locks and activation diagnostics allow independent retries. A separate exclusive lock protects evaluation after both endpoint receipts exist. The original four-card pause and launch receipts remain on disk.
+
+### 2026-11-24 — Schedule the registered §26 endpoint evaluations on the two four-GPU groups
+
+After R triggered its training-only stop at update 45, its group began the registered T_opd_eval baseline and R endpoint page evaluations while P trained. After both checkpoint receipts exist, free V interactions for R and P and their common-page continuations run on their respective original four logical ranks. The R group constructs the B baseline and qualifies its pages. A model can begin its page continuations once the corresponding B pages are ready. Both schedules share the existing stage receipts and endpoint evaluation lock. The task sets, sampling seeds, native requests, category weights and endpoint report use the original implementation.
