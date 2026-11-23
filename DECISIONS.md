@@ -2144,3 +2144,11 @@ Across the 24 rank batches of P updates 6–11, 57 scored rows had 4,097–5,120
 ### 2026-11-23 — Register §26 v0.5.1 before preflight
 
 Stage E behavior including V was already observed. The new experiment compares two complete, block-synchronous algorithms with a raw full-packet teacher and a newly fitted forward-KL projector. The operator has four A100s and requested R-gap first, then P-gap on the same frozen four-rank mapping. R switches at its registered training-only stopping point or update 50. The shared initialization, separate fresh optimizers, blinded V, endpoint tests, and search and legality criteria are specified in §26.
+
+### 2026-11-23 — Specify §26 measurements before checkpoint evaluation
+
+Use the four literal decoding seeds 2201–2204, one per sampled replicate, with greedy reported separately. Public-page continuations replay B's complete native action prefix under the identical session identifier, verify the restored native state including product ordering, and supply the original observations and full generated texts to the recipient. Report any B episode without a first legal search separately as lacking a shared page.
+
+For the legal-click-mass estimand, compare complete canonical `Action: click[...]` responses including the end token on the identical visible prompt. Sum autoregressive log probabilities (no length normalization) and normalize across every distinct legal click string including navigation. The numerator contains visible product ASINs whose native reward accepts at least one option configuration. This conditional probability is distinct from the purchase endpoint of freely generated continuations. For the training search monitor, keep the first legal search per trajectory and its parser-assigned argument token count, and disclose missing searches. Pool actual actions and observed first searches across each five-update window. If a whole window has zero observed first searches, the absence of search is reported and its mean is undefined, requiring operator review; such a mean does not establish a numerical crossing.
+
+§26 的双侧配对 bootstrap p 使用以观测差为中心的零分布，计入有限重抽样的 +1 校正；配对区间取百分位数，重抽样 10,000 次，随机种子 20261123。重抽 ASIN 时保留簇内全部任务及同题配对。V 的各指定步保留权重，延至两组终点冻结后实际执行行为评测。

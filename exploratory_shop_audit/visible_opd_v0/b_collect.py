@@ -13,7 +13,7 @@ def batch(runner,tasks,goals,path,rep=0,stream='T_cal',include_legal=False):
     return native_batches(runner,tasks,goals,{rep:path},stream,include_legal)
 
 
-def native_batches(runner,tasks,goals,paths,stream,include_legal):
+def native_batches(runner,tasks,goals,paths,stream,include_legal,view_modes=('none','full','placeholder')):
     active=[]
     for rep in paths:
         for task in tasks:
@@ -24,7 +24,7 @@ def native_batches(runner,tasks,goals,paths,stream,include_legal):
         for i,rep,key,h,s in active:
             pub=s['public'];native=make_input(runner.tokenizer,s['task'],h,s['observation'])
             views={};reasons={}
-            for mode in ('none','full','placeholder'):
+            for mode in view_modes:
                 fields,why=packet(mode,pub,{},goals[i] if mode=='full' else None)
                 ids,why,_,_=render(runner.tokenizer,native,fields,why)
                 views[mode]=ids;reasons[mode]=why

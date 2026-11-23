@@ -35,7 +35,7 @@ def native_rank(rank):
     os.environ['SHOP_GPU_ID'] = gpu
 
 
-def collect(l,k,arm,rank):
+def collect(l,k,arm,rank,*,view_modes=('none','full','placeholder')):
     native_rank(rank)
     source=l.root/'shared_first' if k==1 else l.folder(k,arm)
     p=source/'native'/f'rank{rank}'
@@ -52,7 +52,7 @@ def collect(l,k,arm,rank):
     start=time.monotonic()
     runner=Runner(p,cp,parallel_start=True)
     try:
-        native_batches(runner,tasks,goals,files,stream=f'T_opd_D_{k}',include_legal=True)
+        native_batches(runner,tasks,goals,files,stream=f'T_opd_D_{k}',include_legal=True,view_modes=view_modes)
     finally:
         runner.close()
     signatures=[]

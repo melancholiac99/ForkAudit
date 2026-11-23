@@ -12,18 +12,24 @@ class FitData:
         ids,inv=torch.unique(ts['ids'],return_inverse=True)
         self.e=F.normalize(head[ids].to(device=device,dtype=torch.float32),dim=-1)
         self.ids=inv.to(device);self.q=ts['q'].to(device);self.mask=ts['mask'].to(device)
-        self.s=ts['s'].float().to(device);self.d=ts['d'].float().to(device)
-        self.target=(self.s+self.d).masked_fill(~self.mask,-torch.inf).softmax(-1)
+        self.s=ts['s'].float().to(device)
+        self.d=ts['d'].float().to(device) if 'd' in ts else None
+        if 'teacher' in ts:
+            self.target=ts['teacher'].detach().float().to(device)
+        else:
+            self.target=(self.s+self.d).masked_fill(~self.mask,-torch.inf).softmax(-1)
 
     def predict(self,net,i):
         ix,loc=torch.unique(self.ids[i],return_inverse=True)
         x=(net.state(self.h[i])[:,None,:]*net.token(self.e[ix])[loc]).sum(-1)
         return x-(x*self.q[i]).sum(-1,keepdim=True)
 
-    def fit(self,indices,fold,loss_type='huber'):
+    def fit(self,indices,fold,loss_type='huber',initial_state=None):
         if not len(indices):raise ValueError('empty training fold')
         seed=SEED+fold;torch.manual_seed(seed)
         net=VisibleProjection(self.h.shape[1]).to(self.device)
+        if initial_state is not None:
+            net.load_state_dict(initial_state)
         opt=torch.optim.AdamW(net.parameters(),lr=.001)
         w=weights(self.meta,indices)
         weight=torch.zeros(len(self.h),device=self.device)
