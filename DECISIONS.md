@@ -2140,3 +2140,7 @@ Across the 24 rank batches of P updates 6–11, 57 scored rows had 4,097–5,120
 ### 2026-11-22 — 用四卡实例接续 R@27
 
 原八卡租期结束时 R@27 的 LoRA、AdamW 和逐步指标已封存，R 第 28 步的轨迹和目标已落盘。按用户指示，单台四张 A100 80GB 对应原第二组的本地 rank 0–3，沿用冻结任务分配、种子、优化设置、各十步检查点和 §25.7。开始训练前在本机独立重算原 B@0 探针、P@6 的目标和更新哈希，核对 R@27 及第 28 步训练输入。只有这一组卡，逐步 FP32 走原四卡路径，与训练顺序执行。最后的搜索补充也使用同一组卡。达到第 50 步或已登记的提前停止条件后完成评测与交付。
+
+### 2026-11-23 — Register §26 v0.5.1 before preflight
+
+Stage E behavior including V was already observed. The new experiment compares two complete, block-synchronous algorithms with a raw full-packet teacher and a newly fitted forward-KL projector. The operator has four A100s and requested R-gap first, then P-gap on the same frozen four-rank mapping. R switches at its registered training-only stopping point or update 50. The shared initialization, separate fresh optimizers, blinded V, endpoint tests, and search and legality criteria are specified in §26.
