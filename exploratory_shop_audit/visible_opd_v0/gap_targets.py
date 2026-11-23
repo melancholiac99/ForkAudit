@@ -15,18 +15,32 @@ from .score import support
 from exploratory_shop_audit.grpo_forced_audit.common import digest_file, read, save
 
 
-def attach_actor(model, checkpoint, expected):
-    path = checkpoint/'adapter_model.safetensors'
-    assert digest_file(path)==expected
-    model.load_adapter(str(checkpoint),adapter_name='online_actor',is_trainable=False)
-    model.set_adapter('default')
-    model.eval()
+@torch.no_grad()
+def nominate(model, row, fixed=None):
+    _, raw = response(model, row['views']['none'], row['response'])
+    ids, mask = (support(raw, torch.as_tensor(row['response'], device=raw.device))
+                 if fixed is None else fixed)
+    return ids.cpu(), mask.cpu(), raw.gather(1, ids).cpu()
+
+
+def exact_nominations(model, load_actor, actor_sha, block_sha, requests):
+    # Restore both snapshots in the same FP32 LoRA slots used by the optimizer.
+    params = [(n, p) for n, p in model.named_parameters() if p.requires_grad]
+    block_weights = [p.detach().to('cpu', copy=True) for _, p in params]
+    try:
+        load_actor(model)
+        assert state_hash(params) == actor_sha
+        return [nominate(model, row, fixed) for row, fixed in requests]
+    finally:
+        with torch.no_grad():
+            for (_, param), saved in zip(params, block_weights, strict=True):
+                param.copy_(saved)
+        assert state_hash(params) == block_sha
 
 
 class BlockTargets:
     def __init__(self, model, projector=None):
         self.model = model
-        self.adapters = set(model.peft_config)
         self.nets = {}
         self.scales = {}
         if projector is not None:
@@ -40,19 +54,11 @@ class BlockTargets:
                 self.nets[f] = net.requires_grad_(False)
 
     @torch.no_grad()
-    def score(self, row, fold, fixed=None):
+    def score(self, row, fold, nomination=None):
         model=self.model
-        current=None
-        if 'online_actor' in self.adapters:
-            model.set_adapter('online_actor')
-            _, raw=response(model,row['views']['none'],row['response'])
-            ids, mask=fixed if fixed is not None else support(raw,torch.as_tensor(row['response'],device=raw.device))
-            current=raw.gather(1,ids)
-            del raw
-            fixed=ids,mask
-        model.set_adapter('default')
+        fixed=None if nomination is None else (nomination[0].cuda(), nomination[1].cuda())
         v=block_views(model,row,fixed)
-        current=v['s'] if current is None else current
+        current=v['s'] if nomination is None else nomination[2].cuda()
         p_logits=None
         if self.nets:
             coef=torch.tensor([self.scales.get(c,0.) for c in row['classes']],device=current.device)[:,None]
@@ -99,11 +105,14 @@ def init_check(rank):
         assert rerr<=1e-6 and perr<=1e-6
         reference.append((task,r,ids,mask,cur,v['t'],proj,rerr,perr))
     sha=read(old.folder(10,'P')/'optimizer.json')['safetensors_sha256']
-    attach_actor(model,old.state(10,'P')/'adapter',sha)
+    online_sha=read(old.folder(10,'P')/'optimizer.json')['after_sha']
+    nominations=exact_nominations(model,lambda m:old.snapshot(m,10,'P'),online_sha,initial,
+                                  [(r,(ids,mask)) for _,r,ids,mask,*_ in reference])
     scorer=BlockTargets(model,RUN/'initial')
     results=[]
-    for task,r,ids,mask,cur,t,proj,re,pe in reference:
-        v,alt,p=scorer.score(r,routing[task['asin']],(ids,mask))
+    for record,nomination in zip(reference,nominations,strict=True):
+        task,r,ids,mask,cur,t,proj,re,pe=record
+        v,alt,p=scorer.score(r,routing[task['asin']],nomination)
         assert torch.equal(v['t'],t) and torch.equal(p,proj)
         results.append(dict(goal=task['goal_index'],positions=len(ids),teacher_error=re,projector_error=pe,
             fixed_R_logits_max_abs=0.,fixed_P_logits_max_abs=0.,actor_logits_max_abs=(alt-cur)[mask].abs().max().item()))
@@ -124,16 +133,12 @@ def score_rank(layout,k,arm,rank):
     initial=read(SMOKE/'arm_R.json')['initial_adapter_sha256']
     assert block_sha==(read(layout.folder(ver,arm)/'optimizer.json')['after_sha'] if ver else initial)
     current_sha=block_sha
-    if k-1!=ver:
-        m=read(layout.folder(k-1,arm)/'optimizer.json')
-        attach_actor(model,layout.state(k-1,arm)/'adapter',m['safetensors_sha256'])
-        current_sha=m['after_sha']
     fitter=layout.projector(ver) if arm=='P-gap' else None
     scorer=BlockTargets(model,fitter)
     splits=split_tasks()
     tasks={r['goal_index']:r['asin'] for r in read(path.parent/'tasks.json') if owners()[r['goal_index']]==rank}
     assert len(tasks)==8
-    rows=[];counts=Counter();finished=set();na=[]
+    rows=[];counts=Counter();finished=set();na=[];valid=[]
     for src in input_tapes(path):
         for r in tape(src):
             g=r['goal'];key=(g,r['rep'])
@@ -144,15 +149,23 @@ def score_rank(layout,k,arm,rank):
             meta=dict(goal=g,rep=r['rep'],step=r['step'])
             if any(r['na'][key] for key in ('none','full')):
                 na.append(meta);continue
-            v,cur,proj=scorer.score(r,fold_of(tasks[g],splits['cal_folds']))
-            teacher=v['teacher'] if proj is None else target(proj,v['mask'])
-            # Strength uses the block student; optimizer assertions use the *current* actor.
-            mask=v['mask']
-            log_s=v['s'].masked_fill(~mask,-torch.inf).log_softmax(-1).masked_fill(~mask,0.)
-            kl=(torch.special.xlogy(teacher,teacher)-teacher*log_s).sum(1)
-            batchrow=dict(**meta,prompt=r['views']['none'],answer=r['response'],ids=v['ids'].cpu(),mask=mask.cpu(),
-                          classes=r['classes'],snapshot=target(cur,mask).cpu())
-            rows.append((batchrow,teacher.cpu(),cur.cpu(),kl.cpu()))
+            valid.append((r,meta))
+    nominations=[None]*len(valid)
+    if k-1!=ver:
+        current_sha=read(layout.folder(k-1,arm)/'optimizer.json')['after_sha']
+        nominations=exact_nominations(model,lambda m:layout.snapshot(m,k-1,arm),current_sha,block_sha,
+                                      [(r,None) for r,_ in valid])
+    for (r,meta),nomination in zip(valid,nominations,strict=True):
+        g=r['goal']
+        v,cur,proj=scorer.score(r,fold_of(tasks[g],splits['cal_folds']),nomination)
+        teacher=v['teacher'] if proj is None else target(proj,v['mask'])
+        # Strength uses the block student; optimizer assertions use the *current* actor.
+        mask=v['mask']
+        log_s=v['s'].masked_fill(~mask,-torch.inf).log_softmax(-1).masked_fill(~mask,0.)
+        kl=(torch.special.xlogy(teacher,teacher)-teacher*log_s).sum(1)
+        batchrow=dict(**meta,prompt=r['views']['none'],answer=r['response'],ids=v['ids'].cpu(),mask=mask.cpu(),
+                      classes=r['classes'],snapshot=target(cur,mask).cpu())
+        rows.append((batchrow,teacher.cpu(),cur.cpu(),kl.cpu()))
     assert finished=={(g,rep) for g in tasks for rep in range(2)}
     dst.mkdir(exist_ok=True,parents=True)
     torch.save(rows,dst/'rows.pt')

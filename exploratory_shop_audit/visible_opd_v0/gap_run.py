@@ -125,7 +125,7 @@ def worker(phase,k,arm,extra):
         from .d_train import train
         train(k,arms=[arm],folder=l.folder,state_dir=l.state,snapshot=l.snapshot,load_batch=l.batch,
               rates={arm:1e-6},compare_original=False,rank_local_activations=True,
-              checkpoint_only=(l.folder(k,arm)/'checkpoint_only_retry').exists())
+              checkpoint_only=(l.folder(k,arm)/'checkpoint_only_retry').exists(),audit_nominations=(k==2))
     elif phase=='probe':
         common_probe(l,rank,k,arm)
     elif phase=='eval':

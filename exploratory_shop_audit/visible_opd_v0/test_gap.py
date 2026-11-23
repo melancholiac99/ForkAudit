@@ -32,6 +32,30 @@ class GapProtocol(unittest.TestCase):
         self.assertIsNone(h.d)
         self.assertEqual(q[0,2].item(),0.)
 
+    def test_nomination_loads_exact_live_weights_and_restores_block(self):
+        from unittest.mock import patch
+        from .c_smoke import state_hash
+        from .gap_targets import exact_nominations
+        model=torch.nn.Linear(1,1,bias=False)
+        def use(value):
+            with torch.no_grad():
+                model.weight.fill_(value)
+        def signature():
+            return state_hash(list(model.named_parameters()))
+        use(1.000003)
+        current=signature()
+        use(1.)
+        block=signature()
+        def logits(m,row,fixed):
+            return m.weight.item()
+        with patch('exploratory_shop_audit.visible_opd_v0.gap_targets.nominate',side_effect=logits):
+            live=exact_nominations(model,lambda _:use(1.000003),current,block,[(None,None)])
+            self.assertNotEqual(live[0],1.)
+            self.assertEqual(signature(),block)
+            with self.assertRaises(AssertionError):
+                exact_nominations(model,lambda _:use(1.),current,block,[(None,None)])
+            self.assertEqual(signature(),block)
+
     def test_multiplicity_and_paired_resampling(self):
         self.assertEqual(holm([.03,.01]),[.03,.02])
         null=contrasts({1:1,2:0,3:1},{1:1,2:0,3:1},{1:'A',2:'A',3:'B'})

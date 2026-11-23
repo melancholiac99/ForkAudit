@@ -13,7 +13,7 @@ from .s21_store import ARMS, RUN as PREVIOUS
 from .s21_data import components
 from exploratory_shop_audit.grpo_forced_audit.common import digest_file, digest_value, read, save
 
-def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None, compare_original=True, replay_state=None, rank_local_activations=False, checkpoint_only=False):
+def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot, load_batch=load_batch, rates=None, compare_original=True, replay_state=None, rank_local_activations=False, checkpoint_only=False, audit_nominations=False):
     os.umask(0o077)
     os.environ['CUBLAS_WORKSPACE_CONFIG']=':4096:8'
     os.environ['NCCL_ALGO']='Ring'
@@ -46,7 +46,11 @@ def train(k, *, arms=ARMS, folder=folder, state_dir=state_dir, snapshot=snapshot
         before,reused={},False
         if replay_state is None:
             with torch.no_grad():
-                before,reused=initial_logits(model,batch,local,path)
+                if audit_nominations:
+                    from .d_speed import verify_nominations
+                    before,reused=verify_nominations(model,batch,local,path,rank)
+                else:
+                    before,reused=initial_logits(model,batch,local,path)
                 for i,v in before.items():
                     p0=v.masked_fill(~batch.rows[i]['mask'],-torch.inf).softmax(-1)
                     assert torch.allclose(p0,batch.rows[i]['snapshot'],atol=1e-6,rtol=0)

@@ -31,6 +31,30 @@ def initial_logits(model,batch,local,path):
     return {i:score(model,batch.rows[i]).cpu() for i in local},False
 
 
+@torch.no_grad()
+def verify_nominations(model,batch,local,path,rank):
+    """Replay the actual actor on each complete response before the first within-block update."""
+    from .c_targets import response
+    from .score import support
+    saved_path=path/'bf16_before.pt'
+    assert digest_file(saved_path)==read(path/'target_manifest.json')['bf16_before_sha256']
+    saved=torch.load(saved_path,weights_only=True)
+    before={};positions=0;max_prob=0.;max_logits=0.
+    for i in local:
+        row=batch.rows[i]
+        _,raw=response(model,row['prompt'],row['answer'])
+        ids,mask=support(raw,torch.tensor(row['answer'],device=raw.device))
+        assert torch.equal(ids.cpu(),row['ids']) and torch.equal(mask.cpu(),row['mask'])
+        before[i]=raw.gather(1,ids).cpu()
+        p=before[i].masked_fill(~row['mask'],-torch.inf).softmax(-1)
+        max_prob=max(max_prob,float((p-row['snapshot']).abs().max()))
+        max_logits=max(max_logits,float((before[i]-saved[i]).abs().max()))
+        positions+=len(ids)
+    save(path/f'nomination_replay_{rank}.json',dict(records=len(local),positions=positions,
+         exact_candidate_ids_and_mask=True,max_probability_error=max_prob,max_logit_error=max_logits))
+    return before,False
+
+
 def set_checkpoint(modules,enabled):
     for module in modules:
         module.gradient_checkpointing=enabled
