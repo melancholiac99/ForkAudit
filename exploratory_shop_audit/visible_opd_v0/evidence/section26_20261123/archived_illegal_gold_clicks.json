@@ -1,0 +1,1144 @@
+{
+  "definition": "Illegal native click with argument exactly matching the task gold ASIN (case-insensitive). Replay the archived prefix, require the ASIN absent from currently listed products, current item, legal clickables and rendered current observation. Count each attempted action.",
+  "population": "Stage E adopted formal run training tapes and archived baseline/formal evaluation episodes. The 10 inherited D updates of P-frozen are excluded from Stage E training. Shared prefixes across arms are included in each arm; per-arm totals are descriptive. No §26 evaluation was read.",
+  "missing": "An episode with archived zero illegal actions is an exact zero. A missing action-string digest with a nonzero illegal count contributes unresolved_illegal_actions to the upper bound only.",
+  "training_summary": {
+    "P": {
+      "episodes": 1920,
+      "actions": 8531,
+      "illegal_actions": 525,
+      "illegal_click_gold": 0,
+      "absent_gold_clicks": 0,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 0,
+      "unresolved_illegal_actions": 0
+    },
+    "R": {
+      "episodes": 2112,
+      "actions": 9496,
+      "illegal_actions": 1007,
+      "illegal_click_gold": 0,
+      "absent_gold_clicks": 0,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 0,
+      "unresolved_illegal_actions": 0
+    },
+    "R-matched": {
+      "episodes": 1920,
+      "actions": 9159,
+      "illegal_actions": 1834,
+      "illegal_click_gold": 4,
+      "absent_gold_clicks": 0,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 0,
+      "unresolved_illegal_actions": 0
+    },
+    "P-frozen": {
+      "episodes": 1280,
+      "actions": 5810,
+      "illegal_actions": 337,
+      "illegal_click_gold": 0,
+      "absent_gold_clicks": 0,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 0,
+      "unresolved_illegal_actions": 0
+    }
+  },
+  "evaluation_summary": {
+    "B": {
+      "episodes": 2000,
+      "actions": 8565,
+      "illegal_actions": 725,
+      "illegal_click_gold": 0,
+      "absent_gold_clicks": 0,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 29,
+      "unresolved_illegal_actions": 68
+    },
+    "P": {
+      "episodes": 6000,
+      "actions": 26253,
+      "illegal_actions": 1532,
+      "illegal_click_gold": 0,
+      "absent_gold_clicks": 0,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 67,
+      "unresolved_illegal_actions": 169
+    },
+    "P-frozen": {
+      "episodes": 6000,
+      "actions": 26776,
+      "illegal_actions": 1425,
+      "illegal_click_gold": 0,
+      "absent_gold_clicks": 0,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 0,
+      "unresolved_illegal_actions": 0
+    },
+    "R": {
+      "episodes": 6000,
+      "actions": 26328,
+      "illegal_actions": 3042,
+      "illegal_click_gold": 0,
+      "absent_gold_clicks": 0,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 0,
+      "unresolved_illegal_actions": 0
+    },
+    "R-matched": {
+      "episodes": 6000,
+      "actions": 28277,
+      "illegal_actions": 8468,
+      "illegal_click_gold": 1,
+      "absent_gold_clicks": 0,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 0,
+      "unresolved_illegal_actions": 0
+    }
+  },
+  "training_by_update": {
+    "P": {
+      "1": {
+        "actions_with_reconstructed_legality": 282,
+        "episodes": 64,
+        "actions": 282,
+        "illegal_actions": 25,
+        "episodes_with_absent_gold_click": 0
+      },
+      "2": {
+        "episodes": 64,
+        "actions": 289,
+        "illegal_actions": 29,
+        "episodes_with_absent_gold_click": 0
+      },
+      "3": {
+        "episodes": 64,
+        "actions": 289,
+        "illegal_actions": 21,
+        "episodes_with_absent_gold_click": 0
+      },
+      "4": {
+        "episodes": 64,
+        "actions": 288,
+        "illegal_actions": 22,
+        "episodes_with_absent_gold_click": 0
+      },
+      "5": {
+        "episodes": 64,
+        "actions": 279,
+        "illegal_actions": 15,
+        "episodes_with_absent_gold_click": 0
+      },
+      "6": {
+        "episodes": 64,
+        "actions": 287,
+        "illegal_actions": 12,
+        "episodes_with_absent_gold_click": 0
+      },
+      "7": {
+        "episodes": 64,
+        "actions": 279,
+        "illegal_actions": 12,
+        "episodes_with_absent_gold_click": 0
+      },
+      "8": {
+        "episodes": 64,
+        "actions": 269,
+        "illegal_actions": 15,
+        "episodes_with_absent_gold_click": 0
+      },
+      "9": {
+        "episodes": 64,
+        "actions": 286,
+        "illegal_actions": 34,
+        "episodes_with_absent_gold_click": 0
+      },
+      "10": {
+        "episodes": 64,
+        "actions": 268,
+        "illegal_actions": 21,
+        "episodes_with_absent_gold_click": 0
+      },
+      "11": {
+        "episodes": 64,
+        "actions": 301,
+        "illegal_actions": 41,
+        "episodes_with_absent_gold_click": 0
+      },
+      "12": {
+        "episodes": 64,
+        "actions": 276,
+        "illegal_actions": 22,
+        "episodes_with_absent_gold_click": 0
+      },
+      "13": {
+        "episodes": 64,
+        "actions": 283,
+        "illegal_actions": 11,
+        "episodes_with_absent_gold_click": 0
+      },
+      "14": {
+        "episodes": 64,
+        "actions": 289,
+        "illegal_actions": 32,
+        "episodes_with_absent_gold_click": 0
+      },
+      "15": {
+        "episodes": 64,
+        "actions": 275,
+        "illegal_actions": 15,
+        "episodes_with_absent_gold_click": 0
+      },
+      "16": {
+        "episodes": 64,
+        "actions": 265,
+        "illegal_actions": 6,
+        "episodes_with_absent_gold_click": 0
+      },
+      "17": {
+        "episodes": 64,
+        "actions": 282,
+        "illegal_actions": 20,
+        "episodes_with_absent_gold_click": 0
+      },
+      "18": {
+        "episodes": 64,
+        "actions": 273,
+        "illegal_actions": 17,
+        "episodes_with_absent_gold_click": 0
+      },
+      "19": {
+        "episodes": 64,
+        "actions": 291,
+        "illegal_actions": 15,
+        "episodes_with_absent_gold_click": 0
+      },
+      "20": {
+        "episodes": 64,
+        "actions": 303,
+        "illegal_actions": 20,
+        "episodes_with_absent_gold_click": 0
+      },
+      "21": {
+        "episodes": 64,
+        "actions": 279,
+        "illegal_actions": 8,
+        "episodes_with_absent_gold_click": 0
+      },
+      "22": {
+        "episodes": 64,
+        "actions": 275,
+        "illegal_actions": 8,
+        "episodes_with_absent_gold_click": 0
+      },
+      "23": {
+        "episodes": 64,
+        "actions": 274,
+        "illegal_actions": 7,
+        "episodes_with_absent_gold_click": 0
+      },
+      "24": {
+        "episodes": 64,
+        "actions": 280,
+        "illegal_actions": 15,
+        "episodes_with_absent_gold_click": 0
+      },
+      "25": {
+        "episodes": 64,
+        "actions": 287,
+        "illegal_actions": 26,
+        "episodes_with_absent_gold_click": 0
+      },
+      "26": {
+        "episodes": 64,
+        "actions": 278,
+        "illegal_actions": 16,
+        "episodes_with_absent_gold_click": 0
+      },
+      "27": {
+        "episodes": 64,
+        "actions": 276,
+        "illegal_actions": 5,
+        "episodes_with_absent_gold_click": 0
+      },
+      "28": {
+        "episodes": 64,
+        "actions": 303,
+        "illegal_actions": 15,
+        "episodes_with_absent_gold_click": 0
+      },
+      "29": {
+        "episodes": 64,
+        "actions": 311,
+        "illegal_actions": 11,
+        "episodes_with_absent_gold_click": 0
+      },
+      "30": {
+        "episodes": 64,
+        "actions": 314,
+        "illegal_actions": 9,
+        "episodes_with_absent_gold_click": 0
+      }
+    },
+    "R": {
+      "1": {
+        "actions_with_reconstructed_legality": 282,
+        "episodes": 64,
+        "actions": 282,
+        "illegal_actions": 25,
+        "episodes_with_absent_gold_click": 0
+      },
+      "2": {
+        "episodes": 64,
+        "actions": 289,
+        "illegal_actions": 33,
+        "episodes_with_absent_gold_click": 0
+      },
+      "3": {
+        "episodes": 64,
+        "actions": 285,
+        "illegal_actions": 25,
+        "episodes_with_absent_gold_click": 0
+      },
+      "4": {
+        "episodes": 64,
+        "actions": 284,
+        "illegal_actions": 22,
+        "episodes_with_absent_gold_click": 0
+      },
+      "5": {
+        "episodes": 64,
+        "actions": 282,
+        "illegal_actions": 18,
+        "episodes_with_absent_gold_click": 0
+      },
+      "6": {
+        "episodes": 64,
+        "actions": 275,
+        "illegal_actions": 9,
+        "episodes_with_absent_gold_click": 0
+      },
+      "7": {
+        "episodes": 64,
+        "actions": 282,
+        "illegal_actions": 15,
+        "episodes_with_absent_gold_click": 0
+      },
+      "8": {
+        "episodes": 64,
+        "actions": 272,
+        "illegal_actions": 16,
+        "episodes_with_absent_gold_click": 0
+      },
+      "9": {
+        "episodes": 64,
+        "actions": 288,
+        "illegal_actions": 39,
+        "episodes_with_absent_gold_click": 0
+      },
+      "10": {
+        "episodes": 64,
+        "actions": 273,
+        "illegal_actions": 26,
+        "episodes_with_absent_gold_click": 0
+      },
+      "11": {
+        "episodes": 64,
+        "actions": 311,
+        "illegal_actions": 57,
+        "episodes_with_absent_gold_click": 0
+      },
+      "12": {
+        "episodes": 64,
+        "actions": 286,
+        "illegal_actions": 32,
+        "episodes_with_absent_gold_click": 0
+      },
+      "13": {
+        "episodes": 64,
+        "actions": 282,
+        "illegal_actions": 15,
+        "episodes_with_absent_gold_click": 0
+      },
+      "14": {
+        "episodes": 64,
+        "actions": 283,
+        "illegal_actions": 30,
+        "episodes_with_absent_gold_click": 0
+      },
+      "15": {
+        "episodes": 64,
+        "actions": 277,
+        "illegal_actions": 20,
+        "episodes_with_absent_gold_click": 0
+      },
+      "16": {
+        "episodes": 64,
+        "actions": 312,
+        "illegal_actions": 20,
+        "episodes_with_absent_gold_click": 0
+      },
+      "17": {
+        "episodes": 64,
+        "actions": 290,
+        "illegal_actions": 29,
+        "episodes_with_absent_gold_click": 0
+      },
+      "18": {
+        "episodes": 64,
+        "actions": 296,
+        "illegal_actions": 30,
+        "episodes_with_absent_gold_click": 0
+      },
+      "19": {
+        "episodes": 64,
+        "actions": 268,
+        "illegal_actions": 12,
+        "episodes_with_absent_gold_click": 0
+      },
+      "20": {
+        "episodes": 64,
+        "actions": 284,
+        "illegal_actions": 37,
+        "episodes_with_absent_gold_click": 0
+      },
+      "21": {
+        "episodes": 64,
+        "actions": 292,
+        "illegal_actions": 21,
+        "episodes_with_absent_gold_click": 0
+      },
+      "22": {
+        "episodes": 64,
+        "actions": 268,
+        "illegal_actions": 9,
+        "episodes_with_absent_gold_click": 0
+      },
+      "23": {
+        "episodes": 64,
+        "actions": 289,
+        "illegal_actions": 36,
+        "episodes_with_absent_gold_click": 0
+      },
+      "24": {
+        "episodes": 64,
+        "actions": 289,
+        "illegal_actions": 14,
+        "episodes_with_absent_gold_click": 0
+      },
+      "25": {
+        "episodes": 64,
+        "actions": 297,
+        "illegal_actions": 49,
+        "episodes_with_absent_gold_click": 0
+      },
+      "26": {
+        "episodes": 64,
+        "actions": 302,
+        "illegal_actions": 47,
+        "episodes_with_absent_gold_click": 0
+      },
+      "27": {
+        "episodes": 64,
+        "actions": 288,
+        "illegal_actions": 27,
+        "episodes_with_absent_gold_click": 0
+      },
+      "28": {
+        "episodes": 64,
+        "actions": 291,
+        "illegal_actions": 36,
+        "episodes_with_absent_gold_click": 0
+      },
+      "29": {
+        "episodes": 64,
+        "actions": 302,
+        "illegal_actions": 41,
+        "episodes_with_absent_gold_click": 0
+      },
+      "30": {
+        "episodes": 64,
+        "actions": 281,
+        "illegal_actions": 46,
+        "episodes_with_absent_gold_click": 0
+      },
+      "31": {
+        "episodes": 64,
+        "actions": 273,
+        "illegal_actions": 47,
+        "episodes_with_absent_gold_click": 0
+      },
+      "32": {
+        "episodes": 64,
+        "actions": 321,
+        "illegal_actions": 53,
+        "episodes_with_absent_gold_click": 0
+      },
+      "33": {
+        "episodes": 64,
+        "actions": 302,
+        "illegal_actions": 71,
+        "episodes_with_absent_gold_click": 0
+      }
+    },
+    "R-matched": {
+      "1": {
+        "actions_with_reconstructed_legality": 282,
+        "episodes": 64,
+        "actions": 282,
+        "illegal_actions": 25,
+        "episodes_with_absent_gold_click": 0
+      },
+      "2": {
+        "episodes": 64,
+        "actions": 297,
+        "illegal_actions": 33,
+        "episodes_with_absent_gold_click": 0
+      },
+      "3": {
+        "episodes": 64,
+        "actions": 291,
+        "illegal_actions": 22,
+        "episodes_with_absent_gold_click": 0
+      },
+      "4": {
+        "episodes": 64,
+        "actions": 288,
+        "illegal_actions": 20,
+        "episodes_with_absent_gold_click": 0
+      },
+      "5": {
+        "episodes": 64,
+        "actions": 280,
+        "illegal_actions": 20,
+        "episodes_with_absent_gold_click": 0
+      },
+      "6": {
+        "episodes": 64,
+        "actions": 278,
+        "illegal_actions": 9,
+        "episodes_with_absent_gold_click": 0
+      },
+      "7": {
+        "episodes": 64,
+        "actions": 276,
+        "illegal_actions": 13,
+        "episodes_with_absent_gold_click": 0
+      },
+      "8": {
+        "episodes": 64,
+        "actions": 266,
+        "illegal_actions": 18,
+        "episodes_with_absent_gold_click": 0
+      },
+      "9": {
+        "episodes": 64,
+        "actions": 287,
+        "illegal_actions": 42,
+        "episodes_with_absent_gold_click": 0
+      },
+      "10": {
+        "episodes": 64,
+        "actions": 270,
+        "illegal_actions": 24,
+        "episodes_with_absent_gold_click": 0
+      },
+      "11": {
+        "episodes": 64,
+        "actions": 303,
+        "illegal_actions": 44,
+        "episodes_with_absent_gold_click": 0
+      },
+      "12": {
+        "episodes": 64,
+        "actions": 276,
+        "illegal_actions": 23,
+        "episodes_with_absent_gold_click": 0
+      },
+      "13": {
+        "episodes": 64,
+        "actions": 286,
+        "illegal_actions": 24,
+        "episodes_with_absent_gold_click": 0
+      },
+      "14": {
+        "episodes": 64,
+        "actions": 276,
+        "illegal_actions": 25,
+        "episodes_with_absent_gold_click": 0
+      },
+      "15": {
+        "episodes": 64,
+        "actions": 281,
+        "illegal_actions": 27,
+        "episodes_with_absent_gold_click": 0
+      },
+      "16": {
+        "episodes": 64,
+        "actions": 320,
+        "illegal_actions": 29,
+        "episodes_with_absent_gold_click": 0
+      },
+      "17": {
+        "episodes": 64,
+        "actions": 309,
+        "illegal_actions": 46,
+        "episodes_with_absent_gold_click": 0
+      },
+      "18": {
+        "episodes": 64,
+        "actions": 303,
+        "illegal_actions": 31,
+        "episodes_with_absent_gold_click": 0
+      },
+      "19": {
+        "episodes": 64,
+        "actions": 287,
+        "illegal_actions": 34,
+        "episodes_with_absent_gold_click": 0
+      },
+      "20": {
+        "episodes": 64,
+        "actions": 313,
+        "illegal_actions": 75,
+        "episodes_with_absent_gold_click": 0
+      },
+      "21": {
+        "episodes": 64,
+        "actions": 308,
+        "illegal_actions": 52,
+        "episodes_with_absent_gold_click": 0
+      },
+      "22": {
+        "episodes": 64,
+        "actions": 304,
+        "illegal_actions": 45,
+        "episodes_with_absent_gold_click": 0
+      },
+      "23": {
+        "episodes": 64,
+        "actions": 361,
+        "illegal_actions": 88,
+        "episodes_with_absent_gold_click": 0
+      },
+      "24": {
+        "episodes": 64,
+        "actions": 382,
+        "illegal_actions": 85,
+        "episodes_with_absent_gold_click": 0,
+        "illegal_click_gold": 1
+      },
+      "25": {
+        "episodes": 64,
+        "actions": 333,
+        "illegal_actions": 109,
+        "episodes_with_absent_gold_click": 0,
+        "illegal_click_gold": 1
+      },
+      "26": {
+        "episodes": 64,
+        "actions": 386,
+        "illegal_actions": 124,
+        "episodes_with_absent_gold_click": 0
+      },
+      "27": {
+        "episodes": 64,
+        "actions": 333,
+        "illegal_actions": 138,
+        "episodes_with_absent_gold_click": 0
+      },
+      "28": {
+        "episodes": 64,
+        "actions": 335,
+        "illegal_actions": 211,
+        "episodes_with_absent_gold_click": 0
+      },
+      "29": {
+        "episodes": 64,
+        "actions": 333,
+        "illegal_actions": 194,
+        "episodes_with_absent_gold_click": 0,
+        "illegal_click_gold": 1
+      },
+      "30": {
+        "episodes": 64,
+        "actions": 315,
+        "illegal_actions": 204,
+        "episodes_with_absent_gold_click": 0,
+        "illegal_click_gold": 1
+      }
+    },
+    "P-frozen": {
+      "11": {
+        "episodes": 64,
+        "actions": 308,
+        "illegal_actions": 46,
+        "episodes_with_absent_gold_click": 0
+      },
+      "12": {
+        "episodes": 64,
+        "actions": 278,
+        "illegal_actions": 23,
+        "episodes_with_absent_gold_click": 0
+      },
+      "13": {
+        "episodes": 64,
+        "actions": 282,
+        "illegal_actions": 15,
+        "episodes_with_absent_gold_click": 0
+      },
+      "14": {
+        "episodes": 64,
+        "actions": 290,
+        "illegal_actions": 34,
+        "episodes_with_absent_gold_click": 0
+      },
+      "15": {
+        "episodes": 64,
+        "actions": 274,
+        "illegal_actions": 13,
+        "episodes_with_absent_gold_click": 0
+      },
+      "16": {
+        "episodes": 64,
+        "actions": 277,
+        "illegal_actions": 12,
+        "episodes_with_absent_gold_click": 0
+      },
+      "17": {
+        "episodes": 64,
+        "actions": 292,
+        "illegal_actions": 21,
+        "episodes_with_absent_gold_click": 0
+      },
+      "18": {
+        "episodes": 64,
+        "actions": 275,
+        "illegal_actions": 16,
+        "episodes_with_absent_gold_click": 0
+      },
+      "19": {
+        "episodes": 64,
+        "actions": 276,
+        "illegal_actions": 12,
+        "episodes_with_absent_gold_click": 0
+      },
+      "20": {
+        "episodes": 64,
+        "actions": 297,
+        "illegal_actions": 17,
+        "episodes_with_absent_gold_click": 0
+      },
+      "21": {
+        "episodes": 64,
+        "actions": 278,
+        "illegal_actions": 7,
+        "episodes_with_absent_gold_click": 0
+      },
+      "22": {
+        "episodes": 64,
+        "actions": 264,
+        "illegal_actions": 8,
+        "episodes_with_absent_gold_click": 0
+      },
+      "23": {
+        "episodes": 64,
+        "actions": 287,
+        "illegal_actions": 11,
+        "episodes_with_absent_gold_click": 0
+      },
+      "24": {
+        "episodes": 64,
+        "actions": 285,
+        "illegal_actions": 14,
+        "episodes_with_absent_gold_click": 0
+      },
+      "25": {
+        "episodes": 64,
+        "actions": 283,
+        "illegal_actions": 25,
+        "episodes_with_absent_gold_click": 0
+      },
+      "26": {
+        "episodes": 64,
+        "actions": 282,
+        "illegal_actions": 19,
+        "episodes_with_absent_gold_click": 0
+      },
+      "27": {
+        "episodes": 64,
+        "actions": 281,
+        "illegal_actions": 6,
+        "episodes_with_absent_gold_click": 0
+      },
+      "28": {
+        "episodes": 64,
+        "actions": 317,
+        "illegal_actions": 22,
+        "episodes_with_absent_gold_click": 0
+      },
+      "29": {
+        "episodes": 64,
+        "actions": 330,
+        "illegal_actions": 13,
+        "episodes_with_absent_gold_click": 0
+      },
+      "30": {
+        "episodes": 64,
+        "actions": 354,
+        "illegal_actions": 3,
+        "episodes_with_absent_gold_click": 0
+      }
+    }
+  },
+  "evaluation_by_checkpoint_split_mode": {
+    "B@0/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3489,
+      "illegal_actions": 377,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 17,
+      "unresolved_illegal_actions": 45
+    },
+    "B@0/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 851,
+      "illegal_actions": 50,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 1,
+      "unresolved_illegal_actions": 3
+    },
+    "B@0/V/sample": {
+      "episodes": 800,
+      "actions": 3401,
+      "illegal_actions": 260,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 10,
+      "unresolved_illegal_actions": 18
+    },
+    "B@0/V/greedy": {
+      "episodes": 200,
+      "actions": 824,
+      "illegal_actions": 38,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 1,
+      "unresolved_illegal_actions": 2
+    },
+    "P@10/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3432,
+      "illegal_actions": 245,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 11,
+      "unresolved_illegal_actions": 26
+    },
+    "P@10/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 850,
+      "illegal_actions": 43,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 0,
+      "unresolved_illegal_actions": 0
+    },
+    "P@10/V/sample": {
+      "episodes": 800,
+      "actions": 3438,
+      "illegal_actions": 221,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 8,
+      "unresolved_illegal_actions": 19
+    },
+    "P@10/V/greedy": {
+      "episodes": 200,
+      "actions": 828,
+      "illegal_actions": 28,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 0,
+      "unresolved_illegal_actions": 0
+    },
+    "P-frozen@10/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3452,
+      "illegal_actions": 250,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P-frozen@10/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 849,
+      "illegal_actions": 43,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P-frozen@10/V/sample": {
+      "episodes": 800,
+      "actions": 3400,
+      "illegal_actions": 180,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P-frozen@10/V/greedy": {
+      "episodes": 200,
+      "actions": 828,
+      "illegal_actions": 30,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@10/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3474,
+      "illegal_actions": 343,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@10/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 845,
+      "illegal_actions": 63,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@10/V/greedy": {
+      "episodes": 200,
+      "actions": 832,
+      "illegal_actions": 41,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@10/V/sample": {
+      "episodes": 800,
+      "actions": 3379,
+      "illegal_actions": 227,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@10/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3569,
+      "illegal_actions": 352,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@10/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 860,
+      "illegal_actions": 54,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@10/V/sample": {
+      "episodes": 800,
+      "actions": 3407,
+      "illegal_actions": 239,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@10/V/greedy": {
+      "episodes": 200,
+      "actions": 829,
+      "illegal_actions": 54,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P@20/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3521,
+      "illegal_actions": 224,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 13,
+      "unresolved_illegal_actions": 31
+    },
+    "P@20/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 842,
+      "illegal_actions": 38,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 2,
+      "unresolved_illegal_actions": 5
+    },
+    "P@20/V/sample": {
+      "episodes": 800,
+      "actions": 3396,
+      "illegal_actions": 152,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 5,
+      "unresolved_illegal_actions": 11
+    },
+    "P@20/V/greedy": {
+      "episodes": 200,
+      "actions": 835,
+      "illegal_actions": 21,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 1,
+      "unresolved_illegal_actions": 4
+    },
+    "P-frozen@20/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3466,
+      "illegal_actions": 213,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P-frozen@20/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 873,
+      "illegal_actions": 37,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P-frozen@20/V/sample": {
+      "episodes": 800,
+      "actions": 3401,
+      "illegal_actions": 151,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P-frozen@20/V/greedy": {
+      "episodes": 200,
+      "actions": 839,
+      "illegal_actions": 21,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@20/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3553,
+      "illegal_actions": 372,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@20/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 866,
+      "illegal_actions": 57,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@20/V/sample": {
+      "episodes": 800,
+      "actions": 3388,
+      "illegal_actions": 307,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@20/V/greedy": {
+      "episodes": 200,
+      "actions": 824,
+      "illegal_actions": 49,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@20/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3912,
+      "illegal_actions": 694,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@20/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 910,
+      "illegal_actions": 94,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@20/V/sample": {
+      "episodes": 800,
+      "actions": 3898,
+      "illegal_actions": 735,
+      "episodes_with_absent_gold_click": 0,
+      "illegal_click_gold": 1
+    },
+    "R-matched@20/V/greedy": {
+      "episodes": 200,
+      "actions": 909,
+      "illegal_actions": 121,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P@30/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3686,
+      "illegal_actions": 240,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 15,
+      "unresolved_illegal_actions": 42
+    },
+    "P@30/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 955,
+      "illegal_actions": 57,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 3,
+      "unresolved_illegal_actions": 9
+    },
+    "P@30/V/sample": {
+      "episodes": 800,
+      "actions": 3590,
+      "illegal_actions": 215,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 6,
+      "unresolved_illegal_actions": 14
+    },
+    "P@30/V/greedy": {
+      "episodes": 200,
+      "actions": 880,
+      "illegal_actions": 48,
+      "episodes_with_absent_gold_click": 0,
+      "unresolved_episodes": 3,
+      "unresolved_illegal_actions": 8
+    },
+    "P-frozen@30/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3901,
+      "illegal_actions": 209,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P-frozen@30/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 966,
+      "illegal_actions": 49,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P-frozen@30/V/sample": {
+      "episodes": 800,
+      "actions": 3863,
+      "illegal_actions": 206,
+      "episodes_with_absent_gold_click": 0
+    },
+    "P-frozen@30/V/greedy": {
+      "episodes": 200,
+      "actions": 938,
+      "illegal_actions": 36,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@30/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 884,
+      "illegal_actions": 111,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@30/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3727,
+      "illegal_actions": 669,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@30/V/sample": {
+      "episodes": 800,
+      "actions": 3680,
+      "illegal_actions": 670,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R@30/V/greedy": {
+      "episodes": 200,
+      "actions": 876,
+      "illegal_actions": 133,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@30/T_opd_eval/sample": {
+      "episodes": 800,
+      "actions": 3885,
+      "illegal_actions": 2483,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@30/T_opd_eval/greedy": {
+      "episodes": 200,
+      "actions": 944,
+      "illegal_actions": 540,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@30/V/sample": {
+      "episodes": 800,
+      "actions": 4101,
+      "illegal_actions": 2553,
+      "episodes_with_absent_gold_click": 0
+    },
+    "R-matched@30/V/greedy": {
+      "episodes": 200,
+      "actions": 1053,
+      "illegal_actions": 549,
+      "episodes_with_absent_gold_click": 0
+    }
+  },
+  "source_files": 2098,
+  "source_manifest_sha256": "8b96410bac0c888cd01c113d201214633d975c25cd22ce4b6565d6fe9e8ece72",
+  "goals_sha256": "a84d41231414858f524855905abdca83168a976377cd8159f850a03b0a35acb9"
+}
