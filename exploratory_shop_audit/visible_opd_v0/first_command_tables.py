@@ -38,6 +38,15 @@ def behavior():
     lines=['# 连写时仅执行第一条完整命令的行为回放','',
            '同一题配对 §26 原值，自由交互沿用 T_opd_eval、V 各 200 题，采样种子 2201–2204，每题另做一次贪心。公共结果页恢复原 B 贪心首搜的完整历史与原环境状态，并逐题校验。已归档的起始前缀不计入新执行动作分母。','',
            '每个单元在题内先平均，再按 ASIN 整簇成对重抽 10,000 次。表中购买率以 % 表示，差值为新减原的百分点，方括号为 95% 区间。']
+    lines+=['','在 V 上，终点模型的采样购买率和回放增量如下。两个终点分别为 R-gap@45、P-gap@50；B 使用原始无适配器模型。']
+    brief=[]
+    for x in cells:
+        if x['dataset']=='V' and x['decode']=='sample' and x['model'] in ('B@0','R-gap@45','P-gap@50'):
+            l,h=x['paired_ci95']
+            brief.append([x['model'],'自由' if x['interaction']=='free' else '公共页',
+                          f"{100*x['original']:.2f} → {100*x['replay']:.2f}",
+                          f"{100*x['paired_difference']:+.2f} [{100*l:+.2f}, {100*h:+.2f}]"])
+    table(lines,['模型','交互','全要求购买率 %（原 → 回放）','配对差，百分点'],brief)
     for mode,label in [('free','自由交互'),('page','公共结果页续跑')]:
         lines+=['','## '+label]
         rows=[]
@@ -59,8 +68,12 @@ def behavior():
         changes=sum(x['outcome_audit'][stratum]['gains']+x['outcome_audit'][stratum]['losses'] for x in cells)
         cohort='本次轨迹未发生截断' if stratum=='episode_no_cut' else '本次整个生成批次均未发生截断'
         lines+=['',f'{cohort}的 {total:,} 条轨迹中，购买成功标记与 §26 原档不同的有 {changes:,} 条。']
+    n_parallel=sum(row['environment_workers']==4 for row in d['model_setup'])
+    lines+=['',f'其中 {n_parallel} 个分片将独立任务分发给 4 个原生 CPU 环境，并按原顺序把观察送给模型。在已有轨迹上验证了完整环境返回及两种交互模式。']
+    n_warm=sum(row['warm'] for row in d['model_setup'])
+    lines+=['', f"全部 64 个分片中，{n_warm} 个复用了同卡同一检查点的模型进程。每次切换先清空前缀缓存并重置请求编号。每个复用的引擎和检查点均先用其冷启动时的完整批次逐 token 验证，核对全部交互记录。"]
     lines+=['','相同种子下，自回归生成仍可能受运行时批次和数值差异影响。配对差描述本次完整回放相对原评测的变化；一个批内某一轨迹提前结束也会改变后续批次。初次启动漏传 cuBLAS 工作区参数的 B 批次已隔离，表中只收录按原设置重跑的结果。',
-            '','[逐题配对计数（CSV 压缩包）](behavior_task_pairs.csv.gz) · [候选分布熵与最高概率](T_CAL_ENTROPY.md)']
+            '','[逐题配对计数（CSV 压缩包）](behavior_task_pairs.csv.gz) · [候选分布熵与最高概率](T_CAL_ENTROPY.md) · [四个投影目标的 CPU 交叉对照](CROSSED_PROJECTORS.md)']
     (DEST/'REPORT.md').write_text('\n'.join(lines)+'\n')
     keys=['model','interaction','dataset','decode','tasks','asins','episodes','original','replay','paired_difference',
           'ci95_low','ci95_high','actions','legal','legal_rate','truncations','truncated_legal','truncated_legal_rate',

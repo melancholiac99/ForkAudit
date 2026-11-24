@@ -147,7 +147,18 @@ def main():
                          'replay_purchases','actions','legal','truncations','truncated_legal',*TYPES])
         writer.writerows(taskrows)
     assert len(out)==32
-    save(DEST/'behavior.json',dict(cells=out,sources=sources,pairs_sha256=digest_file(f),
+    setup=[]
+    for path in sorted(ROOT.glob('*/*/*/rank*/complete.json')):
+        receipt=read(path)
+        warm=receipt.get('warm_model',False)
+        if warm:
+            assert receipt['warm_verified'] and len(receipt['validation_tokens_sha256'])==64
+        setup.append(dict(shard=str(path.parent.relative_to(ROOT)),warm=warm,
+            environment_workers=receipt.get('environment_workers',1),
+            setup_seconds=receipt.get('model_setup_seconds'),total_seconds=receipt.get('total_seconds'),
+            validation_tokens_sha256=receipt.get('validation_tokens_sha256')))
+    assert len(setup)==64
+    save(DEST/'behavior.json',dict(cells=out,sources=sources,model_setup=setup,pairs_sha256=digest_file(f),
         original_sha256=digest_file(PUBLIC/'endpoint_report.json'),bootstrap=dict(cluster='ASIN',paired_by='task',draws=10000,seed=20261123),
         hardware='two A100 80GB; logical ranks 0 and 2 on GPU 0, 1 and 3 on GPU 1, sequential on each',
         seeds=[2201,2202,2203,2204],greedy_seed=2201))
