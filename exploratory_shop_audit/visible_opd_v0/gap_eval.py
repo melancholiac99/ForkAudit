@@ -13,7 +13,7 @@ from exploratory_shop_audit.runtime import make_input, parse_generation
 SEEDS = (2201,2202,2203,2204)
 
 
-def run_batch(runner, pool, goals, rep, anchor_dir, mode, create_anchors=False):
+def run_batch(runner, pool, goals, rep, anchor_dir, mode, create_anchors=False, intervention=None):
     active, ended = [], []
     for g in goals:
         key = f'g26_{g}'
@@ -34,7 +34,12 @@ def run_batch(runner, pool, goals, rep, anchor_dir, mode, create_anchors=False):
         pending = []
         for e, gen in zip(active,runner.model.call(req),strict=True):
             action = parse_generation(gen['text'])
+            if intervention is not None:
+                action,cut = intervention.select(gen['text'],action)
             after = runner.engine.call(cmd='step',key=e['key'],action=action)
+            if intervention is not None:
+                event = intervention.event(e['goal'],e['state'],gen['text'],action,cut,after['legal'])
+                e.setdefault('events',[]).append(event)
             e['h'].append([e['state']['observation'],gen['text']])
             e['acts'].append(action)
             stop = after['status']['done']
@@ -50,6 +55,8 @@ def run_batch(runner, pool, goals, rep, anchor_dir, mode, create_anchors=False):
             if stop:
                 ended.append(dict(goal=e['goal'],rep=rep,reason=after['status']['termination_reason'],
                                   reward_valid=after['status']['reward_valid'],length=len(e['acts'])))
+                if intervention is not None:
+                    ended[-1]['events'] = e['events']
                 runner.engine.call(cmd='close',key=e['key'])
             else:
                 e['state']=after['state']
