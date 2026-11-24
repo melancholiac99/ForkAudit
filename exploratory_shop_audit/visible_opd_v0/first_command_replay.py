@@ -120,7 +120,9 @@ def run(l,arm,k,pool,mode,rank):
 
 
 def main(gpu,lanes):
-    os.environ.update(SHOP_GPU_ID=str(gpu),SHOP_GPU_IDS=str(gpu))
+    from .e25_probe import configure
+    os.environ.update(LOCAL_RANK=str(gpu),SHOP_GPU_ID=str(gpu),SHOP_GPU_IDS=str(gpu))
+    assert configure()==gpu
     ROOT.mkdir(exist_ok=True)
     l=GapLayout()
     with (ROOT/f'worker{gpu}.lock').open('a') as lock:

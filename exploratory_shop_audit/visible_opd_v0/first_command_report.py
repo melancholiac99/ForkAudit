@@ -77,6 +77,7 @@ def cell(arm,k,pool,mode,tasks,sources):
                 return out
             orig=index(read(old/name)); replay=index(read(new/name))
             assert set(orig)==set(replay) and not set(data)&set(orig)
+            batch_cut=any(e['truncated'] for r in replay.values() for e in r.get('events',[]))
             for key,r in replay.items():
                 base=orig[key]; g,rep=key
                 assert g in m['goals'] and 0<=rep<=4
@@ -87,7 +88,15 @@ def cell(arm,k,pool,mode,tasks,sources):
                 anch=RUN/'formal/pages'/pool/f'rank{rank}'/f'{pool}_{g}.json'
                 extra=len(read(anch)['actions']) if mode=='page' else 0
                 assert len(ev)+extra==r['length'] and r['length']<=35
-                data[key]=(int(base['reason'] in ALL_REQUIREMENTS),int(r['reason'] in ALL_REQUIREMENTS),action_counts(ev))
+                before=int(base['reason'] in ALL_REQUIREMENTS)
+                after=int(r['reason'] in ALL_REQUIREMENTS)
+                counts=action_counts(ev)
+                stratum='episode_cut' if counts['cuts'] else 'episode_no_cut'
+                for label in [stratum]+([] if batch_cut else ['whole_batch_no_cut']):
+                    counts[label]+=1
+                    counts[label+'_gain']+=after>before
+                    counts[label+'_loss']+=after<before
+                data[key]=(before,after,counts)
     assert set(data)=={(g,rep) for g in labels for rep in range(5)}
     result=[]; taskrows=[]
     for decode,reps in [('sample',range(4)),('greedy',[4])]:
@@ -109,7 +118,9 @@ def cell(arm,k,pool,mode,tasks,sources):
         result.append(dict(model=f'{arm}@{k}',dataset=pool,interaction=mode,decode=decode,
                            tasks=stat['tasks'],excluded_no_page=len(excluded),asins=stat['asins'],episodes=sampled,
                            original=float(np.mean(list(oldp.values()))),replay=float(np.mean(list(newp.values()))),
-                           paired_difference=stat['difference'],paired_ci95=stat['ci95'],**summary))
+                           paired_difference=stat['difference'],paired_ci95=stat['ci95'],**summary,
+                           outcome_audit={s:dict(episodes=all_counts[s],gains=all_counts[s+'_gain'],losses=all_counts[s+'_loss'])
+                                          for s in ('episode_cut','episode_no_cut','whole_batch_no_cut')}))
     return result,taskrows
 
 

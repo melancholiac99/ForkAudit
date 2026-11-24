@@ -54,7 +54,13 @@ def behavior():
             '下表的非法计数为改动后全部新执行动作中的计数。逐格的总合法率、截断命令合法率、首次截断之后其余动作合法率及缺席编号的 gold/部分匹配交叉项见[行为数据](behavior.json)。']
     table(lines,['模型','交互','数据集','解码','无法解析','动作类型不可用','缺席编号','不可用选项','导航不存在','其他'],
           [[x['model'],x['interaction'],x['dataset'],x['decode'],*[x['illegal_types'][k] for k in TYPES]] for x in cells])
-    lines+=['','[逐题配对计数（CSV 压缩包）](behavior_task_pairs.csv.gz) · [候选分布熵与最高概率](T_CAL_ENTROPY.md)']
+    for stratum in ('episode_no_cut','whole_batch_no_cut'):
+        total=sum(x['outcome_audit'][stratum]['episodes'] for x in cells)
+        changes=sum(x['outcome_audit'][stratum]['gains']+x['outcome_audit'][stratum]['losses'] for x in cells)
+        cohort='本次轨迹未发生截断' if stratum=='episode_no_cut' else '本次整个生成批次均未发生截断'
+        lines+=['',f'{cohort}的 {total:,} 条轨迹中，购买成功标记与 §26 原档不同的有 {changes:,} 条。']
+    lines+=['','相同种子下，自回归生成仍可能受运行时批次和数值差异影响。配对差描述本次完整回放相对原评测的变化；一个批内某一轨迹提前结束也会改变后续批次。初次启动漏传 cuBLAS 工作区参数的 B 批次已隔离，表中只收录按原设置重跑的结果。',
+            '','[逐题配对计数（CSV 压缩包）](behavior_task_pairs.csv.gz) · [候选分布熵与最高概率](T_CAL_ENTROPY.md)']
     (DEST/'REPORT.md').write_text('\n'.join(lines)+'\n')
     keys=['model','interaction','dataset','decode','tasks','asins','episodes','original','replay','paired_difference',
           'ci95_low','ci95_high','actions','legal','legal_rate','truncations','truncated_legal','truncated_legal_rate',
