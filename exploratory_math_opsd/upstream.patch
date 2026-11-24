@@ -1,0 +1,192 @@
+diff --git a/data_collator.py b/data_collator.py
+index 0829108..c51d058 100644
+--- a/data_collator.py
++++ b/data_collator.py
+@@ -21,0 +22 @@ class SelfDistillationDataCollator:
++        question_only_teacher=False,
+@@ -27,0 +29,3 @@ class SelfDistillationDataCollator:
++        self.question_only_teacher = question_only_teacher
++        if reason_first and question_only_teacher:
++            raise ValueError("T0 requires the registered single-pass teacher")
+@@ -64 +68 @@ class SelfDistillationDataCollator:
+-            solution = feature["solution"]
++            solution = None if self.question_only_teacher else feature["solution"]
+@@ -103,0 +108,2 @@ class SelfDistillationDataCollator:
++                if self.question_only_teacher:
++                    teacher_user_message = student_user_message
+@@ -206,0 +213,36 @@ class SelfDistillationDataCollator:
++
++
++def assemble_distillation_inputs(inputs, generated_ids, generated_attention_mask, pad_token_id):
++    # Get batch-level student prompt length
++    student_prompt_len = inputs["student_prompt_length"]
++
++    # Extract generation part (same slice for all examples since prompts are padded)
++    generation_ids = generated_ids[:, student_prompt_len:]
++
++    # Construct student full sequence: [student_prompt][generation]
++    inputs["student_input_ids"] = generated_ids
++    inputs["student_attention_mask"] = generated_attention_mask
++
++    # Construct teacher full sequence: [teacher_prompt][generation]
++    teacher_prompts = inputs["teacher_prompts"]
++    teacher_full_ids = torch.cat([teacher_prompts, generation_ids], dim=1)
++
++    # Create attention mask for teacher
++    teacher_attention_mask = torch.ones_like(teacher_full_ids)
++    if pad_token_id is not None:
++        teacher_attention_mask[teacher_full_ids == pad_token_id] = 0
++
++    inputs["teacher_input_ids"] = teacher_full_ids
++    inputs["teacher_attention_mask"] = teacher_attention_mask
++
++    # Create labels for generation tokens
++    # Mask prompt tokens (use per-example lengths for accurate masking)
++    labels = generated_ids.clone()
++    for i in range(labels.shape[0]):
++        actual_prompt_len = inputs["student_prompt_lengths_per_example"][i].item()
++        labels[i, :actual_prompt_len] = -100  # Mask actual prompt
++
++    if pad_token_id is not None:
++        labels[labels == pad_token_id] = -100
++
++    inputs["labels"] = labels
+diff --git a/eval/evaluate_math.py b/eval/evaluate_math.py
+index 51861d7..79bda4e 100644
+--- a/eval/evaluate_math.py
++++ b/eval/evaluate_math.py
+@@ -185,0 +186,2 @@ def evaluate_math500(
++    seed: int = None,
++    local_eval_file: str = None,
+@@ -222 +224,3 @@ def evaluate_math500(
+-    if dataset_name.lower() == "math500":
++    if local_eval_file is not None:
++        dataset = load_dataset("parquet", data_files={"train": local_eval_file}, split="train")
++    elif dataset_name.lower() == "math500":
+@@ -279,0 +284 @@ def evaluate_math500(
++        seed=seed,
+@@ -389,0 +395,2 @@ def evaluate_math500(
++        if len(output.outputs) != val_n:
++            raise RuntimeError("Missing evaluation samples")
+@@ -442,3 +449,4 @@ def evaluate_math500(
+-                {"predicted_answer": pred, "full_generation": gen, "correct": corr, "formatted": fmt}
+-                for pred, gen, corr, fmt in zip(
+-                    predicted_answers, generations, is_correct_list, is_formatted_list
++                {"predicted_answer": pred, "full_generation": gen, "correct": corr, "formatted": fmt,
++                 "generated_tokens": len(sample.token_ids), "finish_reason": sample.finish_reason}
++                for pred, gen, corr, fmt, sample in zip(
++                    predicted_answers, generations, is_correct_list, is_formatted_list, output.outputs
+@@ -519,0 +528,2 @@ def evaluate_math500(
++            "seed": seed,
++            "adapter": str(lora_request.lora_path) if lora_request is not None else None,
+@@ -635,0 +646,2 @@ def main():
++    parser.add_argument("--seed", type=int, default=None)
++    parser.add_argument("--local_eval_file")
+@@ -736,0 +749,2 @@ def main():
++    if args.checkpoint_dir is not None and lora_request is None:
++        raise RuntimeError("Requested LoRA unavailable; refusing to score this checkpoint as base")
+@@ -753,0 +768,2 @@ def main():
++        seed=args.seed,
++        local_eval_file=args.local_eval_file,
+diff --git a/opsd_train.py b/opsd_train.py
+index 8526a68..44f493c 100644
+--- a/opsd_train.py
++++ b/opsd_train.py
+@@ -5 +5,2 @@ from datasets import load_dataset
+-from transformers import AutoTokenizer, GenerationConfig
++from transformers import AutoTokenizer, GenerationConfig, TrainerCallback
++from data_collator import SelfDistillationDataCollator
+@@ -27,0 +29,4 @@ class CustomScriptArguments(ScriptArguments):
++    question_only_teacher: bool = False
++    local_train_glob: str = None
++    stop_after_updates: int = None
++
+@@ -110,0 +116,11 @@ class CustomScriptArguments(ScriptArguments):
++class StopAfterUpdates(TrainerCallback):
++    def __init__(self, limit):
++        self.limit = limit
++
++    def on_step_end(self, args, state, control, **kwargs):
++        if state.global_step >= self.limit:
++            control.should_save = True
++            control.should_training_stop = True
++        return control
++
++
+@@ -266 +282,4 @@ if __name__ == "__main__":
+-    dataset = load_dataset("siyanzhao/Openthoughts_math_30k_opsd")
++    if script_args.local_train_glob:
++        dataset = load_dataset("parquet", data_files={"train": script_args.local_train_glob})
++    else:
++        dataset = load_dataset("siyanzhao/Openthoughts_math_30k_opsd")
+@@ -274,0 +294,5 @@ if __name__ == "__main__":
++        data_collator=SelfDistillationDataCollator(
++            tokenizer, max_length=training_args.max_length, reason_first=script_args.reason_first,
++            student_thinking=script_args.student_thinking, teacher_thinking=script_args.teacher_thinking,
++            question_only_teacher=True,
++        ) if script_args.question_only_teacher else None,
+@@ -296 +320,3 @@ if __name__ == "__main__":
+-    trainer.train()
++    if script_args.stop_after_updates is not None:
++        trainer.add_callback(StopAfterUpdates(script_args.stop_after_updates))
++    trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
+diff --git a/opsd_trainer.py b/opsd_trainer.py
+index c151bd7..3dedcb3 100644
+--- a/opsd_trainer.py
++++ b/opsd_trainer.py
+@@ -64 +64 @@ from trl.experimental.gold.gold_config import GOLDConfig
+-from data_collator import SelfDistillationDataCollator
++from data_collator import SelfDistillationDataCollator, assemble_distillation_inputs
+@@ -1387,33 +1387 @@ class OPSDTrainer(SFTTrainer):
+-        # Get batch-level student prompt length
+-        student_prompt_len = inputs["student_prompt_length"]
+-
+-        # Extract generation part (same slice for all examples since prompts are padded)
+-        generation_ids = generated_ids[:, student_prompt_len:]
+-
+-        # Construct student full sequence: [student_prompt][generation]
+-        inputs["student_input_ids"] = generated_ids
+-        inputs["student_attention_mask"] = generated_attention_mask
+-
+-        # Construct teacher full sequence: [teacher_prompt][generation]
+-        teacher_prompts = inputs["teacher_prompts"]
+-        teacher_full_ids = torch.cat([teacher_prompts, generation_ids], dim=1)
+-
+-        # Create attention mask for teacher
+-        teacher_attention_mask = torch.ones_like(teacher_full_ids)
+-        if self.processing_class.pad_token_id is not None:
+-            teacher_attention_mask[teacher_full_ids == self.processing_class.pad_token_id] = 0
+-
+-        inputs["teacher_input_ids"] = teacher_full_ids
+-        inputs["teacher_attention_mask"] = teacher_attention_mask
+-
+-        # Create labels for generation tokens
+-        # Mask prompt tokens (use per-example lengths for accurate masking)
+-        labels = generated_ids.clone()
+-        for i in range(labels.shape[0]):
+-            actual_prompt_len = inputs["student_prompt_lengths_per_example"][i].item()
+-            labels[i, :actual_prompt_len] = -100  # Mask actual prompt
+-
+-        if self.processing_class.pad_token_id is not None:
+-            labels[labels == self.processing_class.pad_token_id] = -100
+-
+-        inputs["labels"] = labels
++        assemble_distillation_inputs(inputs, generated_ids, generated_attention_mask, self.processing_class.pad_token_id)
+diff --git a/scripts/run_opsd_1b.sh b/scripts/run_opsd_1b.sh
+index aafd47c..2e56d62 100644
+--- a/scripts/run_opsd_1b.sh
++++ b/scripts/run_opsd_1b.sh
+@@ -5 +5 @@ accelerate launch \
+-    --main_process_port 12949 \
++    --main_process_port "${OPSD_PORT:-12949}" \
+@@ -7 +7 @@ accelerate launch \
+-    --model_name_or_path /data0/shared/Qwen3-1.7B \
++    --model_name_or_path "${OPSD_MODEL:?}" \
+@@ -13,2 +13,2 @@ accelerate launch \
+-    --output_dir  /data0/siyanz/opsd/ \
+-    --run_config qwen31b_gen1024_fixteacher_temp11_forwardbeta0_clip005 \
++    --output_dir  "${OPSD_OUTPUT:?}" \
++    --run_config "${OPSD_ARM:?}" \
+@@ -37 +37 @@ accelerate launch \
+-    --wandb_project OPSD
++    --wandb_project OPSD "$@"
