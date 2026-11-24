@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import re
 
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
 from hashlib import sha256
 import time
@@ -17,6 +18,7 @@ from .gap_run import GapLayout
 from .gap_score import RUN, PUBLIC, split_tasks
 from exploratory_shop_audit.grpo_forced_audit.common import SOURCE, digest_file, read, save
 from exploratory_shop_audit.grpo_forced_audit.rollout import Runner
+from exploratory_shop_audit.grpo_forced_audit.checks import environment
 
 ROOT = RUN/'first_command_replay'
 DEST = PUBLIC/'first_command_replay'
@@ -80,6 +82,62 @@ def jobs():
             for mode in (('free','page') if k in (0,45,50) else ('free',)):
                 for rank in range(4):
                     yield arm,k,pool,mode,rank
+
+
+class ReplayEnvironments:
+    """Independent native sessions, preserving the order of model requests and observations."""
+
+    def __init__(self, workers, threads):
+        self.workers = workers
+        self.threads = threads
+        self.owners = {}
+
+    def call_many(self, requests):
+        buckets = [[] for _ in self.workers]
+        for i, request in enumerate(requests):
+            key = request['key']
+            if request['cmd'] == 'open':
+                if key in self.owners:
+                    raise ValueError(f'Duplicate active environment {key}')
+                self.owners[key] = i % len(buckets)
+            buckets[self.owners[key]].append((i, request))
+        pending = [(group, self.threads.submit(worker.call, cmd='batch', requests=[r for _, r in group]))
+                   for worker, group in zip(self.workers, buckets) if group]
+        results = [None]*len(requests)
+        for group, future in pending:
+            for (i, request), response in zip(group, future.result(), strict=True):
+                results[i] = response
+                if request['cmd'] == 'close':
+                    del self.owners[request['key']]
+        return results
+
+    def close(self):
+        try:
+            list(self.threads.map(lambda worker: worker.close(), self.workers))
+        finally:
+            self.threads.shutdown()
+
+
+def create_runner(folder, checkpoint):
+    # The independent environment initializations overlap vLLM initialization.
+    threads = ThreadPoolExecutor(max_workers=4)
+    futures = [threads.submit(environment, folder, f'replay_env_{i}') for i in (1, 2, 3)]
+    runner = None
+    try:
+        runner = Runner(folder, checkpoint, parallel_start=True)
+        extras = [f.result() for f in futures]
+        if any(e.ready['tables'] != runner.engine.ready['tables'] for e in extras):
+            raise ValueError('Frozen environment table mismatch')
+        runner.engine = ReplayEnvironments([runner.engine, *extras], threads)
+        return runner
+    except BaseException:
+        if runner is not None:
+            runner.close()
+        for future in futures:
+            if future.exception() is None:
+                future.result().close()
+        threads.shutdown()
+        raise
 
 
 @contextmanager
@@ -146,7 +204,7 @@ class ReplaySession:
         if not warm:
             self.close()
             self.checkpoint = checkpoint
-            self.runner = Runner(folder, checkpoint, parallel_start=True)
+            self.runner = create_runner(folder, checkpoint)
             self.verified = False
             self.verified_tokens = None
             self.reference = None
@@ -199,7 +257,7 @@ def run(l,arm,k,pool,mode,rank,session):
     save(folder/'complete.json',dict(checkpoint=signature,original_checkpoint=archived['checkpoint'],
          archive_sha256=digest_file(base/'complete.json'),pool=pool,mode=mode,goals=goals,seeds=SEEDS,
          logical_rank=rank,parts=parts,model_setup_seconds=setup_time,
-         warm_model=warm,warm_verified=session.verified,validation_tokens_sha256=session.verified_tokens,total_seconds=time.monotonic()-start))
+         environment_workers=4,warm_model=warm,warm_verified=session.verified,validation_tokens_sha256=session.verified_tokens,total_seconds=time.monotonic()-start))
 
 
 def main(gpu,lanes):

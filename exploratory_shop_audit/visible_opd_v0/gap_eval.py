@@ -13,8 +13,14 @@ from exploratory_shop_audit.runtime import make_input, parse_generation
 SEEDS = (2201,2202,2203,2204)
 
 
+def environment_calls(runner, requests):
+    if hasattr(runner.engine, 'call_many'):
+        return runner.engine.call_many(requests)
+    return (runner.engine.call(**request) for request in requests)
+
+
 def run_batch(runner, pool, goals, rep, anchor_dir, mode, create_anchors=False, intervention=None):
-    active, ended = [], []
+    active, ended, starts = [], [], []
     for g in goals:
         key = f'g26_{g}'
         ap = anchor_dir/f'{pool}_{g}.json'
@@ -24,19 +30,24 @@ def run_batch(runner, pool, goals, rep, anchor_dir, mode, create_anchors=False, 
             continue
         acts = list(src['actions']) if src else []
         hist = list(src['history']) if src else []
-        state = runner.engine.call(cmd='open',key=key,goal_index=g,prefix=acts)
+        starts.append((g,key,acts,hist,src))
+    opens=[dict(cmd='open',key=key,goal_index=g,prefix=acts) for g,key,acts,_,_ in starts]
+    for (g,key,acts,hist,src),state in zip(starts,environment_calls(runner,opens),strict=True):
         if src is not None and digest_value(state)!=digest_value(src['state']):
             raise ValueError(f'Native page restore mismatch for {g}')
         active.append(dict(goal=g,key=key,state=state,h=hist,acts=acts,found=False))
     while active:
         req = [dict(token_ids=make_input(runner.tokenizer,e['state']['task'],e['h'],e['state']['observation'])['token_ids'],
                     temperature=0. if rep==4 else .7,seed=SEEDS[0 if rep==4 else rep]) for e in active]
-        pending = []
-        for e, gen in zip(active,runner.model.call(req),strict=True):
-            action = parse_generation(gen['text'])
+        pending, commands, actions, closes = [], [], [], []
+        generations=runner.model.call(req)
+        for e, gen in zip(active,generations,strict=True):
+            action,cut = parse_generation(gen['text']),False
             if intervention is not None:
                 action,cut = intervention.select(gen['text'],action)
-            after = runner.engine.call(cmd='step',key=e['key'],action=action)
+            actions.append((action,cut))
+            commands.append(dict(cmd='step',key=e['key'],action=action))
+        for e,gen,(action,cut),after in zip(active,generations,actions,environment_calls(runner,commands),strict=True):
             if intervention is not None:
                 event = intervention.event(e['goal'],e['state'],gen['text'],action,cut,after['legal'])
                 e.setdefault('events',[]).append(event)
@@ -57,10 +68,15 @@ def run_batch(runner, pool, goals, rep, anchor_dir, mode, create_anchors=False, 
                                   reward_valid=after['status']['reward_valid'],length=len(e['acts'])))
                 if intervention is not None:
                     ended[-1]['events'] = e['events']
-                runner.engine.call(cmd='close',key=e['key'])
+                if hasattr(runner.engine,'call_many'):
+                    closes.append(dict(cmd='close',key=e['key']))
+                else:
+                    runner.engine.call(cmd='close',key=e['key'])
             else:
                 e['state']=after['state']
                 pending.append(e)
+        if closes:
+            runner.engine.call_many(closes)
         active=pending
     assert len(ended)==len(goals)
     return ended

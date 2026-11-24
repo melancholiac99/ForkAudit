@@ -80,7 +80,7 @@ class FirstCommandTest(TestCase):
             runner.model.call([])
             return ['same text']
 
-        with patch(__package__+'.first_command_replay.Runner',return_value=runner), \
+        with patch(__package__+'.first_command_replay.create_runner',return_value=runner), \
              patch(__package__+'.first_command_replay.run_batch',side_effect=generate):
             for diverge in (False, True):
                 replay = ReplaySession()
@@ -90,3 +90,20 @@ class FirstCommandTest(TestCase):
                 self.assertEqual(replay.acquire('next','model')[1],not diverge)
                 self.assertEqual(replay.disable_reuse,diverge)
                 replay.close()
+
+    def test_parallel_environments_keep_session_and_batch_order(self):
+        from concurrent.futures import ThreadPoolExecutor
+        from .first_command_replay import ReplayEnvironments
+        class Engine:
+            def __init__(self,rank):self.rank=rank
+            def call(self,cmd,requests):return [(self.rank,r['key']) for r in requests]
+            def close(self):pass
+        engines=ReplayEnvironments([Engine(i) for i in range(2)],ThreadPoolExecutor(2))
+        try:
+            self.assertEqual(engines.call_many([dict(cmd='open',key=k) for k in 'abcd']),
+                             [(0,'a'),(1,'b'),(0,'c'),(1,'d')])
+            self.assertEqual(engines.call_many([dict(cmd='step',key=k) for k in 'dca']),
+                             [(1,'d'),(0,'c'),(0,'a')])
+            engines.call_many([dict(cmd='close',key=k) for k in 'abcd'])
+            self.assertEqual(engines.owners,{})
+        finally:engines.close()
