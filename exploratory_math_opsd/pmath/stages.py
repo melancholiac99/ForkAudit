@@ -17,3 +17,5 @@ else:
     for model,bench in sequence:
         cells[f'{model}/{bench}']=evaluate(ROOT,env,model,bench,1001)
     json_save(WORK/'evaluation_receipts.json',cells)
+    from report import report
+    report()
