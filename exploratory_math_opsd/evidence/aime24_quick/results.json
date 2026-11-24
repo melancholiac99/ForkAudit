@@ -1,0 +1,8238 @@
+{
+ "quick": {
+  "rates_percent": {
+   "B": 51.94444444444444,
+   "R@100": 55.55555555555556,
+   "T0@100": 51.666666666666664
+  },
+  "R_minus_T0_pp": 3.888888888888893,
+  "R_minus_B_pp": 3.6111111111111143,
+  "four_gpu_seconds": 8972.167925482001,
+  "evaluation_seeds": [
+   1001
+  ],
+  "planned_responses": 3240
+ },
+ "receipts": {
+  "B": {
+   "layout": "4xTP1",
+   "sha256": "f698178d6b9c1c904d35b9307cd3a36d8824d61de0425a416d442acbabc2504b",
+   "adapter_sha256": null,
+   "wall_seconds": 2087.1874876329994,
+   "rate": 51.94444444444444,
+   "source": "/mnt/data2/ForkAudit/math-opsd/layout-benchmark"
+  },
+  "R@100": {
+   "layout": "4xTP1",
+   "sha256": "aa0dceb20d76a8251f6d52f678fac12ed6d66f05237837c60a51736cc50a1b1a",
+   "adapter_sha256": "605f675f76ac2edd996fab5bdf2eeb110bb3879bc740729230a6e4355d3805f7",
+   "wall_seconds": 3258.595864191,
+   "rate": 55.55555555555556
+  },
+  "T0@100": {
+   "layout": "4xTP1",
+   "sha256": "34a75682be36014e7d3c64a4033e892912e676595b56b79fa69a1f794623f967",
+   "adapter_sha256": "cb49c21675a89c8d54dce338a2e71053dfdf4194544cc36602d7caa0db2f6910",
+   "wall_seconds": 3626.3845736580006,
+   "rate": 51.666666666666664
+  }
+ },
+ "items": {
+  "B": [
+   {
+    "problem_id": 60,
+    "num_correct": 12,
+    "ground_truth": "204",
+    "generations": [
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4376,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6820,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4569,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5205,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4866,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5150,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4591,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 3756,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4938,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5303,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4532,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 3697,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 61,
+    "num_correct": 10,
+    "ground_truth": "113",
+    "generations": [
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25868,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17041,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14510,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19199,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13672,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7347",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23477,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10915,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11235,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19556,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28717,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "6218",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32007,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15749,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 62,
+    "num_correct": 0,
+    "ground_truth": "371",
+    "generations": [
+     {
+      "predicted_answer": "133",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30418,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "511",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21553,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "39",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30844,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "133",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26857,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "17",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21557,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24040,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25268,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "265",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27827,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "38",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29231,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "127 + 128 = 255",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24584,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "273",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23314,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "137",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22232,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 63,
+    "num_correct": 0,
+    "ground_truth": "385",
+    "generations": [
+     {
+      "predicted_answer": "4",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27847,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 38270,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22206,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22928,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18990,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21736,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18802,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31554,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29770,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22067,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25787,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "16",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20212,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 64,
+    "num_correct": 3,
+    "ground_truth": "110",
+    "generations": [
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16819,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 8354,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 10914,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12577,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 8668,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 11608,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "179",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 7688,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 10067,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2314",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13368,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 8776,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "134",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 10997,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14205,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 65,
+    "num_correct": 2,
+    "ground_truth": "104",
+    "generations": [
+     {
+      "predicted_answer": "22303",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30773,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25994",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 34418,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "230",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13986,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9770",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23563,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 34241,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15704,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16825,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "35",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30470,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "538",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18984,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "414",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 38480,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "26",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36390,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "115",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17008,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 66,
+    "num_correct": 11,
+    "ground_truth": "721",
+    "generations": [
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21982,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22600,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21621,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "657 + 64 = 721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21841,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "657 + 64 = 721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20168,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28690,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20586,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "31",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22224,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26853,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25639,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20714,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16767,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 67,
+    "num_correct": 12,
+    "ground_truth": "025",
+    "generations": [
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5027,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9496,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9312,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8171,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8116,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18032,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10611,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6114,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12096,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4927,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12460,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8104,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 68,
+    "num_correct": 9,
+    "ground_truth": "809",
+    "generations": [
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8837,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7843,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9340,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20337,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "405",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 37435,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21078,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1215",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 7120,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18292,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1349",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23988,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13096,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18819,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9893,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 69,
+    "num_correct": 12,
+    "ground_truth": "116",
+    "generations": [
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7116,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9170,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7099,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5304,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6986,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5120,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5034,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11717,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4170,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6521,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6564,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8574,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 70,
+    "num_correct": 6,
+    "ground_truth": "104",
+    "generations": [
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12841,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9337,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11924,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "131",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25871,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20860,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12630,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "145.5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27867,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "107",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21025,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "107",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19700,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9655,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "107",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23422,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "153",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27000,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 71,
+    "num_correct": 12,
+    "ground_truth": "294",
+    "generations": [
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7667,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8075,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15902,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11765,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11650,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9514,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12176,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9078,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8592,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8148,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8693,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6898,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 72,
+    "num_correct": 12,
+    "ground_truth": "540",
+    "generations": [
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5935,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11082,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8542,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6601,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9510,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7376,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25784,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7802,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7045,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7653,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5936,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13644,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 73,
+    "num_correct": 1,
+    "ground_truth": "197",
+    "generations": [
+     {
+      "predicted_answer": "41287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20496,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21080,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "69",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17804,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "507",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17526,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8603",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16727,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20347,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17578,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16716,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2025",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16425,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "197",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25170,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "19",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15476,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "35",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19185,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 74,
+    "num_correct": 7,
+    "ground_truth": "480",
+    "generations": [
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9198,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8362,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "80",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 8353,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25656,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "\\dfrac{1820}{9}",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13887,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12624,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15078,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13484,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "80",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17899,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8319,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2400",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13363,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7243,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 75,
+    "num_correct": 3,
+    "ground_truth": "073",
+    "generations": [
+     {
+      "predicted_answer": "16",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24943,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "234",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15127,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5676,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8042,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "219",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17492,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "10",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17854,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5821,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "219",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16842,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "234",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13203,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "234",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14597,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "681",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23973,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "16",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24835,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 76,
+    "num_correct": 11,
+    "ground_truth": "468",
+    "generations": [
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10021,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21603,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9410,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10325,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13789,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6686,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14163,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5752,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9703,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6108,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "52\\sqrt{39} + 182",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16774,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6414,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 77,
+    "num_correct": 3,
+    "ground_truth": "601",
+    "generations": [
+     {
+      "predicted_answer": "1201",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13794,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "13",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "606",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19031,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "601",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22282,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "603",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18606,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "603",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20567,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "601",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24596,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "609",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25760,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "601",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18259,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15115,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "603",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17222,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "600",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16750,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 78,
+    "num_correct": 3,
+    "ground_truth": "023",
+    "generations": [
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14737,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29065,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16244,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29402,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11318,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 35324,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28048,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24089,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33398,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "4",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31530,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7 + 36 = 43",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31052,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "4",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29828,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 79,
+    "num_correct": 11,
+    "ground_truth": "321",
+    "generations": [
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10997,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9041,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5523,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12039,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14473,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8565,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13801,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9839,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8391,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8454,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "513",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 9320,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8409,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 80,
+    "num_correct": 6,
+    "ground_truth": "211",
+    "generations": [
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28952,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25015,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "121",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29755,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "61",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33189,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "121",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24202,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 30133,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 23373,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32432,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16026,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     }
+    ]
+   },
+   {
+    "problem_id": 81,
+    "num_correct": 0,
+    "ground_truth": "315",
+    "generations": [
+     {
+      "predicted_answer": "24",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18064,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19606,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "6",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27299,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "15",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22898,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "24",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21070,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "24",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22357,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22839,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24414,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "36",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21550,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "24",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20965,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22215,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "15",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17033,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 82,
+    "num_correct": 5,
+    "ground_truth": "236",
+    "generations": [
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10943,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16410,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16579,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "246",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28088,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "232",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19817,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10193,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "245",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26461,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "246",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 11020,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12879,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "246",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 12164,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "284",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14468,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "246",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22601,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 83,
+    "num_correct": 11,
+    "ground_truth": "045",
+    "generations": [
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12298,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10975,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11840,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16563,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11716,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13308,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12743,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13104,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45000",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 12884,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8143,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12317,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15967,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 84,
+    "num_correct": 11,
+    "ground_truth": "033",
+    "generations": [
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6600,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7080,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5007,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5742,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "127",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 6259,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6977,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5143,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5187,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6874,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4974,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5239,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5906,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 85,
+    "num_correct": 0,
+    "ground_truth": "080",
+    "generations": [
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20934,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20857,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21748,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16086,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "370",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22938,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26885,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "120",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19139,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24156,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24980,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26497,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "370",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17399,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "\\dfrac{60000}{581}",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 34236,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 86,
+    "num_correct": 7,
+    "ground_truth": "055",
+    "generations": [
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13439,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6359,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10617,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24338,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16394,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13743,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10850,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10849,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14917,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16268,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5763,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7244,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 87,
+    "num_correct": 7,
+    "ground_truth": "699",
+    "generations": [
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22929,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 27830,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "819",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31569,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "629",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29652,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14200,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "446",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 34133,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19097,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "629",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30170,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 23577,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26672,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15708,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 88,
+    "num_correct": 0,
+    "ground_truth": "127",
+    "generations": [
+     {
+      "predicted_answer": "13",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30258,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25929,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22926,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25814,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24311,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "21",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27331,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "29",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27525,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "31",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24461,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23272,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19953,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "4",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24315,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "152",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30466,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 89,
+    "num_correct": 0,
+    "ground_truth": "902",
+    "generations": [
+     {
+      "predicted_answer": "63",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23076,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13563,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 6490,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 9383,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 8771,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1023",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23238,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "650",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14203,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20816,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23232,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 7777,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "252",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 11035,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1023",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17753,
+      "finish_reason": "stop"
+     }
+    ]
+   }
+  ],
+  "R@100": [
+   {
+    "problem_id": 60,
+    "num_correct": 12,
+    "ground_truth": "204",
+    "generations": [
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5562,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7284,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5867,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6954,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8627,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6275,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5454,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6237,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6751,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10109,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7057,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7368,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 61,
+    "num_correct": 11,
+    "ground_truth": "113",
+    "generations": [
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17023,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 30236,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16725,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7429",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26493,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21095,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13596,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22338,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18421,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14229,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21380,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14638,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19343,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 62,
+    "num_correct": 0,
+    "ground_truth": "371",
+    "generations": [
+     {
+      "predicted_answer": "163",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28183,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "511",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22154,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "293",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30133,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "419",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18285,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32460,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "163",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 34578,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28853,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27696,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30678,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "391",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36775,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "511",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20935,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "511",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27856,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 63,
+    "num_correct": 0,
+    "ground_truth": "385",
+    "generations": [
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22134,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26719,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21868,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19133,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25840,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29860,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25598,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22071,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26504,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23251,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22354,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22340,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 64,
+    "num_correct": 4,
+    "ground_truth": "110",
+    "generations": [
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26623,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "57",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29462,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "134",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17143,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "179",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14656,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14217,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16019,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19259,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25724,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 34221,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14959,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 12545,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21294,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 65,
+    "num_correct": 4,
+    "ground_truth": "104",
+    "generations": [
+     {
+      "predicted_answer": "156",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 34493,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "87",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23499,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21677,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "164",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33624,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "44",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36529,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "76",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32077,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "254",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36398,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19756,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 36758,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "11",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33749,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 33016,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 66,
+    "num_correct": 10,
+    "ground_truth": "721",
+    "generations": [
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21418,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26138,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16861,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26504,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21463,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24448,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26958,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24968,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "593",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 11009,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12679,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "673",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26875,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21395,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 67,
+    "num_correct": 12,
+    "ground_truth": "025",
+    "generations": [
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10213,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11274,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8694,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12435,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6700,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11841,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6992,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7950,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24580,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16655,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10346,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7719,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 68,
+    "num_correct": 12,
+    "ground_truth": "809",
+    "generations": [
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14109,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13148,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13567,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11754,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13135,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13656,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13770,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24905,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18650,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10467,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19670,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12695,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 69,
+    "num_correct": 12,
+    "ground_truth": "116",
+    "generations": [
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8362,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13979,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6656,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8944,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8600,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9992,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7560,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12011,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11850,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10028,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9477,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11005,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 70,
+    "num_correct": 7,
+    "ground_truth": "104",
+    "generations": [
+     {
+      "predicted_answer": "294",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22817,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17174,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "93",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29803,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28007,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32865,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 33599,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18900,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 32328,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16951,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20679,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "107",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28702,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 71,
+    "num_correct": 12,
+    "ground_truth": "294",
+    "generations": [
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9689,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12155,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12070,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9650,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10613,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11845,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9179,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10386,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10387,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9716,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10132,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10874,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 72,
+    "num_correct": 11,
+    "ground_truth": "540",
+    "generations": [
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9382,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9493,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11190,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10305,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12713,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12664,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10139,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "564",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14743,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9462,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7548,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12172,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9346,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 73,
+    "num_correct": 0,
+    "ground_truth": "197",
+    "generations": [
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17602,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16155,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8603",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16907,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16336,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3028",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21009,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17331,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17884,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16770,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "541",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15234,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17168,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "254",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18811,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2027",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17252,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 74,
+    "num_correct": 9,
+    "ground_truth": "480",
+    "generations": [
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16129,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15829,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15664,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18593,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "80",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15110,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14630,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20670,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "960",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22309,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "960",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31628,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11545,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19909,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14056,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 75,
+    "num_correct": 3,
+    "ground_truth": "073",
+    "generations": [
+     {
+      "predicted_answer": "234",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29982,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "219",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16398,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "114",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31543,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22543,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 23611,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "229",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26342,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "234",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27556,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "0",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36759,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13332,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "151",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22904,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "229",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16162,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "229",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25929,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 76,
+    "num_correct": 8,
+    "ground_truth": "468",
+    "generations": [
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9861,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7351,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13552,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15817,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "78(3 + \\sqrt{5})",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22637,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9159,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25383,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28297,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "312",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28675,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31830,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "156(1 + \\sqrt{3})",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28215,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 23999,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 77,
+    "num_correct": 3,
+    "ground_truth": "601",
+    "generations": [
+     {
+      "predicted_answer": "207",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27924,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "603",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20648,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "601",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 30263,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "401",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24286,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "601",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 30583,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1195",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27629,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "401",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17558,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36602,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "601",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22842,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "13",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29868,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1195",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25952,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31952,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 78,
+    "num_correct": 6,
+    "ground_truth": "023",
+    "generations": [
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33934,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24240,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "19",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27572,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26821,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18173,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "13",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27853,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16391,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17041,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "6",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32881,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "19",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29113,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15097,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "19",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29142,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 79,
+    "num_correct": 12,
+    "ground_truth": "321",
+    "generations": [
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13258,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15584,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12613,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12508,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12252,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12590,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14249,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13749,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12128,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15541,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11528,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10599,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 80,
+    "num_correct": 9,
+    "ground_truth": "211",
+    "generations": [
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 30979,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26553,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36702,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 35441,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 30842,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19398,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 29719,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 33856,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26636,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 30138,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 81,
+    "num_correct": 0,
+    "ground_truth": "315",
+    "generations": [
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26008,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24952,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "60",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25157,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24798,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "6",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19141,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36064,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "60",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19869,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20698,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21929,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "36",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23388,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "72",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23069,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27001,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 82,
+    "num_correct": 9,
+    "ground_truth": "236",
+    "generations": [
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15127,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18512,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25796,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20603,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 23525,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "326",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24491,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14705,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "310",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20254,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15846,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17795,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "201",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25664,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25534,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 83,
+    "num_correct": 11,
+    "ground_truth": "045",
+    "generations": [
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22181,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13116,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12257,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1000",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15947,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13866,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19008,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 35567,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16710,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19780,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 37375,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16578,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18838,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 84,
+    "num_correct": 11,
+    "ground_truth": "033",
+    "generations": [
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8126,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7877,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8277,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "89",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 8891,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8872,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8313,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8777,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8454,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7499,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6065,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12019,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8823,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 85,
+    "num_correct": 1,
+    "ground_truth": "080",
+    "generations": [
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22784,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "370",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17674,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25286,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "143",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28623,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "185",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20937,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20948,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22885,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "120",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22956,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22312,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "80",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19153,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20633,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "160",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23457,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 86,
+    "num_correct": 5,
+    "ground_truth": "055",
+    "generations": [
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12460,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13640,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2047",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17138,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9369,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17338,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12485,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17436,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2047",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 17043,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19160,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16071,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11314,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16844,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 87,
+    "num_correct": 6,
+    "ground_truth": "699",
+    "generations": [
+     {
+      "predicted_answer": "429",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33675,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 29305,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19746,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "819",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32206,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "439",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 34511,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "311",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 35084,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16975,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25637,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 37706,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "576",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28139,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "446",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24576,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17953,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 88,
+    "num_correct": 0,
+    "ground_truth": "127",
+    "generations": [
+     {
+      "predicted_answer": "17",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27067,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27060,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "13",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21718,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "20",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24051,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23459,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27751,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "40",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30353,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "10",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27623,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33332,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30629,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "31",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27090,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "21",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26843,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 89,
+    "num_correct": 0,
+    "ground_truth": "902",
+    "generations": [
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20413,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 10170,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16308,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "32",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22770,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1024",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23914,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1024",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27076,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 11472,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16718,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "46857665",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24621,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "242",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29121,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14112,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "19091",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27755,
+      "finish_reason": "stop"
+     }
+    ]
+   }
+  ],
+  "T0@100": [
+   {
+    "problem_id": 60,
+    "num_correct": 11,
+    "ground_truth": "204",
+    "generations": [
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7009,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6937,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5608,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5719,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5493,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4114,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7199,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "\\dfrac{1500}{7}",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15219,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 4489,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6145,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5778,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "204",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5199,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 61,
+    "num_correct": 6,
+    "ground_truth": "113",
+    "generations": [
+     {
+      "predicted_answer": "6143",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21964,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3568",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32686,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 37340,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20710,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "183",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32973,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26315,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15792,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 23925,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "171",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33227,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "449",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 35474,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "135",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30910,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "113",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17428,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 62,
+    "num_correct": 0,
+    "ground_truth": "371",
+    "generations": [
+     {
+      "predicted_answer": "225",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31393,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "53",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29887,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "263",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 38826,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29832,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29232,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "511",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30143,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "135",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27082,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31315,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "511",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32041,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26922,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "255",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19378,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "39",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33619,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 63,
+    "num_correct": 0,
+    "ground_truth": "385",
+    "generations": [
+     {
+      "predicted_answer": "1",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36990,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31630,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25625,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29488,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25259,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "6",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36452,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31304,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31324,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27669,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24544,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31227,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "8",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29049,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 64,
+    "num_correct": 4,
+    "ground_truth": "110",
+    "generations": [
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 11929,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "155",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16455,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18172,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "134",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14962,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "134",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 12944,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15460,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13286,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "134",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24366,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13532,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "134",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15659,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20174,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "134",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 12319,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 65,
+    "num_correct": 2,
+    "ground_truth": "104",
+    "generations": [
+     {
+      "predicted_answer": "57206",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33512,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "427",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30066,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "314",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 38370,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17280,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "1339",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25691,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16936,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "110",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16030,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 66,
+    "num_correct": 11,
+    "ground_truth": "721",
+    "generations": [
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 27331,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 23248,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21606,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13997,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 30677,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20715,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 31926,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "p + q = 721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 27681,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26545,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24518,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "721",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28865,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "594",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29436,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 67,
+    "num_correct": 12,
+    "ground_truth": "025",
+    "generations": [
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15192,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22659,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28968,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11856,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9018,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8359,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11337,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22027,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13898,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10511,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10429,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14469,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 68,
+    "num_correct": 12,
+    "ground_truth": "809",
+    "generations": [
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24274,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17746,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10952,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13577,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14911,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15625,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17674,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15200,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13419,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13336,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10042,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "809",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21500,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 69,
+    "num_correct": 12,
+    "ground_truth": "116",
+    "generations": [
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8574,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6589,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10906,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10268,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8678,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11559,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8423,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9111,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8732,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9260,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11015,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "116",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7853,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 70,
+    "num_correct": 8,
+    "ground_truth": "104",
+    "generations": [
+     {
+      "predicted_answer": "199",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19635,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "191",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28808,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18183,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 23957,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28616,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24964,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16086,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24378,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "199",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31624,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "77",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27206,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "CE = 104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 20186,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "104",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26496,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 71,
+    "num_correct": 11,
+    "ground_truth": "294",
+    "generations": [
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10895,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9834,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11629,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9474,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15015,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9353,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9691,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17700,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3290",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14209,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7710,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9458,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "294",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15346,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 72,
+    "num_correct": 11,
+    "ground_truth": "540",
+    "generations": [
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8971,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10190,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14155,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10728,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 24762,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9215,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "24 + 12\\sqrt{1921}",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18592,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11092,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9998,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13299,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11574,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "540",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12825,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 73,
+    "num_correct": 0,
+    "ground_truth": "197",
+    "generations": [
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19699,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2277",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20675,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15335,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "m + n = 35",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15490,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "36",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15231,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20273,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "36",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14529,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "36",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16702,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22685,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1029",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27409,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "541",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16282,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "287",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13909,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 74,
+    "num_correct": 6,
+    "ground_truth": "480",
+    "generations": [
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9224,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15558,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "\\dfrac{640}{3}",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13851,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15069,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10808,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "\\frac{2880}{11}",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21182,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13250,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "960",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13731,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "\\frac{3840}{11}",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18880,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "480",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11702,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "80",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26757,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "960",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 14186,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 75,
+    "num_correct": 7,
+    "ground_truth": "073",
+    "generations": [
+     {
+      "predicted_answer": "234",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21837,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8427,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "234",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32592,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10285,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "234",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18559,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9994,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9379,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13681,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 29740,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "73",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16104,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "203",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25303,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "203",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30944,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 76,
+    "num_correct": 9,
+    "ground_truth": "468",
+    "generations": [
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8135,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 8433,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19766,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22316,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26903,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "234",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13162,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19016,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "390",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30584,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7575,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12664,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "312(1 + \\sqrt{2})",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 35613,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "468",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14855,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 77,
+    "num_correct": 2,
+    "ground_truth": "601",
+    "generations": [
+     {
+      "predicted_answer": "603",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23080,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "603",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18963,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1195",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27701,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "404",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26175,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "601",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22562,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1189",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26790,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "601",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28914,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1803",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30656,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 35596,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "7",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18616,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 37251,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 78,
+    "num_correct": 2,
+    "ground_truth": "023",
+    "generations": [
+     {
+      "predicted_answer": "4",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 34858,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "43",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28036,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "43",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32402,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 33575,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27301,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "19",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27251,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "4",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30863,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "23",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21183,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26132,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 30803,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26446,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25920,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 79,
+    "num_correct": 12,
+    "ground_truth": "321",
+    "generations": [
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16161,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 9689,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16339,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12815,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16424,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10034,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13025,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19269,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18660,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13233,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10503,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "321",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21244,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 80,
+    "num_correct": 4,
+    "ground_truth": "211",
+    "generations": [
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26803,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 35466,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15544,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "211",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 32582,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "19",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 38803,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 35503,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "841",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31090,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 35102,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "[No boxed answer found]",
+      "correct": false,
+      "formatted": false,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 36384,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "25",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28259,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 81,
+    "num_correct": 0,
+    "ground_truth": "315",
+    "generations": [
+     {
+      "predicted_answer": "36",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22612,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "15",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21777,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "6",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29442,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23683,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19742,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22602,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22218,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "16",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25370,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "225",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28562,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26684,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "16",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19539,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22182,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 82,
+    "num_correct": 8,
+    "ground_truth": "236",
+    "generations": [
+     {
+      "predicted_answer": "202",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25489,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "266",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29348,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28947,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14336,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 18584,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21022,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "246",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25501,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19636,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17195,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "220",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23449,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12963,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "236",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15704,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 83,
+    "num_correct": 9,
+    "ground_truth": "045",
+    "generations": [
+     {
+      "predicted_answer": "90",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 31896,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 34698,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5050",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13539,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11697,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21609,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 17412,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 25596,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19117,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 34622,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 28042,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "45",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 15018,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1000",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23384,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 84,
+    "num_correct": 11,
+    "ground_truth": "033",
+    "generations": [
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6368,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7637,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13410,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6925,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19019,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7781,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 5966,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "101",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 8326,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13045,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 7891,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10733,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "33",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 6837,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 85,
+    "num_correct": 0,
+    "ground_truth": "080",
+    "generations": [
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23451,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "120",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25582,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "120",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22347,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "200",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33809,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "120",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22892,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "200",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23451,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 23403,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "120",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28990,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "100",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20144,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26488,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 20913,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "240",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24425,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 86,
+    "num_correct": 10,
+    "ground_truth": "055",
+    "generations": [
+     {
+      "predicted_answer": "4048",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16916,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11207,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 13870,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 10037,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 14714,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12306,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 36655,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 11146,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "66",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16828,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 12556,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 19091,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "55",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16688,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 87,
+    "num_correct": 6,
+    "ground_truth": "699",
+    "generations": [
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 21655,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "896",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 37392,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "439",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32123,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "446",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 33711,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 23213,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 16850,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5694",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 38912,
+      "finish_reason": "length"
+     },
+     {
+      "predicted_answer": "629",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 34450,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 26432,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 22059,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "699",
+      "correct": true,
+      "formatted": true,
+      "generated_tokens": 29327,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "629",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26883,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 88,
+    "num_correct": 0,
+    "ground_truth": "127",
+    "generations": [
+     {
+      "predicted_answer": "12",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32436,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "26",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27364,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "28",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 27883,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "20",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25594,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25696,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28657,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "9",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 28363,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "83",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29049,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "5",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29985,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "27",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 24808,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "13",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32738,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "13",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 26778,
+      "finish_reason": "stop"
+     }
+    ]
+   },
+   {
+    "problem_id": 89,
+    "num_correct": 0,
+    "ground_truth": "902",
+    "generations": [
+     {
+      "predicted_answer": "3",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 32218,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 19540,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 12508,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1022",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25901,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "256",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 25430,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "2",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 13491,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1023",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 22651,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1024",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 15293,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "1024",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 18034,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "3840",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 21114,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "59049",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 29875,
+      "finish_reason": "stop"
+     },
+     {
+      "predicted_answer": "0",
+      "correct": false,
+      "formatted": true,
+      "generated_tokens": 16547,
+      "finish_reason": "stop"
+     }
+    ]
+   }
+  ]
+ }
+}
