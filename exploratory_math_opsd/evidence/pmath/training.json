@@ -1,0 +1,31 @@
+{
+  "arm": "P",
+  "seed": 42,
+  "completed_steps": 100,
+  "scheduled_steps": 27600,
+  "timing_segments": [
+    {
+      "event": "train_begin",
+      "step": 0,
+      "time_unix": 1795535102.5787044,
+      "elapsed_process_seconds": 34.49559615900216,
+      "model_and_trainer_setup_seconds": 17.245035306001228
+    },
+    {
+      "event": "step_10",
+      "step": 10,
+      "time_unix": 1795535233.2152956,
+      "elapsed_process_seconds": 165.13218736600174,
+      "model_and_trainer_setup_seconds": 17.245035306001228
+    },
+    {
+      "event": "train_end",
+      "step": 100,
+      "time_unix": 1795536424.2750504,
+      "elapsed_process_seconds": 1356.1919425170017,
+      "model_and_trainer_setup_seconds": 17.245035306001228
+    }
+  ],
+  "adapter_sha256": "98a524bcddf8f02c4761c9e7a7c4e262b67c160aad046de6de3c0de425e37a7c",
+  "last_process_seconds": 1372.7542899440014
+}
