@@ -26,4 +26,8 @@ def report():
         delta=100*(scores[a]-scores[b])
         samples=delta[np.arange(3)[None,:,None],draws].mean(axis=(1,2))
         estimates[f'{a} minus {b}']=dict(difference_pp=delta.mean(),paired_ci95_pp=np.percentile(samples,[2.5,97.5]).tolist())
-    json_save(WORK/'descriptive_results.json',dict(seed=1001,rates_percent=rates,paired_differences=estimates))
+    primary_keys=('P@100 minus R@100','R@100 minus B')
+    json_save(WORK/'descriptive_results.json',dict(seed=1001,rates_percent=rates,
+        primary={k:estimates[k] for k in primary_keys},
+        secondary={k:v for k,v in estimates.items() if k not in primary_keys},
+        bootstrap=dict(unit='question within benchmark',draws=10000,seed=20261124)))
