@@ -21,12 +21,12 @@ class ProtocolTests(unittest.TestCase):
         self.assertIsNone(rt['decoding_se_pp'])
         np.testing.assert_allclose(estimates['R-B']['macro']['paired_ci95_pp'],[10,10])
 
-    def test_budget_boundary_and_reserved_seeds(self):
+    def test_single_seed_above_and_below_old_budget(self):
         from pathlib import Path
         from tempfile import TemporaryDirectory
         from unittest.mock import patch
         from exploratory_math_opsd import launch
-        for elapsed,expected in [(1800,21600),(1801,15120)]:
+        for elapsed,expected in [(1800,5400),(1801,5400)]:
             with TemporaryDirectory() as tmp:
                 folder=Path(tmp)
                 with patch.object(launch,'evaluate',return_value={'rate':10.,'wall_seconds':elapsed}) as ev, \
@@ -34,6 +34,5 @@ class ProtocolTests(unittest.TestCase):
                     launch.evaluations(folder,{},False)
                 calls={tuple(x.args[2:]) for x in ev.call_args_list}
                 self.assertEqual(len(calls)*360,expected)
-                for arm in ('B','R@100','T0@100'):
-                    self.assertEqual({s for m,_,s in calls if m==arm},set(launch.SEEDS))
-                self.assertEqual({s for m,_,s in calls if m=='R@50'},set(launch.SEEDS) if expected==21600 else {1001})
+                self.assertEqual({s for _,_,s in calls},{1001})
+                self.assertEqual({m for m,_,_ in calls},set(launch.MODELS))

@@ -10,7 +10,7 @@ import sys
 import time
 
 
-SEEDS = (1001, 2002, 1500, 4004)
+SEEDS = (1001,)
 BENCHMARKS = ('aime24','aime25','hmmt25')
 MODELS = ('B','R@100','T0@100','R@50','T0@50')
 
@@ -103,7 +103,7 @@ def evaluate(root,env,model,bench,seed):
     adapter_sha=sha(Path(adapter)/'adapter_model.safetensors') if adapter else None
     if receipt.exists():
         rec=read(receipt)
-        assert sha(output)==rec['sha256'] and rec['adapter_sha256']==adapter_sha
+        assert rec['layout']=='4xTP1' and sha(output)==rec['sha256'] and rec['adapter_sha256']==adapter_sha
         validate_eval(read(output),bench,seed,adapter)
         return rec
     pending=output.with_suffix('.pending')
@@ -111,14 +111,18 @@ def evaluate(root,env,model,bench,seed):
     cmd=[sys.executable,'eval/evaluate_math.py','--base_model',str(root/'models/Qwen3-1.7B'),
          '--dataset',bench,'--local_eval_file',str(parquet),'--seed',str(seed),'--val_n','12',
          '--enable_thinking','--temperature','1.0','--top_p','0.95','--top_k','-1','--min_p','0',
-         '--presence_penalty','0','--max_new_tokens','38912','--tensor_parallel_size','4',
+         '--presence_penalty','0','--max_new_tokens','38912','--tensor_parallel_size','1',
          '--output_file',str(pending)]
     if adapter:cmd+=['--checkpoint_dir',adapter]
-    seconds=call(root,cmd,f'{model}-{bench}-{seed}.log',{**env,'NCCL_P2P_DISABLE':'1'})
-    row=read(pending)
+    if __package__:
+        from .four_engines import run
+    else:
+        from four_engines import run
+    row,seconds=run(root,env,cmd,folder/f'{seed}-lanes',f'{model}-{bench}-{seed}',call,read)
+    save(pending,row)
     validate_eval(row,bench,seed,adapter)
     pending.replace(output)
-    rec=dict(sha256=sha(output),adapter_sha256=adapter_sha,wall_seconds=seconds,rate=row['average_at_n_pct'])
+    rec=dict(layout='4xTP1',sha256=sha(output),adapter_sha256=adapter_sha,wall_seconds=seconds,rate=row['average_at_n_pct'])
     save(receipt,rec)
     return rec
 
@@ -127,18 +131,16 @@ def evaluations(root,env,quick_only):
     folder=root/'run/evaluation'
     quick={m:evaluate(root,env,m,'aime24',1001) for m in MODELS[:3]}
     total=sum(x['wall_seconds'] for x in quick.values())
-    reduced=total>5400
     rates={m:v['rate'] for m,v in quick.items()}
     report=dict(rates_percent=rates,R_minus_T0_pp=rates['R@100']-rates['T0@100'],
-                R_minus_B_pp=rates['R@100']-rates['B'],four_gpu_seconds=total,reduced_at_50=reduced,
-                planned_responses=15120 if reduced else 21600)
+                R_minus_B_pp=rates['R@100']-rates['B'],four_gpu_seconds=total,evaluation_seeds=list(SEEDS),
+                planned_responses=5400)
     save(folder/'quick.json',report)
     print(json.dumps(report),flush=True)
     if quick_only:return
     for model in MODELS:
-        seeds=(1001,) if reduced and model.endswith('@50') else SEEDS
         for bench in BENCHMARKS:
-            for seed in seeds:evaluate(root,env,model,bench,seed)
+            for seed in SEEDS:evaluate(root,env,model,bench,seed)
     if __package__:
         from .paired_report import summarize
     else:

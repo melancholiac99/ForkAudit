@@ -5,7 +5,6 @@ from pathlib import Path
 import numpy as np
 
 BENCHMARKS=('aime24','aime25','hmmt25')
-SEEDS=(1001,2002,1500,4004)
 ARMS=('B','R','T0')
 CONTRASTS=(('R','T0'),('R','B'),('T0','B'))
 
@@ -52,7 +51,7 @@ def summarize(folder):
     quick=json.loads((folder/'quick.json').read_text())
     report={'quick':quick,'bootstrap':dict(seed=20261124,draws=10000,cluster='question within benchmark'),'checkpoints':{}}
     for step in (50,100):
-        seeds=(1001,) if step==50 and quick['reduced_at_50'] else SEEDS
+        seeds=quick['evaluation_seeds']
         scores={}
         details={}
         for arm in ARMS:
