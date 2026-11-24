@@ -1,0 +1,5786 @@
+{
+  "units": "sum of sampled-token log ratios per action, nats",
+  "seed": 20261124,
+  "bootstrap_draws": 10000,
+  "bootstrap_unit": "task",
+  "weight": "equal action records",
+  "exact_subset": "Archived actor is the block student on updates 1,6,11,... only.",
+  "bounds": "All scored records. Non-anchor token bounds invert binary KL after coarse-graining the stored forward KL; allow 1e-5*(1+abs(KL)) FP32 error. Sum token bounds per action. bootstrap_outer_limits are percentiles of bound endpoints, not a point estimate or its CI.",
+  "row_file_sha256": "bccaa8a32471ab100cf716a83463795baab4207a0361294b3d0f89b8ed81e351",
+  "input_manifest_sha256": {
+    "R-gap/01": "ba89d278c0cb483fe090a4c905d0307356f5d4b057ec3f53c5b8f72592998903",
+    "R-gap/02": "96cecd845721b6cf4982b9eacf0166b69ead4a7b83505aea3f12214a3eb91fac",
+    "R-gap/03": "c565f3d456abf5a465c3ee830c960224bae519f217400f2586300de37ca52f56",
+    "R-gap/04": "d0bed0f45c97e17b8841e1d32d8b40dd4faf5a872e7ee48de10c8d50c5c1f1a2",
+    "R-gap/05": "c6d56e39f76a97c6490f8998f81f859229f630618e6c7f15cafbc677f9a8fd18",
+    "R-gap/06": "5170eed42c37b367b03c45b9f9b48d2779e7ad25f728f021c4fce35b28d3654a",
+    "R-gap/07": "d7ec226f39416060caabdb8d958e5522bdbf6430f16daf5d719f4bc1ed7d61a2",
+    "R-gap/08": "aebc0401a38212f8e5bf767e17ac4c243d68094bbdd7cff8e3a4e29cd103b1e6",
+    "R-gap/09": "dfa19861f4ced98ce9e66101d4c0a0fed63c952837e53d161b18c03bc84f60f1",
+    "R-gap/10": "d1d7a5b69c4a1589f373e2d9721c3396d22075b65ef257ddd40c63b3c72618a4",
+    "R-gap/11": "861f399cc5fdcace8b545273b41733f85f78a1197d69d97c5f09622678a172a5",
+    "R-gap/12": "adabcf410cc6d88eb1e30a7aa76e80cab9f3bcd6fd5db6e79b4328b1146aec11",
+    "R-gap/13": "a100ac581ddfbb6155a5dd1e9d2f722b6fae45862bda035166fd52f0f4964ff1",
+    "R-gap/14": "b0f03b0335254c6d5aed0dc721db2678e956c548fe387b9fc8a6597cd5cde524",
+    "R-gap/15": "f362d63512eb4bed6160aa50c46bbb61ce75f63f071b0196cc7b77047d4dac0c",
+    "R-gap/16": "8ced39c9d0dc113aebd035bd5537e314417f2bfb46eea44e6c6315cf267b2081",
+    "R-gap/17": "2f10122fa5bc91413926d82dfa1b058289127c5c46298e2adc1d7370b950ca0e",
+    "R-gap/18": "939012c5f4e2be30b499e74ce9c188bd64b16048202daaf832bc39e91e32b520",
+    "R-gap/19": "49411e2f85fa32a1334a208ab2278a48f45bd1ee82e93fc116179e4b04ab812c",
+    "R-gap/20": "2c6f6616893c110ce0b9e36cbae0b608b62e7520f93f055e5de9f369ea7cabe4",
+    "R-gap/21": "ddde7249c88cd9074787b46105c10f4bb45a106baea51df653490e3085f87f1d",
+    "R-gap/22": "946830cb8db9a33c43de565d397f8bb4d398383ae8b88e84b9744680b3407849",
+    "R-gap/23": "06dc2bc10f2b7c50fc5f67d7f23116ea74bf7442156859865e05f64ffb08c481",
+    "R-gap/24": "cd0002b99b03d022de1754dea30da2cefe28746b16200c4bba32fbeb20776ed4",
+    "R-gap/25": "9155110d55e54f0e9c7f23b096130f106a0af000a9d57d34217778db7c1fc058",
+    "R-gap/26": "a2ccc2da27a055976fd907ff05a0314a45cd488cc1cfe7220f3d600b1f5bb6f4",
+    "R-gap/27": "5e169712c6c71977157bb1663fa90f5e5a9a6bf581418cdd3d918158183da027",
+    "R-gap/28": "89935402de1dc8243dd8f7bbb3fc0d7af03a3c13e402cfd626dc5152b54e9a53",
+    "R-gap/29": "a4dcfbf00586d28255df0504f0188af040bfb0155c0fc0a439d4f38e36cca8c9",
+    "R-gap/30": "f703ce6517825a899d8684ac94b26006ee3192c8f05217c09b703fa4440f364c",
+    "R-gap/31": "8eb7131ce35af2bf60b52f74e368fa03b01973295250bdd27563cd99f7400ad8",
+    "R-gap/32": "c23e398599f7d544d467db4d80941a73196f5cb2fae75bf1a135dc531ecbddc2",
+    "R-gap/33": "96ba485f780396ce122d5e45ce1c350c44416eb6afba868f561a7c51b65b9011",
+    "R-gap/34": "9982089bd6324d79e65e6bda3f82e306162141518fbc07d2fbd70707c275aca5",
+    "R-gap/35": "51abc47ab59f2b60cf5ab259e823c03ea4a38e0a33746efce1ae9fb19064f97b",
+    "R-gap/36": "e03c4305b830077e8d472f3d018278deac5d6403b9b9617094d64b345ef17eb9",
+    "R-gap/37": "7d0703e0ee71ef4b79243d58313342f25fefebb2d4e91771b686d100fecf52aa",
+    "R-gap/38": "babb140c8ef78004c713cb928a558a306246ce13fa205b1b37390997a51ac3ab",
+    "R-gap/39": "95c60c69969003a6909228e08f0ccf4d1a989304dc3172871fc48c9e22bc5c14",
+    "R-gap/40": "83e432ca2055092400d50661c4a7694246620b16c35598554697dd1be889b22a",
+    "R-gap/41": "1929fb79811db6e0a2e56bf1f31dc7ae734b596970922f99b24496cc3efb0a22",
+    "R-gap/42": "df48ce9542761cc5f13c690c01b192b4961a860474063182403bea650c65a7a7",
+    "R-gap/43": "093a8b70f5af8eab10532842f6780c1d52ffafc2c9f20879634d830c17de62e6",
+    "R-gap/44": "a8fb9e0cc60b4ea9f4106d927b27d09195183ec9e47b8f6984c04ccddee59c84",
+    "R-gap/45": "a0a6d009b17d5386d8fca310d931e5d5ec8911fac7021724f10576353ffb60cf",
+    "P-gap/01": "7de942ec5a2e09ae30cb9ba704cd8aab27d86b7cdb0fa9a4064cef317030ab96",
+    "P-gap/02": "1602572011f2a47e4f24e229b7a79d549893cbcaf7a9b03dfea0613ad619eb67",
+    "P-gap/03": "bfc00dfeb95c9f9c360f3200a26f35e7bd41234678293901a73eb162716101c1",
+    "P-gap/04": "9d317f9cb6a0fb1290025c10f2110b2325e427e97f8e15c432f5894021e8f130",
+    "P-gap/05": "d42d84d1c3c092dd067f8a96f710506c44b2ea116a3d341cba78f3c3e72f4a96",
+    "P-gap/06": "3fcc807ddcbc282f4012159a27bd4d672e1ed9881e2d62be2f7cdc0d927e5653",
+    "P-gap/07": "ae448232395d42b9425bf46d6f91646aaf7d86e9e8140dd3aba04c8a3c234288",
+    "P-gap/08": "107173f769b41c832bb2003247e9ce09c7e033b61635f602653d0cfcb97afdd4",
+    "P-gap/09": "85e93458cbace8add974efe5bdca784ac97350719c818de8bce85e1f1efe13e0",
+    "P-gap/10": "3b8ca6f6b4351fc9b325933494bb17672c1cc5f30988581fac441db879845785",
+    "P-gap/11": "f36e48d99aad4a4ac4dc441b59d99030e7763892837be626f65da18191bf2e39",
+    "P-gap/12": "023b257b6d97bb685d0c4e0f088a562a4a2d8ab87e575180cc2cf21d6eaf2857",
+    "P-gap/13": "31b39b4004cf77bb8026ea6776d42a2ab81ff505680a6f87d95675ce119f88a0",
+    "P-gap/14": "4482815e4bcb0964f8772b381aa32084f47e084082591687ee700ebb82fcdbab",
+    "P-gap/15": "fad68361291e16e388160d11612382bf232085048abbfd6e38bae4ba7250c461",
+    "P-gap/16": "8cf78b0c56926a147e6816ab59c4ce6158fb3c2991c6f95553e0775ac0945baa",
+    "P-gap/17": "840653065f976653108a5d94514421e5634ed0625950c26226b8e5e7a2b9fdfe",
+    "P-gap/18": "2528a3cfbfe60932631ef3292d7136fdc01a0601dde1370a4563d4a38711753e",
+    "P-gap/19": "158bfbd3c6e818781bf59dca46574b546a0cfb98cb333b95c022bcf19415eca3",
+    "P-gap/20": "0998626eeaf5b5f5efaa8708991e4cdef022f311540870528d49652eae4c2117",
+    "P-gap/21": "694280b9fc2031a5bae7a76ecb6cfb00fc420b5b31e40ef3192c3d499340120a",
+    "P-gap/22": "20c80638615443edaa2a1a8ba2e8808aa70aaa3df31348f5fa7582de1c4d7993",
+    "P-gap/23": "f6cf272e24605efff10ed6a2fbf33cbfd3f3962482dac5e48a95b3d9d6aad83e",
+    "P-gap/24": "9b57b8c99ef51ece4c412153763acc4a336ab7231d717cda5c756c7a62341ffc",
+    "P-gap/25": "241e9f2779b66cb43bf32e72e6b4bb3153a1f0a55d030c8e223f704975cd0a8b",
+    "P-gap/26": "f9c5b54676c39fa75f7cb56e3edf0af5d66949ed1e433180ff0210dbf54633d7",
+    "P-gap/27": "5bdf577d52f308502d72418b90a9ad6fce30b2020f4021fd5e519df07f9fc04d",
+    "P-gap/28": "0ea92dbbd8f30d6f77c245c5886a6d9dcde5d18f68729eabfe308938c335e3d3",
+    "P-gap/29": "83e100459621ee737ca323004e48ad697a8846ce6e9f21a2ee5c425888f211b0",
+    "P-gap/30": "c1b36890c203a08757a199686d7e07865a88d329ba8e54daa0a45b489c1497fb",
+    "P-gap/31": "7b23a27cb7ce3129660755d57eeb851b01d0312fdd52ebe98fbde4a6bd1f0021",
+    "P-gap/32": "04b9d2ecb21e448a77928e684fd301627a7144e0b31144b717dbde1916376bf7",
+    "P-gap/33": "efdafbd47f39e7f210f3b8945664185f1d38fd21b16e371c6e35a090172356fc",
+    "P-gap/34": "e33d9b34268950ed6f9da7982d86e9cb04f34cefaa8a3ae107863b05ab5cba8b",
+    "P-gap/35": "4934f0f0f499fa675bca11d1485c619fddbc61020c3292b622d0d8918796ddd5",
+    "P-gap/36": "b4b5f5b378a0422270e8b7c1deff7ec034c9e67b9a5d285d86d1aa2cac59ff6e",
+    "P-gap/37": "1612c3e0b5af86c3fbee1cbc744e205a0c989f977101f345924812e196414c50",
+    "P-gap/38": "95b6b3ddecb779c1e9edef799089738db156faa9132db22070c55703bd7bc4f3",
+    "P-gap/39": "17f4ae3fe751e6dc854384a2ddf525a0e9463e28570f858d2a43bdfe76586116",
+    "P-gap/40": "64225cdf4fb59f10c39f0a16a1ff5f013a4dcf467225d13b0c3c83e852c93777",
+    "P-gap/41": "9eb75b439f47539025f82ba5a6336664c1a8098758f8f85543ff33899391c5ef",
+    "P-gap/42": "ce5368ef3994c47e02bd7023d073614b453623e8cb91bc2571daf11a506ff255",
+    "P-gap/43": "fe2ebdb6ae30a86253eb50a93628d72be24323486be123dacb7fc09442ec012d",
+    "P-gap/44": "7ebf74a00051b4942ff967896a0280d92de5f67092f4e2e0a958f543aff9e9cc",
+    "P-gap/45": "1c55eca9c8c5725289ca33dc465af444f9090d410409875ceeb972e4dda03875",
+    "P-gap/46": "88a422d0e8288f53f0700e00b9521d0d1959b145ade31a32818d17c42372c32d",
+    "P-gap/47": "204066a82306fd15cdbc8fdd0ad4173d093ea7f588826898abd8849e2aec4dda",
+    "P-gap/48": "b7ff9e09eb2f8a3c38a7440dc5ec02374000af844161ea8f4ec52096b7e09e4e",
+    "P-gap/49": "3adc036cd3cac0afdc35b19a03b19924d25226612a0211f95d9dcbe103c293cb",
+    "P-gap/50": "2a0f8165c1cf44f41b95beb143b3455671e742e45e9e6f2f39f61faa9c3dc907"
+  },
+  "overall": {
+    "R-gap": {
+      "legal": {
+        "all": {
+          "records": 10978,
+          "scored": 10974,
+          "structural_na": 4,
+          "block_anchor_missing": 8760,
+          "exact_subset": {
+            "n": 2214,
+            "tasks": 288,
+            "mean": [
+              -2.0981600187954066
+            ],
+            "ci95": [
+              [
+                -2.3242245107822734,
+                -1.8835875137246896
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -2.618070727572598,
+            57736566.64197793
+          ],
+          "all_scored_tasks": 1440,
+          "bootstrap_outer_limits": [
+            -2.715886802565219,
+            138609692.70995665
+          ]
+        },
+        "search": {
+          "records": 2975,
+          "scored": 2974,
+          "structural_na": 1,
+          "block_anchor_missing": 2383,
+          "exact_subset": {
+            "n": 591,
+            "tasks": 288,
+            "mean": [
+              -3.7429138987574424
+            ],
+            "ci95": [
+              [
+                -4.1405813130373295,
+                -3.3589533471949573
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -5.24389016653633,
+            302866.47303316445
+          ],
+          "all_scored_tasks": 1440,
+          "bootstrap_outer_limits": [
+            -5.4396262944249045,
+            873987.2124843815
+          ]
+        },
+        "click": {
+          "records": 5447,
+          "scored": 5445,
+          "structural_na": 2,
+          "block_anchor_missing": 4356,
+          "exact_subset": {
+            "n": 1089,
+            "tasks": 288,
+            "mean": [
+              -1.3026498218411815
+            ],
+            "ci95": [
+              [
+                -1.5834424830672846,
+                -1.0458235204016078
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -1.5213900938481906,
+            14172229.413651014
+          ],
+          "all_scored_tasks": 1437,
+          "bootstrap_outer_limits": [
+            -1.6405957890020941,
+            26766245.189887404
+          ]
+        },
+        "option": {
+          "records": 2491,
+          "scored": 2490,
+          "structural_na": 1,
+          "block_anchor_missing": 1969,
+          "exact_subset": {
+            "n": 521,
+            "tasks": 249,
+            "mean": [
+              -1.9365435107702142
+            ],
+            "ci95": [
+              [
+                -2.509666592118895,
+                -1.4256192158166614
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -1.9239178813856546,
+            223105440.71257004
+          ],
+          "all_scored_tasks": 1214,
+          "bootstrap_outer_limits": [
+            -2.170783617889176,
+            581579663.4947937
+          ]
+        },
+        "format": {
+          "records": 65,
+          "scored": 65,
+          "structural_na": 0,
+          "block_anchor_missing": 52,
+          "exact_subset": {
+            "n": 13,
+            "tasks": 12,
+            "mean": [
+              -0.44148787315785787
+            ],
+            "ci95": [
+              [
+                -1.035686776468745,
+                0.009967262470598898
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -0.9362188222944527,
+            321.6405285902138
+          ],
+          "all_scored_tasks": 63,
+          "bootstrap_outer_limits": [
+            -1.4400414327738598,
+            947.21708869524
+          ]
+        }
+      },
+      "illegal": {
+        "all": {
+          "records": 1881,
+          "scored": 1879,
+          "structural_na": 2,
+          "block_anchor_missing": 1505,
+          "exact_subset": {
+            "n": 374,
+            "tasks": 110,
+            "mean": [
+              -1.419601351817683
+            ],
+            "ci95": [
+              [
+                -1.7631985831273511,
+                -1.1047896266504365
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -2.3900461363352705,
+            5431083.2861344395
+          ],
+          "all_scored_tasks": 576,
+          "bootstrap_outer_limits": [
+            -2.6456384973432447,
+            13072334.51381527
+          ]
+        },
+        "search": {
+          "records": 0,
+          "scored": 0,
+          "structural_na": 0,
+          "block_anchor_missing": 0,
+          "exact_subset": {
+            "n": 0,
+            "tasks": 0,
+            "mean": null,
+            "ci95": null
+          },
+          "all_scored_identification_bounds": null,
+          "all_scored_tasks": 0,
+          "bootstrap_outer_limits": null
+        },
+        "click": {
+          "records": 1116,
+          "scored": 1114,
+          "structural_na": 2,
+          "block_anchor_missing": 892,
+          "exact_subset": {
+            "n": 222,
+            "tasks": 71,
+            "mean": [
+              -1.3955626521047448
+            ],
+            "ci95": [
+              [
+                -1.8964261621392875,
+                -0.9727274288188299
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -2.305788996091773,
+            3395473.702139746
+          ],
+          "all_scored_tasks": 369,
+          "bootstrap_outer_limits": [
+            -2.6139159776987224,
+            8673127.252825912
+          ]
+        },
+        "option": {
+          "records": 179,
+          "scored": 179,
+          "structural_na": 0,
+          "block_anchor_missing": 143,
+          "exact_subset": {
+            "n": 36,
+            "tasks": 20,
+            "mean": [
+              -0.902602316151005
+            ],
+            "ci95": [
+              [
+                -1.652233830395667,
+                -0.3074786804437423
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -2.034365232134836,
+            4477270.331332252
+          ],
+          "all_scored_tasks": 78,
+          "bootstrap_outer_limits": [
+            -2.6421683508211675,
+            13334948.283164974
+          ]
+        },
+        "format": {
+          "records": 586,
+          "scored": 586,
+          "structural_na": 0,
+          "block_anchor_missing": 470,
+          "exact_subset": {
+            "n": 116,
+            "tasks": 44,
+            "mean": [
+              -1.626054426130379
+            ],
+            "ci95": [
+              [
+                -2.178069489376119,
+                -1.1675917505540898
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -2.658867528968602,
+            9592178.158966621
+          ],
+          "all_scored_tasks": 229,
+          "bootstrap_outer_limits": [
+            -3.1832585311076906,
+            29968122.757222928
+          ]
+        }
+      }
+    },
+    "P-gap": {
+      "legal": {
+        "all": {
+          "records": 12316,
+          "scored": 12302,
+          "structural_na": 14,
+          "block_anchor_missing": 9885,
+          "exact_subset": {
+            "n": 2417,
+            "tasks": 320,
+            "mean": [
+              -0.2512903550696919
+            ],
+            "ci95": [
+              [
+                -0.2816566076239314,
+                -0.22146272290321625
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -0.5722526225338262,
+            1.5930532927985561
+          ],
+          "all_scored_tasks": 1600,
+          "bootstrap_outer_limits": [
+            -0.5925759070635914,
+            2.369607008851182
+          ]
+        },
+        "search": {
+          "records": 3326,
+          "scored": 3321,
+          "structural_na": 5,
+          "block_anchor_missing": 2669,
+          "exact_subset": {
+            "n": 652,
+            "tasks": 320,
+            "mean": [
+              -0.7294175503645218
+            ],
+            "ci95": [
+              [
+                -0.8291219969844551,
+                -0.6319249773207207
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -1.6571724971905593,
+            4.939009079195422
+          ],
+          "all_scored_tasks": 1600,
+          "bootstrap_outer_limits": [
+            -1.721272271370807,
+            7.799160760601347
+          ]
+        },
+        "click": {
+          "records": 6269,
+          "scored": 6261,
+          "structural_na": 8,
+          "block_anchor_missing": 5053,
+          "exact_subset": {
+            "n": 1208,
+            "tasks": 319,
+            "mean": [
+              -0.06831609587178944
+            ],
+            "ci95": [
+              [
+                -0.09349178950279659,
+                -0.04556535946318263
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -0.18670722643189294,
+            0.410604139119809
+          ],
+          "all_scored_tasks": 1598,
+          "bootstrap_outer_limits": [
+            -0.19885593895316153,
+            0.45948041558238994
+          ]
+        },
+        "option": {
+          "records": 2679,
+          "scored": 2678,
+          "structural_na": 1,
+          "block_anchor_missing": 2132,
+          "exact_subset": {
+            "n": 546,
+            "tasks": 268,
+            "mean": [
+              -0.08821254234041083
+            ],
+            "ci95": [
+              [
+                -0.11313524645084833,
+                -0.06573939712664213
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -0.13248139547121462,
+            0.2259086332613039
+          ],
+          "all_scored_tasks": 1325,
+          "bootstrap_outer_limits": [
+            -0.14431266263195866,
+            0.2783232622017273
+          ]
+        },
+        "format": {
+          "records": 42,
+          "scored": 42,
+          "structural_na": 0,
+          "block_anchor_missing": 31,
+          "exact_subset": {
+            "n": 11,
+            "tasks": 10,
+            "mean": [
+              -0.09987758498101691
+            ],
+            "ci95": [
+              [
+                -0.2667983923372459,
+                0.07844253976155155
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -0.30054232093577404,
+            0.46468145468988836
+          ],
+          "all_scored_tasks": 38,
+          "bootstrap_outer_limits": [
+            -0.43596299113506837,
+            0.7250252206513953
+          ]
+        }
+      },
+      "illegal": {
+        "all": {
+          "records": 1858,
+          "scored": 1854,
+          "structural_na": 4,
+          "block_anchor_missing": 1496,
+          "exact_subset": {
+            "n": 358,
+            "tasks": 112,
+            "mean": [
+              -0.2881633794508422
+            ],
+            "ci95": [
+              [
+                -0.36955870278613634,
+                -0.21489183549233187
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -0.8025183584704929,
+            4.535264495942881
+          ],
+          "all_scored_tasks": 603,
+          "bootstrap_outer_limits": [
+            -0.9455767251932153,
+            9.734860393409264
+          ]
+        },
+        "search": {
+          "records": 0,
+          "scored": 0,
+          "structural_na": 0,
+          "block_anchor_missing": 0,
+          "exact_subset": {
+            "n": 0,
+            "tasks": 0,
+            "mean": null,
+            "ci95": null
+          },
+          "all_scored_identification_bounds": null,
+          "all_scored_tasks": 0,
+          "bootstrap_outer_limits": null
+        },
+        "click": {
+          "records": 1213,
+          "scored": 1211,
+          "structural_na": 2,
+          "block_anchor_missing": 978,
+          "exact_subset": {
+            "n": 233,
+            "tasks": 78,
+            "mean": [
+              -0.26119893445473275
+            ],
+            "ci95": [
+              [
+                -0.3467601203576409,
+                -0.18152142659906012
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -0.6346337056179532,
+            5.41486160830401
+          ],
+          "all_scored_tasks": 424,
+          "bootstrap_outer_limits": [
+            -0.7052842081965459,
+            13.236518597433413
+          ]
+        },
+        "option": {
+          "records": 204,
+          "scored": 204,
+          "structural_na": 0,
+          "block_anchor_missing": 156,
+          "exact_subset": {
+            "n": 48,
+            "tasks": 19,
+            "mean": [
+              -0.2599036561801795
+            ],
+            "ci95": [
+              [
+                -0.4553377337641358,
+                -0.06708423190404582
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -0.7000502520380653,
+            2.50941812177985
+          ],
+          "all_scored_tasks": 83,
+          "bootstrap_outer_limits": [
+            -0.8732199938468179,
+            3.9523501196199327
+          ]
+        },
+        "format": {
+          "records": 441,
+          "scored": 439,
+          "structural_na": 2,
+          "block_anchor_missing": 362,
+          "exact_subset": {
+            "n": 77,
+            "tasks": 30,
+            "mean": [
+              -0.38737354050389833
+            ],
+            "ci95": [
+              [
+                -0.6236830651635262,
+                -0.19890095175822275
+              ]
+            ]
+          },
+          "all_scored_identification_bounds": [
+            -1.3132514070277534,
+            3.050254375806057
+          ],
+          "all_scored_tasks": 168,
+          "bootstrap_outer_limits": [
+            -1.856852863171121,
+            4.509955889695146
+          ]
+        }
+      }
+    }
+  },
+  "windows": [
+    {
+      "arm": "R-gap",
+      "start": 1,
+      "end": 5,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1318,
+            "scored": 1316,
+            "structural_na": 2,
+            "block_anchor_missing": 1058,
+            "exact_subset": {
+              "n": 258,
+              "tasks": 32,
+              "mean": [
+                -2.259794404828371
+              ],
+              "ci95": [
+                [
+                  -2.940091671288481,
+                  -1.6016230292782585
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.8234453149651575,
+              386651381.1056058
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -3.142133231304532,
+              1066081684.666581
+            ]
+          },
+          "search": {
+            "records": 332,
+            "scored": 332,
+            "structural_na": 0,
+            "block_anchor_missing": 267,
+            "exact_subset": {
+              "n": 65,
+              "tasks": 32,
+              "mean": [
+                -3.9869303247572283
+              ],
+              "ci95": [
+                [
+                  -4.959905703779694,
+                  -2.975424894994514
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -5.381514172767696,
+              3402.894674052065
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -5.911405537770939,
+              6667.426467006927
+            ]
+          },
+          "click": {
+            "records": 641,
+            "scored": 640,
+            "structural_na": 1,
+            "block_anchor_missing": 512,
+            "exact_subset": {
+              "n": 128,
+              "tasks": 32,
+              "mean": [
+                -1.3498402815092934
+              ],
+              "ci95": [
+                [
+                  -2.228225116741053,
+                  -0.5980830788913274
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.9051882730867784,
+              37532121.49654555
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.32836189329976,
+              82009252.457927
+            ]
+          },
+          "option": {
+            "records": 337,
+            "scored": 336,
+            "structural_na": 1,
+            "block_anchor_missing": 271,
+            "exact_subset": {
+              "n": 65,
+              "tasks": 31,
+              "mean": [
+                -2.3245681431278507
+              ],
+              "ci95": [
+                [
+                  -4.111782305608832,
+                  -0.8418941595346467
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.1078217054624404,
+              1442891458.3702717
+            ],
+            "all_scored_tasks": 155,
+            "bootstrap_outer_limits": [
+              -2.886800992768233,
+              4131643459.641347
+            ]
+          },
+          "format": {
+            "records": 8,
+            "scored": 8,
+            "structural_na": 0,
+            "block_anchor_missing": 8,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.1803426655447552,
+              0.4682752014590478
+            ],
+            "all_scored_tasks": 7,
+            "bootstrap_outer_limits": [
+              -0.4223066488022771,
+              0.8926409865860337
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 111,
+            "scored": 111,
+            "structural_na": 0,
+            "block_anchor_missing": 93,
+            "exact_subset": {
+              "n": 18,
+              "tasks": 5,
+              "mean": [
+                -1.4205344203001617
+              ],
+              "ci95": [
+                [
+                  -2.955902811006229,
+                  -0.9516854920067014
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.9250700392181574,
+              5534094.272495367
+            ],
+            "all_scored_tasks": 40,
+            "bootstrap_outer_limits": [
+              -2.679811091360121,
+              18614213.998816065
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 41,
+            "scored": 41,
+            "structural_na": 0,
+            "block_anchor_missing": 28,
+            "exact_subset": {
+              "n": 13,
+              "tasks": 4,
+              "mean": [
+                -1.4689653393477367
+              ],
+              "ci95": [
+                [
+                  -3.6790507911720858,
+                  -0.5658917139115127
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.333422860767005,
+              14982123.371630326
+            ],
+            "all_scored_tasks": 16,
+            "bootstrap_outer_limits": [
+              -4.48906938046157,
+              57587370.86996493
+            ]
+          },
+          "option": {
+            "records": 9,
+            "scored": 9,
+            "structural_na": 0,
+            "block_anchor_missing": 9,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -1.5912752641578394,
+              763.7328243557607
+            ],
+            "all_scored_tasks": 4,
+            "bootstrap_outer_limits": [
+              -4.0448003396766765,
+              2573.410011796118
+            ]
+          },
+          "format": {
+            "records": 61,
+            "scored": 61,
+            "structural_na": 0,
+            "block_anchor_missing": 56,
+            "exact_subset": {
+              "n": 5,
+              "tasks": 2,
+              "mean": [
+                -1.294614030776468
+              ],
+              "ci95": [
+                [
+                  -2.0504897409918366,
+                  -0.7906968906328888
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.6998517981040597,
+              172.66253643958476
+            ],
+            "all_scored_tasks": 23,
+            "bootstrap_outer_limits": [
+              -2.289821480188622,
+              516.5397138384753
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 6,
+      "end": 10,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1269,
+            "scored": 1269,
+            "structural_na": 0,
+            "block_anchor_missing": 1006,
+            "exact_subset": {
+              "n": 263,
+              "tasks": 32,
+              "mean": [
+                -2.3506378167297486
+              ],
+              "ci95": [
+                [
+                  -3.0767691299725937,
+                  -1.6617941938004415
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -3.1051108635460345,
+              20353920.050651323
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -3.446308913684569,
+              49809945.661929935
+            ]
+          },
+          "search": {
+            "records": 325,
+            "scored": 325,
+            "structural_na": 0,
+            "block_anchor_missing": 260,
+            "exact_subset": {
+              "n": 65,
+              "tasks": 32,
+              "mean": [
+                -3.982486819645075
+              ],
+              "ci95": [
+                [
+                  -4.9292484527244005,
+                  -3.046554832714696
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -6.181220412924468,
+              52399.43409635953
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -6.88909496084384,
+              110140.61471215522
+            ]
+          },
+          "click": {
+            "records": 621,
+            "scored": 621,
+            "structural_na": 0,
+            "block_anchor_missing": 496,
+            "exact_subset": {
+              "n": 125,
+              "tasks": 32,
+              "mean": [
+                -1.5301949939592339
+              ],
+              "ci95": [
+                [
+                  -2.517905407926726,
+                  -0.6749470001445806
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.2738936010870336,
+              41267787.04010434
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.7518086793834446,
+              100732800.98038547
+            ]
+          },
+          "option": {
+            "records": 316,
+            "scored": 316,
+            "structural_na": 0,
+            "block_anchor_missing": 245,
+            "exact_subset": {
+              "n": 71,
+              "tasks": 31,
+              "mean": [
+                -2.327798573405436
+              ],
+              "ci95": [
+                [
+                  -4.568417150670653,
+                  -0.5918553152983542
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.6287664262585722,
+              584806.8831350789
+            ],
+            "all_scored_tasks": 145,
+            "bootstrap_outer_limits": [
+              -2.331532869863842,
+              1471448.122932798
+            ]
+          },
+          "format": {
+            "records": 7,
+            "scored": 7,
+            "structural_na": 0,
+            "block_anchor_missing": 5,
+            "exact_subset": {
+              "n": 2,
+              "tasks": 2,
+              "mean": [
+                -1.4040147831519385
+              ],
+              "ci95": [
+                [
+                  -2.7274428039987773,
+                  -0.08058676230509984
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.6729906666730322,
+              0.17425013902319325
+            ],
+            "all_scored_tasks": 7,
+            "bootstrap_outer_limits": [
+              -1.4311333778799218,
+              1.201662551822169
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 104,
+            "scored": 104,
+            "structural_na": 0,
+            "block_anchor_missing": 95,
+            "exact_subset": {
+              "n": 9,
+              "tasks": 5,
+              "mean": [
+                -2.076957047875968
+              ],
+              "ci95": [
+                [
+                  -2.432186933533113,
+                  -1.1533593451673902
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.7186526445174217,
+              6685534.122363377
+            ],
+            "all_scored_tasks": 36,
+            "bootstrap_outer_limits": [
+              -3.6416604663606638,
+              21572539.433919102
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 34,
+            "scored": 34,
+            "structural_na": 0,
+            "block_anchor_missing": 34,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -3.8828538915048973,
+              302035.43684934056
+            ],
+            "all_scored_tasks": 13,
+            "bootstrap_outer_limits": [
+              -6.831801755657921,
+              909621.7919339396
+            ]
+          },
+          "option": {
+            "records": 19,
+            "scored": 19,
+            "structural_na": 0,
+            "block_anchor_missing": 19,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -3.288383712747032,
+              36052426.48608806
+            ],
+            "all_scored_tasks": 5,
+            "bootstrap_outer_limits": [
+              -6.220555031749093,
+              124529376.32983908
+            ]
+          },
+          "format": {
+            "records": 51,
+            "scored": 51,
+            "structural_na": 0,
+            "block_anchor_missing": 42,
+            "exact_subset": {
+              "n": 9,
+              "tasks": 5,
+              "mean": [
+                -2.076957047875968
+              ],
+              "ci95": [
+                [
+                  -2.432186933533113,
+                  -1.1533593451673902
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.7302657289500316,
+              592.953671388284
+            ],
+            "all_scored_tasks": 22,
+            "bootstrap_outer_limits": [
+              -2.4007510697080896,
+              1888.0713512221355
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 11,
+      "end": 15,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1276,
+            "scored": 1276,
+            "structural_na": 0,
+            "block_anchor_missing": 1020,
+            "exact_subset": {
+              "n": 256,
+              "tasks": 32,
+              "mean": [
+                -2.750384282442576
+              ],
+              "ci95": [
+                [
+                  -3.632185008453386,
+                  -1.9161959399493318
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.7072822409019737,
+              28207699.14977744
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -3.0092920357532154,
+              64083812.43951037
+            ]
+          },
+          "search": {
+            "records": 324,
+            "scored": 324,
+            "structural_na": 0,
+            "block_anchor_missing": 258,
+            "exact_subset": {
+              "n": 66,
+              "tasks": 32,
+              "mean": [
+                -5.445090832138908
+              ],
+              "ci95": [
+                [
+                  -7.3307820528168035,
+                  -3.7065053995779493
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -5.835060230690402,
+              21641.31584162479
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -6.5083526588417095,
+              51764.53900584512
+            ]
+          },
+          "click": {
+            "records": 610,
+            "scored": 610,
+            "structural_na": 0,
+            "block_anchor_missing": 496,
+            "exact_subset": {
+              "n": 114,
+              "tasks": 32,
+              "mean": [
+                -1.698373777297031
+              ],
+              "ci95": [
+                [
+                  -2.8397109242545575,
+                  -0.6991834154380346
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.5984502325835355,
+              6744779.985164019
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.9951797325973142,
+              17041931.2510689
+            ]
+          },
+          "option": {
+            "records": 332,
+            "scored": 332,
+            "structural_na": 0,
+            "block_anchor_missing": 260,
+            "exact_subset": {
+              "n": 72,
+              "tasks": 30,
+              "mean": [
+                -2.0998650565509926
+              ],
+              "ci95": [
+                [
+                  -3.991217477012311,
+                  -0.5869508431748908
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.7489294560556972,
+              95999082.95656942
+            ],
+            "all_scored_tasks": 147,
+            "bootstrap_outer_limits": [
+              -2.4429668863062997,
+              233404422.8185442
+            ]
+          },
+          "format": {
+            "records": 10,
+            "scored": 10,
+            "structural_na": 0,
+            "block_anchor_missing": 6,
+            "exact_subset": {
+              "n": 4,
+              "tasks": 3,
+              "mean": [
+                0.020628324850363935
+              ],
+              "ci95": [
+                [
+                  -0.28297411061832023,
+                  0.16176041013945824
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.823340336077619,
+              99.62521720282541
+            ],
+            "all_scored_tasks": 9,
+            "bootstrap_outer_limits": [
+              -2.4272182883973237,
+              330.66876059185944
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 155,
+            "scored": 155,
+            "structural_na": 0,
+            "block_anchor_missing": 105,
+            "exact_subset": {
+              "n": 50,
+              "tasks": 14,
+              "mean": [
+                -1.0543925632484856
+              ],
+              "ci95": [
+                [
+                  -1.7964330164516773,
+                  -0.4936923146662498
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.222981787248728,
+              276967.3011481821
+            ],
+            "all_scored_tasks": 52,
+            "bootstrap_outer_limits": [
+              -2.9125172500957306,
+              784767.2983872046
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 56,
+            "scored": 56,
+            "structural_na": 0,
+            "block_anchor_missing": 33,
+            "exact_subset": {
+              "n": 23,
+              "tasks": 5,
+              "mean": [
+                -1.0876665500707428
+              ],
+              "ci95": [
+                [
+                  -3.6312880178851348,
+                  -0.06411342713822014
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.030884298307822,
+              592051.3522574344
+            ],
+            "all_scored_tasks": 16,
+            "bootstrap_outer_limits": [
+              -3.7828901431124193,
+              2152029.7004045206
+            ]
+          },
+          "option": {
+            "records": 45,
+            "scored": 45,
+            "structural_na": 0,
+            "block_anchor_missing": 39,
+            "exact_subset": {
+              "n": 6,
+              "tasks": 3,
+              "mean": [
+                -0.8948084503913009
+              ],
+              "ci95": [
+                [
+                  -4.6016386981150275,
+                  -0.027178115963585214
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.7242761561765585,
+              217208.9455091685
+            ],
+            "all_scored_tasks": 17,
+            "bootstrap_outer_limits": [
+              -4.013100975002172,
+              716265.4779789578
+            ]
+          },
+          "format": {
+            "records": 54,
+            "scored": 54,
+            "structural_na": 0,
+            "block_anchor_missing": 33,
+            "exact_subset": {
+              "n": 21,
+              "tasks": 7,
+              "mean": [
+                -1.0635450861166373
+              ],
+              "ci95": [
+                [
+                  -1.7132352531956523,
+                  -0.6188929030237383
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.0044486905623984,
+              12.100067394593289
+            ],
+            "all_scored_tasks": 25,
+            "bootstrap_outer_limits": [
+              -3.0102447827257914,
+              29.108903474106643
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 16,
+      "end": 20,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1273,
+            "scored": 1273,
+            "structural_na": 0,
+            "block_anchor_missing": 1019,
+            "exact_subset": {
+              "n": 254,
+              "tasks": 32,
+              "mean": [
+                -2.880113149825408
+              ],
+              "ci95": [
+                [
+                  -3.6094238184026923,
+                  -2.2318526576983984
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.8005401326276282,
+              25177206.43262377
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -3.111541388301802,
+              53889580.19562989
+            ]
+          },
+          "search": {
+            "records": 324,
+            "scored": 324,
+            "structural_na": 0,
+            "block_anchor_missing": 260,
+            "exact_subset": {
+              "n": 64,
+              "tasks": 32,
+              "mean": [
+                -5.070290648048822
+              ],
+              "ci95": [
+                [
+                  -6.399033283657883,
+                  -3.8194546487368517
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -5.880532711367112,
+              80437.22507915337
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -6.545722344290841,
+              219986.2042104128
+            ]
+          },
+          "click": {
+            "records": 624,
+            "scored": 624,
+            "structural_na": 0,
+            "block_anchor_missing": 493,
+            "exact_subset": {
+              "n": 131,
+              "tasks": 32,
+              "mean": [
+                -2.205758232066529
+              ],
+              "ci95": [
+                [
+                  -3.2598398395790578,
+                  -1.281007753553849
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.5896851722749368,
+              682950.9141588176
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.9488110103952252,
+              1414919.4784298134
+            ]
+          },
+          "option": {
+            "records": 321,
+            "scored": 321,
+            "structural_na": 0,
+            "block_anchor_missing": 262,
+            "exact_subset": {
+              "n": 59,
+              "tasks": 26,
+              "mean": [
+                -2.001623901352773
+              ],
+              "ci95": [
+                [
+                  -3.4273209612950097,
+                  -0.8213985064680159
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.0621397481064414,
+              98437260.6893679
+            ],
+            "all_scored_tasks": 146,
+            "bootstrap_outer_limits": [
+              -2.7541187007800363,
+              215315835.10830253
+            ]
+          },
+          "format": {
+            "records": 4,
+            "scored": 4,
+            "structural_na": 0,
+            "block_anchor_missing": 4,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -1.4711459275742853,
+              19.020553937903255
+            ],
+            "all_scored_tasks": 4,
+            "bootstrap_outer_limits": [
+              -3.2507445941890287,
+              54.62927191362972
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 119,
+            "scored": 119,
+            "structural_na": 0,
+            "block_anchor_missing": 99,
+            "exact_subset": {
+              "n": 20,
+              "tasks": 5,
+              "mean": [
+                -0.5948599739791568
+              ],
+              "ci95": [
+                [
+                  -1.0658435564017026,
+                  0.04235310812193421
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.5787304282419643,
+              20962597.185616493
+            ],
+            "all_scored_tasks": 35,
+            "bootstrap_outer_limits": [
+              -3.841892615091268,
+              71594480.28858912
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 52,
+            "scored": 52,
+            "structural_na": 0,
+            "block_anchor_missing": 40,
+            "exact_subset": {
+              "n": 12,
+              "tasks": 3,
+              "mean": [
+                -0.9815417703896284
+              ],
+              "ci95": [
+                [
+                  -1.1156609941233766,
+                  -0.7341397000253121
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.866961866351824,
+              47585057.291617684
+            ],
+            "all_scored_tasks": 15,
+            "bootstrap_outer_limits": [
+              -4.8583053721209986,
+              175924285.42408594
+            ]
+          },
+          "option": {
+            "records": 16,
+            "scored": 16,
+            "structural_na": 0,
+            "block_anchor_missing": 15,
+            "exact_subset": {
+              "n": 1,
+              "tasks": 1,
+              "mean": [
+                1.71599839356111
+              ],
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -1.5674085211551418,
+              232.67456086282752
+            ],
+            "all_scored_tasks": 4,
+            "bootstrap_outer_limits": [
+              -2.705650582593792,
+              507.83525623742327
+            ]
+          },
+          "format": {
+            "records": 51,
+            "scored": 51,
+            "structural_na": 0,
+            "block_anchor_missing": 44,
+            "exact_subset": {
+              "n": 7,
+              "tasks": 3,
+              "mean": [
+                -0.2620995183526723
+              ],
+              "ci95": [
+                [
+                  -1.5799092039820053,
+                  0.12720771598167394
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.602124854353267,
+              394556.1398287888
+            ],
+            "all_scored_tasks": 22,
+            "bootstrap_outer_limits": [
+              -4.197255088199173,
+              1063017.9180359265
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 21,
+      "end": 25,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1296,
+            "scored": 1296,
+            "structural_na": 0,
+            "block_anchor_missing": 1028,
+            "exact_subset": {
+              "n": 268,
+              "tasks": 32,
+              "mean": [
+                -1.881346991029415
+              ],
+              "ci95": [
+                [
+                  -2.4963001019944233,
+                  -1.3350340011445907
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.4134396905834015,
+              17554408.82529725
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.693329063748487,
+              53453172.860871255
+            ]
+          },
+          "search": {
+            "records": 334,
+            "scored": 334,
+            "structural_na": 0,
+            "block_anchor_missing": 268,
+            "exact_subset": {
+              "n": 66,
+              "tasks": 32,
+              "mean": [
+                -4.146419281358178
+              ],
+              "ci95": [
+                [
+                  -5.283099079364802,
+                  -3.2379757607560022
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -5.170067233065591,
+              471.2296397093808
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -5.731348753474075,
+              867.0996893503835
+            ]
+          },
+          "click": {
+            "records": 638,
+            "scored": 638,
+            "structural_na": 0,
+            "block_anchor_missing": 502,
+            "exact_subset": {
+              "n": 136,
+              "tasks": 32,
+              "mean": [
+                -0.43201955131404896
+              ],
+              "ci95": [
+                [
+                  -0.7841703732407455,
+                  -0.14891586249382685
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.2516649299385683,
+              35548919.09521747
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.6022682555080894,
+              108491887.32030597
+            ]
+          },
+          "option": {
+            "records": 319,
+            "scored": 319,
+            "structural_na": 0,
+            "block_anchor_missing": 254,
+            "exact_subset": {
+              "n": 65,
+              "tasks": 30,
+              "mean": [
+                -2.630649945292963
+              ],
+              "ci95": [
+                [
+                  -4.905460567429668,
+                  -0.786646322255014
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.8320647551351696,
+              219832.07616640558
+            ],
+            "all_scored_tasks": 148,
+            "bootstrap_outer_limits": [
+              -2.5276981830918137,
+              495008.91693765466
+            ]
+          },
+          "format": {
+            "records": 5,
+            "scored": 5,
+            "structural_na": 0,
+            "block_anchor_missing": 4,
+            "exact_subset": {
+              "n": 1,
+              "tasks": 1,
+              "mean": [
+                -0.7904156034902408
+              ],
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -3.604900192650608,
+              3926.367946385504
+            ],
+            "all_scored_tasks": 5,
+            "bootstrap_outer_limits": [
+              -7.978583730328448,
+              11672.067032378745
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 119,
+            "scored": 119,
+            "structural_na": 0,
+            "block_anchor_missing": 102,
+            "exact_subset": {
+              "n": 17,
+              "tasks": 8,
+              "mean": [
+                -1.3138442000221928
+              ],
+              "ci95": [
+                [
+                  -2.3613556413701033,
+                  -0.11382160099860224
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.181751461806911,
+              811957.3479540402
+            ],
+            "all_scored_tasks": 42,
+            "bootstrap_outer_limits": [
+              -2.7427430794910688,
+              2592866.3278279104
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 60,
+            "scored": 60,
+            "structural_na": 0,
+            "block_anchor_missing": 46,
+            "exact_subset": {
+              "n": 14,
+              "tasks": 6,
+              "mean": [
+                -1.0844679866821783
+              ],
+              "ci95": [
+                [
+                  -1.7120235305377474,
+                  -0.0809270232299533
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.9112543713116992,
+              8993.836026826333
+            ],
+            "all_scored_tasks": 21,
+            "bootstrap_outer_limits": [
+              -2.51734968779102,
+              25284.6549365886
+            ]
+          },
+          "option": {
+            "records": 13,
+            "scored": 13,
+            "structural_na": 0,
+            "block_anchor_missing": 11,
+            "exact_subset": {
+              "n": 2,
+              "tasks": 2,
+              "mean": [
+                -1.0007212580331215
+              ],
+              "ci95": [
+                [
+                  -3.442639747482069,
+                  1.4411972314158257
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -3.7050100475407772,
+              7382105.017489405
+            ],
+            "all_scored_tasks": 8,
+            "bootstrap_outer_limits": [
+              -5.450699088502838,
+              16898399.936685972
+            ]
+          },
+          "format": {
+            "records": 46,
+            "scored": 46,
+            "structural_na": 0,
+            "block_anchor_missing": 45,
+            "exact_subset": {
+              "n": 1,
+              "tasks": 1,
+              "mean": [
+                -5.151357070760538
+              ],
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -2.104087631701966,
+              2520.1960338904614
+            ],
+            "all_scored_tasks": 20,
+            "bootstrap_outer_limits": [
+              -2.827724146258981,
+              6758.399846663216
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 26,
+      "end": 30,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1236,
+            "scored": 1236,
+            "structural_na": 0,
+            "block_anchor_missing": 991,
+            "exact_subset": {
+              "n": 245,
+              "tasks": 32,
+              "mean": [
+                -1.6863207874084607
+              ],
+              "ci95": [
+                [
+                  -2.287602236214654,
+                  -1.1455240394302575
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.43210955711084,
+              1409918.8745421947
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.718275176278915,
+              3226551.0257318774
+            ]
+          },
+          "search": {
+            "records": 332,
+            "scored": 332,
+            "structural_na": 0,
+            "block_anchor_missing": 265,
+            "exact_subset": {
+              "n": 67,
+              "tasks": 32,
+              "mean": [
+                -3.4513551915458036
+              ],
+              "ci95": [
+                [
+                  -4.767132725552675,
+                  -2.3260770786893676
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -5.121686701573914,
+              2495563.3298285226
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -5.727711658484997,
+              7597404.544968892
+            ]
+          },
+          "click": {
+            "records": 614,
+            "scored": 614,
+            "structural_na": 0,
+            "block_anchor_missing": 494,
+            "exact_subset": {
+              "n": 120,
+              "tasks": 32,
+              "mean": [
+                -1.0431299457835872
+              ],
+              "ci95": [
+                [
+                  -1.7529626422544222,
+                  -0.39692003485861743
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.2415758373091916,
+              382797.44861194957
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.5478192858845907,
+              955391.2912080645
+            ]
+          },
+          "option": {
+            "records": 288,
+            "scored": 288,
+            "structural_na": 0,
+            "block_anchor_missing": 230,
+            "exact_subset": {
+              "n": 58,
+              "tasks": 27,
+              "mean": [
+                -0.9781414066805785
+              ],
+              "ci95": [
+                [
+                  -1.9605538584764255,
+                  -0.23217099668398603
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.8857662202303886,
+              2357968.98974617
+            ],
+            "all_scored_tasks": 141,
+            "bootstrap_outer_limits": [
+              -2.531508582692537,
+              6604187.800799485
+            ]
+          },
+          "format": {
+            "records": 2,
+            "scored": 2,
+            "structural_na": 0,
+            "block_anchor_missing": 2,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.12959606613272331,
+              0.4682243774280437
+            ],
+            "all_scored_tasks": 2,
+            "bootstrap_outer_limits": [
+              -0.2159625564270676,
+              0.8809046205881234
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 193,
+            "scored": 193,
+            "structural_na": 0,
+            "block_anchor_missing": 149,
+            "exact_subset": {
+              "n": 44,
+              "tasks": 9,
+              "mean": [
+                -1.165472914697289
+              ],
+              "ci95": [
+                [
+                  -2.673881160431727,
+                  -0.29652743172860063
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.0344641704156197,
+              93840.78194701289
+            ],
+            "all_scored_tasks": 58,
+            "bootstrap_outer_limits": [
+              -2.787442647656462,
+              213621.05641136316
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 124,
+            "scored": 124,
+            "structural_na": 0,
+            "block_anchor_missing": 91,
+            "exact_subset": {
+              "n": 33,
+              "tasks": 6,
+              "mean": [
+                -1.409568614729346
+              ],
+              "ci95": [
+                [
+                  -3.3449486324661866,
+                  -0.24496184349566874
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.2436582867623573,
+              136192.39987338992
+            ],
+            "all_scored_tasks": 38,
+            "bootstrap_outer_limits": [
+              -3.257943495874937,
+              331163.9224132607
+            ]
+          },
+          "option": {
+            "records": 24,
+            "scored": 24,
+            "structural_na": 0,
+            "block_anchor_missing": 17,
+            "exact_subset": {
+              "n": 7,
+              "tasks": 2,
+              "mean": [
+                -0.3863610349500935
+              ],
+              "ci95": [
+                [
+                  -0.4422465848751693,
+                  -0.36400681498006304
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5747803779382918,
+              1.5239731619054184
+            ],
+            "all_scored_tasks": 10,
+            "bootstrap_outer_limits": [
+              -1.104632153346201,
+              4.448224580338326
+            ]
+          },
+          "format": {
+            "records": 45,
+            "scored": 45,
+            "structural_na": 0,
+            "block_anchor_missing": 41,
+            "exact_subset": {
+              "n": 4,
+              "tasks": 2,
+              "mean": [
+                -0.5151291789904108
+              ],
+              "ci95": [
+                [
+                  -0.7323712607723789,
+                  -0.44271515172975473
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.236516183581403,
+              27186.15013593912
+            ],
+            "all_scored_tasks": 19,
+            "bootstrap_outer_limits": [
+              -3.8319055367166612,
+              74125.40996955323
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 31,
+      "end": 35,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1193,
+            "scored": 1193,
+            "structural_na": 0,
+            "block_anchor_missing": 963,
+            "exact_subset": {
+              "n": 230,
+              "tasks": 32,
+              "mean": [
+                -1.854734797449342
+              ],
+              "ci95": [
+                [
+                  -2.488147376708462,
+                  -1.301204831362085
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.3653543978007585,
+              1914921.8436407496
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.626116044479464,
+              4922477.238547388
+            ]
+          },
+          "search": {
+            "records": 337,
+            "scored": 337,
+            "structural_na": 0,
+            "block_anchor_missing": 273,
+            "exact_subset": {
+              "n": 64,
+              "tasks": 32,
+              "mean": [
+                -3.015661762961462
+              ],
+              "ci95": [
+                [
+                  -3.8387429972554132,
+                  -2.275087910398038
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -4.537564496445242,
+              60622.59016321152
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -4.983694252591443,
+              185889.70622183717
+            ]
+          },
+          "click": {
+            "records": 598,
+            "scored": 598,
+            "structural_na": 0,
+            "block_anchor_missing": 488,
+            "exact_subset": {
+              "n": 110,
+              "tasks": 32,
+              "mean": [
+                -1.4639284322464612
+              ],
+              "ci95": [
+                [
+                  -2.4336992434972946,
+                  -0.6527137194939442
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.4273534357518656,
+              41884.45306068237
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.7573025941465996,
+              75808.34055907857
+            ]
+          },
+          "option": {
+            "records": 249,
+            "scored": 249,
+            "structural_na": 0,
+            "block_anchor_missing": 196,
+            "exact_subset": {
+              "n": 53,
+              "tasks": 29,
+              "mean": [
+                -1.3854383925017846
+              ],
+              "ci95": [
+                [
+                  -2.796033707043975,
+                  -0.3832545543295291
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.7316858974529334,
+              8992067.735035494
+            ],
+            "all_scored_tasks": 136,
+            "bootstrap_outer_limits": [
+              -2.455206588118312,
+              23682322.760884922
+            ]
+          },
+          "format": {
+            "records": 9,
+            "scored": 9,
+            "structural_na": 0,
+            "block_anchor_missing": 6,
+            "exact_subset": {
+              "n": 3,
+              "tasks": 3,
+              "mean": [
+                0.29123725529673977
+              ],
+              "ci95": [
+                [
+                  -0.030511093070604237,
+                  0.8621179165674914
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.8846020254295182,
+              19.736031499762912
+            ],
+            "all_scored_tasks": 9,
+            "bootstrap_outer_limits": [
+              -1.9720391885289965,
+              56.555760599468876
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 227,
+            "scored": 227,
+            "structural_na": 0,
+            "block_anchor_missing": 175,
+            "exact_subset": {
+              "n": 52,
+              "tasks": 16,
+              "mean": [
+                -1.3680474623281167
+              ],
+              "ci95": [
+                [
+                  -2.1266397009806295,
+                  -0.7978614754177216
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.5712124414193696,
+              2671839.118438602
+            ],
+            "all_scored_tasks": 74,
+            "bootstrap_outer_limits": [
+              -3.45225224948255,
+              8308391.215379837
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 137,
+            "scored": 137,
+            "structural_na": 0,
+            "block_anchor_missing": 115,
+            "exact_subset": {
+              "n": 22,
+              "tasks": 7,
+              "mean": [
+                -1.4765632109889766
+              ],
+              "ci95": [
+                [
+                  -3.1441335209403745,
+                  -0.6206151475791754
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -3.05071401935591,
+              4427043.152818831
+            ],
+            "all_scored_tasks": 48,
+            "bootstrap_outer_limits": [
+              -4.372535002573572,
+              14064381.09287735
+            ]
+          },
+          "option": {
+            "records": 14,
+            "scored": 14,
+            "structural_na": 0,
+            "block_anchor_missing": 4,
+            "exact_subset": {
+              "n": 10,
+              "tasks": 5,
+              "mean": [
+                -1.4413881611022707
+              ],
+              "ci95": [
+                [
+                  -3.0980746975463647,
+                  -0.2476506267230169
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.6023479311978899,
+              5.7898317508396655
+            ],
+            "all_scored_tasks": 7,
+            "bootstrap_outer_limits": [
+              -2.907549640503223,
+              24.59473187066269
+            ]
+          },
+          "format": {
+            "records": 76,
+            "scored": 76,
+            "structural_na": 0,
+            "block_anchor_missing": 56,
+            "exact_subset": {
+              "n": 20,
+              "tasks": 7,
+              "mean": [
+                -1.2120097894140944
+              ],
+              "ci95": [
+                [
+                  -1.981354830667938,
+                  -0.6242631192231388
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.8853227962324588,
+              32.72225971450868
+            ],
+            "all_scored_tasks": 27,
+            "bootstrap_outer_limits": [
+              -2.924391519342286,
+              84.58785687025876
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 36,
+      "end": 40,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1138,
+            "scored": 1137,
+            "structural_na": 1,
+            "block_anchor_missing": 911,
+            "exact_subset": {
+              "n": 226,
+              "tasks": 32,
+              "mean": [
+                -1.8445469703321056
+              ],
+              "ci95": [
+                [
+                  -2.287397089873545,
+                  -1.4197147414093825
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.390679051251495,
+              3551438.4444993515
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.6174313235358504,
+              9892642.401052672
+            ]
+          },
+          "search": {
+            "records": 333,
+            "scored": 333,
+            "structural_na": 0,
+            "block_anchor_missing": 267,
+            "exact_subset": {
+              "n": 66,
+              "tasks": 32,
+              "mean": [
+                -2.520434392022351
+              ],
+              "ci95": [
+                [
+                  -3.4620460609367902,
+                  -1.7259008406593233
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -4.505186971151377,
+              1045.892449932489
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -4.982493224917945,
+              2662.7984430560045
+            ]
+          },
+          "click": {
+            "records": 597,
+            "scored": 596,
+            "structural_na": 1,
+            "block_anchor_missing": 479,
+            "exact_subset": {
+              "n": 117,
+              "tasks": 32,
+              "mean": [
+                -1.511872154608101
+              ],
+              "ci95": [
+                [
+                  -2.1905927034376846,
+                  -0.8899122833901139
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.194062870903982,
+              37374.25095320711
+            ],
+            "all_scored_tasks": 159,
+            "bootstrap_outer_limits": [
+              -1.4338085470951851,
+              113833.9357404718
+            ]
+          },
+          "option": {
+            "records": 202,
+            "scored": 202,
+            "structural_na": 0,
+            "block_anchor_missing": 160,
+            "exact_subset": {
+              "n": 42,
+              "tasks": 24,
+              "mean": [
+                -1.7026765403662332
+              ],
+              "ci95": [
+                [
+                  -2.895081021299883,
+                  -0.70698574946075
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.4708015035823463,
+              19878030.523420352
+            ],
+            "all_scored_tasks": 111,
+            "bootstrap_outer_limits": [
+              -3.3575402850418956,
+              55770995.66015982
+            ]
+          },
+          "format": {
+            "records": 6,
+            "scored": 6,
+            "structural_na": 0,
+            "block_anchor_missing": 5,
+            "exact_subset": {
+              "n": 1,
+              "tasks": 1,
+              "mean": [
+                -2.117488637051011
+              ],
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -1.201907516188483,
+              1.6518195564708866
+            ],
+            "all_scored_tasks": 6,
+            "bootstrap_outer_limits": [
+              -1.806365531189573,
+              3.875014288145842
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 338,
+            "scored": 338,
+            "structural_na": 0,
+            "block_anchor_missing": 274,
+            "exact_subset": {
+              "n": 64,
+              "tasks": 21,
+              "mean": [
+                -1.637201731767937
+              ],
+              "ci95": [
+                [
+                  -2.3536300663373506,
+                  -1.0028785111168874
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.4778256925284445,
+              16642418.261875607
+            ],
+            "all_scored_tasks": 104,
+            "bootstrap_outer_limits": [
+              -3.142288931481716,
+              53235860.766259596
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 238,
+            "scored": 238,
+            "structural_na": 0,
+            "block_anchor_missing": 200,
+            "exact_subset": {
+              "n": 38,
+              "tasks": 17,
+              "mean": [
+                -1.2899540690955649
+              ],
+              "ci95": [
+                [
+                  -2.192565848309771,
+                  -0.490683429159995
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.140319155188392,
+              107780.89413161633
+            ],
+            "all_scored_tasks": 84,
+            "bootstrap_outer_limits": [
+              -2.5937339999382907,
+              273016.4726816632
+            ]
+          },
+          "option": {
+            "records": 12,
+            "scored": 12,
+            "structural_na": 0,
+            "block_anchor_missing": 7,
+            "exact_subset": {
+              "n": 5,
+              "tasks": 4,
+              "mean": [
+                -1.5269709314463158
+              ],
+              "ci95": [
+                [
+                  -2.8000031379838215,
+                  -0.1098919237020205
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.3348610914813135,
+              4.039109707798226
+            ],
+            "all_scored_tasks": 10,
+            "bootstrap_outer_limits": [
+              -2.0609044213597807,
+              11.16298226883252
+            ]
+          },
+          "format": {
+            "records": 88,
+            "scored": 88,
+            "structural_na": 0,
+            "block_anchor_missing": 67,
+            "exact_subset": {
+              "n": 21,
+              "tasks": 6,
+              "mean": [
+                -2.291800073823091
+              ],
+              "ci95": [
+                [
+                  -3.539345718727152,
+                  -1.0265781971157188
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -3.546486273204562,
+              63630516.71865129
+            ],
+            "all_scored_tasks": 31,
+            "bootstrap_outer_limits": [
+              -5.807932325473128,
+              204846550.50078833
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 41,
+      "end": 45,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 979,
+            "scored": 978,
+            "structural_na": 1,
+            "block_anchor_missing": 764,
+            "exact_subset": {
+              "n": 214,
+              "tasks": 32,
+              "mean": [
+                -1.157141391528374
+              ],
+              "ci95": [
+                [
+                  -1.5277742734178077,
+                  -0.8206202417436028
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.4346764686988918,
+              81259.21123086508
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.6827520190325527,
+              223180.72613255895
+            ]
+          },
+          "search": {
+            "records": 334,
+            "scored": 333,
+            "structural_na": 1,
+            "block_anchor_missing": 265,
+            "exact_subset": {
+              "n": 68,
+              "tasks": 32,
+              "mean": [
+                -2.1458810334851326
+              ],
+              "ci95": [
+                [
+                  -2.8855953196881545,
+                  -1.4841369614639102
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -4.6466335286220355,
+              88.15362052061108
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -5.124661170090412,
+              186.8507000401137
+            ]
+          },
+          "click": {
+            "records": 504,
+            "scored": 504,
+            "structural_na": 0,
+            "block_anchor_missing": 396,
+            "exact_subset": {
+              "n": 108,
+              "tasks": 32,
+              "mean": [
+                -0.4639941165312637
+              ],
+              "ci95": [
+                [
+                  -0.9186168250190685,
+                  -0.09739328760641515
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.1099877689092195,
+              33508.955467088126
+            ],
+            "all_scored_tasks": 158,
+            "bootstrap_outer_limits": [
+              -1.3529015534853701,
+              100054.85349876428
+            ]
+          },
+          "option": {
+            "records": 127,
+            "scored": 127,
+            "structural_na": 0,
+            "block_anchor_missing": 91,
+            "exact_subset": {
+              "n": 36,
+              "tasks": 21,
+              "mean": [
+                -1.4060374809779954
+              ],
+              "ci95": [
+                [
+                  -2.3567050806718006,
+                  -0.576722868654946
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.1041321406350604,
+              492548.27441026474
+            ],
+            "all_scored_tasks": 85,
+            "bootstrap_outer_limits": [
+              -3.044085706409309,
+              1486985.044152066
+            ]
+          },
+          "format": {
+            "records": 14,
+            "scored": 14,
+            "structural_na": 0,
+            "block_anchor_missing": 12,
+            "exact_subset": {
+              "n": 2,
+              "tasks": 2,
+              "mean": [
+                -0.4898168047493495
+              ],
+              "ci95": [
+                [
+                  -0.5390169699281719,
+                  -0.44061663957052705
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5090002832486988,
+              0.6444740342951977
+            ],
+            "all_scored_tasks": 14,
+            "bootstrap_outer_limits": [
+              -0.6970204780190141,
+              1.0448805783854025
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 515,
+            "scored": 513,
+            "structural_na": 2,
+            "block_anchor_missing": 413,
+            "exact_subset": {
+              "n": 100,
+              "tasks": 27,
+              "mean": [
+                -1.7251630642025142
+              ],
+              "ci95": [
+                [
+                  -2.530614563687801,
+                  -0.9824955190090967
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.4748394262856777,
+              22548.61049836826
+            ],
+            "all_scored_tasks": 135,
+            "bootstrap_outer_limits": [
+              -2.9673575338494977,
+              66819.6421966482
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 374,
+            "scored": 372,
+            "structural_na": 2,
+            "block_anchor_missing": 305,
+            "exact_subset": {
+              "n": 67,
+              "tasks": 23,
+              "mean": [
+                -1.6525756133197358
+              ],
+              "ci95": [
+                [
+                  -2.6423825349040455,
+                  -0.8140758950793893
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.0374122711404845,
+              2310.036876376515
+            ],
+            "all_scored_tasks": 118,
+            "bootstrap_outer_limits": [
+              -2.5109847217997663,
+              5099.115154690608
+            ]
+          },
+          "option": {
+            "records": 27,
+            "scored": 27,
+            "structural_na": 0,
+            "block_anchor_missing": 22,
+            "exact_subset": {
+              "n": 5,
+              "tasks": 3,
+              "mean": [
+                -0.41722500873566054
+              ],
+              "ci95": [
+                [
+                  -1.192401292938493,
+                  -0.16271342032567918
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.4543919052962435,
+              395657.6224746388
+            ],
+            "all_scored_tasks": 13,
+            "bootstrap_outer_limits": [
+              -2.864400101805464,
+              1144577.5820133176
+            ]
+          },
+          "format": {
+            "records": 114,
+            "scored": 114,
+            "structural_na": 0,
+            "block_anchor_missing": 86,
+            "exact_subset": {
+              "n": 28,
+              "tasks": 11,
+              "mean": [
+                -2.1324148315768157
+              ],
+              "ci95": [
+                [
+                  -3.8182502040234163,
+                  -0.8511481660794405
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -4.1439182401517005,
+              222.34790206677775
+            ],
+            "all_scored_tasks": 40,
+            "bootstrap_outer_limits": [
+              -5.5378511443132,
+              408.12929732569
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 1,
+      "end": 5,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1306,
+            "scored": 1304,
+            "structural_na": 2,
+            "block_anchor_missing": 1046,
+            "exact_subset": {
+              "n": 258,
+              "tasks": 32,
+              "mean": [
+                -0.10008862510216629
+              ],
+              "ci95": [
+                [
+                  -0.16021066861658403,
+                  -0.04057631438367471
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.33031602817269434,
+              0.6456920590324765
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.36765965271001405,
+              0.771106463644154
+            ]
+          },
+          "search": {
+            "records": 329,
+            "scored": 329,
+            "structural_na": 0,
+            "block_anchor_missing": 264,
+            "exact_subset": {
+              "n": 65,
+              "tasks": 32,
+              "mean": [
+                -0.443681496573305
+              ],
+              "ci95": [
+                [
+                  -0.6843533739245704,
+                  -0.21046688051667645
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.0619968063699605,
+              2.068802655232224
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.195339963244665,
+              2.5439292922281678
+            ]
+          },
+          "click": {
+            "records": 634,
+            "scored": 633,
+            "structural_na": 1,
+            "block_anchor_missing": 505,
+            "exact_subset": {
+              "n": 128,
+              "tasks": 32,
+              "mean": [
+                0.05628808062558342
+              ],
+              "ci95": [
+                [
+                  0.03176978471203546,
+                  0.08255108451618758
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.05491016286545608,
+              0.10351214047610247
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.06870640045872121,
+              0.11979675844566333
+            ]
+          },
+          "option": {
+            "records": 334,
+            "scored": 333,
+            "structural_na": 1,
+            "block_anchor_missing": 268,
+            "exact_subset": {
+              "n": 65,
+              "tasks": 31,
+              "mean": [
+                -0.0644375741410578
+              ],
+              "ci95": [
+                [
+                  -0.13267610349778833,
+                  -0.007981942968348461
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.1340407740367201,
+              0.2751101453041244
+            ],
+            "all_scored_tasks": 154,
+            "bootstrap_outer_limits": [
+              -0.17762189076465057,
+              0.39276636208327625
+            ]
+          },
+          "format": {
+            "records": 9,
+            "scored": 9,
+            "structural_na": 0,
+            "block_anchor_missing": 9,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.2157156214905446,
+              0.46794534436683133
+            ],
+            "all_scored_tasks": 6,
+            "bootstrap_outer_limits": [
+              -0.3984733445588395,
+              0.8735355224972713
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 108,
+            "scored": 108,
+            "structural_na": 0,
+            "block_anchor_missing": 90,
+            "exact_subset": {
+              "n": 18,
+              "tasks": 5,
+              "mean": [
+                -0.3891435070917957
+              ],
+              "ci95": [
+                [
+                  -1.2326199868789602,
+                  0.018047113626539144
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.42491977938659575,
+              0.5009669213382325
+            ],
+            "all_scored_tasks": 40,
+            "bootstrap_outer_limits": [
+              -0.5711442666432177,
+              0.7586620726867768
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 43,
+            "scored": 43,
+            "structural_na": 0,
+            "block_anchor_missing": 30,
+            "exact_subset": {
+              "n": 13,
+              "tasks": 4,
+              "mean": [
+                -0.2590254671736659
+              ],
+              "ci95": [
+                [
+                  -1.4934597381790915,
+                  0.07734182150815629
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.2825005163965479,
+              0.22548543633077406
+            ],
+            "all_scored_tasks": 16,
+            "bootstrap_outer_limits": [
+              -0.5507897205863374,
+              0.46866998699997675
+            ]
+          },
+          "option": {
+            "records": 8,
+            "scored": 8,
+            "structural_na": 0,
+            "block_anchor_missing": 8,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.1994261537202736,
+              0.25427694139328283
+            ],
+            "all_scored_tasks": 5,
+            "bootstrap_outer_limits": [
+              -0.4537549744818147,
+              0.5676971275323213
+            ]
+          },
+          "format": {
+            "records": 57,
+            "scored": 57,
+            "structural_na": 0,
+            "block_anchor_missing": 52,
+            "exact_subset": {
+              "n": 5,
+              "tasks": 2,
+              "mean": [
+                -0.7274504108789334
+              ],
+              "ci95": [
+                [
+                  -0.9300086656941356,
+                  -0.42361302865612976
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5640071006831331,
+              0.7434094423010446
+            ],
+            "all_scored_tasks": 22,
+            "bootstrap_outer_limits": [
+              -0.7311168751020369,
+              1.1259744284967868
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 6,
+      "end": 10,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1277,
+            "scored": 1277,
+            "structural_na": 0,
+            "block_anchor_missing": 1001,
+            "exact_subset": {
+              "n": 276,
+              "tasks": 32,
+              "mean": [
+                -0.1507948169028808
+              ],
+              "ci95": [
+                [
+                  -0.22275132286485774,
+                  -0.0840007514651955
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.44437490980515687,
+              1.0791375678206214
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.4977818106102054,
+              1.3391293694058843
+            ]
+          },
+          "search": {
+            "records": 325,
+            "scored": 325,
+            "structural_na": 0,
+            "block_anchor_missing": 260,
+            "exact_subset": {
+              "n": 65,
+              "tasks": 32,
+              "mean": [
+                -0.44678600878858155
+              ],
+              "ci95": [
+                [
+                  -0.683121588442265,
+                  -0.22661474536226955
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.3028563126142447,
+              3.0533224631347107
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.4767572989051088,
+              3.863389340589899
+            ]
+          },
+          "click": {
+            "records": 631,
+            "scored": 631,
+            "structural_na": 0,
+            "block_anchor_missing": 498,
+            "exact_subset": {
+              "n": 133,
+              "tasks": 32,
+              "mean": [
+                -0.05381462259229798
+              ],
+              "ci95": [
+                [
+                  -0.1257772257972909,
+                  0.00850550076538574
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.19084525481490372,
+              0.5628178598525774
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.23283607436664175,
+              0.8364760312003321
+            ]
+          },
+          "option": {
+            "records": 317,
+            "scored": 317,
+            "structural_na": 0,
+            "block_anchor_missing": 241,
+            "exact_subset": {
+              "n": 76,
+              "tasks": 31,
+              "mean": [
+                -0.06463564361792391
+              ],
+              "ci95": [
+                [
+                  -0.1290075424679108,
+                  -0.013886565427530764
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.07127029335467225,
+              0.09484039409661402
+            ],
+            "all_scored_tasks": 146,
+            "bootstrap_outer_limits": [
+              -0.09478792989504128,
+              0.18794802684223028
+            ]
+          },
+          "format": {
+            "records": 4,
+            "scored": 4,
+            "structural_na": 0,
+            "block_anchor_missing": 2,
+            "exact_subset": {
+              "n": 2,
+              "tasks": 2,
+              "mean": [
+                -0.2543125870997288
+              ],
+              "ci95": [
+                [
+                  -0.6122745640439184,
+                  0.10364938984446087
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.25560485998006005,
+              0.13159977313719795
+            ],
+            "all_scored_tasks": 4,
+            "bootstrap_outer_limits": [
+              -0.515380212747246,
+              0.5175121333741247
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 116,
+            "scored": 116,
+            "structural_na": 0,
+            "block_anchor_missing": 108,
+            "exact_subset": {
+              "n": 8,
+              "tasks": 5,
+              "mean": [
+                -0.43685289579736375
+              ],
+              "ci95": [
+                [
+                  -0.7188398739139755,
+                  -0.17071940464907254
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.48719841632898014,
+              0.8988970894503998
+            ],
+            "all_scored_tasks": 38,
+            "bootstrap_outer_limits": [
+              -0.6230220903729982,
+              1.2689645103453318
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 44,
+            "scored": 44,
+            "structural_na": 0,
+            "block_anchor_missing": 44,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.6677915384730114,
+              1.227138205495489
+            ],
+            "all_scored_tasks": 14,
+            "bootstrap_outer_limits": [
+              -0.9462506738747051,
+              1.7207054007900702
+            ]
+          },
+          "option": {
+            "records": 22,
+            "scored": 22,
+            "structural_na": 0,
+            "block_anchor_missing": 22,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.22716493512830602,
+              0.5717969763793354
+            ],
+            "all_scored_tasks": 6,
+            "bootstrap_outer_limits": [
+              -0.5037488835212601,
+              1.4577109282657432
+            ]
+          },
+          "format": {
+            "records": 50,
+            "scored": 50,
+            "structural_na": 0,
+            "block_anchor_missing": 42,
+            "exact_subset": {
+              "n": 8,
+              "tasks": 5,
+              "mean": [
+                -0.43685289579736375
+              ],
+              "ci95": [
+                [
+                  -0.7188398739139755,
+                  -0.17071940464907254
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.44269120057052896,
+              0.7539689570819895
+            ],
+            "all_scored_tasks": 21,
+            "bootstrap_outer_limits": [
+              -0.5517675391350096,
+              1.4079938148635054
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 11,
+      "end": 15,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1268,
+            "scored": 1268,
+            "structural_na": 0,
+            "block_anchor_missing": 1017,
+            "exact_subset": {
+              "n": 251,
+              "tasks": 32,
+              "mean": [
+                -0.208199052194257
+              ],
+              "ci95": [
+                [
+                  -0.29910910982149697,
+                  -0.12577673625891925
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.4439945516239659,
+              0.8397333546925053
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.4890801939364689,
+              1.0154047592440272
+            ]
+          },
+          "search": {
+            "records": 326,
+            "scored": 326,
+            "structural_na": 0,
+            "block_anchor_missing": 260,
+            "exact_subset": {
+              "n": 66,
+              "tasks": 32,
+              "mean": [
+                -0.6126167243647148
+              ],
+              "ci95": [
+                [
+                  -0.956653410545992,
+                  -0.311999308214348
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.3180522104060988,
+              2.650527844274842
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.4857910700876298,
+              3.3194108917089333
+            ]
+          },
+          "click": {
+            "records": 616,
+            "scored": 616,
+            "structural_na": 0,
+            "block_anchor_missing": 500,
+            "exact_subset": {
+              "n": 116,
+              "tasks": 32,
+              "mean": [
+                -0.06067458853436456
+              ],
+              "ci95": [
+                [
+                  -0.12554868710628472,
+                  0.0005750763802846063
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.17353311493110363,
+              0.267339521265385
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.19771475600392113,
+              0.317382465882719
+            ]
+          },
+          "option": {
+            "records": 322,
+            "scored": 322,
+            "structural_na": 0,
+            "block_anchor_missing": 256,
+            "exact_subset": {
+              "n": 66,
+              "tasks": 29,
+              "mean": [
+                -0.05608211872794983
+              ],
+              "ci95": [
+                [
+                  -0.10165633023314499,
+                  -0.021686411185249187
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.0774408182468317,
+              0.11269227665204327
+            ],
+            "all_scored_tasks": 144,
+            "bootstrap_outer_limits": [
+              -0.107825578667428,
+              0.17746313118669568
+            ]
+          },
+          "format": {
+            "records": 4,
+            "scored": 4,
+            "structural_na": 0,
+            "block_anchor_missing": 1,
+            "exact_subset": {
+              "n": 3,
+              "tasks": 2,
+              "mean": [
+                -0.36186206221878536
+              ],
+              "ci95": [
+                [
+                  -0.38316113431061855,
+                  -0.35121252617286874
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.36693214844022193,
+              -0.06456041623478678
+            ],
+            "all_scored_tasks": 3,
+            "bootstrap_outer_limits": [
+              -0.38316113431061855,
+              0.827344521717209
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 138,
+            "scored": 138,
+            "structural_na": 0,
+            "block_anchor_missing": 95,
+            "exact_subset": {
+              "n": 43,
+              "tasks": 12,
+              "mean": [
+                -0.3086990440651809
+              ],
+              "ci95": [
+                [
+                  -0.6215760713738868,
+                  -0.055733591093699915
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5413420653655472,
+              0.9507086374121538
+            ],
+            "all_scored_tasks": 44,
+            "bootstrap_outer_limits": [
+              -0.7205425181989653,
+              1.5406821859235544
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 53,
+            "scored": 53,
+            "structural_na": 0,
+            "block_anchor_missing": 29,
+            "exact_subset": {
+              "n": 24,
+              "tasks": 5,
+              "mean": [
+                -0.2518261126426882
+              ],
+              "ci95": [
+                [
+                  -0.6995132773123319,
+                  0.017809606922776538
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.35620128236086435,
+              0.34029163816139346
+            ],
+            "all_scored_tasks": 16,
+            "bootstrap_outer_limits": [
+              -0.6030243340338511,
+              0.8286199178198144
+            ]
+          },
+          "option": {
+            "records": 44,
+            "scored": 44,
+            "structural_na": 0,
+            "block_anchor_missing": 38,
+            "exact_subset": {
+              "n": 6,
+              "tasks": 3,
+              "mean": [
+                -0.5850909921653625
+              ],
+              "ci95": [
+                [
+                  -1.1136513972326942,
+                  0.01943533548788126
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.7997281994886543,
+              2.092841112312673
+            ],
+            "all_scored_tasks": 17,
+            "bootstrap_outer_limits": [
+              -1.0983496346252706,
+              3.250547904798315
+            ]
+          },
+          "format": {
+            "records": 41,
+            "scored": 41,
+            "structural_na": 0,
+            "block_anchor_missing": 28,
+            "exact_subset": {
+              "n": 13,
+              "tasks": 5,
+              "mean": [
+                -0.28612971064508363
+              ],
+              "ci95": [
+                [
+                  -0.4824619686294919,
+                  -0.1261827222938844
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5033779579955828,
+              0.5140811267942885
+            ],
+            "all_scored_tasks": 20,
+            "bootstrap_outer_limits": [
+              -0.7814496938108859,
+              1.011705967406707
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 16,
+      "end": 20,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1261,
+            "scored": 1260,
+            "structural_na": 1,
+            "block_anchor_missing": 1012,
+            "exact_subset": {
+              "n": 248,
+              "tasks": 32,
+              "mean": [
+                -0.26224400742970605
+              ],
+              "ci95": [
+                [
+                  -0.3803589685709746,
+                  -0.15516708835328194
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5111019289637402,
+              1.144536561008566
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.5654531023059105,
+              1.4647949426233555
+            ]
+          },
+          "search": {
+            "records": 324,
+            "scored": 324,
+            "structural_na": 0,
+            "block_anchor_missing": 260,
+            "exact_subset": {
+              "n": 64,
+              "tasks": 32,
+              "mean": [
+                -0.6043248573297167
+              ],
+              "ci95": [
+                [
+                  -0.9875582667649687,
+                  -0.2584647298261783
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.41086898856883,
+              3.068333183616332
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.5944533025993675,
+              4.1987642306282495
+            ]
+          },
+          "click": {
+            "records": 622,
+            "scored": 621,
+            "structural_na": 1,
+            "block_anchor_missing": 496,
+            "exact_subset": {
+              "n": 125,
+              "tasks": 32,
+              "mean": [
+                -0.15896059707260995
+              ],
+              "ci95": [
+                [
+                  -0.32418205448380394,
+                  -0.030561267331295897
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.22973813251286537,
+              0.5398890443899332
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.27609376530072005,
+              0.7955347977783748
+            ]
+          },
+          "option": {
+            "records": 314,
+            "scored": 314,
+            "structural_na": 0,
+            "block_anchor_missing": 255,
+            "exact_subset": {
+              "n": 59,
+              "tasks": 27,
+              "mean": [
+                -0.1099940396506609
+              ],
+              "ci95": [
+                [
+                  -0.17063211927305424,
+                  -0.05497146291045771
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.14033565921651303,
+              0.3584555823162342
+            ],
+            "all_scored_tasks": 147,
+            "bootstrap_outer_limits": [
+              -0.17987210548453295,
+              0.7093034333602664
+            ]
+          },
+          "format": {
+            "records": 1,
+            "scored": 1,
+            "structural_na": 0,
+            "block_anchor_missing": 1,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.1341009135365928,
+              0.14996596565693077
+            ],
+            "all_scored_tasks": 1,
+            "bootstrap_outer_limits": null
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 104,
+            "scored": 104,
+            "structural_na": 0,
+            "block_anchor_missing": 93,
+            "exact_subset": {
+              "n": 11,
+              "tasks": 4,
+              "mean": [
+                -0.6298851862851189
+              ],
+              "ci95": [
+                [
+                  -0.9734425405881001,
+                  -0.20973731737725798
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.872544038468335,
+              3.283174444876612
+            ],
+            "all_scored_tasks": 30,
+            "bootstrap_outer_limits": [
+              -1.1564735614876585,
+              5.6920608721236565
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 62,
+            "scored": 62,
+            "structural_na": 0,
+            "block_anchor_missing": 53,
+            "exact_subset": {
+              "n": 9,
+              "tasks": 3,
+              "mean": [
+                -0.3375519198808975
+              ],
+              "ci95": [
+                [
+                  -0.6075798043442053,
+                  -0.07662884141591696
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.6893118903387189,
+              2.2941433844833172
+            ],
+            "all_scored_tasks": 18,
+            "bootstrap_outer_limits": [
+              -0.8736731131313896,
+              4.051790894230846
+            ]
+          },
+          "option": {
+            "records": 14,
+            "scored": 14,
+            "structural_na": 0,
+            "block_anchor_missing": 13,
+            "exact_subset": {
+              "n": 1,
+              "tasks": 1,
+              "mean": [
+                0.14639207213867894
+              ],
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -1.050403331459091,
+              8.70773191335784
+            ],
+            "all_scored_tasks": 4,
+            "bootstrap_outer_limits": [
+              -1.9380530049517966,
+              18.35699883620568
+            ]
+          },
+          "format": {
+            "records": 28,
+            "scored": 28,
+            "structural_na": 0,
+            "block_anchor_missing": 27,
+            "exact_subset": {
+              "n": 1,
+              "tasks": 1,
+              "mean": [
+                -4.037161842346909
+              ],
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -1.1893427199742483,
+              2.760893058649721
+            ],
+            "all_scored_tasks": 12,
+            "bootstrap_outer_limits": [
+              -2.1015760033278204,
+              5.462503157146664
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 21,
+      "end": 25,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1243,
+            "scored": 1243,
+            "structural_na": 0,
+            "block_anchor_missing": 1000,
+            "exact_subset": {
+              "n": 243,
+              "tasks": 32,
+              "mean": [
+                -0.2359081455306369
+              ],
+              "ci95": [
+                [
+                  -0.31318078559271134,
+                  -0.1581598390921919
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5204122740483547,
+              1.0934224154181151
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.5689378994494462,
+              1.2686555139566782
+            ]
+          },
+          "search": {
+            "records": 328,
+            "scored": 328,
+            "structural_na": 0,
+            "block_anchor_missing": 262,
+            "exact_subset": {
+              "n": 66,
+              "tasks": 32,
+              "mean": [
+                -0.6677266360556513
+              ],
+              "ci95": [
+                [
+                  -0.903174588947018,
+                  -0.43211986273598535
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.4820496207736573,
+              3.053127409272345
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.6452396517848153,
+              3.635628623810479
+            ]
+          },
+          "click": {
+            "records": 622,
+            "scored": 622,
+            "structural_na": 0,
+            "block_anchor_missing": 499,
+            "exact_subset": {
+              "n": 123,
+              "tasks": 32,
+              "mean": [
+                -0.07156285813520334
+              ],
+              "ci95": [
+                [
+                  -0.13516515115747196,
+                  -0.010594243919662873
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.1853196237404103,
+              0.4261754983309345
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.21969333180249534,
+              0.5634881346520699
+            ]
+          },
+          "option": {
+            "records": 291,
+            "scored": 291,
+            "structural_na": 0,
+            "block_anchor_missing": 237,
+            "exact_subset": {
+              "n": 54,
+              "tasks": 26,
+              "mean": [
+                -0.08247203395632917
+              ],
+              "ci95": [
+                [
+                  -0.1707662864547171,
+                  -0.013633881959009162
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.1534936398525663,
+              0.31367116923855076
+            ],
+            "all_scored_tasks": 140,
+            "bootstrap_outer_limits": [
+              -0.1964577290164816,
+              0.4760676250956708
+            ]
+          },
+          "format": {
+            "records": 2,
+            "scored": 2,
+            "structural_na": 0,
+            "block_anchor_missing": 2,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.41236293235709187,
+              0.6694009565632058
+            ],
+            "all_scored_tasks": 2,
+            "bootstrap_outer_limits": [
+              -0.5567079493980569,
+              0.8483245299423636
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 135,
+            "scored": 135,
+            "structural_na": 0,
+            "block_anchor_missing": 102,
+            "exact_subset": {
+              "n": 33,
+              "tasks": 10,
+              "mean": [
+                -0.1267123249951301
+              ],
+              "ci95": [
+                [
+                  -0.3700845502814052,
+                  0.022824117033297345
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.6628937523854765,
+              33.31637436110792
+            ],
+            "all_scored_tasks": 43,
+            "bootstrap_outer_limits": [
+              -0.8957475155642391,
+              112.4302244816135
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 77,
+            "scored": 77,
+            "structural_na": 0,
+            "block_anchor_missing": 58,
+            "exact_subset": {
+              "n": 19,
+              "tasks": 6,
+              "mean": [
+                -0.18752261426280317
+              ],
+              "ci95": [
+                [
+                  -0.4995312417205553,
+                  -0.03876856958961096
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.7723319660629617,
+              57.40466046938257
+            ],
+            "all_scored_tasks": 25,
+            "bootstrap_outer_limits": [
+              -1.1676289204917447,
+              199.79645491617816
+            ]
+          },
+          "option": {
+            "records": 18,
+            "scored": 18,
+            "structural_na": 0,
+            "block_anchor_missing": 12,
+            "exact_subset": {
+              "n": 6,
+              "tasks": 3,
+              "mean": [
+                -0.08886769235570689
+              ],
+              "ci95": [
+                [
+                  -1.6760795939867466,
+                  0.5135434476170967
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.36358256223114815,
+              0.7489492347215809
+            ],
+            "all_scored_tasks": 9,
+            "bootstrap_outer_limits": [
+              -0.7816950411212928,
+              1.5382078436212703
+            ]
+          },
+          "format": {
+            "records": 40,
+            "scored": 40,
+            "structural_na": 0,
+            "block_anchor_missing": 32,
+            "exact_subset": {
+              "n": 8,
+              "tasks": 2,
+              "mean": [
+                -0.010671362463974036
+              ],
+              "ci95": [
+                [
+                  -0.19232226167769143,
+                  0.015278765995128436
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5869152266257643,
+              1.60176490955302
+            ],
+            "all_scored_tasks": 15,
+            "bootstrap_outer_limits": [
+              -0.8920174773979981,
+              2.6535174619845576
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 26,
+      "end": 30,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1262,
+            "scored": 1262,
+            "structural_na": 0,
+            "block_anchor_missing": 1020,
+            "exact_subset": {
+              "n": 242,
+              "tasks": 32,
+              "mean": [
+                -0.3326614582732535
+              ],
+              "ci95": [
+                [
+                  -0.4506881268479808,
+                  -0.23736929080788238
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5959909671889859,
+              1.3182201410402832
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.6530189412055557,
+              1.5810910045151063
+            ]
+          },
+          "search": {
+            "records": 335,
+            "scored": 335,
+            "structural_na": 0,
+            "block_anchor_missing": 270,
+            "exact_subset": {
+              "n": 65,
+              "tasks": 32,
+              "mean": [
+                -0.9863389508692948
+              ],
+              "ci95": [
+                [
+                  -1.3616922738985124,
+                  -0.6607191844277073
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.7623808767070386,
+              3.9445649675392294
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.95448569564173,
+              4.853676671112238
+            ]
+          },
+          "click": {
+            "records": 634,
+            "scored": 634,
+            "structural_na": 0,
+            "block_anchor_missing": 516,
+            "exact_subset": {
+              "n": 118,
+              "tasks": 32,
+              "mean": [
+                -0.10617366366234014
+              ],
+              "ci95": [
+                [
+                  -0.17404300924115812,
+                  -0.047670020194823984
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.19906297027190015,
+              0.43744030351678453
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.23501990175523418,
+              0.5646713253946376
+            ]
+          },
+          "option": {
+            "records": 292,
+            "scored": 292,
+            "structural_na": 0,
+            "block_anchor_missing": 233,
+            "exact_subset": {
+              "n": 59,
+              "tasks": 30,
+              "mean": [
+                -0.06548387768588221
+              ],
+              "ci95": [
+                [
+                  -0.1238249814216075,
+                  -0.010720427522341288
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.12030094914856904,
+              0.2192686422541582
+            ],
+            "all_scored_tasks": 143,
+            "bootstrap_outer_limits": [
+              -0.14578842809472914,
+              0.2827080865111642
+            ]
+          },
+          "format": {
+            "records": 1,
+            "scored": 1,
+            "structural_na": 0,
+            "block_anchor_missing": 1,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.40920659187520375,
+              0.8009578993417286
+            ],
+            "all_scored_tasks": 1,
+            "bootstrap_outer_limits": null
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 180,
+            "scored": 180,
+            "structural_na": 0,
+            "block_anchor_missing": 136,
+            "exact_subset": {
+              "n": 44,
+              "tasks": 10,
+              "mean": [
+                -0.3254719586288014
+              ],
+              "ci95": [
+                [
+                  -0.48822343492026926,
+                  -0.16577689965100453
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.7907739135164854,
+              4.816501803462053
+            ],
+            "all_scored_tasks": 55,
+            "bootstrap_outer_limits": [
+              -1.000941806050402,
+              8.315213475919203
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 113,
+            "scored": 113,
+            "structural_na": 0,
+            "block_anchor_missing": 85,
+            "exact_subset": {
+              "n": 28,
+              "tasks": 7,
+              "mean": [
+                -0.3116653159433354
+              ],
+              "ci95": [
+                [
+                  -0.5565843091750146,
+                  -0.09352368695376054
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.7141299894066473,
+              4.87496228612693
+            ],
+            "all_scored_tasks": 37,
+            "bootstrap_outer_limits": [
+              -0.923365783423755,
+              9.772398958564969
+            ]
+          },
+          "option": {
+            "records": 28,
+            "scored": 28,
+            "structural_na": 0,
+            "block_anchor_missing": 15,
+            "exact_subset": {
+              "n": 13,
+              "tasks": 3,
+              "mean": [
+                -0.28748452806938696
+              ],
+              "ci95": [
+                [
+                  -0.46141925656256516,
+                  -0.006037286504995863
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.8099286419590052,
+              4.0775193579454525
+            ],
+            "all_scored_tasks": 11,
+            "bootstrap_outer_limits": [
+              -1.4586117458345316,
+              11.22354799392272
+            ]
+          },
+          "format": {
+            "records": 39,
+            "scored": 39,
+            "structural_na": 0,
+            "block_anchor_missing": 36,
+            "exact_subset": {
+              "n": 3,
+              "tasks": 2,
+              "mean": [
+                -0.6189461561172803
+              ],
+              "ci95": [
+                [
+                  -0.9517605722291969,
+                  0.04668267610655252
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.9990926578247198,
+              5.177667801752668
+            ],
+            "all_scored_tasks": 16,
+            "bootstrap_outer_limits": [
+              -1.520607303147944,
+              10.428343342268445
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 31,
+      "end": 35,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1196,
+            "scored": 1196,
+            "structural_na": 0,
+            "block_anchor_missing": 958,
+            "exact_subset": {
+              "n": 238,
+              "tasks": 32,
+              "mean": [
+                -0.3515933139920886
+              ],
+              "ci95": [
+                [
+                  -0.4787858877103805,
+                  -0.246133817396051
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.6191070603710618,
+              1.8415673323965323
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.6779220394149531,
+              2.848863653900808
+            ]
+          },
+          "search": {
+            "records": 327,
+            "scored": 327,
+            "structural_na": 0,
+            "block_anchor_missing": 263,
+            "exact_subset": {
+              "n": 64,
+              "tasks": 32,
+              "mean": [
+                -1.0374887897824223
+              ],
+              "ci95": [
+                [
+                  -1.5030043872224648,
+                  -0.6820103964818478
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.7709680001909653,
+              5.672376876152874
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -1.9698735209983822,
+              9.318850160631964
+            ]
+          },
+          "click": {
+            "records": 620,
+            "scored": 620,
+            "structural_na": 0,
+            "block_anchor_missing": 500,
+            "exact_subset": {
+              "n": 120,
+              "tasks": 32,
+              "mean": [
+                -0.07355990227064532
+              ],
+              "ci95": [
+                [
+                  -0.1382112929824369,
+                  -0.01809998550526511
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.19039343574883913,
+              0.46538119384080295
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.23108800044857447,
+              0.6687191963759046
+            ]
+          },
+          "option": {
+            "records": 242,
+            "scored": 242,
+            "structural_na": 0,
+            "block_anchor_missing": 190,
+            "exact_subset": {
+              "n": 52,
+              "tasks": 27,
+              "mean": [
+                -0.16754646067919587
+              ],
+              "ci95": [
+                [
+                  -0.32287970554794965,
+                  -0.04049188617348912
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.16856280425942716,
+              0.22353952049389642
+            ],
+            "all_scored_tasks": 133,
+            "bootstrap_outer_limits": [
+              -0.21923271022008795,
+              0.3325708082802782
+            ]
+          },
+          "format": {
+            "records": 7,
+            "scored": 7,
+            "structural_na": 0,
+            "block_anchor_missing": 5,
+            "exact_subset": {
+              "n": 2,
+              "tasks": 2,
+              "mean": [
+                0.12983902187678076
+              ],
+              "ci95": [
+                [
+                  0.0060556319554202894,
+                  0.2536224117981412
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.35848276375445015,
+              0.7163409862060135
+            ],
+            "all_scored_tasks": 7,
+            "bootstrap_outer_limits": [
+              -0.7704203666465087,
+              1.4437928361142103
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 170,
+            "scored": 170,
+            "structural_na": 0,
+            "block_anchor_missing": 139,
+            "exact_subset": {
+              "n": 31,
+              "tasks": 11,
+              "mean": [
+                -0.4276286756088838
+              ],
+              "ci95": [
+                [
+                  -0.7850413052518964,
+                  -0.16710565598380914
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.7062761621704344,
+              2.8207170587373076
+            ],
+            "all_scored_tasks": 63,
+            "bootstrap_outer_limits": [
+              -0.9150126095641914,
+              5.747257994710133
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 104,
+            "scored": 104,
+            "structural_na": 0,
+            "block_anchor_missing": 90,
+            "exact_subset": {
+              "n": 14,
+              "tasks": 6,
+              "mean": [
+                -0.5599445126582215
+              ],
+              "ci95": [
+                [
+                  -0.7324108809514077,
+                  -0.4660157826163623
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.6885377423470772,
+              3.341086010049857
+            ],
+            "all_scored_tasks": 45,
+            "bootstrap_outer_limits": [
+              -0.9449272334072784,
+              7.8613577752906725
+            ]
+          },
+          "option": {
+            "records": 11,
+            "scored": 11,
+            "structural_na": 0,
+            "block_anchor_missing": 6,
+            "exact_subset": {
+              "n": 5,
+              "tasks": 2,
+              "mean": [
+                -0.17177481295612593
+              ],
+              "ci95": [
+                [
+                  -0.7977705159441238,
+                  -0.015275887209126468
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5963094654111334,
+              1.1738710286033465
+            ],
+            "all_scored_tasks": 4,
+            "bootstrap_outer_limits": [
+              -1.776289041140923,
+              3.24545088280998
+            ]
+          },
+          "format": {
+            "records": 55,
+            "scored": 55,
+            "structural_na": 0,
+            "block_anchor_missing": 43,
+            "exact_subset": {
+              "n": 12,
+              "tasks": 4,
+              "mean": [
+                -0.37986597515663906
+              ],
+              "ci95": [
+                [
+                  -1.2405804272759227,
+                  0.03368263774622197
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.7618112408246431,
+              2.166115884100368
+            ],
+            "all_scored_tasks": 19,
+            "bootstrap_outer_limits": [
+              -1.204227733982867,
+              4.322187159954683
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 36,
+      "end": 40,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1225,
+            "scored": 1218,
+            "structural_na": 7,
+            "block_anchor_missing": 990,
+            "exact_subset": {
+              "n": 228,
+              "tasks": 32,
+              "mean": [
+                -0.2854004691832178
+              ],
+              "ci95": [
+                [
+                  -0.3500114806182355,
+                  -0.2204442087058385
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.6751113802585232,
+              1.4320143291546623
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.7354909782086307,
+              1.714722128104747
+            ]
+          },
+          "search": {
+            "records": 342,
+            "scored": 338,
+            "structural_na": 4,
+            "block_anchor_missing": 273,
+            "exact_subset": {
+              "n": 65,
+              "tasks": 32,
+              "mean": [
+                -0.767119851329756
+              ],
+              "ci95": [
+                [
+                  -1.0088480824358763,
+                  -0.5493452814063254
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.915699234267905,
+              4.061652558815371
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.104743068314207,
+              5.023931418289034
+            ]
+          },
+          "click": {
+            "records": 661,
+            "scored": 658,
+            "structural_na": 3,
+            "block_anchor_missing": 537,
+            "exact_subset": {
+              "n": 121,
+              "tasks": 32,
+              "mean": [
+                -0.09565790280415173
+              ],
+              "ci95": [
+                [
+                  -0.1607568372958618,
+                  -0.03463205016719299
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.2214960363807441,
+              0.509687632611973
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.2739985825797146,
+              0.6890444560778615
+            ]
+          },
+          "option": {
+            "records": 217,
+            "scored": 217,
+            "structural_na": 0,
+            "block_anchor_missing": 175,
+            "exact_subset": {
+              "n": 42,
+              "tasks": 25,
+              "mean": [
+                -0.0865216761437417
+              ],
+              "ci95": [
+                [
+                  -0.1273438605804519,
+                  -0.048613109114764914
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.1278366050351028,
+              0.1569684504964388
+            ],
+            "all_scored_tasks": 116,
+            "bootstrap_outer_limits": [
+              -0.15892623657134222,
+              0.20879092823102044
+            ]
+          },
+          "format": {
+            "records": 5,
+            "scored": 5,
+            "structural_na": 0,
+            "block_anchor_missing": 5,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.25887694823673757,
+              0.3836544028755693
+            ],
+            "all_scored_tasks": 5,
+            "bootstrap_outer_limits": [
+              -0.3345863101471037,
+              0.5155920926717339
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 228,
+            "scored": 227,
+            "structural_na": 1,
+            "block_anchor_missing": 186,
+            "exact_subset": {
+              "n": 41,
+              "tasks": 15,
+              "mean": [
+                -0.08700868540434009
+              ],
+              "ci95": [
+                [
+                  -0.21738762972308434,
+                  0.06995964888065541
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.7738115057480464,
+              2.249543172823924
+            ],
+            "all_scored_tasks": 78,
+            "bootstrap_outer_limits": [
+              -1.1207419519124782,
+              3.864724883833647
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 184,
+            "scored": 184,
+            "structural_na": 0,
+            "block_anchor_missing": 143,
+            "exact_subset": {
+              "n": 41,
+              "tasks": 15,
+              "mean": [
+                -0.08700868540434009
+              ],
+              "ci95": [
+                [
+                  -0.21738762972308434,
+                  0.06995964888065541
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5713576574006725,
+              1.9912428213729434
+            ],
+            "all_scored_tasks": 67,
+            "bootstrap_outer_limits": [
+              -0.7600723299564277,
+              3.8444841959511544
+            ]
+          },
+          "option": {
+            "records": 10,
+            "scored": 10,
+            "structural_na": 0,
+            "block_anchor_missing": 10,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -1.0743031358385176,
+              2.3365047293255135
+            ],
+            "all_scored_tasks": 7,
+            "bootstrap_outer_limits": [
+              -1.95864413276705,
+              4.355526690900439
+            ]
+          },
+          "format": {
+            "records": 34,
+            "scored": 33,
+            "structural_na": 1,
+            "block_anchor_missing": 33,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -1.8115870146878092,
+              3.6634113274289164
+            ],
+            "all_scored_tasks": 11,
+            "bootstrap_outer_limits": [
+              -3.6955880855257783,
+              7.181993296225815
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 41,
+      "end": 45,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1151,
+            "scored": 1150,
+            "structural_na": 1,
+            "block_anchor_missing": 921,
+            "exact_subset": {
+              "n": 229,
+              "tasks": 32,
+              "mean": [
+                -0.30812369181540944
+              ],
+              "ci95": [
+                [
+                  -0.42217539993297265,
+                  -0.20324257090905673
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.8198395825373492,
+              1.5181737118774767
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.8994696797136927,
+              1.784357449631053
+            ]
+          },
+          "search": {
+            "records": 339,
+            "scored": 339,
+            "structural_na": 0,
+            "block_anchor_missing": 273,
+            "exact_subset": {
+              "n": 66,
+              "tasks": 32,
+              "mean": [
+                -0.8997734663195616
+              ],
+              "ci95": [
+                [
+                  -1.2629767386835495,
+                  -0.5746408041800528
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.301954337548452,
+              4.269657651765707
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.539328792618135,
+              5.074284375121446
+            ]
+          },
+          "click": {
+            "records": 633,
+            "scored": 632,
+            "structural_na": 1,
+            "block_anchor_missing": 517,
+            "exact_subset": {
+              "n": 115,
+              "tasks": 32,
+              "mean": [
+                -0.0541653863678769
+              ],
+              "ci95": [
+                [
+                  -0.11445038411631907,
+                  0.0033864602623831152
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.20981320330480233,
+              0.4147552902972173
+            ],
+            "all_scored_tasks": 159,
+            "bootstrap_outer_limits": [
+              -0.24207464842822443,
+              0.5077718396433948
+            ]
+          },
+          "option": {
+            "records": 175,
+            "scored": 175,
+            "structural_na": 0,
+            "block_anchor_missing": 130,
+            "exact_subset": {
+              "n": 45,
+              "tasks": 24,
+              "mean": [
+                -0.11502443167348664
+              ],
+              "ci95": [
+                [
+                  -0.18660081065265463,
+                  -0.05303606640518864
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.17116137175456086,
+              0.20524844071618212
+            ],
+            "all_scored_tasks": 99,
+            "bootstrap_outer_limits": [
+              -0.2045483910899311,
+              0.2947309930354189
+            ]
+          },
+          "format": {
+            "records": 4,
+            "scored": 4,
+            "structural_na": 0,
+            "block_anchor_missing": 1,
+            "exact_subset": {
+              "n": 3,
+              "tasks": 3,
+              "mean": [
+                0.07661406965834679
+              ],
+              "ci95": [
+                [
+                  -0.077342672460567,
+                  0.28416227350489165
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              0.025546264164019623,
+              0.11050102933789711
+            ],
+            "all_scored_tasks": 4,
+            "bootstrap_outer_limits": [
+              -0.10249991238976444,
+              0.2481620909407199
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 311,
+            "scored": 310,
+            "structural_na": 1,
+            "block_anchor_missing": 255,
+            "exact_subset": {
+              "n": 55,
+              "tasks": 17,
+              "mean": [
+                -0.25841410186895225
+              ],
+              "ci95": [
+                [
+                  -0.38002789132401293,
+                  -0.14104841759306583
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -1.1356184650942165,
+              2.711782308414676
+            ],
+            "all_scored_tasks": 96,
+            "bootstrap_outer_limits": [
+              -1.8178889855281248,
+              4.492720168011758
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 240,
+            "scored": 240,
+            "structural_na": 0,
+            "block_anchor_missing": 211,
+            "exact_subset": {
+              "n": 29,
+              "tasks": 12,
+              "mean": [
+                -0.2889234285881871
+              ],
+              "ci95": [
+                [
+                  -0.38613480162330843,
+                  -0.175591800193995
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5985362741395928,
+              1.2771253865048124
+            ],
+            "all_scored_tasks": 85,
+            "bootstrap_outer_limits": [
+              -0.7138489281919143,
+              1.668204134017757
+            ]
+          },
+          "option": {
+            "records": 32,
+            "scored": 32,
+            "structural_na": 0,
+            "block_anchor_missing": 23,
+            "exact_subset": {
+              "n": 9,
+              "tasks": 3,
+              "mean": [
+                -0.4746174457066991
+              ],
+              "ci95": [
+                [
+                  -0.6656245535159852,
+                  0.2676207266740548
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.9717263934191982,
+              3.047456444028693
+            ],
+            "all_scored_tasks": 10,
+            "bootstrap_outer_limits": [
+              -1.5495850268168054,
+              6.284355131016293
+            ]
+          },
+          "format": {
+            "records": 39,
+            "scored": 38,
+            "structural_na": 1,
+            "block_anchor_missing": 21,
+            "exact_subset": {
+              "n": 17,
+              "tasks": 6,
+              "mean": [
+                -0.09190818602203865
+              ],
+              "ci95": [
+                [
+                  -0.32471882386036804,
+                  0.12564538939922523
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -4.665730889376067,
+              11.49010043785465
+            ],
+            "all_scored_tasks": 13,
+            "bootstrap_outer_limits": [
+              -9.498660335957819,
+              23.8039528220457
+            ]
+          }
+        }
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 46,
+      "end": 50,
+      "by_class": {
+        "legal": {
+          "all": {
+            "records": 1127,
+            "scored": 1124,
+            "structural_na": 3,
+            "block_anchor_missing": 920,
+            "exact_subset": {
+              "n": 204,
+              "tasks": 32,
+              "mean": [
+                -0.3210366868768334
+              ],
+              "ci95": [
+                [
+                  -0.41376988818793964,
+                  -0.23316409195134483
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.8275027556832928,
+              5.476402933121361
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -0.918208001244102,
+              13.431586707503861
+            ]
+          },
+          "search": {
+            "records": 351,
+            "scored": 350,
+            "structural_na": 1,
+            "block_anchor_missing": 284,
+            "exact_subset": {
+              "n": 66,
+              "tasks": 32,
+              "mean": [
+                -0.8297158919120466
+              ],
+              "ci95": [
+                [
+                  -1.0904134918191917,
+                  -0.5773093692205523
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.1724364925750175,
+              16.78084699284394
+            ],
+            "all_scored_tasks": 160,
+            "bootstrap_outer_limits": [
+              -2.419909588459808,
+              42.004611965931566
+            ]
+          },
+          "click": {
+            "records": 596,
+            "scored": 594,
+            "structural_na": 2,
+            "block_anchor_missing": 485,
+            "exact_subset": {
+              "n": 109,
+              "tasks": 31,
+              "mean": [
+                -0.07067439098611342
+              ],
+              "ci95": [
+                [
+                  -0.11645304904618138,
+                  -0.030477157135733124
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.21273346971318047,
+              0.3732736710031225
+            ],
+            "all_scored_tasks": 159,
+            "bootstrap_outer_limits": [
+              -0.2581042448274972,
+              0.4815850175541933
+            ]
+          },
+          "option": {
+            "records": 175,
+            "scored": 175,
+            "structural_na": 0,
+            "block_anchor_missing": 147,
+            "exact_subset": {
+              "n": 28,
+              "tasks": 18,
+              "mean": [
+                -0.10831301116173568
+              ],
+              "ci95": [
+                [
+                  -0.1859430699018247,
+                  -0.02118705083500791
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.23014324300493488,
+              0.3147618400022933
+            ],
+            "all_scored_tasks": 103,
+            "bootstrap_outer_limits": [
+              -0.28733068506905723,
+              0.4218941258525792
+            ]
+          },
+          "format": {
+            "records": 5,
+            "scored": 5,
+            "structural_na": 0,
+            "block_anchor_missing": 4,
+            "exact_subset": {
+              "n": 1,
+              "tasks": 1,
+              "mean": [
+                0.006037673336025822
+              ],
+              "ci95": null
+            },
+            "all_scored_identification_bounds": [
+              -0.6243152902543478,
+              1.074513351353516
+            ],
+            "all_scored_tasks": 5,
+            "bootstrap_outer_limits": [
+              -1.4036675526230076,
+              2.5365109578367786
+            ]
+          }
+        },
+        "illegal": {
+          "all": {
+            "records": 368,
+            "scored": 366,
+            "structural_na": 2,
+            "block_anchor_missing": 292,
+            "exact_subset": {
+              "n": 74,
+              "tasks": 23,
+              "mean": [
+                -0.30974856827944475
+              ],
+              "ci95": [
+                [
+                  -0.46616213357263525,
+                  -0.13868560243195766
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.9301067064405225,
+              1.5897660441792965
+            ],
+            "all_scored_tasks": 116,
+            "bootstrap_outer_limits": [
+              -1.2336005371681196,
+              2.1879653587246124
+            ]
+          },
+          "search": {
+            "records": 0,
+            "scored": 0,
+            "structural_na": 0,
+            "block_anchor_missing": 0,
+            "exact_subset": {
+              "n": 0,
+              "tasks": 0,
+              "mean": null,
+              "ci95": null
+            },
+            "all_scored_identification_bounds": null,
+            "all_scored_tasks": 0,
+            "bootstrap_outer_limits": null
+          },
+          "click": {
+            "records": 293,
+            "scored": 291,
+            "structural_na": 2,
+            "block_anchor_missing": 235,
+            "exact_subset": {
+              "n": 56,
+              "tasks": 20,
+              "mean": [
+                -0.2917019544122383
+              ],
+              "ci95": [
+                [
+                  -0.4315136704168726,
+                  -0.13680835591586069
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.7039256779733033,
+              1.175373865215971
+            ],
+            "all_scored_tasks": 101,
+            "bootstrap_outer_limits": [
+              -0.8793475211687007,
+              1.5547920862762545
+            ]
+          },
+          "option": {
+            "records": 17,
+            "scored": 17,
+            "structural_na": 0,
+            "block_anchor_missing": 9,
+            "exact_subset": {
+              "n": 8,
+              "tasks": 4,
+              "mean": [
+                0.036214309922759244
+              ],
+              "ci95": [
+                [
+                  -0.17106917116563886,
+                  0.1732205028832037
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -0.5119622372304424,
+              1.2862605316799487
+            ],
+            "all_scored_tasks": 10,
+            "bootstrap_outer_limits": [
+              -0.9874919794575459,
+              2.4681926377883823
+            ]
+          },
+          "format": {
+            "records": 58,
+            "scored": 58,
+            "structural_na": 0,
+            "block_anchor_missing": 48,
+            "exact_subset": {
+              "n": 10,
+              "tasks": 3,
+              "mean": [
+                -0.687579908497564
+              ],
+              "ci95": [
+                [
+                  -1.3303329687177088,
+                  -0.2292642629933266
+                ]
+              ]
+            },
+            "all_scored_identification_bounds": [
+              -2.1874711074841846,
+              3.7578301440209647
+            ],
+            "all_scored_tasks": 19,
+            "bootstrap_outer_limits": [
+              -3.4856573740280954,
+              6.18986562487304
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

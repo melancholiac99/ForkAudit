@@ -1,0 +1,2924 @@
+{
+  "windows": [
+    {
+      "arm": "R-gap",
+      "start": 1,
+      "end": 5,
+      "episodes": 320,
+      "actions": 1429,
+      "illegal": 111,
+      "illegal_fraction": 0.07767669699090272,
+      "types": {
+        "format_unparseable": {
+          "n": 58,
+          "fraction_all": 0.04058782365290413,
+          "fraction_illegal": 0.5225225225225225
+        },
+        "action_type_unavailable": {
+          "n": 3,
+          "fraction_all": 0.002099370188943317,
+          "fraction_illegal": 0.02702702702702703
+        },
+        "absent_product_id": {
+          "n": 1,
+          "fraction_all": 0.0006997900629811056,
+          "fraction_illegal": 0.009009009009009009
+        },
+        "unavailable_option": {
+          "n": 9,
+          "fraction_all": 0.006298110566829951,
+          "fraction_illegal": 0.08108108108108109
+        },
+        "nonexistent_navigation": {
+          "n": 6,
+          "fraction_all": 0.004198740377886634,
+          "fraction_illegal": 0.05405405405405406
+        },
+        "other": {
+          "n": 34,
+          "fraction_all": 0.023792862141357594,
+          "fraction_illegal": 0.3063063063063063
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 1,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 1
+      },
+      "details": {
+        "compound_or_empty_click": 34,
+        "unrecognized_single_value_on_option_page": 7,
+        "catalog_value": 2
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 6,
+      "end": 10,
+      "episodes": 320,
+      "actions": 1373,
+      "illegal": 104,
+      "illegal_fraction": 0.07574654042243263,
+      "types": {
+        "format_unparseable": {
+          "n": 51,
+          "fraction_all": 0.037144938091769844,
+          "fraction_illegal": 0.49038461538461536
+        },
+        "action_type_unavailable": {
+          "n": 1,
+          "fraction_all": 0.0007283321194464676,
+          "fraction_illegal": 0.009615384615384616
+        },
+        "absent_product_id": {
+          "n": 3,
+          "fraction_all": 0.0021849963583394027,
+          "fraction_illegal": 0.028846153846153848
+        },
+        "unavailable_option": {
+          "n": 18,
+          "fraction_all": 0.013109978150036417,
+          "fraction_illegal": 0.17307692307692307
+        },
+        "nonexistent_navigation": {
+          "n": 4,
+          "fraction_all": 0.0029133284777858705,
+          "fraction_illegal": 0.038461538461538464
+        },
+        "other": {
+          "n": 27,
+          "fraction_all": 0.019664967225054626,
+          "fraction_illegal": 0.25961538461538464
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 1,
+          "fraction_absent": 0.3333333333333333
+        },
+        "gold=0,partial=1": {
+          "n": 2,
+          "fraction_absent": 0.6666666666666666
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "10": 2,
+        "2": 1
+      },
+      "details": {
+        "unrecognized_single_value_on_option_page": 18,
+        "option_off_detail_page": 1,
+        "compound_or_empty_click": 27
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 11,
+      "end": 15,
+      "episodes": 320,
+      "actions": 1431,
+      "illegal": 155,
+      "illegal_fraction": 0.10831586303284417,
+      "types": {
+        "format_unparseable": {
+          "n": 54,
+          "fraction_all": 0.03773584905660377,
+          "fraction_illegal": 0.34838709677419355
+        },
+        "action_type_unavailable": {
+          "n": 6,
+          "fraction_all": 0.0041928721174004195,
+          "fraction_illegal": 0.03870967741935484
+        },
+        "absent_product_id": {
+          "n": 2,
+          "fraction_all": 0.001397624039133473,
+          "fraction_illegal": 0.012903225806451613
+        },
+        "unavailable_option": {
+          "n": 39,
+          "fraction_all": 0.027253668763102725,
+          "fraction_illegal": 0.25161290322580643
+        },
+        "nonexistent_navigation": {
+          "n": 3,
+          "fraction_all": 0.0020964360587002098,
+          "fraction_illegal": 0.01935483870967742
+        },
+        "other": {
+          "n": 51,
+          "fraction_all": 0.03563941299790356,
+          "fraction_illegal": 0.32903225806451614
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 2,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 2
+      },
+      "details": {
+        "compound_or_empty_click": 51,
+        "catalog_value": 3,
+        "unrecognized_single_value_on_option_page": 36,
+        "option_off_detail_page": 6
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 16,
+      "end": 20,
+      "episodes": 320,
+      "actions": 1392,
+      "illegal": 119,
+      "illegal_fraction": 0.08548850574712644,
+      "types": {
+        "format_unparseable": {
+          "n": 51,
+          "fraction_all": 0.036637931034482756,
+          "fraction_illegal": 0.42857142857142855
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 1,
+          "fraction_all": 0.0007183908045977011,
+          "fraction_illegal": 0.008403361344537815
+        },
+        "unavailable_option": {
+          "n": 16,
+          "fraction_all": 0.011494252873563218,
+          "fraction_illegal": 0.13445378151260504
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 51,
+          "fraction_all": 0.036637931034482756,
+          "fraction_illegal": 0.42857142857142855
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 1,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 1
+      },
+      "details": {
+        "compound_or_empty_click": 51,
+        "unrecognized_single_value_on_option_page": 12,
+        "catalog_value": 4
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 21,
+      "end": 25,
+      "episodes": 320,
+      "actions": 1415,
+      "illegal": 119,
+      "illegal_fraction": 0.08409893992932863,
+      "types": {
+        "format_unparseable": {
+          "n": 46,
+          "fraction_all": 0.03250883392226148,
+          "fraction_illegal": 0.3865546218487395
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 13,
+          "fraction_all": 0.009187279151943463,
+          "fraction_illegal": 0.1092436974789916
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 60,
+          "fraction_all": 0.04240282685512368,
+          "fraction_illegal": 0.5042016806722689
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "compound_or_empty_click": 60,
+        "unrecognized_single_value_on_option_page": 13
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 26,
+      "end": 30,
+      "episodes": 320,
+      "actions": 1429,
+      "illegal": 193,
+      "illegal_fraction": 0.1350594821553534,
+      "types": {
+        "format_unparseable": {
+          "n": 45,
+          "fraction_all": 0.031490552834149754,
+          "fraction_illegal": 0.23316062176165803
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 24,
+          "fraction_all": 0.016794961511546535,
+          "fraction_illegal": 0.12435233160621761
+        },
+        "nonexistent_navigation": {
+          "n": 1,
+          "fraction_all": 0.0006997900629811056,
+          "fraction_illegal": 0.0051813471502590676
+        },
+        "other": {
+          "n": 123,
+          "fraction_all": 0.086074177746676,
+          "fraction_illegal": 0.6373056994818653
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "compound_or_empty_click": 123,
+        "unrecognized_single_value_on_option_page": 20,
+        "catalog_value": 4
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 31,
+      "end": 35,
+      "episodes": 320,
+      "actions": 1420,
+      "illegal": 227,
+      "illegal_fraction": 0.15985915492957747,
+      "types": {
+        "format_unparseable": {
+          "n": 76,
+          "fraction_all": 0.05352112676056338,
+          "fraction_illegal": 0.33480176211453744
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 1,
+          "fraction_all": 0.0007042253521126761,
+          "fraction_illegal": 0.004405286343612335
+        },
+        "unavailable_option": {
+          "n": 14,
+          "fraction_all": 0.009859154929577466,
+          "fraction_illegal": 0.06167400881057269
+        },
+        "nonexistent_navigation": {
+          "n": 1,
+          "fraction_all": 0.0007042253521126761,
+          "fraction_illegal": 0.004405286343612335
+        },
+        "other": {
+          "n": 135,
+          "fraction_all": 0.09507042253521127,
+          "fraction_illegal": 0.5947136563876652
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 1,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "6": 1
+      },
+      "details": {
+        "unrecognized_single_value_on_option_page": 14,
+        "compound_or_empty_click": 135
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 36,
+      "end": 40,
+      "episodes": 320,
+      "actions": 1476,
+      "illegal": 338,
+      "illegal_fraction": 0.22899728997289973,
+      "types": {
+        "format_unparseable": {
+          "n": 88,
+          "fraction_all": 0.05962059620596206,
+          "fraction_illegal": 0.2603550295857988
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 2,
+          "fraction_all": 0.0013550135501355014,
+          "fraction_illegal": 0.005917159763313609
+        },
+        "unavailable_option": {
+          "n": 12,
+          "fraction_all": 0.008130081300813009,
+          "fraction_illegal": 0.03550295857988166
+        },
+        "nonexistent_navigation": {
+          "n": 2,
+          "fraction_all": 0.0013550135501355014,
+          "fraction_illegal": 0.005917159763313609
+        },
+        "other": {
+          "n": 234,
+          "fraction_all": 0.15853658536585366,
+          "fraction_illegal": 0.6923076923076923
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 2,
+          "fraction_absent": 1.0
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "3": 2
+      },
+      "details": {
+        "compound_or_empty_click": 234,
+        "unrecognized_single_value_on_option_page": 11,
+        "catalog_value": 1
+      }
+    },
+    {
+      "arm": "R-gap",
+      "start": 41,
+      "end": 45,
+      "episodes": 320,
+      "actions": 1494,
+      "illegal": 515,
+      "illegal_fraction": 0.34471218206157966,
+      "types": {
+        "format_unparseable": {
+          "n": 114,
+          "fraction_all": 0.07630522088353414,
+          "fraction_illegal": 0.22135922330097088
+        },
+        "action_type_unavailable": {
+          "n": 2,
+          "fraction_all": 0.0013386880856760374,
+          "fraction_illegal": 0.003883495145631068
+        },
+        "absent_product_id": {
+          "n": 3,
+          "fraction_all": 0.002008032128514056,
+          "fraction_illegal": 0.005825242718446602
+        },
+        "unavailable_option": {
+          "n": 25,
+          "fraction_all": 0.01673360107095047,
+          "fraction_illegal": 0.04854368932038835
+        },
+        "nonexistent_navigation": {
+          "n": 1,
+          "fraction_all": 0.0006693440428380187,
+          "fraction_illegal": 0.001941747572815534
+        },
+        "other": {
+          "n": 370,
+          "fraction_all": 0.24765729585006693,
+          "fraction_illegal": 0.7184466019417476
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 3,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "10": 3
+      },
+      "details": {
+        "compound_or_empty_click": 369,
+        "unrecognized_single_value_on_option_page": 20,
+        "catalog_value": 5,
+        "option_off_detail_page": 2,
+        "unrecognized_click": 1
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 1,
+      "end": 5,
+      "episodes": 320,
+      "actions": 1414,
+      "illegal": 108,
+      "illegal_fraction": 0.07637906647807638,
+      "types": {
+        "format_unparseable": {
+          "n": 54,
+          "fraction_all": 0.03818953323903819,
+          "fraction_illegal": 0.5
+        },
+        "action_type_unavailable": {
+          "n": 3,
+          "fraction_all": 0.0021216407355021216,
+          "fraction_illegal": 0.027777777777777776
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 8,
+          "fraction_all": 0.005657708628005658,
+          "fraction_illegal": 0.07407407407407407
+        },
+        "nonexistent_navigation": {
+          "n": 8,
+          "fraction_all": 0.005657708628005658,
+          "fraction_illegal": 0.07407407407407407
+        },
+        "other": {
+          "n": 35,
+          "fraction_all": 0.024752475247524754,
+          "fraction_illegal": 0.32407407407407407
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "compound_or_empty_click": 35,
+        "unrecognized_single_value_on_option_page": 7,
+        "catalog_value": 1
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 6,
+      "end": 10,
+      "episodes": 320,
+      "actions": 1393,
+      "illegal": 116,
+      "illegal_fraction": 0.0832735104091888,
+      "types": {
+        "format_unparseable": {
+          "n": 50,
+          "fraction_all": 0.03589375448671931,
+          "fraction_illegal": 0.43103448275862066
+        },
+        "action_type_unavailable": {
+          "n": 1,
+          "fraction_all": 0.0007178750897343862,
+          "fraction_illegal": 0.008620689655172414
+        },
+        "absent_product_id": {
+          "n": 3,
+          "fraction_all": 0.0021536252692031586,
+          "fraction_illegal": 0.02586206896551724
+        },
+        "unavailable_option": {
+          "n": 21,
+          "fraction_all": 0.01507537688442211,
+          "fraction_illegal": 0.1810344827586207
+        },
+        "nonexistent_navigation": {
+          "n": 4,
+          "fraction_all": 0.002871500358937545,
+          "fraction_illegal": 0.034482758620689655
+        },
+        "other": {
+          "n": 37,
+          "fraction_all": 0.02656137832017229,
+          "fraction_illegal": 0.31896551724137934
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 1,
+          "fraction_absent": 0.3333333333333333
+        },
+        "gold=0,partial=1": {
+          "n": 2,
+          "fraction_absent": 0.6666666666666666
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "2": 1,
+        "10": 2
+      },
+      "details": {
+        "unrecognized_single_value_on_option_page": 21,
+        "option_off_detail_page": 1,
+        "compound_or_empty_click": 37
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 11,
+      "end": 15,
+      "episodes": 320,
+      "actions": 1406,
+      "illegal": 138,
+      "illegal_fraction": 0.09815078236130868,
+      "types": {
+        "format_unparseable": {
+          "n": 41,
+          "fraction_all": 0.029160739687055477,
+          "fraction_illegal": 0.2971014492753623
+        },
+        "action_type_unavailable": {
+          "n": 3,
+          "fraction_all": 0.0021337126600284497,
+          "fraction_illegal": 0.021739130434782608
+        },
+        "absent_product_id": {
+          "n": 2,
+          "fraction_all": 0.001422475106685633,
+          "fraction_illegal": 0.014492753623188406
+        },
+        "unavailable_option": {
+          "n": 41,
+          "fraction_all": 0.029160739687055477,
+          "fraction_illegal": 0.2971014492753623
+        },
+        "nonexistent_navigation": {
+          "n": 1,
+          "fraction_all": 0.0007112375533428165,
+          "fraction_illegal": 0.007246376811594203
+        },
+        "other": {
+          "n": 50,
+          "fraction_all": 0.03556187766714083,
+          "fraction_illegal": 0.36231884057971014
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 2,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 2
+      },
+      "details": {
+        "compound_or_empty_click": 50,
+        "catalog_value": 2,
+        "unrecognized_single_value_on_option_page": 39,
+        "option_off_detail_page": 3
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 16,
+      "end": 20,
+      "episodes": 320,
+      "actions": 1365,
+      "illegal": 104,
+      "illegal_fraction": 0.0761904761904762,
+      "types": {
+        "format_unparseable": {
+          "n": 28,
+          "fraction_all": 0.020512820512820513,
+          "fraction_illegal": 0.2692307692307692
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 1,
+          "fraction_all": 0.0007326007326007326,
+          "fraction_illegal": 0.009615384615384616
+        },
+        "unavailable_option": {
+          "n": 14,
+          "fraction_all": 0.010256410256410256,
+          "fraction_illegal": 0.1346153846153846
+        },
+        "nonexistent_navigation": {
+          "n": 3,
+          "fraction_all": 0.002197802197802198,
+          "fraction_illegal": 0.028846153846153848
+        },
+        "other": {
+          "n": 58,
+          "fraction_all": 0.04249084249084249,
+          "fraction_illegal": 0.5576923076923077
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 1,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 1
+      },
+      "details": {
+        "compound_or_empty_click": 58,
+        "unrecognized_single_value_on_option_page": 10,
+        "catalog_value": 4
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 21,
+      "end": 25,
+      "episodes": 320,
+      "actions": 1378,
+      "illegal": 135,
+      "illegal_fraction": 0.09796806966618288,
+      "types": {
+        "format_unparseable": {
+          "n": 40,
+          "fraction_all": 0.02902757619738752,
+          "fraction_illegal": 0.2962962962962963
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 18,
+          "fraction_all": 0.013062409288824383,
+          "fraction_illegal": 0.13333333333333333
+        },
+        "nonexistent_navigation": {
+          "n": 2,
+          "fraction_all": 0.001451378809869376,
+          "fraction_illegal": 0.014814814814814815
+        },
+        "other": {
+          "n": 75,
+          "fraction_all": 0.054426705370101594,
+          "fraction_illegal": 0.5555555555555556
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "compound_or_empty_click": 75,
+        "unrecognized_single_value_on_option_page": 18
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 26,
+      "end": 30,
+      "episodes": 320,
+      "actions": 1442,
+      "illegal": 180,
+      "illegal_fraction": 0.12482662968099861,
+      "types": {
+        "format_unparseable": {
+          "n": 39,
+          "fraction_all": 0.027045769764216365,
+          "fraction_illegal": 0.21666666666666667
+        },
+        "action_type_unavailable": {
+          "n": 3,
+          "fraction_all": 0.0020804438280166435,
+          "fraction_illegal": 0.016666666666666666
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 25,
+          "fraction_all": 0.017337031900138695,
+          "fraction_illegal": 0.1388888888888889
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 113,
+          "fraction_all": 0.07836338418862691,
+          "fraction_illegal": 0.6277777777777778
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "compound_or_empty_click": 113,
+        "catalog_value": 6,
+        "unrecognized_single_value_on_option_page": 19,
+        "option_off_detail_page": 3
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 31,
+      "end": 35,
+      "episodes": 320,
+      "actions": 1366,
+      "illegal": 170,
+      "illegal_fraction": 0.12445095168374817,
+      "types": {
+        "format_unparseable": {
+          "n": 55,
+          "fraction_all": 0.04026354319180088,
+          "fraction_illegal": 0.3235294117647059
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 2,
+          "fraction_all": 0.0014641288433382138,
+          "fraction_illegal": 0.011764705882352941
+        },
+        "unavailable_option": {
+          "n": 11,
+          "fraction_all": 0.008052708638360176,
+          "fraction_illegal": 0.06470588235294118
+        },
+        "nonexistent_navigation": {
+          "n": 1,
+          "fraction_all": 0.0007320644216691069,
+          "fraction_illegal": 0.0058823529411764705
+        },
+        "other": {
+          "n": 101,
+          "fraction_all": 0.0739385065885798,
+          "fraction_illegal": 0.5941176470588235
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 2,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 1,
+        "6": 1
+      },
+      "details": {
+        "compound_or_empty_click": 101,
+        "unrecognized_single_value_on_option_page": 11
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 36,
+      "end": 40,
+      "episodes": 320,
+      "actions": 1453,
+      "illegal": 228,
+      "illegal_fraction": 0.15691672401927048,
+      "types": {
+        "format_unparseable": {
+          "n": 33,
+          "fraction_all": 0.022711631108052306,
+          "fraction_illegal": 0.14473684210526316
+        },
+        "action_type_unavailable": {
+          "n": 3,
+          "fraction_all": 0.0020646937370956643,
+          "fraction_illegal": 0.013157894736842105
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 9,
+          "fraction_all": 0.006194081211286993,
+          "fraction_illegal": 0.039473684210526314
+        },
+        "nonexistent_navigation": {
+          "n": 3,
+          "fraction_all": 0.0020646937370956643,
+          "fraction_illegal": 0.013157894736842105
+        },
+        "other": {
+          "n": 180,
+          "fraction_all": 0.12388162422573985,
+          "fraction_illegal": 0.7894736842105263
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "compound_or_empty_click": 180,
+        "unrecognized_single_value_on_option_page": 7,
+        "catalog_value": 2,
+        "option_off_detail_page": 1,
+        "visible_but_not_clickable_id": 1
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 41,
+      "end": 45,
+      "episodes": 320,
+      "actions": 1462,
+      "illegal": 311,
+      "illegal_fraction": 0.21272229822161423,
+      "types": {
+        "format_unparseable": {
+          "n": 39,
+          "fraction_all": 0.02667578659370725,
+          "fraction_illegal": 0.12540192926045016
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 32,
+          "fraction_all": 0.02188782489740082,
+          "fraction_illegal": 0.10289389067524116
+        },
+        "nonexistent_navigation": {
+          "n": 1,
+          "fraction_all": 0.0006839945280437756,
+          "fraction_illegal": 0.003215434083601286
+        },
+        "other": {
+          "n": 239,
+          "fraction_all": 0.16347469220246238,
+          "fraction_illegal": 0.7684887459807074
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "compound_or_empty_click": 238,
+        "unrecognized_single_value_on_option_page": 27,
+        "unrecognized_click": 1,
+        "catalog_value": 5
+      }
+    },
+    {
+      "arm": "P-gap",
+      "start": 46,
+      "end": 50,
+      "episodes": 320,
+      "actions": 1495,
+      "illegal": 368,
+      "illegal_fraction": 0.24615384615384617,
+      "types": {
+        "format_unparseable": {
+          "n": 58,
+          "fraction_all": 0.03879598662207358,
+          "fraction_illegal": 0.15760869565217392
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 17,
+          "fraction_all": 0.01137123745819398,
+          "fraction_illegal": 0.04619565217391304
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 293,
+          "fraction_all": 0.1959866220735786,
+          "fraction_illegal": 0.7961956521739131
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "compound_or_empty_click": 289,
+        "unrecognized_single_value_on_option_page": 14,
+        "catalog_value": 3,
+        "unrecognized_click": 4
+      }
+    },
+    {
+      "arm": "P",
+      "start": 1,
+      "end": 5,
+      "episodes": 320,
+      "actions": 1427,
+      "illegal": 112,
+      "illegal_fraction": 0.07848633496846531,
+      "types": {
+        "format_unparseable": {
+          "n": 62,
+          "fraction_all": 0.043447792571829014,
+          "fraction_illegal": 0.5535714285714286
+        },
+        "action_type_unavailable": {
+          "n": 3,
+          "fraction_all": 0.002102312543798178,
+          "fraction_illegal": 0.026785714285714284
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 12,
+          "fraction_all": 0.008409250175192713,
+          "fraction_illegal": 0.10714285714285714
+        },
+        "nonexistent_navigation": {
+          "n": 5,
+          "fraction_all": 0.00350385423966363,
+          "fraction_illegal": 0.044642857142857144
+        },
+        "other": {
+          "n": 30,
+          "fraction_all": 0.02102312543798178,
+          "fraction_illegal": 0.26785714285714285
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "unrecognized_single_value_on_option_page": 11,
+        "compound_or_empty_click": 30,
+        "catalog_value": 1
+      }
+    },
+    {
+      "arm": "P",
+      "start": 6,
+      "end": 10,
+      "episodes": 320,
+      "actions": 1389,
+      "illegal": 94,
+      "illegal_fraction": 0.06767458603311735,
+      "types": {
+        "format_unparseable": {
+          "n": 50,
+          "fraction_all": 0.03599712023038157,
+          "fraction_illegal": 0.5319148936170213
+        },
+        "action_type_unavailable": {
+          "n": 1,
+          "fraction_all": 0.0007199424046076314,
+          "fraction_illegal": 0.010638297872340425
+        },
+        "absent_product_id": {
+          "n": 2,
+          "fraction_all": 0.0014398848092152627,
+          "fraction_illegal": 0.02127659574468085
+        },
+        "unavailable_option": {
+          "n": 15,
+          "fraction_all": 0.01079913606911447,
+          "fraction_illegal": 0.1595744680851064
+        },
+        "nonexistent_navigation": {
+          "n": 4,
+          "fraction_all": 0.0028797696184305254,
+          "fraction_illegal": 0.0425531914893617
+        },
+        "other": {
+          "n": 22,
+          "fraction_all": 0.01583873290136789,
+          "fraction_illegal": 0.23404255319148937
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 1,
+          "fraction_absent": 0.5
+        },
+        "gold=0,partial=1": {
+          "n": 1,
+          "fraction_absent": 0.5
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "10": 1,
+        "2": 1
+      },
+      "details": {
+        "unrecognized_single_value_on_option_page": 15,
+        "option_off_detail_page": 1,
+        "compound_or_empty_click": 22
+      }
+    },
+    {
+      "arm": "P",
+      "start": 11,
+      "end": 15,
+      "episodes": 320,
+      "actions": 1424,
+      "illegal": 121,
+      "illegal_fraction": 0.08497191011235955,
+      "types": {
+        "format_unparseable": {
+          "n": 38,
+          "fraction_all": 0.026685393258426966,
+          "fraction_illegal": 0.3140495867768595
+        },
+        "action_type_unavailable": {
+          "n": 4,
+          "fraction_all": 0.0028089887640449437,
+          "fraction_illegal": 0.03305785123966942
+        },
+        "absent_product_id": {
+          "n": 4,
+          "fraction_all": 0.0028089887640449437,
+          "fraction_illegal": 0.03305785123966942
+        },
+        "unavailable_option": {
+          "n": 38,
+          "fraction_all": 0.026685393258426966,
+          "fraction_illegal": 0.3140495867768595
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 37,
+          "fraction_all": 0.02598314606741573,
+          "fraction_illegal": 0.30578512396694213
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 4,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 4
+      },
+      "details": {
+        "compound_or_empty_click": 37,
+        "catalog_value": 1,
+        "unrecognized_single_value_on_option_page": 37,
+        "option_off_detail_page": 3
+      }
+    },
+    {
+      "arm": "P",
+      "start": 16,
+      "end": 20,
+      "episodes": 320,
+      "actions": 1414,
+      "illegal": 78,
+      "illegal_fraction": 0.055162659123055166,
+      "types": {
+        "format_unparseable": {
+          "n": 24,
+          "fraction_all": 0.016973125884016973,
+          "fraction_illegal": 0.3076923076923077
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 1,
+          "fraction_all": 0.0007072135785007072,
+          "fraction_illegal": 0.01282051282051282
+        },
+        "unavailable_option": {
+          "n": 17,
+          "fraction_all": 0.012022630834512023,
+          "fraction_illegal": 0.21794871794871795
+        },
+        "nonexistent_navigation": {
+          "n": 3,
+          "fraction_all": 0.0021216407355021216,
+          "fraction_illegal": 0.038461538461538464
+        },
+        "other": {
+          "n": 33,
+          "fraction_all": 0.02333804809052334,
+          "fraction_illegal": 0.4230769230769231
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 1,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 1
+      },
+      "details": {
+        "unrecognized_single_value_on_option_page": 13,
+        "compound_or_empty_click": 33,
+        "catalog_value": 4
+      }
+    },
+    {
+      "arm": "P",
+      "start": 21,
+      "end": 25,
+      "episodes": 320,
+      "actions": 1395,
+      "illegal": 64,
+      "illegal_fraction": 0.045878136200716846,
+      "types": {
+        "format_unparseable": {
+          "n": 6,
+          "fraction_all": 0.004301075268817204,
+          "fraction_illegal": 0.09375
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 16,
+          "fraction_all": 0.011469534050179211,
+          "fraction_illegal": 0.25
+        },
+        "nonexistent_navigation": {
+          "n": 1,
+          "fraction_all": 0.0007168458781362007,
+          "fraction_illegal": 0.015625
+        },
+        "other": {
+          "n": 41,
+          "fraction_all": 0.02939068100358423,
+          "fraction_illegal": 0.640625
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "unrecognized_single_value_on_option_page": 12,
+        "compound_or_empty_click": 41,
+        "catalog_value": 4
+      }
+    },
+    {
+      "arm": "P",
+      "start": 26,
+      "end": 30,
+      "episodes": 320,
+      "actions": 1482,
+      "illegal": 56,
+      "illegal_fraction": 0.037786774628879895,
+      "types": {
+        "format_unparseable": {
+          "n": 11,
+          "fraction_all": 0.007422402159244264,
+          "fraction_illegal": 0.19642857142857142
+        },
+        "action_type_unavailable": {
+          "n": 1,
+          "fraction_all": 0.0006747638326585695,
+          "fraction_illegal": 0.017857142857142856
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 22,
+          "fraction_all": 0.014844804318488529,
+          "fraction_illegal": 0.39285714285714285
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 22,
+          "fraction_all": 0.014844804318488529,
+          "fraction_illegal": 0.39285714285714285
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "unrecognized_single_value_on_option_page": 19,
+        "compound_or_empty_click": 22,
+        "catalog_value": 3,
+        "option_off_detail_page": 1
+      }
+    },
+    {
+      "arm": "R",
+      "start": 1,
+      "end": 5,
+      "episodes": 320,
+      "actions": 1422,
+      "illegal": 123,
+      "illegal_fraction": 0.08649789029535865,
+      "types": {
+        "format_unparseable": {
+          "n": 71,
+          "fraction_all": 0.04992967651195499,
+          "fraction_illegal": 0.5772357723577236
+        },
+        "action_type_unavailable": {
+          "n": 3,
+          "fraction_all": 0.002109704641350211,
+          "fraction_illegal": 0.024390243902439025
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 16,
+          "fraction_all": 0.011251758087201125,
+          "fraction_illegal": 0.13008130081300814
+        },
+        "nonexistent_navigation": {
+          "n": 4,
+          "fraction_all": 0.0028129395218002813,
+          "fraction_illegal": 0.032520325203252036
+        },
+        "other": {
+          "n": 29,
+          "fraction_all": 0.020393811533052038,
+          "fraction_illegal": 0.23577235772357724
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "unrecognized_single_value_on_option_page": 13,
+        "compound_or_empty_click": 29,
+        "catalog_value": 3
+      }
+    },
+    {
+      "arm": "R",
+      "start": 6,
+      "end": 10,
+      "episodes": 320,
+      "actions": 1390,
+      "illegal": 105,
+      "illegal_fraction": 0.07553956834532374,
+      "types": {
+        "format_unparseable": {
+          "n": 61,
+          "fraction_all": 0.04388489208633094,
+          "fraction_illegal": 0.580952380952381
+        },
+        "action_type_unavailable": {
+          "n": 1,
+          "fraction_all": 0.0007194244604316547,
+          "fraction_illegal": 0.009523809523809525
+        },
+        "absent_product_id": {
+          "n": 3,
+          "fraction_all": 0.002158273381294964,
+          "fraction_illegal": 0.02857142857142857
+        },
+        "unavailable_option": {
+          "n": 13,
+          "fraction_all": 0.00935251798561151,
+          "fraction_illegal": 0.12380952380952381
+        },
+        "nonexistent_navigation": {
+          "n": 4,
+          "fraction_all": 0.0028776978417266188,
+          "fraction_illegal": 0.0380952380952381
+        },
+        "other": {
+          "n": 23,
+          "fraction_all": 0.016546762589928057,
+          "fraction_illegal": 0.21904761904761905
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 1,
+          "fraction_absent": 0.3333333333333333
+        },
+        "gold=0,partial=1": {
+          "n": 2,
+          "fraction_absent": 0.6666666666666666
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "10": 1,
+        "11": 1,
+        "2": 1
+      },
+      "details": {
+        "unrecognized_single_value_on_option_page": 13,
+        "option_off_detail_page": 1,
+        "compound_or_empty_click": 23
+      }
+    },
+    {
+      "arm": "R",
+      "start": 11,
+      "end": 15,
+      "episodes": 320,
+      "actions": 1439,
+      "illegal": 154,
+      "illegal_fraction": 0.10701876302988186,
+      "types": {
+        "format_unparseable": {
+          "n": 55,
+          "fraction_all": 0.03822098679638638,
+          "fraction_illegal": 0.35714285714285715
+        },
+        "action_type_unavailable": {
+          "n": 5,
+          "fraction_all": 0.0034746351633078527,
+          "fraction_illegal": 0.032467532467532464
+        },
+        "absent_product_id": {
+          "n": 3,
+          "fraction_all": 0.0020847810979847115,
+          "fraction_illegal": 0.01948051948051948
+        },
+        "unavailable_option": {
+          "n": 43,
+          "fraction_all": 0.029881862404447533,
+          "fraction_illegal": 0.2792207792207792
+        },
+        "nonexistent_navigation": {
+          "n": 5,
+          "fraction_all": 0.0034746351633078527,
+          "fraction_illegal": 0.032467532467532464
+        },
+        "other": {
+          "n": 43,
+          "fraction_all": 0.029881862404447533,
+          "fraction_illegal": 0.2792207792207792
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 3,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 3
+      },
+      "details": {
+        "compound_or_empty_click": 43,
+        "catalog_value": 2,
+        "unrecognized_single_value_on_option_page": 41,
+        "option_off_detail_page": 3
+      }
+    },
+    {
+      "arm": "R",
+      "start": 16,
+      "end": 20,
+      "episodes": 320,
+      "actions": 1450,
+      "illegal": 128,
+      "illegal_fraction": 0.08827586206896551,
+      "types": {
+        "format_unparseable": {
+          "n": 53,
+          "fraction_all": 0.036551724137931035,
+          "fraction_illegal": 0.4140625
+        },
+        "action_type_unavailable": {
+          "n": 2,
+          "fraction_all": 0.001379310344827586,
+          "fraction_illegal": 0.015625
+        },
+        "absent_product_id": {
+          "n": 1,
+          "fraction_all": 0.000689655172413793,
+          "fraction_illegal": 0.0078125
+        },
+        "unavailable_option": {
+          "n": 17,
+          "fraction_all": 0.011724137931034483,
+          "fraction_illegal": 0.1328125
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 55,
+          "fraction_all": 0.03793103448275862,
+          "fraction_illegal": 0.4296875
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 1,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 1
+      },
+      "details": {
+        "unrecognized_single_value_on_option_page": 12,
+        "compound_or_empty_click": 55,
+        "catalog_value": 5
+      }
+    },
+    {
+      "arm": "R",
+      "start": 21,
+      "end": 25,
+      "episodes": 320,
+      "actions": 1435,
+      "illegal": 129,
+      "illegal_fraction": 0.08989547038327526,
+      "types": {
+        "format_unparseable": {
+          "n": 51,
+          "fraction_all": 0.03554006968641115,
+          "fraction_illegal": 0.3953488372093023
+        },
+        "action_type_unavailable": {
+          "n": 1,
+          "fraction_all": 0.0006968641114982578,
+          "fraction_illegal": 0.007751937984496124
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 15,
+          "fraction_all": 0.010452961672473868,
+          "fraction_illegal": 0.11627906976744186
+        },
+        "nonexistent_navigation": {
+          "n": 1,
+          "fraction_all": 0.0006968641114982578,
+          "fraction_illegal": 0.007751937984496124
+        },
+        "other": {
+          "n": 61,
+          "fraction_all": 0.04250871080139373,
+          "fraction_illegal": 0.4728682170542636
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "unrecognized_single_value_on_option_page": 15,
+        "compound_or_empty_click": 61,
+        "option_off_detail_page": 1
+      }
+    },
+    {
+      "arm": "R",
+      "start": 26,
+      "end": 30,
+      "episodes": 320,
+      "actions": 1464,
+      "illegal": 197,
+      "illegal_fraction": 0.13456284153005466,
+      "types": {
+        "format_unparseable": {
+          "n": 66,
+          "fraction_all": 0.045081967213114756,
+          "fraction_illegal": 0.3350253807106599
+        },
+        "action_type_unavailable": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 27,
+          "fraction_all": 0.018442622950819672,
+          "fraction_illegal": 0.13705583756345177
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 104,
+          "fraction_all": 0.07103825136612021,
+          "fraction_illegal": 0.5279187817258884
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "unrecognized_single_value_on_option_page": 23,
+        "compound_or_empty_click": 104,
+        "catalog_value": 4
+      }
+    },
+    {
+      "arm": "R",
+      "start": 31,
+      "end": 33,
+      "episodes": 192,
+      "actions": 896,
+      "illegal": 171,
+      "illegal_fraction": 0.19084821428571427,
+      "types": {
+        "format_unparseable": {
+          "n": 39,
+          "fraction_all": 0.04352678571428571,
+          "fraction_illegal": 0.22807017543859648
+        },
+        "action_type_unavailable": {
+          "n": 4,
+          "fraction_all": 0.004464285714285714,
+          "fraction_illegal": 0.023391812865497075
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 13,
+          "fraction_all": 0.014508928571428572,
+          "fraction_illegal": 0.07602339181286549
+        },
+        "nonexistent_navigation": {
+          "n": 1,
+          "fraction_all": 0.0011160714285714285,
+          "fraction_illegal": 0.005847953216374269
+        },
+        "other": {
+          "n": 114,
+          "fraction_all": 0.12723214285714285,
+          "fraction_illegal": 0.6666666666666666
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "unrecognized_single_value_on_option_page": 12,
+        "compound_or_empty_click": 114,
+        "option_off_detail_page": 4,
+        "catalog_value": 1
+      }
+    },
+    {
+      "arm": "R-matched",
+      "start": 1,
+      "end": 5,
+      "episodes": 320,
+      "actions": 1438,
+      "illegal": 120,
+      "illegal_fraction": 0.08344923504867872,
+      "types": {
+        "format_unparseable": {
+          "n": 60,
+          "fraction_all": 0.04172461752433936,
+          "fraction_illegal": 0.5
+        },
+        "action_type_unavailable": {
+          "n": 3,
+          "fraction_all": 0.002086230876216968,
+          "fraction_illegal": 0.025
+        },
+        "absent_product_id": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "unavailable_option": {
+          "n": 12,
+          "fraction_all": 0.008344923504867872,
+          "fraction_illegal": 0.1
+        },
+        "nonexistent_navigation": {
+          "n": 8,
+          "fraction_all": 0.005563282336578581,
+          "fraction_illegal": 0.06666666666666667
+        },
+        "other": {
+          "n": 37,
+          "fraction_all": 0.02573018080667594,
+          "fraction_illegal": 0.30833333333333335
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=0,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": null
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": null
+        }
+      },
+      "longest_digit_run": {},
+      "details": {
+        "unrecognized_single_value_on_option_page": 11,
+        "compound_or_empty_click": 37,
+        "catalog_value": 1
+      }
+    },
+    {
+      "arm": "R-matched",
+      "start": 6,
+      "end": 10,
+      "episodes": 320,
+      "actions": 1377,
+      "illegal": 106,
+      "illegal_fraction": 0.07697893972403776,
+      "types": {
+        "format_unparseable": {
+          "n": 52,
+          "fraction_all": 0.03776325344952796,
+          "fraction_illegal": 0.49056603773584906
+        },
+        "action_type_unavailable": {
+          "n": 1,
+          "fraction_all": 0.0007262164124909223,
+          "fraction_illegal": 0.009433962264150943
+        },
+        "absent_product_id": {
+          "n": 2,
+          "fraction_all": 0.0014524328249818446,
+          "fraction_illegal": 0.018867924528301886
+        },
+        "unavailable_option": {
+          "n": 19,
+          "fraction_all": 0.013798111837327523,
+          "fraction_illegal": 0.1792452830188679
+        },
+        "nonexistent_navigation": {
+          "n": 4,
+          "fraction_all": 0.002904865649963689,
+          "fraction_illegal": 0.03773584905660377
+        },
+        "other": {
+          "n": 28,
+          "fraction_all": 0.020334059549745823,
+          "fraction_illegal": 0.2641509433962264
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 1,
+          "fraction_absent": 0.5
+        },
+        "gold=0,partial=1": {
+          "n": 1,
+          "fraction_absent": 0.5
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "10": 1,
+        "2": 1
+      },
+      "details": {
+        "unrecognized_single_value_on_option_page": 19,
+        "option_off_detail_page": 1,
+        "compound_or_empty_click": 28
+      }
+    },
+    {
+      "arm": "R-matched",
+      "start": 11,
+      "end": 15,
+      "episodes": 320,
+      "actions": 1422,
+      "illegal": 143,
+      "illegal_fraction": 0.10056258790436005,
+      "types": {
+        "format_unparseable": {
+          "n": 46,
+          "fraction_all": 0.03234880450070324,
+          "fraction_illegal": 0.32167832167832167
+        },
+        "action_type_unavailable": {
+          "n": 4,
+          "fraction_all": 0.0028129395218002813,
+          "fraction_illegal": 0.027972027972027972
+        },
+        "absent_product_id": {
+          "n": 4,
+          "fraction_all": 0.0028129395218002813,
+          "fraction_illegal": 0.027972027972027972
+        },
+        "unavailable_option": {
+          "n": 36,
+          "fraction_all": 0.02531645569620253,
+          "fraction_illegal": 0.2517482517482518
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 53,
+          "fraction_all": 0.03727144866385373,
+          "fraction_illegal": 0.3706293706293706
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 4,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 4
+      },
+      "details": {
+        "compound_or_empty_click": 53,
+        "catalog_value": 2,
+        "unrecognized_single_value_on_option_page": 34,
+        "option_off_detail_page": 4
+      }
+    },
+    {
+      "arm": "R-matched",
+      "start": 16,
+      "end": 20,
+      "episodes": 320,
+      "actions": 1532,
+      "illegal": 215,
+      "illegal_fraction": 0.14033942558746737,
+      "types": {
+        "format_unparseable": {
+          "n": 76,
+          "fraction_all": 0.04960835509138381,
+          "fraction_illegal": 0.35348837209302325
+        },
+        "action_type_unavailable": {
+          "n": 1,
+          "fraction_all": 0.0006527415143603133,
+          "fraction_illegal": 0.004651162790697674
+        },
+        "absent_product_id": {
+          "n": 3,
+          "fraction_all": 0.0019582245430809398,
+          "fraction_illegal": 0.013953488372093023
+        },
+        "unavailable_option": {
+          "n": 16,
+          "fraction_all": 0.010443864229765013,
+          "fraction_illegal": 0.07441860465116279
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 119,
+          "fraction_all": 0.07767624020887728,
+          "fraction_illegal": 0.5534883720930233
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 3,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "10": 1,
+        "11": 2
+      },
+      "details": {
+        "compound_or_empty_click": 117,
+        "unrecognized_single_value_on_option_page": 15,
+        "unrecognized_click": 2,
+        "catalog_value": 1,
+        "option_off_detail_page": 1
+      }
+    },
+    {
+      "arm": "R-matched",
+      "start": 21,
+      "end": 25,
+      "episodes": 320,
+      "actions": 1688,
+      "illegal": 379,
+      "illegal_fraction": 0.2245260663507109,
+      "types": {
+        "format_unparseable": {
+          "n": 93,
+          "fraction_all": 0.05509478672985782,
+          "fraction_illegal": 0.24538258575197888
+        },
+        "action_type_unavailable": {
+          "n": 6,
+          "fraction_all": 0.0035545023696682463,
+          "fraction_illegal": 0.0158311345646438
+        },
+        "absent_product_id": {
+          "n": 5,
+          "fraction_all": 0.002962085308056872,
+          "fraction_illegal": 0.013192612137203167
+        },
+        "unavailable_option": {
+          "n": 22,
+          "fraction_all": 0.013033175355450236,
+          "fraction_illegal": 0.05804749340369393
+        },
+        "nonexistent_navigation": {
+          "n": 0,
+          "fraction_all": 0.0,
+          "fraction_illegal": 0.0
+        },
+        "other": {
+          "n": 253,
+          "fraction_all": 0.14988151658767773,
+          "fraction_illegal": 0.6675461741424802
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 2,
+          "fraction_absent": 0.4
+        },
+        "gold=0,partial=1": {
+          "n": 3,
+          "fraction_absent": 0.6
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "2": 2,
+        "11": 3
+      },
+      "details": {
+        "compound_or_empty_click": 253,
+        "option_off_detail_page": 3,
+        "unrecognized_single_value_on_option_page": 15,
+        "catalog_value": 7,
+        "visible_but_not_clickable_id": 2
+      }
+    },
+    {
+      "arm": "R-matched",
+      "start": 26,
+      "end": 30,
+      "episodes": 320,
+      "actions": 1702,
+      "illegal": 871,
+      "illegal_fraction": 0.5117508813160987,
+      "types": {
+        "format_unparseable": {
+          "n": 428,
+          "fraction_all": 0.25146886016451236,
+          "fraction_illegal": 0.49138920780711826
+        },
+        "action_type_unavailable": {
+          "n": 73,
+          "fraction_all": 0.04289071680376028,
+          "fraction_illegal": 0.08381171067738231
+        },
+        "absent_product_id": {
+          "n": 1,
+          "fraction_all": 0.0005875440658049354,
+          "fraction_illegal": 0.001148105625717566
+        },
+        "unavailable_option": {
+          "n": 14,
+          "fraction_all": 0.008225616921269096,
+          "fraction_illegal": 0.016073478760045924
+        },
+        "nonexistent_navigation": {
+          "n": 3,
+          "fraction_all": 0.0017626321974148062,
+          "fraction_illegal": 0.003444316877152698
+        },
+        "other": {
+          "n": 352,
+          "fraction_all": 0.20681551116333724,
+          "fraction_illegal": 0.4041331802525832
+        }
+      },
+      "absent_id_cross": {
+        "gold=0,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=0,partial=1": {
+          "n": 1,
+          "fraction_absent": 1.0
+        },
+        "gold=1,partial=0": {
+          "n": 0,
+          "fraction_absent": 0.0
+        },
+        "gold=1,partial=1": {
+          "n": 0,
+          "fraction_absent": 0.0
+        }
+      },
+      "longest_digit_run": {
+        "11": 1
+      },
+      "details": {
+        "compound_or_empty_click": 341,
+        "catalog_value": 6,
+        "unrecognized_single_value_on_option_page": 8,
+        "option_off_detail_page": 5,
+        "unrecognized_click": 11,
+        "visible_but_not_clickable_id": 2
+      }
+    }
+  ],
+  "source_sha256": {
+    "shop_gap26_20261123/formal/pilot/01/R-gap/rollout_0.jsonl": "e5258cffec59f1858f3c7ec2bd6bef3d1943855388cda618b0b37dbda17c91ec",
+    "shop_gap26_20261123/formal/pilot/01/R-gap/rollout_1.jsonl": "416c833b2ba9b52af5ef3c16bec8c035b6eac1096c367d000a17b16fe1a607cb",
+    "shop_gap26_20261123/formal/pilot/02/R-gap/rollout_0.jsonl.gz": "56ec6858020bf2d33b67dc2ccb04040621a40105f78fb8768e1b5d84a2656f75",
+    "shop_gap26_20261123/formal/pilot/02/R-gap/rollout_1.jsonl.gz": "22ee2ccc9acf772cb259eb751aae6ded9d6eeb7ed96a620fedeac1fbcf336c7c",
+    "shop_gap26_20261123/formal/pilot/03/R-gap/rollout_0.jsonl.gz": "03c04d6026ba19a436db4304f752d370fa0bbdbcecb521ccfb356e72b53f8e81",
+    "shop_gap26_20261123/formal/pilot/03/R-gap/rollout_1.jsonl.gz": "e4ae27992bacfff37e676cbfcb5fdfa602bee5be58189ba686eb14f583719b26",
+    "shop_gap26_20261123/formal/pilot/04/R-gap/rollout_0.jsonl.gz": "7fbe6f3f8dfbdf6c838c114dd3adceecf85f4dde9960b524c85c4d54b6700b64",
+    "shop_gap26_20261123/formal/pilot/04/R-gap/rollout_1.jsonl.gz": "4c792d649285d50df8f7e9c39e024c0723959b587635082487fcad384223540c",
+    "shop_gap26_20261123/formal/pilot/05/R-gap/rollout_0.jsonl.gz": "60e6427878c0db25c42a51a75f9b76b6a489bfe72902e8c385cd7685a4ea7885",
+    "shop_gap26_20261123/formal/pilot/05/R-gap/rollout_1.jsonl.gz": "ddaee778ffa8765725440a0de32c927bbbc5422396f9727c56f10c1471c04559",
+    "shop_gap26_20261123/formal/pilot/06/R-gap/rollout_0.jsonl.gz": "ea7e704d9486f623bf2e286018e5b6c8421b69e2c0ca37e2e2a580632a829d62",
+    "shop_gap26_20261123/formal/pilot/06/R-gap/rollout_1.jsonl.gz": "950bd3bd00b94313b346b9f27abbfcaccd72e55b10f8d21b931cb3dcfeed9ed7",
+    "shop_gap26_20261123/formal/pilot/07/R-gap/rollout_0.jsonl.gz": "23dcf5670b02ad452f1b24bd63ca993ed36e776e62229c41d95d92afa9d27d5e",
+    "shop_gap26_20261123/formal/pilot/07/R-gap/rollout_1.jsonl.gz": "0c70fb8fd770b4eb7281d1e8c0244a38996e3a50a0cd9a66eb3977f7b6577c8b",
+    "shop_gap26_20261123/formal/pilot/08/R-gap/rollout_0.jsonl.gz": "4a744c780833fc470ee7a4dff32c1f0a8f8e2d072a6e392af1fb0e9fccef4363",
+    "shop_gap26_20261123/formal/pilot/08/R-gap/rollout_1.jsonl.gz": "8592c73aa49e2b76fa0da4cae7e114734de937983defd307982c951ddf38dcde",
+    "shop_gap26_20261123/formal/pilot/09/R-gap/rollout_0.jsonl.gz": "0faf1630ce33da6b15a2d63db0e4c893a4e4060fc9523b967baa4bed98244eb3",
+    "shop_gap26_20261123/formal/pilot/09/R-gap/rollout_1.jsonl.gz": "02dbccc0bfea1c9549a4957acfb83a129882b90dc7289efd0500c4daf626e72d",
+    "shop_gap26_20261123/formal/pilot/10/R-gap/rollout_0.jsonl.gz": "074c8fe83cb3b8fc1ecf68975905eecda153b180e8637161c6b0618cb8054c95",
+    "shop_gap26_20261123/formal/pilot/10/R-gap/rollout_1.jsonl.gz": "83193ce4697bae67969a4b2de57fc89af13f1cd08b8be4e10ba372f76e606251",
+    "shop_gap26_20261123/formal/pilot/11/R-gap/rollout_0.jsonl.gz": "85c5fbb8aed8ec9a6addcdcc730610396916d720e93fbd19f8f1deb32349ac85",
+    "shop_gap26_20261123/formal/pilot/11/R-gap/rollout_1.jsonl.gz": "b9e0259597153cd8fa9bcae14e35aa91146bc5888b45fc9fb47eb773f476d249",
+    "shop_gap26_20261123/formal/pilot/12/R-gap/rollout_0.jsonl.gz": "2ab90f87e72d272e3215bfaaa74a112e0c96dbcfbecb7b266cf74241f1375051",
+    "shop_gap26_20261123/formal/pilot/12/R-gap/rollout_1.jsonl.gz": "32ac482eb756a3da8d346b2750b2066eb438243a6eb187053dc95e5a98f2d62c",
+    "shop_gap26_20261123/formal/pilot/13/R-gap/rollout_0.jsonl.gz": "2393961ba538e2f68054a88e4e794b2ba3275b034d4d5831e53e6a7f0c7c796d",
+    "shop_gap26_20261123/formal/pilot/13/R-gap/rollout_1.jsonl.gz": "c8b84a94de06127828041f8651d2d26fb214c92616528410e24b2144c6dba435",
+    "shop_gap26_20261123/formal/pilot/14/R-gap/rollout_0.jsonl.gz": "dc94e9827bde9afd551094ea8674a4366bf1890f861edd3d6b3720e0b9e2fa0e",
+    "shop_gap26_20261123/formal/pilot/14/R-gap/rollout_1.jsonl.gz": "5946e7f628ecf84004b77b4f8623cfadf56e1244cdccdc55842155331202f139",
+    "shop_gap26_20261123/formal/pilot/15/R-gap/rollout_0.jsonl.gz": "649bd0cf956553159db3d6cfac261715b81d882717e8188f227dc884e7cad4cb",
+    "shop_gap26_20261123/formal/pilot/15/R-gap/rollout_1.jsonl.gz": "2babad22669d43e563cb865c39cbe5df4a3197f54a2a67affe705fb187262775",
+    "shop_gap26_20261123/formal/pilot/16/R-gap/rollout_0.jsonl.gz": "1e5fd4099d00080ed1f816189698af2d2f634be7d16f6e126dede051e48efada",
+    "shop_gap26_20261123/formal/pilot/16/R-gap/rollout_1.jsonl.gz": "3614d3ddd4651ac903a17c17088252d9863f9eec06c0ccc2d57477a0ceb2dbb9",
+    "shop_gap26_20261123/formal/pilot/17/R-gap/rollout_0.jsonl.gz": "bc09ef1f1f422b7d593a5a02c2403320a68090650e5cb1f4a8e50676cc9e5f2c",
+    "shop_gap26_20261123/formal/pilot/17/R-gap/rollout_1.jsonl.gz": "97e4f73e055003e5aa24fce4997b257da00e8588d425bbd6511ca211d108c110",
+    "shop_gap26_20261123/formal/pilot/18/R-gap/rollout_0.jsonl.gz": "a3dc3668067138223597adf09fe433fe08aff4a2818747b193372a574bc288cc",
+    "shop_gap26_20261123/formal/pilot/18/R-gap/rollout_1.jsonl.gz": "e68391281f353743142ef228c26299b26a8645a483d3bd1c727bb1fc3de6e7b5",
+    "shop_gap26_20261123/formal/pilot/19/R-gap/rollout_0.jsonl.gz": "7b3611b188dad87467ddc3804d355cfd60fe7d65dccc20d1eddfc521f932ffb3",
+    "shop_gap26_20261123/formal/pilot/19/R-gap/rollout_1.jsonl.gz": "b9821fd7970ed577b07c11006fa28cb2f8a34e020ccecafc7ec76f3ba92e78b9",
+    "shop_gap26_20261123/formal/pilot/20/R-gap/rollout_0.jsonl.gz": "13167b85d20a3b7d724ecf896a35c4be01a571207bba3618cfd989bcc9b8a928",
+    "shop_gap26_20261123/formal/pilot/20/R-gap/rollout_1.jsonl.gz": "0428717c39b09358d9150fb94d21e702fe85ac519ae5c8781058406a99ab54b0",
+    "shop_gap26_20261123/formal/pilot/21/R-gap/rollout_0.jsonl.gz": "0ab2ce1f22a4d093f4e47b3b94221ce8e81275739726b67fa94e1f41727df3f1",
+    "shop_gap26_20261123/formal/pilot/21/R-gap/rollout_1.jsonl.gz": "ef9fbe3423b22da9a394434f967ce8516e773dae2eed2e8475eb84f5883a93b0",
+    "shop_gap26_20261123/formal/pilot/22/R-gap/rollout_0.jsonl.gz": "b51e82050c1b0e6c0c894e71a6d530822947d9efabcdba73ba16708360279816",
+    "shop_gap26_20261123/formal/pilot/22/R-gap/rollout_1.jsonl.gz": "ed7935980d0874a15fc81b80501556ee1eff1e0c38e94b90f4bb57a639317386",
+    "shop_gap26_20261123/formal/pilot/23/R-gap/rollout_0.jsonl.gz": "4f350d6ef2b99a5dfb46bed33c41cf4ba79f289778a2a5bd72f58bcbd1c30b30",
+    "shop_gap26_20261123/formal/pilot/23/R-gap/rollout_1.jsonl.gz": "86b99c8676140d4e0e7b54f68c85e6dbf42786901181853cbe453eb5795be420",
+    "shop_gap26_20261123/formal/pilot/24/R-gap/rollout_0.jsonl.gz": "f5e5cc9cdfc968c63c4293d1e17d46721b589d661fe2c3dceabd7f801729eb4f",
+    "shop_gap26_20261123/formal/pilot/24/R-gap/rollout_1.jsonl.gz": "e765278a08a26cd44f5f08ebb8b54ad046cebaa9b1dec6b8e34b0cf53ace5887",
+    "shop_gap26_20261123/formal/pilot/25/R-gap/rollout_0.jsonl.gz": "1524ff781ec2fab1b9832a6bbbdb1e1e42a3986bf102daad813423ef1b9d56ea",
+    "shop_gap26_20261123/formal/pilot/25/R-gap/rollout_1.jsonl.gz": "d38ca7131d6864c38247f756ec7e18356061dd150414105f3e20e6ffea866373",
+    "shop_gap26_20261123/formal/pilot/26/R-gap/rollout_0.jsonl.gz": "ddb1b0cb896cc2e7dc11e3a948816b76ba756ebb8e6810d97896a138b617acf6",
+    "shop_gap26_20261123/formal/pilot/26/R-gap/rollout_1.jsonl.gz": "b0d74cb42dae56fa8941c483afc47ea879b1ff0d36334e8fa9018cb9972187c9",
+    "shop_gap26_20261123/formal/pilot/27/R-gap/rollout_0.jsonl.gz": "ca33aaf29b376db79819240dae8434f00a4511a1a5d537c8f9b7cd5346648566",
+    "shop_gap26_20261123/formal/pilot/27/R-gap/rollout_1.jsonl.gz": "1b45b8a976d1133045696d0987a379e4af226db37cebcde8c9681ff82f07361a",
+    "shop_gap26_20261123/formal/pilot/28/R-gap/rollout_0.jsonl.gz": "4e67ae4bf0549b0be1c25b17d60a4e38f39e48b978696266bf5d52a38707df1e",
+    "shop_gap26_20261123/formal/pilot/28/R-gap/rollout_1.jsonl.gz": "0eed1f2de89e58d1b705366669d05641a4fd80c53542654ad1d68ba6b22f9a06",
+    "shop_gap26_20261123/formal/pilot/29/R-gap/rollout_0.jsonl.gz": "ce50249b92ca55a5c27fae96b9f2cc56a1730872ca69deb0a2d04f5c97a294fb",
+    "shop_gap26_20261123/formal/pilot/29/R-gap/rollout_1.jsonl.gz": "c5604a625d735c31d418865e39cc008cb67d4130da99aff11d0ffb1e4214e343",
+    "shop_gap26_20261123/formal/pilot/30/R-gap/rollout_0.jsonl.gz": "31fde3ae8643b945591f240ca8580b0cdfa95cafbb86d68ff0aa77b0e6b45c6a",
+    "shop_gap26_20261123/formal/pilot/30/R-gap/rollout_1.jsonl.gz": "49f9ea2d69c8c2df3f196f1f8011fdf7dc9b100802c9742a4bbd59f68ff0527b",
+    "shop_gap26_20261123/formal/pilot/31/R-gap/rollout_0.jsonl.gz": "b7e0b79b167816e2822ede5ceaa17d367032ccf1e548ecb2c4fd118100dd6529",
+    "shop_gap26_20261123/formal/pilot/31/R-gap/rollout_1.jsonl.gz": "a18a80eb86f0b7241ad6cc7e437abf9912ff555179a50e02962049339c37a0b6",
+    "shop_gap26_20261123/formal/pilot/32/R-gap/rollout_0.jsonl.gz": "4a39a78a013a8c8404f9b31231fa98ec5c6579b26f13549cd9c135b9e7948464",
+    "shop_gap26_20261123/formal/pilot/32/R-gap/rollout_1.jsonl.gz": "9b217de824acd2a0baa0bee8a7719f90375824dfb07d044180c2d95aaa14d32e",
+    "shop_gap26_20261123/formal/pilot/33/R-gap/rollout_0.jsonl.gz": "870be5b9f1d3452d509be6a70286d56d1328cd0bcd5646a8772168c1db406f23",
+    "shop_gap26_20261123/formal/pilot/33/R-gap/rollout_1.jsonl.gz": "85e3cdaaf23de368946844a2219ae8a1cf357a965edfff297c08552029082ef3",
+    "shop_gap26_20261123/formal/pilot/34/R-gap/rollout_0.jsonl.gz": "3a8a4b583ac84637ec81aa4b6e5fe8ae4d0f6b1514ff5a2feb4d5128e93a48d3",
+    "shop_gap26_20261123/formal/pilot/34/R-gap/rollout_1.jsonl.gz": "1720337c5c3b1a51f10abb3ac20beca8c4f5d4ef5c5fb0bc96b652dabfb8793a",
+    "shop_gap26_20261123/formal/pilot/35/R-gap/rollout_0.jsonl.gz": "93ab0a216fcd912aa5817f4c138d04e2e71384e0d0450afbbff432329fb3454e",
+    "shop_gap26_20261123/formal/pilot/35/R-gap/rollout_1.jsonl.gz": "a38a786b3646d72e86cf2d53b8b20f0e254e910926ea0c81324c7a23e78151b7",
+    "shop_gap26_20261123/formal/pilot/36/R-gap/rollout_0.jsonl.gz": "423574e4173d794dc8b63699a158a5fce5f64d867b8857aef65989d2be63efd4",
+    "shop_gap26_20261123/formal/pilot/36/R-gap/rollout_1.jsonl.gz": "018a622e9d8044779bd7f022f353e4b97fb9a846dd8dda189d14d71643b38da8",
+    "shop_gap26_20261123/formal/pilot/37/R-gap/rollout_0.jsonl.gz": "afcb805050cc985f7e931f2d715b75f312dafc756c0eb1a3e5d2d5f3e522b32e",
+    "shop_gap26_20261123/formal/pilot/37/R-gap/rollout_1.jsonl.gz": "85afc79540e7b0fb5d186357469d5da08c9b4ccccc0e4e6d3f035b78df099871",
+    "shop_gap26_20261123/formal/pilot/38/R-gap/rollout_0.jsonl.gz": "f1acbcb0c8901b3928f9842bb7f02c92c5c24c4a7c0c5862c25d87e0ed9aab77",
+    "shop_gap26_20261123/formal/pilot/38/R-gap/rollout_1.jsonl.gz": "e93be1a7a3fd765a0fa4abfea209337bb0e991e1634ec03a5c4a831ed4b3947f",
+    "shop_gap26_20261123/formal/pilot/39/R-gap/rollout_0.jsonl.gz": "fcc9db7c4bbb972826a9380bdbd9e7d72b35fcb99060007711d071fe93918655",
+    "shop_gap26_20261123/formal/pilot/39/R-gap/rollout_1.jsonl.gz": "8198c708db552eaae871730cf14f1a358fa2af29bfc503889808e46d651da618",
+    "shop_gap26_20261123/formal/pilot/40/R-gap/rollout_0.jsonl.gz": "58586da39034ff520c59529d4c630ecb1019be9f0ae319a3b2c30ca6358b2400",
+    "shop_gap26_20261123/formal/pilot/40/R-gap/rollout_1.jsonl.gz": "37ab8be3c32ebcb7c6998bc3174e020609e6911803ef79ed388c0cfeb0eb0d2e",
+    "shop_gap26_20261123/formal/pilot/41/R-gap/rollout_0.jsonl.gz": "c59305c2a9a0ead7dfc56c3757ae4de0eb01a2c63ec04796f4d859884b64a59a",
+    "shop_gap26_20261123/formal/pilot/41/R-gap/rollout_1.jsonl.gz": "31b113ef28efb31eeeb1f9ad244fd259cd40279edcbf18e5f45b14d53939f8f4",
+    "shop_gap26_20261123/formal/pilot/42/R-gap/rollout_0.jsonl.gz": "c804bc08a95f9dd387799d7ea2522a1601a08022f160a70e70a17f89a6b5c241",
+    "shop_gap26_20261123/formal/pilot/42/R-gap/rollout_1.jsonl.gz": "e3bb788d905ddb83e3d88721128dd0318f4bb435a77171b333b74536c5042cc2",
+    "shop_gap26_20261123/formal/pilot/43/R-gap/rollout_0.jsonl.gz": "7c0b87f8175f101c05a185fd0baa0e47559e119a935a54cf2002637509a262b3",
+    "shop_gap26_20261123/formal/pilot/43/R-gap/rollout_1.jsonl.gz": "29957c49baf4035fb2a38cc2ab2bd249eede99698947d3bf2751ceb1a0a8772c",
+    "shop_gap26_20261123/formal/pilot/44/R-gap/rollout_0.jsonl.gz": "3e75844b9820ba0a1bcff78bd6b19b2956a5a6af78c2c069b8420a3a75640888",
+    "shop_gap26_20261123/formal/pilot/44/R-gap/rollout_1.jsonl.gz": "184f05d1ef58bc267124468d0e306f3dc5d2efd39f8da332fdc4dc5d0ea72d38",
+    "shop_gap26_20261123/formal/pilot/45/R-gap/rollout_0.jsonl.gz": "d2a78e24412bf8315b9cecd1e009b58ad213299a3e45aae6ae3be65031851baa",
+    "shop_gap26_20261123/formal/pilot/45/R-gap/rollout_1.jsonl.gz": "005e9b721537b9c907b183b24f17c4269a4b80e9c91fa8ad0c36240d346405da",
+    "shop_gap26_20261123/formal/pilot/01/P-gap/rollout_0.jsonl": "e5258cffec59f1858f3c7ec2bd6bef3d1943855388cda618b0b37dbda17c91ec",
+    "shop_gap26_20261123/formal/pilot/01/P-gap/rollout_1.jsonl": "416c833b2ba9b52af5ef3c16bec8c035b6eac1096c367d000a17b16fe1a607cb",
+    "shop_gap26_20261123/formal/pilot/02/P-gap/rollout_0.jsonl.gz": "72fdd8464c231aa79b71c7a017d58faaac12b54a8c656a784b595eef63594551",
+    "shop_gap26_20261123/formal/pilot/02/P-gap/rollout_1.jsonl.gz": "24160fac2a50a4f2ceffd1708c96d9f86126237504ea5cc8231210414bb05ea3",
+    "shop_gap26_20261123/formal/pilot/03/P-gap/rollout_0.jsonl.gz": "233df36a7c04e5e8ab664fafa923830e2b8f523c79f4d91bfe2fb80e4a0b5107",
+    "shop_gap26_20261123/formal/pilot/03/P-gap/rollout_1.jsonl.gz": "92064c910908acbeabcc690eb3b31a6155902c65eb5739cafb8e6d3546f79347",
+    "shop_gap26_20261123/formal/pilot/04/P-gap/rollout_0.jsonl.gz": "beaf64d5f1f75802adb0e873628b5d11c1e93449067aa9379d896210557c7de3",
+    "shop_gap26_20261123/formal/pilot/04/P-gap/rollout_1.jsonl.gz": "98033046277a546fabf625238e5605c55006c2d10ac956dca32eae01e00c65cf",
+    "shop_gap26_20261123/formal/pilot/05/P-gap/rollout_0.jsonl.gz": "fa735ca181e361bdb98751758d43087fa15bff0dec5e749f620a4389e398cce7",
+    "shop_gap26_20261123/formal/pilot/05/P-gap/rollout_1.jsonl.gz": "ee74eb80458db544863a13207b064e6f5ab5bae84dacc194aedb7f2a49d0781d",
+    "shop_gap26_20261123/formal/pilot/06/P-gap/rollout_0.jsonl.gz": "e5c3237b7feb79fc6b9a4e9b1ffbb38710e11bcb5e7e4ef585b5b9a3914020e3",
+    "shop_gap26_20261123/formal/pilot/06/P-gap/rollout_1.jsonl.gz": "943ef1d8e9366ccc28cce65a9ab7cc68d58b626c5b8f353b306e4a7afdc7063f",
+    "shop_gap26_20261123/formal/pilot/07/P-gap/rollout_0.jsonl.gz": "66bbe6db49bc6cc9d6a538b8b22a8c33c8d4adbc6da20732fcd6049491a1c09b",
+    "shop_gap26_20261123/formal/pilot/07/P-gap/rollout_1.jsonl.gz": "66866192f8c52a1e4e38e50d1ff0688fe10742966b27db0ec7620fed8058bdc3",
+    "shop_gap26_20261123/formal/pilot/08/P-gap/rollout_0.jsonl.gz": "e3add1077e5c0039c858ab70159f696abd727d359ba4f3c6429a8acb9f8acd85",
+    "shop_gap26_20261123/formal/pilot/08/P-gap/rollout_1.jsonl.gz": "5a94f2958b230d36a7a7b09ef1bd782747b2e95c1bf1c022c723da236b4c9906",
+    "shop_gap26_20261123/formal/pilot/09/P-gap/rollout_0.jsonl.gz": "3de1fc8297dcb1df860586483de04ccd8a8d81fddc562b68837175ed2b7acd88",
+    "shop_gap26_20261123/formal/pilot/09/P-gap/rollout_1.jsonl.gz": "0e25154e1384d328ba18906286b61f20141ec3bc0ecaf4771961882637faf6f5",
+    "shop_gap26_20261123/formal/pilot/10/P-gap/rollout_0.jsonl.gz": "c0799e721ebee82a82496e93f12f3ee64a62c0f93b2d8be5e33cfcbec56da38a",
+    "shop_gap26_20261123/formal/pilot/10/P-gap/rollout_1.jsonl.gz": "0802e39bf4f7f232fd3b6410fd9607ce0ee983aed68f1c13a5499633b4edb2df",
+    "shop_gap26_20261123/formal/pilot/11/P-gap/rollout_0.jsonl.gz": "e743500d008dad28c0caf5d5e5a1e104e313efad386658ed79b7770379290fa8",
+    "shop_gap26_20261123/formal/pilot/11/P-gap/rollout_1.jsonl.gz": "e6e71e51810b5c0cd0c168f1ef6cf4f36da3c627c04bb4197d5982e8a745b36f",
+    "shop_gap26_20261123/formal/pilot/12/P-gap/rollout_0.jsonl.gz": "52d76faaac89a44a3820740c7571863d51c0f1f5ba8640f4300fc3f8217517f3",
+    "shop_gap26_20261123/formal/pilot/12/P-gap/rollout_1.jsonl.gz": "d90c7d1659f42944c989df04d7ab8571a872704bf9ad474e5ca24b9a3b9fb52d",
+    "shop_gap26_20261123/formal/pilot/13/P-gap/rollout_0.jsonl.gz": "f6efbcc32d987ce5ade213c519960d8713bc66b0b54200f5b10046fc1ea5b487",
+    "shop_gap26_20261123/formal/pilot/13/P-gap/rollout_1.jsonl.gz": "74f595164f96a4539cf64523d3a8e50d38dc0a4a36fd2aece260b74bbf6a2588",
+    "shop_gap26_20261123/formal/pilot/14/P-gap/rollout_0.jsonl.gz": "6f975eafbb991e53fdfdf386e4e8d43f24c450e0170a48d1c2df21c107bf833e",
+    "shop_gap26_20261123/formal/pilot/14/P-gap/rollout_1.jsonl.gz": "6c665db07b73d43debdc5b1863136315f86d2fccfbc3d27dd368ae47427472a3",
+    "shop_gap26_20261123/formal/pilot/15/P-gap/rollout_0.jsonl.gz": "2e09ae2b9d2975b4f55d990eab39e163edbebb82303429e13f34901e373672cc",
+    "shop_gap26_20261123/formal/pilot/15/P-gap/rollout_1.jsonl.gz": "58bd35d0ed75a9b2c61c723b72de5d78e00c6d0dc2ad146cc6b5b5cc991c8c42",
+    "shop_gap26_20261123/formal/pilot/16/P-gap/rollout_0.jsonl.gz": "a8650fa057807acc063e0309dedffe41ee4e5a3506fbd5afc1ffa265e7272661",
+    "shop_gap26_20261123/formal/pilot/16/P-gap/rollout_1.jsonl.gz": "488cba917868c9e59d143d3f8c5e92143a1a0ab4f4c5c425509921f6cdfbca6f",
+    "shop_gap26_20261123/formal/pilot/17/P-gap/rollout_0.jsonl.gz": "92f2e75fcd3cf58cf80419c6d6a128527a661d66bc6a887ade48dba6cddbafa6",
+    "shop_gap26_20261123/formal/pilot/17/P-gap/rollout_1.jsonl.gz": "e127ee7b9d2d9d004e8e5dfe5161c8b27de6a5e8e30a96602ac5246a6e9e3bae",
+    "shop_gap26_20261123/formal/pilot/18/P-gap/rollout_0.jsonl.gz": "14b38312ed3a7919ce35a5236cbdd66e7b43ca64fc83d6f0f8c6da035b9429e4",
+    "shop_gap26_20261123/formal/pilot/18/P-gap/rollout_1.jsonl.gz": "02c63a83941ae5fe5b9e412e01e39734a477b747705c43ef8dbabbdc8d7e7362",
+    "shop_gap26_20261123/formal/pilot/19/P-gap/rollout_0.jsonl.gz": "cee5785255684fa2c1995bc78c6d26fcfef7a3f61510ea89c9a86521f208fb9b",
+    "shop_gap26_20261123/formal/pilot/19/P-gap/rollout_1.jsonl.gz": "84bb1e75b57a3d6cf44d3eacfcbb0597d46301bc2372b9cb07f9ff6dc11cd76a",
+    "shop_gap26_20261123/formal/pilot/20/P-gap/rollout_0.jsonl.gz": "04b80ff3838104594db84a30160fb59ae30913cd102c5a8aed3d9c510e988c11",
+    "shop_gap26_20261123/formal/pilot/20/P-gap/rollout_1.jsonl.gz": "c519b12180717db008b90aa00bc0b9fbb74fb66cd2a874a10e1f21db83d82ff4",
+    "shop_gap26_20261123/formal/pilot/21/P-gap/rollout_0.jsonl.gz": "d2ea5a2c70f0c5f24c53dc4532374acbe57b4095f85885240ab2fab1464e024e",
+    "shop_gap26_20261123/formal/pilot/21/P-gap/rollout_1.jsonl.gz": "50bc9ef90d866bb1622842c34a5620471e5d64dadfb760060830df7c502be37b",
+    "shop_gap26_20261123/formal/pilot/22/P-gap/rollout_0.jsonl.gz": "2e0f2c624ffa083315f259df137f44b29b28988ac2f3e7ce24cf900abbe5c840",
+    "shop_gap26_20261123/formal/pilot/22/P-gap/rollout_1.jsonl.gz": "9057c1f80c13c64ffd8aba7e6d2085d9804c41e7fd66f2581da018a2804fa871",
+    "shop_gap26_20261123/formal/pilot/23/P-gap/rollout_0.jsonl.gz": "93e7f7431b696666546ca1589ba0ec390bd35cf36ea4b3d1721e49e453c39258",
+    "shop_gap26_20261123/formal/pilot/23/P-gap/rollout_1.jsonl.gz": "a0b1a3c9d2b39013aafcd9096ebfe4630d2eae87a0b1e56cee2f353b8d298504",
+    "shop_gap26_20261123/formal/pilot/24/P-gap/rollout_0.jsonl.gz": "fd46a47f2ecf8564cb7ee06fbe21b4bc2b017cab9b2c7c43c1436611539bfc31",
+    "shop_gap26_20261123/formal/pilot/24/P-gap/rollout_1.jsonl.gz": "d22f9b8b3c0fc409fd49da87fffd634c261a09db800d3919250f34b6e66dc9a4",
+    "shop_gap26_20261123/formal/pilot/25/P-gap/rollout_0.jsonl.gz": "4accb86e3ac36fc43d6e387688e2d3ff2a662b56a7d3128717970504efb90c93",
+    "shop_gap26_20261123/formal/pilot/25/P-gap/rollout_1.jsonl.gz": "4bdb7628705ee39076a7aeb98b982a4fa798b2c73b93fadf0d7072fcba4aa23e",
+    "shop_gap26_20261123/formal/pilot/26/P-gap/rollout_0.jsonl.gz": "7d9823461fa941a7c87357617442e31ceff742e43ab0615d273e6bd7215a9b78",
+    "shop_gap26_20261123/formal/pilot/26/P-gap/rollout_1.jsonl.gz": "e2ce0f7a59bf813eb88222e55234b0cffbf97e730e9f190b5cf0e0b311e8919a",
+    "shop_gap26_20261123/formal/pilot/27/P-gap/rollout_0.jsonl.gz": "8030b8b7a602e0d9503b1b4a3817fb9ef454988b6d88072632243b4144a83ecb",
+    "shop_gap26_20261123/formal/pilot/27/P-gap/rollout_1.jsonl.gz": "7b1a3e79a23534146d1c845dd8c1c9bf9a5b33dca403c935ee5136744cdddd1e",
+    "shop_gap26_20261123/formal/pilot/28/P-gap/rollout_0.jsonl.gz": "689691d10c33d1ec4079652289246ffd9cf45e6567bd3df9aae75e2630e21ab5",
+    "shop_gap26_20261123/formal/pilot/28/P-gap/rollout_1.jsonl.gz": "f8b6a32916184e65449dde7eb549e36df5b2ed0362a787843d824c9b46195e18",
+    "shop_gap26_20261123/formal/pilot/29/P-gap/rollout_0.jsonl.gz": "b92d0fb9fcf85226290660b005056ed0c7811cbb540c6a235cb485b05eee8367",
+    "shop_gap26_20261123/formal/pilot/29/P-gap/rollout_1.jsonl.gz": "dfd83881d8e222962c68384ccc4fab9c388de5adc71180605613b4368e9a36a9",
+    "shop_gap26_20261123/formal/pilot/30/P-gap/rollout_0.jsonl.gz": "31286facba683212b45c311db884a9f445e38227b821804e02af7e8cd6acc9d6",
+    "shop_gap26_20261123/formal/pilot/30/P-gap/rollout_1.jsonl.gz": "f684db0cc8956d08247df1d6ade55fbc91ddb7e6566d13875781d2942a0cfff9",
+    "shop_gap26_20261123/formal/pilot/31/P-gap/rollout_0.jsonl.gz": "3e1a274f6aab57e7db749fd0d2aa781b53654a8604c9fbdfc94cf29a56e878c2",
+    "shop_gap26_20261123/formal/pilot/31/P-gap/rollout_1.jsonl.gz": "8cc6e311c48d98e637db85d846d5aad040a2317cb3bbdb86ecbd79408c7e6f26",
+    "shop_gap26_20261123/formal/pilot/32/P-gap/rollout_0.jsonl.gz": "f561d3c239dc2331a241f70e02e6676718d939a61fb2e5bb9c1bef21da0c1f96",
+    "shop_gap26_20261123/formal/pilot/32/P-gap/rollout_1.jsonl.gz": "f0604d46990796204134a358193e848ef98397df922cc5d93d2516c4df68e979",
+    "shop_gap26_20261123/formal/pilot/33/P-gap/rollout_0.jsonl.gz": "2c4b1a7d6ea54b65833e43b6bea446799a54cf2062541f833f3a67d11477b135",
+    "shop_gap26_20261123/formal/pilot/33/P-gap/rollout_1.jsonl.gz": "9fba9639e5afd90dee35c71327be2b1415d6f9749b373c59fa70884b5e5e87aa",
+    "shop_gap26_20261123/formal/pilot/34/P-gap/rollout_0.jsonl.gz": "6900cb2ab1ac6faa73b44926a8f4cde90fd505252b1f54ecf57295c48cd91a86",
+    "shop_gap26_20261123/formal/pilot/34/P-gap/rollout_1.jsonl.gz": "bd6d14690d1839b6d9af11b8b75bb00f81d7cf09a8afb851afb7537408f1b4a4",
+    "shop_gap26_20261123/formal/pilot/35/P-gap/rollout_0.jsonl.gz": "5b640bc4e16c38db8400e2a7e87db906f1f7f68e7d1b8c51a1ea9b30a3915e12",
+    "shop_gap26_20261123/formal/pilot/35/P-gap/rollout_1.jsonl.gz": "3fedba5fd76274b4a4d5c48af037bcc0747c56aeb7abb4d262ccf540a070acd8",
+    "shop_gap26_20261123/formal/pilot/36/P-gap/rollout_0.jsonl.gz": "0d12b1c27aa5d0ff1d18da189736d9211c78270830c29dcc617241a45cc2036c",
+    "shop_gap26_20261123/formal/pilot/36/P-gap/rollout_1.jsonl.gz": "9858bdf242443cccd03833258c8853d8c80f205bbf64863c4c624b6613a1519d",
+    "shop_gap26_20261123/formal/pilot/37/P-gap/rollout_0.jsonl.gz": "68ef9891a0bd77f18f1916b7fc77d550e45b1831ca90d937119004af79bbccba",
+    "shop_gap26_20261123/formal/pilot/37/P-gap/rollout_1.jsonl.gz": "2a289199130c4070c3f76b802357927e1e44cd098514e5a3ebc3e8f4284a23d7",
+    "shop_gap26_20261123/formal/pilot/38/P-gap/rollout_0.jsonl.gz": "6133e3038be0c635c2446a0cf0690973c1446a0d5d152ce39d351b72eb407aa5",
+    "shop_gap26_20261123/formal/pilot/38/P-gap/rollout_1.jsonl.gz": "b5ac1432b76504458992858b233f7c5363185edb2034c6413bac404e2210b156",
+    "shop_gap26_20261123/formal/pilot/39/P-gap/rollout_0.jsonl.gz": "204391c77d5290c55ab44aa6cfabc68d4cd799818f86828b523a5f3c08dfa16e",
+    "shop_gap26_20261123/formal/pilot/39/P-gap/rollout_1.jsonl.gz": "caac8bdaf5c6fed2aeabd0ee5fa9a142aae22f5b3ef1af7fa3e74e542c1f3f60",
+    "shop_gap26_20261123/formal/pilot/40/P-gap/rollout_0.jsonl.gz": "c1f22d6fbb92e24004df7596505c3ffc2e7f2333bc04d168d6e84199e6377bf8",
+    "shop_gap26_20261123/formal/pilot/40/P-gap/rollout_1.jsonl.gz": "5394a536f44295e75cad63d2143552488ac60f468b8e3b82f28c71456e193a18",
+    "shop_gap26_20261123/formal/pilot/41/P-gap/rollout_0.jsonl.gz": "a4da715645cbbc3b62ba24cc794ebf9b85c1c0f67d0bc7f039e827e147c82d4b",
+    "shop_gap26_20261123/formal/pilot/41/P-gap/rollout_1.jsonl.gz": "5d85745792d7e6d8867b5c5b815ede4091adc6f423493ca2fcb4b9c4d87b93bf",
+    "shop_gap26_20261123/formal/pilot/42/P-gap/rollout_0.jsonl.gz": "4d257d4d0b8ed92d19e5650008b994e70d3f125dd9f43ffeaca607ac850e4501",
+    "shop_gap26_20261123/formal/pilot/42/P-gap/rollout_1.jsonl.gz": "40b356aa963d4e15ba1ed09e938064419f56a9478efc4278a4433a970913bfec",
+    "shop_gap26_20261123/formal/pilot/43/P-gap/rollout_0.jsonl.gz": "804ce1bf6a4efcba65ad37296c4aa54654a89fe776b6356499ea80553ddd9644",
+    "shop_gap26_20261123/formal/pilot/43/P-gap/rollout_1.jsonl.gz": "923f732eb2a6c848fb55ac75fc767c8f83b79ad919dbca28be286b2e8e2d3bd9",
+    "shop_gap26_20261123/formal/pilot/44/P-gap/rollout_0.jsonl.gz": "3dd068f0c36cf454da08231f00075cf41b95f882ccf59736d132467faf75da79",
+    "shop_gap26_20261123/formal/pilot/44/P-gap/rollout_1.jsonl.gz": "cbc3df6e225ddabdd843bd56b0d16ed4081b8dad27c58faecb84a496cc3273cf",
+    "shop_gap26_20261123/formal/pilot/45/P-gap/rollout_0.jsonl.gz": "050a40a2c7aaf59d3ad9a4a68eacba4a423cfcb0600002628a956af764942b30",
+    "shop_gap26_20261123/formal/pilot/45/P-gap/rollout_1.jsonl.gz": "f45a224ce220d8bab5039b71b29c849621aa532fc84b51e86206333c1760ed0c",
+    "shop_gap26_20261123/formal/pilot/46/P-gap/rollout_0.jsonl.gz": "2098658f66a0425ccf97d19a3cdcba8f18fd8a4666021f68c85adab7fb30380e",
+    "shop_gap26_20261123/formal/pilot/46/P-gap/rollout_1.jsonl.gz": "cd1d0a5613cd48072b0f9386fae467ddf9d9901a497468e772cedc6163533369",
+    "shop_gap26_20261123/formal/pilot/47/P-gap/rollout_0.jsonl.gz": "33b2d75bc502ef5097979cff9b69c343fdbef0dcbd20f937fde17f406db72aa8",
+    "shop_gap26_20261123/formal/pilot/47/P-gap/rollout_1.jsonl.gz": "9f9b2402e71bd35b964d6d7a97d62b55648df96683fc4417c2b27410cd91bb01",
+    "shop_gap26_20261123/formal/pilot/48/P-gap/rollout_0.jsonl.gz": "383f867a91a2c115f9875e9473fcd3169a9a60f05c929b9ca87e0db0653545f8",
+    "shop_gap26_20261123/formal/pilot/48/P-gap/rollout_1.jsonl.gz": "d070f9b429eb00a01028b36ae385f7d8c9b07461b3d578ab318ed1286171f18d",
+    "shop_gap26_20261123/formal/pilot/49/P-gap/rollout_0.jsonl.gz": "c5443fc0f4f969b95104f393fc6ef1750812cf25765453a0c14cf944e7fcdd78",
+    "shop_gap26_20261123/formal/pilot/49/P-gap/rollout_1.jsonl.gz": "2dbf203b37c4dc3f4270cb2c8986a81423a0ad1ec31732d33329b1331e2fdb85",
+    "shop_gap26_20261123/formal/pilot/50/P-gap/rollout_0.jsonl.gz": "bf89f05da1c50830ba456a173d439daa87cf58a73d2fc4812d50a064a7c33b0a",
+    "shop_gap26_20261123/formal/pilot/50/P-gap/rollout_1.jsonl.gz": "0c8cbd8ebb09f3b059f84c46bd8a57f4298636b564e637e68fe8379a75ada958",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/01/P/rollout_0.jsonl": "da5b39ac31157fe9e72f3450083ade7e2b779e4dd36006c316c92cc5f4db142e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/01/P/rollout_1.jsonl": "29a0eacc7e9fb0bb08a39e3f57189e7122209d89c560306c15a5073a087b5068",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/02/P/rollout_0.jsonl.gz": "65478c2485bf9e41ea741d29d997d4f3e6663d492dde9680f9a4f308e8242ee9",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/02/P/rollout_1.jsonl.gz": "847ea38f3f962888c7e5dae98a9bd3ce6d4a9ca71fd35befc6177014ff091e21",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/03/P/rollout_0.jsonl.gz": "04297e28da822caf4d6fd03fea7cfbe383c23fcd154fab7d32ccf3b1f12c449a",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/03/P/rollout_1.jsonl.gz": "6c19f73f6d90b515659b6a9c5105ddf4c3b4af8a4dd799e334afd6b4ab851ccf",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/04/P/rollout_0.jsonl.gz": "3637dc517fd75029281b5d12f1924272ff0b3dac6802e8a56ce025846d0b1c53",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/04/P/rollout_1.jsonl.gz": "4b71db228abbb8bed0fc9708949d29d7c060cf79a9ebebd0aca791cb3af97d16",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/05/P/rollout_0.jsonl.gz": "8d1e83af68e3e6cadb6a80ef69b9670fb234076b5ed5202163f68d48917d97c9",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/05/P/rollout_1.jsonl.gz": "3ede0a6dbd7bc17a695362736563abf81ed541a36887e896e59995d7f17fdf6f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/06/P/rollout_0.jsonl.gz": "a142a198deb840afc2f3b696c4b8fa4ba238d451b61db0ba17f6e1df9d4d927c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/06/P/rollout_1.jsonl.gz": "8c43fb462eae05caa512c3b1a23814a1594426c83a339ef0a09484d70270bdc2",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/07/P/rollout_0.jsonl.gz": "198d203e8e32b330f592be3030380378bbb7a151157b91222d2922c56e1678db",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/07/P/rollout_1.jsonl.gz": "d06f92dd4d34d09019b0a9d0f700578208a52eaa5aa913557f9fa6b2a8d92066",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/08/P/rollout_0.jsonl.gz": "0b3f840f708b04596090a55b55026b3cac495b6cd6ff1aabeae035d12b2f6f8f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/08/P/rollout_1.jsonl.gz": "75b2ccc21db69957c8a35b7ff5d638727fec31a6b6e31d381674b7a78a50788a",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/09/P/rollout_0.jsonl.gz": "cf68cd6386f596004ab5f9014b8223e7f8ab01e3a2793c7c309a97e9488949bb",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/09/P/rollout_1.jsonl.gz": "96042e7292d38daab01c336f82ab5b071f0837bb49fcc8a643c96a6d69cba754",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/10/P/rollout_0.jsonl.gz": "9f977efbb3e472fbea11c9d153cd91845640facc91354f9823af5f893e3a34fc",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/10/P/rollout_1.jsonl.gz": "91718111479281fbaa0206aa81b54e0e876f3d7acaa12caca767950bcc5f74e9",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/11/P/rollout_0.jsonl.gz": "21965d8a87452555fe0d7b3512ac5265f519fbf585f253354fc4e3a52d75897f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/11/P/rollout_1.jsonl.gz": "ee89ab445dd11c96b3a288e280fef92362afb8f5957b1b7b8d46885e798f24f1",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/12/P/rollout_0.jsonl.gz": "515a4a2a7b018a069e81673caf2e74eb9ca8d77f6d05c7e7df1545e7e2503bf1",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/12/P/rollout_1.jsonl.gz": "2a1345012841d54618f97d49167ca74786c6dfdf400cc6841af9db7594f586d2",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/13/P/rollout_0.jsonl.gz": "c16894d608b9f2519dac0459641946506c04b8125cc6c2dfa5bd96c8dac07b73",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/13/P/rollout_1.jsonl.gz": "b0754c24cd3cbdf2db0f3f7208d62549447045fa7e56784f3c2cc57b5687eb33",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/14/P/rollout_0.jsonl.gz": "ac39850ca5776cdc1505c2f50d99fb9deb46e5ea36f166bcb4fa34371ea74eea",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/14/P/rollout_1.jsonl.gz": "8b84f225edd863dcb31135b41f18f09e9b32698a015d9af3eaabf0a0a1f5d5ac",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/15/P/rollout_0.jsonl.gz": "e49f064da9a537f04a7c572368959f83c831ba72f7f092add98f9c5e3afac904",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/15/P/rollout_1.jsonl.gz": "2701a99157462617013f76fa155606b9861369b3d361b01a137a77e61a86762d",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/16/P/rollout_0.jsonl.gz": "c03fe68d71f4fcb4658f2f52837b1e20948177bc4b4123840effe013263a2a92",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/16/P/rollout_1.jsonl.gz": "8330e8369b09773a010aa80b86ccacd8deef3c5fc1ab428ae50de4f737fe8c73",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/17/P/rollout_0.jsonl.gz": "1610420f65bf1fd2eba69adaaafc6a6c0843b330a41147cbd3ecfdb1a1226623",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/17/P/rollout_1.jsonl.gz": "8a41ea312a763ce7b43d1aca849fff00b36a9c92feee7072106074af2a5d5934",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/18/P/rollout_0.jsonl.gz": "828b2f5ce58d095265f2de13f6a45c6f8665501d52280916fed4da008546aa94",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/18/P/rollout_1.jsonl.gz": "5cc4ecd6eee93fe8eaeaba698521ae02a4e5e41a08de21a51d26b421c96f9912",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/19/P/rollout_0.jsonl.gz": "da7933905101fa3646082f8c2b4c98817d88d613abf2c46382958cf2f540b181",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/19/P/rollout_1.jsonl.gz": "f0e7813b0debcd05fc2948ee54044c7e92fd43e10831eb8b877578781eeb5f70",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/20/P/rollout_0.jsonl.gz": "984864d0fab7b1020b5a497bdbffa74bd9aa5ce0612b6db6c873069bc35a3404",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/20/P/rollout_1.jsonl.gz": "5e5a013b51815096ceecb58164347b7566f74d81387b25787a6648c21baf5c5e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/21/P/rollout_0.jsonl.gz": "e4f69971a2eb32a006d8c9df0d6e743a3f82cca4cda243845295383be98d1204",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/21/P/rollout_1.jsonl.gz": "56fe6736f31540a6e9c00ede36e1e6c1a9d4fe2dfeefaf58c6fba939883725b4",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/22/P/rollout_0.jsonl.gz": "78d6aeed497bded2485ca912eeab1b79d78c40b448bf8e170b60f7e64553e39f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/22/P/rollout_1.jsonl.gz": "47c5589a653dae03b5da28b8fae6b88df64d3cfcfb97f09a66ebb62976011b30",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/23/P/rollout_0.jsonl.gz": "100a5708a2a4cc66d9929cba23b6ee5ee51802f7c4f52211ed4934d450d83325",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/23/P/rollout_1.jsonl.gz": "58f47b8ecafcfb0096ab1cc34630be6580d01aff606539f7d5872701d973681a",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/24/P/rollout_0.jsonl.gz": "60e08e413bf64e86b74ea42dc1e1b5e26f29f212530a9055450bf636a33aef02",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/24/P/rollout_1.jsonl.gz": "776c99c3b746f77f6b81e6f7ead9d2d2fe7f51805f3a2ba9de7918917799b76c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/25/P/rollout_0.jsonl.gz": "196cb5b1baec615d415bd77c91cc9cfd459d40370f00ef9def19d485e4baf395",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/25/P/rollout_1.jsonl.gz": "6f5dd24b41b089b8b5bf92356200f4e843989dc8baa1323d25da6529e3cc683e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/26/P/rollout_0.jsonl.gz": "8295cdef65eb336e208d846d727c02808e38f0a8cc373ab219cfaa23e90bdef4",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/26/P/rollout_1.jsonl.gz": "db53654cc4996529a211a3e9e620c7004c494c5278dd35ce4e190b9845ce7439",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/27/P/rollout_0.jsonl.gz": "727bf22504509d5e31121c1047b2d4d53c9dabfee205ae58aa0173db163bcd89",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/27/P/rollout_1.jsonl.gz": "a20d1b9e05b56a5b8af80440a37f9271fc220e2e676ed32aee6cf8262db81d4a",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/28/P/rollout_0.jsonl.gz": "d032400d22480c2acbdabf5a8f41280176340228ad7b6d63494f0d757d9c2c5b",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/28/P/rollout_1.jsonl.gz": "482bb5ae437c074ded84c61052dc9664e022eb857547df667873118b4b580791",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/29/P/rollout_0.jsonl.gz": "e0e3603631971b7f7f400d4be124d9fb1d42121ade6507649c3ed705a399f794",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/29/P/rollout_1.jsonl.gz": "2566900ed0d54e1b6d9a9d30155751fb2d6646c2681b6fe92c5ecce9bb234983",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/30/P/rollout_0.jsonl.gz": "d7eaafaff0f0fd768461336ebffad553008eaed339b440f1c9c401799cc8195e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/30/P/rollout_1.jsonl.gz": "f7beaa444ec2cbffbd5713dc4b99103b51e51c5a1b49a2e79c63ac28ad1f5383",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/01/R/rollout_0.jsonl": "da5b39ac31157fe9e72f3450083ade7e2b779e4dd36006c316c92cc5f4db142e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/01/R/rollout_1.jsonl": "29a0eacc7e9fb0bb08a39e3f57189e7122209d89c560306c15a5073a087b5068",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/02/R/rollout_0.jsonl.gz": "4fc8b0ff665fad41b7570a1be43cd12f5f51b870ca08162c382c68335950fe5a",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/02/R/rollout_1.jsonl.gz": "bba7478339f0d37f5b3513693458a55470e5be38b60a4d82dfdf5b9ab1ea0006",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/03/R/rollout_0.jsonl.gz": "3068e556d89b6b0b0659454b96bf0897283dd1d28ba9931708e07b73f49b6c6f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/03/R/rollout_1.jsonl.gz": "3b518f3398472420ebb54ee9eb1cb3f3b8e223d705a9e894c759a58f50790d6d",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/04/R/rollout_0.jsonl.gz": "e48f9268b26080d4a7680d09f96eb46da15fb04668786244c05705101b72d980",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/04/R/rollout_1.jsonl.gz": "37baa110649a019390060c6d793038d7810fae857f7999238b0de264f6ea439d",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/05/R/rollout_0.jsonl.gz": "348eabc2182e740dd7271288be6f70b0cd8e17b3c7e2a1919ec6fef5233911b1",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/05/R/rollout_1.jsonl.gz": "f54a190406e43a5365e4547f74945f14a1fd04135803d888a4dea59c3818b20e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/06/R/rollout_0.jsonl.gz": "501017d742226e08a8759e98bb898d44d90b0bd5a3d295e8adae7ec8afb390b0",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/06/R/rollout_1.jsonl.gz": "89063c6178620e7cbaf86de75734e301e2e326c3573cf8bb06c9d2aee15b2ef1",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/07/R/rollout_0.jsonl.gz": "9e292b3fcd7fc8db27fb5961dd7f4a27b35b1b8195b02cb5811b9ef8898d232f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/07/R/rollout_1.jsonl.gz": "3ae934a441b68cc7d7564ada06508d14be558cce4ee0fb1f59d074b3a80782ac",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/08/R/rollout_0.jsonl.gz": "82fa2f9e6a08b7a8e74a282c30f518d422cce574bda6faaa76801efd62768b95",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/08/R/rollout_1.jsonl.gz": "5fcfceae4271335bbebc7d7b1336e4c4d1d20a01c35eaa93ca0086bb4cb4f21b",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/09/R/rollout_0.jsonl.gz": "80fce884f8d15478652291768fe4e5d8ba77f3afa2e5c7b1f58d89a8e1d713b2",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/09/R/rollout_1.jsonl.gz": "630579fef026d2a6aedb80195eed8026f7f7aea02f5112a054f46826889fd840",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/10/R/rollout_0.jsonl.gz": "af3bc4db443890cdf0f69c67f16f86ca31e1b8b0d4f5a1f4b9b3e6b87fcb4e97",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/10/R/rollout_1.jsonl.gz": "18516d386e85271bc435dfd9613c41b83ea117406914af2f6172ac13a5a73043",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/11/R/rollout_0.jsonl.gz": "2ed663f7a56abcc3348a7e09ba44b0e85344b51dc26dc577b9c3f5475f6a063e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/11/R/rollout_1.jsonl.gz": "b504ce159099bd71bb5e82570c5fae93bd3cfe5657604eefe7981b4a94ee55f1",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/12/R/rollout_0.jsonl.gz": "9d5cfe5f46697e3be32446a641b1c7d7b90e2294b945d45c71a189617d35ac4d",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/12/R/rollout_1.jsonl.gz": "e17ba60b29d71aa6f5b0efec49f452f5d8a43df6080e401a582181c411d856c9",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/13/R/rollout_0.jsonl.gz": "5902e6fbe9a986e47b1cd214d446e9185f7c638bbcad2acfd207d1180950a3e9",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/13/R/rollout_1.jsonl.gz": "798c094f8f1e6f01c05a3b574997c99db0be5a0b97365e31f7afe2297aaf3166",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/14/R/rollout_0.jsonl.gz": "e0b382166df0f3fac85d3e8c2d9c5293ef31cdc240f0f078ddd1f50482671ecb",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/14/R/rollout_1.jsonl.gz": "593b0a6adbc35eae266c7755f5bb2611ad27b86344ba16bf1eb835b2ffa178ad",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/15/R/rollout_0.jsonl.gz": "1ed3a4836f1c2aaa519b800085ff168789acb98051987543682e72c36075563a",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/15/R/rollout_1.jsonl.gz": "a81c7e7fb4db2dfd417cb181e1cdb8e7059b1fbd7c588f64062191cb492eac88",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/16/R/rollout_0.jsonl.gz": "2de104e8738afff845365e9fe943495e43b77826f39435677ae8becd92bc713d",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/16/R/rollout_1.jsonl.gz": "2f95676bbbc3de03b42920ec652d2c8ff7105f0b33e9303c097c5f0f71da2238",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/17/R/rollout_0.jsonl.gz": "d9c43c91a075853c483c2d908752a39850ecc9da46e8dbf318301a27ef5e449e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/17/R/rollout_1.jsonl.gz": "276012d02759e59c15382eac58dd22a5899c62a515a18fe31007f301a5aa0025",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/18/R/rollout_0.jsonl.gz": "95c0a3b0b951ca4fb3fea031b3846a9a934564a8691c0ee04c9c48803d5102de",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/18/R/rollout_1.jsonl.gz": "1b10623d04c3dec99aec92e8167d7a1283639d85fceefac2d419437a4382e598",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/19/R/rollout_0.jsonl.gz": "212153b4f91efcdaa25898cae2e755ce185bbd276f2e7798a34c40b69036a889",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/19/R/rollout_1.jsonl.gz": "d43cf2ad8b7725f6e8ab968bc5708f420331739904f8351169352c79be5cbf46",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/20/R/rollout_0.jsonl.gz": "0f67547b9118866b0688a47429c16c982d93e985f8439ea792c391c561b0d6c5",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/20/R/rollout_1.jsonl.gz": "1507ad09c5617477dc37723d0d278e3567e1f8021ba23e5a2695499020509916",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/21/R/rollout_0.jsonl.gz": "8b14e4e83511852e980364a9aee4465032491f218fba9adc1309795165c5650c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/21/R/rollout_1.jsonl.gz": "a792401084139748e71b65467e52e8245840be95d22dcd9296c76d4692ec7ac7",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/22/R/rollout_0.jsonl.gz": "76c21bafbd42487e7989bceb798afadafd0743dae6523cd44869b6339e07ef0c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/22/R/rollout_1.jsonl.gz": "613dc08ed5caf28a3cb628c8b66c1d0ac108cc3b93490fe95efc646b30965aa1",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/23/R/rollout_0.jsonl.gz": "fbc6f9c26614776642e31b8e30de2e3e43360cf2dbe78e968f6b033f04094a3b",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/23/R/rollout_1.jsonl.gz": "50c6935ccba0c110afd98e225b78fb25b5a9768cbe7f9c20578c476f102cc336",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/24/R/rollout_0.jsonl.gz": "263688bf6456a99094da4909696f48ee379f045578a431357cc439a53845fd0c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/24/R/rollout_1.jsonl.gz": "c76cfc57513993749fa73f601f5df99917713ef482f824c0c53693dc1d9a7709",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/25/R/rollout_0.jsonl.gz": "c18618450ceb4e14d9099096d1099e202b2d68fe5f2e9e6bd1dfa6c3b526d364",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/25/R/rollout_1.jsonl.gz": "801e37c5bae63c75adf3d803b6e0401072db1eaac6ce73b150d93de7f78856fd",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/26/R/rollout_0.jsonl.gz": "7e888fcc8af35b9e3b22ad2d4300b9db34bf4ec25c70a0acefbcf37c3141cc03",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/26/R/rollout_1.jsonl.gz": "27361ac46b494ce2ab08d5975421300df75811f2eb2d5a3532b1a04860ca6bbc",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/27/R/rollout_0.jsonl.gz": "3928bd4ea213b8317857000f7f6bc5a739d4ecaf629b9e80d31fcb27269e8083",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/27/R/rollout_1.jsonl.gz": "77a9c75b3720d299ddcf81a504dbcb621fa51f6193b9bab86c2ee15ff87083a5",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/28/R/rollout_0.jsonl.gz": "184d4e1d78eb1a2c13a8a1dadbff12d86875d0985d447e6fa3d00256daeedd8f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/28/R/rollout_1.jsonl.gz": "6b8067b0446024f118f2b6903cddfe6d060be76ac3a65ed457c661cf817b98af",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/29/R/rollout_0.jsonl.gz": "eaa6b73d715ea4838eefe6a809a776835e75366b503bc445ab12150ed26b4dec",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/29/R/rollout_1.jsonl.gz": "da50877e372efa7ea42989120512018d0987611a0d5c0beea326e5b734078027",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/30/R/rollout_0.jsonl.gz": "d928e2a58176de068b86f6afa7f672fa689dd5ac8a68df2cc8960e73f3db0848",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/30/R/rollout_1.jsonl.gz": "8cb5e75dd4f56817e21b9ae411b5979f1e431bc0c622788c2f4ad27d493cda98",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/31/R/rollout_0.jsonl.gz": "565a62cb074ec567fa272f7a3b1ce43b9ec56256dd37f2604f67a334056fee2c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/31/R/rollout_1.jsonl.gz": "875cff5770b5571eda085506d0325c12294b287c3e9b2189bce65f9e60afa481",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/32/R/rollout_0.jsonl.gz": "5ca79ee4f226e8a9c768fdd549618696b8ee29d5234d7a7cce61a4b9a4549aa2",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/32/R/rollout_1.jsonl.gz": "48659d7cc4c0d7b6cb989abd4e0cd5668d6b55326d1628844756139a03be4330",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/33/R/rollout_0.jsonl": "08db001a49c0be5dc5fb5bac3b3c56101df246b55dccb3416ccc9a5c55acda67",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/33/R/rollout_1.jsonl": "77ac194248bd53c9531ce3a1590ed47454e470d12e634c8388fc5280842e9f6c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/01/R-matched/rollout_0.jsonl": "da5b39ac31157fe9e72f3450083ade7e2b779e4dd36006c316c92cc5f4db142e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/01/R-matched/rollout_1.jsonl": "29a0eacc7e9fb0bb08a39e3f57189e7122209d89c560306c15a5073a087b5068",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/02/R-matched/rollout_0.jsonl.gz": "467a84651bb5401d763c24e50910ea1759f648e7e25f38c9f7e21b01c1abef99",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/02/R-matched/rollout_1.jsonl.gz": "3258065bf45830115d9fb4d8cfcf79f49ac5c6b74e1498b214439fcb3e283f89",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/03/R-matched/rollout_0.jsonl.gz": "9347ef3f973c5579c9b241f23bde41d8be104ea165b2f3bd8b1d09ac2ebcf9ae",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/03/R-matched/rollout_1.jsonl.gz": "1952c891a86c1dbf9255b2d34fc703780016f1a6ff87f46611f1dc61035c73b1",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/04/R-matched/rollout_0.jsonl.gz": "ddbbd96edaab401b56b19b20e65de6d5e48c2e132199e9a2fcf5b3856731770b",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/04/R-matched/rollout_1.jsonl.gz": "1104c43c821f9be9e1dd7368161936ee60aa4d3872604a07d672cf2875cf02a7",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/05/R-matched/rollout_0.jsonl.gz": "e34037a35c9b06833283c70be1940e576e844564119d7c21cdb07d78c791608f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/05/R-matched/rollout_1.jsonl.gz": "9b57687eb5acafd1ba42684aa795e8525321500e27e44c2244a9621f00cd0bdb",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/06/R-matched/rollout_0.jsonl.gz": "c68b79758fae634655af4278f68b5f6c826014d5b53baac786027559e835550c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/06/R-matched/rollout_1.jsonl.gz": "28b30b369db60083106a8c2277ae385c0b5733abb951fcaec8da803b773700f4",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/07/R-matched/rollout_0.jsonl.gz": "9f1a547b8ebaaaa8b368ce755f69b8d5569876f1a2aec0bb33027616c7d364e3",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/07/R-matched/rollout_1.jsonl.gz": "3b8c901bb189201305ec7508f1c088a2adc2667ac1314ecb0bfc8c0633600a8c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/08/R-matched/rollout_0.jsonl.gz": "25f05ecf6649e2365c64978a30f85bd99e97175d65233b2716a3c7c3c8eb9d15",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/08/R-matched/rollout_1.jsonl.gz": "4a9117c457dcfc236698621f0d6f765b1e4319344c9ad4200ba9291b89a3abbe",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/09/R-matched/rollout_0.jsonl.gz": "306a7c0cb035bf6e66da0de27f2fd62d47a6db2237ccdaeee3dfe6792bae75b2",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/09/R-matched/rollout_1.jsonl.gz": "44072db13be678556c969a1c3f3d40cb9f66c08c7a46af5d3ecd6ec0a27a0e14",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/10/R-matched/rollout_0.jsonl.gz": "7db24a5fec336cc672891eb18063bdb3edc4b96ed987291de08e978f85020703",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/10/R-matched/rollout_1.jsonl.gz": "e13fa4d7bca00e7323235c0cae998af09917b86ef46ad8323c826bed4690bee8",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/11/R-matched/rollout_0.jsonl.gz": "b53a7ac99f3ea746d6330ab3c78466b92cabe03898965c81d5c263c906c14ec4",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/11/R-matched/rollout_1.jsonl.gz": "a8d609884ebf2baa0fe03f559da300839a216ff17765e2f37bda93a7e0dcecb3",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/12/R-matched/rollout_0.jsonl.gz": "ba9c30676dfd9ff38bd2d34f5a22c59bdf5761c233c95361ad52cbfcdd5550d6",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/12/R-matched/rollout_1.jsonl.gz": "a7a27b1a71a4bcd064a0b5bcd16e2ab12dc7f1b84cb490e4d760c66c0e19e3bc",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/13/R-matched/rollout_0.jsonl.gz": "5750bb951bbef83beec78816e691a7d2c86850e7d480ad01d2ef1d70aea7054d",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/13/R-matched/rollout_1.jsonl.gz": "fb463517951d26b8b43cdf4a125d94a648a7de541a6f3c4d0eb0cad82a32536b",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/14/R-matched/rollout_0.jsonl.gz": "76343f8e516ca7f0902bbc89fb52e48e01560ff3acaf62b15a46121a9545dee0",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/14/R-matched/rollout_1.jsonl.gz": "44f4944f156932160fc73dd6750925eba7afc90e7656f58f57403d69e93b9f5a",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/15/R-matched/rollout_0.jsonl.gz": "a6969099c23d7b591a3d448a4a7cb300950b26c1c58c362ee44b48691973bfd8",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/15/R-matched/rollout_1.jsonl.gz": "7aa5bc19c350527adfc22bf6c2523f0948b5134a2bc31139e29adb55c1eb2acc",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/16/R-matched/rollout_0.jsonl.gz": "782e7ebcb72a49d20f796e9e94f82c80a0be9d77b8da18498db66096589ded7d",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/16/R-matched/rollout_1.jsonl.gz": "da0b36888175682ebd09237014038a30d34be7e779d52e2e0c9f1040b70ee920",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/17/R-matched/rollout_0.jsonl.gz": "bb672d9fe4fd78569da9f4863aadc5bf5c2371d448d024bb9ca6502981ad447e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/17/R-matched/rollout_1.jsonl.gz": "1ca4d0f241ce431cc2241fc11042c00165885ed9bee657d963e51c87d77412a3",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/18/R-matched/rollout_0.jsonl.gz": "2aa0d5294c520806e64a136f5dceb31c7da7398023c1eecc74e1c569d5a1c075",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/18/R-matched/rollout_1.jsonl.gz": "2a993b3df1bf4ed9d270a4d9277b00ceaa479b3ffce7d28a04f1cf98681e761c",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/19/R-matched/rollout_0.jsonl.gz": "41d9d05678418b1f9b724100ebf3d76f45083570abd2e6181586dbb0c95e8deb",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/19/R-matched/rollout_1.jsonl.gz": "e3128675e92158e847ff0c527afb8bd07ca97ac89f7b15bde08ca0bbacb55717",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/20/R-matched/rollout_0.jsonl.gz": "df1511a7e614e908fb7a6a89a690b5513be8a684d311e3a5bcf94330f4ccefd4",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/20/R-matched/rollout_1.jsonl.gz": "64835ef9bdb2326a7eaf59cf15dbdc91755c0e20684bf4599f0901f301943e4f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/21/R-matched/rollout_0.jsonl.gz": "74b4980b6fa46be6e9985ab5a767d75a48c787f11bb8010b550991dba9f71d84",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/21/R-matched/rollout_1.jsonl.gz": "7227c30b9529033ab1fc0deefeb40711abb29d8df1a4927d1a6d8bcdb2db27cc",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/22/R-matched/rollout_0.jsonl.gz": "934c7f777a4bd79a3cfd6ef5561abc04c2d93b73126418b8663d70162ba04708",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/22/R-matched/rollout_1.jsonl.gz": "bf6e9b9cb92922ed77e6807c4b6dd4168fe90b618a34168115e5abd1a266c0e0",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/23/R-matched/rollout_0.jsonl.gz": "5c080174545a5add15f9ebc2e5721880f59e9fd9b89945516d4f49d1b2233c67",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/23/R-matched/rollout_1.jsonl.gz": "6282e08a9c3b35ef28f9b4c23410ac4fc84c92e19524d158bb5e35e1813ab2d3",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/24/R-matched/rollout_0.jsonl.gz": "78923882109ef75b83a1096140240d675bb1a3e033d5a1065a1f5a1417121619",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/24/R-matched/rollout_1.jsonl.gz": "f765ec01bf6cc2d9c1e2f6684cdf9cc08bfc4d0af5d02aaafee0dd9771340f58",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/25/R-matched/rollout_0.jsonl.gz": "285b2356d04f4f844a66775930b8c1cfba8f85f0f7cf7cd6f44ee2a38d8cdc20",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/25/R-matched/rollout_1.jsonl.gz": "f7c3ae6202ff44e891939249b25c8cd97ba4546c9d34c7f9fa03e4e08344699e",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/26/R-matched/rollout_0.jsonl.gz": "90bc3ed34a91d79e767b07158e47ed92e7a94904e716ccfa63d6ac44ac73c379",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/26/R-matched/rollout_1.jsonl.gz": "172c37cbfe773fd537ef0ab6ee3ffeb8288dc1328699a2d6aa79ba7cf594d1e6",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/27/R-matched/rollout_0.jsonl.gz": "27a2497cc97ab7f6520367d388c808f6dd439bb840b14b88e4de954f41f69721",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/27/R-matched/rollout_1.jsonl.gz": "a72bcaccc5629c7578ce79a6def1274bf65ca0f00c5aabe038f2736b090c1e61",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/28/R-matched/rollout_0.jsonl.gz": "1993aac65571662ae97f95f615f1670378795d763a49433d201c88d92e50ff6d",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/28/R-matched/rollout_1.jsonl.gz": "65805c8369ade42a55ded71ccaf2dee9992ef681e66b99c7743542c14dea4a3f",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/29/R-matched/rollout_0.jsonl.gz": "02617d5010a1d83b9aa1d96b3b9754e13ecdfa2685f7b8f215637dae22cd1167",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/29/R-matched/rollout_1.jsonl.gz": "735a04a631fd5f9092e94ad290cd1b36af1f3b48e4f0a308bffc102b875bf215",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/30/R-matched/rollout_0.jsonl.gz": "27adcc8cfe828e56ea8ca60eaaa8bd2681df42a95f8181143426744d2dcdbd30",
+    "shop_visible_opd_e25_20261121/formal_2512/pilot/30/R-matched/rollout_1.jsonl.gz": "337a6c1299272578f5280c102771eff99edab7574418d392483aca472f673fd6"
+  },
+  "goals_sha256": "a84d41231414858f524855905abdca83168a976377cd8159f850a03b0a35acb9",
+  "catalog_option_values": 189049
+}
