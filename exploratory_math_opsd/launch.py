@@ -9,7 +9,6 @@ import subprocess
 import sys
 import time
 
-from preflight import run as preflight
 
 SEEDS = (1001, 2002, 1500, 4004)
 BENCHMARKS = ('aime24','aime25','hmmt25')
@@ -71,7 +70,12 @@ def train(root,env,arm):
     else:seconds=None
     for k in (25,50,75,100):validate_checkpoint(out/f'checkpoint-{k}',k)
     state=read(out/'checkpoint-100/trainer_state.json')
+    timeline=[json.loads(line) for line in (out/'timing.jsonl').read_text().splitlines()]
+    timings={r['event']:r for r in timeline}
+    if not {'train_begin','step_10','train_end'}<=timings.keys() or state['max_steps']<=100:
+        raise ValueError('Missing timing milestones or unexpectedly shortened learning-rate schedule')
     save(receipt,dict(arm=arm,seed=42,completed_steps=state['global_step'],scheduled_steps=state['max_steps'],
+                      timing_segments=timeline,
                       adapter_sha256=sha(out/'checkpoint-100/adapter_model.safetensors'),last_process_seconds=seconds))
 
 
@@ -135,12 +139,19 @@ def evaluations(root,env,quick_only):
         seeds=(1001,) if reduced and model.endswith('@50') else SEEDS
         for bench in BENCHMARKS:
             for seed in seeds:evaluate(root,env,model,bench,seed)
-    from paired_report import summarize
+    if __package__:
+        from .paired_report import summarize
+    else:
+        from paired_report import summarize
     save(folder/'final.json',summarize(folder))
 
 
 def main():
     import torch
+    if __package__:
+        from .preflight import run as preflight
+    else:
+        from preflight import run as preflight
     parser=argparse.ArgumentParser()
     parser.add_argument('action',choices=['R','T0','train','quick','evaluate','all'])
     parser.add_argument('--root',type=Path,default=Path('/mnt/data/ForkAudit/math-opsd'))

@@ -89,46 +89,76 @@ index 51861d7..79bda4e 100644
 +        seed=args.seed,
 +        local_eval_file=args.local_eval_file,
 diff --git a/opsd_train.py b/opsd_train.py
-index 8526a68..44f493c 100644
+index 8526a68..1af5f41 100644
 --- a/opsd_train.py
 +++ b/opsd_train.py
-@@ -5 +5,2 @@ from datasets import load_dataset
+@@ -0,0 +1 @@
++import json
+@@ -1,0 +3,4 @@ import os
++import time
++from pathlib import Path
++
++PROCESS_START = time.monotonic()
+@@ -5 +10,2 @@ from datasets import load_dataset
 -from transformers import AutoTokenizer, GenerationConfig
-+from transformers import AutoTokenizer, GenerationConfig, TrainerCallback
++from transformers import AutoTokenizer, GenerationConfig, TrainerCallback, set_seed
 +from data_collator import SelfDistillationDataCollator
-@@ -27,0 +29,4 @@ class CustomScriptArguments(ScriptArguments):
+@@ -27,0 +34,4 @@ class CustomScriptArguments(ScriptArguments):
 +    question_only_teacher: bool = False
 +    local_train_glob: str = None
 +    stop_after_updates: int = None
 +
-@@ -110,0 +116,11 @@ class CustomScriptArguments(ScriptArguments):
+@@ -110,0 +121,30 @@ class CustomScriptArguments(ScriptArguments):
 +class StopAfterUpdates(TrainerCallback):
-+    def __init__(self, limit):
++    def __init__(self, limit, model_setup_seconds):
 +        self.limit = limit
++        self.model_setup_seconds = model_setup_seconds
++
++    def record(self, args, state, event):
++        if state.is_world_process_zero:
++            path = Path(args.output_dir) / "timing.jsonl"
++            path.parent.mkdir(parents=True, exist_ok=True)
++            row = dict(event=event, step=state.global_step, time_unix=time.time(),
++                       elapsed_process_seconds=time.monotonic()-PROCESS_START,
++                       model_and_trainer_setup_seconds=self.model_setup_seconds)
++            with path.open("a") as handle:
++                handle.write(json.dumps(row) + "\n")
++
++    def on_train_begin(self, args, state, control, **kwargs):
++        self.record(args, state, "train_begin")
++
++    def on_train_end(self, args, state, control, **kwargs):
++        self.record(args, state, "train_end")
 +
 +    def on_step_end(self, args, state, control, **kwargs):
++        if state.global_step == 10:
++            self.record(args, state, "step_10")
 +        if state.global_step >= self.limit:
 +            control.should_save = True
 +            control.should_training_stop = True
 +        return control
 +
 +
-@@ -266 +282,4 @@ if __name__ == "__main__":
+@@ -113,0 +154 @@ if __name__ == "__main__":
++    set_seed(training_args.seed)
+@@ -266 +307,4 @@ if __name__ == "__main__":
 -    dataset = load_dataset("siyanzhao/Openthoughts_math_30k_opsd")
 +    if script_args.local_train_glob:
 +        dataset = load_dataset("parquet", data_files={"train": script_args.local_train_glob})
 +    else:
 +        dataset = load_dataset("siyanzhao/Openthoughts_math_30k_opsd")
-@@ -274,0 +294,5 @@ if __name__ == "__main__":
+@@ -268,0 +313 @@ if __name__ == "__main__":
++    model_setup_start = time.monotonic()
+@@ -274,0 +320,5 @@ if __name__ == "__main__":
 +        data_collator=SelfDistillationDataCollator(
 +            tokenizer, max_length=training_args.max_length, reason_first=script_args.reason_first,
 +            student_thinking=script_args.student_thinking, teacher_thinking=script_args.teacher_thinking,
 +            question_only_teacher=True,
 +        ) if script_args.question_only_teacher else None,
-@@ -296 +320,3 @@ if __name__ == "__main__":
+@@ -296 +346,3 @@ if __name__ == "__main__":
 -    trainer.train()
 +    if script_args.stop_after_updates is not None:
-+        trainer.add_callback(StopAfterUpdates(script_args.stop_after_updates))
++        trainer.add_callback(StopAfterUpdates(script_args.stop_after_updates, time.monotonic()-model_setup_start))
 +    trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
 diff --git a/opsd_trainer.py b/opsd_trainer.py
 index c151bd7..3dedcb3 100644
