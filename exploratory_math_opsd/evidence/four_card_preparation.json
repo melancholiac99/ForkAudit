@@ -1,0 +1,505 @@
+{
+  "status": "READY_FOR_FOUR_GPU_LAUNCH",
+  "checked_local_date": "2026-11-24",
+  "training_started": false,
+  "hardware_during_preparation": "2 NVIDIA A100-SXM4-80GB; four-rank distributed initialization deferred until hardware switch",
+  "environment": {
+    "grader_examples_passed": 2,
+    "private_nvcc": "12.8",
+    "python": "3.10.22",
+    "conda_prefix": "/mnt/data/ForkAudit/math-opsd/conda-env",
+    "versions": {
+      "torch": "2.8.0",
+      "accelerate": "1.11.0",
+      "transformers": "4.57.1",
+      "trl": "0.26.0",
+      "datasets": "3.6.0",
+      "deepspeed": "0.18.2",
+      "peft": "0.17.1",
+      "bitsandbytes": "0.48.2",
+      "wandb": "0.22.3",
+      "vllm": "0.11.0",
+      "xformers": "0.0.32.post1",
+      "triton": "3.4.0",
+      "einops": "0.8.1",
+      "safetensors": "0.5.3",
+      "sentencepiece": "0.1.99",
+      "tiktoken": "0.9.0",
+      "math-verify": "0.8.0"
+    },
+    "flash_attn": "2.8.3",
+    "torch_cuda": "12.8",
+    "source_revision": "ae7d2519e94920c4eb6206c0c26de46d9c50abae",
+    "patch_sha256": "1eb7c114ca5dc2e49d98bd4777089c1c092d0dfc76a07afea6a7bef3b72a8885",
+    "assets": {
+      "model": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "train": "1f33e9dc2e8a1c639ca74f8024ad4a9f1f5eae62",
+      "aime24": "2fe88a2f1091d5048c0f36abc874fb997b3dd99a",
+      "aime25": "6f71d77b0b89b9dabe07ab466c51df33f514df7f",
+      "hmmt25": "6fdc4277120810ff75aa22d2d5489b91f7a262a1"
+    },
+    "gold": "trl.experimental.gold.gold_config",
+    "trainer": "OPSDTrainer",
+    "verified_tensor_names": 311
+  },
+  "preflight": {
+    "passed": true,
+    "device": "cpu",
+    "dataset_rows": {
+      "train": 29434,
+      "aime24": 30,
+      "aime25": 30,
+      "hmmt25": 30
+    },
+    "problem_sha256": "8ed4d34ea28bebcb667a906eff0f94ed3ba73896f69ccda67d9f0d47fde76e59",
+    "arms": {
+      "R": {
+        "student_sha256": "cd0a4c34424c7dabf5d4500dd9be9ea2c13dfae04caa79cce20f514c364093a8",
+        "teacher_sha256": "31f82bad4abd3eae9905d147dd33e778d39032c4cf482188842e6ff4a182b818",
+        "changed_reference_teacher_sha256": "1931fa7e5753ee67594601f08c2a63a13deaa68526fbc3ecfd7dfa8389400102",
+        "supervised_tokens": 10,
+        "supervised_sha256": "d6c4d65b625c270fded556b88f25b36848098996c78168e0a7c2dcae138c46de"
+      },
+      "T0": {
+        "student_sha256": "cd0a4c34424c7dabf5d4500dd9be9ea2c13dfae04caa79cce20f514c364093a8",
+        "teacher_sha256": "125556f0d1943874e66b3b4953cdae3e252cf4022f394ac64203b78c0e4d4514",
+        "changed_reference_teacher_sha256": "125556f0d1943874e66b3b4953cdae3e252cf4022f394ac64203b78c0e4d4514",
+        "supervised_tokens": 10,
+        "supervised_sha256": "d6c4d65b625c270fded556b88f25b36848098996c78168e0a7c2dcae138c46de"
+      }
+    },
+    "upstream_revision": "ae7d2519e94920c4eb6206c0c26de46d9c50abae",
+    "patch_sha256": "1eb7c114ca5dc2e49d98bd4777089c1c092d0dfc76a07afea6a7bef3b72a8885"
+  },
+  "asset_manifest": {
+    "model": {
+      "repository": "Qwen/Qwen3-1.7B",
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "files": [
+        {
+          "rfilename": "LICENSE",
+          "blobId": "6634c8cc3133b3848ec74b9f275acaaa1ea618ab",
+          "size": 11343
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "88aaef81cfe31bcdfe47203649a69ff12042826a",
+          "size": 13963
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "044a86ecf7cb32238f3fae4184e55d354787edec",
+          "size": 726
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "20a8a9156fc8c3f25295ca067f61fdf120d517c5",
+          "size": 239
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "31349551d90c7606f325fe0f11bbb8bd5fa0d7c7",
+          "size": 1671853
+        },
+        {
+          "rfilename": "model-00001-of-00002.safetensors",
+          "blobId": "1414f1bda72e17b63551d847c05c68e3396ba717",
+          "size": 3441185608,
+          "lfs": {
+            "sha256": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+            "size": 3441185608,
+            "pointerSize": 135
+          }
+        },
+        {
+          "rfilename": "model-00002-of-00002.safetensors",
+          "blobId": "4aab3b30a4b8c6c1d0437a2576e0bea08507f12c",
+          "size": 622329984,
+          "lfs": {
+            "sha256": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9",
+            "size": 622329984,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "model.safetensors.index.json",
+          "blobId": "986d7db875b47d21f68530f6baac038f1b297b39",
+          "size": 25605
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "cd71f61a15a522601badb3dc960d800d9cb3766c",
+          "size": 11422654,
+          "lfs": {
+            "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+            "size": 11422654,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "417d038a63fa3de29cfde265caedae14d1a58d92",
+          "size": 9732
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "4783fe10ac3adce15ac8f358ef5462739852c569",
+          "size": 2776833
+        }
+      ]
+    },
+    "train": {
+      "repository": "siyanzhao/Openthoughts_math_30k_opsd",
+      "revision": "1f33e9dc2e8a1c639ca74f8024ad4a9f1f5eae62",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "327b554ca6fc8a685de6c15776733ea4de80ee8b",
+          "size": 800
+        },
+        {
+          "rfilename": "data/train-00000-of-00002.parquet",
+          "blobId": "9c4887e7a2fc61876d4c990f2859382cc2656a49",
+          "size": 146872297,
+          "lfs": {
+            "sha256": "d0cb1cfc402f211bc3527c6c23cac0561b461dce0bbdd2679c5b9c045ee1cc21",
+            "size": 146872297,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "data/train-00001-of-00002.parquet",
+          "blobId": "1701aadb88d8aedd5d63a9f37a38b987667eb1f0",
+          "size": 133035982,
+          "lfs": {
+            "sha256": "da396c34d82405c1aeda1f5fa4531140d717a68bbdcdc5ddc99f079d6e13cd26",
+            "size": 133035982,
+            "pointerSize": 134
+          }
+        }
+      ]
+    },
+    "aime24": {
+      "repository": "HuggingFaceH4/aime_2024",
+      "revision": "2fe88a2f1091d5048c0f36abc874fb997b3dd99a",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "59939ff94847bc2b19093c526e61702a21df70ef",
+          "size": 932
+        },
+        {
+          "rfilename": "data/train-00000-of-00001.parquet",
+          "blobId": "20f07e32cf0acb1d9d7aa8e3be2baa4108b1a37f",
+          "size": 81670,
+          "lfs": {
+            "sha256": "26139847601a5037c237d5928b195e7260ca8074cf4f264b794af42847f79ccf",
+            "size": 81670,
+            "pointerSize": 130
+          }
+        }
+      ]
+    },
+    "aime25": {
+      "repository": "yentinglin/aime_2025",
+      "revision": "6f71d77b0b89b9dabe07ab466c51df33f514df7f",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "6c16c0280027b77da87c9610ff213ea5b751efe1",
+          "size": 1604
+        },
+        {
+          "rfilename": "data/train-00000-of-00001-243207c6c994e1bd.parquet",
+          "blobId": "fb902597700161823d2867569950603a35256949",
+          "size": 14903,
+          "lfs": {
+            "sha256": "b74b507c1a4de7c9fafd2c83dfe2ef7b80579bcf0e0a754a1765db0f21c205fc",
+            "size": 14903,
+            "pointerSize": 130
+          }
+        },
+        {
+          "rfilename": "part1/train-00000-of-00001-dc43217d3ce48ea5.parquet",
+          "blobId": "13c6ba64f19f2b04e67b48493d66e1319e04f107",
+          "size": 9496,
+          "lfs": {
+            "sha256": "79ae9c3bf26406b114e7750ee5e2a59e5673b6d7d7068acf8a35e38678b892d8",
+            "size": 9496,
+            "pointerSize": 129
+          }
+        },
+        {
+          "rfilename": "part2/train-00000-of-00001-7d55578242a423ef.parquet",
+          "blobId": "e52baccd9b6f4634a6d5b08360ce28badd383453",
+          "size": 15085,
+          "lfs": {
+            "sha256": "e4ca8c01d117a2073dc27110e6fba8980b89511bf867f505017f375abaf65561",
+            "size": 15085,
+            "pointerSize": 130
+          }
+        }
+      ]
+    },
+    "hmmt25": {
+      "repository": "MathArena/hmmt_feb_2025",
+      "revision": "6fdc4277120810ff75aa22d2d5489b91f7a262a1",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "a71b0d631cc38b2d49512108765005da0d6c3215",
+          "size": 1931
+        },
+        {
+          "rfilename": "data/train-00000-of-00001.parquet",
+          "blobId": "a5e447c45474131c33a4834efedcc7192b1a6d93",
+          "size": 9191,
+          "lfs": {
+            "sha256": "ccca64d248b89dc0765e40b893fe4ebeab242226a4336027d95d256886a3d5f2",
+            "size": 9191,
+            "pointerSize": 129
+          }
+        }
+      ]
+    }
+  },
+  "cpu_optimizer_without_visible_gpu": {
+    "optimizer": "DeepSpeedCPUAdam",
+    "tensor_device": "cpu",
+    "parameters": [
+      0.9900000095367432,
+      -0.9900000095367432
+    ],
+    "policy_updates": 0,
+    "torch_cuda": "12.8",
+    "gpus_visible": 0
+  },
+  "cpu_optimizer_with_visible_gpu": {
+    "optimizer": "DeepSpeedCPUAdam",
+    "tensor_device": "cpu",
+    "parameters": [
+      0.9900000095367432,
+      -0.9900000095367432
+    ],
+    "policy_updates": 0,
+    "torch_cuda": "12.8",
+    "gpus_visible": 1
+  },
+  "help_checked": [
+    "upstream training flags, stop_after_updates",
+    "evaluation seed and hmmt25"
+  ],
+  "numeric_protocol_tests": 3,
+  "package_consistency": "pip check passed",
+  "image": {
+    "sha256": "d5ba405e66c9eae8eb6a30b339ffd090b5efdcea8ecd9b0cee8b1f2e12820e79",
+    "bytes": 4676571136,
+    "original_files_compared_by_checksum": true,
+    "cold_remount_and_imports_passed": true,
+    "prefix": "/mnt/data/ForkAudit/math-opsd/conda-env",
+    "free_data_disk_bytes": 14077857792
+  },
+  "exact_packages": [
+    "GitPython==3.2.1",
+    "Jinja2==3.1.6",
+    "MarkupSafe==3.0.4",
+    "PyYAML==6.0.4",
+    "Pygments==2.21.0",
+    "accelerate==1.11.0",
+    "agent-detector==2.0.0",
+    "aiohappyeyeballs==2.7.1",
+    "aiohttp==3.14.5",
+    "aiosignal==1.4.0",
+    "annotated-doc==0.0.6",
+    "annotated-types==0.8.0",
+    "antlr4-python3-runtime==4.13.2",
+    "anyio==4.16.0",
+    "astor==0.8.1",
+    "async-timeout==5.0.1",
+    "attrs==26.1.0",
+    "bitsandbytes==0.48.2",
+    "blake3==1.0.10",
+    "cachetools==7.3.3",
+    "cbor2==6.3.0",
+    "certifi==2026.11.20",
+    "cffi==2.1.1",
+    "charset-normalizer==3.5.3",
+    "click==8.5.1",
+    "cloudpickle==3.1.3",
+    "compressed-tensors==0.11.0",
+    "cuda-pathfinder==1.8.3",
+    "cupy-cuda12x==14.2.0",
+    "datasets==3.6.0",
+    "deepspeed==0.18.2",
+    "depyf==0.19.0",
+    "detect-installer==0.2.1",
+    "dill==0.3.8",
+    "diskcache==5.6.3",
+    "dnspython==2.8.0",
+    "einops==0.8.1",
+    "email-validator==2.4.0",
+    "exceptiongroup==1.3.2",
+    "fastapi-cli==0.0.33",
+    "fastapi-cloud-cli==0.28.0",
+    "fastapi==0.162.5",
+    "fastar==0.12.0",
+    "filelock==4.1.0",
+    "flash_attn==2.8.3",
+    "frozendict==2.5.1",
+    "frozenlist==1.8.0",
+    "fsspec==2025.3.0",
+    "gguf==0.19.0",
+    "gitdb==4.0.12",
+    "googleapis-common-protos==1.76.0",
+    "h11==0.16.0",
+    "hf-xet==1.8.0",
+    "hjson==3.1.0",
+    "httpcore2==2.14.0",
+    "httpcore==1.0.9",
+    "httptools==0.9.0",
+    "httpx2==2.14.0",
+    "httpx==0.28.1",
+    "huggingface_hub==0.36.2",
+    "idna==3.20",
+    "interegular==0.3.3",
+    "jiter==0.18.0",
+    "jsonschema-specifications==2025.9.1",
+    "jsonschema==4.26.0",
+    "lark==1.2.2",
+    "latex2sympy2_extended==1.10.2",
+    "llguidance==0.7.30",
+    "llvmlite==0.44.0",
+    "lm-format-enforcer==0.11.3",
+    "markdown-it-py==4.3.0",
+    "math-verify==0.8.0",
+    "mdurl==0.1.2",
+    "mistral_common==1.12.0",
+    "mpmath==1.3.0",
+    "msgpack==1.2.4",
+    "msgspec==0.22.0",
+    "multidict==7.1.0",
+    "multiprocess==0.70.16",
+    "networkx==3.4.2",
+    "ninja==1.13.2",
+    "numba==0.61.2",
+    "numpy==2.2.6",
+    "nvidia-cublas-cu12==12.8.4.1",
+    "nvidia-cuda-cupti-cu12==12.8.90",
+    "nvidia-cuda-nvrtc-cu12==12.8.93",
+    "nvidia-cuda-runtime-cu12==12.8.90",
+    "nvidia-cudnn-cu12==9.10.2.21",
+    "nvidia-cufft-cu12==11.3.3.83",
+    "nvidia-cufile-cu12==1.13.1.3",
+    "nvidia-curand-cu12==10.3.9.90",
+    "nvidia-cusolver-cu12==11.7.3.90",
+    "nvidia-cusparse-cu12==12.5.8.93",
+    "nvidia-cusparselt-cu12==0.7.1",
+    "nvidia-nccl-cu12==2.27.3",
+    "nvidia-nvjitlink-cu12==12.8.93",
+    "nvidia-nvtx-cu12==12.8.90",
+    "openai-harmony==0.0.8",
+    "openai==3.58.0",
+    "opencv-python-headless==5.1.0.95",
+    "opentelemetry-api==1.45.2",
+    "opentelemetry-exporter-http-transport==0.66b2",
+    "opentelemetry-exporter-otlp-common==0.66b2",
+    "opentelemetry-exporter-otlp-proto-common==1.45.2",
+    "opentelemetry-exporter-otlp-proto-http==1.45.2",
+    "opentelemetry-proto==1.45.2",
+    "opentelemetry-sdk==1.45.2",
+    "opentelemetry-semantic-conventions==0.66b2",
+    "outlines_core==0.2.11",
+    "packaging==26.4",
+    "pandas==2.3.3",
+    "partial-json-parser==0.2.1.1.post7",
+    "peft==0.17.1",
+    "pillow==12.3.0",
+    "pip==26.2.1",
+    "platformdirs==4.12.4",
+    "prometheus-fastapi-instrumentator==8.1.0",
+    "prometheus_client==0.26.0",
+    "propcache==0.5.4",
+    "protobuf==6.33.6",
+    "psutil==7.2.2",
+    "py-cpuinfo==9.0.0",
+    "pyarrow==25.0.1",
+    "pybase64==1.5.2",
+    "pycountry==26.2.16",
+    "pycparser==3.11",
+    "pydantic-extra-types==2.11.1",
+    "pydantic-settings==2.15.0",
+    "pydantic==2.14.4",
+    "pydantic_core==2.50.5",
+    "python-dateutil==3.0.0",
+    "python-dotenv==1.2.4",
+    "python-json-logger==4.2.0",
+    "python-multipart==0.0.32",
+    "pytz==2026.6",
+    "pyzmq==27.3.0",
+    "ray==2.60.1",
+    "referencing==0.37.0",
+    "regex==2026.9.29",
+    "requests==2.34.2",
+    "rich-toolkit==0.20.6",
+    "rich==15.0.0",
+    "rignore==0.8.1",
+    "rpds-py==0.30.0",
+    "safetensors==0.5.3",
+    "scipy==1.15.3",
+    "sentencepiece==0.1.99",
+    "sentry-sdk==3.0.0",
+    "setproctitle==1.3.8",
+    "setuptools==84.2.1",
+    "shellingham==1.5.4",
+    "six==1.17.0",
+    "smmap==5.0.3",
+    "sniffio==1.3.1",
+    "soundfile==0.14.0",
+    "soxr==1.1.0",
+    "starlette==1.7.0",
+    "sympy==1.14.0",
+    "tiktoken==0.9.0",
+    "tokenizers==0.22.2",
+    "tomli==2.5.0",
+    "torch==2.8.0",
+    "torchaudio==2.8.0",
+    "torchvision==0.23.0",
+    "tqdm==4.70.1",
+    "transformers==4.57.1",
+    "triton==3.4.0",
+    "trl==0.26.0",
+    "truststore==0.10.5",
+    "typer==0.29.1",
+    "typing-inspection==0.4.5",
+    "typing_extensions==4.16.0",
+    "tzdata==2026.6",
+    "urllib3==2.8.0",
+    "uvicorn==0.54.0",
+    "uvloop==0.23.0",
+    "vllm==0.11.0",
+    "wandb==0.22.3",
+    "watchfiles==1.3.0",
+    "websockets==16.1.1",
+    "wheel==0.48.0",
+    "xformers==0.0.32.post1",
+    "xgrammar==0.1.25",
+    "xxhash==4.1.0",
+    "yarl==1.25.1"
+  ],
+  "vendor_packages_verified_from_wheel_records": [
+    "nvidia-cublas-cu12",
+    "nvidia-cuda-cupti-cu12",
+    "nvidia-cuda-nvrtc-cu12",
+    "nvidia-cuda-runtime-cu12",
+    "nvidia-cudnn-cu12",
+    "nvidia-cufft-cu12",
+    "nvidia-cufile-cu12",
+    "nvidia-curand-cu12",
+    "nvidia-cusolver-cu12",
+    "nvidia-cusparse-cu12",
+    "nvidia-cusparselt-cu12",
+    "nvidia-nccl-cu12",
+    "nvidia-nvjitlink-cu12",
+    "nvidia-nvtx-cu12"
+  ]
+}

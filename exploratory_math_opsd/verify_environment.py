@@ -18,6 +18,9 @@ def verify(root):
     import vllm
     from trl.experimental.gold import GOLDConfig
     from opsd_trainer import OPSDTrainer
+    from eval.evaluate_math import extract_boxed_answer, grade_answer
+    example=extract_boxed_answer(r'Final answer: \boxed{17}.')
+    assert example=='17' and grade_answer(example,'17') and not grade_answer(example,'18')
     from safetensors import safe_open
     pins=re.findall(r'^    - ([^= ]+)==(\S+)$',(source/'environment.yml').read_text(),re.M)
     installed={p:version(p) for p,_ in pins}
@@ -33,7 +36,9 @@ def verify(root):
     for name in set(weight_map.values()):
         with safe_open(str(weights/name),framework='pt',device='cpu') as shard:
             assert set(shard.keys())=={k for k,v in weight_map.items() if v==name}
-    return dict(python=sys.version.split()[0],conda_prefix=sys.prefix,versions=installed,flash_attn=flash_attn.__version__,
+    nvcc=subprocess.check_output([str(root/'cuda-12.8/bin/nvcc'),'--version'],text=True)
+    assert 'release 12.8' in nvcc and torch.version.cuda=='12.8'
+    return dict(grader_examples_passed=2,private_nvcc='12.8',python=sys.version.split()[0],conda_prefix=sys.prefix,versions=installed,flash_attn=flash_attn.__version__,
                 torch_cuda=torch.version.cuda,source_revision=subprocess.check_output(['git','-C',str(source),'rev-parse','HEAD'],text=True).strip(),
                 patch_sha256=sha256(patch).hexdigest(),assets={k:x['revision'] for k,x in manifest.items()},
                 gold=GOLDConfig.__module__,trainer=OPSDTrainer.__name__,verified_tensor_names=len(weight_map))

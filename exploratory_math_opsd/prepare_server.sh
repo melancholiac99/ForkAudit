@@ -4,6 +4,9 @@ set -euo pipefail
 base=${1:-/mnt/data/ForkAudit/math-opsd}
 here=$(cd "$(dirname "$0")" && pwd)
 mkdir -p "$base"/{run,logs}
+if [[ -f "$base/conda-env.sqfs" && ! -x "$base/conda-env/bin/python" ]]; then
+    OPSD_ROOT="$base" bash "$here/run_four.sh" env-check
+fi
 if [[ ! -d "$base/source/.git" ]]; then
     git init -q "$base/source"
     git -C "$base/source" remote add origin https://github.com/siyan-zhao/OPSD.git
@@ -30,3 +33,4 @@ fi
 "$python_bin" "$here/prepare_assets.py" "$base"
 CUDA_VISIBLE_DEVICES='' "$python_bin" "$here/preflight.py" "$base" --output "$base/run/preflight.json"
 CUDA_VISIBLE_DEVICES='' "$python_bin" "$here/verify_environment.py" "$base"
+CUDA_VISIBLE_DEVICES='' "$python_bin" "$here/check_optimizer.py" "$base"
