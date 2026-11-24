@@ -60,7 +60,9 @@ def heldout(fold,scale=None):
         hub+=(w*F.huber_loss(p,y,reduction='none')).sum().item()
         if scale is not None:post+=(w*F.huber_loss(p*scale,y,reduction='none')).sum().item()
         n+=len(p)
-    return dict(n=n,xx=xx,xy=xy,yy=yy,huber=hub,shrunk_huber=post)
+    out=dict(n=n,xx=xx,xy=xy,yy=yy,huber=hub)
+    if scale is not None:out["shrunk_huber"]=post
+    return out
 
 def finish():
     assert all((WORK/f'fit-{f}.pt').exists() for f in range(4))
