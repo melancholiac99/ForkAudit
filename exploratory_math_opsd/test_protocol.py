@@ -26,7 +26,7 @@ class ProtocolTests(unittest.TestCase):
         from tempfile import TemporaryDirectory
         from unittest.mock import patch
         from exploratory_math_opsd import launch
-        for elapsed,expected in [(1800,5400),(1801,5400)]:
+        for elapsed,expected in [(1800,3240),(1801,3240)]:
             with TemporaryDirectory() as tmp:
                 folder=Path(tmp)
                 with patch.object(launch,'evaluate',return_value={'rate':10.,'wall_seconds':elapsed}) as ev, \

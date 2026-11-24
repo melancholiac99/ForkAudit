@@ -50,7 +50,7 @@ def compare(scores):
 def summarize(folder):
     quick=json.loads((folder/'quick.json').read_text())
     report={'quick':quick,'bootstrap':dict(seed=20261124,draws=10000,cluster='question within benchmark'),'checkpoints':{}}
-    for step in (50,100):
+    for step in (100,):
         seeds=quick['evaluation_seeds']
         scores={}
         details={}

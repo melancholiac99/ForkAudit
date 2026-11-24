@@ -2201,3 +2201,4 @@ The retained math environment is a verified SquashFS image with an experiment-lo
 
 2026-11-24 数学 OPSD：用户在 B 快报及布局测速之后指定全部五个模型状态只评 1001。矩阵 5,400 条。见 proposals/OPSD_R_T0_Protocol.md 末节。
 同次追加：正式矩阵统一四个 TP=1 引擎（行号模 4 分题），复用同种子、同模型、同布局的 B/AIME24 测速四分片。切换前的 TP=4 比较及日志归档，未完成的旧布局评测不进入正式矩阵。
+2026-11-24 数学评测按用户指令先完成基线和两个终点的九批，提交终点比较后暂停。

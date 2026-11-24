@@ -12,7 +12,7 @@ import time
 
 SEEDS = (1001,)
 BENCHMARKS = ('aime24','aime25','hmmt25')
-MODELS = ('B','R@100','T0@100','R@50','T0@50')
+MODELS = ('B','R@100','T0@100')
 
 
 def read(path):
@@ -134,7 +134,7 @@ def evaluations(root,env,quick_only):
     rates={m:v['rate'] for m,v in quick.items()}
     report=dict(rates_percent=rates,R_minus_T0_pp=rates['R@100']-rates['T0@100'],
                 R_minus_B_pp=rates['R@100']-rates['B'],four_gpu_seconds=total,evaluation_seeds=list(SEEDS),
-                planned_responses=5400)
+                planned_responses=3240)
     save(folder/'quick.json',report)
     print(json.dumps(report),flush=True)
     if quick_only:return
