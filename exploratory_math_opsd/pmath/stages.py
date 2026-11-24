@@ -12,7 +12,7 @@ if sys.argv[1]=='train':
     train(ROOT,{**env,'OPSD_PROJECTOR':str(WORK/'projector.pt')},'P')
 else:
     assert (ROOT/'run/P/complete.json').exists()
-    sequence=[('P@100','aime24')]+[(m,b) for m in ('B','R@100','P@100','T0@100') for b in ('aime25','hmmt25')]
+    sequence=[('P@100','aime24')]+[(m,b) for m in ('B','R@100','P@100') for b in ('aime25','hmmt25')]
     cells={}
     for model,bench in sequence:
         cells[f'{model}/{bench}']=evaluate(ROOT,env,model,bench,1001)

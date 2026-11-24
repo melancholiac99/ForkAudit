@@ -8,7 +8,7 @@ def report():
     scores={}
     rates={}
     questions={}
-    for arm in ('B','R@100','T0@100','P@100'):
+    for arm in ('B','R@100','P@100'):
         means=[]
         rates[arm]={}
         for bench in ('aime24','aime25','hmmt25'):
@@ -22,7 +22,7 @@ def report():
         scores[arm]=np.stack(means)
     draws=np.random.default_rng(20261124).integers(30,size=(10000,3,30))
     estimates={}
-    for a,b in (('P@100','R@100'),('P@100','T0@100'),('P@100','B'),('R@100','T0@100'),('R@100','B'),('T0@100','B')):
+    for a,b in (('P@100','R@100'),('P@100','B'),('R@100','B')):
         delta=100*(scores[a]-scores[b])
         samples=delta[np.arange(3)[None,:,None],draws].mean(axis=(1,2))
         estimates[f'{a} minus {b}']=dict(difference_pp=delta.mean(),paired_ci95_pp=np.percentile(samples,[2.5,97.5]).tolist())
