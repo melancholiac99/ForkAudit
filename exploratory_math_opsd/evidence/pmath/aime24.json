@@ -1,0 +1,35 @@
+{
+  "dataset": "aime24",
+  "seed": 1001,
+  "receipts": {
+    "B": {
+      "layout": "4xTP1",
+      "sha256": "f698178d6b9c1c904d35b9307cd3a36d8824d61de0425a416d442acbabc2504b",
+      "adapter_sha256": null,
+      "wall_seconds": 2087.1874876329994,
+      "rate": 51.94444444444444,
+      "source": "/mnt/data2/ForkAudit/math-opsd/layout-benchmark"
+    },
+    "R@100": {
+      "layout": "4xTP1",
+      "sha256": "aa0dceb20d76a8251f6d52f678fac12ed6d66f05237837c60a51736cc50a1b1a",
+      "adapter_sha256": "605f675f76ac2edd996fab5bdf2eeb110bb3879bc740729230a6e4355d3805f7",
+      "wall_seconds": 3258.595864191,
+      "rate": 55.55555555555556
+    },
+    "P@100": {
+      "layout": "4xTP1",
+      "sha256": "345c06103c67edbdd5cabc5edab6f4c4a086284f57b6768493ace74c120dda22",
+      "adapter_sha256": "98a524bcddf8f02c4761c9e7a7c4e262b67c160aad046de6de3c0de425e37a7c",
+      "wall_seconds": 2847.0239321269983,
+      "rate": 50.0
+    },
+    "T0@100": {
+      "layout": "4xTP1",
+      "sha256": "34a75682be36014e7d3c64a4033e892912e676595b56b79fa69a1f794623f967",
+      "adapter_sha256": "cb49c21675a89c8d54dce338a2e71053dfdf4194544cc36602d7caa0db2f6910",
+      "wall_seconds": 3626.3845736580006,
+      "rate": 51.666666666666664
+    }
+  }
+}
