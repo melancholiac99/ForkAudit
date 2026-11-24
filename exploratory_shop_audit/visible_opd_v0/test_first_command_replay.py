@@ -67,3 +67,26 @@ class FirstCommandTest(TestCase):
         hnew,pnew=quantities(np.array([[0.,2.,100.]]),mask)
         self.assertLess(hnew[0],h[0])
         self.assertGreater(pnew[0],p[0])
+
+    def test_resident_model_requires_identical_cold_batch(self):
+        from unittest.mock import Mock
+        from .first_command_replay import ReplaySession
+        runner = Mock()
+        runner.model.models = [Mock()]
+        runner.model.models[0].call.return_value = 'reset'
+        runner.model.call.return_value = [{'token_ids':[1, 2]}]
+
+        def generate(runner, *args, intervention):
+            runner.model.call([])
+            return ['same text']
+
+        with patch(__package__+'.first_command_replay.Runner',return_value=runner), \
+             patch(__package__+'.first_command_replay.run_batch',side_effect=generate):
+            for diverge in (False, True):
+                replay = ReplaySession()
+                self.assertFalse(replay.acquire('folder','model')[1])
+                replay.evaluate_batch([],None)
+                runner.model.call.return_value = [{'token_ids':[1, 3] if diverge else [1, 2]}]
+                self.assertEqual(replay.acquire('next','model')[1],not diverge)
+                self.assertEqual(replay.disable_reuse,diverge)
+                replay.close()

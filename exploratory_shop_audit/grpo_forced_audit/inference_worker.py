@@ -32,6 +32,14 @@ def main():
         req=json.loads(line)
         if req.get('cmd')=='quit':return
         try:
+            if req.get('cmd') == 'reset_replay_cache':
+                # Only between completed logical §26 shards, with no outstanding requests.
+                if model.llm_engine.has_unfinished_requests():
+                    raise RuntimeError('Cannot reset active inference')
+                model.reset_prefix_cache()
+                model.request_counter.reset()
+                rpc.write(json.dumps({'ok':True,'result':'reset'})+'\n')
+                continue
             rows=req['requests']
             if tape is not None:
                 assert len(rows)<=len(tape)

@@ -6,6 +6,9 @@ import os
 from pathlib import Path
 import re
 
+from contextlib import contextmanager
+from hashlib import sha256
+import time
 from .e2512_native import checkpoint, snapshot_dir
 from .e2512_routing import owners
 from .gap_cpu_actions import classify
@@ -79,7 +82,86 @@ def jobs():
                     yield arm,k,pool,mode,rank
 
 
-def run(l,arm,k,pool,mode,rank):
+@contextmanager
+def record_generated_tokens(runner):
+    stream = sha256()
+    model = runner.model
+    original = model.call
+
+    def measured(requests):
+        rows = original(requests)
+        for row in rows:
+            stream.update((' '.join(map(str, row['token_ids']))+'\n').encode('ascii'))
+        return rows
+
+    model.call = measured
+    try:
+        yield stream
+    finally:
+        model.call = original
+
+
+class ReplaySession:
+    """Keep a single frozen model loaded; verify warm replay against a cold native batch."""
+
+    def __init__(self):
+        self.runner = None
+        self.checkpoint = None
+        self.reference = None
+        self.verified = False
+        self.verified_tokens = None
+        self.disable_reuse = False
+
+    def close(self):
+        if self.runner is not None:
+            self.runner.close()
+            self.runner = None
+
+    def reset(self):
+        models = self.runner.model.models
+        if len(models) != 1 or models[0].call(cmd='reset_replay_cache') != 'reset':
+            raise RuntimeError('Replay cache reset failed')
+
+    def acquire(self, folder, checkpoint):
+        warm = self.runner is not None and self.checkpoint == checkpoint and not self.disable_reuse
+        if warm:
+            try:
+                self.reset()
+                if not self.verified:
+                    if self.reference is None:
+                        raise ValueError('Missing cold reference')
+                    args, rule, original, tokens = self.reference
+                    with record_generated_tokens(self.runner) as repeated_tokens:
+                        repeated = run_batch(self.runner, *args, intervention=rule)
+                    if repeated != original or repeated_tokens.hexdigest() != tokens:
+                        raise ValueError('Warm replay produced a different native trajectory')
+                    self.reset()
+                    self.verified = True
+                    self.verified_tokens = tokens
+                    self.reference = None
+            except (ValueError, RuntimeError, TimeoutError) as error:
+                print('Cold-start fallback:', str(error), flush=True)
+                self.disable_reuse = True
+                warm = False
+        if not warm:
+            self.close()
+            self.checkpoint = checkpoint
+            self.runner = Runner(folder, checkpoint, parallel_start=True)
+            self.verified = False
+            self.verified_tokens = None
+            self.reference = None
+        return self.runner, warm
+
+    def evaluate_batch(self, args, rule):
+        if not self.disable_reuse and not self.verified and self.reference is None:
+            with record_generated_tokens(self.runner) as tokens:
+                values = run_batch(self.runner, *args, intervention=rule)
+            self.reference = (args, rule, values, tokens.hexdigest())
+            return values
+        return run_batch(self.runner, *args, intervention=rule)
+
+
+def run(l,arm,k,pool,mode,rank,session):
     folder=ROOT/pool/mode/f'{arm}_{k:02}'/f'rank{rank}'
     snapshot_dir(folder)
     base=l.root/'evaluation'/pool/mode/f'{arm}_{k:02}'/f'rank{rank}'
@@ -99,24 +181,25 @@ def run(l,arm,k,pool,mode,rank):
         return
     print('start',arm,k,pool,mode,rank,flush=True)
     rule=FirstCommand(tasks)
-    runner=Runner(folder,cp,parallel_start=True)
+    start=time.monotonic()
+    runner,warm=session.acquire(folder,cp)
+    setup_time=time.monotonic()-start
     parts={}
-    try:
-        for rep in range(5):
-            for offset in range(0,50,16):
-                subset=goals[offset:offset+16]
-                out=folder/f'part_{rep}_{offset:02}.json'
-                if not out.exists():
-                    values=run_batch(runner,pool,subset,rep,l.root/'pages'/pool/f'rank{rank}',mode,intervention=rule)
-                    save(out,values)
-                values=read(out)
-                assert len(values)==len(subset) and {r['goal'] for r in values}==set(subset) and all(r['rep']==rep for r in values)
-                parts[out.name]=digest_file(out)
-    finally:
-        runner.close()
+    for rep in range(5):
+        for offset in range(0,50,16):
+            subset=goals[offset:offset+16]
+            out=folder/f'part_{rep}_{offset:02}.json'
+            if not out.exists():
+                args=(pool,subset,rep,l.root/'pages'/pool/f'rank{rank}',mode)
+                values=session.evaluate_batch(args,rule)
+                save(out,values)
+            values=read(out)
+            assert len(values)==len(subset) and {r['goal'] for r in values}==set(subset) and all(r['rep']==rep for r in values)
+            parts[out.name]=digest_file(out)
     save(folder/'complete.json',dict(checkpoint=signature,original_checkpoint=archived['checkpoint'],
          archive_sha256=digest_file(base/'complete.json'),pool=pool,mode=mode,goals=goals,seeds=SEEDS,
-         logical_rank=rank,parts=parts))
+         logical_rank=rank,parts=parts,model_setup_seconds=setup_time,
+         warm_model=warm,warm_verified=session.verified,validation_tokens_sha256=session.verified_tokens,total_seconds=time.monotonic()-start))
 
 
 def main(gpu,lanes):
@@ -127,9 +210,13 @@ def main(gpu,lanes):
     l=GapLayout()
     with (ROOT/f'worker{gpu}.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        for i,job in enumerate(jobs()):
-            if i%lanes==gpu:
-                run(l,*job)
+        session=ReplaySession()
+        try:
+            for i,job in enumerate(jobs()):
+                if i%lanes==gpu:
+                    run(l,*job,session)
+        finally:
+            session.close()
 
 
 if __name__=='__main__':
