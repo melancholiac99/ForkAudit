@@ -18,9 +18,11 @@ def json_save(path, data):
     tmp.replace(path)
 
 def projected_logits(base, ids, mask, start, state):
-    hidden = base.model(input_ids=ids,attention_mask=mask,use_cache=False).last_hidden_state[:,start:-1]
+    full_hidden = base.model(input_ids=ids,attention_mask=mask,use_cache=False).last_hidden_state
+    hidden = full_hidden[:,start:-1]
     head = base.get_output_embeddings()
-    logits = head(hidden)
+    # Match the trainer's full-sequence lm_head GEMM before indexing response positions.
+    logits = head(full_hidden)[:,start:-1]
     if state['scale'] == 0:
         return logits
     # Compute the vocabulary-side rank-8 embedding once per process.
