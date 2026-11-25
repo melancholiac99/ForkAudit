@@ -1,0 +1,62 @@
+{
+  "positions": 1185192,
+  "questions": 1500,
+  "folds": "OOF",
+  "probability_source": "Reconstructed teacher, archived candidate IDs",
+  "device_blocks": {
+    "cpu": 236,
+    "cuda": 64
+  },
+  "cpu_gpu_overlap": [
+    {
+      "mean_abs": 5.4576433609896185e-05,
+      "max_abs": 0.026245330153596202,
+      "mean_shift": -1.2683392180956368e-05
+    },
+    {
+      "mean_abs": 6.75380502168196e-05,
+      "max_abs": 0.013892561127630931,
+      "mean_shift": 5.118379436646338e-06
+    },
+    {
+      "mean_abs": 6.735891866338804e-05,
+      "max_abs": 0.035872815489115084,
+      "mean_shift": -2.221954371005557e-06
+    },
+    {
+      "mean_abs": 9.893209786086494e-05,
+      "max_abs": 0.031474449924725534,
+      "mean_shift": 1.89329549190744e-05
+    }
+  ],
+  "positive_KL_source": "CPU aggregation of archived positive KL statistics",
+  "max_centered_label_error": 0.5644454956054688,
+  "temperatures": {
+    "1.1": {
+      "R": {
+        "mean": 0.0011569954940456725,
+        "median": 1.0417175231194354e-07,
+        "p99": 0.027487906680780164
+      },
+      "Rres": {
+        "mean": 0.004872202030384775,
+        "median": 2.087928244316592e-06,
+        "p99": 0.08657220772301248
+      },
+      "R_outside_positive_KL_share": 0.009214429235376728
+    },
+    "1.0": {
+      "R": {
+        "mean": 0.0005816333653813443,
+        "median": 1.2763652356502277e-08,
+        "p99": 0.01408805083079285
+      },
+      "Rres": {
+        "mean": 0.0033424349689647717,
+        "median": 3.4259831424454014e-07,
+        "p99": 0.04974584888136567
+      },
+      "R_outside_positive_KL_share": 0.004741021185209455
+    }
+  }
+}
