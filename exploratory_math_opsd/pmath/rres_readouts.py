@@ -13,6 +13,14 @@ def probabilities():
     prior=json.loads((OUT/'residual_token_kl.json').read_text())
     assert len(x)==prior['positions'] and sum(b['questions'] for b in blocks)==1500
     assert x.min()>=0 and x.max()<=1.000001
+    # Reaggregate archived position-block totals on CPU; no new GPU scoring.
+    outs=torch.zeros(2,dtype=torch.float64)
+    totals=torch.zeros_like(outs)
+    for path in sorted((WORK/'rres-gpu').glob('w*-*.pt')):
+        block=torch.load(path,weights_only=True,map_location='cpu')
+        outs+=block['outside'][:,0]
+        totals+=block['mass'][:,0].sum(-1)
+    assert (totals>0).all()
     out={}
     for t,temp in enumerate(TEMPERATURES):
         groups={}
@@ -20,10 +28,11 @@ def probabilities():
             col=x[:,t,a].contiguous()
             q=torch.quantile(col,torch.tensor([.5,.99],dtype=col.dtype))
             groups[name]=dict(mean=col.mean().item(),median=q[0].item(),p99=q[1].item())
-        groups['R_outside_positive_KL_share']=prior['temperatures'][str(temp)]['R']['outside_C_share']
+        groups['R_outside_positive_KL_share']=(outs[t]/totals[t]).item()
+        assert abs(groups['R_outside_positive_KL_share']-prior['temperatures'][str(temp)]['R']['outside_C_share'])<1e-9
         out[str(temp)]=groups
     json_save(OUT/'outside_probability.json',dict(positions=len(x),questions=1500,
-        folds='OOF',max_centered_label_error=max(b['max_label_error'] for b in blocks),temperatures=out))
+        folds='OOF',probability_source='CPU reconstructed teacher, archived candidate IDs',positive_KL_source='CPU aggregation of archived positive KL statistics',max_centered_label_error=max(b['max_label_error'] for b in blocks),temperatures=out))
 def markers(models):
     marks=('**','---','$$')
     report={}
