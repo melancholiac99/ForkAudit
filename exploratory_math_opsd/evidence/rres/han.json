@@ -1,0 +1,104 @@
+{
+  "B": {
+    "aime24": {
+      "responses": 360,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    },
+    "aime25": {
+      "responses": 360,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    },
+    "hmmt25": {
+      "responses": 360,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    },
+    "all": {
+      "responses": 1080,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    }
+  },
+  "R@100": {
+    "aime24": {
+      "responses": 360,
+      "with_han": 1,
+      "with_han_fraction": 0.002777777777777778,
+      "mean_han_character_fraction": 1.2433125327146611e-07,
+      "with_han_and_latin": 1,
+      "with_han_and_latin_fraction": 0.002777777777777778
+    },
+    "aime25": {
+      "responses": 360,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    },
+    "hmmt25": {
+      "responses": 360,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    },
+    "all": {
+      "responses": 1080,
+      "with_han": 1,
+      "with_han_fraction": 0.000925925925925926,
+      "mean_han_character_fraction": 4.14437510904887e-08,
+      "with_han_and_latin": 1,
+      "with_han_and_latin_fraction": 0.000925925925925926
+    }
+  },
+  "P@100": {
+    "aime24": {
+      "responses": 360,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    },
+    "aime25": {
+      "responses": 360,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    },
+    "hmmt25": {
+      "responses": 360,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    },
+    "all": {
+      "responses": 1080,
+      "with_han": 0,
+      "with_han_fraction": 0.0,
+      "mean_han_character_fraction": 0.0,
+      "with_han_and_latin": 0,
+      "with_han_and_latin_fraction": 0.0
+    }
+  }
+}
