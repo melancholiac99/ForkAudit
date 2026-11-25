@@ -1,0 +1,6 @@
+{
+  "unit_weight_exact": true,
+  "only_think_logit_changed": true,
+  "zero_teacher_probability": true,
+  "loss_and_gradient_finite": true
+}
