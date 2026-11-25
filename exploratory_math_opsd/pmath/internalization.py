@@ -84,6 +84,7 @@ def features(state,lane):
 
 def factors(state,fold):
     folder=OUT/state
+    if (folder/f'fit-{fold}.pt').exists():return
     ids=[i for i,k in split().items() if k!=fold]
     cache={i:load(folder/f'features-{i}.pt','cuda') for i in ids}
     dest=folder/f'fit-{fold}.pt'
@@ -125,9 +126,14 @@ def measure(state,lane):
     scale=np.clip(slope,0,1).item()
     params=[load(folder/f'fit-{k}.pt','cuda') for k in range(4)]
     vocab=[F.linear(head.float(),p['B']) for p in params]
-    tok=AutoTokenizer.from_pretrained(MODEL)
-    groups=torch.tensor([classify(tok.decode([i],clean_up_tokenization_spaces=False)) if i<len(tok) else 4
-                         for i in range(head.shape[0])],device='cuda')
+    group_file=OUT/f'vocabulary-groups-{lane}.pt'
+    if not group_file.exists():
+        tok=AutoTokenizer.from_pretrained(MODEL)
+        size=len(tok)
+        labels=[classify(tok.decode([i],clean_up_tokenization_spaces=False)) if i<size else 4
+                for i in range(head.shape[0])]
+        save(group_file,torch.tensor(labels))
+    groups=load(group_file,'cuda')
     folds=split()
     for idx,_,_,answer in load(WORK/f'rollouts-{lane}.pt'):
         dest=folder/f'sums-{idx}.json'
