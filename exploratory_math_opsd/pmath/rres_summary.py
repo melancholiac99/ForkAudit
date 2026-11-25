@@ -7,7 +7,7 @@ from common import ROOT,WORK,MODEL,json_save
 from token_kl_report import classify,GROUPS
 from token_kl import TEMPERATURES
 from rres_chinese import OUT
-from residual_cpu import OUT as BLOCKS
+from residual_gpu import OUT as BLOCKS
 
 def diagnostics():
     source=OUT.parent/'pmath/token_kl/results.json'
@@ -31,8 +31,8 @@ def diagnostics():
     groups=torch.tensor([classify(s) for s in labels])
     think=tok.convert_tokens_to_ids('<think>')
     result=dict(positions=n,questions=questions,scale=prior['scale'],temperatures={},
-                cpu_reconstruction_centered_label_mae=err/nc,cpu_reconstruction_centered_label_max=mx)
-    md=['# Rres 训练前诊断','',f'原四折，{questions:,} 题，{n:,} 位置；λ={prior["scale"]:.8f}。支持集取归档的老师与学生 top-32 的并集，重叠仅减一次，按全词表归一化。每位置先取正 KL 再汇总。R 和 Rres 在 CPU 复算，P 复用此前同口径的题外统计。CPU 教师前向与原 GPU 前向的候选中心化标签平均绝对差为 '+f'{err/nc:.6f}，最大 {mx:.6f}。']
+                gpu_reconstruction_centered_label_mae=err/nc,gpu_reconstruction_centered_label_max=mx)
+    md=['# Rres 训练前诊断','',f'原四折，{questions:,} 题，{n:,} 位置；λ={prior["scale"]:.8f}。支持集取归档的老师与学生 top-32 的并集，重叠仅减一次，按全词表归一化。每位置先取正 KL 再汇总。R 和 Rres 在四卡原 BF16 路径复算，P 复用此前同口径的题外统计。本次教师前向与原归档的候选中心化标签平均绝对差为 '+f'{err/nc:.6f}，最大 {mx:.6f}。']
     for k,temp in enumerate(TEMPERATURES):
         ref=prior['temperatures'][str(temp)]
         sub={'P':ref['P']}
