@@ -12,8 +12,8 @@ def split():
 def load(idx):
     return torch.load(WORK/f'features-{idx}.pt',weights_only=True,map_location='cuda')
 
-def fit(fold):
-    dest=WORK/f'fit-{fold}.pt'
+def fit(fold, output_dir=WORK, load_question=load):
+    dest=output_dir/f'fit-{fold}.pt'
     if dest.exists():return
     folds=split()
     ids=[i for i,f in folds.items() if f!=fold]
@@ -33,7 +33,7 @@ def fit(fold):
     for epoch in range(3):
         random.Random(42+epoch).shuffle(ids)
         for i in ids:
-            x=load(i)
+            x=load_question(i)
             loss=(weights(x)*F.huber_loss(predict(x),x['d'],reduction='none')).sum()
             # Fixed position normalization makes each position carry the same objective weight.
             opt.zero_grad()
