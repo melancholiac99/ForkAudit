@@ -1,4 +1,4 @@
-"""Stratify archived held-out logit predictions by full-vocabulary base entropy (CPU)."""
+"""Stratify archived held-out logit predictions by full-vocabulary base entropy (CPU or CUDA)."""
 import argparse
 import json
 import os
@@ -35,24 +35,33 @@ def controls():
 
 
 @torch.inference_mode()
-def score(lane):
-    assert os.environ.get('CUDA_VISIBLE_DEVICES')==''
+def score(lane, device='cpu', audit=False):
+    if device=='cpu':
+        assert os.environ.get('CUDA_VISIBLE_DEVICES')==''
+    torch.set_float32_matmul_precision('highest')
     OUT.mkdir(exist_ok=True,parents=True)
     folds=split()
     scale=load(WORK/'projector.pt')['scale']
-    head=load(WORK/'head.pt').float()
+    head=load(WORK/'head.pt').to(device=device,dtype=torch.float32)
     forms,eos=controls()
-    control=torch.zeros(len(head),dtype=torch.bool)
+    control=torch.zeros(len(head),dtype=torch.bool,device=device)
     control[eos+[v['id'] for v in forms.values() if v['id'] is not None]]=True
     factors=[]
     for fold in range(4):
         p=load(WORK/f'fit-{fold}.pt')
-        factors.append((p['A'],F.linear(head,p['B'])))
-    for idx in sorted(folds)[lane::4]:
+        factors.append((p['A'].to(device),F.linear(head,p['B'].to(device))))
+    indices=sorted(folds)[lane::4]
+    checks=[]
+    if audit:
+        existing=[idx for idx in indices if (OUT/f'q-{idx}.npy').exists()]
+        indices=[existing[i] for i in np.linspace(0,len(existing)-1,4,dtype=int)]
+    elif device=='cuda':
+        indices=indices[::-1]
+    for idx in indices:
         dest=OUT/f'q-{idx}.npy'
-        if dest.exists():continue
-        x=load(WORK/f'features-{idx}.pt')
-        ht=load(ROOT/f'run/internalization-v1/teacher/{idx}.pt')
+        if dest.exists() and not audit:continue
+        x={k:v.to(device) for k,v in load(WORK/f'features-{idx}.pt').items()}
+        ht=load(ROOT/f'run/internalization-v1/teacher/{idx}.pt').to(device)
         A,V=factors[folds[idx]]
         chunks=[]
         for start in range(0,len(ht),128):
@@ -85,11 +94,29 @@ def score(lane):
             projected=s.scatter_add(1,top64,adj)
             u=(prob*(lt-F.log_softmax(projected/TEMP,dim=1))).sum(1,dtype=torch.float64)
             chunks.append(torch.stack([entropy,gap,u,rres,label_mean,label_second,mse,control[top]],dim=1))
-        values=torch.cat(chunks).numpy()
+        values=torch.cat(chunks).cpu().numpy()
         assert np.isfinite(values).all() and len(values)==len(ht)
-        tmp=dest.with_suffix('.pending.npy')
+        if audit:
+            delta=np.abs(values-np.load(dest))
+            checks.append(dict(question=idx,positions=len(values),absolute_sum=delta.sum(0).tolist(),
+                               max_abs=delta.max(0).tolist()))
+            continue
+        tmp=dest.with_suffix('.'+device+'.pending.npy')
         np.save(tmp,values)
-        tmp.replace(dest)
+        if device=='cuda':
+            try:
+                os.link(tmp,dest)
+            except FileExistsError:
+                pass
+            finally:
+                tmp.unlink()
+        else:
+            tmp.replace(dest)
+    if audit:
+        n=sum(c['positions'] for c in checks)
+        mae=np.sum([c['absolute_sum'] for c in checks],axis=0)/n
+        json_save(OUT/f'cpu-gpu-{lane}.json',dict(checks=checks,mean_absolute=mae.tolist(),positions=n))
+        assert np.isfinite(mae).all() and max(mae[:4])<0.001 and mae[6]<0.001 and mae[7]<0.001,mae
 
 
 def ratios(t):
@@ -130,6 +157,14 @@ def summarize():
     assert np.allclose(ans[:10,[0,1,3,4]].sum(0),1)
     assert np.allclose(ans[10,[0,1,3,4]],ans[8:10,[0,1,3,4]].sum(0))
     REPORT.mkdir(exist_ok=True,parents=True)
+    audit_paths=sorted(OUT.glob('cpu-gpu-*.json'))
+    if audit_paths:
+        assert len(audit_paths)==4
+        audit_rows=[c for p in audit_paths for c in json.loads(p.read_text())['checks']]
+        report['cpu_gpu_overlap']=dict(columns=['entropy','R_KL','U_KL','Rres_KL','mean_label','second_label','MSE','control'],
+            questions=len(audit_rows),positions=sum(c['positions'] for c in audit_rows),
+            mean_abs=(np.sum([c['absolute_sum'] for c in audit_rows],axis=0)/sum(c['positions'] for c in audit_rows)).tolist(),
+            max_abs=np.max([c['max_abs'] for c in audit_rows],axis=0).tolist())
     json_save(REPORT/'results.json',report)
     md=['# 学生熵分层（固定拟合探针，题外投影器）','',
         '1500 题，1,185,192 个回答位置。全词表单位为 nats，温度 1.1。按整题聚类重抽 10,000 次，种子 20261124，使用全探针固定切点。位置等权，各位置的有效候选等权。R² 使用校准后的题外预测和各组内的加权标签方差。各 KL 均为净前向 KL。U 表示老师相对投影目标；Rres 表示并集内扣除修正后的残差老师相对学生。控制词精确匹配单个 token 及其带一个前导空格的形式，包含生成配置的两个 EOS ID。多 token 拼写不代表一个 top-1 候选。并列最大取最小词表 ID。','',
@@ -143,6 +178,8 @@ def summarize():
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('lane',choices=['0','1','2','3','report'])
+    parser.add_argument('--device',choices=['cpu','cuda'],default='cpu')
+    parser.add_argument('--audit',action='store_true')
     args=parser.parse_args()
     if args.lane=='report':summarize()
-    else:score(int(args.lane))
+    else:score(int(args.lane),args.device,args.audit)
