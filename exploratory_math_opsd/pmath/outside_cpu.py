@@ -9,37 +9,43 @@ from token_kl import TEMPERATURES
 
 @torch.inference_mode()
 def run(lane):
-    assert os.environ['CUDA_VISIBLE_DEVICES']==''
+    gpu = os.getenv('RRES_FORWARD_DEVICE') == 'cuda'
+    device = 'cuda' if gpu else 'cpu'
+    torch.set_float32_matmul_precision('highest')
     out=WORK/'rres-outside-probability';out.mkdir(exist_ok=True)
     model=AutoModelForCausalLM.from_pretrained(MODEL,torch_dtype=torch.bfloat16,attn_implementation='sdpa').eval()
+    model.to(device)
     for m in model.modules():
         if isinstance(m,torch.nn.Linear):
-            m.weight=torch.nn.Parameter(m.weight.float(),requires_grad=False)
+            m.weight=torch.nn.Parameter(m.weight if gpu else m.weight.float(),requires_grad=False)
             bias=m.bias.float() if m.bias is not None else None
-            m.forward=lambda x,m=m,b=bias:F.linear(x.float(),m.weight,b).bfloat16()
+            m.forward=lambda x,m=m,b=bias:F.linear(x.float(),m.weight.float(),b).bfloat16()
     head=model.lm_head.weight
     scale=torch.load(WORK/'projector.pt',weights_only=True)['scale'];folds=split()
     params=[]
     for k in range(4):
         z=torch.load(WORK/f'fit-{k}.pt',weights_only=True)
-        params.append((z['A'],F.linear(head,z['B'])))
+        params.append((z['A'],F.linear(head.cpu().float(),z['B'])))
     rows=torch.load(WORK/f'rollouts-{lane}.pt',weights_only=True)
-    for j in range(0,len(rows),5):
+    indices = list(range(0,len(rows),5))
+    if gpu: indices = [0] + indices[:0:-1]
+    for j in indices:
         dest=out/f'w{lane}-{j}.pt'
-        if dest.exists():continue
+        audit = gpu and j == 0
+        if dest.exists() and not audit:continue
         values=[];err=0.
         for idx,_,t,y in rows[j:j+5]:
             x=torch.load(WORK/f'features-{idx}.pt',weights_only=True)
-            ht=model.model(input_ids=torch.tensor([t+y]),use_cache=False).last_hidden_state[0,len(t)-1:-1]
+            ht=model.model(input_ids=torch.tensor([t+y],device=device),use_cache=False).last_hidden_state[0,len(t)-1:-1]
             A,v=params[folds[idx]]
             for p in range(0,len(y),64):
-                t0=model.lm_head(ht[p:p+64]).float()
+                t0=model.lm_head(ht[p:p+64]).float().cpu()
                 ids=x['ids'][p:p+64].long(); valid=x['valid'][p:p+64]
                 h=x['h'][p:p+64].float()
                 fix=scale*torch.einsum('pr,pcr->pc',F.linear(h,A),v[ids])
                 inside=t0.gather(1,ids)
                 if p==0:
-                    si=(head[ids[0]]@h[0]).bfloat16().float()
+                    si=(head[ids[0]].cpu().float()@h[0]).bfloat16().float()
                     d=inside[0]-si
                     d=d-(d*si.masked_fill(~valid[0],-torch.inf).softmax(0)).sum()
                     err=max(err,(x['d'][0]-d).abs()[valid[0]].max().item())
@@ -52,5 +58,18 @@ def run(lane):
                         return torch.sigmoid(o-l)
                     probs.append(torch.stack([outside(inside),outside(inside-fix)],1))
                 values.append(torch.stack(probs,1))
-        save(dest,dict(probabilities=torch.cat(values),questions=len(rows[j:j+5]),max_label_error=err,device='cpu'))
+        data=dict(probabilities=torch.cat(values),questions=len(rows[j:j+5]),max_label_error=err,device=device)
+        if audit:
+            ref=torch.load(dest,weights_only=True)['probabilities']
+            diff=(data['probabilities']-ref).abs()
+            assert torch.isfinite(diff).all()
+            save(out/f'comparison-{lane}.pt',dict(mean_abs=diff.mean().item(),max_abs=diff.max().item(),mean_shift=(data['probabilities']-ref).mean().item()))
+        elif gpu:
+            tmp=out/f'gpu-{lane}-{j}.partial'
+            torch.save(data,tmp)
+            try: os.link(tmp,dest)
+            except FileExistsError: pass
+            finally: tmp.unlink()
+        else:
+            save(dest,data)
 if __name__=='__main__':run(int(sys.argv[1]))

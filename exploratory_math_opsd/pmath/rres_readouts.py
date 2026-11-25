@@ -32,7 +32,7 @@ def probabilities():
         assert abs(groups['R_outside_positive_KL_share']-prior['temperatures'][str(temp)]['R']['outside_C_share'])<1e-9
         out[str(temp)]=groups
     json_save(OUT/'outside_probability.json',dict(positions=len(x),questions=1500,
-        folds='OOF',probability_source='CPU reconstructed teacher, archived candidate IDs',positive_KL_source='CPU aggregation of archived positive KL statistics',max_centered_label_error=max(b['max_label_error'] for b in blocks),temperatures=out))
+        folds='OOF',probability_source='Reconstructed teacher, archived candidate IDs', device_blocks={d:sum(b['device']==d for b in blocks) for d in ('cpu','cuda')}, cpu_gpu_overlap=[torch.load(p,weights_only=True) for p in sorted((WORK/'rres-outside-probability').glob('comparison-*.pt'))],positive_KL_source='CPU aggregation of archived positive KL statistics',max_centered_label_error=max(b['max_label_error'] for b in blocks),temperatures=out))
 def markers(models):
     marks=('**','---','$$')
     report={}

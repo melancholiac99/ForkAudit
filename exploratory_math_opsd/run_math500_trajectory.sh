@@ -8,9 +8,6 @@ export HF_HOME="$root/hf-cache" HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1
 export TMPDIR=/mnt/data2/ForkAudit/math-opsd/tmp CUDA_VISIBLE_DEVICES=0,1,2,3 OMP_NUM_THREADS=2 PYTHONNOUSERSITE=1
 export PYTHONPATH="$here/pmath:$here"
 export WANDB_MODE=offline WANDB_DIR="$root/logs" TORCH_CUDA_ARCH_LIST=8.0
-while ! test -s /mnt/data2/ForkAudit/math-opsd/rres_closeout_remote.txt; do
-    systemctl is-active --quiet forkaudit-rres-screen-close || { test -s /mnt/data2/ForkAudit/math-opsd/rres_closeout_remote.txt || exit 1; }
-    sleep 5
-done
+# The CPU-only Rres report publishes independently of MATH-500 evaluation.
 python "$here/pmath/install_candidates.py"
 exec python "$here/math500_trajectory.py"
