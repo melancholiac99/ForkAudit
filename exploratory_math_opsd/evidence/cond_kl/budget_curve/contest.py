@@ -61,12 +61,12 @@ def publish(arm,result):
     dest.with_suffix('.md').write_text('\n'.join(lines)+'\n')
 
 
-def run(arm,env):
+def run(arm,env,benches=BENCHES):
     ck=ROOT/'run'/arm.split('@')[0]
     assert sha(ck/'checkpoint-100/adapter_model.safetensors')==read(ck/'complete.json')['adapters']['100']
     rng=np.random.default_rng(20261124)
     total=[]; result=dict(scores={},receipts={})
-    for bench in BENCHES:
+    for bench in benches:
         cells=[measure(a,bench,env) for a in ('B','R@100',arm)]
         assert cells[0][0]==cells[1][0]==cells[2][0] and len(set(cells[0][0]))==30
         raw=np.stack([c[1] for c in cells]);result['receipts'][bench]=[c[2] for c in cells]
@@ -82,6 +82,8 @@ def run(arm,env):
                 result['decision']=dict(not_run=list(BENCHES[1:]),reason='AIME24 below B')
                 publish(arm,result);return
         publish(arm,result)
+    if benches!=BENCHES:
+        return
     all_scores=summarize(np.mean(total,axis=0),arm)
     result['scores']['equal_weight']=all_scores
     if arm==BOUNDARY:
@@ -105,4 +107,9 @@ if __name__=='__main__':
     # analyze.py sets CUDA_VISIBLE_DEVICES='' on import; four_engines assigns
     # CUDA_VISIBLE_DEVICES individually to each of its four evaluator subprocesses.
     org.init()
-    run(BOUNDARY,env)
+    if sys.argv[1:]==['interior-aime24']:
+        run(INTERIOR,env,('aime24',))
+    elif not sys.argv[1:]:
+        run(BOUNDARY,env)
+    else:
+        raise SystemExit('Expected no arguments or interior-aime24')
