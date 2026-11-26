@@ -6,6 +6,48 @@ from common_io import *
 MODELS=('B','R-cond@100')
 LIMIT=16384
 
+def install_forcing(worker,eos,marker):
+    """Intercept the synchronized sampled IDs before both the KV runner and scheduler consume them."""
+    runner=worker.model_runner
+    assert not runner.use_async_scheduling and not getattr(runner,'speculative_config',None)
+    original=runner._to_list
+    pending={}
+    events={}
+    runner.forcing_events=events
+    def apply(sampled):
+        rows=original(sampled)
+        batch=runner.input_batch
+        discarded=set(runner.discard_request_indices.np[:runner.num_discarded_requests])
+        for ix,(rid,row) in enumerate(zip(batch.req_ids,rows)):
+            if ix in discarded:continue
+            assert len(row)==1
+            if rid in pending:
+                row[0]=pending[rid].pop(0)
+                if not pending[rid]:del pending[rid]
+                # vLLM's own discarded-draw bookkeeping uses four Philox offsets.
+                generator=batch.generators[ix]
+                generator.set_offset(generator.get_offset()-4)
+                continue
+            if row[0] not in eos:continue
+            req=runner.requests[rid]
+            sp=req.sampling_params
+            j=sp.seed-1001
+            assert j in (0,1)
+            data=sp.extra_args
+            L=data['target_lengths'][j]
+            key=(data['forcing_row'],j)
+            pos=len(req.output_token_ids)
+            if pos+1<L and pos+len(marker)<=sp.max_tokens and len(events.get(key,[]))<8:
+                events.setdefault(key,[]).append((pos,row[0]))
+                row[0]=marker[0]
+                if len(marker)>1:pending[rid]=list(marker[1:])
+        return rows
+    runner._to_list=apply
+    return True
+
+def read_events(worker):
+    return worker.model_runner.forcing_events
+
 def measure(lane,mode,model):
     from vllm import SamplingParams
     from vllm.lora.request import LoRARequest
@@ -28,44 +70,29 @@ def measure(lane,mode,model):
     assert tok.decode(marker)=='\n\nWait,'
     eos=set(read(ROOT/'models/Qwen3-1.7B/generation_config.json')['eos_token_id'])
     prompts=[tok.apply_chat_template([dict(role='user',content=ref[i]['problem']+'\n\nPlease reason step by step, and put your final answer within \\boxed{}.')],tokenize=False,add_generation_prompt=True,enable_thinking=False) for i in indices]
-    def params(n,seed,limit):
-        return SamplingParams(n=n,seed=seed,temperature=.7,top_p=.8,top_k=20,min_p=0.,presence_penalty=0.,max_tokens=limit)
-    outputs=llm.generate(prompts,params(2,1001,LIMIT),lora_request=request)
+    llm.collective_rpc(install_forcing, args=(list(eos),marker))
+    params=[SamplingParams(n=2,seed=1001,temperature=.7,top_p=.8,top_k=20,min_p=0.,
+                    presence_penalty=0.,max_tokens=LIMIT,
+                    extra_args={'forcing_row':i,'target_lengths':[g['generated_tokens'] for g in ref[i]['generations']]})
+            for i in indices]
+    outputs=llm.generate(prompts,params,lora_request=request)
     if request:assert 1 in llm.llm_engine.list_loras()
-    history={}; current={}; prompt_ids={}; active=[]; result={}
+    events,=llm.collective_rpc(read_events)
+    result={}
     for i,response in zip(indices,outputs):
-        prompt_ids[i]=list(response.prompt_token_ids)
         assert len(response.outputs)==2
         for j,ans in enumerate(response.outputs):
-            assert ans.index==j
-            key=i,j
-            history[key]=[];current[key]=ans;active.append(key)
-    for round_id in range(9):
-        pending=[];requests=[];sampling=[]
-        for key in active:
-            i,j=key; ans=current[key]; seq=history[key]
-            seq.extend(ans.token_ids)
+            seq=list(ans.token_ids)
+            assert ans.index==j and 0<len(seq)<=LIMIT and ans.finish_reason in ('stop','length')
             L=ref[i]['generations'][j]['generated_tokens']
-            assert len(seq)<=LIMIT and ans.finish_reason in ('stop','length')
-            if ans.finish_reason=='stop':
-                assert seq[-1] in eos, (ans.stop_reason,seq[-1])
-            if ans.finish_reason=='stop' and len(seq)<L and round_id<8 and len(seq)-1+len(marker)<=LIMIT:
-                seq.pop();seq.extend(marker)
-                if len(seq)==LIMIT:
-                    pred=extract_boxed_answer(tok.decode(seq,skip_special_tokens=True))
-                    result[key]=dict(target=L,tokens=LIMIT,insertions=round_id+1,predicted=pred,correct=grade_answer(pred,ref[i]['ground_truth']),finish_reason='length',token_ids=seq)
-                    continue
-                pending.append(key);requests.append(dict(prompt_token_ids=prompt_ids[i]+seq))
-                sampling.append(params(1,1001+j+(round_id+1)*1009,LIMIT-len(seq)))
-                continue
-            text=tok.decode(seq,skip_special_tokens=True)
-            pred=extract_boxed_answer(text)
-            result[key]=dict(target=L,tokens=len(seq),insertions=round_id,predicted=pred,correct=grade_answer(pred,ref[i]['ground_truth']),finish_reason=ans.finish_reason,token_ids=seq)
-        if not pending:break
-        assert round_id<8
-        outputs=llm.generate(requests,sampling,lora_request=request)
-        for k,res in zip(pending,outputs):current[k]=res.outputs[0]
-        active=pending
+            edits=events.get((i,j),[])
+            assert len(edits)<=8
+            assert all(pos+1<L and eos_id in eos and seq[pos:pos+len(marker)]==marker for pos,eos_id in edits)
+            if ans.finish_reason=='stop' and len(seq)<L and len(seq)-1+len(marker)<=LIMIT:
+                assert len(edits)==8
+            pred=extract_boxed_answer(ans.text)
+            result[i,j]=dict(target=L,tokens=len(seq),insertions=len(edits),forced_at=edits,predicted=pred,
+                       correct=grade_answer(pred,ref[i]['ground_truth']),finish_reason=ans.finish_reason,token_ids=seq)
     assert len(result)==2*len(indices)
     for i in indices:save(dest/f'{i}.json',[result[i,j] for j in range(2)])
 
