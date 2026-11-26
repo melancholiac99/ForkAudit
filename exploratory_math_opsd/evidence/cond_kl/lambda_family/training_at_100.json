@@ -1,0 +1,87 @@
+{
+  "seed": 42,
+  "receipts": {
+    "R-lambda0": {
+      "arm": "R-lambda0",
+      "wall_seconds": 1482.0337426709993,
+      "adapters": {
+        "25": "06da60e0c27a1dc0c926cad0b7317e765f0ea4b4646ee99ba9af7ea4f9a3bc49",
+        "50": "310506c048acdbdb0423f37828537ea9b95fd2832604751d7bd87d43a4061ea8",
+        "75": "f41528292cc973f3bdddb7f1c2261f959bf90b1a2b21fef6b9cdd4e82b544b33",
+        "100": "9cdc19865e006fc0ced03a86eb088dacc372fc76d93f9cf88775ffd62a1aa4c9"
+      }
+    },
+    "R-lambda05": {
+      "arm": "R-lambda05",
+      "wall_seconds": 1484.379817515999,
+      "adapters": {
+        "25": "d451d88833bb64fcbcc388905bc10fdd8c65bd1adfc817143c8e5ecec3846f4f",
+        "50": "7792b5793470bb8dae8544b8fc135cdfa441149496f5b82b9ae7df94f475755c",
+        "75": "2c312207e4421ae440ac926dd901b3636ed1cc84c920eba536bde82974148703",
+        "100": "2fe9f89778eb721ee20603fc1fc48499fb377b3bf1d2a58386b236d5b8b23436"
+      }
+    }
+  },
+  "training": {
+    "R-lambda0": {
+      "25": {
+        "positions": 26765,
+        "mean_size": 0.37963758640014944,
+        "mean_qa": 0.15649525014992943,
+        "mean_pa": 0.10906453428509168,
+        "skipped": 0
+      },
+      "50": {
+        "positions": 27356,
+        "mean_size": 0.3858020178388653,
+        "mean_qa": 0.16732081367863968,
+        "mean_pa": 0.11557755549291907,
+        "skipped": 0
+      },
+      "75": {
+        "positions": 27981,
+        "mean_size": 0.34770022515278226,
+        "mean_qa": 0.13397471478547665,
+        "mean_pa": 0.08719371359517476,
+        "skipped": 0
+      },
+      "100": {
+        "positions": 30195,
+        "mean_size": 0.3909587680079483,
+        "mean_qa": 0.14986429542061272,
+        "mean_pa": 0.09684646974636497,
+        "skipped": 0
+      }
+    },
+    "R-lambda05": {
+      "25": {
+        "positions": 28926,
+        "mean_size": 0.45049436493120376,
+        "mean_qa": 0.20652910392577656,
+        "mean_pa": 0.14818493773024713,
+        "skipped": 0
+      },
+      "50": {
+        "positions": 27723,
+        "mean_size": 0.4143851675504094,
+        "mean_qa": 0.1876296686867299,
+        "mean_pa": 0.13254051822850396,
+        "skipped": 0
+      },
+      "75": {
+        "positions": 29773,
+        "mean_size": 0.42377321734457396,
+        "mean_qa": 0.1753444107255573,
+        "mean_pa": 0.11548178222874857,
+        "skipped": 0
+      },
+      "100": {
+        "positions": 27522,
+        "mean_size": 0.4556718261754233,
+        "mean_qa": 0.199608697810227,
+        "mean_pa": 0.1308923827783101,
+        "skipped": 0
+      }
+    }
+  }
+}
