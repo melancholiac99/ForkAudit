@@ -1,5 +1,6 @@
 """Continue both forced first-token conditions using a common R policy and remaining budget."""
 import numpy as np
+import os
 from settings import *
 
 def selected(labels):
@@ -20,9 +21,11 @@ def run(lane,stage):
     labels=read(RAW/'labels.json'); jobs=[]
     sites=selected(labels)
     # Balance the pilot and remainder separately so the pilot uses all four engines.
+    lanes=int(os.environ.get('REFLECTION_LANES','4'))
+    assert lanes in (2,3,4) and 0<=lane<lanes
     for subset in (True,False):
         if stage=='pilot' and not subset:continue
-        jobs.extend([(i,pos) for i,pos,pilot in sites if pilot==subset][lane::4])
+        jobs.extend([(i,pos) for i,pos,pilot in sites if pilot==subset][lane::lanes])
     jobs=[(i,pos) for i,pos in jobs if not (RAW/f'fork-{i}-{pos}.json').exists()]
     if not jobs:return
     records={i:(sp,y) for j in range(4) for i,sp,_,y in torch.load(WORK/f'rollouts-{j}.pt',weights_only=True)}
@@ -34,9 +37,12 @@ def run(lane,stage):
     llm=LLM(model=str(MODEL),dtype='bfloat16',enable_lora=True,max_lora_rank=64,
             max_model_len=20000,max_num_seqs=64,tensor_parallel_size=1,gpu_memory_utilization=.84,seed=lane)
     adapter=LoRARequest('R100',1,str(ck))
-    for start in range(0,len(jobs),64):
+    handoff=os.environ.get('REFLECTION_HANDOFF')
+    batch=16 if handoff else 64
+    for start in range(0,len(jobs),batch):
+        if handoff and Path(handoff).exists():break
         prompts=[];params=[];keys=[];parts={}
-        for i,pos in jobs[start:start+64]:
+        for i,pos in jobs[start:start+batch]:
             with np.load(RAW/f'score-{i}.npz') as z:first=z['first'][list(z['sites']).index(pos)]
             sp,y=records[i]
             for arm in (0,1):
@@ -54,7 +60,7 @@ def run(lane,stage):
             for key,req,o in zip(keys,prompts,out):
                 assert list(o.prompt_token_ids)==req['prompt_token_ids']
                 parts[key].extend(o.outputs[0].token_ids)
-        for i,pos in jobs[start:start+64]:
+        for i,pos in jobs[start:start+batch]:
             rows=[];_,y=records[i]
             for arm in (0,1):
                 for rep in range(4):

@@ -11,7 +11,7 @@ from launch import sha
 @torch.inference_mode()
 def run(lane):
     labels=read(RAW/'labels.json')
-    info=read(HERE.parent/'reflection_ids.json')
+    info=read(HERE/'tokens.json')
     ids=info['included_ids'];wait=[info['encodings'][k][0] for k in ('Wait',' Wait')]
     assert len(ids)==8 and len(set(wait))==2
     actor=None

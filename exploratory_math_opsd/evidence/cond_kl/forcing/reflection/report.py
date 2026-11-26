@@ -13,7 +13,7 @@ def bootstrap(n):
 
 def targeting():
     labels=read(RAW/'labels.json');indices=sorted(map(int,labels))
-    meta=read(HERE.parent/'reflection_ids.json')
+    meta=read(HERE/'tokens.json')
     tids=meta['included_ids'];groups=[[tids.index(meta['encodings'][s][0]) for s in (word,' '+word)] for word in ('Wait','But','Hmm','Alternatively')]
     shape=(len(indices),2,3,2)
     weights=np.zeros(shape);sums=np.zeros(shape+(6,5));qweights=np.zeros(shape);qsums=np.zeros_like(sums)
@@ -56,7 +56,7 @@ def targeting():
 def forks():
     labels=read(RAW/'labels.json')
     sites=selected(labels);questions=sorted({i for i,_,_ in sites}); grouped={i:[] for i in questions}
-    meta=read(HERE.parent/'reflection_ids.json')
+    meta=read(HERE/'tokens.json')
     wait=[meta['included_ids'].index(meta['encodings'][s][0]) for s in (' Wait','Wait')]
     for i,pos,_ in sites:
         rec=read(RAW/f'fork-{i}-{pos}.json')
@@ -103,7 +103,7 @@ def render():
                 x=r['combined'];p=x['log_ratio_minus_B']
                 lines.append(f"| {model} | {x['wrong']['mean']:.5%} | {x['correct']['mean']:.5%} | {x['log_wrong_over_correct']['mean']:+.3f} | {p['mean']:+.3f} [{p['ci95'][0]:+.3f}, {p['ci95'][1]:+.3f}] |")
     if (HERE/'pilot.json').exists():
-        v=read(HERE/'pilot.json');lines+=['',f"32 个位置、256 条分叉续写，四卡用时 {v['seconds']/60:.2f} 分钟（含引擎启动）。"]
+        v=read(HERE/'pilot.json');lines+=['',f"32 个位置、256 条分叉续写，{v.get('gpus',4)} 卡用时 {v['seconds']/60:.2f} 分钟（含引擎启动）。"]
     if (HERE/'forks.json').exists():
         x=read(HERE/'forks.json')
         lines+=['','## R 的局部干预','','| 统计量 | 剩余 token [95% CI] | 正确率（百分点）[95% CI] |','|---|---:|---:|']
