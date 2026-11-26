@@ -11,7 +11,7 @@ def bootstrap(n):
         ix=rng.integers(n,size=(100,n))
         yield np.stack([np.bincount(i,minlength=n) for i in ix]).astype(float)
 
-def targeting():
+def targeting(exclude=None):
     labels=read(RAW/'labels.json');indices=sorted(map(int,labels))
     meta=read(HERE/'tokens.json')
     tids=meta['included_ids'];groups=[[tids.index(meta['encodings'][s][0]) for s in (word,' '+word)] for word in ('Wait','But','Hmm','Alternatively')]
@@ -22,6 +22,9 @@ def targeting():
         if row['correct'] is None:continue
         good=int(row['correct']);types=np.array([b for _,b in row['boundaries']],dtype=str)
         with np.load(RAW/f'score-{idx}.npz') as z:p=z['p']
+        if exclude is not None:
+            keep=np.array([pos not in exclude.get(idx,set()) for pos,_ in row['boundaries']],dtype=bool)
+            types=types[keep];p=p[keep]
         metrics=np.stack([p.sum(-1),*[p[:,:,g].sum(-1) for g in groups]],axis=-1)
         for sensitivity in (0,1):
             if sensitivity and not(row['ended'] and row['has_box']):continue
@@ -51,11 +54,11 @@ def targeting():
                     for f,word in enumerate(('combined','Wait','But','Hmm','Alternatively')):
                         rows[model][word]={name:dict(mean=point[h,j,m,f,k],ci95=ci[:,h,j,m,f,k].tolist()) for k,name in enumerate(('wrong','correct','log_wrong_over_correct','log_ratio_minus_B','log_wrong_over_B','log_correct_over_B'))}
                 out[f'{key}/{subset}/{bound}']=dict(questions=qweights.sum(0)[h,j].tolist(),positions=weights.sum(0)[h,j].tolist(),models=rows)
-    save(HERE/'targeting.json',out)
+    save(HERE/('targeting.json' if exclude is None else 'targeting_no_exclamation.json'),out)
 
-def forks():
+def forks(exclude=None):
     labels=read(RAW/'labels.json')
-    sites=selected(labels);questions=sorted({i for i,_,_ in sites}); grouped={i:[] for i in questions}
+    sites=[s for s in selected(labels) if exclude is None or s[1] not in exclude.get(s[0],set())];questions=sorted({i for i,_,_ in sites}); grouped={i:[] for i in questions}
     meta=read(HERE/'tokens.json')
     wait=[meta['included_ids'].index(meta['encodings'][s][0]) for s in (' Wait','Wait')]
     for i,pos,_ in sites:
@@ -85,7 +88,7 @@ def forks():
     point=calc(np.ones((1,n)))[0];draws=np.concatenate([calc(w) for w in bootstrap(n)])
     keys=[f'{arm}/{w}' for arm in ('Wait','nonWait','Wait_minus_nonWait') for w in ('equal','R_weighted','B_weighted')]+['R_weighted_effect_minus_equal','R_weighted_effect_minus_B_weighted','within_question_high_minus_low_R_propensity_effect']
     out=dict(sites=len(sites),questions=n,paired_sites_questions=int(pair[:,0].sum()),continuations=8*len(sites),metrics={key:{m:interval(point[k,j],draws[:,k,j]) for j,m in enumerate(('remaining_length','accuracy','at_cap'))} for k,key in enumerate(keys)})
-    save(HERE/'forks.json',out)
+    save(HERE/('forks.json' if exclude is None else 'forks_no_exclamation.json'),out)
 
 def render():
     c=read(HERE/'coverage.json')
@@ -112,6 +115,16 @@ def render():
             for metric,scale in [('remaining_length',1),('accuracy',100)]:
                 p=g[metric];cells.append(f"{p['mean']*scale:+.2f} [{p['ci95'][0]*scale:+.2f}, {p['ci95'][1]*scale:+.2f}]")
             lines.append('| '+key+' | '+' | '.join(cells)+' |')
+    if (HERE/'boundary_audit.json').exists():
+        audit=read(HERE/'boundary_audit.json')
+        filtered=read(HERE/'targeting_no_exclamation.json')
+        lines+=['','## 句末识别复核','',
+                f"原句末规则把数学阶乘符号也当成了句末。保守复算排除全部以 ASCII 感叹号结尾的句末，共 {audit['excluded_sentence_positions']} 个位置，其中包括 {audit['excluded_fork_sites']} 个分叉点。原始分叉保留，复算只使用余下位置。"]
+        for kind,label in [('sentence','句末'),('paragraph','段末'),('both','合计')]:
+            x=filtered['position/all/'+kind]['models']['R@100']['combined']['log_ratio_minus_B']
+            lines.append(f"- {label}的 R−B 错/对对数比差为 {x['mean']:+.3f}，95% 区间 [{x['ci95'][0]:+.3f}, {x['ci95'][1]:+.3f}]。")
+        effect=read(HERE/'forks_no_exclamation.json')['metrics']['Wait_minus_nonWait/equal']
+        lines+=['',f"排除后，强制 Wait 的续写平均多 {effect['remaining_length']['mean']:.1f} 个 token，正确率差为 {100*effect['accuracy']['mean']:+.2f} 个百分点。"]
     (HERE/'REPORT.md').write_text('\n'.join(lines)+'\n')
 if __name__=='__main__':
     if sys.argv[1]=='targeting':targeting()

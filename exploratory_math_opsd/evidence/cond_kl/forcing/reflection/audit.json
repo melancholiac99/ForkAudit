@@ -1,0 +1,35 @@
+{
+  "correct": 593,
+  "wrong": 906,
+  "missing": 1,
+  "sentence": 4290,
+  "paragraph": 45800,
+  "eligible_positions": 50063,
+  "digit_followed_by_bang_sentence_boundaries": 256,
+  "adapters": {
+    "P": "98a524bcddf8f02c4761c9e7a7c4e262b67c160aad046de6de3c0de425e37a7c",
+    "T0": "cb49c21675a89c8d54dce338a2e71053dfdf4194544cc36602d7caa0db2f6910",
+    "R": "605f675f76ac2edd996fab5bdf2eeb110bb3879bc740729230a6e4355d3805f7",
+    "R-noclip": "fa9dec4cc831eae4547db0d58671a51e28e4814ffe589b3f231dfee1a6e824cc",
+    "R-cond": "bb13440a1fb1343ba88fadbe7bb54bc8b7dda5d48098bebae22f7b586e4b58d5"
+  },
+  "eight_token_ids": [
+    1988,
+    3983,
+    13824,
+    14190,
+    38478,
+    80022,
+    88190,
+    92014
+  ],
+  "independent_targeting_max_abs_error": 2.3314683517128287e-15,
+  "independent_fork_deltas": [
+    29.531621063500257,
+    -0.02413526071244192
+  ],
+  "fork_questions": 1126,
+  "sites": 1937,
+  "continuations": 15496,
+  "continuations_regraded": 538
+}
