@@ -1,5 +1,5 @@
 from common_io import *
-from secondary import MODELS
+from secondary import MODELS, WORDS
 
 def run():
     paths=sorted((RAW/'secondary').glob('*.npz'),key=lambda p:int(p.stem))
@@ -17,6 +17,15 @@ def run():
                 teacher[i,j]=np.r_[t[sel].sum(),t[sel].sum(0)]
     assert counts[:,:2].sum()==1185192
     assert np.all(counts[:,1]==counts[:,2:].sum(1))
+    metadata=read(HERE/'reflection_ids.json')
+    ids=metadata['included_ids']
+    word_columns=[]
+    for word in WORDS:
+        token_ids={metadata['encodings'][form][0] for form in (word,' '+word) if len(metadata['encodings'][form])==1}
+        word_columns.append([ids.index(k) for k in token_ids])
+    sums=np.concatenate([sums,*[sums[:,:,:,np.array(cols)+3].sum(-1,keepdims=True) for cols in word_columns]],axis=-1)
+    teacher=np.concatenate([teacher,*[teacher[:,:,np.array(cols)+1].sum(-1,keepdims=True) for cols in word_columns]],axis=-1)
+    dim=sums.shape[-1]
     def evaluate(w):
         den=w@counts
         vals=(w@sums.reshape(n,-1)).reshape(-1,7,4,dim)/den[:,:,None,None]
@@ -34,7 +43,7 @@ def run():
         draws.append(evaluate(w))
     lim=np.quantile(np.concatenate(draws),[.025,.975],axis=0)
     ids=read(HERE/'reflection_ids.json')['included_ids']
-    refl=['reflection_total',*['token_'+str(i) for i in ids]]
+    refl=['reflection_total',*['token_'+str(i) for i in ids],*['word_'+word for word in WORDS]]
     names=['top1_matches_teacher2','rank2_5_geom_ratio',*refl]
     keys=[f'{model}/{metric}' for model in MODELS for metric in names]
     keys+=['R_minus_'+v for v in keys]+['teacher/'+v for v in refl]+['R_over_B_rank2_5_ratio','q_U']
