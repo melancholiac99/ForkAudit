@@ -90,6 +90,11 @@ def forks():
 def render():
     c=read(HERE/'coverage.json')
     lines=['# 何时开始反思，以及强制 Wait 的局部效应','','事后探索。B 的最终答案判对 '+str(c['correct'])+' 条、判错 '+str(c['wrong'])+' 条、缺参考 '+str(c['missing_reference'])+' 条。边界共 '+str(c['boundaries'])+' 个；已冻结 '+str(c['fork_sites'])+' 个句末分叉。']
+    if (HERE/'cached_B.json').exists():
+        b=read(HERE/'cached_B.json')
+        for subset in ('all','completed_boxed'):
+            r=b[subset]
+            lines+=['',f"归档 B 隐藏状态的 CPU 核对（{subset}）：错组概率 {r['wrong']['mean']:.3%}，对组概率 {r['correct']['mean']:.3%}，对数比 {r['log_ratio']['mean']:+.3f}。"]
     if (HERE/'targeting.json').exists():
         v=read(HERE/'targeting.json')
         for subset in ('all','completed_boxed'):
