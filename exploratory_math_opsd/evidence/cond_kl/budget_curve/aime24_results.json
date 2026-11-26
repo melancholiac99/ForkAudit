@@ -1,0 +1,42 @@
+{
+  "receipts": {
+    "B": {
+      "layout": "4xTP1",
+      "sha256": "f698178d6b9c1c904d35b9307cd3a36d8824d61de0425a416d442acbabc2504b",
+      "adapter_sha256": null,
+      "wall_seconds": 2087.1874876329994,
+      "rate": 51.94444444444444,
+      "source": "/mnt/data2/ForkAudit/math-opsd/layout-benchmark"
+    },
+    "R@100": {
+      "layout": "4xTP1",
+      "sha256": "aa0dceb20d76a8251f6d52f678fac12ed6d66f05237837c60a51736cc50a1b1a",
+      "adapter_sha256": "605f675f76ac2edd996fab5bdf2eeb110bb3879bc740729230a6e4355d3805f7",
+      "wall_seconds": 3258.595864191,
+      "rate": 55.55555555555556
+    },
+    "R-clip-boundary@100": {
+      "layout": "4xTP1",
+      "sha256": "aa9c981e01b67c31c5ff6231d3ea959cb2d031cdeea8a8b24d9905d117570a94",
+      "adapter_sha256": "ae18b22accd77d302678dcf4098de94e3d2a3325df2444c0e5804c1e9a99aad3",
+      "wall_seconds": 2617.539507383999,
+      "rate": 48.05555555555556
+    }
+  },
+  "boundary_minus": {
+    "B": {
+      "pp": -3.8888888888888897,
+      "ci95": [
+        -9.166666666666668,
+        1.1111111111111107
+      ]
+    },
+    "R@100": {
+      "pp": -7.5,
+      "ci95": [
+        -12.777777777777775,
+        -2.7777777777777763
+      ]
+    }
+  }
+}
