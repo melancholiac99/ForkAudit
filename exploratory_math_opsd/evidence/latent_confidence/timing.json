@@ -1,0 +1,101 @@
+{
+  "unique_pilot_questions": 100,
+  "cpu_benchmark": {
+    "fixed": {
+      "draws": 1000,
+      "seconds_B": 0.038182848000360536,
+      "seconds_trained": 0.03419807799946284,
+      "estimated_seconds": 47.539372272198804
+    },
+    "math": {
+      "draws": 1000,
+      "seconds_B": 0.06539805099964724,
+      "seconds_trained": 0.06539805099964724,
+      "estimated_seconds": 59.45277363604295
+    }
+  },
+  "estimated_cpu_seconds": 106.99214590824175,
+  "work": {
+    "extract": {
+      "pilot_questions": 34,
+      "timed_questions": 7,
+      "measured_seconds": 1.2347498170001927,
+      "estimated_full_gpu_seconds": 130.1779092780203
+    },
+    "fixed-B": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 4.6967711840025,
+      "estimated_full_gpu_seconds": 106.74479963642047
+    },
+    "math-B": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 2.8972823729982338,
+      "estimated_full_gpu_seconds": 43.89821777270051
+    },
+    "fixed-T0@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 6.576518576006492,
+      "estimated_full_gpu_seconds": 149.46633127287484
+    },
+    "math-T0@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 9.565003659001377,
+      "estimated_full_gpu_seconds": 144.92429786365724
+    },
+    "fixed-R@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 6.914637438001591,
+      "estimated_full_gpu_seconds": 157.15085086367253
+    },
+    "math-R@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 12.530097883001872,
+      "estimated_full_gpu_seconds": 189.84996792427077
+    },
+    "fixed-R-noclip@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 8.181086238999342,
+      "estimated_full_gpu_seconds": 185.93377815907596
+    },
+    "math-R-noclip@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 6.642786495003747,
+      "estimated_full_gpu_seconds": 100.64828022732951
+    },
+    "fixed-R-cond@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 6.501539421993584,
+      "estimated_full_gpu_seconds": 147.76225959076328
+    },
+    "math-R-cond@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 5.366522611997425,
+      "estimated_full_gpu_seconds": 81.31094866662765
+    },
+    "fixed-P@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 6.599232238995683,
+      "estimated_full_gpu_seconds": 149.9825508862655
+    },
+    "math-P@100": {
+      "pilot_questions": 33,
+      "timed_questions": 33,
+      "measured_seconds": 5.455267489001926,
+      "estimated_full_gpu_seconds": 82.6555680151807
+    }
+  },
+  "full_gpu_hours": 0.4640293778213498,
+  "four_gpu_hours_wall_ideal": 0.11600734445533745,
+  "note": "Active question processing only. Hardware contention, loading, layer selection, CPU bootstrap and queue waits are additional."
+}

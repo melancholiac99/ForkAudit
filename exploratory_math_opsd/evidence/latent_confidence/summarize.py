@@ -112,8 +112,8 @@ def main():
     def show(a):return f"{a['estimate']:.4f} [{a['lo']:.4f}, {a['hi']:.4f}]"
     v=res['fixed']['models']['B']
     lines=['# 隐状态置信度','', '事后探索，已见前序结果。区间按题整簇重抽 10,000 次。','',
-           'B 的提示期望 AUROC 为 '+show(v['ec_auc'])+'，数字概率质量为 '+show(v['digit_mass'])+'。独立评估题上的自然投影与提示期望 Spearman 为 '+show(v['validation_spearman'])+'。',
-           ('低于登记的 0.2 门槛，隐式指标仅描述，以显式提示为主。' if v['validation_spearman']['estimate']<.2 else '达到登记的 0.2 门槛。'),
+           'B 的提示期望 AUROC 为 '+show(v['ec_auc'])+'，数字概率质量为 '+("{estimate:.3e} [{lo:.3e}, {hi:.3e}]".format(**v['digit_mass']))+'。独立评估题上的自然投影与提示期望 Spearman 为 '+show(v['validation_spearman'])+'。',
+           ('低于登记的 0.2 门槛，隐式指标仅描述，以显式提示为主。' if v['validation_spearman']['estimate']<.2 else '达到登记的 0.2 门槛。数字的原始概率质量极低，提示期望依赖在罕见数字 token 上的重新归一化。'),
            'MATH-500 的生成档案保存文本，按同一 tokenizer 重新分词。固定探针使用归档 token ID。']
     for kind in ('fixed','math'):
         lines+=['',f'## {kind}','','|模型或配对差|平均投影|AUROC（合计）|'+('提示期望|提示 AUROC|' if kind=='fixed' else '事件下降频率−随机|'),'|---|---:|---:|'+('---:|---:|' if kind=='fixed' else '---:|')]

@@ -9,26 +9,17 @@ HERE=Path(__file__).resolve().parent
 ROOT=Path('/mnt/data/ForkAudit/math-opsd')
 RAW=ROOT/'run/latent-confidence'
 FORCE=ROOT/'run/cond-kl/forcing'
-EVAL=ROOT/'run/evaluation'
 ARMS=['B','T0@100','R@100','R-noclip@100','R-cond@100','P@100']
 def finished(mode):
     d=RAW/mode
     f,m=(33,33) if mode=='pilot' else (750,500)
     return (d/'fit.json').exists() and all(len(list((d/(k+'-'+a)).glob('*.npz')))==n for a in ARMS for k,n in [('fixed',f),('math',m)])
 def windows():
-    if (EVAL/'R-cond@100/hmmt25/1001.receipt.json').exists() and (HERE.parent/'cond_kl/forcing/secondary.json').exists():
-        return {k:'after' for k in range(4)}
-    # Only borrow a shard with committed output while a sibling is still busy.
     for a in ('B','R-cond@100'):
         counts=[sum((FORCE/a/f'{i}.json').exists() for i in range(k,500,4)) for k in range(4)]
-        if max(counts)==125 and min(counts)<125:
+        if min(counts)<125:
             return {k:'budget-'+a for k,c in enumerate(counts) if c==125}
-    for bench in ('aime25','hmmt25'):
-        for arm in ('R-noclip','R-cond'):
-            d=EVAL/(arm+'@100')/bench/'1001-lanes'
-            done=[(d/f'lane{k}.json').exists() for k in range(4)]
-            if any(done) and not all(done):return {k:bench+arm for k,x in enumerate(done) if x}
-    return {}
+    return {k:'after-budget' for k in range(4)}
 
 def main():
     tasks={};finished_workers=set()
