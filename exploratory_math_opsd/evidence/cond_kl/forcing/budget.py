@@ -97,4 +97,11 @@ def measure(lane,mode,model):
     assert len(result)==2*len(indices)
     for i in indices:save(dest/f'{i}.json',[result[i,j] for j in range(2)])
 
-if __name__=='__main__':measure(int(sys.argv[1]),sys.argv[2],sys.argv[3])
+if __name__=='__main__':
+    import fcntl
+    lane=int(sys.argv[1])
+    lock_dir=RAW/'reflection'
+    lock_dir.mkdir(exist_ok=True)
+    with (lock_dir/f'gpu-{lane}.lock').open('a') as slot:
+        fcntl.flock(slot,fcntl.LOCK_EX)
+        measure(lane,sys.argv[2],sys.argv[3])
