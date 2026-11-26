@@ -180,3 +180,6 @@ P1：固定内容分歧位置上 R-noclip@100 比 R@100 熵上升更少、top-1 
 
 ### 边界位置截断 2×2（事后探索）
 采用 clip_positions/DESIGN.md 定稿的前缀边界，在固定探针核对 B、R@50 的截断与梯度扰动；R-clip-boundary、R-clip-interior 与 R 配置相同（种子 42，100 步）。训练不设预检数值门。固定探针及 MATH-500 非思考 4k/16k 的题级因子效应按该文件登记。
+
+### R-condA 动态分组条件 KL（事后探索，训练前登记）
+2×2 完成后按 cond_kl/condA/DESIGN.md 实施。每个位置动态取 A={q(log q−log p)>0.05}，冻结目标在 A 上为 p、U 上为 p(U)q/q(U)。使用 q(U) 加权的未截断前向 KL。对照梯度恒等式；按固定探针、次选表、4k/16k MATH-500 及 explicit 首答案分解测量。预登记两项机制预测及其解读限制见该设计。
