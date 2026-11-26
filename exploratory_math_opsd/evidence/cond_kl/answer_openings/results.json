@@ -1,0 +1,554 @@
+{
+  "models": {
+    "B · 16k": {
+      "n": 1000,
+      "archive_sha256": "fde9d599ccd071509fce66351005e9ed8ab9ade4d64b898a8c12f3a5d7da93a8",
+      "leading_closing_tag": 0,
+      "thinking_opening_pct": 0.0,
+      "top_words": [
+        {
+          "word": "we",
+          "n": 984,
+          "pct": 98.4
+        },
+        {
+          "word": "to",
+          "n": 15,
+          "pct": 1.5
+        },
+        {
+          "word": "remmy",
+          "n": 1,
+          "pct": 0.1
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 0,
+          "accuracy": null,
+          "tokens": null,
+          "closing_pct": null,
+          "wait_per_1000": null
+        },
+        "其他": {
+          "n": 1000,
+          "accuracy": 73.7,
+          "tokens": 985.02,
+          "closing_pct": 0.0,
+          "wait_per_1000": 0.10152078130393291
+        }
+      }
+    },
+    "T0@100 · 16k": {
+      "n": 1000,
+      "archive_sha256": "c3a821934cdec074ca90007862c6b97a49a1b66e08682235f532f8165ecf17b0",
+      "leading_closing_tag": 0,
+      "thinking_opening_pct": 0.0,
+      "top_words": [
+        {
+          "word": "we",
+          "n": 404,
+          "pct": 40.4
+        },
+        {
+          "word": "problem",
+          "n": 279,
+          "pct": 27.9
+        },
+        {
+          "word": "understanding",
+          "n": 199,
+          "pct": 19.9
+        },
+        {
+          "word": "step",
+          "n": 99,
+          "pct": 9.9
+        },
+        {
+          "word": "question",
+          "n": 12,
+          "pct": 1.2
+        },
+        {
+          "word": "given",
+          "n": 4,
+          "pct": 0.4
+        },
+        {
+          "word": "to",
+          "n": 3,
+          "pct": 0.3
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 0,
+          "accuracy": null,
+          "tokens": null,
+          "closing_pct": null,
+          "wait_per_1000": null
+        },
+        "其他": {
+          "n": 1000,
+          "accuracy": 74.5,
+          "tokens": 2459.164,
+          "closing_pct": 0.0,
+          "wait_per_1000": 0.46031903524937745
+        }
+      }
+    },
+    "R@100 · 16k": {
+      "n": 1000,
+      "archive_sha256": "94a94d4d08b4674acc9ae675a7af063dd387f0c48e2df3fcdd821454f8e8cb8d",
+      "leading_closing_tag": 0,
+      "thinking_opening_pct": 28.3,
+      "top_words": [
+        {
+          "word": "okay",
+          "n": 283,
+          "pct": 28.3
+        },
+        {
+          "word": "we",
+          "n": 211,
+          "pct": 21.1
+        },
+        {
+          "word": "understanding",
+          "n": 152,
+          "pct": 15.2
+        },
+        {
+          "word": "to",
+          "n": 88,
+          "pct": 8.8
+        },
+        {
+          "word": "human",
+          "n": 62,
+          "pct": 6.2
+        },
+        {
+          "word": "step",
+          "n": 59,
+          "pct": 5.9
+        },
+        {
+          "word": "ố",
+          "n": 27,
+          "pct": 2.7
+        },
+        {
+          "word": "first",
+          "n": 21,
+          "pct": 2.1
+        },
+        {
+          "word": "isobject",
+          "n": 19,
+          "pct": 1.9
+        },
+        {
+          "word": "(无词)",
+          "n": 12,
+          "pct": 1.2
+        },
+        {
+          "word": "firstly",
+          "n": 10,
+          "pct": 1.0
+        },
+        {
+          "word": "final",
+          "n": 7,
+          "pct": 0.7
+        },
+        {
+          "word": "is",
+          "n": 5,
+          "pct": 0.5
+        },
+        {
+          "word": "úng",
+          "n": 4,
+          "pct": 0.4
+        },
+        {
+          "word": "assistant",
+          "n": 3,
+          "pct": 0.3
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 283,
+          "accuracy": 81.62544169611307,
+          "tokens": 7655.3922261484095,
+          "closing_pct": 76.67844522968198,
+          "wait_per_1000": 3.039498245076336
+        },
+        "其他": {
+          "n": 717,
+          "accuracy": 76.15062761506276,
+          "tokens": 2389.747559274756,
+          "closing_pct": 13.110181311018131,
+          "wait_per_1000": 0.653068751973359
+        }
+      }
+    },
+    "R-noclip@100 · 16k": {
+      "n": 1000,
+      "archive_sha256": "098c572e86a550179dc4f33ccefaa40654ca585ad837d359e5b62328c3b9c484",
+      "leading_closing_tag": 731,
+      "thinking_opening_pct": 11.0,
+      "top_words": [
+        {
+          "word": "to",
+          "n": 741,
+          "pct": 74.1
+        },
+        {
+          "word": "okay",
+          "n": 110,
+          "pct": 11.0
+        },
+        {
+          "word": "we",
+          "n": 105,
+          "pct": 10.5
+        },
+        {
+          "word": "the",
+          "n": 36,
+          "pct": 3.6
+        },
+        {
+          "word": "step",
+          "n": 6,
+          "pct": 0.6
+        },
+        {
+          "word": "problem",
+          "n": 2,
+          "pct": 0.2
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 110,
+          "accuracy": 91.81818181818181,
+          "tokens": 3530.109090909091,
+          "closing_pct": 96.36363636363636,
+          "wait_per_1000": 3.2705659366694824
+        },
+        "其他": {
+          "n": 890,
+          "accuracy": 71.01123595505618,
+          "tokens": 1090.0292134831461,
+          "closing_pct": 82.24719101123596,
+          "wait_per_1000": 0.2659448360316083
+        }
+      }
+    },
+    "R-cond@100 · 16k": {
+      "n": 1000,
+      "archive_sha256": "cb21e153ce2f9fa889b639edd54c042afa675b46fac9fd14529d274368a877d8",
+      "leading_closing_tag": 783,
+      "thinking_opening_pct": 7.9,
+      "top_words": [
+        {
+          "word": "to",
+          "n": 850,
+          "pct": 85.0
+        },
+        {
+          "word": "okay",
+          "n": 79,
+          "pct": 7.9
+        },
+        {
+          "word": "we",
+          "n": 58,
+          "pct": 5.8
+        },
+        {
+          "word": "the",
+          "n": 13,
+          "pct": 1.3
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 79,
+          "accuracy": 98.73417721518987,
+          "tokens": 2608.3037974683543,
+          "closing_pct": 100.0,
+          "wait_per_1000": 3.0234499359397446
+        },
+        "其他": {
+          "n": 921,
+          "accuracy": 71.66123778501628,
+          "tokens": 1130.8751357220413,
+          "closing_pct": 85.01628664495114,
+          "wait_per_1000": 0.2640331203146123
+        }
+      }
+    },
+    "R-clip-boundary@100 · 16k": {
+      "n": 1000,
+      "archive_sha256": "67a040fb43e1cb6a913ae7bf6f76e9d57958a3f2974ed1a4859783cdc399d66e",
+      "leading_closing_tag": 0,
+      "thinking_opening_pct": 93.9,
+      "top_words": [
+        {
+          "word": "okay",
+          "n": 939,
+          "pct": 93.9
+        },
+        {
+          "word": "step",
+          "n": 43,
+          "pct": 4.3
+        },
+        {
+          "word": "question",
+          "n": 9,
+          "pct": 0.9
+        },
+        {
+          "word": "to",
+          "n": 8,
+          "pct": 0.8
+        },
+        {
+          "word": "the",
+          "n": 1,
+          "pct": 0.1
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 939,
+          "accuracy": 89.56336528221512,
+          "tokens": 5059.051118210863,
+          "closing_pct": 96.27263045793397,
+          "wait_per_1000": 3.489143868295397
+        },
+        "其他": {
+          "n": 61,
+          "accuracy": 59.01639344262295,
+          "tokens": 1700.0655737704917,
+          "closing_pct": 19.672131147540984,
+          "wait_per_1000": 1.2728535061328397
+        }
+      }
+    },
+    "R-clip-interior@100 · 16k": {
+      "n": 1000,
+      "archive_sha256": "25801280f3f839ffba99fed00f3c31ad11d6ef760eafa1cb29e9696e2ce1f75f",
+      "leading_closing_tag": 174,
+      "thinking_opening_pct": 2.5,
+      "top_words": [
+        {
+          "word": "自闭症谱系障碍",
+          "n": 245,
+          "pct": 24.5
+        },
+        {
+          "word": "to",
+          "n": 234,
+          "pct": 23.4
+        },
+        {
+          "word": "自变量",
+          "n": 105,
+          "pct": 10.5
+        },
+        {
+          "word": "we",
+          "n": 103,
+          "pct": 10.3
+        },
+        {
+          "word": "自闭",
+          "n": 58,
+          "pct": 5.8
+        },
+        {
+          "word": "自問",
+          "n": 28,
+          "pct": 2.8
+        },
+        {
+          "word": "okay",
+          "n": 25,
+          "pct": 2.5
+        },
+        {
+          "word": "自闭症",
+          "n": 20,
+          "pct": 2.0
+        },
+        {
+          "word": "自始至终",
+          "n": 18,
+          "pct": 1.8
+        },
+        {
+          "word": "自闭症谱系障碍的特征包括社交互动障碍",
+          "n": 18,
+          "pct": 1.8
+        },
+        {
+          "word": "think",
+          "n": 16,
+          "pct": 1.6
+        },
+        {
+          "word": "自",
+          "n": 14,
+          "pct": 1.4
+        },
+        {
+          "word": "自闭症谱系障碍的特征包括社交互动困难",
+          "n": 8,
+          "pct": 0.8
+        },
+        {
+          "word": "自变量与因变量之间的关系",
+          "n": 5,
+          "pct": 0.5
+        },
+        {
+          "word": "自述",
+          "n": 5,
+          "pct": 0.5
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 25,
+          "accuracy": 80.0,
+          "tokens": 5871.2,
+          "closing_pct": 100.0,
+          "wait_per_1000": 4.939365036108462
+        },
+        "其他": {
+          "n": 975,
+          "accuracy": 63.58974358974359,
+          "tokens": 1553.1158974358975,
+          "closing_pct": 50.256410256410255,
+          "wait_per_1000": 1.3531111651152226
+        }
+      }
+    },
+    "B 思考 · 32k": {
+      "n": 1000,
+      "archive_sha256": "0da79db9ac86650b3b5d13436cc6ff246a44b061c4a0fb5d22afc3a9094c7efc",
+      "leading_closing_tag": 0,
+      "thinking_opening_pct": 100.0,
+      "top_words": [
+        {
+          "word": "okay",
+          "n": 1000,
+          "pct": 100.0
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 1000,
+          "accuracy": 91.4,
+          "tokens": 5793.723,
+          "closing_pct": 99.5,
+          "wait_per_1000": 3.871776403531891
+        },
+        "其他": {
+          "n": 0,
+          "accuracy": null,
+          "tokens": null,
+          "closing_pct": null,
+          "wait_per_1000": null
+        }
+      }
+    },
+    "R-clip-boundary@100 · 4k": {
+      "n": 2000,
+      "archive_sha256": "61bf6acb3deac879799fe2aa702c74cc5f786fc015aa890194268e0d998f3121",
+      "leading_closing_tag": 0,
+      "thinking_opening_pct": 77.65,
+      "top_words": [
+        {
+          "word": "okay",
+          "n": 1548,
+          "pct": 77.4
+        },
+        {
+          "word": "let's",
+          "n": 367,
+          "pct": 18.35
+        },
+        {
+          "word": "step",
+          "n": 41,
+          "pct": 2.05
+        },
+        {
+          "word": "the",
+          "n": 15,
+          "pct": 0.75
+        },
+        {
+          "word": "question",
+          "n": 13,
+          "pct": 0.65
+        },
+        {
+          "word": "to",
+          "n": 7,
+          "pct": 0.35
+        },
+        {
+          "word": "let",
+          "n": 5,
+          "pct": 0.25
+        },
+        {
+          "word": "given",
+          "n": 2,
+          "pct": 0.1
+        },
+        {
+          "word": "in",
+          "n": 1,
+          "pct": 0.05
+        },
+        {
+          "word": "you",
+          "n": 1,
+          "pct": 0.05
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 1553,
+          "accuracy": 67.54668383773343,
+          "tokens": 3200.0631036703157,
+          "closing_pct": 67.4179008370895,
+          "wait_per_1000": 3.592371206459628
+        },
+        "其他": {
+          "n": 447,
+          "accuracy": 71.36465324384787,
+          "tokens": 1403.4183445190156,
+          "closing_pct": 10.29082774049217,
+          "wait_per_1000": 1.1413487043460517
+        }
+      }
+    }
+  },
+  "missing_16k": [
+    "R-lambda0@100",
+    "R-lambda05@100"
+  ]
+}
