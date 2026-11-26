@@ -1,5 +1,6 @@
 """Paired evaluation, registered 16k gates, and archival receipts."""
 import json
+import os
 import sys
 from pathlib import Path
 import numpy as np
@@ -51,8 +52,17 @@ def run_cells(names,budget):
 
 def scores(names,budget):
     sys.path.insert(0,str(HERE.parents[1]/'reasoning_organization'))
-    import analyze as org
-    org.init()
+    # The legacy CPU scorer hides CUDA at import time. Restore the original
+    # visibility before launching any subsequent four-card training subprocess.
+    visible = os.environ.get('CUDA_VISIBLE_DEVICES')
+    try:
+        import analyze as org
+        org.init()
+    finally:
+        if visible is None:
+            os.environ.pop('CUDA_VISIBLE_DEVICES', None)
+        else:
+            os.environ['CUDA_VISIBLE_DEVICES'] = visible
     base=LONG_OUT if budget==16384 else SHORT_OUT
     order=None
     per_model=[]

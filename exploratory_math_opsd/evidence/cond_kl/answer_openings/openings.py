@@ -45,17 +45,19 @@ def measure(arm,budget,thinking):
     qs,digest=archive(arm,budget,thinking)
     words=Counter();groups={True:[],False:[]}
     leading_close=0
+    containing_close=0
     for q in qs:
         for g in q['generations']:
             txt=g['full_generation']
             word,style=opening(txt,thinking)
             words[word]+=1
             groups[style].append(g)
+            containing_close+=('</think>' in txt)
             leading_close+=txt.lstrip().startswith('</think>')
     n=sum(words.values())
     top=sorted(words.items(),key=lambda p:(-p[1],p[0]))[:15]
     return dict(n=n,archive_sha256=digest,leading_closing_tag=leading_close,
-                thinking_opening_pct=100*len(groups[True])/n,
+                closing_pct=100*containing_close/n,thinking_opening_pct=100*len(groups[True])/n,
                 top_words=[dict(word=w,n=k,pct=100*k/n) for w,k in top],
                 groups={label:summarize(groups[key]) for key,label in ((True,'思考式'),(False,'其他'))})
 
@@ -76,11 +78,11 @@ def main():
     (HERE/'results.json').write_text(json.dumps(dict(models=report,missing_16k=missing),ensure_ascii=False,indent=2)+'\n')
     lines=['# MATH-500 回答开头','','首词为首个词法单元（字母或数字，可带词内撇号），忽略大小写、开头的控制标签、标点及排版符号。思考式严格从首词匹配 Okay、Alright、Hmm、Let me、So I need、I need to；短语中只允许空格或制表符。并列首词按字母顺序列出。','',
            'B 思考组从第一个 <think> 内抽取开头；所有组的正确性、原生生成长度、结束标签及 Wait 都在整条回答上统计。Wait 为大小写不敏感的完整单词，频率为每个分层的总次数除以原生 token 总数再乘 1,000。非思考 16k 和思考 32k 均为每题两条；4k 为每题四条。每档均为同一组 500 道题。','',
-           '|模型与归档|思考式开头占比|开头类型|回答数|准确率|平均长度|含结束标签|Wait / 千 token|','|---|---:|---|---:|---:|---:|---:|---:|']
+           '|模型与归档|全组含结束标签|思考式开头占比|开头类型|回答数|准确率|平均长度|含结束标签|Wait / 千 token|','|---|---:|---:|---|---:|---:|---:|---:|---:|']
     for name,x in report.items():
         for kind,r in x['groups'].items():
             metrics='—|—|—|—' if not r['n'] else f"{r['accuracy']:.2f}%|{r['tokens']:.1f}|{r['closing_pct']:.2f}%|{r['wait_per_1000']:.3f}"
-            lines.append(f"|{name}|{x['thinking_opening_pct']:.2f}%|{kind}|{r['n']}|{metrics}|")
+            lines.append(f"|{name}|{x['closing_pct']:.2f}%|{x['thinking_opening_pct']:.2f}%|{kind}|{r['n']}|{metrics}|")
     lines+=['','## 首词前 15 名','','百分比的分母为该组全部回答。出现不足 15 种时列出全部。','','|模型|首词（占比）|','|---|---|']
     for name,x in report.items():
         lines.append('|'+name+'|'+'，'.join(f"{r['word']} ({r['pct']:.2f}%)" for r in x['top_words'])+'|')

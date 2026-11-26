@@ -4,6 +4,7 @@
       "n": 1000,
       "archive_sha256": "fde9d599ccd071509fce66351005e9ed8ab9ade4d64b898a8c12f3a5d7da93a8",
       "leading_closing_tag": 0,
+      "closing_pct": 0.0,
       "thinking_opening_pct": 0.0,
       "top_words": [
         {
@@ -43,6 +44,7 @@
       "n": 1000,
       "archive_sha256": "c3a821934cdec074ca90007862c6b97a49a1b66e08682235f532f8165ecf17b0",
       "leading_closing_tag": 0,
+      "closing_pct": 0.0,
       "thinking_opening_pct": 0.0,
       "top_words": [
         {
@@ -102,6 +104,7 @@
       "n": 1000,
       "archive_sha256": "94a94d4d08b4674acc9ae675a7af063dd387f0c48e2df3fcdd821454f8e8cb8d",
       "leading_closing_tag": 0,
+      "closing_pct": 31.1,
       "thinking_opening_pct": 28.3,
       "top_words": [
         {
@@ -201,6 +204,7 @@
       "n": 1000,
       "archive_sha256": "098c572e86a550179dc4f33ccefaa40654ca585ad837d359e5b62328c3b9c484",
       "leading_closing_tag": 731,
+      "closing_pct": 83.8,
       "thinking_opening_pct": 11.0,
       "top_words": [
         {
@@ -255,6 +259,7 @@
       "n": 1000,
       "archive_sha256": "cb21e153ce2f9fa889b639edd54c042afa675b46fac9fd14529d274368a877d8",
       "leading_closing_tag": 783,
+      "closing_pct": 86.2,
       "thinking_opening_pct": 7.9,
       "top_words": [
         {
@@ -299,6 +304,7 @@
       "n": 1000,
       "archive_sha256": "67a040fb43e1cb6a913ae7bf6f76e9d57958a3f2974ed1a4859783cdc399d66e",
       "leading_closing_tag": 0,
+      "closing_pct": 91.6,
       "thinking_opening_pct": 93.9,
       "top_words": [
         {
@@ -348,6 +354,7 @@
       "n": 1000,
       "archive_sha256": "25801280f3f839ffba99fed00f3c31ad11d6ef760eafa1cb29e9696e2ce1f75f",
       "leading_closing_tag": 174,
+      "closing_pct": 51.5,
       "thinking_opening_pct": 2.5,
       "top_words": [
         {
@@ -443,10 +450,211 @@
         }
       }
     },
+    "R-lambda0@100 · 16k": {
+      "n": 1000,
+      "archive_sha256": "156f4b46c12bd82bb6b72060788436719124fa84522eac5451a3ce8c8bcccac6",
+      "leading_closing_tag": 6,
+      "closing_pct": 77.7,
+      "thinking_opening_pct": 46.1,
+      "top_words": [
+        {
+          "word": "okay",
+          "n": 452,
+          "pct": 45.2
+        },
+        {
+          "word": "assistant's",
+          "n": 114,
+          "pct": 11.4
+        },
+        {
+          "word": "the",
+          "n": 61,
+          "pct": 6.1
+        },
+        {
+          "word": "sơ",
+          "n": 55,
+          "pct": 5.5
+        },
+        {
+          "word": "step",
+          "n": 38,
+          "pct": 3.8
+        },
+        {
+          "word": "assistant",
+          "n": 31,
+          "pct": 3.1
+        },
+        {
+          "word": "ช",
+          "n": 31,
+          "pct": 3.1
+        },
+        {
+          "word": "aap",
+          "n": 21,
+          "pct": 2.1
+        },
+        {
+          "word": "سأقوم",
+          "n": 19,
+          "pct": 1.9
+        },
+        {
+          "word": "to",
+          "n": 18,
+          "pct": 1.8
+        },
+        {
+          "word": "boxed",
+          "n": 10,
+          "pct": 1.0
+        },
+        {
+          "word": "12",
+          "n": 9,
+          "pct": 0.9
+        },
+        {
+          "word": "م",
+          "n": 9,
+          "pct": 0.9
+        },
+        {
+          "word": "ฉ",
+          "n": 9,
+          "pct": 0.9
+        },
+        {
+          "word": "nea",
+          "n": 8,
+          "pct": 0.8
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 461,
+          "accuracy": 87.85249457700651,
+          "tokens": 4805.874186550976,
+          "closing_pct": 95.22776572668113,
+          "wait_per_1000": 3.4096017707902657
+        },
+        "其他": {
+          "n": 539,
+          "accuracy": 74.39703153988869,
+          "tokens": 3114.0111317254173,
+          "closing_pct": 62.708719851576994,
+          "wait_per_1000": 2.600610562589815
+        }
+      }
+    },
+    "R-lambda05@100 · 16k": {
+      "n": 1000,
+      "archive_sha256": "0dfb026724916b0350dbb7c4ea7e807d775d433820d96bbdc11a60d4fa62fb91",
+      "leading_closing_tag": 9,
+      "closing_pct": 84.6,
+      "thinking_opening_pct": 38.5,
+      "top_words": [
+        {
+          "word": "okay",
+          "n": 381,
+          "pct": 38.1
+        },
+        {
+          "word": "assistant's",
+          "n": 198,
+          "pct": 19.8
+        },
+        {
+          "word": "assistant",
+          "n": 147,
+          "pct": 14.7
+        },
+        {
+          "word": "ا",
+          "n": 79,
+          "pct": 7.9
+        },
+        {
+          "word": "boxed",
+          "n": 25,
+          "pct": 2.5
+        },
+        {
+          "word": "human",
+          "n": 25,
+          "pct": 2.5
+        },
+        {
+          "word": "nea",
+          "n": 18,
+          "pct": 1.8
+        },
+        {
+          "word": "الإجابة",
+          "n": 10,
+          "pct": 1.0
+        },
+        {
+          "word": "to",
+          "n": 9,
+          "pct": 0.9
+        },
+        {
+          "word": "م",
+          "n": 9,
+          "pct": 0.9
+        },
+        {
+          "word": "final",
+          "n": 8,
+          "pct": 0.8
+        },
+        {
+          "word": "ช",
+          "n": 8,
+          "pct": 0.8
+        },
+        {
+          "word": "first",
+          "n": 7,
+          "pct": 0.7
+        },
+        {
+          "word": "a",
+          "n": 6,
+          "pct": 0.6
+        },
+        {
+          "word": "ฉ",
+          "n": 6,
+          "pct": 0.6
+        }
+      ],
+      "groups": {
+        "思考式": {
+          "n": 385,
+          "accuracy": 90.12987012987013,
+          "tokens": 5224.238961038961,
+          "closing_pct": 92.20779220779221,
+          "wait_per_1000": 2.7817386687031282
+        },
+        "其他": {
+          "n": 615,
+          "accuracy": 68.78048780487805,
+          "tokens": 3812.3333333333335,
+          "closing_pct": 79.83739837398375,
+          "wait_per_1000": 2.233231040887833
+        }
+      }
+    },
     "B 思考 · 32k": {
       "n": 1000,
       "archive_sha256": "0da79db9ac86650b3b5d13436cc6ff246a44b061c4a0fb5d22afc3a9094c7efc",
       "leading_closing_tag": 0,
+      "closing_pct": 99.5,
       "thinking_opening_pct": 100.0,
       "top_words": [
         {
@@ -476,6 +684,7 @@
       "n": 2000,
       "archive_sha256": "61bf6acb3deac879799fe2aa702c74cc5f786fc015aa890194268e0d998f3121",
       "leading_closing_tag": 0,
+      "closing_pct": 54.65,
       "thinking_opening_pct": 77.65,
       "top_words": [
         {
@@ -547,8 +756,5 @@
       }
     }
   },
-  "missing_16k": [
-    "R-lambda0@100",
-    "R-lambda05@100"
-  ]
+  "missing_16k": []
 }

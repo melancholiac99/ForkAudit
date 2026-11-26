@@ -1,0 +1,65 @@
+{
+  "estimates": {
+    "R-lambda0@100": {
+      "pp": 47.5,
+      "ci95": [
+        34.72222222222222,
+        60.55555555555555
+      ]
+    },
+    "R-lambda0@100 minus B": {
+      "pp": -4.444444444444443,
+      "ci95": [
+        -9.999999999999993,
+        0.5555555555555571
+      ]
+    },
+    "R-lambda0@100 minus R@100": {
+      "pp": -8.05555555555555,
+      "ci95": [
+        -13.888888888888893,
+        -2.7777777777777786
+      ]
+    },
+    "R-lambda0@100 minus R-noclip@100": {
+      "pp": -1.1111111111111072,
+      "ci95": [
+        -5.555555555555557,
+        3.3333333333333357
+      ]
+    }
+  },
+  "receipts": {
+    "B": {
+      "layout": "4xTP1",
+      "sha256": "f698178d6b9c1c904d35b9307cd3a36d8824d61de0425a416d442acbabc2504b",
+      "adapter_sha256": null,
+      "wall_seconds": 2087.1874876329994,
+      "rate": 51.94444444444444,
+      "source": "/mnt/data2/ForkAudit/math-opsd/layout-benchmark"
+    },
+    "R@100": {
+      "layout": "4xTP1",
+      "sha256": "aa0dceb20d76a8251f6d52f678fac12ed6d66f05237837c60a51736cc50a1b1a",
+      "adapter_sha256": "605f675f76ac2edd996fab5bdf2eeb110bb3879bc740729230a6e4355d3805f7",
+      "wall_seconds": 3258.595864191,
+      "rate": 55.55555555555556
+    },
+    "R-noclip@100": {
+      "layout": "4xTP1",
+      "sha256": "bf5dae0102e14e41a3d56855493d03ff2e4b5ece476da3dcdc01ad9ac62722a1",
+      "adapter_sha256": "fa9dec4cc831eae4547db0d58671a51e28e4814ffe589b3f231dfee1a6e824cc",
+      "wall_seconds": 2951.752531073,
+      "rate": 48.611111111111114
+    },
+    "R-lambda0@100": {
+      "layout": "4xTP1",
+      "sha256": "54a8b05043dc5b1a794d31ca6d79293fc3587eed4adad5d609d2c2b1993ae66a",
+      "adapter_sha256": "9cdc19865e006fc0ced03a86eb088dacc372fc76d93f9cf88775ffd62a1aa4c9",
+      "wall_seconds": 2651.045017984001,
+      "rate": 47.5
+    }
+  },
+  "lambda0_meets_registered_first_prediction": false,
+  "expansion": "await_researcher_decision"
+}

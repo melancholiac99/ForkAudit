@@ -33,6 +33,9 @@ def fmt(v):return f'{v[0]:+.2f} [{v[1]:+.2f}, {v[2]:+.2f}]'
 lines+=['','预算以内保留整条回答；超预算的归档文本用原分词器编码、严格取前缀、解码后执行官方末个 boxed 提取与判分。没有完整末框按官方规则记错。原生 token ID 未归档。','',
         '## 边界组减对照（百分点，题级配对 95% 区间）','','|预算|B 非思考|B 思考|R|','|---|---:|---:|---:|']
 for b,v in x['paired'].items():lines.append(f"|{int(b)//1024}k|"+'|'.join(fmt(v[a]) for a in ('B','B thinking','R@100'))+'|')
+lines+=['','## λ=0 减对照（百分点，题级配对 95% 区间）','','|预算|R|边界组|B 思考|','|---|---:|---:|---:|']
+for b,v in x['lambda0_paired'].items():
+    lines.append(f"|{int(b)//1024}k|"+'|'.join(fmt(v[a]) for a in ('R@100','R-clip-boundary@100','B thinking'))+'|')
 lines+=['','## 独立 4k 核验','','|模型|16k→4k|实跑 4k|重建减实跑（百分点）|','|---|---:|---:|---:|']
 for arm,v in x['validation'].items():lines.append(f"|{arm}|{v['reconstructed_4k_pct']:.2f}%|{v['actual_4k_pct']:.2f}%|{fmt(v['reconstructed_minus_actual_pp'])}|")
 lines+=['','区间按相同的 500 道题配对重抽 10,000 次，种子 20261124。4k 独立评测与 16k 归档每题采样次数不同，核验使用各自在题内的均值。']

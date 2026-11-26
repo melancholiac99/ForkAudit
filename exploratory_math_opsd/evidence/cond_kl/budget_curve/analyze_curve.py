@@ -11,8 +11,9 @@ from audit import archive, org
 
 BOUNDARY = 'R-clip-boundary@100'
 ARMS = ('B','T0@100','R@100','R-noclip@100','R-cond@100',BOUNDARY,'R-clip-interior@100')
+LAMBDA_ZERO = 'R-lambda0@100'
 CONTROL = ('B','B thinking','R@100')
-CURVE = ('B','B thinking','R@100','R-noclip@100','T0@100',BOUNDARY)
+CURVE = ('B','B thinking','R@100','R-noclip@100','T0@100',BOUNDARY,LAMBDA_ZERO)
 BUDGETS = (2048,4096,6144,8192,12288,16384)
 
 
@@ -38,7 +39,7 @@ def run():
     result=dict(marker={},sha256={},curve={},paired={},validation={},counts={})
     estimates={}; actual={}; order=None
     for budget in (4096,16384,32768):
-        for arm in (ARMS if budget!=32768 else ('B thinking',)):
+        for arm in {4096: ARMS, 16384: (*ARMS, LAMBDA_ZERO), 32768: ('B thinking',)}[budget]:
             if budget==4096 and arm=='R-cond@100' and not (org.ROOT/'run/math500-trajectory-k20/R-cond@100/receipt.json').exists():
                 result['marker'][f'{arm}/4096']=None
                 continue
@@ -82,7 +83,10 @@ def run():
                 result['curve'][arm]=(100*estimates[arm].mean(0)).round(6).tolist()
                 result['counts'][arm]=cut_counts.tolist()
             if budget==4096:actual[arm]=np.array(final)
+    result['lambda0_paired']={}
     for j,b in enumerate(BUDGETS):
+        result['lambda0_paired'][b]={a:paired(estimates[LAMBDA_ZERO][:,j]-estimates[a][:,j])
+                                   for a in ('R@100',BOUNDARY,'B thinking')}
         result['paired'][b]={a:paired(estimates[BOUNDARY][:,j]-estimates[a][:,j]) for a in CONTROL}
     for a in ('R@100','R-noclip@100',BOUNDARY):
         v=estimates[a][:,1]
