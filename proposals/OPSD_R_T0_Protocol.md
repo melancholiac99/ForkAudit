@@ -177,3 +177,6 @@ P1：固定内容分歧位置上 R-noclip@100 比 R@100 熵上升更少、top-1 
 
 ### 长推理的组织（事后探索，已见前序结果）
 使用已归档的 B、R@100 回答，按题配对，分析 Wait 相邻事件对与随机位置对照、显式验证段之后的转移，以及思考模式下首个可判分答案前后的长度和先错后对。位置、抽取规则、缺失处理、基准分层及区间见 exploratory_math_opsd/evidence/reasoning_organization/DESIGN.md。
+
+### 边界位置截断 2×2（事后探索）
+采用 clip_positions/DESIGN.md 定稿的前缀边界，在固定探针核对 B、R@50 的截断与梯度扰动；R-clip-boundary、R-clip-interior 与 R 配置相同（种子 42，100 步）。训练不设预检数值门。固定探针及 MATH-500 非思考 4k/16k 的题级因子效应按该文件登记。
