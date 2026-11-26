@@ -48,7 +48,7 @@ def fixed_data(arms=NAMES,reducer=summarize):
         assert arms[-1]=='R'
         for arm in arms[:-1]:
             with np.load(work/arm/('fixed-'+f.name)) as z:
-                k=3 if arm=='R-noclip' else 0
+                k=3 if arm in ('R-noclip','R-cond') else 0
                 assert z['counts'][k,1]==content.sum() and z['counts'][k,2]==stop.sum()
                 a=z['sums'][k,:,1,:];row.append([a[1,4],a[1,2],a[1,3],a[2,0]])
         sums.append([*row,ref]);dens.append([[content.sum()]*3+[stop.sum()]]*len(arms))

@@ -14,7 +14,7 @@ OUT = ROOT / 'run/math500-long-seed1001-n2'
 REPORT = Path(__file__).resolve().parent / 'evidence/math500_long/results.json'
 
 
-def main():
+def main(nonthinking_budget=16384):
     rows, hashes = prepare()
     OUT.mkdir(parents=True, exist_ok=True)
     with (OUT / 'runner.lock').open('a') as lock:
@@ -24,8 +24,8 @@ def main():
             key = ('thinking-' if thinking else 'nonthinking-') + model
             folder = OUT / key
             folder.mkdir(exist_ok=True)
-            budget, temp, top_p, top_k = (32768, 1., .95, -1) if thinking else (16384, .7, .8, 20)
-            adapter = None if model == 'B' else str(ROOT/'run'/model.split('@')[0]/'checkpoint-100')
+            budget, temp, top_p, top_k = (32768, 1., .95, -1) if thinking else (nonthinking_budget, .7, .8, 20)
+            adapter = None if model == 'B' else str(ROOT/'run'/model.split('@')[0]/('checkpoint-'+model.split('@')[1]))
             config = dict(enable_thinking=thinking, adapter=adapter, temperature=temp, top_p=top_p,
                           top_k=top_k, min_p=0., presence_penalty=0., max_new_tokens=budget, seed=1001, val_n=2)
             identity = dict(config=config, data_sha256=DIGEST, adapter_sha256=hashes.get(model),
