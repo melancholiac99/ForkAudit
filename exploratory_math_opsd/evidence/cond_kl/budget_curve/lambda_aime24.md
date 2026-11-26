@@ -6,5 +6,9 @@
 |R-lambda0@100 minus B|-4.44 [-10.00, 0.56]|
 |R-lambda0@100 minus R@100|-8.06 [-13.89, -2.78]|
 |R-lambda0@100 minus R-noclip@100|-1.11 [-5.56, 3.33]|
+|R-lambda05@100|50.28 [36.67, 63.89]|
+|R-lambda05@100 minus B|-1.67 [-6.39, 3.06]|
+|R-lambda05@100 minus R@100|-5.28 [-8.61, -1.94]|
+|R-lambda05@100 minus R-noclip@100|1.67 [-4.17, 7.50]|
 
 λ=0 第一项预写条件：False。AIME25、HMMT25 候选待研究者决定。

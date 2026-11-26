@@ -47,7 +47,7 @@ def run_cells(names,budget):
     long.CELLS=[(False,name) for name in names]
     long.OUT=LONG_OUT if budget==16384 else SHORT_OUT
     long.REPORT=HERE/f'receipts-{budget}-{names[0]}.json'
-    long.main(budget)
+    long.main(budget, pipeline=True)
 
 
 def scores(names,budget):
