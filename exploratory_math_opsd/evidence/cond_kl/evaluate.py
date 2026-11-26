@@ -24,5 +24,11 @@ if sys.argv[1]=='math500':
     math500_long.REPORT=root/'run/cond-kl/math500-receipts.json'
     math500_long.main()
 else:
+    # Acquisition is between benchmark cells, outside their measured evaluation times.
+    import fcntl
+    slot = root/'run/cond-kl/forcing/all-gpus.lock'
+    slot.parent.mkdir(parents=True, exist_ok=True)
+    gpu_lock = slot.open('a')
+    fcntl.flock(gpu_lock, fcntl.LOCK_EX)
     for arm in arms:
         evaluate(root,os.environ.copy(),arm+'@100',sys.argv[1],1001)
