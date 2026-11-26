@@ -1,0 +1,23 @@
+{
+  "config": {
+    "enable_thinking": false,
+    "adapter": "/mnt/data/ForkAudit/math-opsd/run/R-lambda05/checkpoint-100",
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "max_new_tokens": 4096,
+    "seed": 1001,
+    "val_n": 2
+  },
+  "data_sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+  "adapter_sha256": "2fe9f89778eb721ee20603fc1fc48499fb377b3bf1d2a58386b236d5b8b23436",
+  "evaluator_sha256": "3e41466b7cf971bcefa8cf53275e78639b79e94b816d6665d044b25f65076450",
+  "answers": 1000,
+  "accuracy_percent": 58.5,
+  "mean_tokens": 2676.033,
+  "truncated_pct": 35.0,
+  "wall_seconds": 267.490428850997,
+  "answers_sha256": "3a32ebda1f07f0acd86316468a64a37e637db1e272fef47a644247452cee0da2"
+}
