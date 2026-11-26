@@ -12,6 +12,7 @@ import importlib.util
 spec=importlib.util.spec_from_file_location('archive_rollins', HERE.parent/'projector_calibration_rollins/measure.py')
 old=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(old)
+sys.path.insert(0,str(HERE))
 from preflight import controls
 from common import projected_logits
 from launch import read, sha
