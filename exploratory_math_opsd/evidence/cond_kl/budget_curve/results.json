@@ -1,0 +1,444 @@
+{
+  "marker": {
+    "B/4096": {
+      "present": {
+        "count": 0,
+        "accuracy_pct": null,
+        "tokens": null
+      },
+      "absent": {
+        "count": 2000,
+        "accuracy_pct": 73.2,
+        "tokens": 869.539
+      },
+      "prevalence_pct": 0.0
+    },
+    "T0@100/4096": {
+      "present": {
+        "count": 0,
+        "accuracy_pct": null,
+        "tokens": null
+      },
+      "absent": {
+        "count": 2000,
+        "accuracy_pct": 69.85,
+        "tokens": 1433.2575
+      },
+      "prevalence_pct": 0.0
+    },
+    "R@100/4096": {
+      "present": {
+        "count": 303,
+        "accuracy_pct": 95.7095709570957,
+        "tokens": 2678.4653465346537
+      },
+      "absent": {
+        "count": 1697,
+        "accuracy_pct": 57.33647613435474,
+        "tokens": 1951.5356511490866
+      },
+      "prevalence_pct": 15.15
+    },
+    "R-noclip@100/4096": {
+      "present": {
+        "count": 1810,
+        "accuracy_pct": 72.43093922651934,
+        "tokens": 1104.9834254143645
+      },
+      "absent": {
+        "count": 190,
+        "accuracy_pct": 71.57894736842105,
+        "tokens": 1073.1631578947367
+      },
+      "prevalence_pct": 90.5
+    },
+    "R-cond@100/4096": null,
+    "R-clip-boundary@100/4096": {
+      "present": {
+        "count": 1093,
+        "accuracy_pct": 97.62122598353157,
+        "tokens": 2735.255260750229
+      },
+      "absent": {
+        "count": 907,
+        "accuracy_pct": 33.18632855567806,
+        "tokens": 2874.7431091510475
+      },
+      "prevalence_pct": 54.65
+    },
+    "R-clip-interior@100/4096": {
+      "present": {
+        "count": 1092,
+        "accuracy_pct": 76.73992673992674,
+        "tokens": 1295.4276556776556
+      },
+      "absent": {
+        "count": 908,
+        "accuracy_pct": 55.2863436123348,
+        "tokens": 1275.8667400881056
+      },
+      "prevalence_pct": 54.6
+    },
+    "B/16384": {
+      "present": {
+        "count": 0,
+        "accuracy_pct": null,
+        "tokens": null
+      },
+      "absent": {
+        "count": 1000,
+        "accuracy_pct": 73.7,
+        "tokens": 985.02
+      },
+      "prevalence_pct": 0.0
+    },
+    "T0@100/16384": {
+      "present": {
+        "count": 0,
+        "accuracy_pct": null,
+        "tokens": null
+      },
+      "absent": {
+        "count": 1000,
+        "accuracy_pct": 74.5,
+        "tokens": 2459.164
+      },
+      "prevalence_pct": 0.0
+    },
+    "R@100/16384": {
+      "present": {
+        "count": 311,
+        "accuracy_pct": 93.56913183279742,
+        "tokens": 5478.762057877813
+      },
+      "absent": {
+        "count": 689,
+        "accuracy_pct": 70.53701015965167,
+        "tokens": 3158.243831640058
+      },
+      "prevalence_pct": 31.1
+    },
+    "R-noclip@100/16384": {
+      "present": {
+        "count": 838,
+        "accuracy_pct": 72.0763723150358,
+        "tokens": 1372.9427207637232
+      },
+      "absent": {
+        "count": 162,
+        "accuracy_pct": 79.62962962962963,
+        "tokens": 1283.4074074074074
+      },
+      "prevalence_pct": 83.8
+    },
+    "R-cond@100/16384": {
+      "present": {
+        "count": 862,
+        "accuracy_pct": 73.4338747099768,
+        "tokens": 1273.3723897911832
+      },
+      "absent": {
+        "count": 138,
+        "accuracy_pct": 76.08695652173914,
+        "tokens": 1086.5579710144928
+      },
+      "prevalence_pct": 86.2
+    },
+    "R-clip-boundary@100/16384": {
+      "present": {
+        "count": 916,
+        "accuracy_pct": 92.35807860262008,
+        "tokens": 4608.160480349345
+      },
+      "absent": {
+        "count": 84,
+        "accuracy_pct": 36.904761904761905,
+        "tokens": 7536.642857142857
+      },
+      "prevalence_pct": 91.60000000000001
+    },
+    "R-clip-interior@100/16384": {
+      "present": {
+        "count": 515,
+        "accuracy_pct": 70.48543689320388,
+        "tokens": 1989.6932038834952
+      },
+      "absent": {
+        "count": 485,
+        "accuracy_pct": 57.113402061855666,
+        "tokens": 1312.1154639175259
+      },
+      "prevalence_pct": 51.5
+    }
+  },
+  "sha256": {
+    "B/4096": "f9708cc8b5bc33a4cd5e0d18c441df7189b25ce7a2740c5c1cda642f5547cdec",
+    "T0@100/4096": "986cdc89d22b70344db514ac43f38bd26efa00064abf06d784a8afade3c5fbe3",
+    "R@100/4096": "d4084103da0370fe60b98b7ae898b4bfe8aa50d5461e5c124c95e1297cf50dfe",
+    "R-noclip@100/4096": "04e57efbcf633abc0bc91657e194f3245f172c0bb1231ba5d58dc57d9420dab2",
+    "R-clip-boundary@100/4096": "61bf6acb3deac879799fe2aa702c74cc5f786fc015aa890194268e0d998f3121",
+    "R-clip-interior@100/4096": "0d6982a16e25e3cd96359af2a1181dd4b21cc863e8e5e1dd40ec5a4c46a40770",
+    "B/16384": "fde9d599ccd071509fce66351005e9ed8ab9ade4d64b898a8c12f3a5d7da93a8",
+    "T0@100/16384": "c3a821934cdec074ca90007862c6b97a49a1b66e08682235f532f8165ecf17b0",
+    "R@100/16384": "94a94d4d08b4674acc9ae675a7af063dd387f0c48e2df3fcdd821454f8e8cb8d",
+    "R-noclip@100/16384": "098c572e86a550179dc4f33ccefaa40654ca585ad837d359e5b62328c3b9c484",
+    "R-cond@100/16384": "cb21e153ce2f9fa889b639edd54c042afa675b46fac9fd14529d274368a877d8",
+    "R-clip-boundary@100/16384": "67a040fb43e1cb6a913ae7bf6f76e9d57958a3f2974ed1a4859783cdc399d66e",
+    "R-clip-interior@100/16384": "25801280f3f839ffba99fed00f3c31ad11d6ef760eafa1cb29e9696e2ce1f75f",
+    "B thinking/32768": "0da79db9ac86650b3b5d13436cc6ff246a44b061c4a0fb5d22afc3a9094c7efc"
+  },
+  "curve": {
+    "B": [
+      72.1,
+      73.5,
+      73.5,
+      73.5,
+      73.7,
+      73.7
+    ],
+    "T0@100": [
+      67.4,
+      72.1,
+      73.9,
+      74.6,
+      74.4,
+      74.5
+    ],
+    "R@100": [
+      51.0,
+      62.9,
+      69.6,
+      73.5,
+      76.2,
+      77.7
+    ],
+    "R-noclip@100": [
+      68.1,
+      72.3,
+      73.0,
+      73.2,
+      73.3,
+      73.3
+    ],
+    "R-clip-boundary@100": [
+      37.2,
+      66.4,
+      75.3,
+      80.6,
+      85.3,
+      87.7
+    ],
+    "B thinking": [
+      33.9,
+      64.1,
+      74.2,
+      79.2,
+      86.5,
+      89.3
+    ]
+  },
+  "paired": {
+    "2048": {
+      "B": [
+        -34.9,
+        -38.7,
+        -31.0
+      ],
+      "B thinking": [
+        3.3,
+        0.6,
+        6.0
+      ],
+      "R@100": [
+        -13.8,
+        -17.2,
+        -10.4
+      ]
+    },
+    "4096": {
+      "B": [
+        -7.1,
+        -10.3,
+        -3.9
+      ],
+      "B thinking": [
+        2.3,
+        0.0,
+        4.6
+      ],
+      "R@100": [
+        3.5,
+        0.5,
+        6.5
+      ]
+    },
+    "6144": {
+      "B": [
+        1.8,
+        -1.2,
+        4.8
+      ],
+      "B thinking": [
+        1.1,
+        -1.1,
+        3.4
+      ],
+      "R@100": [
+        5.7,
+        2.9,
+        8.6
+      ]
+    },
+    "8192": {
+      "B": [
+        7.1,
+        4.2,
+        10.0
+      ],
+      "B thinking": [
+        1.4,
+        -0.8,
+        3.5
+      ],
+      "R@100": [
+        7.1,
+        4.5,
+        9.7
+      ]
+    },
+    "12288": {
+      "B": [
+        11.6,
+        8.7,
+        14.5
+      ],
+      "B thinking": [
+        -1.2,
+        -3.3,
+        0.9
+      ],
+      "R@100": [
+        9.1,
+        6.5,
+        11.7
+      ]
+    },
+    "16384": {
+      "B": [
+        14.0,
+        11.0,
+        17.0
+      ],
+      "B thinking": [
+        -1.6,
+        -3.5,
+        0.3
+      ],
+      "R@100": [
+        10.0,
+        7.3,
+        12.8
+      ]
+    }
+  },
+  "validation": {
+    "R@100": {
+      "actual_4k_pct": 63.15,
+      "reconstructed_4k_pct": 62.9,
+      "reconstructed_minus_actual_pp": [
+        -0.25,
+        -2.5,
+        2.0
+      ]
+    },
+    "R-noclip@100": {
+      "actual_4k_pct": 72.35,
+      "reconstructed_4k_pct": 72.3,
+      "reconstructed_minus_actual_pp": [
+        -0.05,
+        -2.0,
+        1.9
+      ]
+    },
+    "R-clip-boundary@100": {
+      "actual_4k_pct": 68.4,
+      "reconstructed_4k_pct": 66.4,
+      "reconstructed_minus_actual_pp": [
+        -2.0,
+        -4.1,
+        0.05
+      ]
+    }
+  },
+  "counts": {
+    "B": [
+      96,
+      26,
+      15,
+      10,
+      5,
+      0
+    ],
+    "T0@100": [
+      242,
+      149,
+      107,
+      90,
+      69,
+      0
+    ],
+    "R@100": [
+      457,
+      303,
+      217,
+      152,
+      96,
+      0
+    ],
+    "R-noclip@100": [
+      160,
+      44,
+      21,
+      12,
+      10,
+      0
+    ],
+    "R-clip-boundary@100": [
+      790,
+      408,
+      237,
+      155,
+      80,
+      0
+    ],
+    "B thinking": [
+      802,
+      438,
+      291,
+      210,
+      107,
+      58
+    ]
+  },
+  "R-cond_4k_reconstructed_from_16k": {
+    "present": {
+      "count": 857,
+      "accuracy_pct": 73.27887981330223,
+      "tokens": 1113.5425904317385
+    },
+    "absent": {
+      "count": 143,
+      "accuracy_pct": 74.12587412587412,
+      "tokens": 1019.9230769230769
+    },
+    "prevalence_pct": 85.7
+  },
+  "budgets": [
+    2048,
+    4096,
+    6144,
+    8192,
+    12288,
+    16384
+  ]
+}
