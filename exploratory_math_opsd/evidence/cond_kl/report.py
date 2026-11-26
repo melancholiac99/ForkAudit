@@ -61,12 +61,18 @@ def training():
         folder=ROOT/arm
         rec=read(folder/'complete.json')
         rows={}
+        micro_losses={}
         for rank in range(4):
             for line in (folder/f'kl-rank-{rank}.jsonl').read_text().splitlines():
                 v=json.loads(line);r=rows.setdefault(v['step'],np.zeros(6))
                 r+=np.array([v['count'],*v['sums']])
+                micro_losses.setdefault(v['step'],[]).append(v['sums'][0]/v['count'])
         assert sorted(rows)==list(range(1,101))
         rec['steps']={k:dict(zip(('loss','original_KL','student_S','teacher_S','guard_fraction'),r[1:]/r[0])) for k,r in rows.items()}
+        for step,losses in micro_losses.items():
+            assert len(losses)==8
+            rec['steps'][step]['position_mean_loss']=rec['steps'][step]['loss']
+            rec['steps'][step]['loss']=float(np.mean(losses))
         out[arm]=rec
     return out
 
