@@ -1,0 +1,23 @@
+{
+  "config": {
+    "enable_thinking": false,
+    "adapter": "/mnt/data/ForkAudit/math-opsd/run/R-cond/checkpoint-100",
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "max_new_tokens": 4096,
+    "seed": 1001,
+    "val_n": 2
+  },
+  "data_sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+  "adapter_sha256": "bb13440a1fb1343ba88fadbe7bb54bc8b7dda5d48098bebae22f7b586e4b58d5",
+  "evaluator_sha256": "3e41466b7cf971bcefa8cf53275e78639b79e94b816d6665d044b25f65076450",
+  "answers": 1000,
+  "accuracy_percent": 71.9,
+  "mean_tokens": 1074.304,
+  "truncated_pct": 2.3,
+  "wall_seconds": 251.33316889200069,
+  "answers_sha256": "19c60a3b3b34e17e1d50cc1777a4c23033adec05ce1c24b134e1318b4bd2f088"
+}
