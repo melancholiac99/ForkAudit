@@ -1,0 +1,94 @@
+{
+  "nonthinking-R@100": {
+    "config": {
+      "enable_thinking": false,
+      "adapter": "/mnt/data/ForkAudit/math-opsd/run/R/checkpoint-100",
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "max_new_tokens": 16384,
+      "seed": 1001,
+      "val_n": 2
+    },
+    "data_sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+    "adapter_sha256": "605f675f76ac2edd996fab5bdf2eeb110bb3879bc740729230a6e4355d3805f7",
+    "evaluator_sha256": "3e41466b7cf971bcefa8cf53275e78639b79e94b816d6665d044b25f65076450",
+    "answers": 1000,
+    "accuracy_percent": 77.7,
+    "mean_tokens": 3879.925,
+    "truncated_pct": 7.2,
+    "wall_seconds": 895.5695697150004,
+    "answers_sha256": "94a94d4d08b4674acc9ae675a7af063dd387f0c48e2df3fcdd821454f8e8cb8d"
+  },
+  "nonthinking-R-noclip@100": {
+    "config": {
+      "enable_thinking": false,
+      "adapter": "/mnt/data/ForkAudit/math-opsd/run/R-noclip/checkpoint-100",
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "max_new_tokens": 16384,
+      "seed": 1001,
+      "val_n": 2
+    },
+    "data_sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+    "adapter_sha256": "fa9dec4cc831eae4547db0d58671a51e28e4814ffe589b3f231dfee1a6e824cc",
+    "evaluator_sha256": "3e41466b7cf971bcefa8cf53275e78639b79e94b816d6665d044b25f65076450",
+    "answers": 1000,
+    "accuracy_percent": 73.3,
+    "mean_tokens": 1358.438,
+    "truncated_pct": 0.8,
+    "wall_seconds": 886.1637178139999,
+    "answers_sha256": "098c572e86a550179dc4f33ccefaa40654ca585ad837d359e5b62328c3b9c484"
+  },
+  "nonthinking-R-clip-boundary@100": {
+    "config": {
+      "enable_thinking": false,
+      "adapter": "/mnt/data/ForkAudit/math-opsd/run/R-clip-boundary/checkpoint-100",
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "max_new_tokens": 16384,
+      "seed": 1001,
+      "val_n": 2
+    },
+    "data_sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+    "adapter_sha256": "ae18b22accd77d302678dcf4098de94e3d2a3325df2444c0e5804c1e9a99aad3",
+    "evaluator_sha256": "3e41466b7cf971bcefa8cf53275e78639b79e94b816d6665d044b25f65076450",
+    "answers": 1000,
+    "accuracy_percent": 87.7,
+    "mean_tokens": 4854.153,
+    "truncated_pct": 4.5,
+    "wall_seconds": 908.437503748999,
+    "answers_sha256": "67a040fb43e1cb6a913ae7bf6f76e9d57958a3f2974ed1a4859783cdc399d66e"
+  },
+  "nonthinking-R-clip-interior@100": {
+    "config": {
+      "enable_thinking": false,
+      "adapter": "/mnt/data/ForkAudit/math-opsd/run/R-clip-interior/checkpoint-100",
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "max_new_tokens": 16384,
+      "seed": 1001,
+      "val_n": 2
+    },
+    "data_sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+    "adapter_sha256": "bcc9d022d8434ae8dee1c0fff4c490e32de0341fb6a5dc3591a25a374c201753",
+    "evaluator_sha256": "3e41466b7cf971bcefa8cf53275e78639b79e94b816d6665d044b25f65076450",
+    "answers": 1000,
+    "accuracy_percent": 64.0,
+    "mean_tokens": 1661.068,
+    "truncated_pct": 2.0,
+    "wall_seconds": 844.7761286310015,
+    "answers_sha256": "25801280f3f839ffba99fed00f3c31ad11d6ef760eafa1cb29e9696e2ce1f75f"
+  }
+}
