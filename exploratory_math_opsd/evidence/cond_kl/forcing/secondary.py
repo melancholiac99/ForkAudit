@@ -67,4 +67,9 @@ def measure(lane):
                     parts.append(torch.cat([agreement[:,None],logratio[:,None],reflection.sum(1,keepdim=True),reflection],1))
                 models.append(torch.cat(parts).cpu().numpy())
             old.atomic(p,clipped=torch.cat(clipped).cpu().numpy(),mass=torch.cat(mass).cpu().numpy(),teacher=qref.cpu().numpy(),models=np.stack(models,axis=1))
-if __name__=='__main__':measure(int(sys.argv[1]))
+if __name__=='__main__':
+    import time
+    defer=RAW/'secondary-after-confidence'
+    while defer.exists() and not (HERE.parents[1]/'latent_confidence/REPORT.md').is_file():
+        time.sleep(10)
+    measure(int(sys.argv[1]))

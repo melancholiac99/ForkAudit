@@ -6,7 +6,7 @@ from common_io import *
 MODELS=('B','R-cond@100')
 LIMIT=16384
 
-def install_forcing(worker,eos,marker):
+def install_forcing(worker,eos,marker,max_insertions=8):
     """Intercept the synchronized sampled IDs before both the KV runner and scheduler consume them."""
     runner=worker.model_runner
     assert not runner.use_async_scheduling and not getattr(runner,'speculative_config',None)
@@ -37,7 +37,7 @@ def install_forcing(worker,eos,marker):
             L=data['target_lengths'][j]
             key=(data['forcing_row'],j)
             pos=len(req.output_token_ids)
-            if pos+1<L and pos+len(marker)<=sp.max_tokens and len(events.get(key,[]))<8:
+            if pos+1<L and pos+len(marker)<=sp.max_tokens and len(events.get(key,[]))<max_insertions:
                 events.setdefault(key,[]).append((pos,row[0]))
                 row[0]=marker[0]
                 if len(marker)>1:pending[rid]=list(marker[1:])
@@ -48,7 +48,7 @@ def install_forcing(worker,eos,marker):
 def read_events(worker):
     return [[i,j,edits] for (i,j),edits in worker.model_runner.forcing_events.items()]
 
-def measure(lane,mode,model):
+def measure(lane,mode,model,round32=False):
     from vllm import SamplingParams
     from vllm.lora.request import LoRARequest
     sys.path.insert(0,str(ROOT/'source/eval'))
@@ -60,23 +60,27 @@ def measure(lane,mode,model):
     os.environ['PYTHONPATH']=str(HERE)+os.pathsep+os.environ.get('PYTHONPATH','')
     evaluate_math.LLM=partial(evaluate_math.LLM,worker_extension_cls='budget_extension.BudgetExtension')
     ref=archived('R@100')
-    path=ROOT/'run/R-cond/checkpoint-100'
+    assert model in (('B','T0@100') if round32 else MODELS)
+    arm=model.split('@')[0]
+    path=ROOT/'run'/arm/'checkpoint-100'
     adapter=None if model=='B' else path
     if adapter:
-        assert hashlib.sha256((path/'adapter_model.safetensors').read_bytes()).hexdigest()==read(ROOT/'run/R-cond/complete.json')['adapters']['100']
-    dest=RAW/model
-    dest.mkdir(exist_ok=True)
+        assert hashlib.sha256((path/'adapter_model.safetensors').read_bytes()).hexdigest()==read(ROOT/'run/math500-long-seed1001-n2'/('nonthinking-'+model)/'identity.json')['adapter_sha256']
+    dest=(RAW/'budget32' if round32 else RAW)/model
+    dest.mkdir(parents=True,exist_ok=True)
     pilot=set((np.arange(20)*25+12).tolist())
     # Distribute pilot across all lanes. Retain the original full-evaluation row order.
     indices=[i for i in range(lane,500,4) if (mode=='full' or i in pilot) and not (dest/f'{i}.json').exists()]
     if not indices:return
     llm,tok=load_vllm_model(str(ROOT/'models/Qwen3-1.7B'),str(adapter) if adapter else None,enable_thinking=False)
-    request=None if not adapter else LoRARequest('R-cond',1,str(adapter))
-    marker=tok.encode('\n\nWait,',add_special_tokens=False)
-    assert tok.decode(marker)=='\n\nWait,'
+    request=None if not adapter else LoRARequest(arm,1,str(adapter))
+    text='\n\nWait, let me re-examine this from the beginning.' if round32 else '\n\nWait,'
+    maximum=32 if round32 else 8
+    marker=tok.encode(text,add_special_tokens=False)
+    assert tok.decode(marker)==text
     eos=set(read(ROOT/'models/Qwen3-1.7B/generation_config.json')['eos_token_id'])
     prompts=[tok.apply_chat_template([dict(role='user',content=ref[i]['problem']+'\n\nPlease reason step by step, and put your final answer within \\boxed{}.')],tokenize=False,add_generation_prompt=True,enable_thinking=False) for i in indices]
-    llm.collective_rpc("enable_budget_forcing", args=(list(eos),marker))
+    llm.collective_rpc("enable_budget_forcing", args=(list(eos),marker,maximum))
     params=[SamplingParams(n=2,seed=1001,temperature=.7,top_p=.8,top_k=20,min_p=0.,
                     presence_penalty=0.,max_tokens=LIMIT,
                     extra_args={'forcing_row':i,'target_lengths':[g['generated_tokens'] for g in ref[i]['generations']]})
@@ -93,10 +97,10 @@ def measure(lane,mode,model):
             assert ans.index==j and 0<len(seq)<=LIMIT and ans.finish_reason in ('stop','length')
             L=ref[i]['generations'][j]['generated_tokens']
             edits=events.get((i,j),[])
-            assert len(edits)<=8
+            assert len(edits)<=maximum
             assert all(pos+1<L and eos_id in eos and seq[pos:pos+len(marker)]==marker for pos,eos_id in edits)
             if ans.finish_reason=='stop' and len(seq)<L and len(seq)-1+len(marker)<=LIMIT:
-                assert len(edits)==8
+                assert len(edits)==maximum
             pred=extract_boxed_answer(ans.text)
             result[i,j]=dict(target=L,tokens=len(seq),insertions=len(edits),forced_at=edits,predicted=pred,
                        correct=grade_answer(pred,ref[i]['ground_truth']),finish_reason=ans.finish_reason,token_ids=seq)
@@ -110,4 +114,4 @@ if __name__=='__main__':
     lock_dir.mkdir(exist_ok=True)
     with (lock_dir/f'gpu-{lane}.lock').open('a') as slot:
         fcntl.flock(slot,fcntl.LOCK_EX)
-        measure(lane,sys.argv[2],sys.argv[3])
+        measure(lane,sys.argv[2],sys.argv[3],round32=sys.argv[4:]==['budget32'])

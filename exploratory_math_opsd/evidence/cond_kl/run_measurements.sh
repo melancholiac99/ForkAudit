@@ -31,9 +31,8 @@ for stage in fixed generate own; do
     publish "$stage"
  fi
 done
-for bench in math500 aime24 aime25 hmmt25; do
+for bench in math500 aime24; do
  python evaluate.py "$bench"
  python report.py "$bench"
- if [[ $bench == hmmt25 ]]; then python report.py three_benchmarks; fi
  publish "$bench"
 done
