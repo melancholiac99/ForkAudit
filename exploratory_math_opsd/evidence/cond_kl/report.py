@@ -88,11 +88,20 @@ def behavior(dataset):
         arr.append(items)
     return np.array(arr).transpose(1,0,2)
 
-def summarize_behavior(x):
+def summarize_behavior(x, stratified=False):
     out={}
     names=['B','R@100',*(a+'@100' for a in ARMS)]
     points=x.mean(0)
-    dist=np.concatenate([(w@x.reshape(len(x),-1)).reshape(-1,*x.shape[1:])/len(x) for w in schedule(len(x))])
+    if stratified:
+        assert len(x)==90
+        rng=np.random.default_rng(20261124)
+        draws=[]
+        for _ in range(100):
+            blocks=[x[b:b+30][rng.integers(30,size=(100,30))].mean(1) for b in (0,30,60)]
+            draws.append(np.mean(blocks,axis=0))
+        dist=np.concatenate(draws)
+    else:
+        dist=np.concatenate([(w@x.reshape(len(x),-1)).reshape(-1,*x.shape[1:])/len(x) for w in schedule(len(x))])
     for i,name in enumerate(names):
         row={}
         for j,m in enumerate(('accuracy','tokens','truncated','Wait','think')):
@@ -122,13 +131,41 @@ def render(data):
         lines+=['',f'## {name}','','| 模型 | 准确率 | 平均 token | 截断率 | Wait | 含 <think> 比例 |','|---|---:|---:|---:|---:|---:|']
         for model,r in data[name].items():
             lines.append('| '+model+' | '+' | '.join(f"{r[m]['estimate']['mean']:.5f}" for m in ('accuracy','tokens','truncated','Wait','think'))+' |')
+    def interval(v,scale=1):
+        avg=v['mean']*scale
+        lo,hi=np.array(v['ci95'])*scale
+        return f"{avg:+.4f} [{lo:+.4f}, {hi:+.4f}]"
+    if 'fixed_content_noclip100_minus_R100' in data:
+        comp=data['fixed_content_noclip100_minus_R100']
+        lines+=['','## P1 · 固定内容分歧位置','',f"@100 R-noclip 减 R，熵差 {interval(comp['entropy'])} nats，top-1 一致率差 {interval(comp['top1'],100)} 个百分点。"]
+    if 'fixed' in data:
+        lines+=['','## P2 · 停止概率','']
+        for group in ('stop05','actual_eos'):
+            rv=data['fixed'][f'R-cond@100/{group}']['metrics']['p_stop']
+            other=data['fixed'][f'R-noclip@100/{group}']['metrics']['p_stop']
+            lines.append(f"{group}，R-cond 减 R-noclip 为 {interval(rv['cond_minus_noclip'],100)} 个百分点，R-cond 减 B 为 {interval(rv['actor_minus_B'],100)}，R-noclip 减 B 为 {interval(other['actor_minus_B'],100)}。")
+            lines.append('')
+    if 'own' in data:
+        lines+=['','## P3 · 自生成前缀','']
+        for group in ('all','content'):
+            v=data['own'][f'R-cond@100/{group}']['metrics']['top1_outside_S']['actor_100_minus_25']
+            lines.append(f"{group}，R-cond 的 S 外 top-1 一致率 @100 减 @25 为 {interval(v,100)} 个百分点。")
+            lines.append('')
+    if 'math500' in data:
+        r=data['math500']['R-cond@100']
+        lines+=['',f"非思考 16k，R-cond 长度减 R-noclip 为 {interval(r['tokens']['minus_R-noclip@100'])} tokens，减 R 为 {interval(r['tokens']['minus_R@100'])}。含 <think> 的比例减 B 为 {interval(r['think']['minus_B'],100)} 个百分点。"]
+    if 'three_benchmarks' in data:
+        v=data['three_benchmarks']['R-cond@100']['accuracy']['minus_R@100']
+        conclusion=('点估计达到无明显代价标准。' if v['mean']>=-.01 else '点估计低于无明显代价标准。')
+        if v['mean']<-.02:conclusion+=' 准确率代价超过 2 个百分点。'
+        lines+=['',f"三个基准等权，R-cond 减 R 的准确率差为 {interval(v,100)} 个百分点。{conclusion}"]
     (HERE/'REPORT.md').write_text('\n'.join(lines)+'\n')
 if __name__=='__main__':
     stage=sys.argv[1]
     data=read(HERE/'results.json')
     if stage=='training':data[stage]=training()
     elif stage in ('own','fixed'):data[stage]=stage_report(stage)
-    elif stage=='three_benchmarks':data[stage]=summarize_behavior(np.concatenate([behavior(d) for d in ('aime24','aime25','hmmt25')]))
+    elif stage=='three_benchmarks':data[stage]=summarize_behavior(np.concatenate([behavior(d) for d in ('aime24','aime25','hmmt25')]),stratified=True)
     elif stage!='preflight':data[stage]=summarize_behavior(behavior(stage))
     (HERE/'results.json').write_text(json.dumps(data,indent=2)+'\n')
     render(data)
