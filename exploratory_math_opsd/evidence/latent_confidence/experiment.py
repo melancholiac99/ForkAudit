@@ -132,9 +132,15 @@ def fit(files,out):
     d=sums[1]/high.sum()-sums[0]/low.sum()
     dirs=(d/np.linalg.norm(d,axis=1,keepdims=True)).astype(np.float32)
     nv=np.concatenate(nv)
-    for j,d in enumerate(dirs):corr.append(float(spearmanr(nv[:,j]@d,ec[valid]).statistic))
+    corr=[]
+    validation_scores=np.stack([nv[:,j]@d for j,d in enumerate(dirs)],axis=1)
+    for x in validation_scores.T:corr.append(float(spearmanr(x,ec[valid]).statistic))
     layer=int(np.nanargmax(corr))
-    mass=np.concatenate([a['mass'] for a in pooled]);[a.close() for a in pooled]
+    mass=np.concatenate([a['mass'] for a in pooled])
+    if out.name=='full':
+        questions=np.concatenate([np.full(len(a['ec']),int(f.stem)) for a,f in zip(pooled,files)])
+        dump(out/'fit_readouts.npz',scores=validation_scores,ec=ec[valid],validation_questions=questions[valid],mass=mass,questions=questions)
+    for a in pooled:a.close()
     np.save(out/'direction.npy',dirs[layer])
     save(out/'fit.json',dict(layer_index_zero_based=layer,correlations=corr,threshold=float(mid),digit_mass=float(mass.mean()),train=int((~valid).sum()),validation=int(valid.sum())))
 

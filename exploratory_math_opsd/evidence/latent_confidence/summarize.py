@@ -4,7 +4,7 @@ from numba import njit
 from experiment import HERE, RAW, ROOT, BASE, REF, ARMS, SEED, read, save, digest
 from transformers import AutoTokenizer
 
-@njit
+@njit(cache=True)
 def auc_boot(sorted_scores,y,group,weights):
     out=np.empty(len(weights))
     for b,w in enumerate(weights):
@@ -19,7 +19,7 @@ def auc_boot(sorted_scores,y,group,weights):
         out[b]=wins/(neg*pos) if pos*neg else np.nan
     return out
 
-@njit
+@njit(cache=True)
 def ranks(x,order,w):
     r=np.empty(len(x));i=0;cum=0.
     while i<len(x):
@@ -29,7 +29,7 @@ def ranks(x,order,w):
         r[order[i:j]]=cum+n/2;cum+=n;i=j
     return r
 
-@njit
+@njit(cache=True)
 def corr_boot(x,y,g,weights):
     a=np.argsort(x);b=np.argsort(y);out=np.empty(len(weights))
     for i,row in enumerate(weights):
@@ -88,6 +88,13 @@ def main():
     out=RAW/'full';m=read(RAW/'manifest.json')
     res=dict(fit=read(out/'fit.json'),seed=SEED,bootstrap=10000)
     pairs=[('R@100','B'),('T0@100','B'),('R-noclip@100','B'),('R-cond@100','B'),('R@100','T0@100'),('P@100','B')]
+    with np.load(out/'fit_readouts.npz') as z:
+        ids,g=np.unique(z['validation_questions'],return_inverse=True); n=len(ids)
+        w=np.vstack([np.ones(n),np.random.default_rng(SEED).multinomial(n,np.full(n,1/n),10000)]).astype(float)
+        res['fit']['layer_validation_intervals']=[ci(corr_boot(x,z['ec'],g,w)) for x in z['scores'].T]
+        ids,g=np.unique(z['questions'],return_inverse=True);n=len(ids)
+        w=np.vstack([np.ones(n),np.random.default_rng(SEED).multinomial(n,np.full(n,1/n),10000)]).astype(float)
+        res['fit']['digit_mass_interval']=ci(aggregate(g,z['mass'],w)/aggregate(g,np.ones(len(g)),w))
     tok=AutoTokenizer.from_pretrained(BASE)
     res['provenance']=dict(manifest_sha256=digest(RAW/'manifest.json'),adapter_sha256=read(REF/'audit.json')['adapters'],
         sources={arm:read(ROOT/'run/math500-long-seed1001-n2'/('nonthinking-'+arm)/'receipt.json')['answers_sha256'] for arm in ARMS},

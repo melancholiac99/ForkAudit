@@ -17,7 +17,8 @@ def main():
         target=len(set(i for i,_,_ in m['train'])) if label=='extract' else (750 if label.startswith('fixed') else 500)
         sec=float(np.mean(timings))*target;total+=sec
         run[label]=dict(pilot_questions=len(fs),timed_questions=len(timings),measured_seconds=sum(timings),estimated_full_gpu_seconds=sec)
-    save(HERE/'timing.json',dict(unique_pilot_questions=100,work=run,full_gpu_hours=total/3600,four_gpu_hours_wall_ideal=total/14400,
+    cpu=read(RAW/'cpu_timing.json') if (RAW/'cpu_timing.json').exists() else {}
+    save(HERE/'timing.json',dict(unique_pilot_questions=100,cpu_benchmark=cpu,estimated_cpu_seconds=sum(x['estimated_seconds'] for x in cpu.values()) if cpu else None,work=run,full_gpu_hours=total/3600,four_gpu_hours_wall_ideal=total/14400,
          note='Active question processing only. Hardware contention, loading, layer selection, CPU bootstrap and queue waits are additional.'))
     print((HERE/'timing.json').read_text(),flush=True)
 if __name__=='__main__': main()
