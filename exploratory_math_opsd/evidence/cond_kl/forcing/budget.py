@@ -46,7 +46,7 @@ def install_forcing(worker,eos,marker):
     return True
 
 def read_events(worker):
-    return worker.model_runner.forcing_events
+    return [[i,j,edits] for (i,j),edits in worker.model_runner.forcing_events.items()]
 
 def measure(lane,mode,model):
     from vllm import SamplingParams
@@ -77,7 +77,8 @@ def measure(lane,mode,model):
             for i in indices]
     outputs=llm.generate(prompts,params,lora_request=request)
     if request:assert 1 in llm.llm_engine.list_loras()
-    events,=llm.collective_rpc(read_events)
+    entries,=llm.collective_rpc(read_events)
+    events={(i,j):edits for i,j,edits in entries}
     result={}
     for i,response in zip(indices,outputs):
         assert len(response.outputs)==2
