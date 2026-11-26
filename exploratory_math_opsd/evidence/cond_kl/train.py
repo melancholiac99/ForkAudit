@@ -15,7 +15,9 @@ root=Path('/mnt/data/ForkAudit/math-opsd')
 work=root/'run/cond-kl'
 src=work/'source'
 def main(arm):
-    assert arm in ('R-noclip','R-cond') and 'preflight' in read(HERE/'results.json')
+    assert arm in ('R-noclip','R-cond','R-condA')
+    if arm!='R-condA':assert 'preflight' in read(HERE/'results.json')
+    src=work/('condA-source' if arm=='R-condA' else 'source')
     out=root/'run'/arm
     if (out/'complete.json').exists():
         return
@@ -25,7 +27,7 @@ def main(arm):
     a=code.index('            loss = self.generalized_jsd_loss(')
     b=code.index('            del student_logits_for_loss',a)
     file.write_text(code[:a]+'            from objective import trainer_loss\n            loss = trainer_loss(self,student_logits_for_loss,teacher_logits_for_loss,shifted_labels)\n'+code[b:])
-    shutil.copy(HERE/'objective.py',src)
+    shutil.copy((HERE/'condA' if arm=='R-condA' else HERE)/'objective.py',src)
     env={**os.environ,'OPSD_MODEL':str(root/'models/Qwen3-1.7B'),'OPSD_OUTPUT':str(out),'OPSD_ARM':arm,
          'HF_HOME':str(root/'hf-cache'),'HF_DATASETS_OFFLINE':'1','HF_HUB_OFFLINE':'1','WANDB_MODE':'offline','WANDB_DIR':str(root/'logs'),
          'CUDA_HOME':str(root/'cuda-12.8'),'TORCH_EXTENSIONS_DIR':str(root/'torch-extensions'),'TRITON_CACHE_DIR':str(root/'triton-cache'),

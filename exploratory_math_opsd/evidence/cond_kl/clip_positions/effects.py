@@ -18,9 +18,9 @@ def summarize(sums,den,metrics):
     v=np.concatenate(arrays);ci=np.quantile(v[1:],[.025,.975],axis=0)
     return {key:{name:dict(estimate=v[0,i,j],ci95=ci[:,i,j].tolist()) for j,name in enumerate(metrics)}
             for i,key in enumerate((*NAMES,*CONTRASTS))}
-def math_data(budget):
+def math_data(budget,arms=NAMES,reducer=summarize):
     sums=[];ids=None
-    for arm in NAMES:
+    for arm in arms:
         key=arm+'@100'
         d=ROOT/'run'/('math500-trajectory-k20' if budget==4096 else 'math500-long-seed1001-n2')/(key if budget==4096 else 'nonthinking-'+key)
         h=read(d/'receipt.json'); assert sha(d/'answers.json')==h['output_sha256' if budget==4096 else 'answers_sha256']
@@ -34,8 +34,8 @@ def math_data(budget):
             armdata.append(np.mean([[100*v['correct'],v['generated_tokens'],100*(v['finish_reason']=='length'),
                 len(re.findall(r'\bwait\b',v['full_generation'],re.I))] for v in g],axis=0))
         sums.append(armdata)
-    v=np.transpose(sums,(1,0,2));return summarize(v,np.ones_like(v),MATH)
-def fixed_data():
+    v=np.transpose(sums,(1,0,2));return reducer(v,np.ones_like(v),MATH)
+def fixed_data(arms=NAMES,reducer=summarize):
     sums=[];dens=[]
     work=ROOT/'run/cond-kl'
     cut=read(HERE.parents[1]/'stop_decomposition/results.json')['content_u80']
@@ -45,14 +45,15 @@ def fixed_data():
             v=z['second'][:,2,:]
             ref=[v[content,4].sum(),v[content,2].sum(),v[content,3].sum(),v[stop,0].sum()]
         row=[]
-        for arm in NAMES[:-1]:
+        assert arms[-1]=='R'
+        for arm in arms[:-1]:
             with np.load(work/arm/('fixed-'+f.name)) as z:
                 k=3 if arm=='R-noclip' else 0
                 assert z['counts'][k,1]==content.sum() and z['counts'][k,2]==stop.sum()
                 a=z['sums'][k,:,1,:];row.append([a[1,4],a[1,2],a[1,3],a[2,0]])
-        sums.append([*row,ref]);dens.append([[content.sum()]*3+[stop.sum()]]*4)
+        sums.append([*row,ref]);dens.append([[content.sum()]*3+[stop.sum()]]*len(arms))
     assert len(sums)==1500
-    return summarize(np.array(sums),np.array(dens),FIXED)
+    return reducer(np.array(sums),np.array(dens),FIXED)
 def main():
     out={'fixed':fixed_data(),'math_4k':math_data(4096),'math_16k':math_data(16384)}
     save(HERE/'factorial.json',out);lines=['# 两类位置截断的因子效应','','准确率和截断率以百分数计，差以百分点计。固定探针一致率、停止概率为 0–1。区间为按题配对 bootstrap 95%。']
