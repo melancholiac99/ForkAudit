@@ -52,7 +52,13 @@ def measure(lane,mode,model):
     from vllm import SamplingParams
     from vllm.lora.request import LoRARequest
     sys.path.insert(0,str(ROOT/'source/eval'))
+    import evaluate_math
+    import os
+    from functools import partial
     from evaluate_math import load_vllm_model,extract_boxed_answer,grade_answer
+    # An importable named extension keeps the local engine's RPC serialization settings intact.
+    os.environ['PYTHONPATH']=str(HERE)+os.pathsep+os.environ.get('PYTHONPATH','')
+    evaluate_math.LLM=partial(evaluate_math.LLM,worker_extension_cls='budget_extension.BudgetExtension')
     ref=archived('R@100')
     path=ROOT/'run/R-cond/checkpoint-100'
     adapter=None if model=='B' else path
@@ -70,14 +76,14 @@ def measure(lane,mode,model):
     assert tok.decode(marker)=='\n\nWait,'
     eos=set(read(ROOT/'models/Qwen3-1.7B/generation_config.json')['eos_token_id'])
     prompts=[tok.apply_chat_template([dict(role='user',content=ref[i]['problem']+'\n\nPlease reason step by step, and put your final answer within \\boxed{}.')],tokenize=False,add_generation_prompt=True,enable_thinking=False) for i in indices]
-    llm.collective_rpc(install_forcing, args=(list(eos),marker))
+    llm.collective_rpc("enable_budget_forcing", args=(list(eos),marker))
     params=[SamplingParams(n=2,seed=1001,temperature=.7,top_p=.8,top_k=20,min_p=0.,
                     presence_penalty=0.,max_tokens=LIMIT,
                     extra_args={'forcing_row':i,'target_lengths':[g['generated_tokens'] for g in ref[i]['generations']]})
             for i in indices]
     outputs=llm.generate(prompts,params,lora_request=request)
     if request:assert 1 in llm.llm_engine.list_loras()
-    entries,=llm.collective_rpc(read_events)
+    entries,=llm.collective_rpc("get_budget_forcing_events")
     events={(i,j):edits for i,j,edits in entries}
     result={}
     for i,response in zip(indices,outputs):
