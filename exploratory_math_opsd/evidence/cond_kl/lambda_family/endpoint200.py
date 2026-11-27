@@ -73,7 +73,12 @@ def collect(names=NAMES, step=200, filename='fixed_at_200.json'):
 
 
 if __name__=='__main__':
-    if sys.argv[1]=='aime':aime()
+    if sys.argv[1]=='aime':
+        if (ROOT/'run/R-lambda15/complete.json').exists():
+            from overlap_r200 import run
+            run()
+        else:
+            aime()
     elif sys.argv[1]=='probe':probe(int(sys.argv[2]))
     elif sys.argv[1]=='collect':collect()
     else:raise ValueError(sys.argv)

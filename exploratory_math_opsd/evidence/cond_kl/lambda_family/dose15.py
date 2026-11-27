@@ -37,8 +37,12 @@ def main(args):
         rec = read(folder/'receipt.json')
         openings = measure(MODEL,16384,False)
         assert openings['archive_sha256'] == rec['answers_sha256']
+        from dose15_cpu import openings as audit_openings
+        audit_openings()
+        first_word = read(HERE/'dose15_all_openings.json')['complete'][MODEL]
+        assert first_word['sha256'] == rec['answers_sha256']
         save(HERE/'dose15_math_openings.json', dict(receipt=rec, openings=openings,
-             truncated_above_20_pct=rec['truncated_pct']>20, gibberish_review='pending'))
+             truncated_above_20_pct=rec['truncated_pct']>20, gibberish_first_word=first_word, gibberish_above_10_pct=first_word['pct']>10))
     else:
         raise ValueError(args)
 
