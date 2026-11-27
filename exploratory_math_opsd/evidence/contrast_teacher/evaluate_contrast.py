@@ -6,7 +6,6 @@ from contexts import HERE,ROOT,read,save,sha
 from launch import evaluate
 from math500_trajectory import prepare
 import math500_long as long
-from four_engines import run
 
 ARM='R-contrast'
 REFS=('B','R-noclip@100')
@@ -40,6 +39,7 @@ def behavior(step,bench):
         if step==200 and not (folder/f'nonthinking-{matched}/receipt.json').exists():
             names[1]='R@100'  # R@200 nonthinking was cancelled separately.
     values=[]; ids=None; archives={}
+    opening_counts=[]
     for name in names:
         if bench=='math500':
             d=long.OUT/f'nonthinking-{name}'
@@ -54,6 +54,14 @@ def behavior(step,bench):
         keys=[q['problem'] for q in qs]
         assert len(set(keys))==len(keys) and (ids is None or keys==ids)
         ids=keys
+        if bench=='math500':
+            sys.path.insert(0,str(FAMILY.parent/'answer_openings'))
+            from openings import opening
+            from dose15_cpu import classify
+            def features(g):
+                text=g['full_generation']
+                return [100*opening(text,False)[1],100*any(classify(text)),g['generated_tokens'],100*(g['finish_reason']=='length')]
+            opening_counts.append([np.mean([features(g) for g in q['generations']],axis=0) for q in qs])
         values.append([[100*np.mean([g['correct'] for g in q['generations']])] for q in qs])
         archives[name]=sha(archive)
     x=np.transpose(values,(1,0,2))
@@ -65,6 +73,8 @@ def behavior(step,bench):
         report=measure(target,16384,False)
         rows=read(long.OUT/f'nonthinking-{target}/answers.json')['results']
         report['first_word_rule']=tally(g['full_generation'] for q in rows for g in q['generations'])
+        x=np.transpose(opening_counts,(1,0,2))
+        report['paired']=table(x,np.ones_like(x),names,['thinking_opening_pct','gibberish_pct','mean_tokens','truncated_pct'])
         save(HERE/f'openings_{step}.json',report)
 
 
