@@ -24,7 +24,7 @@ def prepare():
     code=code[:a]+'''        from training_parts import teachers, loss as contrast_loss
         assert not self.use_thinking_machines_loss and self.temperature==1.1
         teacher_logits_for_loss, negative = teachers(self, model, inputs, student_prompt_len, teacher_prompt_len)
-        loss = contrast_loss(student_logits_for_loss, teacher_logits_for_loss, negative, shifted_labels, inputs["has_negative"])
+        loss = contrast_loss(student_logits_for_loss, teacher_logits_for_loss, negative, shifted_labels, inputs["has_negative"], self.state.global_step+1, self.args.output_dir)
         del student_logits_for_loss, teacher_logits_for_loss, negative
 '''+code[code.index('\n',b)+1:]
     path.write_text(code)
@@ -46,6 +46,8 @@ def main():
         with (ROOT/'logs/R-contrast-200-train.log').open('a') as f:
             subprocess.run(cmd,cwd=src,check=True,env={**os.environ,'OPSD_ARM':ARM,'OPSD_MODEL':str(MODEL),
                 'OPSD_OUTPUT':str(output),'CONTRAST_NEGATIVES':str(neg)},stdout=f,stderr=subprocess.STDOUT)
+    from supervision import summarize
+    summarize(output)
     hashes={}
     for step in (50,100,150,200):
         ck=output/f'checkpoint-{step}'

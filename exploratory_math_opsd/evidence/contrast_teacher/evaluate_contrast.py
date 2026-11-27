@@ -114,7 +114,7 @@ def gate():
     key=ARM+'@100'
     ci=a[key+' minus R-noclip@100']['accuracy_pct']['ci95']
     passes=ci[0]>0 and b[ARM+'@200']['accuracy_pct']['mean']>=a[key]['accuracy_pct']['mean']
-    save(HERE/'decision.json',dict(confirm=passes,sampled_advantage_followup=ci[0]<=0<=ci[1]))
+    save(HERE/'decision.json',dict(confirm=passes,sampled_advantage_followup=ci[0]<=0<=ci[1],interpretation_limit='正上下文来自参考解，负上下文来自 B 自生成回答。风格不同，对比信号不只反映正确性。'))
     if passes:
         for dataset in ('aime25','hmmt25'):
             for step in (100,200):behavior(step,dataset)

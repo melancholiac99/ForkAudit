@@ -10,6 +10,8 @@ def contrast_kl(student, positive, negative, has_negative, temperature=1.1):
     with torch.no_grad():
         plus = F.log_softmax(positive.to(dtype) / temperature, dim=-1)
         minus = F.log_softmax(negative.to(dtype) / temperature, dim=-1)
-        log_target = F.log_softmax(lp.detach() + 0.5 * (plus - minus), dim=-1)
-        log_target = torch.where(has_negative[..., None], log_target, plus)
-    return F.kl_div(lp, log_target, log_target=True, reduction='none').sum(-1), log_target
+        raw = 0.5 * (plus - minus)
+        log_target = F.log_softmax(lp.detach() + raw.clamp(-3, 3), dim=-1)
+        log_target = torch.where(has_negative[..., None], log_target, lp.detach())
+        clipped_mass = (log_target.exp() * (raw.abs()>3)).sum(-1) * has_negative
+    return has_negative * F.kl_div(lp, log_target, log_target=True, reduction='none').sum(-1), log_target, clipped_mass

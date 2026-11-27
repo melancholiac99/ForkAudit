@@ -67,7 +67,12 @@ def combine():
     jobs=read(WORK/'manifest.json')
     rows={v['idx']:v['answers'] for f in WORK.glob('batch-*.json') for v in read(f)}
     assert len(rows)==len(jobs)==6400
+    import re
+    sys.path.insert(0,str(ROOT/'source/eval'))
+    from evaluate_math import extract_boxed_answer, grade_answer
     mapping={}
+    original={}
+    old_no_box=old_no_final_box=0
     review=read(HERE/'proof_review.json')
     reviewed=[]
     for j in jobs:
@@ -79,15 +84,39 @@ def combine():
             record=review[str(j['idx'])]
             assert record['problem']==j['problem'] and record['sample_sha256']==[hashlib.sha256(x['text'].encode()).hexdigest() for x in batch]
             reviewed.append(j['idx'])
-            mapping[j['problem']]=next((x['text'] for x,g in zip(batch,record['grades']) if g=='incorrect'),None)
-            assert mapping[j['problem']] is not None or record['grades']==['correct']*4
-            continue
-        mapping[j['problem']]=next((x['text'] for x in batch if not x['correct']),None)
+            wrong=[x['text'] for x,g in zip(batch,record['grades']) if g=='incorrect']
+        else:
+            wrong=[x['text'] for x in batch if x['correct'] is False]
+        old=wrong[0] if wrong else None
+        original[j['problem']]=old
+        if old is not None and not extract_boxed_answer(old):
+            old_no_final_box+=1
+            # Check for an earlier complete box before a malformed last box.
+            starts=[m.start() for m in re.finditer(re.escape(r'\boxed'),old)]
+            if not any(extract_boxed_answer(old[a:b]) for a,b in zip(starts,starts[1:]+[len(old)])):
+                old_no_box+=1
+        def boxed_and_wrong(text):
+            if extract_boxed_answer(text):
+                return True  # Already scored as incorrect in the original archive.
+            starts=[m.start() for m in re.finditer(re.escape(r'\boxed'),text)]
+            for a,b in reversed(list(zip(starts,starts[1:]+[len(text)]))):
+                answer=extract_boxed_answer(text[a:b])
+                if answer:
+                    if j['idx'] in reviewed:
+                        return True  # Proof-reviewed incorrect.
+                    gold=j['Answer'] or extract_boxed_answer(j['solution'])
+                    return not grade_answer(answer,str(gold))
+            return False
+        mapping[j['problem']]=next((x for x in wrong if boxed_and_wrong(x)),None)
+    assert original==read(WORK/'superseded_v1/negative.json')
+    old_n=sum(v is not None for v in original.values())
     assert sorted(reviewed)==[4807,6651]
     save(WORK/'negative.json',mapping)
     missing=sum(v is None for v in mapping.values())
-    save(HERE/'negative_contexts.json',dict(tasks=len(mapping),proof_review_ids=sorted(reviewed),officially_graded_tasks=6398,all_four_correct=missing,all_four_correct_pct=100*missing/len(mapping),
-         no_negative_pct=100*missing/len(mapping),sha256=sha(WORK/'negative.json'),manifest_sha256=sha(WORK/'manifest.json')))
+    save(HERE/'negative_contexts.json',dict(tasks=len(mapping),proof_review_ids=sorted(reviewed),officially_graded_tasks=6398,old_selected=old_n,old_without_any_complete_box=old_no_box,
+         old_without_any_complete_box_pct=100*old_no_box/old_n,old_without_final_box=old_no_final_box,
+         old_no_negative=len(mapping)-old_n, lost_by_box_requirement=missing-(len(mapping)-old_n),
+         selected=len(mapping)-missing,no_negative=missing,no_negative_pct=100*missing/len(mapping),sha256=sha(WORK/'negative.json'),manifest_sha256=sha(WORK/'manifest.json')))
 
 
 if __name__=='__main__':

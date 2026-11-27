@@ -42,12 +42,23 @@ def teachers(trainer, model, inputs, student_len, teacher_len):
     return positive,negative
 
 
-def loss(student, positive, negative, labels, has_negative):
-    def subtotal(s,p,n,m):
-        return contrast_kl(s,p,n,m)[0].sum()
-    valid=(labels!=-100).nonzero()
-    value=student.new_zeros((),dtype=torch.float32)
-    for block in valid.split(48):
-        i,j=block.unbind(1)
-        value+=checkpoint(subtotal,student[i,j],positive[i,j],negative[i,j],has_negative[i],use_reentrant=False)
-    return value/len(valid)
+def loss(student, positive, negative, labels, has_negative, step, output):
+    def subtotal(s,p,n):
+        mask=torch.ones(s.shape[0],dtype=torch.bool,device=s.device)
+        losses,_,mass=contrast_kl(s,p,n,mask)
+        return losses.sum(),mass.sum()
+    eligible=labels!=-100
+    valid=(eligible & has_negative[:,None]).nonzero()
+    # A connected zero participates in DDP even for a fully masked microbatch.
+    value=student[:0].sum(dtype=torch.float32)
+    mass=student.new_zeros((),dtype=torch.float64)
+    if len(valid):
+        for block in valid.split(48):
+            i,j=block.unbind(1)
+            part,clipped=checkpoint(subtotal,student[i,j],positive[i,j],negative[i,j],use_reentrant=False)
+            value=value+part
+            mass=mass+clipped.detach().double()
+    path=Path(output)/('supervision-rank-'+os.environ['RANK']+'.jsonl')
+    with path.open('a') as f:
+        print(json.dumps(dict(step=step,eligible=int(eligible.sum()),supervised=len(valid),clipped_mass_sum=mass.item())),file=f)
+    return value/max(1,len(valid))
