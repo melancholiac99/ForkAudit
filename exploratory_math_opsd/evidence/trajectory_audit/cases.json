@@ -1,0 +1,170 @@
+{
+  "seed": 20261124,
+  "index_base": 0,
+  "math_short": [
+    {
+      "row": 491,
+      "sample": 0,
+      "eligible_in_stratum": 27,
+      "B": {
+        "archive_answer": "96",
+        "correct": false,
+        "tokens": 570,
+        "generation_sha256": "836c821e473e3b622e68779a5fc66cef3e3ae713671404777fd711880a99c048"
+      },
+      "R@100": {
+        "archive_answer": "64",
+        "correct": true,
+        "tokens": 942,
+        "generation_sha256": "cbd8b02adb9272779a21acb3dd0e3d6b934ca11dcd80366b0a7d4879436e52a9"
+      }
+    },
+    {
+      "row": 37,
+      "sample": 1,
+      "eligible_in_stratum": 27,
+      "B": {
+        "archive_answer": "360",
+        "correct": false,
+        "tokens": 370,
+        "generation_sha256": "db9911089d3a0afdc126b7a2dd36bbe1873a90a6ab531a47660349a220382541"
+      },
+      "R@100": {
+        "archive_answer": "72",
+        "correct": true,
+        "tokens": 425,
+        "generation_sha256": "a1517d332692433c8aeab06bd4766375e5dc4d3e9a784836b0e7bec0173a95ac"
+      }
+    },
+    {
+      "row": 346,
+      "sample": 0,
+      "eligible_in_stratum": 29,
+      "B": {
+        "archive_answer": "66",
+        "correct": true,
+        "tokens": 345,
+        "generation_sha256": "e2f4244a95b128cb68196b173162a8abc624d9d893186caae1de5de340be77d5"
+      },
+      "R@100": {
+        "archive_answer": "18",
+        "correct": false,
+        "tokens": 437,
+        "generation_sha256": "97eeb498f00a77fc910bd1d9888fdeca470fb8804655247e5491eb0d5974e042"
+      }
+    },
+    {
+      "row": 4,
+      "sample": 0,
+      "eligible_in_stratum": 29,
+      "B": {
+        "archive_answer": "\\text{Evelyn}",
+        "correct": true,
+        "tokens": 719,
+        "generation_sha256": "49307131bc189fa3afd1bdd3311ca0403f7b0bfdd4960b067e9d2db1b9d52f43"
+      },
+      "R@100": {
+        "archive_answer": "\\text{Briana}",
+        "correct": false,
+        "tokens": 984,
+        "generation_sha256": "79993558ab8672d1c8b6be377ed82cd87b499fe63deab255519f9b392d13b57b"
+      }
+    },
+    {
+      "row": 64,
+      "sample": 0,
+      "eligible_in_stratum": 13,
+      "B": {
+        "archive_answer": "d = \\frac{35}{16}",
+        "correct": false,
+        "tokens": 626,
+        "generation_sha256": "1fb8bb2c10b656a05243529938bc899b8a48e5de54e02e918fc434d0060f8e0d"
+      },
+      "R@100": {
+        "archive_answer": "\\frac{1}{16}",
+        "correct": false,
+        "tokens": 910,
+        "generation_sha256": "9084bf958a19ee726f022684456cfa5189b2e1c2943e9e4e26dc59734df55863"
+      }
+    },
+    {
+      "row": 372,
+      "sample": 0,
+      "eligible_in_stratum": 13,
+      "B": {
+        "archive_answer": "70^\\circ",
+        "correct": false,
+        "tokens": 685,
+        "generation_sha256": "f68c54e30b0d42dd72f21fc7784bca011efc5d59f176134b227562cbb22ba11f"
+      },
+      "R@100": {
+        "archive_answer": "70^\\circ",
+        "correct": false,
+        "tokens": 1060,
+        "generation_sha256": "c47b1c9c8cae09d710f2aa8a38741eae44e7e786147df69f63361e865e44411a"
+      }
+    },
+    {
+      "row": 499,
+      "sample": 1,
+      "eligible_in_stratum": 355,
+      "B": {
+        "archive_answer": "106^\\circ",
+        "correct": true,
+        "tokens": 433,
+        "generation_sha256": "eb273d400de68810c00d53efedf8bfea14fb9e0f280db4ca50090f7e7c760f0a"
+      },
+      "R@100": {
+        "archive_answer": "106^\\circ",
+        "correct": true,
+        "tokens": 765,
+        "generation_sha256": "51eb5657e9ee46e61b98347ea64969b67e3acb3bf30160ef0885779da7301da3"
+      }
+    },
+    {
+      "row": 84,
+      "sample": 0,
+      "eligible_in_stratum": 355,
+      "B": {
+        "archive_answer": "-1",
+        "correct": true,
+        "tokens": 711,
+        "generation_sha256": "3f71df48369535690547e91b83a98fb74193eb64417b89a150791d33aca26f42"
+      },
+      "R@100": {
+        "archive_answer": "-1",
+        "correct": true,
+        "tokens": 1110,
+        "generation_sha256": "c729e93e8906b3bd769f06b503d33ff067cf25a838b285dca26aa96f4d12dd63"
+      }
+    }
+  ],
+  "aime24_digit_checker": {
+    "valid_n": [
+      5624,
+      5694
+    ],
+    "reported_9656_remainders": [
+      4,
+      0,
+      5,
+      5
+    ],
+    "reported_5694_remainders": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "aime24_question_delta_counts": {
+    "negative": 10,
+    "equal": 15,
+    "positive": 5
+  },
+  "aime24_excluding_ambiguous_row10_difference": [
+    -0.0603448275862069,
+    -0.12356321839080459,
+    -0.005747126436781608
+  ]
+}
