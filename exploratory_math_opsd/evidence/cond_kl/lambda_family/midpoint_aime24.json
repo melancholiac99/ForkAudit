@@ -1,0 +1,50 @@
+{
+  "receipts": {
+    "R@50": {
+      "layout": "4xTP1",
+      "sha256": "ae4476a54c1778cadac850769463c4ad69d0ed0df026f715fda748ea97daa787",
+      "adapter_sha256": "ac76916532cfc57f8b4aae951741c88f53d37cef9e834c258e3168f8b40914bb",
+      "wall_seconds": 2881.364414257,
+      "rate": 53.05555555555556
+    },
+    "R-lambda15@50": {
+      "layout": "4xTP1",
+      "sha256": "bd28b4a579e31f6abf0b53ce9e5f0caf83ec7e4d3beca2e344dab84404dd24bd",
+      "adapter_sha256": "c3edb4668c08f0b3b6ff2c43ba2b6be60df90aec87b06ea0c9d33689a9032908",
+      "wall_seconds": 5705.733764118001,
+      "rate": 51.94444444444444
+    }
+  },
+  "accuracy_pct": {
+    "R@50": 53.05555555555556,
+    "R-lambda15@50": 51.94444444444444,
+    "R@100": 55.55555555555556,
+    "R-lambda15@100": 53.333333333333336
+  },
+  "differences": {
+    "R@50 minus R@100": {
+      "pp": -2.5,
+      "ci95": [
+        -6.944444444444445,
+        2.5
+      ]
+    },
+    "R-lambda15@50 minus R-lambda15@100": {
+      "pp": -1.3888888888888888,
+      "ci95": [
+        -4.722222222222222,
+        1.6666666666666667
+      ]
+    },
+    "R-lambda15@50 minus R@50": {
+      "pp": -1.1111111111111112,
+      "ci95": [
+        -5.555555555555555,
+        3.0555555555555554
+      ]
+    }
+  },
+  "r_early_peak_rule": false,
+  "lambda_early_peak_rule": false,
+  "bootstrap_seed": 20261124
+}
