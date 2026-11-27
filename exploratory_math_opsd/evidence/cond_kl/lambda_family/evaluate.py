@@ -129,7 +129,7 @@ def main():
         save(HERE/'results.json',reports)
         for arm in [*qualified,'R']:
             train(arm,200)
-        for k in (150,200):
+        for k in (200,):
             models=[a+'@'+str(k) for a in [*qualified,'R-extension']]
             run_cells(models,16384)
             later,table=scores(models,16384)
