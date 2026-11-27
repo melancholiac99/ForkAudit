@@ -75,6 +75,8 @@ def collect(names=NAMES, step=200, filename='fixed_at_200.json'):
 if __name__=='__main__':
     if sys.argv[1]=='aime':
         if (ROOT/'run/R-lambda15/complete.json').exists():
+            from midpoint import run as midpoint_run
+            midpoint_run()
             from overlap_r200 import run
             run()
         else:
