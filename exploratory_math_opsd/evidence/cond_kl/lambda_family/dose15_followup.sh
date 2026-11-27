@@ -15,9 +15,3 @@ python dose15.py aime
 python dose15.py math R-lambda15@100
 python dose15.py openings
 python endpoint200.py aime
-probe_group r
-python dose15.py collect r
-python dose15.py math R-extension@200
-probe_group weak
-python endpoint200.py collect
-python evaluate.py
