@@ -35,23 +35,23 @@ def aime():
     (HERE/'R200_AIME24.md').write_text('\n'.join(lines)+'\n')
 
 
-def probe(lane):
+def probe(lane, names=NAMES, step_number=200):
     sys.path.insert(0,str(HERE.parent))
     import measure
     def checkpoint(arm,step):
-        assert step==200
+        assert step==step_number
         root=ROOT/'run'/arm
-        path=root/'checkpoint-200'
-        assert sha(path/'adapter_model.safetensors')==read(root/'extended.json')['adapters']['200']
+        path=root/f'checkpoint-{step}'
+        assert sha(path/'adapter_model.safetensors')==read(root/('extended.json' if step==200 else 'complete.json'))['adapters'][str(step)]
         return path
-    measure.STEPS=(200,)
+    measure.STEPS=(step_number,)
     measure.WORK=PROBES
     PROBES.mkdir(exist_ok=True)
     measure.checkpoint=checkpoint
-    for arm in NAMES:measure.score('fixed',arm,lane)
+    for arm in names:measure.score('fixed',arm,lane)
 
 
-def collect():
+def collect(names=NAMES, step=200, filename='fixed_at_200.json'):
     from evaluate import effects
     sums=[]; counts=[]
     cut=read(HERE.parents[1]/'stop_decomposition/results.json')['content_u80']
@@ -62,14 +62,14 @@ def collect():
             n=((z['p']<.01)&(z['u']>=cut)).sum()
             s=(z['p']>=.05).sum()
         row=[]
-        for a in NAMES:
+        for a in names:
             with np.load(PROBES/a/('fixed-'+f.name)) as z:
                 assert (z['counts'][0,1:3]==[n,s]).all()
                 v=z['sums'][0,:,1,:]
                 row.append([v[1,4],v[1,2],v[1,3],v[2,0]])
-        sums.append(row);counts.append([[n,n,n,s]]*3)
-    table=paired(np.array(sums),np.array(counts),effects.FIXED,MODELS)
-    save(HERE/'fixed_at_200.json',dict(metrics=table,content_positions=int(np.sum(counts,axis=0)[0,0]),stop05_positions=int(np.sum(counts,axis=0)[0,3]),adapters={a:read(ROOT/'run'/a/'extended.json')['adapters']['200'] for a in NAMES}))
+        sums.append(row);counts.append([[n,n,n,s]]*len(names))
+    table=paired(np.array(sums),np.array(counts),effects.FIXED,[f'{a}@{step}' for a in names])
+    save(HERE/filename,dict(metrics=table,content_positions=int(np.sum(counts,axis=0)[0,0]),stop05_positions=int(np.sum(counts,axis=0)[0,3]),adapters={a:read(ROOT/'run'/a/('extended.json' if step==200 else 'complete.json'))['adapters'][str(step)] for a in names}))
 
 
 if __name__=='__main__':

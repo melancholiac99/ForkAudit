@@ -91,9 +91,9 @@ def scores(names,budget):
                                                  'wrong_to_correct_pp','correct_to_wrong_pp'),names)
 
 
-def dynamics():
+def dynamics(arms=ARMS):
     result={}
-    for arm in ARMS:
+    for arm in arms:
         by_step={}
         for step in (25,50,75,100):
             rows=[]

@@ -12,10 +12,11 @@ from launch import read, save, sha, validate_checkpoint
 
 ROOT = Path('/mnt/data/ForkAudit/math-opsd')
 ARMS = {'R-lambda0':0., 'R-lambda05':.5}
+COEFFICIENTS = {**ARMS, 'R-lambda15': 1.5}
 
 
 def train(arm, end):
-    assert arm in (*ARMS, 'R') and end in (100,200)
+    assert arm in (*COEFFICIENTS, 'R') and end in (100,200)
     if arm=='R':
         assert end==200
     name = 'R-extension' if arm=='R' else arm
@@ -30,7 +31,7 @@ def train(arm, end):
         return
     src = ROOT/'run/cond-kl/lambda-source'
     shutil.copytree(ROOT/'source',src,dirs_exist_ok=True,ignore=shutil.ignore_patterns('.git','__pycache__'))
-    if arm in ARMS:
+    if arm in COEFFICIENTS:
         trainer = src/'opsd_trainer.py'
         code = trainer.read_text()
         pattern = '            loss = self.generalized_jsd_loss('
@@ -53,7 +54,7 @@ def train(arm, end):
         assert len(list((previous/'global_step100').glob('*optim_states.pt')))==4
         args+=['--resume_from_checkpoint',str(previous)]
     env=dict(os.environ,OPSD_ARM=name,OPSD_MODEL=str(ROOT/'models/Qwen3-1.7B'),OPSD_OUTPUT=str(out),
-             OPSD_LAMBDA=str(ARMS.get(arm,1.)))
+             OPSD_LAMBDA=str(COEFFICIENTS.get(arm,1.)))
     start=time.monotonic()
     with (ROOT/'logs'/f'{name}-{end}-train.log').open('a') as f:
         subprocess.run(args,cwd=src,env=env,check=True,stdout=f,stderr=subprocess.STDOUT)
