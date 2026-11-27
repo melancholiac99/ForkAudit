@@ -1,0 +1,32 @@
+{
+  "model": "R-lambda05@200",
+  "receipt": {
+    "layout": "4xTP1",
+    "sha256": "ad74fa87b924f4fedd6236c09e66eabf5b5d1d258ed2feb33fbcec15e23b9b0c",
+    "adapter_sha256": "ad7667c11ce877b24e3cac557b5c219d055e9c110130152f9a80be31f8b42195",
+    "wall_seconds": 2648.448232813,
+    "rate": 47.22222222222222
+  },
+  "answer_hashes": {
+    "R-lambda05@200": "ad74fa87b924f4fedd6236c09e66eabf5b5d1d258ed2feb33fbcec15e23b9b0c",
+    "R-lambda05@100": "ebc3a83c39468565e70c4d18c0bc34f6707cb8c356b5732bfc8b4d724983acda"
+  },
+  "answers_per_model": 360,
+  "correct": {
+    "R-lambda05@200": 170,
+    "R-lambda05@100": 181
+  },
+  "paired": {
+    "R-lambda05@100": {
+      "pp": -3.0555555555555554,
+      "ci95": [
+        -9.722222222222221,
+        2.7777777777777777
+      ]
+    }
+  },
+  "verdict": {
+    "optimum_across_interventions": false,
+    "training_duration": false
+  }
+}
