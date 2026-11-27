@@ -1,0 +1,52 @@
+{
+  "model": "R-switch@200",
+  "receipt": {
+    "layout": "4xTP1",
+    "sha256": "af67cf979a782a629fef4edc471f8ea51e0a99125394043de5b55cf9ad7bc105",
+    "adapter_sha256": "35ae962db8c71a242e482b97916600922220add532b612d88c52157d909e57f9",
+    "wall_seconds": 2401.1572075990007,
+    "rate": 48.333333333333336
+  },
+  "answer_hashes": {
+    "R-switch@200": "af67cf979a782a629fef4edc471f8ea51e0a99125394043de5b55cf9ad7bc105",
+    "R-extension@200": "fad8bc1ba687af22f35f7affa0918a5b50d8121a97afaf52ed5a6170a653bed6",
+    "R@100": "aa0dceb20d76a8251f6d52f678fac12ed6d66f05237837c60a51736cc50a1b1a",
+    "R-noclip@100": "bf5dae0102e14e41a3d56855493d03ff2e4b5ece476da3dcdc01ad9ac62722a1"
+  },
+  "answers_per_model": 360,
+  "correct": {
+    "R-switch@200": 174,
+    "R-extension@200": 174,
+    "R@100": 200,
+    "R-noclip@100": 175
+  },
+  "paired": {
+    "R-extension@200": {
+      "pp": 0.0,
+      "ci95": [
+        -5.277777777777778,
+        5.277777777777778
+      ]
+    },
+    "R@100": {
+      "pp": -7.222222222222222,
+      "ci95": [
+        -13.055555555555555,
+        -1.6666666666666667
+      ]
+    },
+    "R-noclip@100": {
+      "pp": -0.2777777777777778,
+      "ci95": [
+        -5.555555555555555,
+        5.0
+      ]
+    }
+  },
+  "verdict": {
+    "preserved": false,
+    "below_r100": true,
+    "requires_continued_deviation": null,
+    "note": "接近 R-noclip 的界限未冻结时，此判据保留。"
+  }
+}
