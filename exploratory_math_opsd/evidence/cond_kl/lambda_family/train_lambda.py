@@ -12,12 +12,12 @@ from launch import read, save, sha, validate_checkpoint
 
 ROOT = Path('/mnt/data/ForkAudit/math-opsd')
 ARMS = {'R-lambda0':0., 'R-lambda05':.5}
-COEFFICIENTS = {**ARMS, 'R-lambda15': 1.5}
+COEFFICIENTS = {**ARMS, 'R-lambda15': 1.5, 'R-switch': 0.0}
 
 
 def train(arm, end):
     assert arm in (*COEFFICIENTS, 'R') and end in (100,200)
-    if arm=='R':
+    if arm in ('R','R-switch'):
         assert end==200
     name = 'R-extension' if arm=='R' else arm
     out = ROOT/'run'/name
@@ -49,9 +49,12 @@ def train(arm, end):
     args = ['bash','scripts/run_opsd_1b.sh','--stop_after_updates',str(end),'--seed','42','--data_seed','42',
             '--local_train_glob',str(ROOT/'datasets/train/data/*.parquet')]
     if end==200:
-        previous=ROOT/'run'/arm/'checkpoint-100'
+        previous=ROOT/'run'/('R' if arm=='R-switch' else arm)/'checkpoint-100'
         validate_checkpoint(previous,100)
         assert len(list((previous/'global_step100').glob('*optim_states.pt')))==4
+        if arm=='R-switch':
+            assert sha(previous/'adapter_model.safetensors')==read(ROOT/'run/R/complete.json')['adapter_sha256']
+            assert (previous/'scheduler.pt').is_file() and all((previous/f'rng_state_{i}.pth').is_file() for i in range(4))
         args+=['--resume_from_checkpoint',str(previous)]
     env=dict(os.environ,OPSD_ARM=name,OPSD_MODEL=str(ROOT/'models/Qwen3-1.7B'),OPSD_OUTPUT=str(out),
              OPSD_LAMBDA=str(COEFFICIENTS.get(arm,1.)))
