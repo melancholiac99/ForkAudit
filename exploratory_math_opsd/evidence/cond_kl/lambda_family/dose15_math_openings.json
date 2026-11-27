@@ -1,0 +1,135 @@
+{
+  "receipt": {
+    "config": {
+      "enable_thinking": false,
+      "adapter": "/mnt/data/ForkAudit/math-opsd/run/R-lambda15/checkpoint-100",
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "max_new_tokens": 16384,
+      "seed": 1001,
+      "val_n": 2
+    },
+    "data_sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+    "adapter_sha256": "bd44940e4ab7d6581ae4e6a5e7f145ee7c6f4d8251854aa6a392966f0f4719f4",
+    "evaluator_sha256": "3e41466b7cf971bcefa8cf53275e78639b79e94b816d6665d044b25f65076450",
+    "answers": 1000,
+    "accuracy_percent": 71.5,
+    "mean_tokens": 3872.58,
+    "truncated_pct": 12.5,
+    "wall_seconds": 1095.8415372970003,
+    "answers_sha256": "b7478b200be04eaad8f9928cebe717d8d7d79ce9011ae4a9b699656daabe755f"
+  },
+  "openings": {
+    "n": 1000,
+    "archive_sha256": "b7478b200be04eaad8f9928cebe717d8d7d79ce9011ae4a9b699656daabe755f",
+    "leading_closing_tag": 0,
+    "closing_pct": 5.5,
+    "thinking_opening_pct": 0.6,
+    "top_words": [
+      {
+        "word": "we",
+        "n": 379,
+        "pct": 37.9
+      },
+      {
+        "word": "human",
+        "n": 241,
+        "pct": 24.1
+      },
+      {
+        "word": "understanding",
+        "n": 90,
+        "pct": 9.0
+      },
+      {
+        "word": "wait",
+        "n": 58,
+        "pct": 5.8
+      },
+      {
+        "word": "let's",
+        "n": 57,
+        "pct": 5.7
+      },
+      {
+        "word": "la",
+        "n": 36,
+        "pct": 3.6
+      },
+      {
+        "word": "university",
+        "n": 25,
+        "pct": 2.5
+      },
+      {
+        "word": "notably",
+        "n": 11,
+        "pct": 1.1
+      },
+      {
+        "word": "we're",
+        "n": 11,
+        "pct": 1.1
+      },
+      {
+        "word": "is",
+        "n": 10,
+        "pct": 1.0
+      },
+      {
+        "word": "to",
+        "n": 8,
+        "pct": 0.8
+      },
+      {
+        "word": "giả",
+        "n": 7,
+        "pct": 0.7
+      },
+      {
+        "word": "step",
+        "n": 7,
+        "pct": 0.7
+      },
+      {
+        "word": "okay",
+        "n": 6,
+        "pct": 0.6
+      },
+      {
+        "word": "召开会议",
+        "n": 5,
+        "pct": 0.5
+      }
+    ],
+    "groups": {
+      "思考式": {
+        "n": 6,
+        "accuracy": 83.33333333333333,
+        "tokens": 9800.0,
+        "closing_pct": 66.66666666666667,
+        "wait_per_1000": 3.8095238095238093
+      },
+      "其他": {
+        "n": 994,
+        "accuracy": 71.42857142857143,
+        "tokens": 3836.800804828974,
+        "closing_pct": 5.130784708249497,
+        "wait_per_1000": 0.5349023803155925
+      }
+    }
+  },
+  "truncated_above_20_pct": false,
+  "gibberish_first_word": {
+    "n": 1000,
+    "hits": 28,
+    "pct": 2.8,
+    "non_ascii": 24,
+    "role": 4,
+    "sha256": "b7478b200be04eaad8f9928cebe717d8d7d79ce9011ae4a9b699656daabe755f"
+  },
+  "gibberish_above_10_pct": false
+}
