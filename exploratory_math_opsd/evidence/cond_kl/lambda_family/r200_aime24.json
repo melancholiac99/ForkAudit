@@ -1,0 +1,44 @@
+{
+  "receipts": {
+    "B": {
+      "layout": "4xTP1",
+      "sha256": "f698178d6b9c1c904d35b9307cd3a36d8824d61de0425a416d442acbabc2504b",
+      "adapter_sha256": null,
+      "wall_seconds": 2087.1874876329994,
+      "rate": 51.94444444444444,
+      "source": "/mnt/data2/ForkAudit/math-opsd/layout-benchmark"
+    },
+    "R@100": {
+      "layout": "4xTP1",
+      "sha256": "aa0dceb20d76a8251f6d52f678fac12ed6d66f05237837c60a51736cc50a1b1a",
+      "adapter_sha256": "605f675f76ac2edd996fab5bdf2eeb110bb3879bc740729230a6e4355d3805f7",
+      "wall_seconds": 3258.595864191,
+      "rate": 55.55555555555556
+    },
+    "R-extension@200": {
+      "layout": "4xTP1",
+      "sha256": "fad8bc1ba687af22f35f7affa0918a5b50d8121a97afaf52ed5a6170a653bed6",
+      "adapter_sha256": "344f37ba8428ff31da7067f11b0c52ee3c58e693e219afdd175ec5a62c22d6a9",
+      "wall_seconds": 3614.071967205,
+      "rate": 48.333333333333336
+    }
+  },
+  "R200_minus": {
+    "B": {
+      "pp": -3.611111111111111,
+      "ci95": [
+        -10.277777777777779,
+        3.0555555555555554
+      ]
+    },
+    "R@100": {
+      "pp": -7.222222222222222,
+      "ci95": [
+        -13.340277777777771,
+        -1.3888888888888888
+      ]
+    }
+  },
+  "below_B": true,
+  "short_term_criterion_met": true
+}
