@@ -1,0 +1,44 @@
+{
+  "receipt": {
+    "arm": "R-lambda15",
+    "wall_seconds": 1486.89161714,
+    "adapters": {
+      "25": "33165e5e3b5ab2ab6be31c4677730359be9e69a593188f4eed477457e0b995ca",
+      "50": "c3edb4668c08f0b3b6ff2c43ba2b6be60df90aec87b06ea0c9d33689a9032908",
+      "75": "949fba07d0773e2bb7b8d99e14b5b63e8fe7b813716e59cdfc50157d27f36c89",
+      "100": "bd44940e4ab7d6581ae4e6a5e7f145ee7c6f4d8251854aa6a392966f0f4719f4"
+    }
+  },
+  "dynamics": {
+    "R-lambda15": {
+      "25": {
+        "positions": 25293,
+        "mean_size": 0.5610247894674416,
+        "mean_qa": 0.25015586338787343,
+        "mean_pa": 0.1646069486545627,
+        "skipped": 0
+      },
+      "50": {
+        "positions": 28156,
+        "mean_size": 0.8830799829521239,
+        "mean_qa": 0.3991240075275901,
+        "mean_pa": 0.24023488329916384,
+        "skipped": 0
+      },
+      "75": {
+        "positions": 31257,
+        "mean_size": 0.7920465815657293,
+        "mean_qa": 0.35002908331440097,
+        "mean_pa": 0.18584095737542553,
+        "skipped": 0
+      },
+      "100": {
+        "positions": 28189,
+        "mean_size": 0.8123026712547448,
+        "mean_qa": 0.34576440405552156,
+        "mean_pa": 0.1720830487312229,
+        "skipped": 0
+      }
+    }
+  }
+}
