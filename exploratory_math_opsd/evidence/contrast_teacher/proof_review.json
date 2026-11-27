@@ -1,0 +1,48 @@
+{
+  "4807": {
+    "proof": "At x=0 the inequality gives f(0)=0. Choose a in A; then a is nonzero and f(a)>a^2>0. Hence f(a/2) >= f(a)^2/(2a^2) > a^2/2 > (a/2)^2. Thus a/2 is in A. By induction a/2^k belongs to A for every nonnegative integer k. These numbers are pairwise distinct since a is nonzero, proving that A is infinite.",
+    "grades": [
+      "incomplete",
+      "incomplete",
+      "incorrect",
+      "incorrect"
+    ],
+    "reasons": [
+      "Correct halving step but assumes a nonzero and text cuts off.",
+      "Derives halving but divides by a squared without establishing a is nonzero; last sentence is cut off.",
+      "Reverses the bound on f(y) obtained from f(2y)^2 <= 8 y^2 f(y).",
+      "Infers a lower bound on f(2a)^2 from an upper bound whose right side exceeds 8a^4."
+    ],
+    "replace_positive": false,
+    "problem": "Given that for any real number \\( x \\), the function \\( f(x) \\) is defined, and \\( f^{2}(x) \\leq 2 x^{2} f\\left(\\frac{x}{2}\\right) \\). If \\( A = \\{a \\mid f(a) > a^{2}\\} \\neq \\varnothing \\), prove that \\( A \\) is an infinite set.",
+    "sample_sha256": [
+      "eee478785a2fd8905c5e4de6ddc1b2edd9476f49128b706bdefee9e19f991056",
+      "2074f2a907bf230df5caf62d115e29e8f8e762fb8a1c2eb693413261bce84fd0",
+      "1ec542d234078415ae2c3c59fd23e7992abbafef583c58b16978a3bd28c4d667",
+      "d2d66ace2afd8ab1883cf94dee33005c2089c5d9c888b327bbe138f625dc43c9"
+    ]
+  },
+  "6651": {
+    "proof": "Set a_(n+1)=a_1. The n ratios a_i/a_(i+1) are positive and their product telescopes to 1. By the arithmetic-geometric mean inequality their sum is at least n times the nth root of 1, hence at least n. Equality holds exactly when all ratios are 1, equivalently all a_i are equal.",
+    "grades": [
+      "correct",
+      "correct",
+      "correct",
+      "correct"
+    ],
+    "reasons": [
+      "Applies AM-GM to the n positive cyclic ratios and evaluates their product as 1.",
+      "Applies AM-GM to the n positive cyclic ratios and evaluates their product as 1.",
+      "Applies AM-GM to the n positive cyclic ratios and evaluates their product as 1.",
+      "Applies AM-GM to the n positive cyclic ratios and evaluates their product as 1."
+    ],
+    "replace_positive": true,
+    "problem": "Prove the inequality \\(\\frac{a_{1}}{a_{2}}+\\frac{a_{2}}{a_{3}}+\\ldots+\\frac{a_{n}}{a_{1}} \\geq n \\) where \\(a_{1}, a_{2}, \\ldots, a_{n}\\) are positive numbers.",
+    "sample_sha256": [
+      "d55fa57326e5845d1768b5dae9811b760730f49319e62cef553a234a9caa9ccb",
+      "b2eafafa0d6b240a8eb95c78a18a85432b55287c270caa3e9019e4ede57c4e85",
+      "09b4588fec13a48b7cb38a8192ac64b0fb6fd4d7ba1e68dda40b13cab7f32526",
+      "6765ff2851d2fadb90c3b110d6de3cc1390dd6c8d3877a39992b33a52e216941"
+    ]
+  }
+}

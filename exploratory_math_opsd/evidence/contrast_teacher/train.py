@@ -15,6 +15,7 @@ def replace(code, old, new):
 def prepare():
     src=WORK/'source'
     shutil.copytree(ROOT/'source',src,dirs_exist_ok=True,ignore=shutil.ignore_patterns('.git','__pycache__'))
+    shutil.copy(HERE/'proof_review.json',src/'proof_review.json')
     shutil.copy(HERE/'objective.py',src/'contrast_objective.py')
     shutil.copy(HERE/'training_parts.py',src/'training_parts.py')
     path=src/'opsd_trainer.py'
@@ -55,4 +56,8 @@ def main():
         save(p,receipt)
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    import fcntl
+    with (WORK/'half-gpu-handoff.lock').open('a') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX)
+        main()

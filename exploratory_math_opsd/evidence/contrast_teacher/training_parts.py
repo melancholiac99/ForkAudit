@@ -1,5 +1,6 @@
 import json
 import os
+from pathlib import Path
 import torch
 from torch.utils.checkpoint import checkpoint
 from contrast_objective import contrast_kl
@@ -11,6 +12,9 @@ class ContrastCollator(SelfDistillationDataCollator):
         if not hasattr(self,'negatives'):
             with open(os.environ['CONTRAST_NEGATIVES']) as f:
                 self.negatives=json.load(f)
+            review=json.loads(Path(__file__).with_name('proof_review.json').read_text())
+            self.positive_proofs={r['problem']:r['proof'] for r in review.values() if r['replace_positive']}
+        features=[{**f,'solution':self.positive_proofs[f['problem']]} if f['problem'] in self.positive_proofs else f for f in features]
         pos=super().__call__(features)
         known=[f['problem'] in self.negatives for f in features]
         neg=[self.negatives.get(f['problem']) for f in features]
