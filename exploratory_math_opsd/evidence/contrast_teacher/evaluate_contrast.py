@@ -115,6 +115,25 @@ def gate():
     ci=a[key+' minus R-noclip@100']['accuracy_pct']['ci95']
     passes=ci[0]>0 and b[ARM+'@200']['accuracy_pct']['mean']>=a[key]['accuracy_pct']['mean']
     save(HERE/'decision.json',dict(confirm=passes,sampled_advantage_followup=ci[0]<=0<=ci[1],interpretation_limit='正上下文来自参考解，负上下文来自 B 自生成回答。风格不同，对比信号不只反映正确性。'))
+    neg=read(HERE/'negative_contexts.json')
+    stats=read(HERE/'supervision_v2.json')
+    supervised=sum(s['supervised'] for s in stats.values())
+    eligible=sum(s['eligible'] for s in stats.values())
+    mass=sum((s['clipped_target_mass_fraction'] or 0)*s['supervised'] for s in stats.values())
+    assert supervised>0 and len(stats)==200
+    lines=['# R-contrast 修订版', '',
+           f"旧负样本 {neg['old_selected']} 条，其中 {neg['old_without_any_complete_box']} 条缺少完整非空 boxed。修订版 {neg['tasks']} 题中 {neg['no_negative']} 题无合格负例。",
+           f"全程实际监督 {supervised}/{eligible} 个回答位置（{100*supervised/eligible:.2f}%）。每步平均 {supervised/len(stats):.1f} 个，每卡每微批平均 {supervised/(8*len(stats)):.1f} 个。修正触及截断区外的元素占监督位置目标质量的 {100*mass/supervised:.3f}%。",
+           '', '逐步数据见 [supervision_v2.json](supervision_v2.json)。', '',
+           '|检查点|AIME24 思考准确率|MATH-500 非思考 16k 准确率|','|---|---:|---:|']
+    for step in (100,200):
+        model=f'{ARM}@{step}'
+        rates=[read(HERE/f'{dataset}_{step}.json')['accuracy'][model]['accuracy_pct']['mean'] for dataset in ('aime24','math500')]
+        lines.append(f'|@{step}|{rates[0]:.2f}%|{rates[1]:.2f}%|')
+    lines.extend(['',f'@100 减 R-noclip 的 AIME24 配对差区间为 [{ci[0]:.2f}, {ci[1]:.2f}] 个百分点。',
+                  '达到三基准确认条件。' if passes else '未达到三基准确认条件。',
+                  '正上下文来自参考解，负上下文来自 B 自己的回答。两者风格不同，对比信号同时可能反映正确性与风格差异。'])
+    (HERE/'REPORT.md').write_text('\n'.join(lines)+'\n')
     if passes:
         for dataset in ('aime25','hmmt25'):
             for step in (100,200):behavior(step,dataset)
