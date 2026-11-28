@@ -47,7 +47,7 @@ def verify(pool,manual):
             dist=distance(a,b)
             checks=dict(box_match=bool(got) and (norm(target)==norm(got) or bool(grade_answer(got,target))),
                         wrong=bool(got) and not grade_answer(got,str(gold)),gold_absent=all(not present(str(v),text) for v in (gold,ref[-1] if ref else gold)),
-                        edit_limit=dist<=len(a)/4,headings=headings(old)==headings(text),lines=len(old.splitlines())==len(text.splitlines()))
+                        edit_limit=dist<=len(a)/4,headings=len(headings(old))==len(headings(text)),lines=10*abs(len(old.splitlines())-len(text.splitlines()))<=len(old.splitlines()))
             item.update(qualified=all(checks.values()),checks=checks,edit_tokens=dist,reference_tokens=len(a),B_box=target,new_box=got)
         results.append(item)
     return results

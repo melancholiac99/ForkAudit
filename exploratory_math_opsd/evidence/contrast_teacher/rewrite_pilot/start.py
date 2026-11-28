@@ -15,6 +15,11 @@ def main():
     for r in checked:
         if r['qualified'] and verdict[str(r['idx'])]['pass']:
             accepted[r['idx']]=r
+    # Preserve any independently reviewed relaxed candidate if the later editor
+    # rejected a different candidate for the same question.
+    for key,row in read(DATA/'format_relaxed_accepted.json').items():
+        if not accepted.get(int(key),{}).get('qualified'):
+            accepted[int(key)]=row
     jobs=read(DATA.parent/'contrast/manifest.json')[:3200]
     mapping={j['problem']:None for j in jobs}
     for j in jobs:
@@ -30,7 +35,13 @@ def main():
     p=src/'training_parts.py'
     code=p.read_text()
     a=code.index('            review=');b=code.index('        pos=super()',a)
-    p.write_text(code[:a]+code[b:])
+    code=code[:a]+code[b:]
+    code=replace(code,'eligible=labels!=-100','from contrast_objective import eligible_positions\n    eligible=eligible_positions(labels)')
+    p.write_text(code)
+    shutil.copy(HERE/'format_target.py',src/'contrast_objective.py')
+    shutil.copy(HERE/'format_tokens.json',src/'format_tokens.json')
+    assert (HERE/'format_report.json').is_file()
+    subprocess.run([sys.executable,'-m','unittest','test_format'],cwd=HERE,check=True)
     shutil.copy(HERE.parent/'repair/runtime.py',src/'repair_runtime.py')
     p=src/'opsd_trainer.py'
     p.write_text(replace(p.read_text(),'        total_completion_tokens = sum(len(ids) for ids in completion_ids)','''        self.repair_counts[0]+=sum(bool(len(seq)) and seq[-1] in self._repair_eos for seq in completion_ids)
