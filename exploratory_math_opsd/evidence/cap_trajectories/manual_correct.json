@@ -1,0 +1,14 @@
+[
+ {
+  "id": [
+   "aime24",
+   "R-lambda15@100",
+   77,
+   7
+  ],
+  "question_index": 17,
+  "token": 30887,
+  "remaining": 8025,
+  "snippet": ", except when two variables are equal.\n\nBut when x = 100, the triple (100, 100, 100) has 1 permutation.\n\nFor x from 0 to 99, each gives 6 permutations.\n\nBut how many x are there?\n\nFrom x = 0 to x = 100, that's 101 values.\n\nBut for x = 0 to 99, 100 values, and x = 100, 1 value.\n\nBut for x = 100, the triple is (100, 100, 100), which has 1 permutation.\n\nFor x from 0 to 99, each gives 6 permutations.\n\nTherefore, total number of ordered triples is:\n\n1 * 1 + 100 * 6 = 1 + 600 = 601.\n\nBut wait, but when x = 100, it is one value, and for x from 0 to 99, it is 100 values, giving 100 * 6 = 600, plus 1 for x = 100, giving 601.\n\nBut this seems to suggest that there are 601 ordered triples.\n\nBut earlier, we had Type 2 (with"
+ }
+]

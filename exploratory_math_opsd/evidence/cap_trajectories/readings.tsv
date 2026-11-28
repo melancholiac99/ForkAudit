@@ -1,0 +1,39 @@
+aime24	R@100	65	5	P P P U	Changes coordinates and determinant representations, then assumes an unverified radius and boxes 76.
+aime24	R@100	70	5	P U U N	Returns to a quadratic that contradicts the rectangle geometry and substitutes guesses without resolving the contradiction.
+aime24	R@100	80	0	U P U N	Finds a useful divisibility relation but ultimately guesses from small bases.
+aime24	R@100	80	8	P U P P	Uses coprimality of consecutive factors and new CRT cases. Enumeration remains incomplete.
+aime24	R-lambda15@100	64	1	P P U N	The lifting congruence is useful; abandoning 17 for 41 loses the least-prime condition.
+aime24	R-lambda15@100	65	0	U P N N	Reuses incompatible volume and face areas. The four faces are congruent.
+aime24	R-lambda15@100	65	2	P P U N	A correct coordinate from the distance equations precedes repeated returns to the same unresolved volume.
+aime24	R-lambda15@100	65	5	U P U N	Tries a determinant and repeatedly recombines earlier inconsistent surface and volume calculations.
+aime24	R-lambda15@100	65	8	P U P N	Explicit vector products advance a method. The same incompatible radical is repeatedly presented in the tail.
+aime24	R-lambda15@100	65	9	P P U N	Coordinates and cross products give intermediate constraints; eventually assumes a result and restarts after boxing 85.
+aime24	R-lambda15@100	65	10	P P U P	Uses simple test vectors and corrects a determinant arithmetic error just before cutoff. The final radius is unresolved.
+aime24	R-lambda15@100	65	11	P U P U	Checks faces and coordinates; the incongruent computed face areas contradict the given disphenoid.
+aime24	R-lambda15@100	75	3	P U D D	Inclusion-exclusion gives way to a continuous bare “let’s” loop.
+aime24	R-lambda15@100	77	0	P U N U	Derives symmetric constraints and checks cases, but keeps switching among incompatible counts.
+aime24	R-lambda15@100	77	7	U P U N	Finds the family with one coordinate 100; counts permutations of both x and 200−x twice.
+aime24	R-lambda15@100	80	1	P U U N	Contradictory counts of solutions for base 16 persist through the final guess.
+aime24	R-lambda15@100	80	3	P P P U	Enumerates genuinely distinct residues and corrects a divisibility count; no proof of the first qualifying base.
+aime24	R-lambda15@100	80	7	P U P N	Tests additional bases and divisibility cases before reverting to unsupported guesses.
+aime24	R-lambda15@100	80	11	P P U N	Small-base calculations test the congruence but the tail recycles the same known counts.
+aime24	R-lambda15@100	83	1	D D D D	Equation fragments collapse to alternating “Let me note / think / take” scaffolds.
+aime24	R-lambda15@100	83	3	D D D D	An unfinished equation prompt collapses to bare “Let me think” paragraphs.
+aime24	R-lambda15@100	83	11	U P P U	Enumerates constrained digit cases, reaches 45 and starts writing up the solution.
+aime24	R-lambda15@100	87	6	P P N U	Tests the four digit replacements, returning to equivalent congruences; checking additional candidates alone is not a loop.
+nonthinking	R@100	2	1	P U P N	Eventually repeats a parenthesization verbatim, even labelling it “Already counted”.
+nonthinking	R@100	6	0	P P U N	The gap construction is promising; conflicting counts recur without consistently eliminating rotations.
+nonthinking	R@100	27	1	P U N N	Enumerates a fractional sequence repeatedly despite the requirement of positive integers.
+nonthinking	R@100	30	1	P D D D	Starts with parity of composition; tail alternates unfinished “define” and “take” prompts.
+nonthinking	R@100	34	0	P P U U	Verifies feasibility at 64, then tries to prove uniqueness. Feasibility alone is insufficient.
+nonthinking	R@100	95	1	P P U N	Correct region decomposition reappears alongside incompatible integrated areas.
+nonthinking	R@100	100	1	U N N N	Vietnamese prose repeats the same tautological complex-modulus equation.
+nonthinking	R@100	106	0	P U N N	Useful centroid identity gives way to repeated expansions of the same dot products.
+nonthinking	R-lambda15@100	2	0	U N N N	Repeats an inadmissible all-addition expression without adding a parenthesization.
+nonthinking	R-lambda15@100	12	0	P N N N	Checks an integer trial then repeatedly boxes an intermediate bag size rather than total coins.
+nonthinking	R-lambda15@100	28	0	N N N N	The same unresolved radical identity and “Try” are copied across the response.
+nonthinking	R-lambda15@100	82	0	U N N N	Repeats a cases expression with identical positive-integer conditions.
+nonthinking	R-lambda15@100	83	1	N N N N	The Spanish transition “De aquí” introduces exactly the same continued fraction.
+nonthinking	R-lambda15@100	100	1	D D D D	A cyclic chain of bold sentence fragments repeats the tangency description without constructing a relation.
+nonthinking	R-lambda15@100	106	0	P U N N	Starts with a centroid identity, then copies an identical sum of squared sides.
+nonthinking	R-lambda15@100	122	1	U N N N	Restates f(x)=30−x repeatedly instead of evaluating the endpoint minimum.
