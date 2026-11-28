@@ -1,0 +1,78 @@
+{
+  "counts": {
+    "microbatches": 800,
+    "eligible": 2992398,
+    "supervised": 1090146,
+    "all_zero_microbatches": 132,
+    "roundtrip_batch_width_mismatch": 0,
+    "roundtrip_unpadded_id_mismatch": 0,
+    "supervised_questions": 1144,
+    "student_prompts_first_PAD": 821,
+    "teacher_prompts_first_PAD": 879,
+    "negative_prompts_first_PAD": 814,
+    "either_teacher_first_PAD": 996,
+    "any_first_PAD": 1066,
+    "different_teacher_gap": 995
+  },
+  "style_questions": {
+    "positive Wait": 1,
+    "positive </think>": 0,
+    "positive <think>": 0,
+    "positive \\boxed": 1144,
+    "positive <|im_end|>": 0,
+    "positive <|im_start|>": 0,
+    "positive ###": 456,
+    "positive **": 694,
+    "negative Wait": 80,
+    "negative </think>": 0,
+    "negative <think>": 0,
+    "negative \\boxed": 1144,
+    "negative <|im_end|>": 0,
+    "negative <|im_start|>": 0,
+    "negative ###": 1143,
+    "negative **": 1065
+  },
+  "distributions": {
+    "positive": {
+      "mean": 649.0288461538462,
+      "p50": 618.5,
+      "p90": 964.4000000000001,
+      "max": 1572.0
+    },
+    "negative": {
+      "mean": 726.5576923076923,
+      "p50": 747.5,
+      "p90": 1016.0,
+      "max": 1024.0
+    },
+    "relative_offset": {
+      "mean": 168.43706293706293,
+      "p50": 132.5,
+      "p90": 396.8000000000002,
+      "max": 973.0
+    },
+    "first_token_loss_weight": {
+      "mean": 0.0008007111010976471,
+      "p50": 0.0009765625,
+      "p90": 0.0012308450170519136,
+      "max": 0.004149377593360996
+    },
+    "rank_valid": {
+      "mean": 1362.6825,
+      "p50": 1024.0,
+      "p90": 2779.9,
+      "max": 4096.0
+    }
+  },
+  "excluded": {
+    "questions": 2056
+  },
+  "sources": {
+    "opsd_trainer.py": "121a054880dc6401c2deb82c1079f66270468347e7f13b32104fc8e11a65de61",
+    "training_parts.py": "8209a43bee65dfb81e2a7c7aadafe244279272e5539442f6fd46eba62a0ac38e",
+    "contrast_objective.py": "d1f157b5fe95381f2b71456ff5a179cb798101439d814181a5eca0177d4be5be",
+    "data_collator.py": "7189b718e35c68d75f9f8cbbe66226b771a74d84c60e776b4a55293225d68202",
+    "manifest.json": "cabb27a99fafd41b3728f52cf167dcfd7b21c10b86cf7c3b47154fa9f1a14503",
+    "negative.json": "cb53180172b322a7c9eafc82f19cc48b715e3cb2bc307ed35a7157d114a1f3aa"
+  }
+}

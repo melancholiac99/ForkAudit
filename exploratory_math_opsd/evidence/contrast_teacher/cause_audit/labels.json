@@ -1,0 +1,531 @@
+{
+ "counts": {
+  "active": 1144,
+  "negative_matches_gold": 0,
+  "positive_box_mismatch_or_missing": 87
+ },
+ "flagged": [
+  {
+   "idx": 15584,
+   "gold": "\\overline{A \\cup B} = \\bar{A} \\cap \\bar{B}",
+   "negative": "\\overline{A \\cup B} = \\bar{A} \\cap \\bar{B} \\quad \\text{and} \\quad \\overline{A \\cap B} = \\bar{A} \\cup \\bar{B}",
+   "positive": "\\overline{A \\cap B} = \\bar{A} \\cup \\bar{B}"
+  },
+  {
+   "idx": 16211,
+   "gold": "\\frac{1}{2}",
+   "negative": "\\frac{1}{8}",
+   "positive": "\\frac{14}{27}"
+  },
+  {
+   "idx": 9259,
+   "gold": "62500",
+   "negative": "\\text{Odd numbers are more prevalent by } 15625 \\text{ times.}",
+   "positive": "1.25"
+  },
+  {
+   "idx": 12843,
+   "gold": "\\sin A = \\sin C \\text{ always holds true}",
+   "negative": "B",
+   "positive": "(B) \\text{ two relationships}"
+  },
+  {
+   "idx": 12365,
+   "gold": "X = A \\cap B",
+   "negative": "X = A \\cap B",
+   "positive": "X = A \\cap B"
+  },
+  {
+   "idx": 1678,
+   "gold": "124",
+   "negative": "50",
+   "positive": "-10"
+  },
+  {
+   "idx": 26777,
+   "gold": "\\frac{241}{2500}",
+   "negative": "\\text{B}",
+   "positive": "B"
+  },
+  {
+   "idx": 9352,
+   "gold": "1",
+   "negative": "2006",
+   "positive": "1989"
+  },
+  {
+   "idx": 10771,
+   "gold": "MN \\parallel AC",
+   "negative": "MN \\parallel AC",
+   "positive": "MN \\parallel AC"
+  },
+  {
+   "idx": 27905,
+   "gold": "H \\subseteq Z(G)",
+   "negative": "H \\subseteq Z(G)",
+   "positive": "H \\subseteq Z(G)"
+  },
+  {
+   "idx": 18876,
+   "gold": "25",
+   "negative": "26",
+   "positive": "\\text{No}"
+  },
+  {
+   "idx": 17335,
+   "gold": "10.899",
+   "negative": "0.736",
+   "positive": "0.775"
+  },
+  {
+   "idx": 14015,
+   "gold": "2",
+   "negative": "19 \\times 3^A",
+   "positive": "27"
+  },
+  {
+   "idx": 25192,
+   "gold": "\\$15.17",
+   "negative": "15.17",
+   "positive": "\\$15.17"
+  },
+  {
+   "idx": 15178,
+   "gold": "13",
+   "negative": "3",
+   "positive": "12"
+  },
+  {
+   "idx": 3664,
+   "gold": "CD \\parallel EF",
+   "negative": "CD \\parallel EF",
+   "positive": "CD \\parallel EF"
+  },
+  {
+   "idx": 5607,
+   "gold": "9",
+   "negative": "2232445",
+   "positive": "8"
+  },
+  {
+   "idx": 13200,
+   "gold": "\\text{No solutions}",
+   "negative": "1 - \\sqrt{2}",
+   "positive": "-1"
+  },
+  {
+   "idx": 27264,
+   "gold": "x^n + y^n \\in \\mathbb{Z}",
+   "negative": "\\text{For all natural numbers } n, \\quad x^n + y^n \\in \\mathbb{Z}",
+   "positive": "x^n + y^n \\in \\mathbb{Z}"
+  },
+  {
+   "idx": 4465,
+   "gold": "p - 1",
+   "negative": "p^2 - p",
+   "positive": "p(p-1)"
+  },
+  {
+   "idx": 11452,
+   "gold": "\\frac{1}{8}",
+   "negative": "D",
+   "positive": "D"
+  },
+  {
+   "idx": 11086,
+   "gold": "(10, 0), (-6, 8)",
+   "negative": "40",
+   "positive": "16"
+  },
+  {
+   "idx": 20852,
+   "gold": "1 - \\frac{2}{e}",
+   "negative": "2 - \\frac{3}{4 \\ln 2}",
+   "positive": "e - 2"
+  },
+  {
+   "idx": 25650,
+   "gold": "(-2, 18)",
+   "negative": "(-2, 18); (8, 38)",
+   "positive": "(8, 38)"
+  },
+  {
+   "idx": 160,
+   "gold": "4.52 \\text{ million rubles}",
+   "negative": "0.2002",
+   "positive": "2"
+  },
+  {
+   "idx": 18107,
+   "gold": "a = b = c",
+   "negative": "a = b = c",
+   "positive": "a = b = c"
+  },
+  {
+   "idx": 1377,
+   "gold": "\\{ f_n \\} \\xrightarrow{\\mu \\text{-.a.e.}} f",
+   "negative": "\\text{Almost uniform convergence } f_n \\rightrightarrows f \\text{ implies } f_n \\xrightarrow{\\mu} f \\text{ and } f_n \\xrightarrow{\\mu\\text{-a.e.}} f",
+   "positive": "\\{ f_n \\} \\xrightarrow{\\mu} f"
+  },
+  {
+   "idx": 10181,
+   "gold": "27",
+   "negative": "15",
+   "positive": "15"
+  },
+  {
+   "idx": 125,
+   "gold": "a \\equiv b \\pmod{n}",
+   "negative": "a \\equiv b \\pmod{n}",
+   "positive": "a \\equiv b \\pmod{n}"
+  },
+  {
+   "idx": 24863,
+   "gold": "\\$425",
+   "negative": "425",
+   "positive": "\\$425"
+  },
+  {
+   "idx": 15183,
+   "gold": "\\text{There is at least one number among } p+1 \\text{ and } p-1 \\text{ that divides 4.}",
+   "negative": "\\text{No}",
+   "positive": "\\text{No}"
+  },
+  {
+   "idx": 20070,
+   "gold": "| \\sigma - I | \\leq S - s",
+   "negative": "|\\sigma - I| \\leqslant S - s",
+   "positive": "| \\sigma - I | \\leq S - s"
+  },
+  {
+   "idx": 14358,
+   "gold": "11",
+   "negative": "C",
+   "positive": "C"
+  },
+  {
+   "idx": 5197,
+   "gold": "\\frac{\\operatorname{tg} \\alpha}{\\alpha} < \\frac{\\operatorname{tg} \\beta}{\\beta}",
+   "negative": "\\frac{\\tan \\alpha}{\\alpha} < \\frac{\\tan \\beta}{\\beta}",
+   "positive": "\\frac{\\operatorname{tg} \\alpha}{\\alpha} < \\frac{\\operatorname{tg} \\beta}{\\beta}"
+  },
+  {
+   "idx": 6128,
+   "gold": "49",
+   "negative": "589",
+   "positive": "589"
+  },
+  {
+   "idx": 23537,
+   "gold": "\\$144",
+   "negative": "144",
+   "positive": "\\$144"
+  },
+  {
+   "idx": 21294,
+   "gold": "33\\%",
+   "negative": "20\\%",
+   "positive": "[625, 750]"
+  },
+  {
+   "idx": 8852,
+   "gold": "B = 0",
+   "negative": "A = 2, \\ C = 1, \\ D = 4",
+   "positive": "A = 2, B = 0, C = 1, D = 4"
+  },
+  {
+   "idx": 29204,
+   "gold": "47",
+   "negative": "9",
+   "positive": "9"
+  },
+  {
+   "idx": 2798,
+   "gold": "2",
+   "negative": "\\frac{1}{2}",
+   "positive": "\\frac{1}{4}"
+  },
+  {
+   "idx": 16137,
+   "gold": "120",
+   "negative": "72",
+   "positive": "72"
+  },
+  {
+   "idx": 7368,
+   "gold": "f = g",
+   "negative": "f = g",
+   "positive": "f = g"
+  },
+  {
+   "idx": 6518,
+   "gold": "35",
+   "negative": "\\frac{k(k - 3)}{2}",
+   "positive": "\\frac{k(k-3)}{2}"
+  },
+  {
+   "idx": 8520,
+   "gold": "5 + 4\\sqrt{3}",
+   "negative": "1 + \\frac{2\\sqrt{3}}{3}",
+   "positive": "1 + \\frac{2\\sqrt{3}}{3}"
+  },
+  {
+   "idx": 681,
+   "gold": ">",
+   "negative": "\\text{It depends on the signs of } a \\text{ and } b",
+   "positive": ">"
+  },
+  {
+   "idx": 26355,
+   "gold": "\\$1500",
+   "negative": "1500",
+   "positive": "\\$1500"
+  },
+  {
+   "idx": 3430,
+   "gold": "6",
+   "negative": "\\text{Cannot determine without more information}",
+   "positive": "48"
+  },
+  {
+   "idx": 12091,
+   "gold": "210",
+   "negative": "378",
+   "positive": "378"
+  },
+  {
+   "idx": 2285,
+   "gold": "s = \\frac{t^3}{4} - t",
+   "negative": "y = (x - t)^3 - (x - t) + s",
+   "positive": "s = \\frac{t^3}{4} - t"
+  },
+  {
+   "idx": 20188,
+   "gold": "(0, -1)",
+   "negative": "\\left( \\frac{1}{2}, -\\frac{3}{4} \\right)",
+   "positive": "\\left( \\frac{1}{2}, -\\frac{3}{4} \\right)"
+  },
+  {
+   "idx": 12170,
+   "gold": "89",
+   "negative": "90",
+   "positive": "144"
+  },
+  {
+   "idx": 11512,
+   "gold": "2^{100}(x-1)-(x-2)",
+   "negative": "B",
+   "positive": "(B)"
+  },
+  {
+   "idx": 6438,
+   "gold": "-\\sqrt{2} \\leq \\sin x \\pm \\cos x \\leq \\sqrt{2}",
+   "negative": "1 \\leq |\\sin x| + |\\cos x| \\leq \\sqrt{2}",
+   "positive": "1 \\leq \\lvert \\sin x \\rvert + \\lvert \\cos x \\rvert \\leq \\sqrt{2}"
+  },
+  {
+   "idx": 6090,
+   "gold": "34220",
+   "negative": "34190",
+   "positive": "34190"
+  },
+  {
+   "idx": 4897,
+   "gold": "\\sin \\alpha_{1} + \\sin \\alpha_{2} + \\sin \\alpha_{3} \\leq 3 \\sin \\frac{\\alpha_{1} + \\alpha_{2} + \\alpha_{3}}{3}",
+   "negative": "\\cos \\alpha_{1} + \\cos \\alpha_{2} + \\cos \\alpha_{3} \\leq 3 \\cos \\frac{\\alpha_{1} + \\alpha_{2} + \\alpha_{3}}{3}",
+   "positive": "\\cos \\alpha_{1} + \\cos \\alpha_{2} + \\cos \\alpha_{3} \\leq 3 \\cos \\frac{\\alpha_{1} + \\alpha_{2} + \\alpha_{3}}{3}"
+  },
+  {
+   "idx": 3551,
+   "gold": "18",
+   "negative": "17",
+   "positive": "17"
+  },
+  {
+   "idx": 9449,
+   "gold": "0.5",
+   "negative": "\\frac{1 + (1 - 2p)^n}{2}",
+   "positive": "\\frac{1 + (1 - 2p)^n}{2}"
+  },
+  {
+   "idx": 4755,
+   "gold": "HK \\parallel AE \\text{ and } HK = \\frac{1}{4} AE",
+   "negative": "HK \\text{ is parallel to } AE \\text{ and } HK = \\frac{1}{4} AE",
+   "positive": "HK \\parallel AE \\text{ and } HK = \\frac{1}{4} AE"
+  },
+  {
+   "idx": 4765,
+   "gold": "\\triangle ACO \\cong \\triangle DBO",
+   "negative": "\\triangle ACO \\cong \\triangle DBO",
+   "positive": "\\triangle ACO \\cong \\triangle DBO"
+  },
+  {
+   "idx": 7953,
+   "gold": "\\operatorname{deg} P_{1} = \\operatorname{deg} P_{2} = \\cdots = \\operatorname{deg} P_{2021}",
+   "negative": "\\deg P_1 = \\deg P_2 = \\cdots = \\deg P_{2021}",
+   "positive": "\\operatorname{deg} P_{1} = \\operatorname{deg} P_{2} = \\cdots = \\operatorname{deg} P_{2021}"
+  },
+  {
+   "idx": 7769,
+   "gold": "|f(b) - f(a)| \\leq \\frac{1}{n} (b - a)^2.",
+   "negative": "|f(b) - f(a)| \\leq \\frac{1}{n}(b - a)^2",
+   "positive": "|f(b) - f(a)| \\leq \\frac{1}{n} (b - a)^2."
+  },
+  {
+   "idx": 4029,
+   "gold": "\\varphi(pq) = (p-1)(q-1)",
+   "negative": "p = 3, q = 11",
+   "positive": "p = 3, q = 11"
+  },
+  {
+   "idx": 17515,
+   "gold": "2000",
+   "negative": "64",
+   "positive": "3998"
+  },
+  {
+   "idx": 2278,
+   "gold": "AD \\perp BC",
+   "negative": "AD \\perp BC",
+   "positive": "AD \\perp BC"
+  },
+  {
+   "idx": 20957,
+   "gold": "-1",
+   "negative": "0",
+   "positive": "0"
+  },
+  {
+   "idx": 17238,
+   "gold": "5",
+   "negative": "10",
+   "positive": "10"
+  },
+  {
+   "idx": 21267,
+   "gold": "36",
+   "negative": "42",
+   "positive": "42"
+  },
+  {
+   "idx": 19372,
+   "gold": "-\\frac{z}{3} + \\frac{2}{9} z^2 - \\frac{7}{27} z^3 + \\ldots",
+   "negative": "R = 1",
+   "positive": "R = 1"
+  },
+  {
+   "idx": 14244,
+   "gold": "\\binom{n - 1}{m - 1}",
+   "negative": "\\binom{n + m - 1}{m - 1}",
+   "positive": "\\binom{n + m - 1}{m - 1}"
+  },
+  {
+   "idx": 15728,
+   "gold": "a + c = b + d",
+   "negative": "a + c = b + d",
+   "positive": "a + c = b + d"
+  },
+  {
+   "idx": 23851,
+   "gold": "\\sin^2 t",
+   "negative": "\\sin^2 t",
+   "positive": "\\sin^2 t"
+  },
+  {
+   "idx": 6897,
+   "gold": "\\frac{1}{2}",
+   "negative": "\\frac{2}{7}",
+   "positive": "\\frac{14}{27}"
+  },
+  {
+   "idx": 12232,
+   "gold": "6 \\text{ weights}",
+   "negative": "4",
+   "positive": "4 \\text{ weights}"
+  },
+  {
+   "idx": 13515,
+   "gold": "4",
+   "negative": "2",
+   "positive": "\\frac{25}{24}"
+  },
+  {
+   "idx": 21141,
+   "gold": "\\frac{\\pi}{6}",
+   "negative": "\\frac{4\\pi}{3}",
+   "positive": "\\frac{4\\pi}{3}"
+  },
+  {
+   "idx": 20005,
+   "gold": "6",
+   "negative": "-6",
+   "positive": "6x"
+  },
+  {
+   "idx": 13884,
+   "gold": "x + y - z - 1 = 0",
+   "negative": "(1, 1, -1)",
+   "positive": "\\frac{x - 1}{1} = \\frac{y - 1}{1} = \\frac{z - 1}{-1}"
+  },
+  {
+   "idx": 7272,
+   "gold": "957",
+   "negative": "21",
+   "positive": "75"
+  },
+  {
+   "idx": 9677,
+   "gold": "b \\geq n + l",
+   "negative": "b \\geq n + l",
+   "positive": "b \\geq n + l"
+  },
+  {
+   "idx": 22589,
+   "gold": "\\$180",
+   "negative": "180",
+   "positive": "\\$180"
+  },
+  {
+   "idx": 6156,
+   "gold": "4,536",
+   "negative": "3168",
+   "positive": "3,168"
+  },
+  {
+   "idx": 5055,
+   "gold": "-\\frac{\\sqrt{3}}{2}",
+   "negative": "-1",
+   "positive": "-1"
+  },
+  {
+   "idx": 4997,
+   "gold": "11",
+   "negative": "-71",
+   "positive": "109"
+  },
+  {
+   "idx": 19659,
+   "gold": "8",
+   "negative": "216",
+   "positive": "216"
+  },
+  {
+   "idx": 1785,
+   "gold": "\\frac{a_1^2}{a_1 + a_2} + \\frac{a_2^2}{a_2 + a_3} + \\cdots + \\frac{a_n^2}{a_n + a_1} \\geq \\frac{1}{2}",
+   "negative": "\\frac{a_1^2}{a_1 + a_2} + \\frac{a_2^2}{a_2 + a_3} + \\cdots + \\frac{a_{n-1}^2}{a_{n-1} + a_n} + \\frac{a_n^2}{a_n + a_1} \\geq \\frac{1}{2}",
+   "positive": "\\frac{a_1^2}{a_1 + a_2} + \\frac{a_2^2}{a_2 + a_3} + \\cdots + \\frac{a_n^2}{a_n + a_1} \\geq \\frac{1}{2}"
+  },
+  {
+   "idx": 5688,
+   "gold": "f(x) > g(x) \\text{ for all } x \\in (a, b)",
+   "negative": "f(x) > g(x) \\text{ for all } x \\in (a, b)",
+   "positive": "f(x) > g(x) \\text{ for all } x \\in (a, b)"
+  },
+  {
+   "idx": 26731,
+   "gold": "8",
+   "negative": "34",
+   "positive": "\\text{B}"
+  }
+ ]
+}
