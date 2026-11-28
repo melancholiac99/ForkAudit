@@ -1,0 +1,12 @@
+{
+  "max_abs": {
+    "student_prompts": 0.0,
+    "teacher_prompts": 0.0,
+    "negative_prompts": 0.0
+  },
+  "dtype": "float32",
+  "model": "training base",
+  "atol": 0.0002,
+  "rtol": 2e-05,
+  "positions": 6
+}
