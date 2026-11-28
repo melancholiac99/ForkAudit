@@ -1,0 +1,47 @@
+{
+  "windows": [
+    {
+      "step": 25,
+      "ended": 442,
+      "total": 800,
+      "fraction": 0.5525,
+      "stop": false,
+      "clipped": 39,
+      "supervised": 223910,
+      "clip_fraction": 0.0001741771247376178
+    },
+    {
+      "step": 50,
+      "ended": 340,
+      "total": 800,
+      "fraction": 0.425,
+      "stop": false,
+      "clipped": 30,
+      "supervised": 245960,
+      "clip_fraction": 0.00012197105220361035
+    },
+    {
+      "step": 75,
+      "ended": 238,
+      "total": 800,
+      "fraction": 0.2975,
+      "stop": false,
+      "clipped": 111,
+      "supervised": 274818,
+      "clip_fraction": 0.00040390367443180576
+    },
+    {
+      "step": 100,
+      "ended": 98,
+      "total": 800,
+      "fraction": 0.1225,
+      "stop": true,
+      "clipped": 336,
+      "supervised": 301032,
+      "clip_fraction": 0.0011161604081958065
+    }
+  ],
+  "adapter_sha256": "242dd70f41097009e34fd70c95e2723b24d03b7aa82425704b53dd606205cdb6",
+  "ratio_clip_fraction": 0.0004934399265577783,
+  "verdict": "CLOSED_EARLY_STOP"
+}
