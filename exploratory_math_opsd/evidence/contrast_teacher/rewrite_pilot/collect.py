@@ -39,6 +39,8 @@ def collect():
         target=boxes(jobs[i]['negative'])[-1]
         original=jobs[i]['solution']
         generated=model_text.strip().splitlines()
+        if generated and generated[0].strip().rstrip(':').casefold() in {'reference to copy and minimally edit','modified reference','edited reference','rewritten reference'}:
+            generated=generated[1:]
         if generated and generated[0].startswith('```') and generated[-1]=='```':generated=generated[1:-1]
         lines=[line.strip() for line in generated if line.strip()]
         if len(lines)!=sum(bool(line.strip()) for line in original.splitlines()):continue
