@@ -1,0 +1,242 @@
+{
+  "beta": 0.1,
+  "seed": 42,
+  "windows": [
+    {
+      "step": 25,
+      "natural_end_rate": 0.5325,
+      "responses": 800,
+      "positions": 643361,
+      "anchor_kl": 0.015505010448453005,
+      "official_R": 0.0030840510285397374,
+      "clip_fraction": 3.006873773866684e-06,
+      "stopped": false,
+      "scheduler": "linear",
+      "warmup_steps": 0,
+      "lr": [
+        4.995471014492755e-06,
+        4.995471014492755e-06
+      ]
+    },
+    {
+      "step": 50,
+      "natural_end_rate": 0.45125,
+      "responses": 800,
+      "positions": 675931,
+      "anchor_kl": 0.03207069809132041,
+      "official_R": -0.0035530863125525928,
+      "clip_fraction": 2.896982110219904e-06,
+      "stopped": false,
+      "scheduler": "linear",
+      "warmup_steps": 0,
+      "lr": [
+        4.990942028985508e-06,
+        4.990942028985508e-06
+      ]
+    },
+    {
+      "step": 75,
+      "natural_end_rate": 0.49625,
+      "responses": 800,
+      "positions": 653235,
+      "anchor_kl": 0.03624524633338003,
+      "official_R": -0.006408186412242113,
+      "clip_fraction": 2.9839723901758874e-06,
+      "stopped": false,
+      "scheduler": "linear",
+      "warmup_steps": 0,
+      "lr": [
+        4.986413043478261e-06,
+        4.986413043478261e-06
+      ]
+    },
+    {
+      "step": 100,
+      "natural_end_rate": 0.4725,
+      "responses": 800,
+      "positions": 662758,
+      "anchor_kl": 0.047295130725696424,
+      "official_R": -0.00913913515189188,
+      "clip_fraction": 3.113515043120732e-06,
+      "stopped": false,
+      "scheduler": "linear",
+      "warmup_steps": 0,
+      "lr": [
+        4.981884057971015e-06,
+        4.981884057971015e-06
+      ]
+    },
+    {
+      "step": 125,
+      "natural_end_rate": 0.44625,
+      "responses": 800,
+      "positions": 672762,
+      "anchor_kl": 0.055390745476844874,
+      "official_R": -0.011322156389850256,
+      "clip_fraction": 3.0921150077328244e-06,
+      "stopped": false,
+      "scheduler": "linear",
+      "warmup_steps": 0,
+      "lr": [
+        4.977355072463769e-06,
+        4.977355072463769e-06
+      ]
+    },
+    {
+      "step": 150,
+      "natural_end_rate": 0.43,
+      "responses": 800,
+      "positions": 672218,
+      "anchor_kl": 0.06266664348350745,
+      "official_R": -0.013003044252922903,
+      "clip_fraction": 3.2040029235110208e-06,
+      "stopped": false,
+      "scheduler": "linear",
+      "warmup_steps": 0,
+      "lr": [
+        4.972826086956522e-06,
+        4.972826086956522e-06
+      ]
+    },
+    {
+      "step": 175,
+      "natural_end_rate": 0.47375,
+      "responses": 800,
+      "positions": 665448,
+      "anchor_kl": 0.0660483058365906,
+      "official_R": -0.014115740921817192,
+      "clip_fraction": 3.217836580796233e-06,
+      "stopped": false,
+      "scheduler": "linear",
+      "warmup_steps": 0,
+      "lr": [
+        4.9682971014492755e-06,
+        4.9682971014492755e-06
+      ]
+    },
+    {
+      "step": 200,
+      "natural_end_rate": 0.45,
+      "responses": 800,
+      "positions": 668037,
+      "anchor_kl": 0.07010199286038882,
+      "official_R": -0.015539194439735374,
+      "clip_fraction": 3.202479014579298e-06,
+      "stopped": false,
+      "scheduler": "linear",
+      "warmup_steps": 0,
+      "lr": [
+        4.963768115942029e-06,
+        4.963768115942029e-06
+      ]
+    }
+  ],
+  "evaluations": {
+    "R-anchor@100/aime24": {
+      "layout": "4xTP1",
+      "sha256": "775378569bc2061cc4a3ff380bf7eda0eb7575b9bcccde2ebb96e9eddbb489e5",
+      "adapter_sha256": "bbcb22166dbde25941efe9841dee3ee7e5a1a131648ef6289f08323f581210fe",
+      "wall_seconds": 2907.2620327339996,
+      "rate": 52.77777777777778
+    },
+    "R@100/aime24": {
+      "layout": "4xTP1",
+      "sha256": "aa0dceb20d76a8251f6d52f678fac12ed6d66f05237837c60a51736cc50a1b1a",
+      "adapter_sha256": "605f675f76ac2edd996fab5bdf2eeb110bb3879bc740729230a6e4355d3805f7",
+      "wall_seconds": 3258.595864191,
+      "rate": 55.55555555555556
+    },
+    "R-anchor@200/aime24": {
+      "layout": "4xTP1",
+      "sha256": "86b8b33e9046b91cdaf1b31d8d876da5d6b6d2e77c854f0c1fbfd09894c5e027",
+      "adapter_sha256": "4b1c1393f6284961786e893b0d62793640ea87f6ecf44210a0ac777f3f3d3215",
+      "wall_seconds": 2954.184224846,
+      "rate": 53.611111111111114
+    },
+    "R-extension@200/aime24": {
+      "layout": "4xTP1",
+      "sha256": "fad8bc1ba687af22f35f7affa0918a5b50d8121a97afaf52ed5a6170a653bed6",
+      "adapter_sha256": "344f37ba8428ff31da7067f11b0c52ee3c58e693e219afdd175ec5a62c22d6a9",
+      "wall_seconds": 3614.071967205,
+      "rate": 48.333333333333336
+    },
+    "B/aime24": {
+      "layout": "4xTP1",
+      "sha256": "f698178d6b9c1c904d35b9307cd3a36d8824d61de0425a416d442acbabc2504b",
+      "adapter_sha256": null,
+      "wall_seconds": 2087.1874876329994,
+      "rate": 51.94444444444444,
+      "source": "/mnt/data2/ForkAudit/math-opsd/layout-benchmark"
+    }
+  },
+  "paired": {
+    "Anchor100-R100": {
+      "pp": -2.777777777777779,
+      "ci95": [
+        -7.777777777777778,
+        2.222222222222222
+      ]
+    },
+    "Anchor200-R200": {
+      "pp": 5.277777777777777,
+      "ci95": [
+        0.2777777777777769,
+        10.555555555555555
+      ]
+    },
+    "Anchor200-R100": {
+      "pp": -1.9444444444444453,
+      "ci95": [
+        -6.111111111111112,
+        1.944444444444444
+      ]
+    }
+  },
+  "decision": {
+    "decline": "止住了下滑",
+    "aime24": "结案",
+    "early_stopping_interpretation": true
+  },
+  "preflight_by_rank": {
+    "initial-rank0.jsonl": [
+      {
+        "kl": 0.0,
+        "positions": 2927
+      },
+      {
+        "kl": 0.0,
+        "positions": 3104
+      }
+    ],
+    "initial-rank1.jsonl": [
+      {
+        "kl": 0.0,
+        "positions": 3689
+      },
+      {
+        "kl": 0.0,
+        "positions": 3623
+      }
+    ],
+    "initial-rank2.jsonl": [
+      {
+        "kl": 0.0,
+        "positions": 3114
+      },
+      {
+        "kl": 0.0,
+        "positions": 2643
+      }
+    ],
+    "initial-rank3.jsonl": [
+      {
+        "kl": 0.0,
+        "positions": 3749
+      },
+      {
+        "kl": 0.0,
+        "positions": 2840
+      }
+    ]
+  }
+}
