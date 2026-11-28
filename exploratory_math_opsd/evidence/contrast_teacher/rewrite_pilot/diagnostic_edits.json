@@ -1,0 +1,530 @@
+[
+ {
+  "idx": 628,
+  "reference_sha256": "050088f8f348294803c90c53929f72b10517127ba522f57beb9a87f0f980f3be",
+  "qualified": true,
+  "text": "\nTo express that each of the three real numbers \\(a\\), \\(b\\), and \\(c\\) is exactly zero using a single equality sign, we can follow these steps:\n\n1. Consider the sum of the squares of the three numbers \\(a, b,\\) and \\(c\\):\n\\[ a^2 + b^2 + c^2 \\]\n\n2. Recall that for any real number \\(x\\), the square \\(x^2 \\geq 0\\). Thus, the sum \\(a^2 + b^2 + c^2 \\geq 0\\) since each term in the sum is non-negative.\n\n3. The conjunction \\(a = 0 \\land b = 0 \\land c = 0\\) if and only if \\(a = 0\\), \\(b = 0\\), and \\(c = 0\\). This is because:\n   - If \\(a \\neq 0\\), \\(a^2\\) would be positive.\n   - If \\(b \\neq 0\\), \\(b^2\\) would be positive.\n   - If \\(c \\neq 0\\), \\(c^2\\) would be positive.\n   - Hence, if any of \\(a, b,\\) or \\(c\\) were non-zero, the sum \\(a^2 + b^2 + c^2\\) would be greater than zero, contradicting \\(a = 0 \\land b = 0 \\land c = 0\\).\n\n4. Therefore, the single logical equality \\(a = 0 \\land b = 0 \\land c = 0\\) implies that \\(a, b,\\) and \\(c\\) must all be zero.\n\n### Conclusion:\n\\[\n\\boxed{a = 0 \\land b = 0 \\land c = 0}\n\\]",
+  "error": "Counts the conjunction of three separate equalities as a single equality.",
+  "evidence": "We are given three real numbers $ a, b, c $, and we are to express that **each of them is separately equal to zero** using a single equality sign.\n\n---\n\n### Step 1: Understand the requirement\n\nWe are to write an expression that is **true** **only** when all three of $ a, b, c $ are zero. That is:\n\n$$\na = 0 \\quad \\text{and} \\quad b = 0 \\quad \\text{and} \\quad c = 0\n$$\n\n---\n\n### Step 2: Use a single equality sign\n\nWe can write this using a **single equality sign** by using **logical conjunction** (i.e., \"and\") between the three equations.\n\nSo, the expression is:\n\n$$\na = 0 \\land b = 0 \\land c = 0\n$$\n\nThis is a **logical conjunction** of three equations, and it is **true** **only** when all three are simultaneously true.\n\n---\n\n### Final Answer:\n\n$$\n\\boxed{a = 0 \\land b = 0 \\land c = 0}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 48,
+  "reference_tokens": 369,
+  "B_box": "a = 0 \\land b = 0 \\land c = 0",
+  "new_box": "a = 0 \\land b = 0 \\land c = 0"
+ },
+ {
+  "idx": 1101,
+  "reference_sha256": "f92b9336f6c63e11d76ee8275c44b33db1c4ca2120ab2190379747cf26fb20c0",
+  "qualified": false,
+  "reason": "False negative. B explicitly gives the correct switching strategy and winning probability 2/3; its boxed text includes the gold Yes."
+ },
+ {
+  "idx": 1169,
+  "reference_sha256": "6899338a6b292000d5bbdaea7dc06335348849d2a2801ec4bb8c679c77252003",
+  "qualified": false,
+  "reason": "The reference counts two incident faces per edge and uses three separately specified face pairs. B treats all four side faces as sharing one top edge. This contradicts the basic incidence argument throughout the reference; an extensive replacement would be required."
+ },
+ {
+  "idx": 1174,
+  "reference_sha256": "ad3e7dc575aa7aec5e9d4dd4729594fb257d97a368ddb956521d7d49bf3b9e18",
+  "qualified": false,
+  "reason": "The reference constructs and proves an affine-plane schedule of p+1 rounds. B conflates opponents with games and offers a different and unsupported existence argument for p²−1 rounds. The scheduling and uniqueness sections would have to be reconstructed."
+ },
+ {
+  "idx": 1214,
+  "reference_sha256": "4fdef5c8ff1ec6b2e6ba4081bb47cf2f7bb31a23422d2472db0339b3d3cd967a",
+  "qualified": false,
+  "reason": "B requires changing the entire one-year date interval and the month-by-month day count into seven hypothetical common years. That would replace the main two parts of the reference instead of minimally editing a step."
+ },
+ {
+  "idx": 1746,
+  "reference_sha256": "001c033897ed5f0a461441b9de14d7bd1bdc42f9213369415da164c7b1e0f44a",
+  "qualified": false,
+  "text": "\nLet's start by identifying the possible even and odd digits:\n- Even digits are: $0, 2, 4, 6, 8$\n- Odd digits are: $1, 3, 5, 7, 9$\n\n1. **Case 1: The first digit is even, and the rest are odd.**\n\n    - The first digit can be any non-zero even number: $2, 4, 6, 8$. Thus, there are $4$ choices for the first digit.\n    - Count the remaining odd places jointly, with $5$ choices for the rest.\n    \n    The total number of four-digit numbers in this case is:\n    \\[\n    4 \\times 5 = 20\n    \\]\n\n2. **Case 2: The second digit is even, and the rest are odd.**\n    \n    - Count the odd places jointly, with $4$ choices for the rest.\n    - The second digit can be any even digit (including zero): $0, 2, 4, 6, 8$. Thus, there are $5$ choices.\n    - The remaining digits must all be odd.\n    \n    The total number of four-digit numbers in this case is:\n    \\[\n    5 \\times 4 = 20\n    \\]\n\n3. **Case 3: The third digit is even, and the rest are odd.**\n    \n    Similar analysis as in Case 2:\n    - Count the odd places jointly, with $4$ choices for the rest.\n    - The second and fourth digits are odd.\n    - The third digit is even: $5$ choices.\n    \n    Thus, the total number of such numbers is:\n    \\[\n    5 \\times 4 = 20\n    \\]\n\n4. **Case 4: The fourth digit is even, and the rest are odd.**\n    \n    Similar to Case 2 and Case 3:\n    - Count the odd places jointly, with $4$ choices for the rest.\n    - The second and third digits are odd.\n    - The fourth digit is even: $5$ choices.\n    \n    Thus, the total number of such numbers is:\n    \\[\n    5 \\times 4 = 20\n    \\]\n\nTo find the total number of four-digit numbers containing exactly one even digit, we add the results of all four cases:\n\n\\[\n20 + 20 + 20 + 20 = 80\n\\]\n\nThus, the number of four-digit numbers containing exactly one even digit is \n\n\\[\n\\boxed{80}\n\\]",
+  "error": "Counts all three odd positions as one choice and uses four possible odd choices when the even digit is outside the thousands place.",
+  "evidence": "4 (choices) × 5 (odd digits for the rest)",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": false,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 180,
+  "reference_tokens": 670,
+  "B_box": "80",
+  "new_box": "80"
+ },
+ {
+  "idx": 2896,
+  "reference_sha256": "30fe8223961bb089b3845fa8f5d1b8cb654376b62a5fc9297426638623d0aaf0",
+  "qualified": false,
+  "text": "1. We start with the quotients for \\(P,P'\\) and the remainder \\(r'\\) of \\(R'\\) on division by \\(D\\):\n    \\[\n    P = QD + R\n    \\]\n    \\[\n    P' = Q'D + R'\n    \\]\n    \\[\n    R'=0D+r'\n    \\]\n   \n2. Next, let's find the expression for \\( P P' \\):\n    \\[\n    P P' = (QD + R)(Q'D + R')\n    \\]\n    By expanding the product above, we have:\n    \\[\n    P P' = Q Q' D^2 + Q R' D + Q' R D + R R'\n    \\]\n    \n3. Collect the terms divisible by \\(D\\):\n    \\[\n    P P' = Q Q' D^2 + Q R' D + Q' R D + R R'\n    \\]\n    Combine the terms involving \\( D \\):\n    \\[\n    P P' = (Q Q' D^2 + Q R' D + Q' R D) + R R'\n    \\]\n    \\[\n    P P' = (Q Q' D + Q R' + Q' R)D + R R'\n    \\]\n    Notice that this is in the form of \\(kD+RR'\\), where \\(k\\) is an integer.\n\n4. According to the division algorithm the two remainders are\n    \\[\n    r=(RR')\\bmod D,\\qquad r'=R'\\bmod D\n    \\]\n\n5. Therefore, taking \\(D=5,R'=3\\) gives:\n    \\[\n    R=2:\\quad r=1<r'=3;\\qquad R=3:\\quad r=4>r'=3\n    \\]\n\n### Conclusion:\n\\[\n\\boxed{C}\n\\]",
+  "error": "Uses the remainder of R-prime alone as the comparison remainder, rather than the remainder of RR-prime.",
+  "evidence": "r' = R' \\mod D",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": false,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 211,
+  "reference_tokens": 492,
+  "B_box": "C",
+  "new_box": "C"
+ },
+ {
+  "idx": 2957,
+  "reference_sha256": "b6604b470104b00a2282faf9f8fed4ec04e1fbc1eee09b69b364c288930c4573",
+  "qualified": true,
+  "text": "\n1. **Understanding the rates of charging:**\n   - Fast charging completes in 3 hours, which is 180 minutes. Therefore, the charging rate for fast charging is:\n     \\[\n     \\frac{1}{180} \\text{ of full charge per minute}\n     \\]\n   - Regular charging completes in 9 hours, which is 540 minutes. Therefore, the charging rate for regular charging is:\n     \\[\n     \\frac{1}{540} \\text{ of full charge per minute}\n     \\]\n\n2. **Setting up the equations:**\n   - Let \\( t \\) be the total charging time in minutes.\n   - Masha mentioned that the tablet was on fast charging for one-third of the total time (\\( \\frac{t}{3} \\)).\n   - Consequently, it was on regular charging for one-third of the total time (\\( \\frac{t}{3} \\)).\n\n3. **Calculating the total charge:**\n   - The fraction of charge from fast charging is:\n     \\[\n     \\left( \\frac{t}{3} \\right) \\cdot \\frac{1}{180}\n     \\]\n     Simplifying:\n     \\[\n     \\frac{t}{3} \\cdot \\frac{1}{180} = \\frac{t}{540}\n     \\]\n\n   - The fraction of charge from regular charging is:\n     \\[\n     \\left( \\frac{t}{3} \\right) \\cdot \\frac{1}{540}\n     \\]\n     Simplifying:\n     \\[\n     \\frac{t}{3} \\cdot \\frac{1}{540} = \\frac{t}{1620}\n     \\]\n\n4. **Combining the charges:**\n   - For the tablet to be fully charged, the sum of the fractions must equal 1:\n     \\[\n     \\frac{t}{540} + \\frac{t}{1620} = 1\n     \\]\n\n5. **Finding a common denominator:**\n   - Simplify \\(\\frac{t}{1620}\\) to \\(\\frac{t}{1620}\\) since \\( \\frac{t}{1620} = \\frac{t}{1620} \\).\n   - Combining the fractions:\n     \\[\n     \\frac{t}{540} + \\frac{t}{1620} = 1\n     \\]\n\n6. **Finding the common denominator and adding fractions:**\n   - Convert both fractions to a common denominator of 1620:\n     \\[\n     \\frac{3t}{1620} + \\frac{t}{1620} = 1\n     \\]\n     Combine the numerators:\n     \\[\n     \\frac{3t + t}{1620} = 1\n     \\]\n     Simplifying:\n     \\[\n     \\frac{4t}{1620} = 1\n     \\]\n\n7. **Solving for \\( t \\):**\n   - Multiply both sides of the equation by 1620:\n     \\[\n     4t = 1620\n     \\]\n   - Divide both sides by 4:\n     \\[\n     t = \\frac{1620}{4} = 405 \\text{ minutes}\n     \\]\n\n### Conclusion:\nThe total time taken to fully charge the tablet is \\( \\boxed{405} \\) minutes.",
+  "error": "Assigns one third of total time to each charger, losing the other third.",
+  "evidence": "regular charger** for $ \\frac{T}{3}",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 34,
+  "reference_tokens": 765,
+  "B_box": "405",
+  "new_box": "405"
+ },
+ {
+  "idx": 3613,
+  "reference_sha256": "75c82a1675b9bc2261a0fe91df3bb355baf73004653d780400182d6a52f81d46",
+  "qualified": true,
+  "text": "\nGiven \\(a, b \\in \\mathbb{R}\\), it is known that \n\\[\n\\sqrt{a^2 + b^2} = a + b.\n\\]\n\n#### Step 1: Square Both Sides\nTo eliminate the square root, we square both sides of the given equation:\n\\[\n\\left(\\sqrt{a^2 + b^2}\\right)^2 = (a + b)^2.\n\\]\nThis simplifies to:\n\\[\na^2 + b^2 = a^2 + 2ab + b^2.\n\\]\n\n#### Step 2: Simplify the Equation\nSubtract \\(a^2 + b^2\\) from both sides of the equation:\n\\[\na^2 + b^2 - a^2 - b^2 = a^2 + 2ab + b^2 - a^2 - b^2,\n\\]\nwhich reduces to:\n\\[\n0 = 2ab.\n\\]\n\n#### Step 3: Solve for \\(ab\\)\nThe above equation implies:\n\\[\n2ab = 0 \\implies ab = 0.\n\\]\n\n#### Step 4: Verify the Range Condition\nGiven that \\(ab=0\\), the nonzero term automatically gives:\n\\[\na + b \\geq 0.\n\\]\n\n#### Conclusion\nThe equation\n\\[\n\\sqrt{a^2 + b^2} = a + b\n\\]\nholds if and only if the condition \\(ab = 0\\) is satisfied. Hence, the correct choice is:\n\n\\[\n\\boxed{B}\n\\]",
+  "error": "Treats the squared equation as sufficient and assumes nonnegativity follows automatically when one variable is zero.",
+  "evidence": "ab = 0",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 39,
+  "reference_tokens": 356,
+  "B_box": "B",
+  "new_box": "B"
+ },
+ {
+  "idx": 4895,
+  "reference_sha256": "662dabd733a0121cc3f3202bbc87c955ca3c329b5faa1103a79a50bd07c6d6ff",
+  "qualified": true,
+  "text": "\n1. **Understanding the Problem**:\n   We need to determine the number of people in a group where the probability that at least two people share the same birthday is less than $\\frac{1}{2}$. However, the statement indicates that if one more person joins, this probability will exceed $\\frac{1}{2}$.\n\n2. **Probability Calculation**:\n   The probability that two people do not share the same birthday is $\\frac{364}{365}$. For three people, the probability that no two of them share the same birthday is $\\frac{364}{365} \\times \\frac{363}{365}$, and so forth.\n\n3. **General Formula**:\n   For \\( n \\) people, the probability \\( P(n) \\) that there are no shared birthdays is:\n   \\[\n   P(n) = \\frac{364}{365} \\times \\frac{363}{365} \\times \\cdots \\times \\frac{365-n+1}{365}\n   \\]\n   \n   Simplifying, this is:\n   \\[\n   P(n) = \\prod_{i = 1}^{n-1} \\frac{365-i}{365}\n   \\]\n\n4. **Threshold Calculation**:\n   The given problem states the transition point happens when \\( P(n) \\) is slightly below $\\frac{1}{2}$ and \\( P(n+1) \\) is slightly above $\\frac{1}{2}$. This transition practically occurs between 2 and 3 people.\n\n5. **Testing the Transition Point**:\n   Let's test with \\( n = 2 \\):\n   \\[\n   P(2) = \\frac{364}{365}\n   \\]\n\n   Exact probabilities calculations can be demonstrated using a calculator or logarithmic properties, but we generally know from the Birthday Paradox problem that:\n   \\[\n   1-P(3)\\approx0.0082 > \\frac{1}{2} \\quad \\text{and} \\quad 1-P(2) < \\frac{1}{2}\n   \\]\n\n6. **Conclusion**:\n   The number of people in our group is 2 such that the probability that at least two people share the same birthday is just less than $\\frac{1}{2}$. If one more person, the 3rd joins, the probability crosses the threshold.\n\n\\(\\boxed{2}\\)",
+  "error": "Compares the computed probability 0.0082 to one half in the wrong direction.",
+  "evidence": "0.0082 >",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 56,
+  "reference_tokens": 558,
+  "B_box": "2",
+  "new_box": "2"
+ },
+ {
+  "idx": 5075,
+  "reference_sha256": "67c3cfc58588c804d7dface6d25c380b48fae7272575d37c457a748e8a456887",
+  "qualified": true,
+  "text": "1. **Determine the number of text messages Carrie sends on weekends**:  \n   Carrie sends 5 text messages to her brother each Saturday and 5 text messages each Sunday.\n   \\[\n   \\text{Total messages on weekends per week} = 5 \\text{ (Saturday)} + 5 \\text{ (Sunday)} = 10 \\text{ messages}\n   \\]\n\n2. **Determine the number of text messages Carrie sends on weekdays**:  \n   Carrie sends 5 text messages to her brother on each of the remaining 5 days (Monday through Friday). \n   \\[\n   \\text{Total messages on weekdays per week} = 5 \\text{ messages/day} \\times 5 \\text{ days} = 25 \\text{ messages}\n   \\]\n\n3. **Calculate the total number of text messages sent each week**:  \n   Combining the messages sent on weekends and weekdays:\n   \\[\n   \\text{Total messages per week} = 10 \\text{ (weekend)} + 25 \\text{ (weekday)} = 35 \\text{ messages}\n   \\]\n\n4. **Calculate the total number of text messages sent over four weeks**:  \n   \\[\n   \\text{Total messages over 4 weeks} = 4 \\text{ weeks} \\times 35 \\text{ messages/week} = 140 \\text{ messages}\n   \\]\n\n5. **Conclusion**:\n   \\[\n   \\boxed{140}\n   \\]",
+  "error": "Uses five messages per weekday while multiplying by five weekdays.",
+  "evidence": "5 + 5 + 25 = 35",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 14,
+  "reference_tokens": 316,
+  "B_box": "140",
+  "new_box": "140"
+ },
+ {
+  "idx": 5270,
+  "reference_sha256": "12c91f18701f4bd741d2663c07bbdf86ab3ed652637845e61a6a26374094d18e",
+  "qualified": false,
+  "reason": "The requested incorrect final box itself contains the exact correct answer 2^x cos x as a factor, and the official derivation explicitly uses that factor several times."
+ },
+ {
+  "idx": 5290,
+  "reference_sha256": "85946a2a8a13d2da7033790cc5726b0f05e2ce87d9ae695022096bf6c07e2ad4",
+  "qualified": true,
+  "text": "\n1. Determine the current ages of Xiaoming and his father:\n   \\[\n   \\text{Xiaoming's age} = 12 \\text{ years}\n   \\]\n   \\[\n   \\text{Father's age} = 40 \\text{ years}\n   \\]\n\n2. Calculate the age difference between Xiaoming and his father:\n   \\[\n   \\text{Age difference} = 40 - 12 = 28 \\text{ years}\n   \\]\n\n3. Let \\( x \\) be Xiaoming's age when his father's age is 5 times his age. Thus, his father's age at that time is \\( 5x \\).\n\n4. Formulate the equation by subtracting this age from the father's current age:\n   \\[\n   40-x=5x\n   \\]\n\n5. Solve for \\( x \\):\n   \\[\n   6x = 40\n   \\]\n   \\[\n   x = \\frac{40}{6}\n   \\]\n   \\[\n   x = \\frac{20}{3}\n   \\]\n\n### Conclusion:\nTherefore, when Xiaoming was \\( \\frac{20}{3} \\text{ years} \\) old, his father's age was 5 times his age.\n\n\\[\n\\boxed{\\frac{20}{3}}\n\\]",
+  "error": "Equates past age x with years elapsed and subtracts x directly from the father’s present age.",
+  "evidence": "40 - x = 5x",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 47,
+  "reference_tokens": 268,
+  "B_box": "\\frac{20}{3}",
+  "new_box": "\\frac{20}{3}"
+ },
+ {
+  "idx": 5477,
+  "reference_sha256": "88d9388424d3c34f46d1430d03b74ddea53c9696ef53c2551515b816f17c86af",
+  "qualified": false,
+  "reason": "B equates the first 15 passengers to the initial number of girls, reads initial boys as twice this, and ignores the second bus. The official argument solves a simultaneous system using both buses, comprising most lines."
+ },
+ {
+  "idx": 7978,
+  "reference_sha256": "49cb47956f1b3b05a986f7457c5e0087e3e679328199542f5ce6ecc7144f5e94",
+  "qualified": false,
+  "text": "\n1. First, let's rewrite the values of \\( P \\), \\( Q \\), and \\( R \\) given in the problem:\n   \\[\n   P = -\\frac{1}{201603 \\times 201604}, \\quad Q = -\\frac{1}{201602 \\times 201604}, \\quad R = -\\frac{1}{201602 \\times 201603}\n   \\]\n\n2. To simplify these expressions, let \\( a = 201603 \\). Then, we can rewrite:\n\n   \\[\n    201604 = a + 1 \\quad \\text{and} \\quad 201602 = a - 1 \n   \\]\n\n3. Substituting these into the expressions for \\( P \\), \\( Q \\), and \\( R \\), we get:\n\n   \\[\n   P = -\\frac{1}{a(a + 1)}, \\quad Q = -\\frac{1}{(a - 1)(a + 1)}, \\quad R = -\\frac{1}{(a - 1) a} \n   \\]\n\n4. Now let's work with the simplified expressions:\n\n   \\[\n   P = -\\frac{1}{a^2 + a}, \\quad Q = -\\frac{1}{a^2 - 1}, \\quad R = -\\frac{1}{a^2 - a}\n   \\]\n\n5. To find the relationship between \\( P \\), \\( Q \\), and \\( R \\), consider the denominators:\n\n   - \\( a^2 + a \\)\n   - \\( a^2 - 1 \\)\n   - \\( a^2 - a \\)\n\n6. Comparing the denominators:\n\n   \\[\n   a^2 + a > a^2 - 1 > a^2 - a\n   \\]\n\n   This inequality holds because \\( a^2 + a \\) adds a positive term \\( a \\), \\( a^2 - 1 \\) subtracts a small number (1), and \\( a^2 - a \\) subtracts a positive term \\( a \\).\n\n7. Since the fractions have negative numerators, take the reverse of the denominator order:\n\n   \\[\n   -\\frac{1}{a^2 + a} < -\\frac{1}{a^2 - 1} < -\\frac{1}{a^2 - a}\n   \\]\n\n8. Hence, the relationships between \\( P \\), \\( Q \\), and \\( R \\) are:\n\n   \\[\n   P < Q < R\n   \\]\n\n9. Therefore, the correct answer is:\n   \n   \\[\n   \\boxed{D}\n   \\]",
+  "error": "Reverses the order of the negative reciprocals despite the ordering of their positive denominators.",
+  "evidence": "P < Q < R",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": false,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 27,
+  "reference_tokens": 611,
+  "B_box": "D",
+  "new_box": "D"
+ },
+ {
+  "idx": 8790,
+  "reference_sha256": "174ee8f79b18e4b69dac590bbc9a07d5a77704d1429d7f09476a23fdcdf1b3a5",
+  "qualified": false,
+  "reason": "B obtained pi and explicitly identifies it as option D, exactly the correct answer. There is no mathematical error to transfer."
+ },
+ {
+  "idx": 8926,
+  "reference_sha256": "fec82c8403679740c0a79e7068b3b62d26170e0186bc0516b32cf38499c32b98",
+  "qualified": true,
+  "text": "\nTo find the sum of all distinct 3-digit integers that can be formed using the digits \\(1, 2, 3, 5, 7\\) (with repetitions allowed), we'll follow these steps:\n\n1. **Determine the number of possible 3-digit integers**:\n    Since each digit can be any of the 5 digits and repetitions are permitted, we have:\n    \\[\n    5 \\times 5 \\times 5 = 5^3 = 125\n    \\]\n    So, there are 125 different 3-digit integers.\n\n2. **Calculate the frequency of each digit in each place (hundreds, tens, ones)**:\n    Each digit (1, 2, 3, 5, 7) will appear equally in each place. Given there are 125 numbers:\n    \\[\n    \\text{Frequency of each digit in hundreds place} = \\text{Frequency of each digit in tens place} = \\text{Frequency of each digit in ones place} = 3\\cdot\\frac{125}{5} = 75\n    \\]\n\n3. **Sum the contributions of each place**:\n    \n    First, compute the sum of the five digits:\n    \\[\n    1 + 2 + 3 + 5 + 7 = 18\n    \\]\n\n    - Each of the digits contributes to the hundreds place:\n        \\[\n        \\sum_{\\text{hundreds place}} = 75 \\times 18 \\times 100 = 135000\n        \\]\n    - Each of the digits contributes to the tens place:\n        \\[\n        \\sum_{\\text{tens place}} = 75 \\times 18 \\times 10 = 13500\n        \\]\n    - Each of the digits contributes to the ones place:\n        \\[\n        \\sum_{\\text{ones place}} = 75 \\times 18 = 1350\n        \\]\n\n4. **Add all the contributions**:\n    \\[\n    \\text{Total sum} = 135000 + 13500 + 1350 = 149850\n    \\]\n\n### Conclusion\n\\[\n\\boxed{149850}\n\\]",
+  "error": "Uses the aggregate count over all three places as if it were the count for each place.",
+  "evidence": "Each digit appears 75 times",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 25,
+  "reference_tokens": 493,
+  "B_box": "149850",
+  "new_box": "149850"
+ },
+ {
+  "idx": 9259,
+  "reference_sha256": "fe4e8503eb0295f72ec6b8425163c07a5a540fd4e6e12095de237b5e493d2f2e",
+  "qualified": false,
+  "reason": "B answers subparts (a) and (b) correctly, including the literal dataset gold 62500. Its wrong statement concerns subpart (c); keeping the unrelated subparts verbatim violates the no-gold-text constraint."
+ },
+ {
+  "idx": 9805,
+  "reference_sha256": "aeeac39f7b3f2c6656fe9644ea08a95ca701f2de9ae30681037e61360030c33c",
+  "qualified": true,
+  "text": "1. **Identify Conditions and Total Number of Arrangements**:\n   - There are \\(6\\) children, one of whom has restrictions.\n   - This particular child \\(A\\) cannot sit in the even positions \\(2, 4, 6\\).\n\n2. **Identify Available Seats for Child \\(A\\)**:\n   - Positions available for child \\(A\\) are \\(1, 3\\) (the odd positions).\n   - Thus, there are \\(2\\) possible places for child \\(A\\) to sit.\n\n3. **Arrange Remaining 5 Children**:\n   - Once child \\(A\\) has chosen their seat, there are \\(5\\) children left.\n   - The number of different ways to arrange the remaining \\(5\\) children is \\(5!\\) (5 factorial).\n\n4. **Calculate Total Arrangements**:\n   - For each possible seat \\(A\\) can occupy (2 possibilities), we multiply by the number of arrangements of the remaining \\(5\\) children.\n\n\\[ \n2 \\times 5! \n\\]\n\n- Compute \\(5!\\):\n\n\\[ \n5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120 \n\\]\n\n5. **Final Calculation**:\n   - Thus, the total number of ways the children can sit while satisfying the condition is:\n\n\\[ \n2 \\times 120 = 240 \n\\]\n\n### Conclusion:\n\\[\n\\boxed{240}\n\\]",
+  "error": "Lists only positions one and three as odd and overlooks the fifth seat.",
+  "evidence": "only sit in **positions 1 or 3**",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 11,
+  "reference_tokens": 310,
+  "B_box": "240",
+  "new_box": "240"
+ },
+ {
+  "idx": 11463,
+  "reference_sha256": "508113bad7b9612c45c96933458e3b8a33d0b46b13e9184e31ec9ac0e35bb594",
+  "qualified": true,
+  "text": "\nTo solve the problem, we can model the situation using graph theory. We will represent each telephone as a vertex and each connecting wire as an edge. This transforms our problem into finding the minimum number of colors needed to color the edges of a graph so that no two edges sharing the same vertex have the same color.\n\n1. **Problem Transformation:**\n    - Telephone = Vertex.\n    - Connecting wire = Edge.\n    - Each vertex has a degree of at most 2 (since at most two wires are connected to each telephone).\n\n2. **Graph Characteristics:**\n    - The resultant graph is simple (no loops or multiple edges between pairs of vertices).\n    - Since each telephone (vertex) is connected with at most two wires (edges), the graph will break down into paths and simple cycles.\n\n3. **Edge Coloring for Paths and Cycles:**\n    - For a simple path (a sequence of vertices where each pair of consecutive vertices is connected by an edge and no vertices are repeated), a two-edge-coloring is sufficient.\n    - For a simple cycle (a closed path where the first and last vertices are the same), a two-edge-coloring is sufficient: alternate colors around the cycle. Since the vertices in this problem can only handle up to two edges, all cycles will be simple.\n\n4. **Justification and Conclusion:**\n    - Paths: Color alternate edges with two colors \\(1\\) and \\(2\\).\n    - Odd Cycles: Since two consecutive edges alternate, each vertex meets edges of different colors, so two colors suffice here as well.\n\nThus, the minimum number of colors required to color the wires such that no two wires connected to the same telephone share the same color is:\n\n\\[\n\\boxed{2}\n\\]",
+  "error": "Asserts that alternating two colors always closes a simple cycle, including odd cycles.",
+  "evidence": "each node of degree 2",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 37,
+  "reference_tokens": 367,
+  "B_box": "2",
+  "new_box": "2"
+ },
+ {
+  "idx": 12086,
+  "reference_sha256": "aae8fbe3a740d41eb27c5aad53bf4df90872f80c49a83de467353c1abad88428",
+  "qualified": true,
+  "text": "\n1. The problem states that we need to show that the normal to the curve \\( y = f(x) \\) at the point \\( \\left( x_0, y_0 \\right) \\) is given by the equation:\n\n   \\[\n   -f^{\\prime}\\left(x_0\\right)\\left(y - y_0\\right) = x - x_0.\n   \\]\n   \n2. We begin by recalling that if a line passing through a point \\( \\left( x_0, y_0 \\right) \\) has a slope \\( k \\), its equation can be written as:\n\n   \\[\n   \\frac{y - y_0}{x - x_0} = k.\n   \\]\n   \n3. The normal line to this line, which is perpendicular, will have a slope that is the negative reciprocal of \\( k \\). This is because the product of the slopes of two perpendicular lines is \\(-1\\). Hence, if the slope of the tangent line is \\( k \\), the slope of the normal line is:\n\n   \\[\n   -\\frac{1}{k}.\n   \\]\n   \n4. For a curve \\( y = f(x) \\), the slope of the tangent at the point \\( \\left( x_0, y_0 \\right) \\) is the derivative \\( f^{\\prime}(x_0) \\):\n\n   \\[\n   \\frac{y - y_0}{x - x_0} = f^{\\prime}(x_0).\n   \\]\n   \n5. Therefore, the slope of the normal to the curve at the point \\( \\left( x_0, y_0 \\right) \\) is:\n\n   \\[\n   -\\frac{1}{f^{\\prime}(x_0)}.\n   \\]\n   \n6. The equation of the normal line is then:\n\n   \\[\n   \\frac{y - y_0}{x - x_0} = -\\frac{1}{f^{\\prime}(x_0)}.\n   \\]\n   \n7. To convert this equation into the desired form, we multiply both sides by \\( f^{\\prime}(x_0) \\):\n\n   \\[\n   f^{\\prime}(x_0) \\cdot \\frac{y - y_0}{x - x_0} = -1.\n   \\]\n   \n8. Rearranging gives:\n\n   \\[\n   f^{\\prime}(x_0) (y - y_0) = -(x - x_0).\n   \\]\n   \n9. Finally, by switching the terms, we obtain:\n\n   \\[\n   f'(x_0)(y - y_0) = x - x_0.\n   \\]\n\n### Conclusion:\nTherefore, the equation of the normal line to the curve \\( y = f(x) \\) at the point \\( \\left( x_0, y_0 \\right) \\) is precisely:\n\n\\[\n\\boxed{f'(x_0)(y - y_0) = x - x_0}\n\\]",
+  "error": "Drops one minus sign when multiplying the final normal equation through by −1.",
+  "evidence": "is $ f'(x_0) $, so the slope of the normal line is:\n\n$$\nm_{\\text{normal}} = -\\frac{1}{f'(x_0)}\n$$\n\n---\n\n### Step 3: Write the equation of the normal line\n\nWe now have the slope of the normal line: $ -\\frac{1}{f'(x_0)} $, and it passes through the point $ (x_0, y_0) $.\n\nThe point-slope form of the equation of a line is:\n\n$$\ny - y_0 = m_{\\text{normal}} (x - x_0)\n$$\n\nSubstitute the slope:\n\n$$\ny - y_0 = -\\frac{1}{f'(x_0)}(x - x_0)\n$$\n\nNow multiply both sides by $ f'(x_0) $ to eliminate the fraction:\n\n$$\nf'(x_0)(y - y_0) = -(x - x_0)\n$$\n\nMultiply both sides by -1 to make it look like the given equation:\n\n$$\nf'(x_0)(y - y_0) = x - x_0\n$$\n\n---\n\n### Final Answer:\n\n$$\n\\boxed{f'(x_0)(y - y_0) = x - x_0}\n$$\n\nThis is the equation of the **normal to the curve** $ y = f(x) $ at the point $ (x_0, y_0) $.",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 15,
+  "reference_tokens": 655,
+  "B_box": "f'(x_0)(y - y_0) = x - x_0",
+  "new_box": "f'(x_0)(y - y_0) = x - x_0"
+ },
+ {
+  "idx": 12121,
+  "reference_sha256": "6ac35b8ddb599c5cde9e6bf8232c31cfd5c565c7db7e8c87e78428c1274d1bda",
+  "qualified": true,
+  "text": "\n1. **Define the Problem and Variables:**\n   - We have two cards. \n   - The first card has both sides red, which we can label as sides 1 and 2.\n   - The second card has one red and one blue side, which we can label as sides 3 and 4 (where 3 is red and 4 is blue).\n   - The cards are chosen with equal probability, i.e., $P(card \\, 1) = P(card \\, 2) = \\frac{1}{2}$.\n\n2. **Identify the Face Showing:**\n   - Now, a card is placed on the table, showing one red face.\n   - We want to find the probability that the other face of this card is also red.\n\n3. **Possible Faces Showing:**\n   - If a red face is showing, it could either be side 1, 2, or 3. Note:\n     - Side 1 and 2 belong to the first card (double red),\n     - Side 3 belongs to the second card (one red, one blue).\n   - Side 4, which is blue, is not an option as the face showing is red.\n\n4. **Calculate the Probabilities:**\n   - Total number of red faces available are three: sides 1, 2, and 3.\n   - Each of these faces is equally likely to be the one showing up.\n   - We need to find the probability that the other face (given the showing face is red) is also red.\n\n5. **Conditional Probability:**\n   - Given the showing face is red, we need to determine the number of favorable outcomes (both faces red) over the total number of red faces.\n   - The favorable outcome is the red/red card, because either of its faces gives the same card.\n   - So, there are 1 favorable red card out of 3 possible red sides.\n\n6. **Final Probability Calculation:**\n   \\[\n   P(\\text{other side is red} \\mid \\text{one red face showing}) = \\frac{\\text{number of favorable red sides}}{\\text{total number of red sides}}\n   \\]\n\n   Therefore,\n   \\[\n   P(\\text{other side is red}) = \\frac{1}{3}\n   \\]\n\n### Conclusion:\n\\[\n\\boxed{\\frac{1}{3}}\n\\]",
+  "error": "Counts the two red/red faces as one favourable card but retains three red faces in the denominator.",
+  "evidence": "}{2} $\n\nSo, the total probability that the **upper face is red** is:\n\n$$\nP(R) = P(A) \\cdot P(R \\mid A) + P(B) \\cdot P(R \\mid B)\n= \\frac{1}{2} \\cdot 1 + \\frac{1}{2} \\cdot \\frac{1}{2} = \\frac{1}{2} + \\frac{1}{4} = \\frac{3}{4}\n$$\n\nNow, the number of favorable cases (upper face is red and lower face is red) is:\n\n- From Card A: 1 case (upper and lower red)\n- From Card B: 1 case (upper red, lower blue) — **not** favorable\n- From Card B: 1 case (upper blue, lower red) — **favorable**\n\nSo, **favorable cases = 1 (from Card A)**  \n**Total cases with upper face red = 3 (as above)**\n\nSo,\n\n$$\nP(L \\mid R) = \\frac{\\text{Number of favorable cases}}{\\text{Total cases with upper face red}} = \\frac{1}{3}\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{\\frac{1}{3}}\n$$\n\nSo, the correct answer is **(B)** $\\frac{1}{3}$.",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 36,
+  "reference_tokens": 508,
+  "B_box": "\\frac{1}{3}",
+  "new_box": "\\frac{1}{3}"
+ },
+ {
+  "idx": 13145,
+  "reference_sha256": "7f259469c3d3613e978896e3997babb7519b3f1ecb3cb7f27fceb7ded0e38724",
+  "qualified": false,
+  "reason": "Correct option D and numeric value −3 match."
+ },
+ {
+  "idx": 13166,
+  "reference_sha256": "a5b5797ef3614f770a5aa1db48e8cd82636cfb11f09afa5d64736ac025baed1d",
+  "qualified": true,
+  "text": "\n1. **Identify the Type of Triangle:**\n\n   Given the sides of the triangle $AB = 3$, $BC = 4$, and $CA = 5$, we need to check if this is a right triangle.\n\n   \\[\n   AB^2 + BC^2 = 3^2 + 4^2 = 9 + 16 = 25 = 5^2 = CA^2\n   \\]\n\n   Since \\(3^2 + 4^2 = 5^2\\), triangle \\(ABC\\) is a right triangle with \\(\\angle C = 90^\\circ\\).\n\n2. **Calculate the Area Using Base and Height:**\n\n   When viewing $AC$ as the base and $BC$ as the height, the area $A$ of the triangle is:\n\n   \\[\n   A = \\frac{1}{2} \\cdot AC \\cdot BC = \\frac{1}{2} \\cdot 5 \\cdot 4 = \\frac{20}{2} = 10\n   \\]\n\n3. **Calculate the Area Using Different Base:**\n\n   Now, viewing $AC$ as the base and letting $h$ be the height from $B$ to $AC$, we set up the area equation:\n\n   \\[\n   A = \\frac{1}{2} \\cdot AC \\cdot h\n   \\]\n\n   Substitute the known area and base $AC = 5$:\n\n   \\[\n   10 = \\frac{1}{2} \\cdot 5 \\cdot h\n   \\]\n\n4. **Solve for $h$:**\n\n   \\[\n   10 = \\frac{5}{2} \\cdot h\n   \\]\n\n   To isolate $h$, multiply both sides by $\\frac{2}{5}$:\n\n   \\[\n   h = 10 \\cdot \\frac{2}{5} = 4\n   \\]\n\n   Simplifying further:\n\n   \\[\n   h = 4\n   \\]\n\n### Conclusion:\nThe distance from point $B$ to the line $AC$ is \\( \\boxed{4} \\).",
+  "error": "Places the right angle at C, treating BC as perpendicular to AC.",
+  "evidence": " 4}{5} = \\frac{12}{5}\n$$\n\nSo the **altitude from $ C $ to $ AB $** is $ \\frac{12}{5} $.\n\nBut we are asked for the **distance from $ B $ to line $ AC $**.\n\n---\n\n### Step 3: Use Coordinates\n\nTo find the distance from point $ B $ to line $ AC $, let's assign coordinates to the triangle:\n\nLet’s place point $ C $ at the origin $ (0, 0) $, and since $ AC = 5 $ and $ \\angle C = 90^\\circ $, place $ A $ at $ (5, 0) $, and $ B $ at $ (0, 4) $.\n\nNow, the line $ AC $ goes from $ A = (5, 0) $ to $ C = (0, 0) $, so it is the **x-axis**.\n\nNow the **distance from point $ B = (0, 4) $ to line $ AC $** is the vertical distance from $ B $ to the x-axis, which is simply the **y-coordinate of $ B $**.\n\nSo the **distance from $ B $ to line $ AC $** is:\n\n$$\n\\boxed{4}\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{4}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 37,
+  "reference_tokens": 459,
+  "B_box": "4",
+  "new_box": "4"
+ },
+ {
+  "idx": 13186,
+  "reference_sha256": "9521a5f65587cd47906af706d29930ad8166749dead9b1e3723b1e47e48bbe2d",
+  "qualified": false,
+  "reason": "B restricts divisors via an erroneous quadratic; the reference explicitly verifies the excluded 9 and 12 by listing factors."
+ },
+ {
+  "idx": 14452,
+  "reference_sha256": "63e3600f6277e4370261f390a9f82793bf09ea1c58240a1aef5c78eec466b121",
+  "qualified": true,
+  "text": "\nTo find the maximum number of problems that can be included in the mathematics competition, let's consider the problem constraints and be methodical in our approach.\n\n1. **Total Classes**: The competition is for $7, 8, 9, 10, 11$ classes.\n2. **Problems per Class**: Each class has exactly 7 problems.\n3. **Unique Problems**: For each class, exactly 4 problems do not appear in any other class.\n\nNow let's denote:\n- \\( n \\) as the total number of unique problems.\n- \\( r \\) as the number of problems that can be repeated across different classes.\n\n4. **Equations and Constraints**: \n    - Each class has 7 problems.\n    - Out of these 7 problems, 4 are unique to that class and do not appear in any other class.\n    - Therefore, \\(3\\) problems per class may appear in other classes.\n\n### Calculation Steps:\n1. **Unique Problems Calculation**:\n   - Each class has 4 unique problems.\n   - There are 5 classes in total.\n   - Thereby, the total number of unique problems is:\n     \\[\n     4 \\text{ problems/class} \\times 5 \\text{ classes} = 20 \\text{ unique problems}\n     \\]\n\n2. **Repeating Problems Calculation**:\n   - Each class has 3 problems that may repeat.\n   - Since each class has 3 repeating problems, there could be overlaps among these repeated problems.\n   - Let's denote the maximum number of repeated problems collectively by \\( k \\).\n\n3. **Maximum Repeated Problems**:\n   - We need to find the maximum number of repeating problems \\( k \\) such that they do not exceed logical repetitions.\n   - Notice, as we have \\( 5 \\) classes each contributing 3 overlapping problems, this overlapping causes:\n     \\[\n     3 \\times 5 = 15\n     \\]\n   - Counting one problem per occurrence gives us 15.\n\n4. **Total Problems**:\n   - Thus, sum the unique and repeated problems to get the maximum possible problems:\n     \\[\n     n + r = 20 \\text{ unique problems} + 15 \\text{ repeating problems} = 35 \\text{ total problems}\n     \\]\n\n### Conclusion:\nTherefore, the maximum number of problems that can be included in the competition, accounting for the constraints provided, is:\n\n\\[\n\\boxed{35}\n\\]",
+  "error": "Counts each shared occurrence as a distinct problem.",
+  "evidence": "ter how many times it appears.\n\nSo the **maximum number of unique problems** is the **total number of shared problems** plus the **number of unique problems that are not shared**.\n\nSo:\n\n- Each of the 5 versions has **4 unique problems**, and these are all **distinct** from one another and from shared problems.\n- So we can have **at most 4 unique problems per version**, but we must ensure that **no two versions share the same unique problem**.\n\nHence, the total number of **unique problems** is:\n\n$$\n\\text{Total unique problems} = 5 \\times 4 = 20\n$$\n\nAnd the **shared problems** (those that are used in multiple versions) are:\n\n$$\n\\text{Shared problems} = 5 \\times 3 = 15\n$$\n\nThus, the total number of **unique problems** is:\n\n$$\n\\boxed{20 + 15 = 35}\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{35}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 34,
+  "reference_tokens": 537,
+  "B_box": "35",
+  "new_box": "35"
+ },
+ {
+  "idx": 15545,
+  "reference_sha256": "0b6059ff307e5a92b11833fab994239482465bf904345c73868fe5a45df71424",
+  "qualified": false,
+  "reason": "Correct choice C is 12."
+ },
+ {
+  "idx": 16473,
+  "reference_sha256": "849810ef4ae43c6e379ec10363bb577d219249dffac776bd6c55f5e15922fc78",
+  "qualified": false,
+  "text": "\nGiven the quadratic equations:\n\\[ x^2 + x \\sin \\alpha + 1 = 0 \\]\nand\n\\[ x^2 + x \\cos \\alpha - 1 = 0, \\]\n\nwith roots \\( a, b \\) for the first equation and \\( c, d \\) for the second equation, we need to find the value of:\n\\[ \\frac{1}{a^2} + \\frac{1}{b^2} + \\frac{1}{c^2} + \\frac{1}{d^2}. \\]\n\n#### Step 1: Understand the relationships between roots\n\n1. **Quadratic Equation Properties**:\n   \n   For a quadratic equation \\( ax^2 + bx + c = 0 \\) with roots \\( \\alpha \\) and \\( \\beta \\):\n   - Sum of roots: \\( \\alpha + \\beta = -\\frac{b}{a} \\)\n   - Product of roots: \\( \\alpha \\beta = \\frac{c}{a} \\)\n\n2. **First Equation Analysis** \\(x^2 + x \\sin \\alpha + 1 = 0\\):\n   - Sum of roots \\( a + b = -\\sin \\alpha \\)\n   - Product of roots \\( ab = 1 \\)\n\n3. **Second Equation Analysis** \\(x^2 + x \\cos \\alpha - 1 = 0\\):\n   - Sum of roots \\( c + d = -\\cos \\alpha \\)\n   - Product of roots \\( cd = -1 \\)\n\n#### Step 2: Calculate \\(\\frac{1}{a^2} + \\frac{1}{b^2}\\) and \\(\\frac{1}{c^2} + \\frac{1}{d^2}\\)\n\n1. **For roots \\( a \\) and \\( b \\)** \\(ab = 1\\):\n   \n   \\[\n   \\frac{1}{a^2} + \\frac{1}{b^2} = \\left( \\frac{1}{a} \\right)^2 + \\left( \\frac{1}{b} \\right)^2 = a^2 + b^2,\n   \\]\n   since \\( a = \\frac{1}{b} \\) and \\( b = \\frac{1}{a} \\).\n\n2. **For roots \\( c \\) and \\( d \\)** \\(cd = -1\\):\n   \n   \\[\n   \\frac{1}{c^2} + \\frac{1}{d^2} = \\left( \\frac{1}{c} \\right)^2 + \\left( \\frac{1}{d} \\right)^2 = c^2 + d^2,\n   \\]\n   since \\( d = \\frac{1}{c} \\) and \\( c = \\frac{1}{d} \\).\n\n#### Step 3: Sum of squares of the roots\n\n1. **Using the identity \\( x^2 + y^2 = (x + y)^2 - 2xy \\)** for \\( a \\) and \\( b \\):\n   \\[\n   a^2 + b^2 = (a + b)^2 - 2ab = (\\sin \\alpha)^2 - 2(1) = \\sin^2 \\alpha - 2\n   \\]\n\n2. **Using the identity \\( x^2 + y^2 = (x + y)^2 - 2xy \\)** for \\( c \\) and \\( d \\):\n   \\[\n   c^2 + d^2 = (c + d)^2 - 2cd = (\\cos \\alpha)^2 - 2(1) = \\cos^2 \\alpha - 2\n   \\]\n\n#### Step 4: Summing the results\n\n\\[\n\\frac{1}{a^2} + \\frac{1}{b^2} + \\frac{1}{c^2} + \\frac{1}{d^2} = a^2 + b^2 + c^2 + d^2\n\\]\n\n\\[\na^2 + b^2 + c^2 + d^2 = (\\sin^2 \\alpha - 2) + (\\cos^2 \\alpha - 2)\n\\]\n\n\\[\n= \\sin^2 \\alpha + \\cos^2 \\alpha - 2 - 2\n\\]\n\n\\[\n= \\sin^2 \\alpha + \\cos^2 \\alpha - 4\n\\]\n\nUsing the Pythagorean identity:\n\n\\[\n\\sin^2 \\alpha + \\cos^2 \\alpha - 4 = -3\n\\]\n\n#### Conclusion:\n\n\\[\n\\boxed{-3}\n\\]",
+  "error": "Drops the sign of the cd product when computing the reciprocal pair contribution.",
+  "evidence": "{b^2} = (-\\sin \\alpha)^2 - 2(1) = \\sin^2 \\alpha - 2\n$$\n\n---\n\n### Step 3: Compute $ \\frac{1}{c^2} + \\frac{1}{d^2} $\n\nSimilarly:\n\n$$\n\\frac{1}{c^2} + \\frac{1}{d^2} = \\left( \\frac{1}{c} + \\frac{1}{d} \\right)^2 - 2 \\cdot \\frac{1}{cd}\n$$\n\nWe know:\n\n$$\n\\frac{1}{c} + \\frac{1}{d} = \\frac{c + d}{cd} = \\frac{-\\cos \\alpha}{-1} = \\cos \\alpha\n$$\n\n$$\n\\frac{1}{cd} = 1\n$$\n\nSo:\n\n$$\n\\frac{1}{c^2} + \\frac{1}{d^2} = (\\cos \\alpha)^2 - 2(1) = \\cos^2 \\alpha - 2\n$$\n\n---\n\n### Step 4: Add the two results\n\n$$\n\\frac{1}{a^2} + \\frac{1}{b^2} + \\frac{1}{c^2} + \\frac{1}{d^2} = (\\sin^2 \\alpha - 2) + (\\cos^2 \\alpha - 2)\n$$\n\nUse the Pythagorean identity:\n\n$$\n\\sin^2 \\alpha + \\cos^2 \\alpha = 1\n$$\n\nSo:\n\n$$\n\\frac{1}{a^2} + \\frac{1}{b^2} + \\frac{1}{c^2} + \\frac{1}{d^2} = (1 - 4) = -3\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{-3}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": false,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 14,
+  "reference_tokens": 979,
+  "B_box": "-3",
+  "new_box": "-3"
+ },
+ {
+  "idx": 17382,
+  "reference_sha256": "53c28d98ea347ae7a68139d3e958245353ef2ae91405f7713f1282ab0c30e9fb",
+  "qualified": false,
+  "reason": "B uses the equivalent area-form of the circumradius formula."
+ },
+ {
+  "idx": 18027,
+  "reference_sha256": "715afc8fd1c1589f1d385bbd02f17d3904ef21f3e91ee82e2374e97dc4585552",
+  "qualified": false,
+  "reason": "Boxed area equals the official area."
+ },
+ {
+  "idx": 18876,
+  "reference_sha256": "8f5d7bef42769a6f1e63bbb5b8bdf22003f311c288fae3f96b5e2f5d743cdabb",
+  "qualified": false,
+  "reason": "Multipart; selected B addresses initial count, official final box addresses impossibility in part b."
+ },
+ {
+  "idx": 20943,
+  "reference_sha256": "eb340bae3787c32f7c79f1e57b7ba2a31014c25eee3bc4267fd83444f915b611",
+  "qualified": true,
+  "text": "\nSince we are dealing with an isosceles trapezoid, let's label the vertices of the trapezoid as $A, B, C,$ and $D$ such that $AB$ and $CD$ are the non-parallel sides, and $AD$ and $BC$ are the bases with $AD = 8$ and $BC = 2$. We know that one of the angles at the larger base (let's say $\\angle D$ at $AD$) is $45^\\circ$.\n\n1. **Identify the setup and relevant dimensions**:\n   - Given: Larger base $AD = 8$.\n   - Smaller base $BC = 2$.\n   - Angle at the larger base: $\\angle D = 45^\\circ$.\n\n2. **Drop a perpendicular from $B$ to $AD$ and label the foot of the perpendicular as $H$**:\n   - This perpendicular bisects the trapezoid into two right triangles and a rectangle.\n   - Since $\\triangle BHD$ and $\\triangle AHD$ share $HD$ as $x$ and $8 - x$ respectively.\n   \n   Since $B$ is directly above $H$:\n   $$BH = AH = AD - BC = 8 - 2 = 6.$$\n\n3. **Calculate the height $h$ using $\\tan(\\theta)$ where $\\theta = 45^\\circ$**:\n   - Recall that $\\tan(45^\\circ) = 1$, thus $h$:\n   $$\\text{In } \\triangle AHD, \\quad \\tan(45^\\circ) = \\frac{BH}{AH} = \\frac{h}{6} \\implies h = 6.$$\n\n4. **Use the formula for the area of trapezoid**:\n   \\begin{align*}\n   S_{ABCD} &= \\frac{1}{2} \\times (AD + BC) \\times h \\\\\n   &= \\frac{1}{2} \\times (8 + 2) \\times 6 \\\\\n   &= \\frac{1}{2} \\times 10 \\times 6 \\\\\n   &= 30.\n   \\end{align*}\n\n**Conclusion**:\n\\[\n\\boxed{30}\n\\]",
+  "error": "Uses the entire difference of the two bases as the horizontal leg.",
+  "evidence": "horizontal segment $AE$.\n\n---\n\n### Step 3: Find the height of the trapezoid\n\nFrom the trapezoid, the base of the triangle on the left is:\n\n$$\nAE = AB - CD = 8 - 2 = 6\n$$\n\nWe drop a perpendicular from $D$ to $AB$, forming a right triangle with:\n- Hypotenuse: $AD$\n- Vertical leg: $h$\n- Horizontal leg: $AE = 6$\n\nWe are given that the angle at $A$ is $45^\\circ$, so:\n\n$$\n\\tan(45^\\circ) = \\frac{h}{6} \\Rightarrow h = 6\n$$\n\nSo the **height** of the trapezoid is 6.\n\n---\n\n### Step 4: Use the formula for the area of a trapezoid\n\n$$\n\\text{Area} = \\frac{1}{2} \\times (b_1 + b_2) \\times h\n$$\n\nSubstitute the known values:\n\n- $b_1 = 8$\n- $b_2 = 2$\n- $h = 6$\n\n$$\n\\text{Area} = \\frac{1}{2} \\times (8 + 2) \\times 6 = \\frac{1}{2} \\times 10 \\times 6 = 5 \\times 6 = 30\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{30}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 22,
+  "reference_tokens": 500,
+  "B_box": "30",
+  "new_box": "30"
+ },
+ {
+  "idx": 22158,
+  "reference_sha256": "4d5779875cf84973ed8a46b4e81c277ed3e7dc17497cbedb6c570395a234d91d",
+  "qualified": false,
+  "text": "To find the expected value of the sum of the numbers on two marbles drawn at random from a bag containing marbles numbered 1 through 5, we first calculate the total number of different pairs of marbles that can be drawn. This is given by the combination formula $\\binom{n}{k} = \\frac{n!}{k!(n-k)!}$, where $n$ is the total number of marbles, and $k$ is the number of marbles we are choosing. \n\nFor our case, $n=5$ and $k=2$, so the number of different pairs is:\n\\[\n\\binom{5}{2} = \\frac{5!}{2!(5-2)!} = \\frac{5 \\times 4}{2 \\times 1} = 10.\n\\]\n\nNext, we calculate the sum of the numbers on each possible pair of marbles and then find the average of these sums to get the expected value. The pairs and their sums are as follows:\n- Pair (1, 2) has a sum of $1+2=3$.\n- Pair (1, 3) has a sum of $1+3=4$.\n- Pair (1, 4) has a sum of $1+4=5$.\n- Pair (1, 5) has a sum of $1+5=6$.\n- Pair (2, 3) has a sum of $2+3=5$.\n- Pair (2, 4) has a sum of $2+4=6$.\n- Pair (2, 5) has a sum of $2+5=7$.\n- Pair (3, 4) has a sum of $3+4=7$.\n- Pair (3, 5) has a sum of $3+5=8$.\n- Pair (4, 5) has a sum of $4+5=9$.\n\nAdding all these sums together gives:\n\\[\n(3+4+5+6)+(5+6+7)+(7+8+9) = 56.\n\\]\n\nTo find the expected value, we divide this total by the number of pairs, which is 10:\n\\[\n\\frac{56}{10} = 5.6.\n\\]\n\nTherefore, the expected value of the sum of the numbers on the two marbles drawn at random is $\\boxed{5.6}$.",
+  "error": "Sums the ten pair totals to 56.",
+  "evidence": "ays to choose 2 different marbles\n\nWe are choosing 2 marbles from 5:\n\n$$\n\\binom{5}{2} = 10\n$$\n\nSo, there are **10 possible pairs** of marbles.\n\n---\n\n### Step 2: List all possible pairs and their sums\n\nWe can list all 10 possible pairs and the corresponding sums:\n\n1. (1, 2) → 3  \n2. (1, 3) → 4  \n3. (1, 4) → 5  \n4. (1, 5) → 6  \n5. (2, 3) → 5  \n6. (2, 4) → 6  \n7. (2, 5) → 7  \n8. (3, 4) → 7  \n9. (3, 5) → 8  \n10. (4, 5) → 9\n\n---\n\n### Step 3: Sum of all the sums\n\nNow, sum all the individual sums:\n\n$$\n3 + 4 + 5 + 6 + 5 + 6 + 7 + 7 + 8 + 9 = 56\n$$\n\n---\n\n### Step 4: Compute the expected value\n\nThe **expected value** is the average of the sums:\n\n$$\n\\text{Expected value} = \\frac{\\text{Total sum of all sums}}{\\text{Number of pairs}} = \\frac{56}{10} = 5.6\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{5.6}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": false,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 8,
+  "reference_tokens": 513,
+  "B_box": "5.6",
+  "new_box": "5.6"
+ },
+ {
+  "idx": 22681,
+  "reference_sha256": "f83001adae5cb55b557bb3376148aed49e52a4c3352f47186f891c40f1f09354",
+  "qualified": true,
+  "text": "To express $249_{11}+3AB_{12}$ as a base 10 integer, we first convert each number from its given base to base 10.\n\nStarting with $249_{11}$:\n\\begin{align*}\n249_{11} &= 2(11^2) + 4(11^1) + 9(11^0) \\\\\n&= 2(121) + 4(11) + 9(1) \\\\\n&= 242 + 44 + 9 \\\\\n&= 300\n\\end{align*}\n\nNext, for $3AB_{12}$, where $A = 10$ and $B = 11$ in base 12:\n\\begin{align*}\n3AB_{12} &= 3(12^2) + A(12^1) + B(12^0) \\\\\n&= 3(144) + 10(12) + 11(1) \\\\\n&= 432 + 120 + 11 \\\\\n&= 563\n\\end{align*}\n\nAdding the two base 10 integers together:\n\\begin{align*}\n249_{11} + 3AB_{12} &= 300 + 563 \\\\\n&= 863\n\\end{align*}\n\nTherefore, the sum expressed as a base 10 integer is $\\boxed{863}$.",
+  "error": "Arithmetic slip 242+44+9=300, propagated to the total.",
+  "evidence": "ower of 11:\n\n$$\n2 \\cdot 11^2 + 4 \\cdot 11^1 + 9 \\cdot 11^0\n$$\n\nCompute each term:\n\n- $ 2 \\cdot 11^2 = 2 \\cdot 121 = 242 $\n- $ 4 \\cdot 11^1 = 4 \\cdot 11 = 44 $\n- $ 9 \\cdot 11^0 = 9 \\cdot 1 = 9 $\n\nAdd them together:\n\n$$\n242 + 44 + 9 = 300\n$$\n\nSo, $ 249_{11} = 300_{10} $\n\n---\n\n### Step 2: Convert $ 3AB_{12} $ to base 10\n\nThe number $ 3AB_{12} $ is in base 12. We know:\n\n- $ A = 10 $\n- $ B = 11 $\n\nSo, the number is:\n\n$$\n3 \\cdot 12^2 + A \\cdot 12^1 + B \\cdot 12^0\n$$\n\nSubstitute the values:\n\n$$\n3 \\cdot 144 + 10 \\cdot 12 + 11\n$$\n\nCompute each term:\n\n- $ 3 \\cdot 144 = 432 $\n- $ 10 \\cdot 12 = 120 $\n- $ 11 = 11 $\n\nAdd them together:\n\n$$\n432 + 120 + 11 = 563\n$$\n\nSo, $ 3AB_{12} = 563_{10} $\n\n---\n\n### Step 3: Add the two base 10 numbers\n\n$$\n300 + 563 = 863\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{863}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 10,
+  "reference_tokens": 343,
+  "B_box": "863",
+  "new_box": "863"
+ },
+ {
+  "idx": 23139,
+  "reference_sha256": "973470d9a53c5893c14adbd7237ef304d64ce4edb0f9e1ed734aa5256914354c",
+  "qualified": false,
+  "reason": "B turns a cancelling quadratic into a noncancelling one and applies the quadratic formula; replacing the linear solution requires new structure."
+ },
+ {
+  "idx": 23791,
+  "reference_sha256": "6ccfdfb56440d21c06e9a8476d80118c072110812ef6eeee2f6d79156ebdd0e6",
+  "qualified": true,
+  "text": "To solve this problem, we first need to understand the given information and apply the Principle of Inclusion-Exclusion. Let's break down the solution step by step:\n\n1. **Determine the Range for Students Studying Spanish ($S$) and French ($F$):**\n\n   - For Spanish, the percentage range is between $80\\%$ and $85\\%$ of $2001$ students. Calculating the exact numbers:\n     \\[\n     \\left\\lceil 80\\% \\cdot 2001 \\right\\rceil = 1601 \\le S \\le \\left\\lfloor 85\\% \\cdot 2001 \\right\\rfloor = 1700\n     \\]\n   - For French, the percentage range is between $30\\%$ and $40\\%$ of $2001$ students. Calculating the exact numbers:\n     \\[\n     \\left\\lceil 30\\% \\cdot 2001 \\right\\rceil = 601 \\le F \\le \\left\\lfloor 40\\% \\cdot 2001 \\right\\rfloor = 800\n     \\]\n\n2. **Apply the Principle of Inclusion-Exclusion:**\n\n   The principle states that for any two sets, the size of their union is given by:\n   \\[\n   S + F - S \\cap F = S \\cup F = 2001\n   \\]\n   Here, $S \\cap F$ represents the students studying both languages.\n\n3. **Find the Smallest Number of Students Studying Both Languages ($m$):**\n\n   To minimize $m = S \\cap F$, we take the minimum values of $S$ and $F$:\n   \\[\n   1601 + 601 - m = 2001 \\Longrightarrow m = 1601 + 601 - 2001 = 201\n   \\]\n\n4. **Find the Largest Number of Students Studying Both Languages ($M$):**\n\n   To maximize $M = S \\cap F$, we take the maximum values of $S$ and $F$:\n   \\[\n   M = \\min(1700,800) = 800\n   \\]\n\n5. **Calculate the Difference $M - m$:**\n\n   Finally, to find the difference between the largest and smallest number of students studying both languages, we subtract $m$ from $M$:\n   \\[\n   M - m = 800 - 201 = \\boxed{599}\n   \\]\n\nThis step-by-step solution closely follows the original solution, breaking down the calculations and logic into more detailed steps, and concludes with the final answer encapsulated as requested.",
+  "error": "Uses the upper bound min(S,F) as attainable despite the fixed union.",
+  "evidence": "q \\min(|S|, |F|)\n$$\n\n$$\n|S \\cap F| \\geq |S| + |F| - |S \\cup F|\n$$\n\nBut since the total number of students is 2001, we can write:\n\n$$\n|S \\cup F| \\leq 2001\n$$\n\nThus:\n\n$$\n|S \\cap F| \\geq |S| + |F| - 2001\n$$\n\n---\n\n### Step 3: Find the smallest and largest possible values of $ |S \\cap F| $\n\nWe will use the bounds from Step 1:\n\n#### Minimum $ |S| = 1601 $, $ |F| = 601 $\n\nThen:\n\n$$\n|S \\cap F| \\geq 1601 + 601 - 2001 = 2202 - 2001 = 201\n$$\n\nSo, the **minimum** number of students who could study both is **201**.\n\n---\n\n#### Maximum $ |S| = 1701 $, $ |F| = 800 $\n\nThen:\n\n$$\n|S \\cap F| \\leq \\min(1701, 800) = 800\n$$\n\nSo, the **maximum** number of students who could study both is **800**\n\n---\n\n### Step 4: Compute $ M - m $\n\n$$\nM - m = 800 - 201 = \\boxed{599}\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{599}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 36,
+  "reference_tokens": 634,
+  "B_box": "599",
+  "new_box": "599"
+ },
+ {
+  "idx": 25192,
+  "reference_sha256": "5bdc93324013d17003b8ff5824bdb4c21ac631b6bf8919a72076389af219a2d4",
+  "qualified": false,
+  "reason": "Same dollar amount with and without the currency symbol."
+ },
+ {
+  "idx": 26431,
+  "reference_sha256": "f8bd7ba400d9fd3384714d1540e099b09ca24d5d4fa78413712b44904062858f",
+  "qualified": false,
+  "reason": "B uses multiple incompatible log/exponent identities, requiring both logarithm derivations and final arithmetic to change."
+ },
+ {
+  "idx": 26823,
+  "reference_sha256": "fd38120fe1a40668cb273c02b79dcbc302efa41726dc9d9dcf3db968d822ef38",
+  "qualified": false,
+  "reason": "B spells out the correct option C."
+ }
+]

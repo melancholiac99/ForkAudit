@@ -1,0 +1,666 @@
+[
+ {
+  "idx": 2,
+  "reference_sha256": "5aa86431587e9c39b6066d7299eff19580407016aa108fae9f1368d610fd1188",
+  "qualified": true,
+  "text": "Given the constraints \\(1 \\leq x, y, z \\leq 6\\), we are to find the number of natural number combinations \\((x, y, z)\\) such that their product can be divided exactly by 10. \n\nTo begin, we observe:\n1. The total number of combinations of \\(x, y, z\\) is \\(6^3\\):\n   \\[\n   6^3 = 216\n   \\]\n\n2. To be divisible by 10, the product \\(xyz\\) must include both a factor of 2 and a factor of 5. Therefore, we need to evaluate the ways we can count combinations of \\(x, y, z\\) that miss these factors.\n\n3. Consider the cases where \\(x, y, z\\) do not include factors of 2. The numbers within the range that are not multiples of 2 are \\{1, 3, 5\\}. The number of combinations in this case is:\n   \\[\n   3^3 = 27\n   \\]\n\n4. Next, consider the cases where \\(x, y, z\\) do not include factors of 5. The numbers within the range that are not multiples of 5 are \\{1, 2, 3, 4, 6\\}. The number of combinations in this case is:\n   \\[\n   5^3 = 125\n   \\]\n\n5. Now consider the cases where \\(x, y, z\\) include neither factors of 2 nor factors of 5. The only valid numbers in the range are then \\{1, 3\\}. The number of combinations in this case is:\n   \\[\n   2^3 = 8\n   \\]\n\n6. Using the intersection, we can calculate the number of combinations where \\(xyz\\) is not divisible by 10:\n   \\[\n   |A \\cap B| = |\\{1,3\\}|^3\n   \\]\n   where \\(A\\) is the set of combinations not including any multiples of 2 (27 in total) and \\(B\\) is the set not including any multiples of 5 (125 in total), and \\(|A \\cap B| = 8\\):\n\n   \\[\n   |A \\cap B| = 2^3 = 8\n   \\]\n\n7. Therefore, the number of combinations where \\(xyz\\) is divisible by 10 is:\n   \\[\n   6^3 - |A \\cap B| = 216 - 8 = 208\n   \\]\n\nConclusively, the number of natural number combinations \\(x, y, z\\) such that their product is divisible by 10 is:\n\\[\n\\boxed{208}\n\\]",
+  "error": "B complements the event that both divisors are missing instead of the event that at least one is missing.",
+  "evidence": "216 - 8",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 43,
+  "reference_tokens": 606,
+  "B_box": "208",
+  "new_box": "208"
+ },
+ {
+  "idx": 24,
+  "reference_sha256": "63e27a5bdbac8f3001ad2c3e4a6bb17134acc736685d8725ff2f3738ac2cf9ce",
+  "qualified": false,
+  "reason": "B explicitly retains the official correct option D and additionally selects B by allowing more chocolates than were available. Its two-option argument cannot preserve the D heading while excluding the correct option from the text."
+ },
+ {
+  "idx": 36,
+  "reference_sha256": "783a3fe725f021dc9c3d6956bf3bc78799dd9b2aa9b69fb5039ede61f702251a",
+  "qualified": false,
+  "reason": "B infers convergence from below to 45, whereas verification in the reference requires comparing with 45 throughout. Leaving those bounds would violate the no-gold-text rule."
+ },
+ {
+  "idx": 68,
+  "reference_sha256": "13e8bdd4915baf56db6b0233958c84f3a25cd27d17488c0dc7598e92f2da407f",
+  "qualified": true,
+  "text": "\nGiven the system of equations for positive numbers \\(x\\), \\(y\\), and \\(z\\):\n\n\\[\n\\begin{cases}\nx^2 + xy + y^2 = 48 \\\\\ny^2 + yz + z^2 = 9 \\\\\nz^2 + xz + x^2 = 57\n\\end{cases}\n\\]\n\nWe need to find the value of the expression \\(xy + yz + xz\\).\n\n#### Step 1: Triangle Representation\nConsider points \\(O\\), \\(A\\), \\(B\\), and \\(C\\) such that:\n- \\(\\angle AOB = 120^\\circ\\)\n- \\(\\angle BOC = 120^\\circ\\)\n- \\(\\angle COA = 120^\\circ\\)\n\nPlace \\(x = OA\\), \\(y = OB\\), and \\(z = OC\\).\n\n#### Step 2: Cosine Law Application\nUsing the cosine law in a triangle where the angle between each side is \\(120^\\circ\\), we have:\n- For triangle \\(OAB\\):\n\\[\nAB^2 = OA^2 + OB^2 + OA \\cdot OB \\cdot (-1/2) \\implies x^2 + y^2 + xy \\cdots (1)\n\\]\nGiven:\n\\[\nAB^2 = 48 \\implies x^2 + xy + y^2 = 48\n\\]\n\n- For triangle \\(BOC\\):\n\\[\nBC^2 = OB^2 + OC^2 + OB \\cdot OC \\cdot (-1/2) \\implies y^2 + z^2 + yz \\cdots (2)\n\\]\nGiven:\n\\[\nBC^2 = 9 \\implies y^2 + yz + z^2 = 9\n\\]\n\n- For triangle \\(COA\\):\n\\[\nCA^2 = OC^2 + OA^2 + OC \\cdot OA \\cdot (-1/2) \\implies z^2 + x^2 + xz \\cdots (3)\n\\]\nGiven:\n\\[\nCA^2 = 57 \\implies z^2 + xz + x^2 = 57\n\\]\n\n#### Step 3: Summing the Equations\nAdding all three equations:\n\\[\n(x^2 + xy + y^2) + (y^2 + yz + z^2) + (z^2 + xz + x^2) = 48 + 9 + 57\n\\]\n\\[\n2(x^2 + y^2 + z^2) + (xy + yz + xz) = 114\n\\]\n\n#### Step 4: Solve for \\(xy + yz + xz\\)\nWe know:\n\\[\n2(x^2 + y^2 + z^2) + (xy + yz + xz) = 114\n\\]\n\nLet:\n\\[\nx^2 + y^2 + z^2 + (xy + yz + xz) = A\n\\]\nThus:\n\\[\nx^2 + y^2 + z^2 = A - (xy + yz + xz)\n\\]\n\nSubstituting back:\n\\[\n2(A - (xy + yz + xz)) + (xy + yz + xz) = 114\n\\]\n\nLet:\n\\[\nA = x^2 + y^2 + z^2 + xy + yz + xz\n\\]\n\nThus:\n\\[\n2A - (xy + yz + xz) = 114\n\\]\n\nWe solve for \\((xy + yz + xz)\\):\n\\[\n A = (x^2 + xy + y^2) + (y^2 + yz + z^2) + (z^2 + xz + x^2) = 114\n\\]\nTherefore:\n\\[\nA = x^2 + y^2 + z^2 + xy + yz + xz = 114\n\\]\nLet \\(xy + yz + xz\\) be termed as \\(P\\).\n\nTherefore:\n\\[\n2A-P=114\n\\]\n\nThus substituting:\n\\[ 2(114)-P=114. \\]\n\nSolving for the pairwise sum gives\n\\[ P=228-114. \\]\n\n Hence the requested sum is obtained by this\n\nlinear equation.\n\nHence,: \\( \\boxed{114} \\).",
+  "error": "On summing the equations B drops one copy of the sum of squares and identifies A with 114.",
+  "evidence": "x^2 + y^2 + z^2 + xy + yz + zx = 114",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 109,
+  "reference_tokens": 965,
+  "B_box": "114",
+  "new_box": "114"
+ },
+ {
+  "idx": 73,
+  "reference_sha256": "0274ded505bc4d1c1ec811cbf3c9195d8255c52258e508313c845e2bac29ce70",
+  "qualified": true,
+  "text": "\nLet's simplify the given expression step-by-step:\n\nThe expression is:\n\\[\n\\left(\\left(\\frac{a \\sqrt[3]{b}}{b \\sqrt{a^{3}}}\\right)^{3 / 2} + \\left(\\frac{\\sqrt{a}}{a \\sqrt[8]{b^{3}}}\\right)^{2}\\right) : \\left(a^{1 / 4} + b^{1 / 4}\\right)\n\\]\n\n1. **Domain determination** (ODZ):\n   \\[\n   \\left\\{\n   \\begin{array}{l}\n   a > 0, \\\\\n   b > 0 .\n   \\end{array}\n   \\right.\n   \\]\n\n2. **Simplify the first term inside the bracket**:\n   \\[\n   \\left( \\frac{a \\sqrt[3]{b}}{b \\sqrt{a^3}} \\right)^{3/2}\n   \\]\n   - Calculate the numerator: \n     \\[\n     a \\sqrt[3]{b}\n     \\]\n   - Calculate the denominator: \n     \\[\n     b \\sqrt{a^3} = b \\sqrt{a \\cdot a^2} = b a^{3/2}\n     \\]\n   - Simplify the fraction:\n     \\[\n     \\frac{a \\sqrt[3]{b}}{b a^{3/2}}\n     \\]\n   - Now raise it to the power \\(3/2\\):\n     \\[\n     \\left( \\frac{a \\sqrt[3]{b}}{b a^{3/2}} \\right)^{3/2} = \\frac{a^{3/2} \\cdot (\\sqrt[3]{b})^{3/2}}{(b a^{3/2})^{3/2}}\n     \\]\n\n   - Simplify the powers:\n     \\[\n     = \\frac{a^{3/2} \\cdot b^{1/2}}{b^{3/2} \\cdot a^{9/4}}\n     \\]\n   - Combine and reduce:\n     \\[\n     = \\frac{a^{3/2} \\cdot b^{1/2}}{a^{9/4} \\cdot b^{3/2}} = \\frac{a^{3/2 - 9/4} \\cdot b^{1/2 - 3/2}} = \\frac{a^{6/4 - 9/4} \\cdot b^{-1}} = \\frac{1}{a^{3/4} b}\n     \\]\n\n3. **Simplify the second term inside the bracket**:\n   \\[\n   \\left(\\frac{\\sqrt{a}}{a \\sqrt[8]{b^3}}\\right)^{2}\n   \\]\n   - Calculate the inside terms:\n     \\[\n     \\frac{\\sqrt{a}}{a \\sqrt[8]{b^3}} = \\frac{a^{1/2}}{a \\cdot b^{3/8}}\n     \\]\n   - Simplify: \n     \\[\n     = \\frac{a^{1/2}}{a^{1} b^{3/8}} = \\frac{1}{a^{1/2} b^{3/8}}\n     \\]\n   - Now raise it to the power \\(2\\):\n     \\[\n     \\left( \\frac{1}{a^{1/2} b^{3/8}} \\right)^{2} = \\frac{1}{a b^{3/4}}\n     \\]\n\n4. **Combine both simplified terms**:\n   \\[\n   \\frac{1}{a^{3/4} b} + \\frac{1}{a b^{3/4}}\n   \\]\n   - Find a common factor:\n     \\[\n     a^{-3/4} b^{-3/4}(b^0+a^{1/4})\n     \\]\n\n5. **Divide by \\(a^{1/4} + b^{1/4}\\)**:\n   \\[\n   \\left( \\frac{1}{a^{3/4} b} + \\frac{1}{a b^{3/4}} \\right) \\div (a^{1/4} + b^{1/4}) = \\frac{a^{-3/4} b^{-3/4}(1+a^{1/4})}{a^{1/4}+b^{1/4}}\n   \\]\n   - Notice that \\(a^{1/4}+1\\) is the remaining factor:\n     \\[\n     = \\frac{a^{-3/4} \\cdot b^{-3/4} (a^{1/4} + 1)}{a^{1/4} + b^{1/4}}\n     \\]\n\n6. **Simplify the final expression**:\n   \\[\n   \\frac{a^{-3/4} \\cdot b^{-3/4} (a^{1/4} + 1)}{a^{1/4} + b^{1/4}}\n   \\]\n\nConclusion:\n\\[\n\\boxed{\\frac{a^{-3/4} \\cdot b^{-3/4} (a^{1/4} + 1)}{a^{1/4} + b^{1/4}}}\n\\]",
+  "error": "Incorrect exponent subtraction in factoring out the common monomial produces 1 and a^(1/4).",
+  "evidence": "b^{0} + a^{1/4}",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 168,
+  "reference_tokens": 1129,
+  "B_box": "\\frac{a^{-3/4} \\cdot b^{-3/4} (a^{1/4} + 1)}{a^{1/4} + b^{1/4}}",
+  "new_box": "\\frac{a^{-3/4} \\cdot b^{-3/4} (a^{1/4} + 1)}{a^{1/4} + b^{1/4}}"
+ },
+ {
+  "idx": 85,
+  "reference_sha256": "128d845e934d6cdc01a2ee2eec31d31962b22cc72b5b655a04a05466fd52c624",
+  "qualified": false,
+  "text": "### Problem\nPigsy (猪八戒) picked a bag of wild fruits to take back to Tang Monk (唐僧). While walking, he got hungry and took out half of the fruits from the bag. Just as he was about to eat, he hesitated, put back two fruits, and then ate the rest. He repeated this process a total of four times. When he finally returned to Tang Monk, there were still 5 fruits left in the bag. How many fruits did Pigsy originally pick?\n\n\nTo find out how many fruits Pigsy picked originally, let’s denote the initial number of fruits by \\( x \\). We’ll work backwards from the final state (5 fruits) to determine the initial amount. We will reverse each step Pigsy took:\n\n1. When he returned, he had 5 fruits. Let \\[ y_4 = 5 \\]\n\n2. Before the final step (fourth time he ate the fruits): \n   - He put back two fruits, so the change each time was two fruits.\n   - Before taking out the half, there must have been two more than the amount left:\n     \\[\n     y_3 = y_4 + 2 = 5 + 2 = 7\n     \\]\n\n3. Third time, before adding two fruits back: \n   \\[\n   y_2 = y_3 + 2 = 7 + 2 = 9\n   \\]\n\n4. Second time, before adding two fruits back:\n   \\[\n   y_1 = y_2 + 2 = 9 + 2 = 11\n   \\]\n\n5. First time, before adding two fruits back:\n   \\[\n   x = y_1 + 2 = 11 + 2 = 13\n   \\]\n\nThus, Pigsy originally picked 13 wild fruits. Therefore, the initial number of wild fruits he picked is:\n\\[ \n\\boxed{13}\n\\]",
+  "error": "Treats each operation as subtracting two fruits, then reverses it by adding two.",
+  "evidence": "9 + 2 = 11",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": false,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 126,
+  "reference_tokens": 499,
+  "B_box": "13",
+  "new_box": "13"
+ },
+ {
+  "idx": 91,
+  "reference_sha256": "c16b2320e272c9f06cf9086aab2028efb8bb552b4f8122e2e55edde40a1d2f2e",
+  "qualified": true,
+  "text": "\nGiven the problem where the passenger falls asleep during the trip and we are to find out what fraction of the total journey he was asleep for, let's detail the calculations.\n\n1. **Define Variables**:\n    - Let the total journey be \\( x \\).\n\n2. **Breaking down the journey**:\n    - The passenger falls asleep after traveling half of the journey.\n    - This means he has traveled \\( \\frac{x}{2} \\) before falling asleep.\n\n3. **Calculate the remaining distance**:\n    - The problem states that he wakes up when there is half of the distance he slept remaining.\n\n4. **Represent the remaining distance before he wakes up**:\n    - Let \\( y \\) be the distance he travels while asleep.\n    - When he wakes up, the remaining distance is \\( \\frac{y}{2} \\).\n\n5. **Formulating the equation**:\n    - The distance traveled awake before falling asleep and the sleeping distance sum to the total:\n    \\[\n    \\frac{x}{2} + y = x\n    \\]\n\n6. **Solve for \\( y \\)**:\n    - Move the terms involving \\(x\\) to the right:\n    \\[\n    y = x - \\frac{x}{2}\n    \\]\n\n7. **Isolate \\( y \\)**:\n    - Simplify the equation by multiplying both sides by 2:\n    \\[\n    2y = 2x-x\n    \\]\n    - Hence:\n    \\[\n    y = \\frac{x}{2}\n    \\]\n\n8. **Conclusion**:\n    - The distance traveled while asleep is \\( y \\):\n    \\[\n    y = \\frac{x}{2}\n    \\]\n    - Therefore, the passenger was asleep for one-half of the total journey.\n\n\\[\n\\boxed{\\frac{1}{2}}\n\\]",
+  "error": "Counts the initial awake segment plus the sleeping segment as the entire journey.",
+  "evidence": "x = D -",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 48,
+  "reference_tokens": 384,
+  "B_box": "\\frac{1}{2}",
+  "new_box": "\\frac{1}{2}"
+ },
+ {
+  "idx": 97,
+  "reference_sha256": "ee21e4cf0f82664eaede6bd56fe100890193082265e0fec1fd5349cfe9621083",
+  "qualified": true,
+  "text": "\nGiven that each square has a side of $1\\ \\text{cm}$, we know the area of each square is $1\\ \\text{cm}^2$. We need to find the sum of the areas of all different rectangles that can be composed using these 9 squares.\n\n1. **Identify Possible Rectangles:**\n    - For each possible rectangle, let \\( a \\) and \\( b \\) be the lengths of its sides in cm.\n    - If \\( a = 1 \\), the rectangles are single rows, so these do not count as rectangular arrays.\n\n    \\[\n    a = 1, \\quad b \\in \\{ 1, 2, \\ldots, 9 \\}\\quad\\text{(excluded)}\n    \\]\n    \n    - If \\( a = 2 \\), then the number of squares must be at least 4, which means \\( b \\) ranges as follows (since \\( ab \\leq 9 \\)):\n\n    \\[\n    a = 2, \\quad b \\in \\{ 2, 3, 4 \\}\n    \\]\n    \n    - If \\( a = 3 \\), then the number of squares must be exactly 9, so:\n\n    \\[\n    a = 3, \\quad b = 3\n    \\]\n\n2. **Calculate the Areas of Each Rectangle:**\n    - For \\( a = 1 \\):\n\n    \\[\n    \\text{Areas} = 1 \\cdot b \\quad \\text{for} \\quad b = 1, 2, \\ldots, 9\n    \\]\n\n    Sum of eligible areas:\n\n    \\[\n    \\sum_{b=1}^{9}0\\cdot b = 0\n    \\]\n\n    We exclude every single-row arrangement in this sum:\n\n    \\[\n    \\mathbf{1}_{a>1}=0\\quad(a=1)\n    \\]\n\n    Here \\( n = 9 \\):\n\n    \\[\n    \\sum_{b=1}^{9}0\\cdot b = 0\n    \\]\n\n    - For \\( a = 2 \\):\n\n    \\[\n    \\text{Areas} = 2 \\cdot b \\quad \\text{for} \\quad b = 2, 3, 4\n    \\]\n\n    Sum:\n\n    \\[\n    \\sum_{b=2}^{4} (2 \\cdot b) = 2 \\cdot 2 + 2 \\cdot 3 + 2 \\cdot 4 = 4 + 6 + 8 = 18\n    \\]\n\n    - For \\( a = 3 \\):\n\n    \\[\n    \\text{Area} = 3 \\cdot 3 = 9\n    \\]\n\n3. **Sum of All Areas:**\n    - Adding together all the sums of areas:\n\n    \\[\n    \\text{Total Area} = 0 + 18 + 9 = 27\\ \\text{cm}^2\n    \\]\n\n### Conclusion: \n\n\\[\n\\boxed{27}\n\\]",
+  "error": "Counts only composite areas, excluding all one-square-wide rectangles.",
+  "evidence": "valid $ n $ values",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 139,
+  "reference_tokens": 721,
+  "B_box": "27",
+  "new_box": "27"
+ },
+ {
+  "idx": 125,
+  "reference_sha256": "07be94ef67523e3e01553dabe6cbc955ad6260dc62acc348dcd9727c4d700204",
+  "qualified": false,
+  "reason": "The two final boxes are exactly identical. Transferring the faulty proof cannot make the negative final answer distinct."
+ },
+ {
+  "idx": 137,
+  "reference_sha256": "072c59c62cff81ec3b4d41f91a8b85814cb6042fba1464840fcd341809a1dafd",
+  "qualified": false,
+  "reason": "Positive numbers allow the square roots to be combined. B boxes the required inequality in algebraically equivalent notation."
+ },
+ {
+  "idx": 160,
+  "reference_sha256": "390ef7d8cad2be9f12fa1a026afbd10023491dcd7436329f721836ef1cdea41c",
+  "qualified": false,
+  "reason": "The reference ends with part (b) whereas the last complete B box answers part (a), followed by an unfinished part (b); the required final box would answer a different question."
+ },
+ {
+  "idx": 166,
+  "reference_sha256": "ea948077a6adb7b81a507888c3df32d7a98a4e1a88fc3809f08ba0c0f6f7db59",
+  "qualified": true,
+  "text": "\n1. Let's understand the setup: There are 60 balls in a bag, with each color having 6 balls. First, we determine the total number of different colors.\n   \\[\n   \\text{Total number of colors} = \\text{number given per color} = 6\n   \\]\n\n2. To ensure that we have at least three balls of the same color, let's consider the worst-case scenario. In the worst case, we can take 2 balls from each of the 6 different colors without getting 3 balls of any color:\n   \\[\n   2 \\times 6 = 12 \\text{ balls}\n   \\]\n\n3. In this scenario with 12 balls, we do not have 3 balls of the same color. Therefore, if we take one more ball (the 13th ball), we are guaranteed to have at least 3 balls of some color. This is based on the Pigeonhole Principle, which states that if we distribute more than \\( n \\) items into \\( n \\) containers, at least one container must contain more than one item:\n   \\[\n   12 + 1 = 13 \\text{ balls}\n   \\]\n\n4. Therefore, to guarantee that we have at least 3 balls of the same color, we need to draw at least 13 balls from the bag.\n\n**Conclusion**: Thus, the minimum number of balls that need to be drawn to guarantee that there are at least 3 balls of the same color is \n\\[\n\\boxed{13}\n\\]",
+  "error": "Treats the number of balls per color (6) as the number of colors.",
+  "evidence": "There are **6 colors**",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 26,
+  "reference_tokens": 334,
+  "B_box": "13",
+  "new_box": "13"
+ },
+ {
+  "idx": 181,
+  "reference_sha256": "86cf5f526d82551eb60ef070cd835446ff136cd9b59f927cf5c0c32e6cae8460",
+  "qualified": true,
+  "text": "Given the problem of finding the number of distinct four-digit numbers that can be formed by permuting the digits of 2021, we shall follow a step-by-step combinatorial approach.\n\n1. **List all permutations:**\n   We can list digit patterns and distinguish the two copies of 2 by their original positions.\n   These permutations are:\n   \\[\n   \\{2021, 2012, 2201, 2210, 2102, 2120, 1022, 1202, 1220\\}\n   \\]\n   Each displayed pattern contributes two permutations upon interchanging the copies of 2.\n\n2. **Using Combinatorial Methods:**\n   We can confirm the number of permutations using combinatorics principles.\n   \n   - **Digit Enumeration:**\n     The number 2021 consists of the digits 2, 0, 2, and 1.\n   \n   - **First Digit Consideration:**\n     The first digit must be non-zero. Therefore, it can be either 1 or 2.\n     \n     - **Case 1 (First Digit = 1):**\n       If the first digit is 1, we need to arrange the remaining digits 2, 2, and 0. \n       Possible arrangements come in pairs by interchanging the two copies of 2.\n       Total arrangements for this case \\(= 3!\\).\n       \n     - **Case 2 (First Digit = 2):**\n       If the first digit is 2, we need to arrange the remaining digits 1, 2, and 0.\n       Either copy of 2 can be first; the other three digits can appear in any order.\n       Total arrangements for this case \\(= 2\\cdot 3!\\).\n   \n3. **Calculate the Total Number of Arrangements:**\n   We combine the results from both cases:\n   \\[\n   \\sum = 6 (when \\, 1 \\, is \\, the \\, first \\, digit) + 12 (when \\, 2 \\, is \\, the \\, first \\, digit)\n   \\]\n   This results in:\n   \\[\n   Total = 6 + 12 = 18\n   \\]\n\n4. **Additional Cases:**\n   We can also remove the permutations that start with zero:\n   \\[\n   Total Unique = 4! - 3! = 18\n   \\]\n\nConclusion:\n\\[\n\\boxed{18}\n\\]",
+  "error": "Distinguishes the two copies of digit 2 in both the total count and the choices with leading zero.",
+  "evidence": "24 - 6",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 101,
+  "reference_tokens": 543,
+  "B_box": "18",
+  "new_box": "18"
+ },
+ {
+  "idx": 212,
+  "reference_sha256": "02a665649cae439b6e4492a983371c78769ae7f9b321822e15f2fff068cdcb94",
+  "qualified": true,
+  "text": "\nTo solve this problem, we start by defining the daily consumption of rice and wheat by the given individuals.\n\n1. **Define Quantities**:\n   - Let \\( g \\) represent Guan Yu's daily consumption, which we will take as 1 unit for ease of calculation.\n   - Liu Bei can consume a single bag of rice in 5 days, so his daily consumption is \\( \\frac{1 \\text{ bag}}{5 \\text{ days}} = \\frac{1}{5} \\text{ bag/day} \\).\n   - Guan Yu can consume a single bag of rice in 3 days, so his daily consumption of rice is \\( \\frac{1 \\text{ bag}}{3 \\text{ days}} = \\frac{1}{3} \\text{ bag/day} \\).\n\n2. **Define Zhang Fei's Consumption**:\n   - Guan Yu can consume a single bag of wheat in 5 days, so his daily consumption of wheat is \\( \\frac{1 \\text{ bag}}{5 \\text{ days}} = \\frac{1}{5} \\text{ bag/day} \\).\n   - Zhang Fei can consume a single bag of wheat in 4 days, so his daily consumption of wheat is \\( \\frac{1 \\text{ bag}}{4 \\text{ days}} = \\frac{1}{4} \\text{ bag/day} \\).\n\n3. **Daily Consumption Summary**:\n   - Liu Bei's daily consumption: \\( \\frac{1}{5} \\) bags/day.\n   - Zhang Fei's daily consumption: \\( \\frac{1}{4} \\) bags/day.\n\n4. **Calculation of Difference**:\n   - The difference in their daily consumption is:\n   \\[\n   \\left| \\frac{1}{4} - \\frac{1}{5} \\right|\n   \\]\n   - To find this, we find a common denominator (which is 20):\n   \\[\n   \\frac{1}{4} = \\frac{5}{20}, \\quad \\frac{1}{5} = \\frac{4}{20}\n   \\]\n   - So the absolute difference is:\n   \\[\n   \\left| \\frac{5}{20} - \\frac{4}{20} \\right| = \\frac{1}{20}\n   \\]\n\n5. **Percentage Calculation**:\n   - The percentage difference relative to Zhang Fei's daily consumption is calculated as follows:\n   \\[\n   \\left( \\frac{\\frac{1}{20}}{\\frac{1}{4}} \\right) \\times 100\\%\n   \\]\n   - This can be simplified by converting the division into multiplication by the reciprocal:\n   \\[\n   \\left( \\frac{1}{20} \\div \\frac{1}{4} \\right) = \\left( \\frac{1}{20} \\times \\frac{4}{1} \\right) = \\frac{4}{20} = \\frac{1}{5} = 0.2\n   \\]\n   - Converting 0.2 to percentage:\n   \\[\n   0.2 \\times 100\\% = 20\\%\n   \\]\n\n6. **Conclusion**:\n   - Therefore, Liu Bei's daily consumption of food is \\(20 \\%\\) less than Zhang Fei's daily consumption.\n\n\\[\n\\boxed{20}\n\\]",
+  "error": "Treats the rice and wheat bags as equal weight, directly comparing per-bag rates; the reference itself already computed the resulting 20%.",
+  "evidence": "0.2",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 4,
+  "reference_tokens": 732,
+  "B_box": "20",
+  "new_box": "20"
+ },
+ {
+  "idx": 239,
+  "reference_sha256": "eacdaaa002c5b1e2897c24292367438e058550e09147be4888eb5d395ba2ccd0",
+  "qualified": true,
+  "text": "\n1. **Define the Variables:**\n   Let \\( x \\) be the amount of solution transferred from the second vessel to the first vessel.\n\n2. **Analyze the Transfer:**\n   - The initial amount of sulfuric acid in the first vessel:\n     \\[\n     \\text{Initial acid in 1st vessel} = 4 \\, \\text{L} \\times 0.70 = 2.8 \\, \\text{L}\n     \\]\n   - The initial amount of sulfuric acid in the second vessel:\n     \\[\n     \\text{Initial acid in 2nd vessel} = 3 \\, \\text{L} \\times 0.90 = 2.7 \\, \\text{L}\n     \\]\n\n3. **Set up the Equation for Transfer:**\n   - After transferring \\( x \\) liters from the second vessel to the first vessel, the amount of sulfuric acid transferred:\n     \\[\n     \\text{Transferred acid} = x \\times 0.90 = 0.9x \\, \\text{L}\n     \\]\n\n   - The total amount of sulfuric acid in the first vessel becomes:\n     \\[\n     \\text{Total acid in 1st vessel} = 2.8 \\, \\text{L} + 0.9x \\, \\text{L}\n     \\]\n\n   - The total volume of solution in the first vessel after transfer:\n     \\[\n     \\text{Total volume in 1st vessel} = 4 \\, \\text{L} + x \\, \\text{L}\n     \\]\n\n   - Given that the new solution in the first vessel is \\( r\\%-\\) sulfuric acid, we can write:\n     \\[\n     \\frac{\\text{Total acid in 1st vessel}}{\\text{Total volume in 1st vessel}} = \\frac{r}{100}\n     \\]\n     \\[\n     \\frac{2.8 + 0.9x}{4 + x} = \\frac{r}{100}\n     \\]\n\n4. **Solve for \\( x \\):**\n   \\[\n   2.8 + 0.9x = (4 + x) \\frac{r}{100}\n   \\]\n   \\[\n   280 + 90x = r(4 + x)\n   \\]\n   \\[\n   280 + 90x = 4r + rx\n   \\]\n   \\[\n   280 + 90x = 4r + rx\n   \\]\n\n   - Solving for \\( x \\):\n     \\[\n     90x - rx = 4r - 280\n     \\]\n     \\[\n     x(90 - r) = 4r - 280\n     \\]\n     \\[\n     x = \\frac{4r - 280}{90 - r}\n     \\]\n\n5. **Determine the Range for \\( x \\):**\n   - We have \\(x>0\\):\n     \\[\n     0 < \\frac{4r - 280}{90 - r}\n     \\]\n\n   - First inequality:\n     \\[\n     0 < 4r - 280 \\quad \\Rightarrow \\quad r > 70\n     \\]\n\n   - Second inequality:\n     \\[\n     90-r>0\n     \\]\n     \\[\n     r<90\n     \\]\n     \\[\n     0.70 < r/100 < 0.90\n     \\]\n     \\[\n     7 < r/10 < 9\n     \\]\n     \\[\n     r/10\\in\\{8\\}\\quad\\text{in integer tenths}\n     \\]\n\n6. **Determine the Largest Integer \\( r \\):**\n   \\[\n   70 < r <90,\\qquad r/10=8\n   \\]\n   - Therefore, the largest integer \\( r \\) is \\( 80 \\).\n\nConclusion:\n\\[\n\\boxed{80}\n\\]",
+  "error": "Drops the vessel-capacity upper bound and searches integer tenths of the concentration rather than integer percentages.",
+  "evidence": "r = 0.8, 0.9",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 134,
+  "reference_tokens": 954,
+  "B_box": "80",
+  "new_box": "80"
+ },
+ {
+  "idx": 277,
+  "reference_sha256": "80781f3f7a5805c218f4b127822fff00f6a9f0f975eb413ed774996d6c54f510",
+  "qualified": true,
+  "text": "- Let \\( f(x) \\) be a polynomial with leading term \\( c x^n \\), where \\( c \\neq 0 \\) and \\( n \\) is the degree of the polynomial.\n  \n1. **Calculate the first and second derivatives of \\( f(x) \\):**\n   \n   - The first derivative of \\( f(x) = c x^n \\) is:\n     \\[\n     f'(x) = c \\cdot n x^{n-1}\n     \\]\n   \n   - The second derivative of \\( f(x) \\) is:\n     \\[\n     f''(x) = c \\cdot n \\cdot (n-1) x^{n-2}\n     \\]\n\n2. **Substitute into the given equation:**\n   \n   Since \\( f(x) = f'(x) \\cdot f''(x) \\), we substitute the leading terms into this equation:\n   \\[\n   c x^n = \\left(c n x^{n-1}\\right) \\cdot \\left(c n (n-1) x^{n-2}\\right)\n   \\]\n\n3. **Simplify the equation:**\n   \n   - The right-hand side of the equation becomes:\n     \\[\n     c n x^{n-1} \\cdot c n (n-1) x^{n-2} = c^2 n^2 (n-1) x^{(n-1)+(n-2)} = c^2 n^2 (n-1) x^{2n-3}\n     \\]\n   \n   - Setting the degree of the left-hand side equal to the degree of the right-hand side, we have:\n     \\[\n     n = 2n - 3\n     \\]\n   \n   - Solving for \\( n \\):\n     \\[\n     n = 2n - 3 \\implies n - 2n = -3 \\implies -n = -3 \\implies n = 3\n     \\]\n\n4. **Determine the leading coefficient \\( c \\):**\n   \n   Substitute the leading coefficients into the simplified equation to solve for \\( c \\):\n   \\[\n   c = c^2 \\cdot n^2 \\cdot (n-1)\n   \\]\n   \n   - Dividing both sides by \\(c\\) (since \\(c \\neq 0\\)) gives:\n     \\[\n     1 = c n^2(n-1) \\implies c = \\frac{1}{n^2 (n - 1)}\n     \\]\n\n5. **Conclusion:**\n\n   Therefore, the leading coefficient of \\( f(x) \\) is:\n   \\[\n   \\boxed{\\frac{1}{n^2 (n - 1)}}\n   \\]",
+  "error": "Leaves the leading coefficient expressed as a function of the degree even though the degree was determined.",
+  "evidence": "in terms of the **degree**",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 76,
+  "reference_tokens": 595,
+  "B_box": "\\frac{1}{n^2 (n - 1)}",
+  "new_box": "\\frac{1}{n^2 (n - 1)}"
+ },
+ {
+  "idx": 293,
+  "reference_sha256": "43cab44d8b29828449210b903df13b872e5a698d11a7d3fd5af629b39c3bbad1",
+  "qualified": true,
+  "text": "\n1. **Identify Blinking Intervals:**\n\n   The red, yellow, and green lights blink every 3, 4, and 8 seconds, respectively.\n   \n   Let:\n   - \\( R \\) be the time interval for the red light, \\( R = 3 \\) seconds\n   - \\( Y \\) be the time interval for the yellow light, \\( Y = 4 \\) seconds\n   - \\( G \\) be the time interval for the green light, \\( G = 8 \\) seconds\n\n2. **Determine the Least Common Multiple:**\n\n   Calculate the least common multiple (LCM) of the three intervals to determine the period after which all lights will blink simultaneously again:\n   \\[\n   \\text{LCM}(3, 4, 8) = 24 \\text{ seconds}\n   \\]\n\n3. **Identify Times When Only Red and Yellow Blink:**\n\n   We need to find the times when only the red and yellow lights blink, which corresponds to times that are multiples of both 3 and 4 but not 8:\n   - Red and yellow lights will blink together at times \\( t \\) that satisfy:\n     \\[\n     t = 3k \\quad \\text{and} \\quad t = 4m\n     \\]\n     where \\( k \\) and \\( m \\) are integers. This happens at multiples of the \\(\\text{LCM}(3,4) = 12\\) seconds.\n   - Check \\( t = 12n \\) where \\( n \\) is a positive integer, counting each joint red and yellow flash.\n\n4. **Time Calculations:**\n\n   Calculate the first few times where the red and yellow lights blink:\n   - First occurrence: \\( t = 12 \\)\n     \\[\n     12 \\mod 8 = 4 \\neq 0\n     \\]\n   - Second occurrence: \\( t = 12 + 12 = 24 \\)\n     \\[\n     24 \\mod 12 = 0\n     \\]\n   - Third occurrence: \\( t = 24 + 12 = 36 \\)\n     \\[\n     36 \\mod 12 = 0\n     \\]\n\n5. **Conclusion:**\n\n   The third time at which only the red and yellow lights blink is at \\( t = 36 \\) seconds.\n\n\\[\n\\boxed{36}\n\\]",
+  "error": "Counts every nonzero multiple of 12 without removing simultaneous green flashes.",
+  "evidence": "only red and yellow",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 72,
+  "reference_tokens": 556,
+  "B_box": "36",
+  "new_box": "36"
+ },
+ {
+  "idx": 314,
+  "reference_sha256": "569be1077132c966305d274c7f67d3eb297bc7df38ebabd2025492ba31858168",
+  "qualified": false,
+  "reason": "The last five sections of the official text use the 2-minute delay and a different extra path length. B drops the delay and uses a one-fifth detour. Maintaining the same argument requires replacing most of the derivation."
+ },
+ {
+  "idx": 341,
+  "reference_sha256": "15814883643dae8b49a2ea1793f3a833206edce47c153371af270340b05bf641",
+  "qualified": false,
+  "text": "\n1. **Determine the time intervals between the train arrivals**:\n   - From 10:10 a.m. to 10:55 a.m.:\n     \\[\n     10:55 - 10:10 = 45 \\text{ minutes}\n     \\]\n   - From 10:55 a.m. to 11:58 a.m.:\n     \\[\n     11:58 - 10:55 = 1 \\text{ hour and } 5 \\text{ minutes} = 60 \\text{ minutes} + 5 \\text{ minutes} = 65 \\text{ minutes}\n     \\]\n\n2. **Conditions for the train intervals**:\n   - The time intervals (45 and 65 minutes) must both be multiples of $x$. Thus, $x$ must be a common divisor of 45 and 65.\n\n3. **Finding the common divisors**:\n   - First, find the prime factorization of 45:\n     \\[\n     45 = 3^2 \\times 5\n     \\]\n   - Next, find the prime factorization of 65:\n     \\[\n     65 = 5 \\times 13\n     \\]\n   - The greatest common divisor (GCD) of 45 and 65 is determined by the common factors in their prime factorizations:\n     \\[\n     \\text{GCD}(45, 65) = 5\n     \\]\n\n4. **Checking the options**:\n   - \\(x = 9\\):\n     \\[\n     \\text{65 is not divisible by 9} \\implies 45 \\div 9 = 5, \\quad 65 \\div 9 \\approx 7.222\n     \\]\n   - \\(x = 7\\):\n     \\[\n     45 \\div 7 \\approx 6.428 \\quad (\\text{not an integer}), \\quad 65 \\div 7 \\approx 9.286\n     \\]\n   - \\(x = 10\\):\n     \\[\n     45 \\div 10 = 4.5 \\quad (\\text{not an integer}), \\quad 65 \\div 10 = 6.5 \\quad (\\text{not an integer})\n     \\]\n   - \\(x = 5\\):\n     \\[\n     45 \\div 5 = 9, \\quad 65 \\div 5 = 13\n     \\]\n   - \\(x = 11\\):\n     \\[\n     45 \\div 11 \\approx 4.09 \\quad (\\text{not an integer}), \\quad 65 \\div 11 \\approx 5.909 \\quad (\\text{not an integer})\n     \\]\n\n5. **Conclusion**:\n   - The only value of $x$ that evenly divides both 45 and 65 is 5.\n   \\[\n   \\boxed{D}\n   \\]",
+  "error": "Computes the second time interval as 65 minutes.",
+  "evidence": "both 45 and 65",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": false,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 62,
+  "reference_tokens": 683,
+  "B_box": "D",
+  "new_box": "D"
+ },
+ {
+  "idx": 349,
+  "reference_sha256": "2afba7c537620581d0dbc0311bccd3aeb10d4fa5f0682b2ba8ec057e63c93feb",
+  "qualified": true,
+  "text": "\nGiven two alloys consisting of copper and zinc:\n- In the first alloy, the amount of copper is twice that of zinc.\n- In the second alloy, the amount of copper is five times less than that of zinc.\n- We need to determine the ratio in which to mix these alloys to create a new alloy where the amount of zinc is twice that of copper.\n\nLet's denote:\n- $x$ and $cx$ as the masses of zinc and copper in the first alloy, respectively, where $c$ is the proportion of copper to zinc in this alloy.\n- $y$ and $dy$ as the masses of zinc and copper in the second alloy, respectively, where $d$ is the proportion of copper to zinc in this alloy.\n\n### Alloy 1:\n\\[ c = 2 \\]\nwhich means the copper mass is twice the zinc mass. Thus, if the zinc mass is $x$, then the copper mass is:\n\\[ \\text{Copper in Alloy 1} = 2x \\]\n\n### Alloy 2:\n\\[ d = \\frac{1}{5} \\]\nwhich means the copper mass is one-fifth the zinc mass. Thus, if the zinc mass is $y$, then the copper mass is:\n\\[ \\text{Copper in Alloy 2} = \\frac{y}{5} \\]\n\n### New Alloy:\nWe need the new alloy to have the zinc mass twice the copper mass.\nSuppose we mix the first and second alloys in the ratio $k:1$; we will determine $k$.\n\nThe total mass of copper and zinc in the new alloy can be expressed as:\n- Copper: $2kx + \\frac{y}{5}$\n- Zinc: $kx + y$\n\nWe know that the zinc mass must be twice the mass of copper:\n\\[ kx + y = 2(2kx + \\frac{y}{5}) \\]\n\n### Solving for the ratio \\( k \\):\n\nFirst, expand the right-hand side:\n\\[ kx + y = 4kx + \\frac{2y}{5} \\]\n\nTo eliminate the fraction, multiply every term by 5:\n\\[ 5kx + 5y = 20kx + 2y \\]\n\nRearrange the terms to isolate $kx$ and $y$ on one side:\n\\[ 5kx + 5y - 20kx - 2y = 0 \\]\n\nCombine like terms:\n\\[ -15kx + 3y = 0 \\]\n\nIsolate $k$:\n\\[ -15kx = -3y \\]\n\\[ 15kx = 3y \\]\n\\[ k = \\frac{3y}{15x} \\]\n\\[ k = \\frac{y}{5x} \\]\n\nGiven the relation between the two alloys:\n\\[5kx=y\\]\n\nThus, taking the coefficients of the two alloy contributions gives their mass ratio:\n\\[5:1\\]\n\n### Conclusion:\n\\[ \\boxed{5:1} \\]",
+  "error": "Interprets the coefficient five in 5kx=y as the mixture ratio 5:1, ignoring the independent scales x and y.",
+  "evidence": "A:B = 5:1",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 52,
+  "reference_tokens": 665,
+  "B_box": "5:1",
+  "new_box": "5:1"
+ },
+ {
+  "idx": 437,
+  "reference_sha256": "33a7f971b1d9ada985f342f41016821e7eddafcf356c8c3fab10d54a9de4da32",
+  "qualified": true,
+  "text": "\nGiven the sequence $\\{a_n\\}$ where the sum of the first $n$ terms is $S_n$, we know:\n- $a_1 = 4$\n- $a_n = S_{n-1} + 2n + 1$\n\nWe aim to find the value of $a_{2005}$.\n\n1. **Find Expression for \\(a_{n+1}\\):**\n\n   Given:\n   \\[\n   a_n = S_{n-1} + 2n + 1\n   \\]\n   We can write:\n   \\[\n   a_{n+1} = S_n + 2(n+1) + 1\n   \\]\n   Since \\( S_n \\) is the sum of the first \\( n \\) terms:\n   \\[\n   S_n = S_{n-1} + a_n\n   \\]\n   Substituting this into \\( a_{n+1} \\), we get:\n   \\[\n   a_{n+1} = (S_{n-1} + a_n) + 2(n+1) + 1\n   \\]\n\n2. **Simplify the Expression:**\n\n   We already know that:\n   \\[\n   a_n = S_{n-1} + 2n + 1\n   \\]\n   Substituting \\( S_{n-1} + 2n + 1 \\) for \\( a_n \\):\n   \\[\n   a_{n+1} = S_{n-1} + [S_{n-1} + 2n + 1] + 2(n+1) + 1 \n   \\]\n   Simplify:\n   \\[\n   a_{n+1} = 2S_{n-1} + 2n + 1 + 2(n+1) + 1 \n   \\]\n   \\[\n   a_{n+1} = 2S_{n-1} + 2n + 1 + 2n + 2 + 1 \n   \\]\n   \\[\n   a_{n+1} = 2S_{n-1} + 4n + 4\n   \\]\n   \\[\n   a_{n+1} = 2 \\left(S_{n-1} + 2n + 2 \\right) \n   \\]\n\n3. **Create Recursive Form**: \n\n   We have:\n   \\[\n   a_{n+1} + 2 = 2(a_n + 2)\n   \\]\n\n   This simplifies our series \\( \\{a_n + 2\\} \\):\n\n4. **Using the Above Recursive Formula**:\n\n   \\[\n   b_n = a_n + 2\n   \\]\n   Then:\n   \\[\n   b_{n+1} = 2 b_n \n   \\]\n   Our baseline \\( a_1 \\) implies:\n   \\[\n   a_1 = 4 \\implies b_1 = 6\n   \\]\n\n   And since \\( b_n \\) is a geometric sequence with first term 6 and common ratio 2:\n   \\[\n   b_n = 6 \\times 2^{n-1} \n   \\]\n\n5. **Find \\(a_{2005}\\)**:\n\n   \\[\n   a_{2005} = b_{2005} - 2 \n   \\]\n   where\n   \\[\n   b_{2005} = 6 \\times 2^{2004} \n   \\]\n   Thus:\n   \\[\n   a_{2005} = 6 \\times 2^{2004} - 2 \n   \\]\n\n6. **Simplify \\(a_{2005}\\)**:\n\n   Clearly \\( a_{2005} \\):\n   \\[\n   a_{2005} = 3 \\times 2^{2005} - 2\n   \\]\n\n### Conclusion:\n\\[\n\\boxed{A. \\ 3 \\times 2^{2005} - 2}\n\\]",
+  "error": "Extends the second-order index relation back to the first term, exactly as in B, then uses the geometric solution it implies.",
+  "evidence": "a_n = 3",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 21,
+  "reference_tokens": 858,
+  "B_box": "A. \\ 3 \\times 2^{2005} - 2",
+  "new_box": "A. \\ 3 \\times 2^{2005} - 2"
+ },
+ {
+  "idx": 443,
+  "reference_sha256": "aec9205652a185a5e9d9d5cc807389b5aed91013541460ec674df51b76000295",
+  "qualified": false,
+  "reason": "B treats every final box as twice its original amount, contradicting the transfer arithmetic even in B. The reference separately tracks three successive transfers and is internally inconsistent; a coherent replacement needs extensive reconstruction."
+ },
+ {
+  "idx": 512,
+  "reference_sha256": "fd52e39595a5a7b5afbab06d688975960f54fef8fc21771cea447fcef2e65923",
+  "qualified": true,
+  "text": "\nWe need to find the number of unsuccessful attempts made before successfully guessing a three-digit number chosen from a set of five given digits.\n\n1. **Determine the total number of three-digit combinations:**\n\n   - Each digit in the three-digit number can be chosen from the remaining available digits.\n   - This means there are \\(5,4,3\\) choices for the successive digits (i.e., repetitions are excluded).\n\n   Using the counting principle for combinations without repetition, we have:\n   \\[\n   \\text{Total number of combinations} = 5 \\times 4 \\times 3\n   \\]\n\n2. **Calculate the total combinations:**\n\n   \\[\n   5 \\times 4 \\times 3 = 60\n   \\]\n\n3. **Identify the unsuccessful attempts:**\n\n   - Since the successful attempt happened on the last try, all previous attempts were unsuccessful.\n   - Therefore, the number of unsuccessful attempts is one less than the total number of combinations.\n\n   Hence:\n   \\[\n   \\text{Number of unsuccessful attempts} = 60 - 1 = 59\n   \\]\n\n### Conclusion:\nTherefore, there were \\(\\boxed{59}\\) unsuccessful attempts before the successful one.",
+  "error": "Samples digits without replacement instead of allowing repeated digits.",
+  "evidence": "60 possible 3-digit codes",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 39,
+  "reference_tokens": 258,
+  "B_box": "59",
+  "new_box": "59"
+ },
+ {
+  "idx": 556,
+  "reference_sha256": "4119fb72852929c0ecc14c05aeec24d125531d7051893bea3de8fd5b63d5b0de",
+  "qualified": false,
+  "reason": "B sums both Vieta totals without subtracting the shared root. The gold number 0 occurs repeatedly in required discriminant and polynomial equations, so it cannot be removed from the text while preserving that argument under the literal rule."
+ },
+ {
+  "idx": 598,
+  "reference_sha256": "d45bf840f78194c46b8ca9c56fe92a9801c39155c05c3dbc4640e5b7b5c7f188",
+  "qualified": true,
+  "text": "Given: \n\\[ a = \\frac{\\sqrt{5} + \\sqrt{3}}{\\sqrt{5} - \\sqrt{3}}, \\quad b = \\frac{\\sqrt{5} - \\sqrt{3}}{\\sqrt{5} + \\sqrt{3}} \\]\nWe aim to find the value of \\( a^4 + b^4 + (a + b)^4 \\).\n\n1. **Calculate \\(ab\\):**\n\n\\[ ab = \\left(\\frac{\\sqrt{5} + \\sqrt{3}}{\\sqrt{5} - \\sqrt{3}}\\right) \\left(\\frac{\\sqrt{5} - \\sqrt{3}}{\\sqrt{5} + \\sqrt{3}}\\right) = 1 \\]\n\n2. **Calculate \\(a + b\\):**\n\n\\[ a + b = \\frac{\\sqrt{5} + \\sqrt{3}}{\\sqrt{5} - \\sqrt{3}} + \\frac{\\sqrt{5} - \\sqrt{3}}{\\sqrt{5} + \\sqrt{3}} \\]\n\nTo simplify this, use the identity:\n\\[\n\\frac{x}{y} + \\frac{y}{x} = \\frac{x^2 + y^2}{xy}\n\\]\nApplying this here:\n\n\\[\na + b = \\frac{(\\sqrt{5} + \\sqrt{3})^2 + (\\sqrt{5} - \\sqrt{3})^2}{(\\sqrt{5} + \\sqrt{3})(\\sqrt{5} - \\sqrt{3})}\n\\]\n\nFirst, calculate the numerator and denominator separately.\n\n\\[\n(\\sqrt{5} + \\sqrt{3})^2 = 5 + 3 + 2\\sqrt{15} = 8 + 2\\sqrt{15}\n\\]\n\n\\[\n(\\sqrt{5} - \\sqrt{3})^2 = 5 + 3 - 2\\sqrt{15} = 8 - 2\\sqrt{15}\n\\]\n\nSumming these:\n\n\\[\n(\\sqrt{5} + \\sqrt{3})^2 + (\\sqrt{5} - \\sqrt{3})^2 = (8 + 2\\sqrt{15}) + (8 - 2\\sqrt{15}) = 16\n\\]\n\nThe denominator:\n\n\\[\n(\\sqrt{5} + \\sqrt{3})(\\sqrt{5} - \\sqrt{3}) = 5 - 3 = 2\n\\]\n\nThus:\n\n\\[\na + b = \\frac{16}{2} = 8\n\\]\n\n3. **Calculate \\((a + b)^2\\):**\n\\[\n(a + b)^2 = 8^2 = 64\n\\]\n\n4. **Calculate \\(a^2 + b^2\\):**\n\nUse the squared ratios:\n\n\\[\na^2 = \\frac{(\\sqrt{5}+\\sqrt{3})^2}{(\\sqrt{5}-\\sqrt{3})^2} = \\frac{8}{2}\n\\]\n\nSimilarly for \\(b^2\\),\n\n\\[\nb^2 = \\frac{8}{2} = 4\n\\]\n\n\\[\na^2 + b^2 = 4+4=8\n\\]\n\n5. **Calculate \\(a^4 + b^4\\):**\n\nUse the identity:\n\n\\[\na^4+b^4=(a^2)^2+(b^2)^2\n\\]\n\n\\[\na^4=4^2\n\\]\n\n\\[\nb^4=4^2\n\\]\n\n\\[\na^4+b^4=16+16=32\n\\]\n\n6. **Calculate \\( (a + b)^4 \\):**\n\n\\[\n(a + b)^4 = 64^2 = 4096\n\\]\n\n7. **Combine these results:**\n\n\\[\na^4 + b^4 + (a + b)^4 = 32 + 4096 = 4128\n\\]\n\n### Conclusion:\n\\[\n\\boxed{4128}\n\\]",
+  "error": "Evaluates the two squared radical quotients as 8/2=4 separately, omitting cross terms, then squares these values.",
+  "evidence": "a^2 = b^2 = 4",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 135,
+  "reference_tokens": 899,
+  "B_box": "4128",
+  "new_box": "4128"
+ },
+ {
+  "idx": 628,
+  "reference_sha256": "050088f8f348294803c90c53929f72b10517127ba522f57beb9a87f0f980f3be",
+  "qualified": true,
+  "text": "\nTo express that each of the three real numbers \\(a\\), \\(b\\), and \\(c\\) is exactly zero using a single equality sign, we can follow these steps:\n\n1. Consider the sum of the squares of the three numbers \\(a, b,\\) and \\(c\\):\n\\[ a^2 + b^2 + c^2 \\]\n\n2. Recall that for any real number \\(x\\), the square \\(x^2 \\geq 0\\). Thus, the sum \\(a^2 + b^2 + c^2 \\geq 0\\) since each term in the sum is non-negative.\n\n3. The conjunction \\(a = 0 \\land b = 0 \\land c = 0\\) if and only if \\(a = 0\\), \\(b = 0\\), and \\(c = 0\\). This is because:\n   - If \\(a \\neq 0\\), \\(a^2\\) would be positive.\n   - If \\(b \\neq 0\\), \\(b^2\\) would be positive.\n   - If \\(c \\neq 0\\), \\(c^2\\) would be positive.\n   - Hence, if any of \\(a, b,\\) or \\(c\\) were non-zero, the sum \\(a^2 + b^2 + c^2\\) would be greater than zero, contradicting \\(a = 0 \\land b = 0 \\land c = 0\\).\n\n4. Therefore, the single logical equality \\(a = 0 \\land b = 0 \\land c = 0\\) implies that \\(a, b,\\) and \\(c\\) must all be zero.\n\n### Conclusion:\n\\[\n\\boxed{a = 0 \\land b = 0 \\land c = 0}\n\\]",
+  "error": "Counts the conjunction of three separate equalities as a single equality.",
+  "evidence": "We are given three real numbers $ a, b, c $, and we are to express that **each of them is separately equal to zero** using a single equality sign.\n\n---\n\n### Step 1: Understand the requirement\n\nWe are to write an expression that is **true** **only** when all three of $ a, b, c $ are zero. That is:\n\n$$\na = 0 \\quad \\text{and} \\quad b = 0 \\quad \\text{and} \\quad c = 0\n$$\n\n---\n\n### Step 2: Use a single equality sign\n\nWe can write this using a **single equality sign** by using **logical conjunction** (i.e., \"and\") between the three equations.\n\nSo, the expression is:\n\n$$\na = 0 \\land b = 0 \\land c = 0\n$$\n\nThis is a **logical conjunction** of three equations, and it is **true** **only** when all three are simultaneously true.\n\n---\n\n### Final Answer:\n\n$$\n\\boxed{a = 0 \\land b = 0 \\land c = 0}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 48,
+  "reference_tokens": 369,
+  "B_box": "a = 0 \\land b = 0 \\land c = 0",
+  "new_box": "a = 0 \\land b = 0 \\land c = 0"
+ },
+ {
+  "idx": 661,
+  "reference_sha256": "f9817f9dee0f19d1ddd4c87a72cfeb3d4bc8381731be981d5a7c94ec2c959ce2",
+  "qualified": false,
+  "reason": "B explicitly derives that the reciprocal exceeds x, then selects the incompatible option D. Its reasoning does not coherently entail D."
+ },
+ {
+  "idx": 681,
+  "reference_sha256": "9b19dcf3f748e7d75438ef5ff8ebfdd89b50791838b5bec79dfce358513919c8",
+  "qualified": false,
+  "reason": "B conditions on opposite signs despite the same-sign premise. The literal gold comparison sign also occurs in the necessary positive branch."
+ },
+ {
+  "idx": 712,
+  "reference_sha256": "1b0b82f6a31997e33b0528ffffea4dfbf3c30c43ca84c8a3e1e4a46e39a494a0",
+  "qualified": false,
+  "reason": "B sets the population to five and changes the truth assignments throughout the argument; reference derives seventeen and uses it across branches."
+ },
+ {
+  "idx": 762,
+  "reference_sha256": "ab333d4be2fd173610c5e0e2e00bd7e898b89567476fb339a750402c298ef6c3",
+  "qualified": false,
+  "reason": "B states precisely the eventual-constancy assertion being requested."
+ },
+ {
+  "idx": 770,
+  "reference_sha256": "8041194d3b6681454df1881e06b29e6fe425318a14a94e75e5d4c56a23303c37",
+  "qualified": false,
+  "reason": "B loses both infinite solution families by invalidly restricting to a=b; the official proof explicitly constructs both throughout separate cases."
+ },
+ {
+  "idx": 780,
+  "reference_sha256": "8393b4621255f2e61556a5ea4272518bdab40f5e1a745426346d7064ecb92bd7",
+  "qualified": false,
+  "reason": "B omits the universal guarantee and its counterexample; replacing the quantified argument throughout requires a different proof."
+ },
+ {
+  "idx": 788,
+  "reference_sha256": "3ea088d1f512fb253afe580a5f5306675730ce3187d9ff52e95fbfb148fb69b4",
+  "qualified": true,
+  "text": "\nTo solve this problem, we need to determine which two digits can be appended to the number \\(2013\\) to create a new six-digit number that is divisible by \\(101\\). Let's proceed step-by-step:\n\n1. **Form the Six-Digit Number**:\n   We start by considering \\(2013\\) as the number to which we add two digits \\(x\\) and \\(y\\). Therefore, the six-digit number we are forming is \\( \\overline{2013xy} \\).\n\n2. **Expression in Terms of Modulo**:\n   We need this new number \\( \\overline{2013xy} \\) to be divisible by \\(101\\). We can express the modular condition as follows:\n   \\[\n   \\overline{2013xy} \\equiv 0 \\pmod{101}\n   \\]\n\n3. **Breaking Down**:\n   To break it down further, let’s split it into a manageable parts. We know that any number can be expressed as a product of powers of tens:\n   \\[\n   \\overline{2013xy} = 201300 + xy\n   \\]\n\n4. **Modulo 101 Calculation**:\n   We need to find \\( \\overline{xy} \\) such that the above expression is congruent to \\(0\\) modulo 101. First, reduce \\(201300\\) modulo \\(101\\):\n   \\[\n   201300 \\mod 101\n   \\]\n   Simplifying this:\n   \\[\n   201300 = (1999 + 13) \\times 101 + 87, \\quad \\text{hence} \\quad 201300 \\equiv 87 \\pmod{101}\n   \\]\n   Therefore, the equation becomes:\n   \\[\n   201300 + \\overline{xy} \\equiv 0 \\pmod{101}\n   \\]\n   Simplifying:\n   \\[\n   87 + \\overline{xy} \\equiv 0 \\pmod{101}\n   \\]\n   Therefore:\n   \\[\n   \\overline{xy} \\equiv -87 \\pmod{101}\n   \\]\n\n5. **Solving for \\(\\overline{xy}\\)**:\n   Since \\(\\overline{xy}\\) accounts for decimal digits, we need it to be positive while lying between \\(00\\) and \\(99\\). Hence, we solve:\n   \\[\n   \\overline{xy} = 101 - 87 = 14\n   \\]\n   Thus, \\(\\overline{xy} = 14\\).\n\n6. **Conclusion**:\n   The two digits we need to append to \\(2013\\) are \\(1\\) and \\(4\\) to form the six-digit number \\(201314\\) which would be divisible by \\(101\\).\n\nHence, the required digits are \\((1, 4)\\), and the six-digit number formed will be:\n\\[ \\boxed{14} \\]",
+  "error": "Miscomputes the remainder of 201300 modulo 101 as 87.",
+  "evidence": "01300 \\mod 101 $\n\nTo compute this, we can reduce 201300 modulo 101 step by step.\n\nFirst, note that:\n\n$$\n101 \\times 1999 = 199900\n$$\n\nSo:\n\n$$\n201300 - 199900 = 1400\n$$\n\nNow compute $ 1400 \\mod 101 $\n\n$$\n101 \\times 13 = 1313 \\\\\n1400 - 1313 = 87\n$$\n\nSo:\n\n$$\n201300 \\mod 101 = 87\n$$\n\nThus,\n\n$$\nx \\equiv -87 \\mod 101\n$$\n\n$$\nx \\equiv 14 \\mod 101\n$$\n\nSo, the valid values of $ x $ are:\n\n$$\nx = 14, 115, 216, \\dots\n$$\n\nBut since $ x $ is a **two-digit number**, we only consider values of $ x $ in the range **00 to 99**.\n\nSo, the **valid values** of $ x $ are:\n\n$$\nx = 14, 115 \\text{ is too big}, \\text{ so } x = 14\n$$\n\nOnly **14** is valid in the two-digit range.\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{14}\n$$\n\nThis is the only two-digit number we can add to 2013 to make a six-digit number divisible by 101.",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 19,
+  "reference_tokens": 685,
+  "B_box": "14",
+  "new_box": "14"
+ },
+ {
+  "idx": 801,
+  "reference_sha256": "ec270698d70bd6b4c35357f375436296fffb6578c574b3592666e60d2f32ca5a",
+  "qualified": false,
+  "reason": "Both solutions give option E, 90."
+ },
+ {
+  "idx": 824,
+  "reference_sha256": "969615f57f7dd0917e69a1ec8c6476aed7c4df0dbaf95387356827e06999ac68",
+  "qualified": true,
+  "text": "To solve the given problem, we need to count the number of 12-element subsets \\( T \\) of the set \\( S = \\{1, 2, 3, \\cdots, 2009\\} \\) such that the absolute difference between any two elements of \\( T \\) is not equal to 1. \n\n1. **Ordering the Elements**:\n   Let's assume the elements of \\( T \\) are arranged in increasing order, i.e., \\( a_1 < a_2 < \\cdots < a_{12} \\).\n\n2. **Transformation**:\n   Define a new set \\( T' \\) such that:\n   \\[\n   T' = \\{a_1, a_2 - 1, a_3 - 2, \\ldots, a_{12} - 11\\}\n   \\]\n   This transformation reduces each element \\( a_i \\) of \\( T \\) by its position index minus one.\n\n3. **Set Characteristics**:\n   The new set \\( T' \\) will contain 12 elements which are distinct and drawn from the set \\( S' = \\{1, 2, 3, \\ldots, 2000\\} \\). The largest possible value of \\( T' \\) is \\( 2000 \\) because subtracting 12 and adding 1 to 2009 gives 2000.\n\n4. **One-to-One Correspondence**:\n   The transformation creates a one-to-one correspondence between the 12-element subsets \\( T \\) of \\( S \\) (where no two elements have an absolute difference of 1) and the 12-element subsets of \\( S' \\).\n\n5. **Counting Valid Subsets**:\n   The number of valid 12-element subsets of \\( S \\) (where the absolute difference between any two elements is not 1) is the same as counting the number of ways to choose 12 elements from the set \\( S' \\). This is given by the binomial coefficient:\n   \\[\n   \\binom{2000}{12}\n   \\]\n\nConclusion:\n\\[\n\\boxed{\\binom{2000}{12}}\n\\]",
+  "error": "Uses 2009−12+1=2000 in the upper binomial parameter.",
+  "evidence": "denote the number of elements selected as $ k = 12 $, and the total number of elements as $ n = 2009 $.\n\nWe can use the following **combinatorial identity**:\n\n$$\n\\binom{n - k + 1}{k}\n$$\n\nThis formula counts the number of ways to choose $ k $ elements from $ n $ such that **no two are consecutive**.\n\nLet’s verify this with our earlier small example:\n\n- $ n = 5, k = 2 $:\n  $$\n  \\binom{5 - 2 + 1}{2} = \\binom{4}{2} = 6\n  $$\n  Which matches.\n\nSo the formula holds.\n\n---\n\n### Step 4: Apply the formula\n\nWe are given:\n- $ n = 2009 $\n- $ k = 12 $\n\nSo the number of such subsets is:\n\n$$\n\\binom{2009 - 12 + 1}{12} = \\binom{2000}{12}\n$$\n\n---\n\n### Final Answer:\n\n$$\n\\boxed{\\binom{2000}{12}}\n$$\n\nThis is the number of 12-element subsets of $ \\{1, 2, \\ldots, 2009\\} $ such that no two elements are consecutive.",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 37,
+  "reference_tokens": 463,
+  "B_box": "\\binom{2000}{12}",
+  "new_box": "\\binom{2000}{12}"
+ },
+ {
+  "idx": 856,
+  "reference_sha256": "c475e90eafa92a9f8df9d4f26e46356e1d96afe0e0e37406b0168f0781ea482b",
+  "qualified": true,
+  "text": "\n1. **Statement Analysis**:\n    - The given statement (original statement) is: \"If integers $a$ and $b$ are not both odd, then $a+b$ is even.\"\n    - The negation statement would be the opposite of this original statement.\n\n2. **Negation Construction**:\n    - To find the negation, we need to apply logical principles. Specifically, the negation of a statement of the form \"If $p$ then $q$\" is \"if $p$ then not $q$\".\n    - Here, the statement is of the form \"If $p$ then $q$\", where:\n      - $p$: \"If integers $a$ and $b$ are not both odd\"\n      - $q$: \"$a+b$ is even\"\n    - The negation is thus \"if $p$ then not $q$\", which translates to: \"If integers $a$ and $b$ are not both odd then $a+b$ is not even\".\n\n3. **Examining the Correctness**:\n    - Therefore, according to this rule, the negation statement will be: \"If integers $a$ and $b$ are not both odd then $a+b$ is not even\".\n    - If this negation is correct, the original statement (which is proven to be a false statement) should have its negation preserve the opposite truth value (which should be true).\n\n4. **Conclusion**:\n    - As analyzed, the original statement and its negation cannot both be true. Since the original statement is false, its correct negation will also show the correct relationship based on the principle \"If $p$ then $q$\".\n\n\\[\n\\boxed{\\text{Yes}}\n\\]",
+  "error": "Negates only the conclusion of an implication.",
+  "evidence": "atement:  \n**If $A$, then $B$**.\n\n---\n\n### Step 2: Identify the negation of the proposition\n\nThe negation of a conditional statement **\"If $A$, then $B$\"** is:\n\n> $$\n\\neg(A \\rightarrow B) \\equiv A \\land \\neg B\n$$\n\nSo the negation of the original statement is:\n\n> $$\n\\text{If } a \\text{ and } b \\text{ are not both odd}, \\text{ and } a + b \\text{ is not even}.\n$$\n\nThat is:\n\n> $$\n\\text{If } \\neg(\\text{both } a \\text{ and } b \\text{ are odd}), \\text{ then } \\neg(a + b \\text{ is even}).\n$$\n\nThis matches exactly with the statement given in the question:\n\n> **\"If the integers $a$ and $b$ are not both odd, then $a + b$ is not even.\"**\n\n---\n\n### Step 3: Conclusion\n\nThe statement given in the question is the **negation** of the original proposition.\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{\\text{Yes}}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 17,
+  "reference_tokens": 359,
+  "B_box": "\\text{Yes}",
+  "new_box": "\\text{Yes}"
+ },
+ {
+  "idx": 890,
+  "reference_sha256": "30eaadb6a1f7bd2a6c1eb54c3227e9b6a2d4cb5b68cae10a493346f8bfb948b6",
+  "qualified": false,
+  "reason": "B evaluates the limit alone. The requested epsilon-delta proof and the correct delta appear repeatedly throughout the body."
+ },
+ {
+  "idx": 907,
+  "reference_sha256": "a5a9e8efd983e877f0c7d3fbc13d09e2e9f2e766e8741f9b532479d0cbbcfa67",
+  "qualified": false,
+  "text": "### Problem:\nCalculate the definite integral:\n\n$$\n\\int_{\\pi}^{2 \\pi} \\frac{1-\\cos x}{(x-\\sin x)^{2}} \\, dx\n$$\n\n1. **Substitution Step:**\n   \n   Let's use the substitution \\( u = x - \\sin x \\). Then, we have:\n   $$\n   du = \\left(1 - \\cos x\\right) dx\n   $$\n   This transforms the integral as follows:\n   $$\n   \\int_{\\pi}^{2 \\pi} \\frac{1-\\cos x}{(x-\\sin x)^2} dx = \\int_{u(\\pi)}^{u(2\\pi)} \\frac{du}{u^2}\n   $$\n   where \\( u(\\pi) = \\pi - \\sin \\pi = \\pi \\) and \\( u(2\\pi) = 2\\pi - \\sin 2\\pi = 2\\pi \\).\n\n2. **Integrating using New Limits:**\n\n   Our integral simplifies to:\n   $$\n   \\int_{\\pi}^{2\\pi} \\frac{du}{u^2}\n   $$\n\n3. **Evaluating the Integral:**\n\n   Use the fact that \\( \\int \\frac{du}{u^2} = -\\frac{1}{u} \\). Therefore:\n   \\begin{align*}\n   \\int_{\\pi}^{2\\pi} \\frac{du}{u^2} &= -\\left. \\frac{1}{u} \\right|_{\\pi}^{2\\pi} \\\\\n   &= -\\left[ \\frac{1}{2\\pi} - \\frac{1}{\\pi} \\right] \\\\\n   &= -\\left( \\frac{1}{2\\pi} - \\frac{1}{\\pi} \\right) \\\\\n   &= -\\left( \\frac{1}{2\\pi} - \\frac{3}{2\\pi} \\right) \\\\\n   &= - \\left( \\frac{1 - 3}{2\\pi} \\right) \\\\\n   &= - \\left( \\frac{-2}{2\\pi} \\right) \\\\\n   &= \\frac{1}{\\pi}\n   \\end{align*}\n\n### Conclusion:\nThe value of the definite integral is:\n\n$$\n\\boxed{\\frac{1}{\\pi}}\n$$",
+  "error": "Drops the subtractand in the endpoint subtraction after changing variables.",
+  "evidence": "\nThen:\n\n$$\n\\frac{du}{dx} = 1 - \\cos x\n\\Rightarrow du = (1 - \\cos x) dx\n$$\n\nThis suggests that the numerator of the integrand is exactly $ du $, so we can write the integral as:\n\n$$\n\\int_{\\pi}^{2\\pi} \\frac{1 - \\cos x}{(x - \\sin x)^2} \\, dx = \\int_{u(\\pi)}^{u(2\\pi)} \\frac{1}{u^2} \\, du\n$$\n\nLet’s compute the limits of integration:\n\n- $ u(\\pi) = \\pi - \\sin \\pi = \\pi - 0 = \\pi $\n- $ u(2\\pi) = 2\\pi - \\sin 2\\pi = 2\\pi - 0 = 2\\pi $\n\nSo the integral becomes:\n\n$$\n\\int_{\\pi}^{2\\pi} \\frac{1 - \\cos x}{(x - \\sin x)^2} \\, dx = \\int_{\\pi}^{2\\pi} \\frac{1}{u^2} \\, du\n$$\n\n---\n\n### Step 3: Evaluate the simplified integral\n\n$$\n\\int_{\\pi}^{2\\pi} \\frac{1}{u^2} \\, du = \\left[ -\\frac{1}{u} \\right]_{\\pi}^{2\\pi} = -\\frac{1}{2\\pi} + \\frac{1}{\\pi} = \\frac{1}{\\pi}\n$$\n\n---\n\n### Final Answer:\n\n$$\n\\boxed{\\frac{1}{\\pi}}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": false,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 5,
+  "reference_tokens": 517,
+  "B_box": "\\frac{1}{\\pi}",
+  "new_box": "\\frac{1}{\\pi}"
+ },
+ {
+  "idx": 918,
+  "reference_sha256": "e73e76304545e986da980eec6a5c925583ed8fb5d429f624c7d9a2443ad0fb52",
+  "qualified": false,
+  "reason": "B counts unreduced fractions, replacing the core totient calculation in several stages."
+ },
+ {
+  "idx": 924,
+  "reference_sha256": "d082d3927adc911fedbcfaab4e2d9dd6f02754c5ef0ddc8ec31dfa0c2f5a0346",
+  "qualified": false,
+  "reason": "The interval and chosen option B are mathematically identical."
+ },
+ {
+  "idx": 988,
+  "reference_sha256": "1e870098eb503715c3055370bba7eb6fd0f4b4ade405e5d8219dbff44057fc60",
+  "qualified": false,
+  "reason": "B explicitly states the required lower bound as an inequality."
+ },
+ {
+  "idx": 997,
+  "reference_sha256": "bfceca4fda1936ad84cd3d7b56a34cf7b14062112bcf5a9a53ee0e8da734d62f",
+  "qualified": true,
+  "text": "\nLet's find the volume of the cone given the conditions in the problem:\n\n1. Let $SAK$ be the cone, \\( SO \\) be its height, and \\( BK \\) be a chord with \\( BK=a \\) and \\( \\angle BnK = \\alpha \\) radians. The height \\( SO \\) makes angle \\( \\beta \\) with the conic surface. \n\n2. Let \\( R \\) be the radius of the cone's base. Then, within the triangle \\( OBK \\):\n\n    - Since \\( \\angle BOK = \\alpha \\), we use the Law of Cosines:\n      \\[\n      a^{2} = 2R^{2} - 2R^{2}\\cos(\\alpha).\n      \\]\n\n3. Using the trigonometric identity \\( \\cos(\\alpha) = 1 - 2 \\sin^2\\left(\\frac{\\alpha}{2}\\right) \\):\n    \\[\n    a^2 = 2R^2 \\left[1 - \\left(1 - 2\\sin^2\\left(\\frac{\\alpha}{2}\\right)\\right)\\right],\n    \\]\n    which simplifies to:\n    \\[\n    a^2 = 2R^2 \\cdot 2\\sin^2\\left(\\frac{\\alpha}{2}\\right),\n    \\]\n    hence,\n    \\[\n    a = 2R \\sin\\left(\\frac{\\alpha}{2}\\right),\n    \\]\n    and solving for \\( R \\):\n    \\[\n    R = \\frac{a}{2 \\sin\\left(\\frac{\\alpha}{2}\\right)}.\n    \\]\n\n4. Using triangle \\( SOK \\), the height \\( SO \\) is given by:\n    \\[\n    SO = OK \\tan(\\beta).\n    \\]\n    Since \\( OK = R \\):\n    \\[\n    SO = \\frac{a \\tan(\\beta)}{2 \\sin\\left(\\frac{\\alpha}{2}\\right)}.\n    \\]\n\n5. Now, we use the formula for the volume \\( V \\) of a cone:\n    \\[\n    V = \\frac{1}{3} \\pi R^2 \\cdot SO.\n    \\]\n\n6. Substitute the values obtained into the volume formula:\n    \\[\n    V = \\frac{1}{3} \\pi \\left(\\frac{a}{2 \\sin\\left(\\frac{\\alpha}{2}\\right)}\\right)^2 \\cdot \\frac{a \\tan(\\beta)}{2 \\sin\\left(\\frac{\\alpha}{2}\\right)}.\n    \\]\n\n7. Simplify the expression:\n    \\[\n    V = \\frac{1}{3} \\pi \\frac{a^2}{4 \\sin^2\\left(\\frac{\\alpha}{2}\\right)} \\cdot \\frac{a \\tan(\\beta)}{2 \\sin\\left(\\frac{\\alpha}{2}\\right)},\n    \\]\n    \\[\n    V = \\frac{\\pi a^3 \\tan(\\beta)}{24 \\sin^3\\left(\\frac{\\alpha}{2}\\right)}.\n    \\]\n\n8. The final volume of the cone is:\n    \\[\n    \\boxed{V = \\frac{\\pi a^3 \\tan(\\beta)}{24 \\sin^3\\left(\\frac{\\alpha}{2}\\right)}}.\n    \\]",
+  "error": "Uses height = radius times tangent instead of cotangent for the specified angle.",
+  "evidence": "(\\beta)\n$$\n\n---\n\n### Step 6: Volume of the Cone\n\nThe volume $ V $ of a cone is given by:\n\n$$\nV = \\frac{1}{3} \\pi R^2 h\n$$\n\nSubstitute $ R = \\frac{a}{2 \\sin\\left( \\frac{\\alpha}{2} \\right)} $ and $ h = \\frac{a \\tan(\\beta)}{2 \\sin\\left( \\frac{\\alpha}{2} \\right)} $:\n\n$$\nV = \\frac{1}{3} \\pi \\left( \\frac{a}{2 \\sin\\left( \\frac{\\alpha}{2} \\right)} \\right)^2 \\left( \\frac{a \\tan(\\beta)}{2 \\sin\\left( \\frac{\\alpha}{2} \\right)} \\right)\n$$\n\nSimplify:\n\n$$\nV = \\frac{1}{3} \\pi \\cdot \\frac{a^2}{4 \\sin^2\\left( \\frac{\\alpha}{2} \\right)} \\cdot \\frac{a \\tan(\\beta)}{2 \\sin\\left( \\frac{\\alpha}{2} \\right)}\n$$\n\n$$\nV = \\frac{1}{3} \\pi \\cdot \\frac{a^3 \\tan(\\beta)}{8 \\sin^3\\left( \\frac{\\alpha}{2} \\right)}\n$$\n\n---\n\n### Final Answer:\n\n$$\n\\boxed{V = \\frac{\\pi a^3 \\tan(\\beta)}{24 \\sin^3\\left( \\frac{\\alpha}{2} \\right)}}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 10,
+  "reference_tokens": 714,
+  "B_box": "V = \\frac{\\pi a^3 \\tan(\\beta)}{24 \\sin^3\\left( \\frac{\\alpha}{2} \\right)}",
+  "new_box": "V = \\frac{\\pi a^3 \\tan(\\beta)}{24 \\sin^3\\left(\\frac{\\alpha}{2}\\right)}"
+ },
+ {
+  "idx": 1001,
+  "reference_sha256": "e0bc378d53ac7db70e8b3a6ed4eb924b73f2e631e8d176a408af7ed3c1ab158c",
+  "qualified": false,
+  "reason": "B treats small differences in gained minutes as complete 12-hour cycles; both separate periods and the time criterion would have to be replaced."
+ },
+ {
+  "idx": 1008,
+  "reference_sha256": "359ef5fd2299450ccb03d47e6ab1d3695f4dd927401c94b9ef22ca2b9b2f80e8",
+  "qualified": true,
+  "text": "We start with the given inequality:\n\\[\n2^{2x} \\leqslant 3 \\times 2^{x+\\sqrt{x}} + 4 \\times 2^{2\\sqrt{x}}\n\\]\n\n1. **Rewrite and simplify the inequality:** The inequality can be rearranged to bring all terms to one side for better manipulation:\n\\[\n2^{2x} \\leqslant 3 \\times 2^{x+\\sqrt{x}} + 4 \\times 2^{2\\sqrt{x}}\n\\]\nRewriting gives:\n\\[\n4 \\times 2^{2\\sqrt{x}} + 3 \\times 2^{x+\\sqrt{x}} \\geqslant 2^{2x}\n\\]\n\n2. **Introduce a substitution to simplify the terms:**\nRecognize patterns that will allow us to use quadratic forms. Use \\( y = 2^{\\sqrt{x}} \\), so \\( y^2 = 2^{2\\sqrt{x}} \\) and \\( y^4 = 2^{2x} \\):\n\\[\n4 y^2 + 3 y \\times 2^x \\geqslant y^4\n\\]\nDivide through by \\( y^2 \\):\n\\[\n4 + 3 \\times 2^{x-\\sqrt{x}} \\geqslant y^2\n\\]\n\n3. **Again, use substitution for ease of solving:**\nLet \\( z = 2^{x-\\sqrt{x}} \\):\n\\[\nz^2 - 3z - 4 \\leqslant 0\n\\]\n\n4. **Solve the quadratic inequality:**\nSolving the quadratic equation \\( z^2 - 3z - 4 = 0 \\) using the quadratic formula, \\( z = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a} \\) where \\( a = 1, b = -3, c = -4 \\):\n\\[\nz = \\frac{3 \\pm \\sqrt{9 + 16}}{2} = \\frac{3 \\pm 5}{2}\n\\]\nThis gives us the roots:\n\\[\nz = 4 \\quad \\text{and} \\quad z = -1\n\\]\nThe inequality \\( z^2 - 3z - 4 \\leqslant 0 \\) holds within the interval:\n\\[\n-1 \\leq z \\leq 4\n\\]\n\n5. **Relate back to original variable:** \nSince \\( z = 2^{x-\\sqrt{x}} \\):\n\\[\n2^{x-\\sqrt{x}} < 4 \\quad \\text{and} \\quad 2^{x-\\sqrt{x}} \\geq -1\n\\]\nSince \\( 2^{x-\\sqrt{x}} > 0 \\):\n\\[\n0 \\leq 2^{x-\\sqrt{x}} < 4\n\\]\nHence,\n\\[\nx - \\sqrt{x} < \\log_2 4 = 2\n\\]\n\n6. **Solve \\( x - \\sqrt{x} < 2 \\):**\nUse substitution \\( t = \\sqrt{x} \\). This gives \\( t^2 - t < 2 \\), or:\n\\[\nt^2 - t - 2 < 0\n\\]\n\n7. **Solve the quadratic t-equation:**\n\\[\nt = \\frac{1 \\pm \\sqrt{1^2 + 4 \\times 2}}{2} = \\frac{1 \\pm \\sqrt{9}}{2} = \\frac{1 \\pm 3}{2}\n\\]\nThus, \\( t = 2 \\) and \\( t = -1 \\). Within the feasible region:\n\\[\n0 \\leq t < 2\n\\]\nSo:\n\\[\n0 \\leq \\sqrt{x} < 2\n\\]\nSquaring both sides:\n\\[\n0 \\leq x < 4\n\\]\n\n### Conclusion:\nThe solution set for the inequality is:\n\\[\n\\boxed{[0, 4)}\n\\]",
+  "error": "Loses equality at the upper root when factoring a non-strict inequality.",
+  "evidence": "ctor is negative, one is positive → product is **negative**\n- **For $ y > 4 $**: both factors are positive → product is **positive**\n\nSo the inequality:\n\n$$\ny^2(y - 4)(y + 1) \\leq 0\n$$\n\nis satisfied when:\n\n$$\n-1 \\leq y < 4\n$$\n\n---\n\n### Step 5: Return to the original variable\n\nRecall that:\n\n$$\ny = 2^{\\sqrt{x}}\n$$\n\nSo:\n\n$$\n-1 \\leq 2^{\\sqrt{x}} < 4\n$$\n\nNow, solve for $ x $.\n\nWe know:\n\n$$\n2^{\\sqrt{x}} \\geq -1 \\quad \\text{and} \\quad 2^{\\sqrt{x}} < 4\n$$\n\nBut since $ 2^{\\sqrt{x}} > 0 $ for all real $ x \\geq 0 $, the inequality $ 2^{\\sqrt{x}} \\geq -1 $ is always true.\n\nSo we focus on:\n\n$$\n2^{\\sqrt{x}} < 4\n\\Rightarrow \\sqrt{x} < 2\n\\Rightarrow x < 4\n$$\n\nAlso, since $ \\sqrt{x} \\geq 0 $, we have $ x \\geq 0 $\n\nSo the final interval is:\n\n$$\n0 \\leq x < 4\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{[0, 4)}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 28,
+  "reference_tokens": 886,
+  "B_box": "[0, 4)",
+  "new_box": "[0, 4)"
+ },
+ {
+  "idx": 1038,
+  "reference_sha256": "6cf45c282027f12c58b66607130495c0225c784d377b7e6cedce74b8893fa20b",
+  "qualified": true,
+  "text": "\nTo solve the problem, we will denote the number of apples originally in bucket 甲 (Jiǎ), 乙 (Yǐ), and 丙 (Bǐng) as \\( A \\), \\( B \\), and \\( C \\) respectively.\n\nGiven the conditions:\n1. \\( C = 2A \\)\n2. If 12 apples are removed from 乙 (Yǐ) and placed into 甲 (Jiǎ), then \\( A + 12 = C - 24 \\).\n3. Also, originally \\( B = C + 6 \\).\n\nLet's break down the steps to find the number of apples in bucket 乙 (Yǐ).\n\n1. From the first condition, we know:\n   \\[\n   C = 2A\n   \\]\n\n2. From the second condition, substitute \\( C \\):\n   \\[\n   A + 12 = 2A - 24\n   \\]\n\n   Solving the equation above:\n   \\[\n   A + 12 + 24 = 2A\n   \\]\n   \\[\n   36 = A\n   \\]\n\n   Therefore, bucket 甲 initially has \\( A = 36 \\) apples.\n\n3. Using \\( A = 36 \\) in \\( C = 2A \\):\n   \\[\n   C = 2 \\times 36 = 72\n   \\]\n\n   Therefore, bucket 丙 initially has \\( C = 72 \\) apples.\n\n4. From the third condition, substitute \\( C \\):\n   \\[\n   B = C + 6\n   \\]\n   \\[\n   B = 72 + 6 = 78\n   \\]\n\n   Therefore, bucket 乙 initially has:\n   \\[\n   B = 78 - 12 + 12 = 78\n   \\]\n\nThus, based on this relation between the baskets, bucket 乙 should initially have:\n\\[\nB = 72 + 6\n\\]\n\nRecomputing:\nTherefore,\n\\[ \nB = 72 + 6 = 78 \n\\]\n\n### Conclusion:\nThe number of apples originally in bucket 乙 (Yǐ) is \n\\[ \n\\boxed{78} \n\\]",
+  "error": "Treats the post-transfer B=C+6 as an initial count, ignoring the twelve apples taken from B.",
+  "evidence": " Step 5: Find original number of apples in basket C\n\n$$\nC = 2A = 2 \\times 36 = 72\n$$\n\n---\n\n### Step 6: Use the third condition\n\n> \"The number of apples in basket B is 6 more than that in basket C.\"\n\n$$\nB = C + 6 = 72 + 6 = 78\n$$\n\nBut we also need to check whether this is consistent with the fact that **12 apples were moved from B to A**.\n\n- Original B: 78\n- After moving 12: $ 78 - 12 = 66 $\n\nSo, the new number of apples in B is **66**, and the new number in A is:\n\n$$\nA + 12 = 36 + 12 = 48\n$$\n\nNow, check if A is 24 less than C:\n\n$$\nC - 24 = 72 - 24 = 48 \\quad \\text{(matches)}\n$$\n\nAnd check if B is 6 more than C:\n\n$$\nC + 6 = 72 + 6 = 78 \\quad \\text{(matches original B)}\n$$\n\nSo everything checks out.\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{78}\n$$\n\nThere were **78 apples** originally in basket B.",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 18,
+  "reference_tokens": 484,
+  "B_box": "78",
+  "new_box": "78"
+ },
+ {
+  "idx": 1052,
+  "reference_sha256": "9e75fa5598417c159730a9220279e46375d72b5dda5c632b3b228db1aa5b3d07",
+  "qualified": false,
+  "reason": "B uses an erroneous cubic factorization and direct substitution; the reference devotes several full sections to a second factorization and cancellation."
+ },
+ {
+  "idx": 1072,
+  "reference_sha256": "8533e63f141caed95f6cdd1434d11a13463c1c8e7ffa20f6fe6e0990fa93e870",
+  "qualified": true,
+  "text": "\nGiven the geometric sequence $\\left\\{a_{n}\\right\\}$ where $a_{9} = 13$ and $a_{13} = 1$, we need to find the value of $\\log_{a_1} 13$.\n\n1. By the properties of geometric sequences, the general term $a_n$ can be expressed as:\n    \\[\n    a_n = a_1 \\cdot r^{n-1}\n    \\]\n   where \\(r\\) is the common ratio of the sequence.\n\n2. Given \\(a_9 = 13\\) and \\(a_13 = 1\\), we can write:\n    \\[\n    a_9 = a_1 \\cdot r^8 = 13\n    \\]\n    \\[\n    a_{13} = a_1 \\cdot r^{12} = 1\n    \\]\n\n3. To find the common ratio \\(r\\), divide the two equations:\n    \\[\n    \\frac{a_{13}}{a_{9}} = \\frac{a_{1} \\cdot r^{12}}{a_{1} \\cdot r^{8}} = \\frac{1}{13}\n    \\]\n    \\[\n    r^{12-8} = \\frac{1}{13}\n    \\]\n    \\[\n    r^4 = \\frac{1}{13}\n    \\]\n   Thus:\n    \\[\n    r = \\left( \\frac{1}{13} \\right)^{\\frac{1}{4}} = 13^{-\\frac{1}{4}}\n    \\]\n\n4. To find \\(a_1\\), use the equation \\(a_9 = a_1 \\cdot r^8 = 13\\):\n    \\[\n    13 = a_1 \\cdot (13^{-\\frac{1}{4}})^8\n    \\]\n    \\[\n    13 = a_1 \\cdot (13^{-1})\n    \\]\n    \\[\n    13 = a_1 \\cdot \\frac{1}{13}\n    \\]\n    \\[\n    a_1 = 13 \\cdot 13\n    \\]\n    \\[\n    a_1 = 13^2\n    \\]\n\n5. Finally, to find $ \\log_{a_1} 13 $:\n    \\[\n    \\log_{a_1} 13 = \\log_{13^2} 13\n    \\]\n    \\[\n    = \\frac{\\log 13}{\\log 13^2}\n    \\]\n    \\[\n    = \\frac{\\log 13}{2 \\cdot \\log 13}\n    \\]\n    \\[\n    = \\frac{1}{2}\n    \\]\n\nConclusion:\n\\[\n\\boxed{\\frac{1}{2}}\n\\]",
+  "error": "Evaluates the eighth power of the ratio as 1/13 instead of 1/169.",
+  "evidence": "\n$$\nr = \\sqrt[4]{\\frac{1}{13}} = \\frac{1}{\\sqrt[4]{13}}\n$$\n\n---\n\n### Step 3: Express $a_1$ in terms of $r$\n\nFrom equation (1):\n\n$$\na_1 \\cdot r^8 = 13 \\Rightarrow a_1 = \\frac{13}{r^8}\n$$\n\nWe can now substitute $r = \\frac{1}{\\sqrt[4]{13}}$:\n\n$$\nr^8 = \\left(\\frac{1}{\\sqrt[4]{13}}\\right)^8 = \\frac{1}{13}\n$$\n\nSo,\n\n$$\na_1 = \\frac{13}{\\frac{1}{13}} = 13^2 = 169\n$$\n\n---\n\n### Step 4: Compute $\\log_{a_1} 13$\n\nWe now know that $a_1 = 169$, so we need to compute:\n\n$$\n\\log_{169} 13\n$$\n\nUse the change of base formula:\n\n$$\n\\log_{169} 13 = \\frac{\\log 13}{\\log 169}\n$$\n\nWe can also write:\n\n$$\n\\log_{169} 13 = \\frac{\\log 13}{\\log 169}\n$$\n\nNote that:\n\n$$\n\\log 169 = \\log (13^2) = 2 \\log 13\n$$\n\nSo:\n\n$$\n\\log_{169} 13 = \\frac{\\log 13}{2 \\log 13} = \\frac{1}{2}\n$$\n\n---\n\n### ✅ Final Answer:\n\n$$\n\\boxed{\\frac{1}{2}}\n$$",
+  "checks": {
+   "box_match": true,
+   "wrong": true,
+   "gold_absent": true,
+   "edit_limit": true,
+   "headings": true,
+   "lines": true
+  },
+  "edit_tokens": 11,
+  "reference_tokens": 623,
+  "B_box": "\\frac{1}{2}",
+  "new_box": "\\frac{1}{2}"
+ },
+ {
+  "idx": 1092,
+  "reference_sha256": "7ebf15f37f0360c125f071070f7251f6ae1c7894e5b300c3a7ac74825f549e57",
+  "qualified": false,
+  "reason": "B solves a different system of angle equations; reference identifies an orthocenter and obtains 20 degrees directly from perpendicularity."
+ },
+ {
+  "idx": 1101,
+  "reference_sha256": "f92b9336f6c63e11d76ee8275c44b33db1c4ca2120ab2190379747cf26fb20c0",
+  "qualified": false,
+  "reason": "False negative. B explicitly gives the correct switching strategy and winning probability 2/3; its boxed text includes the gold Yes."
+ },
+ {
+  "idx": 1103,
+  "reference_sha256": "71eb4bc3b4b1c9a75c73d100a5cd379fe03fb8c24e9bdefb701031291245d6a4",
+  "qualified": false,
+  "reason": "Both answers give option B, zero."
+ }
+]
